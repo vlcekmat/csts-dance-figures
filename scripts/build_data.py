@@ -1,0 +1,565 @@
+"""Merge the ČSTS catalog with the WDSF Syllabus (and scraped videos) into the
+single JSON file consumed by the web app.
+
+Inputs:
+  data/build/catalog.json   (scripts/parse_catalog.py)
+  data/build/syllabus.json  (scripts/parse_syllabus.py)
+  data/videos.json          (scripts/scrape_videos.py, optional)
+  data/dances.json          (hand-written dance metadata + catalog remarks)
+Output:
+  src/data/figures.json
+"""
+
+import difflib
+import unicodedata
+import json
+import re
+import sys
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+BUILD = ROOT / "data" / "build"
+OUT = ROOT / "src" / "data" / "figures.json"
+
+# Catalog cross-reference prefixes ("Sf-36") -> dance id.
+REF_PREFIX = {"Wa": "waltz", "Sf": "slowfox", "Qs": "quickstep", "Ta": "tango"}
+
+# Syllabus chapter numbers of each dance ("2.1.5" = Waltz figure 5).
+DANCE_SECTION = {
+    "waltz": "2.1", "slowfox": "2.2", "quickstep": "2.3", "tango": "2.4", "viennese": "2.5",
+    "chacha": "3.1", "rumba": "3.2", "paso": "3.3", "samba": "3.4", "jive": "3.5",
+}
+
+# Manual catalog -> syllabus matches where names differ too much for fuzzy
+# matching. Key: (dance, catalog no) -> (syllabus dance, syllabus num) or None.
+MANUAL_MATCH = {
+    ("chacha", 29): ("chacha", 29),   # "MCF - Simple foot change"
+    ("chacha", 48): ("chacha", 48),
+    ("jive", 34): ("jive", 34),       # Chugging by ISTD
+    ("jive", 37): ("jive", 37),
+    ("rumba", 47): ("rumba", 47),
+    ("samba", 55): ("samba", 55),
+    # Tango syllabus does not describe Telemark to PP; the catalog refers to Slow Fox.
+    ("tango", 33): ("slowfox", 17),
+    ("tango", 39): ("tango", 38),
+    ("tango", 40): ("tango", 39),
+    ("tango", 41): ("tango", 40),
+    ("tango", 42): ("tango", 41),
+    # Both Coup de Pique variants normalise to the same name.
+    ("paso", 37): ("paso", 37),
+}
+
+
+def norm(name):
+    """Normalise a figure name for fuzzy comparison."""
+    s = name.lower()
+    # Drop bracketed aliases / cross references: "(see Slow Fox)", "(Shadow Botafogos)".
+    s = re.sub(r"\([^)]*\)", " ", s)
+    s = s.replace("left foot", "lf").replace("right foot", "rf")
+    s = s.replace("fisht tail", "fishtail").replace("corté", "corte")
+    s = s.replace("p.p.", "pp").replace("p.p", "pp")
+    s = re.sub(r"\bpromenade position\b", "pp", s)
+    s = re.sub(r"\bright\b", "r", s)
+    s = re.sub(r"\bleft\b", "l", s)
+    s = re.sub(r"\bleft foot\b", "lf", s)
+    s = re.sub(r"\brigth\b", "r", s)
+    s = re.sub(r"\bopen opp(?:osing)?\.? pos(?:ition)?\.?", "open opposing position", s)
+    s = re.sub(r"[^a-z0-9 ]", " ", s)
+    return re.sub(r"\s+", " ", s).strip()
+
+
+def similarity(a, b):
+    a, b = norm(a), norm(b)
+    if a == b:
+        return 1.0
+    ratio = difflib.SequenceMatcher(None, a, b).ratio()
+    # Bonus when one name is a prefix of the other (bracketed aliases etc.).
+    if b.startswith(a) or a.startswith(b):
+        ratio = max(ratio, 0.9)
+    return ratio
+
+
+# --- Czech rendering of Start/Finish -----------------------------------------
+# Only feet and directions are translated; positions/holds stay in English, the
+# same way the ČSTS catalog keeps the official WDSF position names.
+CS_GLOSSARY = [
+    (r"\bRF\b", "Pn"), (r"\bLF\b", "Ln"),
+    (r"\bR foot\b", "Pn"), (r"\bL foot\b", "Ln"),
+    (r"\bfwd\b", "vpřed"), (r"\bFwd\b", "vpřed"),
+    (r"\bbwd\b", "vzad"), (r"\bBwd\b", "vzad"),
+    (r"\bto side\b", "stranou"), (r"\bslightly\b", "mírně"),
+    (r"\bdiag\.?,?", "diagonálně"), (r"\band across\b", "a napříč"),
+    (r"\bacross\b", "napříč"),
+    (r"\bcloses to\b", "přisouvá k"), (r"\bclosed to\b", "přisunuta k"),
+    (r"\bcrosses behind\b", "kříží za"), (r"\bcrosses in front of\b", "kříží před"),
+    (r"\bin place\b", "na místě"), (r"\bw/o weight\b", "bez váhy"),
+    (r"\b[Ww]eight on\b", "váha na"), (r"\bsmall step\b", "malý krok"),
+    (r"\bL side leading\b", "vedení L bokem"), (r"\bR side leading\b", "vedení P bokem"),
+    (r"\bwith\b", "s"), (r"\band\b", "a"), (r"\bor\b", "nebo"),
+    (r"\bT turned out\b", "špička vytočená"), (r"\bbehind\b", "za"),
+]
+
+
+def to_czech(text):
+    out = text
+    for pat, rep in CS_GLOSSARY:
+        out = re.sub(pat, rep, out)
+    return out
+
+
+VARIANT_RE = re.compile(r"\s*\b\d\.\d\.\d+\.\d+\s+([A-Z][A-Z0-9 .,'’/-]+)$")
+
+
+def clean_notes(notes, extra):
+    """Turn trailing sub-figure headings ("3.1.29.2 CHASSE TO R SIDE LINK")
+    into separate 'Variant' notes and append free text as a General note."""
+    out = []
+    for n in notes:
+        m = VARIANT_RE.search(n["text"])
+        if m:
+            out.append({"topic": n["topic"], "text": n["text"][: m.start()].strip()})
+            out.append({"topic": "Variant", "text": m.group(1).strip().title()})
+        else:
+            out.append(n)
+    if extra:
+        m = VARIANT_RE.search(extra)
+        if m:
+            extra_text = extra[: m.start()].strip()
+            if extra_text:
+                out.insert(0, {"topic": "General", "text": extra_text})
+            out.insert(0, {"topic": "Variant", "text": m.group(1).strip().title()})
+        else:
+            out.insert(0, {"topic": "General", "text": extra})
+    return [n for n in out if n["text"]]
+
+
+# --- Variants allowed by the syllabus notes ------------------------------------
+# The notes describe choreographic options in fairly regular English, e.g.
+#   "Steps 1-3 or 4-6 only may be used", "May start from step 2",
+#   "May start with RF fwd in CBMP in Outside Partner Position",
+#   "It may end in Promenade Position."
+# We turn the common patterns into structured options the routine editor can
+# offer. Anything not recognised stays available as plain note text.
+
+RANGE_RE = re.compile(r"(\d+)\s*[-–]\s*(\d+)")
+PART_SENTENCE_RE = re.compile(
+    r"\bsteps?\s*((?:\d+\s*[-–]\s*\d+\s*(?:,|or|and)?\s*)+)\s*(?:only\s+)?"
+    r"(?:may\s+be\s+(?:used|danced)|only\s+(?:are|is)\s+used|are\s+used)",
+    re.I,
+)
+FROM_STEP_RE = re.compile(r"\bmay\s+start\s+from\s+step\s+(\d+)", re.I)
+END_RE = re.compile(
+    r"\b(?:may|can)\b[^.]*?\b(?:end|finish)\s+in\s+(?:a\s+)?([A-Za-z][^.,;(]*?)\s*(?:[.,;(]|$)",
+    re.I,
+)
+START_RE = re.compile(r"\bmay\s+(?:also\s+)?start\s+(?:with\s+)?(?!from\b)(.+?)\s*\.?$", re.I)
+POSITION_ALIASES = {"pp": "Promenade Position", "close position": "Closed Position"}
+
+
+def sentences(text):
+    return [s.strip() for s in re.split(r"(?<=[.!?])\s+", text) if s.strip()]
+
+
+def tidy_position(pos):
+    pos = re.sub(r"\s+", " ", pos).strip().rstrip(")").strip()
+    # "Open Opposing Position or 1/8 to R" -> "Open Opposing Position"
+    if re.search(r"Position\s+or\s+", pos, re.I):
+        pos = re.split(r"\s+or\s+", pos, flags=re.I)[0]
+    pos = POSITION_ALIASES.get(pos.lower(), pos)
+    return pos[:1].upper() + pos[1:]
+
+
+def extract_variants(notes):
+    parts, starts, finishes = [], [], []
+
+    def add_part(a, b, sentence):
+        key = (a, b)
+        if key not in [(p["from"], p["to"]) for p in parts]:
+            parts.append({"from": a, "to": b, "text": sentence})
+
+    for note in notes:
+        for s in sentences(note["text"]):
+            low = s.lower()
+            # Options that apply to the Lady only don't change the couple's start/finish.
+            lady_only = re.search(r"\bLady\s+(?:may|will|can)\b", s) is not None
+            # Step ranges ("Steps 1-3 or 4-6 only may be used"). Skip sentences
+            # about timing / sway that merely mention step numbers.
+            m = PART_SENTENCE_RE.search(s)
+            if m and "timing" not in low and "sway" not in low:
+                for a, b in RANGE_RE.findall(m.group(1)):
+                    add_part(int(a), int(b), s)
+            m = FROM_STEP_RE.search(s)
+            if m:
+                add_part(int(m.group(1)), None, s)  # None = up to the last step
+            # Alternative finish position.
+            for m in END_RE.finditer(s) if not lady_only else []:
+                if len(m.group(1)) >= 50:
+                    continue
+                pos = tidy_position(m.group(1))
+                if pos.lower() not in [f["position"].lower() for f in finishes]:
+                    finishes.append({"position": pos, "text": s})
+            # Alternative start (foot and/or position).
+            m = START_RE.search(s)
+            if m and not lady_only and not FROM_STEP_RE.search(s) and "steps" not in low[: low.find("start")]:
+                desc = re.sub(r"^the\s+", "", m.group(1))
+                # "may start and end in PP" -> start "in PP"
+                desc = re.sub(r"^and\s+end\s+(in\s+.*)$", r"\1", desc, flags=re.I)
+                desc = re.sub(r"\s+and\s+end\s+in\s+.*$", "", desc, flags=re.I)
+                desc = re.split(r",\s*(?:the|in this case|it)\b", desc)[0].strip()
+                if len(desc) < 90 and desc.lower() not in [x["desc"].lower() for x in starts]:
+                    starts.append({"desc": desc, "descCs": to_czech(desc), "text": s})
+    out = {}
+    if parts:
+        out["parts"] = parts
+    if starts:
+        out["starts"] = starts
+    if finishes:
+        out["finishes"] = finishes
+    return out
+
+
+# --- Holds -----------------------------------------------------------------------
+# Latin start/finish descriptions carry the hold after the position:
+#   "LF fwd (Open Opp.; LH to RH Hold)". Notes mention alternative holds
+# ("LH to RH Hold may be used", "with any appropriate hold"). Holds are mapped
+# to canonical keys that the app knows how to label and draw.
+
+HOLD_PATTERNS = [
+    ("double", r"\bLH to RH and RH to LH\b|\bdouble (?:hand )?hold\b|\bboth hands? hold\b"),
+    ("lh-rh", r"\bLH to RH\b"),
+    ("rh-lh", r"\bRH to LH\b"),
+    ("rh-rh", r"\bRH to RH\b"),
+    ("lh-lh", r"\bLH to LH\b"),
+    ("promenade", r"\bProm(?:enade)?\.? Hold\b"),
+    ("normal", r"\bNormal Hold\b"),
+    ("shadow", r"\bShadow Hold\b"),
+    # "RH releases Hold" only drops one hand, so it is not mapped to "no hold".
+    ("none", r"\bw/o Hold\b|\bno hold\b|\bwithout hold\b"),
+]
+
+
+def holds_in(text):
+    """Canonical hold keys in order of appearance (double hold wins over its parts)."""
+    found = []
+    for key, pat in HOLD_PATTERNS:
+        for m in re.finditer(pat, text, re.I):
+            found.append((m.start(), key))
+    found.sort()
+    out = []
+    for pos, key in found:
+        # "LH to RH and RH to LH" also matches lh-rh / rh-lh: skip parts of a double hold.
+        if any(k == "double" and abs(p - pos) < 25 for p, k in found) and key in ("lh-rh", "rh-lh"):
+            continue
+        if key not in out:
+            out.append(key)
+    return out
+
+
+def extract_holds(start, finish, notes):
+    def paren(text):
+        m = re.search(r"\(([^)]*)\)\s*$", text)
+        return m.group(1) if m else ""
+
+    s_holds = holds_in(paren(start))
+    f_holds = holds_in(paren(finish))
+    alts = []
+    any_hold = False
+    for n in notes:
+        if re.search(r"\bany (?:other )?(?:appropriate |suitable )?hold\b", n["text"], re.I):
+            any_hold = True
+        for k in holds_in(n["text"]):
+            if k not in alts:
+                alts.append(k)
+    if not (s_holds or f_holds or alts or any_hold):
+        return None
+    out = {"alts": alts}
+    if s_holds:
+        out["start"] = s_holds[0]
+    if f_holds:
+        out["finish"] = f_holds[-1]  # "Normal Hold to Promenade Hold" ends in Promenade Hold
+    if any_hold:
+        out["any"] = True
+    return out
+
+
+# --- Step charts (dancecentral.info) -------------------------------------------
+
+STANDARD = {"waltz", "tango", "viennese", "slowfox", "quickstep"}
+DANCE_WORDS = r"\b(waltz|tango|viennese|slow fox(?:trot)?|foxtrot|quickstep|samba|cha cha(?: cha)?|rumba|paso doble|jive)\b"
+# Catalog figure -> dancecentral slug, where names differ too much.
+MANUAL_CHART = {
+    ("waltz", 1): "waltz/waltz-closed-changes",
+    ("waltz", 2): "waltz/waltz-closed-changes|mirror",
+    ("waltz", 16): "waltz/closed-telemark",
+    ("waltz", 19): "waltz/closed-impetus",
+    ("quickstep", 19): "quickstep/closed-telemark",
+    ("quickstep", 17): "quickstep/closed-impetus",
+    ("chacha", 4): "chacha/new-york",  # catalog typo "New York to P"
+}
+
+
+def chart_title(title):
+    t = re.sub(DANCE_WORDS, " ", title, flags=re.I)
+    return re.sub(r"\s*[-–]\s*$|^\s*[-–]\s*", "", t).strip(" -–")
+
+
+def chart_to_floor(entry, dance):
+    steps = []
+    for st in entry.get("leader", []):
+        cols = st["cols"]
+        if dance in STANDARD and len(cols) >= 4:
+            steps.append({"desc": cols[0], "align": cols[1], "turn": cols[3]})
+        else:
+            steps.append({"desc": cols[0], "align": "", "turn": cols[1] if len(cols) > 1 else ""})
+    return {
+        "title": entry["title"],
+        "url": entry["url"],
+        "steps": steps,
+        "preceding": entry.get("preceding", [])[:20],
+        "following": entry.get("following", [])[:20],
+    }
+
+
+def link_names(names, dance, rows):
+    """Map dancecentral figure names ("Closed Impetus (after 1-3)") to catalog
+    figures of the same dance. Returns [{"name", "note"?, "id"?}]."""
+    out = []
+    for raw in names:
+        m = re.match(r"^(.*?)\s*\((.*)\)\s*$", raw)
+        base, note = (m.group(1), m.group(2)) if m else (raw, None)
+        base = re.sub(r"\s*-\s*(Waltz|Tango|Foxtrot|Quickstep|V Waltz|Samba|Rumba|Cha Cha|Jive)$", "", base, flags=re.I)
+        # dancecentral writes "Closed Change RF", "Closed Telemark"...: drop "Closed" when the catalog has no such word.
+        best, score = None, 0.0
+        for r in rows:
+            if not r["en"]:
+                continue
+            cand = [base, re.sub(r"^Closed\s+", "", base, flags=re.I)]
+            for c in cand:
+                sc = similarity(c, r["en"])
+                # Direction words must not contradict ("to R" vs "to L").
+                a, b = set(norm(c).split()), set(norm(r["en"]).split())
+                if ({"r", "l"} & a) and ({"r", "l"} & b) and not ({"r", "l"} & a & b):
+                    continue
+                if sc > score:
+                    best, score = r, sc
+        item = {"name": raw if not note else base}
+        if note:
+            item["note"] = note
+        if best and score >= 0.8:
+            item["id"] = f"{dance}-{best['no']}"
+        out.append(item)
+    return out
+
+
+def collect_aliases(entry, aliases_by_dance):
+    """Other names: hand-written list + WDSF bracketed titles + dancecentral titles."""
+    en, cs = [], []
+    own = {norm(entry["en"] or ""), norm(entry["cs"])}
+
+    def add(lst, name):
+        name = re.sub(r"\s+", " ", name).strip(" -–")
+        if name and norm(name) not in own and norm(name) not in [norm(x) for x in lst]:
+            lst.append(name)
+
+    manual = aliases_by_dance.get(entry["dance"], {}).get(entry["en"] or "", {})
+    for n in manual.get("en", []):
+        add(en, n)
+    for n in manual.get("cs", []):
+        add(cs, n)
+    syl = entry.get("syllabus")
+    if syl:
+        for m in re.findall(r"\(([^)]*)\)", syl["title"]):
+            if not re.match(r"see\b", m, re.I):
+                add(en, m.title())
+    fl = entry.get("floor")
+    if fl:
+        t = chart_title(fl["title"])
+        if similarity(t, entry["en"] or "") < 0.95:
+            add(en, t)
+    out = {}
+    if en:
+        out["en"] = en
+    if cs:
+        out["cs"] = cs
+    return out
+
+
+def mirror_chart(chart):
+    """Mirror a chart (e.g. Closed Change on RF -> on LF): swap feet, left/right
+    and the diagonals to wall/centre, and the turn directions."""
+    pairs = {"RF": "LF", "LF": "RF", "DW": "DC", "DC": "DW", "R": "L", "L": "R", "Wall": "Centre", "Centre": "Wall"}
+
+    def flip(text):
+        # All swaps at once, so "closes to RF" never becomes "to L…".
+        # DW/DC also inside alignment codes ("FDC" -> "FDW").
+        text = re.sub(r"DW|DC", lambda m: pairs[m.group(0)], text)
+        return re.sub(r"\b(RF|LF|Wall|Centre|R|L)\b", lambda m: pairs[m.group(1)], text)
+
+    out = dict(chart)
+    out["leader"] = [{"count": st["count"], "cols": [flip(c) for c in st["cols"]]} for st in chart.get("leader", [])]
+    return out
+
+
+def match_chart(charts, dance, no, name):
+    key = MANUAL_CHART.get((dance, no))
+    if key:
+        slug, _, flag = key.partition("|")
+        chart = charts.get(slug)
+        return mirror_chart(chart) if chart and flag == "mirror" else chart
+    def words(t):
+        t = unicodedata.normalize("NFKD", t).encode("ascii", "ignore").decode()
+        return set(norm(t).split()) - {"to", "the", "and", "of", "from", "in", "on", "a", "with"}
+
+    best, score = None, 0.0
+    want = words(name)
+    for c in charts.values():
+        if c["dance"] != dance or not c.get("leader"):
+            continue
+        title = chart_title(c["title"])
+        have = words(title)
+        # Every significant word of the catalog name must appear in the chart
+        # title ("Open Natural Turn" must not match "Natural Turn"). Direction
+        # words may be missing ("New York to R" -> "New York") but must not be
+        # contradicted ("to L" never matches "to Right").
+        dirs = want & {"r", "l"}
+        if not (want - dirs) <= have:
+            continue
+        if any(({"r": "l", "l": "r"}[d] in have and d not in have) for d in dirs):
+            continue
+        # Extra words that make a different figure ("Hover Telemark" is not "Telemark").
+        if (have - want) & {"hover", "open", "from", "pp", "promenade", "quick", "running", "overturned", "curved", "natural", "reverse"}:
+            continue
+        sc = similarity(name, title) - 0.02 * len(have - want)
+        if sc > score:
+            best, score = c, sc
+    return best if score >= 0.6 else None
+
+
+def main():
+    catalog = json.loads((BUILD / "catalog.json").read_text(encoding="utf-8"))
+    syllabus = json.loads((BUILD / "syllabus.json").read_text(encoding="utf-8"))
+    dances = json.loads((ROOT / "data" / "dances.json").read_text(encoding="utf-8"))
+    videos_path = ROOT / "data" / "videos.json"
+    videos = json.loads(videos_path.read_text(encoding="utf-8")) if videos_path.exists() else {}
+    aliases_by_dance = json.loads((ROOT / "data" / "aliases.json").read_text(encoding="utf-8"))
+    charts_path = ROOT / "data" / "alignment.json"
+    charts = json.loads(charts_path.read_text(encoding="utf-8")) if charts_path.exists() else {}
+
+    # Resolve "See 3.4.22 ..." entries (Samba) by copying the referenced figure.
+    for dance, data in syllabus.items():
+        by_num = {f["num"]: f for f in data["figures"]}
+        for f in data["figures"]:
+            m = re.match(r"See \d\.\d\.(\d+)", f.get("extra", ""))
+            if m and not f["timing"]:
+                src = by_num[int(m.group(1))]
+                for key in ("start", "finish", "timing", "notes", "altTimings"):
+                    f[key] = src[key]
+                f["seeAlso"] = src["title"]
+                f["extra"] = ""
+
+    figures = []
+    report = []
+    for dance, rows in catalog.items():
+        syl = syllabus.get(dance, {"figures": []})["figures"]
+        for row in rows:
+            fig_id = f"{dance}-{row['no']}"
+            entry = {
+                "id": fig_id,
+                "dance": dance,
+                "no": row["no"],
+                "en": row["en"],
+                "cs": row["cs"],
+                "classes": row["classes"],
+                "wdsfRef": row.get("wdsfRef"),
+                "plamRef": row.get("plamRef"),
+            }
+            for k in ("noteCs", "noteEn", "polkaRef"):
+                if row.get(k):
+                    entry[k] = row[k]
+
+            match = None
+            match_dance = dance
+            if (dance, row["no"]) in MANUAL_MATCH:
+                target = MANUAL_MATCH[(dance, row["no"])]
+                if target:
+                    match_dance = target[0]
+                    match = next(f for f in syllabus[target[0]]["figures"] if f["num"] == target[1])
+                score = 1.0
+            elif row["en"] and syl:
+                scored = sorted(((similarity(row["en"], f["title"]), f) for f in syl),
+                                key=lambda t: -t[0])
+                score, best = scored[0]
+                # Prefer the syllabus number from the catalog when it is a tie.
+                if row.get("wdsfRef", "") and row["wdsfRef"].isdigit():
+                    for s, f in scored[:3]:
+                        if f["num"] == int(row["wdsfRef"]) and s >= score - 0.05:
+                            score, best = s, f
+                            break
+                if score >= 0.6:
+                    match = best
+                report.append((score, dance, row["no"], row["en"], best["title"]))
+
+            if match:
+                entry["syllabus"] = {
+                    "section": f"{DANCE_SECTION[match_dance]}.{match['num']}{match['suffix']}",
+                    "title": match["title"],
+                    "start": match["start"],
+                    "finish": match["finish"],
+                    "startCs": to_czech(match["start"]),
+                    "finishCs": to_czech(match["finish"]),
+                    "timing": match["timing"],
+                    "altTimings": match["altTimings"],
+                    "notes": clean_notes(match["notes"], match.get("extra", "")),
+                }
+                entry["syllabus"]["variants"] = extract_variants(entry["syllabus"]["notes"])
+                holds = extract_holds(match["start"], match["finish"], entry["syllabus"]["notes"])
+                if holds:
+                    entry["syllabus"]["holds"] = holds
+                if match.get("seeAlso"):
+                    entry["syllabus"]["seeAlso"] = match["seeAlso"]
+                elif match_dance != dance:
+                    entry["syllabus"]["seeAlso"] = f"{match_dance}: {match['title']}"
+            if fig_id in videos:
+                entry["videos"] = videos[fig_id]
+            if row["en"] and charts:
+                chart = match_chart(charts, dance, row["no"], row["en"])
+                if chart:
+                    entry["floor"] = chart_to_floor(chart, dance)
+                    entry["floor"]["preceding"] = link_names(entry["floor"]["preceding"], dance, rows)
+                    entry["floor"]["following"] = link_names(entry["floor"]["following"], dance, rows)
+            al = collect_aliases(entry, aliases_by_dance)
+            if al:
+                entry["aliases"] = al
+            figures.append(entry)
+
+    OUT.parent.mkdir(parents=True, exist_ok=True)
+    payload = {
+        "sources": {
+            "catalog": "ČSTS Soutěžní řád, příloha SC02 Katalog figur (SC02_260701), účinnost od 24.07.2026",
+            "syllabus": "WDSF Syllabus (worlddancesport.org, verze 2018)",
+        },
+        "dances": dances["dances"],
+        "figures": figures,
+    }
+    OUT.write_text(json.dumps(payload, ensure_ascii=False, indent=1), encoding="utf-8")
+
+    # Report hand-written aliases whose figure name doesn't exist (typos).
+    names = {(f["dance"], f["en"]) for f in figures}
+    for d, table in aliases_by_dance.items():
+        if d.startswith("_"):
+            continue
+        for n in table:
+            if (d, n) not in names:
+                print(f"WARNING: aliases.json: no figure '{n}' in {d}")
+    unmatched = [f["id"] for f in figures if "syllabus" not in f and f["dance"] != "polka"]
+    with_chart = sum(1 for f in figures if "floor" in f)
+    print(f"{with_chart} figures with a step chart")
+    print(f"{len(figures)} figures written, {len(unmatched)} without syllabus data: {unmatched}")
+    if "--report" in sys.argv:
+        for r in sorted(report):
+            if r[0] < 0.95:
+                print(f"{r[0]:.2f} {r[1]:9s} {r[2]:3d} {r[3]!r:55s} -> {r[4]!r}")
+
+
+if __name__ == "__main__":
+    main()

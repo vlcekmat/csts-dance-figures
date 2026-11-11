@@ -1,0 +1,1030 @@
+{
+ "_comment": "Other common names of catalog figures. Keyed by dance and the English catalog name. Merged by scripts/build_data.py together with aliases from the WDSF Syllabus (bracketed names) and dancecentral.info titles.",
+ "waltz": {
+  "Closed Change on RF": {
+   "en": [
+    "Closed Change",
+    "Change Step",
+    "Natural to Reverse Change"
+   ],
+   "cs": [
+    "změna",
+    "změna vpřed z pravé"
+   ]
+  },
+  "Closed Change on LF": {
+   "en": [
+    "Closed Change",
+    "Change Step",
+    "Reverse to Natural Change"
+   ],
+   "cs": [
+    "změna",
+    "změna vpřed z levé"
+   ]
+  },
+  "Natural Turn": {
+   "en": [
+    "Right Turn"
+   ],
+   "cs": [
+    "pravá otáčka"
+   ]
+  },
+  "Reverse Turn": {
+   "en": [
+    "Left Turn"
+   ],
+   "cs": [
+    "levá otáčka"
+   ]
+  },
+  "Progressive Chasse to R": {
+   "en": [
+    "Chasse to Right",
+    "Progressive Chassé"
+   ],
+   "cs": [
+    "šasé",
+    "chassé",
+    "přeměna"
+   ]
+  },
+  "Progressive Chasse to L": {
+   "en": [
+    "Chasse to Left",
+    "Progressive Chassé"
+   ],
+   "cs": [
+    "šasé",
+    "chassé",
+    "přeměna"
+   ]
+  },
+  "Chasse from PP": {
+   "en": [
+    "Chassé from Promenade Position",
+    "Promenade Chasse"
+   ],
+   "cs": [
+    "šasé z promenády",
+    "přeměna z promenády"
+   ]
+  },
+  "Backward Lock": {
+   "en": [
+    "Back Lock"
+   ],
+   "cs": [
+    "lok vzad",
+    "zpětné křížení"
+   ]
+  },
+  "Natural Spin Turn": {
+   "en": [
+    "Spin Turn"
+   ],
+   "cs": [
+    "spinová otáčka",
+    "pravá spinová otáčka"
+   ]
+  },
+  "Telemark": {
+   "en": [
+    "Closed Telemark"
+   ],
+   "cs": [
+    "zavřený telemark"
+   ]
+  },
+  "Telemark to PP": {
+   "en": [
+    "Open Telemark"
+   ],
+   "cs": [
+    "otevřený telemark"
+   ]
+  },
+  "Impetus": {
+   "en": [
+    "Closed Impetus",
+    "Impetus Turn"
+   ],
+   "cs": [
+    "zavřená náběhová otáčka",
+    "impetus"
+   ]
+  },
+  "Impetus to PP": {
+   "en": [
+    "Open Impetus"
+   ],
+   "cs": [
+    "otevřená náběhová otáčka",
+    "otevřený impetus"
+   ]
+  },
+  "Wing": {
+   "en": [
+    "Closed Wing"
+   ],
+   "cs": [
+    "křídlo"
+   ]
+  },
+  "Wing from PP": {
+   "en": [
+    "Open Wing"
+   ],
+   "cs": [
+    "křídlo z promenády"
+   ]
+  },
+  "Whisk": {
+   "en": [
+    "Left Whisk"
+   ],
+   "cs": [
+    "whisk"
+   ]
+  },
+  "Back Whisk": {
+   "en": [
+    "Backward Whisk"
+   ],
+   "cs": [
+    "whisk vzad"
+   ]
+  },
+  "Weave from PP": {
+   "en": [
+    "Weave from Promenade Position"
+   ],
+   "cs": [
+    "tkáň z promenády"
+   ]
+  },
+  "Running Finish": {
+   "en": [],
+   "cs": [
+    "běžící zakončení"
+   ]
+  },
+  "Hover Corte": {
+   "en": [
+    "Hover Corté"
+   ],
+   "cs": [
+    "vznosné korté"
+   ]
+  }
+ },
+ "tango": {
+  "Closed Promenade": {
+   "en": [
+    "Promenade Close"
+   ],
+   "cs": [
+    "promenáda"
+   ]
+  },
+  "Back Corte": {
+   "en": [
+    "Back Corté"
+   ],
+   "cs": [
+    "korté"
+   ]
+  },
+  "Rock on LF": {
+   "en": [
+    "Left Foot Rock"
+   ],
+   "cs": [
+    "kolébka na levé"
+   ]
+  },
+  "Rock on RF": {
+   "en": [
+    "Right Foot Rock"
+   ],
+   "cs": [
+    "kolébka na pravé"
+   ]
+  },
+  "Fallaway in Promenade": {
+   "en": [
+    "Fallaway Promenade"
+   ],
+   "cs": [
+    "spádná promenáda"
+   ]
+  },
+  "Chase": {
+   "en": [
+    "The Chase"
+   ],
+   "cs": [
+    "chase",
+    "obchvat"
+   ]
+  },
+  "Four Step": {
+   "en": [
+    "Fourstep"
+   ],
+   "cs": [
+    "čtyřkrok"
+   ]
+  },
+  "Fallaway Four Step": {
+   "en": [
+    "Fallaway Fourstep"
+   ],
+   "cs": [
+    "spádný čtyřkrok"
+   ]
+  },
+  "Basic Reverse Turn": {
+   "en": [
+    "Reverse Turn"
+   ],
+   "cs": [
+    "otáčka vlevo"
+   ]
+  },
+  "Tango Walk (see Tango Specific Principles - TSP)": {
+   "en": [
+    "Walk"
+   ],
+   "cs": [
+    "chůze"
+   ]
+  }
+ },
+ "viennese": {
+  "Natural Turn": {
+   "en": [
+    "Right Turn"
+   ],
+   "cs": [
+    "pravá otáčka",
+    "valčíková otáčka vpravo"
+   ]
+  },
+  "Reverse Turn": {
+   "en": [
+    "Left Turn"
+   ],
+   "cs": [
+    "levá otáčka",
+    "valčíková otáčka vlevo"
+   ]
+  },
+  "RF Forward Change Step - Natural to Reverse": {
+   "en": [
+    "Forward Change",
+    "Natural to Reverse Change"
+   ],
+   "cs": [
+    "změna vpřed"
+   ]
+  },
+  "LF Forward Change Step - Reverse to Natural": {
+   "en": [
+    "Forward Change",
+    "Reverse to Natural Change"
+   ],
+   "cs": [
+    "změna vpřed"
+   ]
+  },
+  "LF Backward Change Step - Natural to Reverse": {
+   "en": [
+    "Backward Change"
+   ],
+   "cs": [
+    "změna vzad"
+   ]
+  },
+  "RF Backward Change Step - Reverse to Natural": {
+   "en": [
+    "Backward Change"
+   ],
+   "cs": [
+    "změna vzad"
+   ]
+  }
+ },
+ "slowfox": {
+  "Feather Step": {
+   "en": [
+    "Feather"
+   ],
+   "cs": [
+    "pérko",
+    "feather"
+   ]
+  },
+  "Three Step": {
+   "en": [],
+   "cs": [
+    "trojkrok"
+   ]
+  },
+  "Telemark to PP": {
+   "en": [
+    "Open Telemark"
+   ],
+   "cs": [
+    "otevřený telemark"
+   ]
+  },
+  "Impetus": {
+   "en": [
+    "Closed Impetus"
+   ],
+   "cs": [
+    "impetus"
+   ]
+  },
+  "Impets to PP": {
+   "en": [
+    "Open Impetus",
+    "Impetus to PP"
+   ],
+   "cs": [
+    "otevřený impetus"
+   ]
+  },
+  "Natural Turn": {
+   "en": [
+    "Right Turn"
+   ],
+   "cs": [
+    "pravá otáčka"
+   ]
+  },
+  "Reverse Turn": {
+   "en": [
+    "Left Turn"
+   ],
+   "cs": [
+    "levá otáčka"
+   ]
+  }
+ },
+ "quickstep": {
+  "Quarter Turn to R": {
+   "en": [
+    "Quarter Turn",
+    "Natural Quarter Turn"
+   ],
+   "cs": [
+    "čtvrtotáčka"
+   ]
+  },
+  "Quarter Turn to L": {
+   "en": [
+    "Heel Pivot",
+    "Reverse Quarter Turn"
+   ],
+   "cs": [
+    "čtvrtotáčka vlevo"
+   ]
+  },
+  "Progressive Chasse to R": {
+   "en": [
+    "Chasse to Right",
+    "Progressive Chassé"
+   ],
+   "cs": [
+    "šasé",
+    "chassé"
+   ]
+  },
+  "Progressive Chasse to L": {
+   "en": [
+    "Progressive Chasse",
+    "Progressive Chassé"
+   ],
+   "cs": [
+    "šasé",
+    "chassé",
+    "postupové šasé"
+   ]
+  },
+  "Reverse Turn": {
+   "en": [
+    "Chasse Reverse Turn"
+   ],
+   "cs": [
+    "levá otáčka"
+   ]
+  },
+  "Natural Turn": {
+   "en": [
+    "Right Turn"
+   ],
+   "cs": [
+    "pravá otáčka"
+   ]
+  },
+  "Natural Pivot": {
+   "en": [
+    "Natural Pivot Turn"
+   ],
+   "cs": [
+    "pivota"
+   ]
+  },
+  "Backward Lock": {
+   "en": [
+    "Back Lock"
+   ],
+   "cs": [
+    "lok vzad"
+   ]
+  },
+  "Forward Lock": {
+   "en": [
+    "Lock Step"
+   ],
+   "cs": [
+    "lok vpřed",
+    "lock"
+   ]
+  },
+  "Open Reverse Turn": {
+   "en": [
+    "Quick Open Reverse"
+   ],
+   "cs": [
+    "rychlá otevřená otáčka vlevo"
+   ]
+  },
+  "Telemark": {
+   "en": [
+    "Closed Telemark"
+   ],
+   "cs": [
+    "telemark"
+   ]
+  },
+  "Impetus": {
+   "en": [
+    "Closed Impetus"
+   ],
+   "cs": [
+    "impetus"
+   ]
+  },
+  "Tipple Chasse to R - at the corner": {
+   "en": [
+    "Tipple Chasse"
+   ],
+   "cs": [
+    "tipple šasé"
+   ]
+  },
+  "Tipple Chasse to R - along LOD": {
+   "en": [
+    "Tipple Chasse"
+   ],
+   "cs": [
+    "tipple šasé"
+   ]
+  },
+  "Tipple Chasse to L": {
+   "en": [
+    "Tipple Chasse"
+   ],
+   "cs": [
+    "tipple šasé"
+   ]
+  },
+  "Four Quick Run": {
+   "en": [
+    "Quick Run"
+   ],
+   "cs": [
+    "běh"
+   ]
+  },
+  "Six Quick Run": {
+   "en": [
+    "Quick Run"
+   ],
+   "cs": [
+    "běh"
+   ]
+  }
+ },
+ "samba": {
+  "Natural Basic Movement": {
+   "en": [
+    "Basic Movement",
+    "Natural Basic"
+   ],
+   "cs": [
+    "základ",
+    "základní krok"
+   ]
+  },
+  "Reverse Basic Movement": {
+   "en": [
+    "Basic Movement",
+    "Reverse Basic"
+   ],
+   "cs": [
+    "základ"
+   ]
+  },
+  "Progressive Basic Movement": {
+   "en": [
+    "Progressive Basic"
+   ],
+   "cs": [
+    "postupový základ"
+   ]
+  },
+  "Samba Whisk to L": {
+   "en": [
+    "Whisk to Left"
+   ],
+   "cs": [
+    "whisk"
+   ]
+  },
+  "Samba Whisk to R": {
+   "en": [
+    "Whisk to Right"
+   ],
+   "cs": [
+    "whisk"
+   ]
+  },
+  "Stationary Samba Walks": {
+   "en": [
+    "Samba Walks in Place"
+   ],
+   "cs": [
+    "sambová chůze"
+   ]
+  },
+  "Promenade Samba Walks": {
+   "en": [
+    "Samba Walks"
+   ],
+   "cs": [
+    "sambová chůze v promenádě"
+   ]
+  },
+  "Promenade to Counter Promenade Botafogos": {
+   "en": [
+    "Botafogos to PP and CPP",
+    "Shadow Botafogos to PP and CPP"
+   ],
+   "cs": [
+    "botafoga"
+   ]
+  },
+  "Criss Cross Botafogos": {
+   "en": [
+    "Shadow Botafogos"
+   ],
+   "cs": [
+    "stínová botafoga"
+   ]
+  },
+  "Same Foot Botafogos": {
+   "en": [
+    "Contra Botafogos"
+   ],
+   "cs": [
+    "kontra botafoga"
+   ]
+  },
+  "Circular Voltas Turning R": {
+   "en": [
+    "Roundabout to Right",
+    "Roundabout"
+   ],
+   "cs": [
+    "kolotoč"
+   ]
+  },
+  "Circular Voltas Turning L": {
+   "en": [
+    "Roundabout to Left",
+    "Roundabout"
+   ],
+   "cs": [
+    "kolotoč"
+   ]
+  },
+  "Underarm Turn Turning R": {
+   "en": [
+    "Volta Spot Turn to R for Lady",
+    "Spot Volta"
+   ],
+   "cs": [
+    "volta na místě"
+   ]
+  },
+  "Underarm Turn Turning L": {
+   "en": [
+    "Volta Spot Turn to L for Lady",
+    "Spot Volta"
+   ],
+   "cs": [
+    "volta na místě"
+   ]
+  },
+  "Double Spiral Turn (Three Step Turn)": {
+   "en": [
+    "Three Step Turn"
+   ],
+   "cs": [
+    "trojkroková otáčka"
+   ]
+  },
+  "Rhytm Bounce": {
+   "en": [
+    "Rhythm Bounce",
+    "Samba Bounce"
+   ],
+   "cs": [
+    "bounce",
+    "pérování"
+   ]
+  },
+  "Corta Jaca": {
+   "en": [
+    "Corta Jaca"
+   ],
+   "cs": [
+    "korta žaka"
+   ]
+  },
+  "Close Rocks": {
+   "en": [
+    "Closed Rocks"
+   ],
+   "cs": [
+    "kolébky"
+   ]
+  },
+  "Backward Rocks": {
+   "en": [
+    "Back Rocks"
+   ],
+   "cs": [
+    "kolébky vzad"
+   ]
+  }
+ },
+ "chacha": {
+  "Close Basic Movement": {
+   "en": [
+    "Closed Basic",
+    "Basic Movement"
+   ],
+   "cs": [
+    "základ",
+    "základní krok"
+   ]
+  },
+  "Open Basic Movement": {
+   "en": [
+    "Open Basic"
+   ],
+   "cs": [
+    "otevřený základ"
+   ]
+  },
+  "New York to P": {
+   "en": [
+    "New York",
+    "Check from Open CPP"
+   ],
+   "cs": [
+    "new york"
+   ]
+  },
+  "New York to L": {
+   "en": [
+    "New York",
+    "Check from Open PP"
+   ],
+   "cs": [
+    "new york"
+   ]
+  },
+  "Spot Turn to R": {
+   "en": [
+    "Switch Turn",
+    "Spot Turn"
+   ],
+   "cs": [
+    "otočka na místě"
+   ]
+  },
+  "Spot Turn to L": {
+   "en": [
+    "Switch Turn",
+    "Spot Turn"
+   ],
+   "cs": [
+    "otočka na místě"
+   ]
+  },
+  "Underarm Turn Turning R": {
+   "en": [
+    "Underarm Turn to Right"
+   ],
+   "cs": [
+    "podtočení"
+   ]
+  },
+  "Underarm Turn Turning L": {
+   "en": [
+    "Underarm Turn to Left"
+   ],
+   "cs": [
+    "podtočení"
+   ]
+  },
+  "Three Cha Cha Chas to R": {
+   "en": [
+    "Three Cha Chas"
+   ],
+   "cs": [
+    "tři ča-ča-ča"
+   ]
+  },
+  "Three Cha Cha Chas to L": {
+   "en": [
+    "Three Cha Chas"
+   ],
+   "cs": [
+    "tři ča-ča-ča"
+   ]
+  },
+  "Time Step": {
+   "en": [
+    "Basic in Place"
+   ],
+   "cs": [
+    "časový krok",
+    "základ na místě"
+   ]
+  },
+  "Hockey Stick": {
+   "en": [],
+   "cs": [
+    "hokejka"
+   ]
+  },
+  "Fan": {
+   "en": [],
+   "cs": [
+    "vějíř"
+   ]
+  },
+  "MCF - Simple foot change": {
+   "en": [
+    "Methods of Changing Feet",
+    "Foot Change"
+   ],
+   "cs": [
+    "změna nohy"
+   ]
+  }
+ },
+ "rumba": {
+  "Close Basic Movement": {
+   "en": [
+    "Closed Basic",
+    "Basic Movement"
+   ],
+   "cs": [
+    "základ",
+    "základní krok"
+   ]
+  },
+  "Open Basic Movement": {
+   "en": [
+    "Open Basic"
+   ],
+   "cs": [
+    "otevřený základ"
+   ]
+  },
+  "New York to Right": {
+   "en": [
+    "New York",
+    "Check from Open CPP"
+   ],
+   "cs": [
+    "new york"
+   ]
+  },
+  "New York to Left": {
+   "en": [
+    "New York",
+    "Check from Open PP"
+   ],
+   "cs": [
+    "new york"
+   ]
+  },
+  "Spot Turn to Right": {
+   "en": [
+    "Switch Turn",
+    "Spot Turn"
+   ],
+   "cs": [
+    "otočka na místě"
+   ]
+  },
+  "Spot Turn to Left": {
+   "en": [
+    "Switch Turn",
+    "Spot Turn"
+   ],
+   "cs": [
+    "otočka na místě"
+   ]
+  },
+  "Side Walks and Cucarachas": {
+   "en": [
+    "Cucarachas",
+    "Side Steps"
+   ],
+   "cs": [
+    "kukarači"
+   ]
+  },
+  "Opening Out": {
+   "en": [
+    "Opening Out to Right and Left"
+   ],
+   "cs": [
+    "otevření"
+   ]
+  },
+  "Progressive Forward Walks": {
+   "en": [
+    "Progressive Walks"
+   ],
+   "cs": [
+    "chůze vpřed"
+   ]
+  },
+  "Fencing to Spin": {
+   "en": [
+    "Fencing"
+   ],
+   "cs": [
+    "šerm"
+   ]
+  }
+ },
+ "paso": {
+  "Basic Movement": {
+   "en": [
+    "Basic"
+   ],
+   "cs": [
+    "základ"
+   ]
+  },
+  "Sur Place": {
+   "en": [],
+   "cs": [
+    "na místě"
+   ]
+  },
+  "Huit": {
+   "en": [
+    "Cape"
+   ],
+   "cs": [
+    "osmička",
+    "kápě"
+   ]
+  },
+  "Closed promenade": {
+   "en": [
+    "Promenade Close"
+   ],
+   "cs": [
+    "promenádní uzavření"
+   ]
+  },
+  "Fallaway Reverse": {
+   "en": [
+    "Fallaway Reverse Turn"
+   ],
+   "cs": [
+    "spádná otáčka vlevo"
+   ]
+  },
+  "Attack": {
+   "en": [
+    "Appel"
+   ],
+   "cs": [
+    "útok",
+    "apel"
+   ]
+  }
+ },
+ "jive": {
+  "Basic in Place": {
+   "en": [
+    "Basic",
+    "Jive Basic"
+   ],
+   "cs": [
+    "základ"
+   ]
+  },
+  "Basic in Fallaway": {
+   "en": [
+    "Fallaway Rock",
+    "Basic in Fallaway"
+   ],
+   "cs": [
+    "spádný základ"
+   ]
+  },
+  "Change of Place from R to L": {
+   "en": [
+    "Change of Places Right to Left",
+    "Underarm Turn"
+   ],
+   "cs": [
+    "výměna míst zprava doleva"
+   ]
+  },
+  "Change of Place from L to R": {
+   "en": [
+    "Change of Places Left to Right"
+   ],
+   "cs": [
+    "výměna míst zleva doprava"
+   ]
+  },
+  "Change of Place behind the Back": {
+   "en": [
+    "Change of Hands behind Back",
+    "Change Behind the Back"
+   ],
+   "cs": [
+    "výměna za zády"
+   ]
+  },
+  "Link": {
+   "en": [
+    "Link Rock"
+   ],
+   "cs": [
+    "link"
+   ]
+  },
+  "Throwaway Whip": {
+   "en": [
+    "Whip Throwaway"
+   ],
+   "cs": [
+    "bič s odhozením"
+   ]
+  },
+  "Fallaway Throwaway": {
+   "en": [
+    "Throwaway"
+   ],
+   "cs": [
+    "odhození"
+   ]
+  },
+  "Promenade Walks - Slow": {
+   "en": [
+    "Promenade Walks"
+   ],
+   "cs": [
+    "promenádní chůze"
+   ]
+  },
+  "Promenade Walks - Quick": {
+   "en": [
+    "Promenade Walks"
+   ],
+   "cs": [
+    "promenádní chůze"
+   ]
+  }
+ }
+}

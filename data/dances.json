@@ -1,0 +1,106 @@
+{
+ "dances": [
+  {
+   "id": "waltz", "abbr": "W", "discipline": "standard",
+   "cs": "Waltz", "en": "Waltz",
+   "meter": "3/4", "beatsPerBar": 3, "tempo": "28–30",
+   "units": {"digit": 1, "S": 2, "Q": 1}
+  },
+  {
+   "id": "tango", "abbr": "T", "discipline": "standard",
+   "cs": "Tango", "en": "Tango",
+   "meter": "2/4", "beatsPerBar": 2, "tempo": "31–33",
+   "units": {"digit": 1, "S": 1, "Q": 0.5},
+   "remarks": [
+    {
+     "cs": "TSP – Tango Specific Principles (Specifické principy Tanga): Tangová chůze a akce Dovnitř – Ven jsou popsány v technické příručce WDSF.",
+     "en": "TSP – Tango Specific Principles: the Tango Walk and the In – Out action are described in the WDSF technique book."
+    }
+   ]
+  },
+  {
+   "id": "viennese", "abbr": "V", "discipline": "standard",
+   "cs": "Valčík", "en": "Viennese Waltz",
+   "meter": "3/4", "beatsPerBar": 3, "tempo": "58–60",
+   "units": {"digit": 1, "S": 2, "Q": 1}
+  },
+  {
+   "id": "slowfox", "abbr": "F", "discipline": "standard",
+   "cs": "Slowfoxtrot", "en": "Slow Foxtrot",
+   "meter": "4/4", "beatsPerBar": 4, "tempo": "28–30",
+   "units": {"digit": 1, "S": 2, "Q": 1}
+  },
+  {
+   "id": "quickstep", "abbr": "Q", "discipline": "standard",
+   "cs": "Quickstep", "en": "Quickstep",
+   "meter": "4/4", "beatsPerBar": 4, "tempo": "50–52",
+   "units": {"digit": 1, "S": 2, "Q": 1}
+  },
+  {
+   "id": "samba", "abbr": "S", "discipline": "latin",
+   "cs": "Samba", "en": "Samba",
+   "meter": "2/4", "beatsPerBar": 2, "tempo": "50–52",
+   "units": {"digit": 0.5, "S": 1, "Q": 0.5},
+   "remarks": [
+    {
+     "cs": "Figury a akce, které mohou být použity v postaveních Right Side Same Position nebo Right Diagonal Same Position (váha je na stejných nohách, M a F tančí stejné kroky – kroky M nebo F): Travelling Volta to R / to L, Circular Volta to R / to L, Spot Volta to L / to R, Continuous Spot Volta to R / to L, Corta Jaca, Travelling Botafogos Forward, Stationary Samba Walks, Promenade Samba Walks, Carioca Runs, Side Samba Chasse, Samba Whisk to R and L, Dropped Volta, Rhythm Bounce.",
+     "en": "Figures and actions that may be used in Right Side Same Position or Right Diagonal Same Position (weight on the same foot, Man and Lady dance the same steps – Man's or Lady's): Travelling Volta to R / to L, Circular Volta to R / to L, Spot Volta to L / to R, Continuous Spot Volta to R / to L, Corta Jaca, Travelling Botafogos Forward, Stationary Samba Walks, Promenade Samba Walks, Carioca Runs, Side Samba Chasse, Samba Whisk to R and L, Dropped Volta, Rhythm Bounce."
+    }
+   ]
+  },
+  {
+   "id": "chacha", "abbr": "C", "discipline": "latin",
+   "cs": "Cha-cha", "en": "Cha Cha Cha",
+   "meter": "4/4", "beatsPerBar": 4, "tempo": "30–32",
+   "units": {"digit": 1, "S": 2, "Q": 1},
+   "remarks": [
+    {
+     "cs": "Následující figury mohou být použity v postaveních Right nebo Left Side Same Position, doba trvání je maximálně 6 taktů (mimo změny nohou): Ronde Chasse, Hip Twist Chasse, Slip Close Chasse, Time Step Chasse, Whisk Chasse, Running Chasse fwd / bwd, Cha Cha Lock fwd / bwd, Three Cha Chas fwd / bwd, 2 Walks and a fwd Lockstep (vše RF i LF). Dále kroky M nebo F v figurách: Basic in Place, Time Step, There and Back, Close Basic, Open Basic, Spot Turn to R and L, Cuban Breaks to R and L, Split Cuban Breaks to R and L, Walks and Whisks, Three Cha Cha Chas to R and L.",
+     "en": "The following figures may be used in Right or Left Side Same Position for a maximum of 6 bars (excluding the foot changes): Ronde Chasse, Hip Twist Chasse, Slip Close Chasse, Time Step Chasse, Whisk Chasse, Running Chasse fwd / bwd, Cha Cha Lock fwd / bwd, Three Cha Chas fwd / bwd, 2 Walks and a fwd Lockstep (all RF and LF). Also the Man's or Lady's steps of: Basic in Place, Time Step, There and Back, Close Basic, Open Basic, Spot Turn to R and L, Cuban Breaks to R and L, Split Cuban Breaks to R and L, Walks and Whisks, Three Cha Cha Chas to R and L."
+    }
+   ]
+  },
+  {
+   "id": "rumba", "abbr": "R", "discipline": "latin",
+   "cs": "Rumba", "en": "Rumba",
+   "meter": "4/4", "beatsPerBar": 4, "tempo": "25–27",
+   "units": {"digit": 1, "S": 2, "Q": 1},
+   "remarks": [
+    {
+     "cs": "Forward and backward Walks seskupení: po jakékoliv figuře nebo části figury, která končí v Open Opposition Position, se může použít série Fwd nebo Bwd Walks v délce 2 takty (6 kroků). Když M tančí Fwd Walks, F tančí Bwd Walks a naopak; chůze se může zahýbat do P nebo do L. M a F smí tančit sérii Fwd Walks v délce max. 2 taktů (6 kroků) v R Side nebo L Side Same Position (např. po Hand to Hand).",
+     "en": "Forward and backward Walks amalgamations: after any figure or part of a figure ending in Open Opposition Position a series of Fwd or Bwd Walks of 2 bars (6 steps) may be used. When the Man dances Fwd Walks the Lady dances Bwd Walks and vice versa; the walks may curve to R or L. Man and Lady may dance a series of Fwd Walks of max. 2 bars (6 steps) in R Side or L Side Same Position (e.g. after Hand to Hand)."
+    }
+   ]
+  },
+  {
+   "id": "paso", "abbr": "P", "discipline": "latin",
+   "cs": "Paso doble", "en": "Paso Doble",
+   "meter": "2/4", "beatsPerBar": 2, "tempo": "60–62",
+   "units": {"digit": 1, "S": 2, "Q": 1}
+  },
+  {
+   "id": "jive", "abbr": "J", "discipline": "latin",
+   "cs": "Jive", "en": "Jive",
+   "meter": "4/4", "beatsPerBar": 4, "tempo": "42–44",
+   "units": {"digit": 1, "S": 2, "Q": 1},
+   "remarks": [
+    {
+     "cs": "DTV-NF: DTV Neue Figuren (příručka a video vydané DTV pro doplnění příruček WDSF). JSP – Jive Specific Principles (Specifické principy Jive).",
+     "en": "DTV-NF: DTV Neue Figuren (book and video published by the German DTV supplementing the WDSF books). JSP – Jive Specific Principles."
+    }
+   ]
+  },
+  {
+   "id": "polka", "abbr": "Po", "discipline": "other",
+   "cs": "Polka", "en": "Polka",
+   "meter": "2/4", "beatsPerBar": 2, "tempo": "",
+   "units": {"digit": 1, "S": 1, "Q": 0.5},
+   "remarks": [
+    {
+     "cs": "Katalog figur Polky vychází z materiálu Polka, ČSTS, 2017. Číslo v literatuře odkazuje na tento materiál.",
+     "en": "The Polka catalog is based on 'Polka', ČSTS, 2017. The literature number refers to that material."
+    }
+   ]
+  }
+ ]
+}

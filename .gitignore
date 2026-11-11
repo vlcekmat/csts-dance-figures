@@ -1,0 +1,13 @@
+node_modules
+dist
+*.log
+*.tsbuildinfo
+.DS_Store
+
+# Source documents and raw scraped data stay local (copyright); the app only
+# needs src/data/figures.json. See README for how to download / regenerate them.
+data/raw/
+data/build/
+data/alignment.json
+data/videos.json
+__pycache__/
