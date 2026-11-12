@@ -105,10 +105,18 @@ export function RoutineItemRow(props: Props) {
         : t(Math.sign(deg) === Math.sign(turnDir) ? "alignMore" : "alignLess", { n: eighths(deg) });
   // A stored turn outside the allowed range (older data) is not applied.
   // undefined = automatic (the plan picks an allowed amount that connects to the next figure)
-  const chosen = range && variant.extraTurn !== undefined && variant.extraTurn >= range.min && variant.extraTurn <= range.max ? variant.extraTurn : undefined;
+  const choreo = !!variant.choreo && variant.extraTurn !== undefined;
+  const chosen = choreo
+    ? variant.extraTurn
+    : range && variant.extraTurn !== undefined && variant.extraTurn >= range.min && variant.extraTurn <= range.max
+      ? variant.extraTurn
+      : undefined;
   const autoTurn = chosen === undefined ? (planFace?.autoTurn ?? 0) : 0;
   const extra = chosen ?? autoTurn;
-  if (extra) chips.push(`${t("alignTurn")}: ${turnLabel(extra)}`);
+  if (extra) chips.push(`${t("alignTurn")}: ${turnLabel(extra)}${choreo ? ` (${t("alignChoreoChip")})` : ""}`);
+  // Turns by the choreography: any 1/8 up to 1/2 either way, outside the WDSF range.
+  const allowedTurns = range ? turnOptions(range) : [0];
+  const choreoTurns = [180, 135, 90, 45, -45, -90, -135, -180].filter((d) => !allowedTurns.includes(d));
   const offChart = planFace?.offChart ?? 0;
   if (progressive && alignBase && Math.abs(offChart) >= 22.5)
     chips.push(`↻ ${t("alignOffChartShort", { dir: t(offChart > 0 ? "alignByLeft" : "alignByRight", { n: eighths(offChart) }) })}`);
@@ -350,28 +358,44 @@ export function RoutineItemRow(props: Props) {
                     ⚠ {t("alignOffChart", { dir: t(offChart > 0 ? "alignByLeft" : "alignByRight", { n: eighths(offChart) }) })}
                   </p>
                 )}
-                {range ? (
+                {alignBase && (
                   <label className="field">
                     <span>{t("alignTurn")}</span>
                     <select
-                      value={chosen === undefined ? "auto" : chosen}
-                      onChange={(e) => setVariant({ extraTurn: e.target.value === "auto" ? undefined : +e.target.value })}
+                      value={chosen === undefined ? "auto" : `${choreo ? "c" : "a"}${chosen}`}
+                      onChange={(e) => {
+                        const v = e.target.value;
+                        if (v === "auto") setVariant({ extraTurn: undefined, choreo: undefined });
+                        else setVariant({ extraTurn: +v.slice(1), choreo: v[0] === "c" ? true : undefined });
+                      }}
                     >
                       <option value="auto">
-                        {t("alignTurnAuto", { turn: turnLabel(autoTurn) })}
+                        {range ? t("alignTurnAuto", { turn: turnLabel(autoTurn) }) : t("alignAsChart")}
                       </option>
-                      {turnOptions(range).map((deg) => (
-                        <option key={deg} value={deg}>
-                          {turnLabel(deg)}
-                        </option>
-                      ))}
+                      <optgroup label={t("alignTurnWdsf")}>
+                        {allowedTurns.map((deg) => (
+                          <option key={deg} value={`a${deg}`}>
+                            {turnLabel(deg)}
+                          </option>
+                        ))}
+                      </optgroup>
+                      <optgroup label={t("alignTurnChoreoGroup")}>
+                        {choreoTurns.map((deg) => (
+                          <option key={deg} value={`c${deg}`}>
+                            {turnLabel(deg)}
+                          </option>
+                        ))}
+                      </optgroup>
                     </select>
-                    <span className="small muted">
-                      {t("alignTurnRule")}: {lang === "cs" && range.noteCs ? range.noteCs : range.note}
-                    </span>
+                    {range ? (
+                      <span className="small muted">
+                        {t("alignTurnRule")}: {lang === "cs" && range.noteCs ? range.noteCs : range.note}
+                      </span>
+                    ) : (
+                      <span className="small muted">{t("alignTurnFixed")}</span>
+                    )}
+                    {choreo && <span className="small">ℹ {t("alignChoreoNote")}</span>}
                   </label>
-                ) : (
-                  alignBase && <p className="small muted">{t("alignTurnFixed")}</p>
                 )}
                 {onEditInPlan && (
                   <button type="button" className="btn small plan-edit-btn" onClick={onEditInPlan}>

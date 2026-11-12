@@ -112,6 +112,13 @@ const STRINGS = {
   alignOffChartShort: { cs: "mimo směrování techniky ({dir})", en: "off the technique alignment ({dir})" },
   alignTurnAuto: { cs: "automaticky podle navazující figury ({turn})", en: "automatic, to connect to the next figure ({turn})" },
   alignTurnRule: { cs: "Povoleno", en: "Allowed" },
+  alignTurnWdsf: { cs: "Podle techniky WDSF", en: "WDSF technique" },
+  alignTurnChoreoGroup: { cs: "Podle choreografie (mimo WDSF)", en: "By the choreography (outside WDSF)" },
+  alignChoreoChip: { cs: "podle choreografie", en: "by the choreography" },
+  alignChoreoNote: {
+    cs: "Otočení podle choreografie se liší od techniky WDSF. Katalog ČSTS (bod 2) bere natočení figur a velikost rotací jako doporučení.",
+    en: "This turn by the choreography differs from the WDSF technique. The ČSTS catalog (point 2) treats figure alignment and amount of rotation as recommendations.",
+  },
   alignTurnFixed: {
     cs: "Míru otočení technika u této figury neumožňuje měnit.",
     en: "The technique gives no alternative amount of turn for this figure.",

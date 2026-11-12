@@ -108,7 +108,7 @@ export function RoutineEditor({ routine, api, onBack, onOpenFigure }: Props) {
               fig: r.fig,
               resolved: r.resolved,
               corner: !!r.item.corner,
-              extraTurn: allowedExtra(r.fig, r.item.variant?.extraTurn),
+              extraTurn: allowedExtra(r.fig, r.item.variant?.extraTurn, r.item.variant?.choreo),
               wall: r.item.wall,
             })),
             room,
@@ -130,8 +130,9 @@ export function RoutineEditor({ routine, api, onBack, onOpenFigure }: Props) {
     setItems((items) =>
       items.map((it) => {
         if (!it.variant) return it;
-        const { extraTurn: _e, ...rest } = it.variant;
+        const { extraTurn: _e, choreo: _c, ...rest } = it.variant;
         void _e;
+        void _c;
         return { ...it, variant: Object.keys(rest).length ? rest : undefined };
       }),
     );

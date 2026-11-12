@@ -21,6 +21,8 @@ export interface VariantChoice {
   finish?: number;
   /** Under-/overturn within the range the technique allows (degrees, + = more to the left). */
   extraTurn?: number;
+  /** extraTurn chosen by the choreography, outside the WDSF range (ČSTS catalog point 2). */
+  choreo?: boolean;
   /** Hold keys (glossary.ts); omitted = hold from the syllabus. */
   startHold?: string;
   finishHold?: string;

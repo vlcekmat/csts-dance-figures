@@ -625,13 +625,21 @@ export function simulateRoutine(
     const fitsOn = (s: number) => {
       if (face === null || chart.start === null) return false;
       const d = startOff(s);
-      return Math.abs(d) < tolerance || !!item.autoTurnOptions?.some((x) => Math.abs(norm180(x + d)) < 1);
+      return (
+        Math.abs(d) < tolerance ||
+        !!item.autoTurnOptions?.some((x) => Math.abs(norm180(x + d)) < 1) ||
+        // a turn the user chose that makes the figure end as charted from this start
+        (item.extraTurn !== undefined && item.extraTurn !== 0 && Math.abs(norm180(item.extraTurn + d)) < 1)
+      );
     };
     if (nearEnd) {
       // Reached the corner: turn the LOD unless the figure clearly belongs to this wall
       // (its charted start fits here better than after the corner).
       const known = face !== null && chart.start !== null;
-      if (!known || Math.abs(startOff(side + 1)) < Math.abs(startOff(side)) || !fitsOn(side)) {
+      // the figure would run into the end wall: turn the corner anyway
+      const advance = Math.max(0, ...localPath(item, item.follows && face !== null ? norm180(face - side * 90) : null).map((p) => p.x));
+      const hitsWall = remaining(side, x, y, room) - advance < 0.3;
+      if (!known || hitsWall || Math.abs(startOff(side + 1)) < Math.abs(startOff(side)) || !fitsOn(side)) {
         side += 1;
         autoCorner = true;
       }
@@ -668,7 +676,10 @@ export function simulateRoutine(
     // 2) otherwise the turn that lets the next figure start as charted
     //    (e.g. Progressive Chasse to R turned up to 1/2 L before an Outside Change).
     let autoTurn = 0;
-    let absorbed = false;
+    // the user's own turn (allowed or by the choreography) that starts where the
+    // previous figure ended and ends as charted: danced as intended, not off-chart
+    let absorbed = !!item.steps && item.extraTurn !== undefined && item.extraTurn !== 0 && Math.abs(rotate) > 22.5 &&
+      Math.abs(norm180(item.extraTurn + rotate)) < 1;
     if (item.steps && item.autoTurnOptions?.length && chart.start !== null && faceLocal !== null && Math.abs(rotate) > 22.5) {
       const e = item.autoTurnOptions.find((x) => Math.abs(norm180(x + rotate)) < 1);
       if (e !== undefined) {
@@ -817,8 +828,12 @@ export function turnOptions(range: TurnRange): number[] {
   return [...out].sort((a, b) => b - a);
 }
 
-/** The user's under-/overturn if the figure's technique allows it (0 = as charted), else undefined (automatic). */
-export function allowedExtra(fig: Figure, extra: number | undefined): number | undefined {
+/**
+ * The user's under-/overturn if the figure's technique allows it (0 = as charted), else
+ * undefined (automatic). A turn chosen "by the choreography" is used as it is.
+ */
+export function allowedExtra(fig: Figure, extra: number | undefined, choreo = false): number | undefined {
+  if (choreo && extra !== undefined) return extra;
   const r = fig.floor?.turnRange;
   if (!r || extra === undefined) return undefined; // undefined = chosen automatically by the plan
   return extra >= r.min && extra <= r.max ? extra : undefined;
