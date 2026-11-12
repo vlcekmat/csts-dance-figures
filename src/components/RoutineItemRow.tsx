@@ -8,7 +8,7 @@ import type { RoutineItem } from "../routines";
 import { formatBars, totalBeats } from "../timing";
 import { partLabel, type ResolvedItem, type VariantChoice } from "../variants";
 import { getHold, localizePositions } from "../glossary";
-import { AIMS, EXPLICIT_AIMS, alignLabel, eighths, figureAlignment, norm180, startsBacking, turnHintOf, type Aim } from "../floor";
+import { alignLabel, eighths, figureAlignment, norm180, turnHintOf, turnOptions } from "../floor";
 import { ClassBadges } from "./ClassBadges";
 import { HoldPicker } from "./HoldPicker";
 
@@ -19,9 +19,9 @@ interface Props {
   wallManual?: boolean;
   /** An automatic corner was inserted before this figure. */
   wallAuto?: boolean;
-  /** Rotation actually applied by the floor plan (resolves an aim). */
-  appliedRotate?: number;
-  /** Jump to the floor plan and rotate this figure there. */
+  /** Facing of the man at the start / end in the floor plan (degrees relative to the LOD of wallSide). */
+  planFace?: { start: number | null; end: number | null; offChart: number };
+  /** Jump to the figure in the floor plan. */
   onEditInPlan?: () => void;
   /** Dance travels around the floor (corner markers make sense). */
   progressive: boolean;
@@ -35,12 +35,14 @@ interface Props {
   classLegal: boolean;
   onChange: (patch: Partial<RoutineItem>) => void;
   onMove: (delta: number) => void;
+  /** Start dragging this figure to a new place (pointer on the drag handle). */
+  onDragStart?: (e: React.PointerEvent) => void;
   onRemove: () => void;
   onOpen: () => void;
 }
 
 export function RoutineItemRow(props: Props) {
-  const { wallSide, wallManual, wallAuto, appliedRotate, onEditInPlan, progressive, index, count, item, fig, dance, cls, resolved, classLegal, onChange, onMove, onRemove, onOpen } = props;
+  const { wallSide, wallManual, wallAuto, planFace, onEditInPlan, progressive, index, count, item, fig, dance, cls, resolved, classLegal, onChange, onMove, onDragStart, onRemove, onOpen } = props;
   const { t, lang, barsWord } = useI18n();
   const [open, setOpen] = useState(false);
   const { main, sub } = figureNames(fig, lang);
@@ -85,46 +87,34 @@ export function RoutineItemRow(props: Props) {
     );
   }
 
-  // Alignment (only figures with a step chart that gives alignments).
+  // Alignment: given by the technique (WDSF chart). The figure starts where the
+  // previous one ended; the user may only change the amount of turn where the
+  // technique allows it.
   const alignBase = figureAlignment(fig, { from: resolved.from, to: resolved.isPart ? resolved.to : undefined });
-  const alignNow = figureAlignment(fig, {
-    from: resolved.from,
-    to: resolved.isPart ? resolved.to : undefined,
-    rotate: appliedRotate ?? variant.rotate,
-    extraTurn: variant.extraTurn,
-  });
-  const backing = startsBacking(alignBase?.start ?? null);
-  // Wall names for the aim labels: on a long wall the wall ahead is short, the opposite one long.
-  const onLong = (wallSide ?? 0) % 2 === 0;
-  const aimLabel = (a: Aim) =>
-    EXPLICIT_AIMS.includes(a)
-      ? t(`aim_${a}` as StringKey)
-      : `${t(backing ? "aimBacking" : "aimFacing")} ${t(`aim_${a}` as StringKey, {
-      aheadGen: t(onLong ? "wallShortGen" : "wallLongGen"),
-      oppGen: t(onLong ? "wallLongGen" : "wallShortGen"),
-      aheadAcc: t(onLong ? "wallShortAcc" : "wallLongAcc"),
-      oppAcc: t(onLong ? "wallLongAcc" : "wallShortAcc"),
-    })}`;
-  const alignMode = variant.aim ?? (variant.rotate || variant.extraTurn ? "custom" : "");
+  const follows = !!fig.floor?.follows;
+  const range = fig.floor?.turnRange;
   const baseTurn = alignBase ? norm180(alignBase.end - alignBase.start) : 0;
   const turnDir = Math.abs(baseTurn) < 10 ? turnHintOf(fig.en) : baseTurn < 0 ? -1 : 1;
-  if (variant.aim) chips.push(`${t("alignChip")}: ${aimLabel(variant.aim)}`);
-  else if (variant.rotate) chips.push(`${t("alignChip")}: ${t(variant.rotate > 0 ? "alignByLeft" : "alignByRight", { n: eighths(variant.rotate) })}`);
-  if (variant.extraTurn)
-    chips.push(
-      `${t("alignTurn")}: ${
-        turnDir === 0
-          ? t(variant.extraTurn > 0 ? "alignByLeft" : "alignByRight", { n: eighths(variant.extraTurn) })
-          : t(Math.sign(variant.extraTurn) === Math.sign(turnDir) ? "alignMore" : "alignLess", { n: eighths(variant.extraTurn) })
-      }`,
-    );
+  const turnLabel = (deg: number) =>
+    deg === 0
+      ? t("alignAsChart")
+      : turnDir === 0
+        ? t(deg > 0 ? "alignByLeft" : "alignByRight", { n: eighths(deg) })
+        : t(Math.sign(deg) === Math.sign(turnDir) ? "alignMore" : "alignLess", { n: eighths(deg) });
+  // A stored turn outside the allowed range (older data) is not applied.
+  const extra = range && variant.extraTurn && variant.extraTurn >= range.min && variant.extraTurn <= range.max ? variant.extraTurn : 0;
+  if (extra) chips.push(`${t("alignTurn")}: ${turnLabel(extra)}`);
+  const offChart = planFace?.offChart ?? 0;
+  if (progressive && alignBase && Math.abs(offChart) >= 22.5)
+    chips.push(`↻ ${t("alignOffChartShort", { dir: t(offChart > 0 ? "alignByLeft" : "alignByRight", { n: eighths(offChart) }) })}`);
 
   const hasOptions =
     parts.length > 0 ||
     (variants.starts?.length ?? 0) > 0 ||
     (variants.finishes?.length ?? 0) > 0 ||
     !!(holds && (holds.alts.length || holds.any)) ||
-    !!alignBase;
+    !!alignBase ||
+    follows;
   const illegal = !classLegal || !resolved.partAllowed;
 
   return (
@@ -146,7 +136,7 @@ export function RoutineItemRow(props: Props) {
         )}
         {onEditInPlan && (
           <button type="button" className="link-btn small plan-edit-link" onClick={onEditInPlan}>
-            ⟲ {t("planRotateOpen")}
+            ⌖ {t("planShowFigure")}
           </button>
         )}
         {fig.custom && <span className="custom-badge">★ {t("customBadge")}</span>}
@@ -321,88 +311,56 @@ export function RoutineItemRow(props: Props) {
               </select>
             </label>
 
-            {alignBase && (
+            {(alignBase || follows) && (
               <fieldset className="align-fields">
                 <legend>{t("alignTitle")}</legend>
-                <label className="field">
-                  <span>{t("alignStartAt")}</span>
-                  <select
-                    value={alignMode}
-                    onChange={(e) => {
-                      const v = e.target.value;
-                      if (v === "") setVariant({ aim: undefined, rotate: undefined, extraTurn: undefined });
-                      else if (v === "custom") setVariant({ aim: undefined });
-                      else setVariant({ aim: v as Aim, rotate: undefined });
-                    }}
-                  >
-                    <option value="">
-                      {t("alignAsChart")}: {alignBase ? alignLabel(alignBase.start, lang) : ""}
-                    </option>
-                    {progressive &&
-                      AIMS.map((a) => (
-                        <option key={a} value={a}>
-                          {aimLabel(a)}
-                        </option>
-                      ))}
-                    <option value="custom">{t("alignCustom")}</option>
-                  </select>
-                </label>
-                {onEditInPlan && (
-                  <button type="button" className="btn small plan-edit-btn" onClick={onEditInPlan}>
-                    ⟲ {t("planRotateOpen")}
-                  </button>
+                {follows ? (
+                  <p className="small">{t("alignFollows")}</p>
+                ) : (
+                  alignBase && (
+                    <p className="small">
+                      {t("alignChart")}: <strong>{alignLabel(alignBase.start, lang)}</strong> →{" "}
+                      <strong>{alignLabel(norm180(alignBase.end + extra), lang)}</strong>
+                    </p>
+                  )
                 )}
-                <details className="align-detail" open={alignMode === "custom"}>
-                  <summary>{t("alignDetail")}</summary>
-                <label className="field">
-                  <span>{t("alignRotate")}</span>
-                  <select
-                    value={variant.rotate ?? 0}
-                    onChange={(e) => setVariant({ rotate: +e.target.value || undefined })}
-                  >
-                    {[135, 90, 45, 0, -45, -90, -135].map((deg) => (
-                      <option key={deg} value={deg}>
-                        {deg === 0
-                          ? t("alignAsChart")
-                          : t(deg > 0 ? "alignByLeft" : "alignByRight", { n: eighths(deg) })}
-                      </option>
-                    ))}
-                  </select>
-                </label>
-                <label className="field">
-                  <span>{t("alignTurn")}</span>
-                  <select
-                    value={variant.extraTurn ?? 0}
-                    onChange={(e) => setVariant({ extraTurn: +e.target.value || undefined })}
-                  >
-                    {[2, 1, 0, -1, -2].map((k) => {
-                      // "more" follows the figure's own turn direction (natural = right).
-                      const deg = k * 45 * (turnDir < 0 ? -1 : 1);
-                      return (
-                        <option key={k} value={deg}>
-                          {k === 0
-                            ? t("alignAsChart")
-                            : turnDir === 0
-                              ? t(deg > 0 ? "alignByLeft" : "alignByRight", { n: eighths(deg) })
-                              : t(k > 0 ? "alignMore" : "alignLess", { n: eighths(deg) })}
-                        </option>
-                      );
-                    })}
-                  </select>
-                </label>
-                </details>
-                {alignNow && (
+                {progressive && planFace && planFace.start !== null && (
                   <p className="small">
-                    {t("start")}: <strong>{alignLabel(alignNow.start, lang)}</strong> → {t("finish")}:{" "}
-                    <strong>{alignLabel(alignNow.end, lang)}</strong>
+                    {t("alignHere")}: <strong>{alignLabel(planFace.start, lang)}</strong>
+                    {planFace.end !== null && (
+                      <>
+                        {" "}→ <strong>{alignLabel(planFace.end, lang)}</strong>
+                      </>
+                    )}
                   </p>
                 )}
-                {(variant.rotate || variant.extraTurn) && (
-                  <button type="button" className="btn small align-reset" onClick={() => setVariant({ rotate: undefined, extraTurn: undefined })}>
-                    ↺ {t("alignReset")}
+                {progressive && alignBase && Math.abs(offChart) >= 22.5 && (
+                  <p className="small warn">
+                    ⚠ {t("alignOffChart", { dir: t(offChart > 0 ? "alignByLeft" : "alignByRight", { n: eighths(offChart) }) })}
+                  </p>
+                )}
+                {range ? (
+                  <label className="field">
+                    <span>{t("alignTurn")}</span>
+                    <select value={extra} onChange={(e) => setVariant({ extraTurn: +e.target.value || undefined })}>
+                      {turnOptions(range).map((deg) => (
+                        <option key={deg} value={deg}>
+                          {turnLabel(deg)}
+                        </option>
+                      ))}
+                    </select>
+                    <span className="small muted">
+                      {t("alignTurnRule")}: {lang === "cs" && range.noteCs ? range.noteCs : range.note}
+                    </span>
+                  </label>
+                ) : (
+                  alignBase && <p className="small muted">{t("alignTurnFixed")}</p>
+                )}
+                {onEditInPlan && (
+                  <button type="button" className="btn small plan-edit-btn" onClick={onEditInPlan}>
+                    ⌖ {t("planShowFigure")}
                   </button>
                 )}
-                <p className="small muted">{t("alignHint")}</p>
               </fieldset>
             )}
 
@@ -460,6 +418,17 @@ export function RoutineItemRow(props: Props) {
         )}
       </div>
       <div className="item-actions">
+        {onDragStart && count > 1 && (
+          <button
+            type="button"
+            className="icon-btn drag-handle"
+            onPointerDown={onDragStart}
+            aria-label={t("dragHint")}
+            title={t("dragHint")}
+          >
+            ⠿
+          </button>
+        )}
         <button className="icon-btn" disabled={index === 0} onClick={() => onMove(-1)} aria-label={t("moveUp")} title={t("moveUp")}>
           ↑
         </button>

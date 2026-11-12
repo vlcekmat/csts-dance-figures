@@ -11,3 +11,9 @@ data/build/
 data/alignment.json
 data/videos.json
 __pycache__/
+
+# Reference books supplied by the user (copyright) stay local too.
+mainReferences/
+
+# Charts extracted from the WDSF technique books (copyrighted) – local use only.
+src/data/technique.local.json

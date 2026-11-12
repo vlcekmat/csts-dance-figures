@@ -273,7 +273,10 @@ export function FigureFinder({ onOpen }: Props) {
                     <button type="button" className="finder-hit-head" onClick={() => onOpen(r.fig)}>
                       <span className={`bib small ${dance.discipline} ${r.fig.custom ? "custom" : ""}`}>{r.fig.custom ? "★" : r.fig.no}</span>
                       <span className="fig-names">
-                        <span className="fig-main">{main}</span>
+                        <span className="fig-main">
+                          {main}
+                          {r.part && <span className="part-tag"> · {t("stepsWord")} {r.part.from}–{r.part.to}</span>}
+                        </span>
                         {sub && <span className="fig-sub">{sub}</span>}
                       </span>
                       <span className="finder-score" title={t("fdScore")}>

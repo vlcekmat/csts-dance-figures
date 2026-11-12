@@ -67,6 +67,8 @@ export interface Reason {
 
 export interface FinderResult {
   fig: Figure;
+  /** Best matching allowed part of the figure (steps, 1-based), undefined = whole figure. */
+  part?: { from: number; to: number };
   /** 0–1 share of the points available for the criteria that were set. */
   score: number;
   reasons: Reason[];
@@ -124,8 +126,9 @@ function startFeet(f: Figure): Foot[] {
 }
 
 /** Turn direction from the chart turn texts, then from the name. */
-function turnOf(f: Figure): TurnDir | null {
-  const turns = (f.floor?.steps ?? []).map((s) => s.turn).join(" ");
+function turnOf(f: Figure, part?: { from: number; to: number }): TurnDir | null {
+  const all = f.floor?.steps ?? [];
+  const turns = (part ? all.slice(part.from - 1, part.to) : all).map((s) => s.turn).join(" ");
   // "starts to turn L", "1/4 to R", "turn to left"
   const r = /\b(?:to|turn(?:s|ing)?)(?: to)? (?:the )?(?:R|right)\b/i.test(turns);
   const l = /\b(?:to|turn(?:s|ing)?)(?: to)? (?:the )?(?:L|left)\b/i.test(turns);
@@ -145,11 +148,8 @@ function barOptions(f: Figure): number[] {
   if (!syl?.timing) return [];
   const d = getDance(f.dance);
   const steps = parseTiming(syl.timing, d);
+  // Allowed parts are scored separately (findFigures), so only the whole figure here.
   const out = [totalBeats(steps) / d.beatsPerBar];
-  for (const p of syl.variants?.parts ?? []) {
-    const part = steps.slice(p.from - 1, p.to ?? undefined);
-    out.push(totalBeats(part) / d.beatsPerBar);
-  }
   for (const alt of syl.altTimings) out.push(totalBeats(parseTiming(alt, d)) / d.beatsPerBar);
   return [...new Set(out.map((b) => Math.round(b * 4) / 4))];
 }
@@ -158,9 +158,7 @@ function stepCounts(f: Figure): number[] {
   const syl = f.syllabus;
   if (!syl?.timing) return [];
   const steps = parseTiming(syl.timing, getDance(f.dance));
-  const out = [steps.length];
-  for (const p of syl.variants?.parts ?? []) out.push((p.to ?? steps.length) - p.from + 1);
-  return [...new Set(out)];
+  return [steps.length];
 }
 
 /** The criteria actually set in a query (to tell "nothing entered yet"). */
@@ -182,6 +180,13 @@ export function activeCriteria(q: FinderQuery, prev?: Figure): number {
   ].filter(Boolean).length;
 }
 
+/** Allowed parts of a figure (syllabus notes) with a known step range. */
+function partsOf(f: Figure, total: number): { from: number; to: number }[] {
+  return (f.syllabus?.variants?.parts ?? [])
+    .map((p) => ({ from: p.from, to: p.to ?? total }))
+    .filter((p) => p.from >= 1 && p.to <= total && p.from <= p.to && !(p.from === 1 && p.to === total));
+}
+
 export function findFigures(q: FinderQuery, prev?: Figure): FinderResult[] {
   // Expected start from the previous figure: the other foot, same position.
   const prevFoot = prev ? finishWeightFoot(prev) : null;
@@ -194,6 +199,29 @@ export function findFigures(q: FinderQuery, prev?: Figure): FinderResult[] {
   for (const f of allFigures()) {
     if (f.dance !== q.dance) continue;
     if (q.cls && !isLegal(f, q.cls)) continue;
+    // Routines often use only an allowed part of a figure ("steps 1–3"): score the
+    // whole figure and every allowed part, keep the best.
+    const total = f.syllabus?.timing ? parseTiming(f.syllabus.timing, getDance(f.dance)).length : chartSteps(f).length;
+    const options: ({ from: number; to: number } | undefined)[] = [undefined, ...partsOf(f, total)];
+    let best: FinderResult | null = null;
+    for (const part of options) {
+      const r = scoreFigure(f, part, q, { wantFoot, wantStartPos, startPosLabel, terms });
+      if (r && (!best || r.score > best.score + 1e-9)) best = r;
+    }
+    if (best) results.push(best);
+  }
+  return results.sort((a, b) => b.score - a.score || a.fig.no - b.fig.no);
+}
+
+function scoreFigure(
+  f: Figure,
+  part: { from: number; to: number } | undefined,
+  q: FinderQuery,
+  ctx: { wantFoot: Foot | ""; wantStartPos: string | null; startPosLabel: string; terms: string[] },
+): FinderResult | null {
+  const { wantFoot, wantStartPos, startPosLabel, terms } = ctx;
+  const chartAll = chartSteps(f);
+  const chart = part ? chartAll.slice(part.from - 1, part.to) : chartAll;
     let got = 0;
     let max = 0;
     const reasons: Reason[] = [];
@@ -202,29 +230,33 @@ export function findFigures(q: FinderQuery, prev?: Figure): FinderResult[] {
       got += kind === "match" ? weight : kind === "partial" ? weight / 2 : 0;
       reasons.push({ kind, key, vars });
     };
+    if (part) reasons.push({ kind: "match", key: "fr_part", vars: { from: String(part.from), to: String(part.to) } });
 
     // Start foot
     if (wantFoot) {
-      const feet = startFeet(f);
+      const pf = part && chart[0] ? footOf(chart[0].desc) : null;
+      const feet = part ? (pf ? [pf] : []) : startFeet(f);
       if (!feet.length) add(2, "partial", "fr_footUnknown");
       else add(2, feet.includes(wantFoot) ? "match" : "miss", "fr_startFoot", { foot: wantFoot });
     }
     // Start direction (from syllabus start text / first chart step)
     if (q.startDir) {
-      const d = dirOf(f.syllabus?.start ?? "") ?? (f.floor?.steps[0] ? dirOf(f.floor.steps[0].desc) : null);
+      const d = part
+        ? chart[0] ? dirOf(chart[0].desc) : null
+        : (dirOf(f.syllabus?.start ?? "") ?? (chart[0] ? dirOf(chart[0].desc) : null));
       if (!d) add(2, "partial", "fr_dirUnknown");
       else add(2, d === q.startDir ? "match" : "miss", "fr_startDir", { dir: q.startDir });
     }
     // Start position
     if (wantStartPos) {
-      const pos = startPositions(f);
+      const pp = part ? normPosition(chart[0]?.pos) : null;
+      const pos = part ? (pp ? [pp] : []) : startPositions(f);
       if (!pos.length) add(1.5, "partial", "fr_posUnknown");
       else add(1.5, pos.includes(wantStartPos) ? "match" : "miss", "fr_startPos", { pos: startPosLabel });
     }
     // Step sequence vs. chart
     const spec = q.steps.filter((s) => s.foot || s.dir);
     if (spec.length) {
-      const chart = chartSteps(f);
       if (!chart.length) {
         // No chart: at least compare the first step with the syllabus start.
         const first = spec[0];
@@ -252,7 +284,8 @@ export function findFigures(q: FinderQuery, prev?: Figure): FinderResult[] {
     // Finish position (basic or allowed variant)
     if (q.finishPos) {
       const want = normPosition(q.finishPos);
-      const fp = finishPositions(f);
+      const lastPos = part ? normPosition(chart[chart.length - 1]?.pos) : null;
+      const fp = part ? { base: lastPos, variants: [] as string[] } : finishPositions(f);
       if (!fp.base && !fp.variants.length) add(2, "partial", "fr_posUnknown");
       else if (fp.base === want) add(2, "match", "fr_finishPos", { pos: q.finishPos });
       else if (want && fp.variants.includes(want)) add(2, "match", "fr_finishPosVariant", { pos: q.finishPos });
@@ -260,26 +293,26 @@ export function findFigures(q: FinderQuery, prev?: Figure): FinderResult[] {
     }
     // Finish foot
     if (q.finishFoot) {
-      const ff = finishWeightFoot(f);
+      const ff = part ? (chart.length ? footOf(chart[chart.length - 1].desc) : null) : finishWeightFoot(f);
       if (!ff) add(1, "partial", "fr_footUnknown");
       else add(1, ff === q.finishFoot ? "match" : "miss", "fr_finishFoot", { foot: q.finishFoot });
     }
     // Length
     if (q.bars) {
-      const opts = barOptions(f);
+      const opts = part ? partBars(f, part) : barOptions(f);
       if (!opts.length) add(1.5, "partial", "fr_lenUnknown");
       else if (opts.some((b) => Math.abs(b - q.bars) < 0.01)) add(1.5, "match", "fr_bars", { n: String(q.bars) });
       else if (opts.some((b) => Math.abs(b - q.bars) <= 0.5)) add(1.5, "partial", "fr_bars", { n: String(q.bars) });
       else add(1.5, "miss", "fr_bars", { n: String(q.bars) });
     }
     if (q.stepCount) {
-      const opts = stepCounts(f);
+      const opts = part ? [part.to - part.from + 1] : stepCounts(f);
       if (!opts.length) add(1, "partial", "fr_lenUnknown");
       else add(1, opts.includes(q.stepCount) ? "match" : opts.some((n) => Math.abs(n - q.stepCount) === 1) ? "partial" : "miss", "fr_stepCount", { n: String(q.stepCount) });
     }
     // Turn
     if (q.turn) {
-      const tr = turnOf(f);
+      const tr = turnOf(f, part);
       if (!tr) add(1.5, "partial", "fr_turnUnknown");
       else add(1.5, tr === q.turn ? "match" : "miss", "fr_turn", { dir: q.turn });
     }
@@ -310,8 +343,15 @@ export function findFigures(q: FinderQuery, prev?: Figure): FinderResult[] {
       add(2, hits === terms.length ? "match" : hits ? "partial" : "miss", "fr_keywords");
     }
 
-    if (max === 0) continue;
-    results.push({ fig: f, score: got / max, reasons });
-  }
-  return results.sort((a, b) => b.score - a.score || a.fig.no - b.fig.no);
+    if (max === 0) return null;
+    // (on a tie the whole figure wins: findFigures keeps the first best option)
+    return { fig: f, part, score: got / max, reasons };
+}
+
+function partBars(f: Figure, part: { from: number; to: number }): number[] {
+  const syl = f.syllabus;
+  if (!syl?.timing) return [];
+  const d = getDance(f.dance);
+  const steps = parseTiming(syl.timing, d).slice(part.from - 1, part.to);
+  return [Math.round((totalBeats(steps) / d.beatsPerBar) * 4) / 4];
 }

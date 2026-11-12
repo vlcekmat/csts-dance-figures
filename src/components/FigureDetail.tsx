@@ -13,7 +13,7 @@ import { Glossed } from "./Glossary";
 import { HoldIcon } from "./HoldPicker";
 import { TimingBreakdown, TimingExplain } from "./TimingBreakdown";
 import { TimingStrip } from "./TimingStrip";
-import { FigureFloor } from "./FloorPlan";
+import { FigurePlayer } from "./FigurePlayer";
 
 interface Props {
   fig: Figure;
@@ -310,35 +310,70 @@ export function FigureDetail({ fig, onClose, onOpenFigure, routinesApi, cls }: P
         {fig.floor && fig.floor.steps.length > 0 && (
           <section className="drawer-section">
             <h3>{t("stepChart")}</h3>
-            <FigureFloor fig={fig} />
-            <div className="breakdown-scroll">
-              <table className="breakdown chart">
-                <thead>
-                  <tr>
-                    <th scope="col">{t("chartStep")}</th>
-                    <th scope="col">{t("chartDesc")}</th>
-                    {fig.floor.steps.some((x) => x.align) && <th scope="col">{t("chartAlign")}</th>}
-                    <th scope="col">{t("chartTurn")}</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {fig.floor.steps.map((st, i) => (
-                    <tr key={i} className={i >= chartSteps(fig).length ? "next-step" : ""} title={i >= chartSteps(fig).length ? t("chartNextStep") : undefined}>
-                      <td>{i + 1}</td>
-                      <td lang={lang}>
-                        <Glossed text={localizeStep(st.desc, lang)} />
-                      </td>
-                      {fig.floor!.steps.some((x) => x.align) && (
-                        <td>
-                          <Glossed text={st.align} />
-                        </td>
-                      )}
-                      <td lang={lang}>{st.turn && st.turn !== "--" ? localizeTurn(st.turn, lang) : ""}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+            <FigurePlayer fig={fig} />
+            {(
+              [
+                ["man", fig.floor.steps],
+                ["lady", fig.floor.ladySteps ?? []],
+              ] as const
+            )
+              .filter(([, steps]) => steps.length > 0)
+              .map(([role, steps]) => {
+                const withAlign = steps.some((x) => x.align);
+                const withPos = steps.some((x) => x.pos);
+                const n = chartSteps(fig).length;
+                return (
+                  <div className="breakdown-scroll" key={role}>
+                    {fig.floor!.ladySteps && <h4 className="chart-role">{t(role === "man" ? "roleMan" : "roleLady")}</h4>}
+                    <table className="breakdown chart">
+                      <thead>
+                        <tr>
+                          <th scope="col">{t("chartStep")}</th>
+                          <th scope="col">{t("chartDesc")}</th>
+                          {withAlign && <th scope="col">{t("chartAlign")}</th>}
+                          <th scope="col">{t("chartTurn")}</th>
+                          {withPos && <th scope="col">{t("chartPos")}</th>}
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {steps.map((st, i) => (
+                          <tr key={i} className={i >= n ? "next-step" : ""} title={i >= n ? t("chartNextStep") : undefined}>
+                            <td>
+                              {i + 1}
+                              {st.timing ? <span className="muted small"> ({st.timing})</span> : null}
+                            </td>
+                            <td lang={lang}>
+                              <Glossed text={localizeStep(st.desc, lang)} />
+                            </td>
+                            {withAlign && (
+                              <td>
+                                <Glossed text={st.alignText ?? st.align} />
+                              </td>
+                            )}
+                            <td lang={lang}>{st.turn && st.turn !== "--" ? localizeTurn(st.turn, lang) : ""}</td>
+                            {withPos && (
+                              <td>
+                                {st.pos && (i === 0 || st.pos !== steps[i - 1].pos) ? (
+                                  <Glossed text={localizePositions(st.pos, lang)} />
+                                ) : (
+                                  ""
+                                )}
+                              </td>
+                            )}
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                );
+              })}
+            {fig.floor.follows && <p className="small">{t("alignFollows")}</p>}
+            {fig.floor.turnRange && (
+              <p className="small">
+                {t("alignTurn")} – {t("alignTurnRule").toLowerCase()}:{" "}
+                {lang === "cs" && fig.floor.turnRange.noteCs ? fig.floor.turnRange.noteCs : fig.floor.turnRange.note}
+              </p>
+            )}
             {(fig.floor.preceding.length > 0 || fig.floor.following.length > 0) && (
               <dl className="facts small">
                 {(
@@ -377,12 +412,31 @@ export function FigureDetail({ fig, onClose, onOpenFigure, routinesApi, cls }: P
                   ))}
               </dl>
             )}
-            <p className="small muted">
-              {t("chartSource")}{" "}
-              <a href={fig.floor.url} target="_blank" rel="noreferrer">
-                {fig.floor.title} ↗
-              </a>
-            </p>
+            {fig.floor.source === "wdsf" ? (
+              <p className="small muted">
+                {t("chartSourceWdsf", { dance: dance?.[lang] ?? fig.dance, page: String(fig.floor.page ?? "?") })}
+              </p>
+            ) : fig.floor.source === "checked" ? (
+              <p className="small muted">
+                {t("chartSourceChecked")}
+                {fig.floor.url && (
+                  <>
+                    {" "}
+                    {t("chartMoreAt")}{" "}
+                    <a href={fig.floor.url} target="_blank" rel="noreferrer">
+                      dancecentral.info ↗
+                    </a>
+                  </>
+                )}
+              </p>
+            ) : (
+              <p className="small muted">
+                {t("chartSource")}{" "}
+                <a href={fig.floor.url} target="_blank" rel="noreferrer">
+                  {fig.floor.title} ↗
+                </a>
+              </p>
+            )}
           </section>
         )}
 

@@ -104,7 +104,7 @@ export interface Figure {
   noteEn?: string;
   syllabus?: SyllabusInfo;
   videos?: Video[];
-  /** Step chart from dancecentral.info (ISTD based) – alignments for floor diagrams. */
+  /** Step chart: WDSF technique book (local only) or dancecentral.info (ISTD based). */
   floor?: FloorData;
   /** Other common names (WDSF brackets, ISTD names, Czech training slang). */
   aliases?: { en?: string[]; cs?: string[] };
@@ -126,7 +126,17 @@ const db = raw as unknown as Database;
 
 export const SOURCES = db.sources;
 export const DANCES: Dance[] = db.dances;
-export const FIGURES: Figure[] = db.figures;
+// Step charts from the WDSF technique books are copyrighted: they are generated
+// into a local, git-ignored file and only used when it exists (local builds).
+// The public site works with the WDSF Syllabus and dancecentral.info charts.
+const bookCharts = Object.values(
+  import.meta.glob<{ default: Record<string, FloorData> }>("./data/technique.local.json", { eager: true }),
+)[0]?.default ?? {};
+
+export const FIGURES: Figure[] = db.figures.map((f) => (bookCharts[f.id] ? { ...f, floor: bookCharts[f.id] } : f));
+
+/** True when the local WDSF technique-book charts are available. */
+export const HAS_BOOK_CHARTS = Object.keys(bookCharts).length > 0;
 
 const figureById = new Map(FIGURES.map((f) => [f.id, f]));
 const danceById = new Map(DANCES.map((d) => [d.id, d]));

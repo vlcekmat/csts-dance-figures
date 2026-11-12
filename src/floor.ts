@@ -1,4 +1,5 @@
-// Floor geometry from step charts (dancecentral.info, ISTD based).
+// Floor geometry from step charts: WDSF technique books (primary), for dances
+// without a WDSF book (Slow Foxtrot) dancecentral.info (ISTD based).
 // Coordinates: x = line of dance (LOD), y = towards the centre of the room,
 // so the wall is at negative y. Angles in degrees, 0 = LOD, +90 = centre.
 import { getDance, type Figure } from "./data";
@@ -7,10 +8,25 @@ import { parseTiming } from "./timing";
 export interface FloorStep {
   /** Foot + direction text, e.g. "RF fwd", "LF to side and slightly back". */
   desc: string;
-  /** Alignment code, e.g. "FDW", "BLOD", "PDC". */
+  /** Alignment code, e.g. "FDW", "BLOD", "Facing DC" (WDSF: normalised facing at the end of the step). */
   align: string;
+  /** The book's own wording of the alignment (WDSF charts). */
+  alignText?: string;
   /** Amount of turn text, e.g. "1/4 between 1-2". */
   turn: string;
+  /** Couple position on this step (WDSF book), e.g. "Closed Position", "PP". */
+  pos?: string;
+  /** Count of the step ("1", "&", "S"), WDSF book. */
+  timing?: string;
+}
+
+/** Allowed change of the figure's amount of turn (degrees, + = more to the left). */
+export interface TurnRange {
+  min: number;
+  max: number;
+  /** Source text (syllabus / technique note). */
+  note: string;
+  noteCs?: string;
 }
 
 /** A preceding/following figure named by the chart, linked to the catalog when possible. */
@@ -26,7 +42,20 @@ export interface FigureLink {
 export interface FloorData {
   title: string;
   url: string;
+  /**
+   * "wdsf" = full chart from the WDSF technique book (local only),
+   * "checked" = man's steps and alignments checked against the WDSF technique (public),
+   * otherwise dancecentral.info.
+   */
+  source?: "wdsf" | "checked" | "dancecentral";
+  page?: number;
   steps: FloorStep[];
+  /** Lady's steps (WDSF book). */
+  ladySteps?: FloorStep[];
+  /** The alignment follows the previous figure ("Depending on the previous figure"). */
+  follows?: boolean;
+  /** Under-/overturning allowed by the technique. */
+  turnRange?: TurnRange;
   preceding: FigureLink[];
   following: FigureLink[];
 }
@@ -173,6 +202,7 @@ export interface PathPoint {
  *                  a corner and for the user's "alignment of the whole figure".
  * @param extraTurn changes the amount of turn (degrees, + = more to the left),
  *                  spread evenly over the steps (under-/overturning).
+ * @param initialFacing facing before the first step, used when the chart gives no alignment.
  */
 export function tracePath(
   steps: FloorStep[],
@@ -181,11 +211,14 @@ export function tracePath(
   rotation = 0,
   turnHint: -1 | 0 | 1 = 0,
   extraTurn = 0,
+  initialFacing: number | null = null,
 ): PathPoint[] {
   const pts: PathPoint[] = [{ x: x0, y: y0, n: 0, facing: null }];
   let x = x0;
   let y = y0;
-  let facing: number | null = null;
+  // Charts without alignments ("depending on the previous figure") continue
+  // in the direction the previous figure ended.
+  let facing: number | null = initialFacing;
   let sign: -1 | 0 | 1 = turnHint;
   steps.forEach((s, i) => {
     const turn = parseTurn(s.turn);
@@ -326,31 +359,15 @@ export interface SimItem {
   travel?: number;
   /** Length of a full step in metres (default STEP_METRES). */
   stepMetres?: number;
-  /** User alignment changes (degrees, + = left). */
-  rotate?: number;
+  /** Under-/overturn chosen within the figure's allowed range (degrees, + = left). */
   extraTurn?: number;
-  /** Aim the start of the figure at a place in the room (overrides rotate). */
-  aim?: Aim;
+  /** The chart gives no alignment: continue where the previous figure ended. */
+  follows?: boolean;
+  /** Lady's chart steps (same part as `steps`), for her facing in the plan. */
+  ladySteps?: FloorStep[] | null;
   /** From this figure on, the couple dances along this wall (0–3). */
   wall?: number;
 }
-
-/**
- * Places in the room the man can aim at when a figure starts. "Ahead" is the
- * wall the current line of dance runs into, "opposite" the wall across the floor.
- */
-export type Aim =
-  | "corner"
-  | "aheadMid"
-  | "oppositeMid"
-  | "aheadPerp"
-  | "oppositePerp"
-  | "faceCentre"
-  | "backCentre";
-export const AIMS: Aim[] = ["corner", "aheadMid", "oppositeMid", "aheadPerp", "oppositePerp", "faceCentre", "backCentre"];
-
-/** Aims that state the man's orientation themselves (no automatic "backing" for backward figures). */
-export const EXPLICIT_AIMS: Aim[] = ["faceCentre", "backCentre"];
 
 export interface SimPoint {
   x: number;
@@ -361,8 +378,14 @@ export interface SimPoint {
 }
 
 export interface SimSegment {
-  /** Rotation actually applied (degrees, + = left), incl. an aim. */
-  rotate: number;
+  /** Man's facing at the start / end of the figure in room degrees (0 = along the first long wall), null if unknown. */
+  startFace: number | null;
+  endFace: number | null;
+  /** How much (degrees, + = left) the figure is danced off its charted alignment. */
+  offChart: number;
+  /** Lady's facing at the start / end (room degrees), null without her chart. */
+  ladyStartFace: number | null;
+  ladyEndFace: number | null;
   /** The wall was set by the user at this figure. */
   manualWall: boolean;
   /** Danced on the spot (no chart, stationary figure). */
@@ -387,7 +410,8 @@ export interface SimResult {
   totalSeconds: number;
 }
 
-const MARGIN = 1.5; // metres kept from the end wall before turning a corner
+/** Closer than this (metres) to the end wall = the couple is in the corner: the LOD turns. */
+const CORNER_ZONE = 2.5;
 
 /**
  * Where the routine starts: on which wall (0 = first long side, then
@@ -398,6 +422,8 @@ export interface StartSpot {
   side: number;
   along: number;
   dist: number;
+  /** Man's facing at the start (degrees relative to the LOD of that wall, + = towards centre); omitted = as charted. */
+  face?: number;
 }
 
 export const DEFAULT_START: StartSpot = { side: 0, along: 2.5, dist: 1.5 };
@@ -429,10 +455,10 @@ export function spotFromPoint(x: number, y: number, room: RoomSize): StartSpot {
 }
 
 /** Local (along LOD, towards centre) path of one figure, in metres. */
-function localPath(item: SimItem, rotate = item.rotate ?? 0): { x: number; y: number }[] {
+function localPath(item: SimItem, initialFacing: number | null = null, rotate = 0): { x: number; y: number }[] {
   if (item.steps) {
     const m = item.stepMetres ?? STEP_METRES;
-    return tracePath(item.steps, 0, 0, rotate, item.turnHint ?? 0, item.extraTurn ?? 0).map((p) => ({
+    return tracePath(item.steps, 0, 0, rotate, item.turnHint ?? 0, item.extraTurn ?? 0, initialFacing).map((p) => ({
       x: p.x * m,
       y: p.y * m,
     }));
@@ -456,58 +482,14 @@ function remaining(side: number, x: number, y: number, room: RoomSize): number {
   }
 }
 
-/** Room point the aim refers to, for a couple travelling along `side`. */
-function aimPoint(aim: Aim, side: number, room: RoomSize): { x: number; y: number } | null {
-  const L = room.length;
-  const W = room.width;
-  const s4 = ((side % 4) + 4) % 4;
-  if (aim === "corner") return [{ x: L, y: 0 }, { x: L, y: W }, { x: 0, y: W }, { x: 0, y: 0 }][s4];
-  if (aim === "aheadMid") return [{ x: L, y: W / 2 }, { x: L / 2, y: W }, { x: 0, y: W / 2 }, { x: L / 2, y: 0 }][s4];
-  if (aim === "oppositeMid") return [{ x: L / 2, y: W }, { x: 0, y: W / 2 }, { x: L / 2, y: 0 }, { x: L, y: W / 2 }][s4];
-  if (aim === "faceCentre" || aim === "backCentre") return { x: L / 2, y: W / 2 }; // centre of the room
-  return null; // perpendicular aims don't depend on a point
-}
-
-/** First charted facing of a figure (local frame, without user rotation). */
-function baseStartFacing(item: SimItem): number | null {
-  if (!item.steps) return null;
-  const f = tracePath(item.steps, 0, 0, 0, item.turnHint ?? 0, item.extraTurn ?? 0)
+/** Facings of a traced path (first and last known), local frame. */
+function pathFacings(item: SimItem, initialFacing: number | null, rotate = 0): { start: number | null; end: number | null } {
+  if (!item.steps) return { start: null, end: null };
+  const f = tracePath(item.steps, 0, 0, rotate, item.turnHint ?? 0, item.extraTurn ?? 0, initialFacing)
     .slice(1)
-    .find((p) => p.facing !== null)?.facing;
-  return f === undefined || f === null ? null : f;
-}
-
-/** Does the figure start with the man backing its direction (e.g. "LF back, BDC")? */
-export function startsBacking(baseFacing: number | null): boolean {
-  return baseFacing !== null && Math.abs(norm180(baseFacing)) > 90;
-}
-
-/**
- * Rotation that makes the figure start aimed at the chosen place. A figure that
- * starts backing aims its back at it ("zády do rohu").
- */
-function aimRotation(item: SimItem, x: number, y: number, side: number, room: RoomSize): number {
-  const base = baseStartFacing(item);
-  if (base === null || !item.aim) return item.rotate ?? 0;
-  let local: number;
-  if (item.aim === "aheadPerp") local = 0;
-  else if (item.aim === "oppositePerp") local = 90;
-  else {
-    const pt = aimPoint(item.aim, side, room)!;
-    const room0 = (Math.atan2(pt.y - y, pt.x - x) * 180) / Math.PI;
-    local = room0 - (((side % 4) + 4) % 4) * 90;
-  }
-  // Centre aims say explicitly where the man faces; the others follow the figure
-  // (a figure that starts backing turns its back to the target).
-  const desired =
-    item.aim === "faceCentre"
-      ? local
-      : item.aim === "backCentre"
-        ? local + 180
-        : startsBacking(base)
-          ? local + 180
-          : local;
-  return norm180(desired - base);
+    .map((p) => p.facing)
+    .filter((v): v is number => v !== null);
+  return { start: f.length ? f[0] : null, end: f.length ? f[f.length - 1] : null };
 }
 
 /**
@@ -522,6 +504,11 @@ export function simulateRoutine(items: SimItem[], room: RoomSize, start: StartSp
   let side = start.side;
   let t = 0;
   let turnedJustNow = false;
+  // Man's facing at the end of the previous figure (room degrees, 0 = along the
+  // first long wall). Dancers don't jump between figures: the next figure starts
+  // facing where the previous one ended. The very first one starts in the chosen
+  // start direction (or as charted).
+  let face: number | null = start.face !== undefined ? norm180(start.face + side * 90) : null;
   const segments: SimSegment[] = [];
   const overflow: number[] = [];
 
@@ -532,16 +519,24 @@ export function simulateRoutine(items: SimItem[], room: RoomSize, start: StartSp
       // The user says: from this figure on we are on wall `item.wall`.
       side += (((item.wall - side) % 4) + 4) % 4;
       manualWall = true;
-    } else if (item.wall === undefined) {
-      const probe = localPath(item);
-      const advance = Math.max(0, ...probe.map((p) => p.x));
-      if (!turnedJustNow && advance > 0.3 && remaining(side, x, y, room) - advance < MARGIN) {
-        side += 1;
-        autoCorner = true;
-      }
+    } else if (item.wall === undefined && !turnedJustNow && remaining(side, x, y, room) < CORNER_ZONE) {
+      // Reached the corner: the line of dance turns 90° to the left.
+      side += 1;
+      autoCorner = true;
     }
-    const rotate = item.aim ? aimRotation(item, x, y, side, room) : (item.rotate ?? 0);
-    const local = localPath(item, rotate);
+    // Charted facing of the figure in its own (LOD) frame.
+    const chart = pathFacings(item, null);
+    const faceLocal = face === null ? null : norm180(face - side * 90);
+    let rotate = 0;
+    let init: number | null = null;
+    if (item.steps && chart.start !== null) {
+      // Turn the whole chart so its first step faces where the man stands.
+      if (faceLocal !== null) rotate = norm180(faceLocal - chart.start);
+    } else if (item.steps) {
+      init = faceLocal ?? 0; // no alignments in the chart: just continue
+    }
+    const local = localPath(item, init, rotate);
+    const faces = item.steps ? pathFacings(item, init, rotate) : { start: null, end: null };
     const a = (side * Math.PI) / 2;
     const cos = Math.cos(a);
     const sin = Math.sin(a);
@@ -558,8 +553,22 @@ export function simulateRoutine(items: SimItem[], room: RoomSize, start: StartSp
     x = end.x;
     y = end.y;
     t = t0 + item.seconds;
+    // The lady's chart is in the same LOD frame: the same rotation applies.
+    let lady: { start: number | null; end: number | null } = { start: null, end: null };
+    if (item.steps && item.ladySteps?.length) {
+      const ladyItem = { ...item, steps: item.ladySteps, turnHint: (-(item.turnHint ?? 0) || 0) as -1 | 0 | 1 };
+      lady = pathFacings(ladyItem, init === null ? null : norm180(init + 180), rotate);
+    }
+    const startFace = faces.start === null ? null : norm180(faces.start + side * 90);
+    const endFace = faces.end === null ? null : norm180(faces.end + side * 90);
+    // Without a chart we don't know the facing: the next figure starts as charted.
+    face = endFace;
     segments.push({
-      rotate,
+      startFace,
+      endFace,
+      offChart: item.steps && chart.start !== null ? rotate : 0,
+      ladyStartFace: lady.start === null ? null : norm180(lady.start + side * 90),
+      ladyEndFace: lady.end === null ? null : norm180(lady.end + side * 90),
       manualWall,
       onSpot: !item.steps && (item.travel ?? 1) === 0,
       key: item.key,
@@ -634,4 +643,18 @@ export function eighths(deg: number): string {
   const n = Math.round(Math.abs(deg) / 45);
   const map: Record<number, string> = { 1: "1/8", 2: "1/4", 3: "3/8", 4: "1/2", 5: "5/8", 6: "3/4", 7: "7/8", 8: "1" };
   return map[n] ?? `${n}/8`;
+}
+
+/** Allowed under-/overturn choices of a range, in 1/8 steps (always including "as charted"). */
+export function turnOptions(range: TurnRange): number[] {
+  const out = new Set<number>([0]);
+  for (let d = Math.ceil(range.min / 45) * 45; d <= range.max; d += 45) out.add(d);
+  return [...out].sort((a, b) => b - a);
+}
+
+/** The user's under-/overturn if the figure's technique allows it, else undefined (as charted). */
+export function allowedExtra(fig: Figure, extra: number | undefined): number | undefined {
+  const r = fig.floor?.turnRange;
+  if (!r || !extra) return undefined;
+  return extra >= r.min && extra <= r.max ? extra : undefined;
 }

@@ -37,7 +37,7 @@ export interface Routine {
   /** Hide the loop visualisation (rail, strip marker, repetitions in the plan). */
   loopHidden?: boolean;
   /** Where the routine starts in the room (floor plan). */
-  start?: { side: number; along: number; dist: number };
+  start?: { side: number; along: number; dist: number; face?: number };
   id: string;
   name: string;
   dance: string;

@@ -8,7 +8,6 @@ import {
   simulateRoutine,
   travelFactor,
   turnHintOf,
-  type Aim,
   type RoomSize,
   type SimItem,
   type SimResult,
@@ -22,9 +21,7 @@ export interface PlanInput {
   fig: Figure;
   resolved: ResolvedItem;
   corner: boolean;
-  rotate?: number;
   extraTurn?: number;
-  aim?: Aim;
   wall?: number;
 }
 
@@ -55,7 +52,8 @@ export function buildPlan(opts: {
     const bars = totalBeats(it.resolved.steps) / dance.beatsPerBar || 1;
     // Only charts with alignments (standard) are precise enough to trace;
     // latin charts give no alignment, so those figures use the travel class.
-    const steps = hasFloor(it.fig)
+    // Charts that "follow the previous figure" have no alignments but are traced too.
+    const steps = hasFloor(it.fig) || it.fig.floor?.follows
       ? chartSteps(it.fig).slice(it.resolved.from - 1, it.resolved.isPart ? it.resolved.to : undefined)
       : null;
     return {
@@ -69,9 +67,11 @@ export function buildPlan(opts: {
       turnHint: turnHintOf(it.fig.en),
       travel: travelFactor(it.fig),
       stepMetres: stepCm / 100,
-      rotate: it.rotate,
       extraTurn: it.extraTurn,
-      aim: it.aim,
+      follows: !!it.fig.floor?.follows,
+      ladySteps: steps && it.fig.floor?.ladySteps
+        ? it.fig.floor.ladySteps.slice(it.resolved.from - 1, it.resolved.isPart ? it.resolved.to : undefined)
+        : null,
       wall: it.wall,
     };
   });

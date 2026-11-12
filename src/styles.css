@@ -910,3 +910,47 @@ p { max-width: 75ch; line-height: 1.6; }
   .editor-cols { grid-template-columns: 1fr; }
   .item, .card { break-inside: avoid; }
 }
+
+/* Drag & drop reordering of routine figures */
+.drag-handle { cursor: grab; touch-action: none; font-size: 1.05rem; }
+.drag-handle:active { cursor: grabbing; }
+.item-list li.dragging > .item { opacity: .55; outline: 2px dashed var(--focus); }
+.item-list li.drop-before > .item { box-shadow: 0 -4px 0 0 var(--focus); }
+.item-list li.drop-after > .item { box-shadow: 0 4px 0 0 var(--focus); }
+.fp-route-dot { fill: var(--surface); stroke: var(--standard); stroke-width: 1.2; }
+.fp-seg.seg1 .fp-route-dot { stroke: var(--latin); }
+
+/* Figure playback (man + lady) */
+.player-bar { display: flex; flex-wrap: wrap; gap: .5rem .75rem; align-items: center; margin-bottom: .5rem; }
+.player-controls { display: flex; gap: .3rem; align-items: center; flex-wrap: wrap; }
+.player-slider { flex: 1 1 160px; min-width: 0; }
+.seg-toggle { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; overflow: hidden; }
+.seg-toggle button { border: 0; background: var(--surface); color: var(--ink); padding: .3rem .7rem; font: inherit; font-size: .85rem; cursor: pointer; }
+.seg-toggle button + button { border-left: 1px solid var(--line); }
+.seg-toggle button.active { background: var(--standard); color: #fff; }
+.fp-foot.lady { fill: var(--latin-tint); stroke: var(--latin); }
+.fp-foot.lady.right { fill: var(--latin); }
+.fp-step { transition: opacity .2s; }
+.fp-step.future { opacity: .14; }
+.fp-step.done { opacity: .45; }
+.fp-step.current .fp-foot { stroke-width: 2.5; }
+.fp-weight.lady { stroke: var(--latin); }
+.fp-body ellipse { fill: var(--standard); opacity: .85; }
+.fp-body path { fill: var(--standard); }
+.fp-body.lady ellipse, .fp-body.lady path { fill: var(--latin); }
+.fp-body-label { fill: #fff; font: 700 10px var(--font-body, sans-serif); pointer-events: none; }
+.player-info { margin-top: .5rem; }
+.player-step { margin-bottom: .3rem; }
+.player-table th { white-space: nowrap; text-align: left; }
+.part-tag { font-weight: 600; color: var(--standard); white-space: nowrap; }
+.fp-facing line { stroke: var(--ink); stroke-width: 1.8; }
+.fp-facing path { fill: var(--ink); stroke: var(--ink); stroke-width: 1.2; }
+.fp-facing.lady line { stroke-dasharray: 3 2; }
+.fp-facing.lady path { fill: var(--surface); }
+.item-list { min-height: 1rem; }
+.item-list.drop-target { min-height: 3.5rem; outline: 2px dashed var(--focus); outline-offset: 4px; border-radius: 8px; }
+.drag-ghost { position: fixed; z-index: 1000; pointer-events: none; background: var(--surface); color: var(--ink); border: 1px solid var(--focus); border-radius: 8px; padding: .3rem .6rem; font-size: .9rem; box-shadow: 0 4px 14px rgba(0,0,0,.18); white-space: nowrap; }
+.drag-ghost.outside { opacity: .6; border-style: dashed; }
+.picker-list li { gap: .2rem; }
+.picker-list .drag-handle { flex: none; }
+.player-controls select { width: auto; min-width: 0; }

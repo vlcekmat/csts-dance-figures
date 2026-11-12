@@ -1,23 +1,18 @@
 // Floor diagrams drawn from step-chart alignments.
-//  - FigureFloor: the man's path for one figure, step by step (footprints).
 //  - FloorPlan:   a whole routine placed in a room of real size (metres),
 //                 travelling anticlockwise along the line of dance. The
 //                 simulation itself is computed in plan.ts.
 
-import type { Dance, Figure } from "../data";
+import type { Dance } from "../data";
 import { useI18n, type StringKey } from "../i18n";
 import { Glossed } from "./Glossary";
 import {
   ROOM_PRESETS,
   STEP_BY_DANCE,
   STEP_METRES,
-  chartSteps,
-  eighths,
-  hasFloor,
+  alignLabel,
   spotOnSide,
   startPoint,
-  tracePath,
-  turnHintOf,
   type StartSpot,
 } from "../floor";
 import type { Plan } from "../plan";
@@ -55,128 +50,6 @@ function Arrowheads() {
   );
 }
 
-/**
- * One figure as footprints (top view, man's steps): every step is drawn as the
- * foot that takes it, turned to the charted alignment and placed beside the
- * line of weight (left foot to the left, right foot to the right), so closes
- * and side steps stay readable. Fixed scale with a 0.5 m grid.
- */
-export function FigureFloor({ fig }: { fig: Figure }) {
-  const { t } = useI18n();
-  if (!fig.floor || !hasFloor(fig)) return null;
-  const steps = chartSteps(fig);
-  const body = tracePath(steps, 0, 0, 0, turnHintOf(fig.en));
-
-  // Facing for every step (carry the last known alignment forward).
-  let face = body.find((b) => b.facing !== null)?.facing ?? 0;
-  const FOOT_OFFSET = 0.17; // metres from the line of weight (keeps closed feet apart)
-  const stepM = STEP_BY_DANCE[fig.dance] ?? STEP_METRES;
-  const feet = body.slice(1).map((b, i) => {
-    if (b.facing !== null) face = b.facing;
-    // The stepping foot is the first one named ("RF closes to LF" is a right-foot step).
-    const m = steps[i].desc.match(/\b(RF|LF)\b/i);
-    const foot = m ? (m[1].toUpperCase() === "LF" ? "L" : "R") : null;
-    const side = foot === "L" ? 90 : foot === "R" ? -90 : 0;
-    const a = ((face + side) * Math.PI) / 180;
-    return {
-      n: b.n,
-      foot,
-      face,
-      x: b.x * stepM + (side ? Math.cos(a) * FOOT_OFFSET : 0),
-      y: b.y * stepM + (side ? Math.sin(a) * FOOT_OFFSET : 0),
-      bx: b.x * stepM,
-      by: b.y * stepM,
-    };
-  });
-  const start = { x: 0, y: 0 };
-
-  // Fixed scale (max 110 px per metre), fit to 600 px width.
-  const xs = [start.x, ...feet.map((f) => f.x)];
-  const ys = [start.y, ...feet.map((f) => f.y)];
-  const minX = Math.min(...xs) - 0.35;
-  const maxX = Math.max(...xs) + 0.35;
-  const minY = Math.min(...ys) - 0.35;
-  const maxY = Math.max(...ys) + 0.35;
-  const S = Math.min(110, 560 / (maxX - minX));
-  const PADX = 40;
-  const PADY = 36;
-  const VW = Math.max(320, (maxX - minX) * S + 2 * PADX);
-  const VH = Math.max(190, (maxY - minY) * S + 2 * PADY);
-  const ox = (VW - (maxX - minX) * S) / 2;
-  const oy = (VH - (maxY - minY) * S) / 2;
-  const X = (x: number) => ox + (x - minX) * S;
-  const Y = (y: number) => VH - oy - (y - minY) * S;
-
-  // 0.5 m grid aligned to whole metres.
-  const gridX: number[] = [];
-  for (let g = Math.ceil(minX * 2) / 2; g <= maxX; g += 0.5) gridX.push(g);
-  const gridY: number[] = [];
-  for (let g = Math.ceil(minY * 2) / 2; g <= maxY; g += 0.5) gridY.push(g);
-
-  const footLen = 0.23 * S;
-  const footW = 0.095 * S;
-
-  return (
-    <figure className="floor figure-floor">
-      <svg viewBox={`0 0 ${VW} ${VH}`} role="img" aria-label={t("floorFigure")}>
-        <Arrowheads />
-        {gridX.map((g) => (
-          <line key={`gx${g}`} x1={X(g)} y1={0} x2={X(g)} y2={VH} className={`fp-grid ${Number.isInteger(g) ? "major" : ""}`} />
-        ))}
-        {gridY.map((g) => (
-          <line key={`gy${g}`} x1={0} y1={Y(g)} x2={VW} y2={Y(g)} className={`fp-grid ${Number.isInteger(g) ? "major" : ""}`} />
-        ))}
-        {/* orientation: LOD to the right, wall at the bottom */}
-        <line x1={12} y1={16} x2={72} y2={16} className="fp-lod" markerEnd="url(#fp-arrow)" />
-        <text x={78} y={20} className="fp-label strong">LOD</text>
-        <text x={VW - 10} y={20} textAnchor="end" className="fp-label">↑ {t("floorCentre")}</text>
-        <line x1={6} y1={VH - 4} x2={VW - 6} y2={VH - 4} className="fp-wall" />
-        <text x={VW - 10} y={VH - 10} textAnchor="end" className="fp-label">{t("floorWall")} ↓</text>
-        <line x1={12} y1={VH - 16} x2={12 + S} y2={VH - 16} className="fp-scale" />
-        <text x={16 + S} y={VH - 12} className="fp-label">1 m</text>
-
-        {/* line of weight with arrows between steps */}
-        <polyline
-          points={[`${X(start.x)},${Y(start.y)}`, ...feet.map((f) => `${X(f.bx)},${Y(f.by)}`)].join(" ")}
-          className="fp-weight"
-        />
-        {feet.map((f, i) => {
-          const px = i === 0 ? start.x : feet[i - 1].bx;
-          const py = i === 0 ? start.y : feet[i - 1].by;
-          if (Math.hypot(f.bx - px, f.by - py) < 0.15) return null;
-          return (
-            <line
-              key={`a${i}`}
-              x1={X(px)}
-              y1={Y(py)}
-              x2={X(px + (f.bx - px) * 0.55)}
-              y2={Y(py + (f.by - py) * 0.55)}
-              className="fp-weight-arrow"
-              markerEnd="url(#fp-arrow)"
-            />
-          );
-        })}
-        {/* start point (explained in the caption, no label so it can't cover a footprint) */}
-        <circle cx={X(start.x)} cy={Y(start.y)} r={6} className="fp-start" />
-
-        {/* footprints */}
-        {feet.map((f) => (
-          <g key={f.n} transform={`translate(${X(f.x)} ${Y(f.y)}) rotate(${-f.face})`}>
-            <path
-              d={`M ${footLen / 2} 0 C ${footLen / 2} ${-footW / 2}, ${-footLen / 3} ${-footW / 2}, ${-footLen / 2} ${-footW / 3} L ${-footLen / 2} ${footW / 3} C ${-footLen / 3} ${footW / 2}, ${footLen / 2} ${footW / 2}, ${footLen / 2} 0 Z`}
-              className={`fp-foot ${f.foot === "L" ? "left" : f.foot === "R" ? "right" : ""}`}
-            />
-            <text transform={`rotate(${f.face})`} y={4} textAnchor="middle" className={`fp-foot-num ${f.foot === "R" ? "on-dark" : ""}`}>
-              {f.n}
-            </text>
-          </g>
-        ))}
-      </svg>
-      <figcaption className="small muted">{t("floorFigureHint")}</figcaption>
-    </figure>
-  );
-}
-
 const PRESETS: Room["preset"][] = ["small", "medium", "large", "custom"];
 
 export function FloorPlan({
@@ -195,7 +68,7 @@ export function FloorPlan({
   onStartChange,
   selectedKey,
   onSelect,
-  onRotate,
+  firstChartFace,
 }: {
   dance: Dance;
   /** Simulation computed by the routine editor (see plan.ts). */
@@ -203,8 +76,8 @@ export function FloorPlan({
   /** Routine item selected for manual rotation in the plan. */
   selectedKey?: string | null;
   onSelect?: (key: string | null) => void;
-  /** Rotate the selected figure by `delta` degrees (+ = left) or reset it. */
-  onRotate?: (key: string, delta: number | "reset") => void;
+  /** Charted start facing of the first figure (relative to LOD), for the start direction default. */
+  firstChartFace?: number | null;
   /** Loop visualisation is shown (routine repeats and not hidden). */
   loop: boolean;
   /** The routine is set to repeat (the toggle is offered even when hidden). */
@@ -219,7 +92,7 @@ export function FloorPlan({
   stepCm: number;
   onStepChange: (cm: number | undefined) => void;
 }) {
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
   const baseLen = sim.baseLen;
   /** Figure number within the routine (the plan may contain repetitions). */
   const figNo = (n: number) => sim.nums[n - 1] ?? n;
@@ -372,6 +245,22 @@ export function FloorPlan({
             onChange={(e) => onStartChange({ ...start, dist: parseFloat(e.target.value) })}
           />
         </label>
+        <label className="field">
+          <span>{t("startFace")}</span>
+          <select
+            value={start.face ?? ""}
+            onChange={(e) => onStartChange({ ...start, face: e.target.value === "" ? undefined : +e.target.value })}
+          >
+            <option value="">
+              {t("startFaceChart", { dir: firstChartFace === null || firstChartFace === undefined ? "?" : alignLabel(firstChartFace, lang) })}
+            </option>
+            {[0, 45, 90, 135, 180, -135, -90, -45].map((a) => (
+              <option key={a} value={a}>
+                {alignLabel(a, lang)}
+              </option>
+            ))}
+          </select>
+        </label>
         <p className="small muted">
           {t("startHint")}{" "}
           <button className="link-btn" onClick={() => onStartChange(undefined)}>
@@ -411,24 +300,18 @@ export function FloorPlan({
       )}
 
       <figure className="floor">
-        {selSeg && selectedKey && onRotate && (
-          <div className="plan-rotate above" role="group" aria-label={t("planRotateTitle")}>
+        {selSeg && selectedKey && (
+          <div className="plan-rotate above" role="group">
             <div className="plan-rotate-head">
               <span className={`bib small ${dance.discipline}`}>{figNo(selSeg.n)}</span>
               <strong>{selSeg.label.replace(/ \(\d+\.×\)$/, "")}</strong>
-              <span className="muted small">
-                {selSeg.rotate
-                  ? t(selSeg.rotate > 0 ? "alignByLeft" : "alignByRight", { n: eighths(selSeg.rotate) })
-                  : t("alignAsChart")}
-              </span>
-            </div>
-            <div className="chips">
-              <button className="btn small" onClick={() => onRotate(selectedKey, 90)}>↺↺ {t("alignByLeft", { n: "1/4" })}</button>
-              <button className="btn small" onClick={() => onRotate(selectedKey, 45)}>↺ {t("alignByLeft", { n: "1/8" })}</button>
-              <button className="btn small" onClick={() => onRotate(selectedKey, -45)}>↻ {t("alignByRight", { n: "1/8" })}</button>
-              <button className="btn small" onClick={() => onRotate(selectedKey, -90)}>↻↻ {t("alignByRight", { n: "1/4" })}</button>
-              <button className="btn small" onClick={() => onRotate(selectedKey, "reset")}>{t("alignAsChart")}</button>
-              <button className="btn small primary" onClick={() => onSelect?.(null)}>{t("planRotateDone")}</button>
+              {selSeg.startFace !== null && (
+                <span className="muted small">
+                  {alignLabel(selSeg.startFace - selSeg.side * 90, lang)}
+                  {selSeg.endFace !== null ? ` → ${alignLabel(selSeg.endFace - selSeg.side * 90, lang)}` : ""}
+                </span>
+              )}
+              <button className="btn small" onClick={() => onSelect?.(null)}>{t("planSelClose")}</button>
             </div>
             <p className="small muted">{t("planRotateHint")}</p>
           </div>
@@ -447,7 +330,7 @@ export function FloorPlan({
             const y = (VH - pad - py) / scale;
             if (x < 0 || y < 0 || x > room.length || y > room.width) return;
             // The wall stays as chosen; the click only moves the spot along / away from it.
-            onStartChange(spotOnSide(x, y, start.side, room));
+            onStartChange({ ...spotOnSide(x, y, start.side, room), face: start.face });
           }}
         >
           <Arrowheads />
@@ -466,14 +349,8 @@ export function FloorPlan({
             {t("floorCentre")} · {room.width} × {room.length} m
           </text>
           {sim.segments.map((s, i) => {
-            // Simplified drawing: one straight line per figure, from where it
-            // starts to where it ends (the end points are still exact).
-            const first = s.pts[0];
-            const last = s.pts[s.pts.length - 1];
-            const screen = [
-              { x: sx(first.x), y: sy(first.y) },
-              { x: sx(last.x), y: sy(last.y) },
-            ];
+            // The real path of the man's body, step by step.
+            const screen = s.pts.map((p) => ({ x: sx(p.x), y: sy(p.y) }));
             const arrow = midArrow(screen);
             const st = s.pts[0];
                         return (
@@ -483,7 +360,9 @@ export function FloorPlan({
                   s.n > baseLen ? "rep-later" : ""
                 }`}
               >
-                <line x1={screen[0].x} y1={screen[0].y} x2={screen[1].x} y2={screen[1].y} className="fp-route" />
+                <polyline points={screen.map((p) => `${p.x},${p.y}`).join(" ")} className="fp-route" />
+                {screen.length > 2 &&
+                  screen.slice(1, -1).map((p, k) => <circle key={`d${k}`} cx={p.x} cy={p.y} r={1.8} className="fp-route-dot" />)}
                 {arrow && (
                   <path
                     d="M -5 -4.5 L 5 0 L -5 4.5 Z"
@@ -497,6 +376,23 @@ export function FloorPlan({
                     <circle key={k} cx={sx(p.x)} cy={sy(p.y)} r={4} className="fp-out" />
                   ))}
                 {s.onSpot && <circle cx={sx(st.x)} cy={sy(st.y)} r={16} className="fp-spot" />}
+                {/* where the man (P) and the lady (D) face at the start of the figure */}
+                {s.n <= baseLen &&
+                  ([
+                    ["man", s.startFace],
+                    ["lady", s.ladyStartFace],
+                  ] as const).map(([who, face]) =>
+                    face === null ? null : (
+                      <g
+                        key={who}
+                        transform={`translate(${sx(st.x)} ${sy(st.y)}) rotate(${-face})`}
+                        className={`fp-facing ${who}`}
+                      >
+                        <line x1={0} y1={0} x2={15} y2={0} />
+                        <path d="M 13 -4.5 L 21 0 L 13 4.5 Z" />
+                      </g>
+                    ),
+                  )}
                 {s.autoCorner && s.n <= baseLen && (
                   // Corner marker right above the figure it belongs to.
                   <text x={sx(st.x)} y={sy(st.y) - 16} textAnchor="middle" className="fp-label strong fp-corner">
@@ -532,7 +428,7 @@ export function FloorPlan({
                 key={`b${i}`}
                 className={`fp-bib-group ${selSeg && g.nums.includes(selSeg.n) ? "selected" : ""}`}
                 onClick={(e) => {
-                  // Select the (last) figure of this label for manual rotation; don't move the start.
+                  // Select the (last) figure of this label; don't move the start.
                   e.stopPropagation();
                   const seg = sim.segments[g.nums[g.nums.length - 1] - 1];
                   onSelect?.(seg ? seg.key.replace(/#\d+$/, "") : null);

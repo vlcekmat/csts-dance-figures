@@ -1,6 +1,6 @@
 // Editor of one routine: ordered figure list with timing choice, legality and
 // variant-aware foot / position checks, totals and a rhythm strip of the whole routine.
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import {
   CLASSES,
   DANCES,
@@ -15,8 +15,8 @@ import {
   type ClassId,
   type Figure,
 } from "../data";
-import { useI18n, type StringKey } from "../i18n";
-import { downloadJson, type Routine, type RoutineItem, type RoutinesApi } from "../routines";
+import { useI18n } from "../i18n";
+import { downloadJson, newId, type Routine, type RoutineItem, type RoutinesApi } from "../routines";
 import { ROUND_RANGE, formatBars, formatSeconds, tempoRange, totalBeats } from "../timing";
 import { connect, partLabel, resolveItem } from "../variants";
 import { RoutineItemRow } from "./RoutineItemRow";
@@ -25,7 +25,7 @@ import { useCustom } from "./CustomFigureHost";
 import { Glossed } from "./Glossary";
 import { FloorPlan } from "./FloorPlan";
 import { holdName, localizePositions } from "../glossary";
-import { DEFAULT_START, ROOM_PRESETS, STEP_BY_DANCE, alignLabel, figureAlignment, hasFloor, norm180 } from "../floor";
+import { DEFAULT_START, ROOM_PRESETS, STEP_BY_DANCE, allowedExtra, eighths, figureAlignment, hasFloor, norm180, turnOptions, alignLabel } from "../floor";
 import { TimingStrip, type StripSegment } from "./TimingStrip";
 
 /** Is the hold named for this figure by the syllabus (base, notes, or "any")? */
@@ -108,9 +108,7 @@ export function RoutineEditor({ routine, api, onBack, onOpenFigure }: Props) {
               fig: r.fig,
               resolved: r.resolved,
               corner: !!r.item.corner,
-              rotate: r.item.variant?.rotate,
-              extraTurn: r.item.variant?.extraTurn,
-              aim: r.item.variant?.aim,
+              extraTurn: allowedExtra(r.fig, r.item.variant?.extraTurn),
               wall: r.item.wall,
             })),
             room,
@@ -126,15 +124,13 @@ export function RoutineEditor({ routine, api, onBack, onOpenFigure }: Props) {
   );
   /** First-pass plan segment of a routine row (wall, resolved rotation). */
   const planSeg = (row: { item: RoutineItem }) => plan?.segments.find((sg) => sg.key === `${row.item.uid}#0`);
-  const anyAlignChange = routine.items.some((it) => it.variant?.rotate || it.variant?.extraTurn || it.variant?.aim);
+  const anyAlignChange = routine.items.some((it) => it.variant?.extraTurn);
   const resetAllAlignment = () =>
     setItems((items) =>
       items.map((it) => {
         if (!it.variant) return it;
-        const { rotate: _r, extraTurn: _e, aim: _a, ...rest } = it.variant;
-        void _r;
+        const { extraTurn: _e, ...rest } = it.variant;
         void _e;
-        void _a;
         return { ...it, variant: Object.keys(rest).length ? rest : undefined };
       }),
     );
@@ -188,20 +184,107 @@ export function RoutineEditor({ routine, api, onBack, onOpenFigure }: Props) {
       return next;
     });
 
+  // Drag & drop (pointer events: works with mouse and touch): reorder the
+  // routine, or drag a figure from the picker to a place in the routine.
+  const listRef = useRef<HTMLOListElement>(null);
+  const [drag, setDrag] = useState<{
+    /** Index being moved, or null when a new figure comes from the picker. */
+    from: number | null;
+    /** Insert position (index in the list without the dragged item); null = outside the list. */
+    over: number | null;
+    label?: string;
+    x: number;
+    y: number;
+  } | null>(null);
+
+  /** Insert index for a pointer position, or null when not over the routine list. */
+  const dropIndex = (ev: PointerEvent, from: number | null): number | null => {
+    const list = listRef.current;
+    if (!list) return null;
+    const box = list.getBoundingClientRect();
+    if (ev.clientX < box.left - 40 || ev.clientX > box.right + 40 || ev.clientY < box.top - 60 || ev.clientY > box.bottom + 80)
+      return null;
+    let target = 0;
+    ([...list.children] as HTMLElement[]).forEach((el, i) => {
+      if (i === from) return;
+      const r = el.getBoundingClientRect();
+      if (r.top + r.height / 2 < ev.clientY) target++;
+    });
+    return target;
+  };
+
+  const runDrag = (from: number | null, label: string | undefined, onDrop: (over: number) => void, e: React.PointerEvent) => {
+    let over: number | null = from;
+    setDrag({ from, over, label, x: e.clientX, y: e.clientY });
+    const onMove = (ev: PointerEvent) => {
+      over = dropIndex(ev, from);
+      setDrag({ from, over, label, x: ev.clientX, y: ev.clientY });
+      // Scroll the page when dragging near the window edge.
+      if (ev.clientY < 60) window.scrollBy(0, -14);
+      else if (ev.clientY > window.innerHeight - 60) window.scrollBy(0, 14);
+    };
+    const onUp = () => {
+      window.removeEventListener("pointermove", onMove);
+      window.removeEventListener("pointerup", onUp);
+      window.removeEventListener("pointercancel", onUp);
+      setDrag(null);
+      if (over !== null) onDrop(over);
+    };
+    window.addEventListener("pointermove", onMove);
+    window.addEventListener("pointerup", onUp);
+    window.addEventListener("pointercancel", onUp);
+  };
+
+  const startDrag = (from: number) => (e: React.PointerEvent) => {
+    e.preventDefault();
+    runDrag(from, undefined, (over) => over !== from && move(from, over - from), e);
+  };
+
+  /** Drag a figure from the picker: starts after the pointer moved a bit (a click still adds it). */
+  const suppressClick = useRef(false);
+  const startPickerDrag = (fig: Figure, handle: boolean) => (e: React.PointerEvent) => {
+    if (!handle && e.pointerType !== "mouse") return; // touch: only the handle drags, the list scrolls
+    if (e.button !== 0) return;
+    if (handle) e.preventDefault();
+    const x0 = e.clientX;
+    const y0 = e.clientY;
+    const label = figureNames(fig, lang).main;
+    const insert = (over: number) =>
+      setItems((items) => {
+        const next = [...items];
+        next.splice(over, 0, { uid: newId(), figureId: fig.id });
+        return next;
+      });
+    if (handle) {
+      runDrag(null, label, insert, e);
+      return;
+    }
+    const pending = (ev: PointerEvent) => {
+      if (Math.hypot(ev.clientX - x0, ev.clientY - y0) < 8) return;
+      cleanup();
+      suppressClick.current = true;
+      runDrag(null, label, insert, ev as unknown as React.PointerEvent);
+    };
+    const cleanup = () => {
+      window.removeEventListener("pointermove", pending);
+      window.removeEventListener("pointerup", cleanup);
+    };
+    window.addEventListener("pointermove", pending);
+    window.addEventListener("pointerup", cleanup);
+  };
+
   const updateItem = (uid: string, patchItem: Partial<RoutineItem>) =>
     setItems((items) => items.map((it) => (it.uid === uid ? { ...it, ...patchItem } : it)));
 
   type Row = (typeof rows)[number];
 
-  /** Facing at the start / end of a routine item (with the user's alignment changes). */
-  const alignOf = (row: Row) =>
-    figureAlignment(row.fig, {
-      from: row.resolved.from,
-      to: row.resolved.isPart ? row.resolved.to : undefined,
-      // An aim is resolved by the floor plan (it depends on where the figure starts).
-      rotate: planSeg(row)?.rotate ?? row.item.variant?.rotate,
-      extraTurn: row.item.variant?.extraTurn,
-    });
+  /** Facing at the start / end in the floor plan, relative to the LOD of the figure's wall. */
+  const planFace = (row: Row) => {
+    const sg = planSeg(row);
+    if (!sg) return undefined;
+    const rel = (f: number | null) => (f === null ? null : norm180(f - sg.side * 90));
+    return { start: rel(sg.startFace), end: rel(sg.endFace), offChart: sg.offChart };
+  };
 
   /**
    * Checks between two consecutive figures (also used for "end → start" when
@@ -210,18 +293,18 @@ export function RoutineEditor({ routine, api, onBack, onOpenFigure }: Props) {
    */
   const renderTransition = (prev: Row, r: Row, loop = false) => {
     const c = connect(prev.fig, prev.resolved, r.fig, r.resolved);
-    // Alignment: a corner after the previous figure turns the LOD 90° left,
-    // so the same absolute direction reads 90° less in the new LOD.
-    const pa = alignOf(prev);
-    const na = alignOf(r);
-    // Walls between the two figures (corners turn the LOD 90° left each).
-    const ps = planSeg(prev);
-    const ns = planSeg(r);
-    const wallTurns = ps && ns ? ns.side - ps.side : prev.item.corner ? 1 : 0;
-    const expected = pa ? norm180(pa.end - wallTurns * 90) : null;
-    const alignDiff = expected !== null && na ? norm180(expected - na.start) : 0;
-    const alignOk = expected === null || !na ? null : Math.abs(alignDiff) <= 30;
-    const fixDeg = Math.round(alignDiff / 45) * 45;
+    // Alignment: the next figure starts facing where the previous one ended. If
+    // that is not the alignment its chart gives, the couple dances it off the
+    // technique – fixable only by turning the previous figure differently
+    // within the range its technique allows.
+    const nf = planFace(r);
+    const na = figureAlignment(r.fig, { from: r.resolved.from, to: r.resolved.isPart ? r.resolved.to : undefined });
+    const off = nf && na ? nf.offChart : 0;
+    const alignOk = !nf || !na || nf.start === null ? null : Math.abs(off) < 22.5;
+    const prevRange = prev.fig.floor?.turnRange;
+    const prevExtra = allowedExtra(prev.fig, prev.item.variant?.extraTurn) ?? 0;
+    const fixExtra = Math.round((prevExtra - off) / 45) * 45;
+    const canFix = alignOk === false && !!prevRange && fixExtra !== prevExtra && turnOptions(prevRange).includes(fixExtra);
     const hasChange = c.posOk === false || c.holdOk === false || alignOk === false;
     return (
                     <div className={`transition ${hasChange ? "has-change" : ""} ${loop ? "loop" : ""}`}>
@@ -248,10 +331,11 @@ export function RoutineEditor({ routine, api, onBack, onOpenFigure }: Props) {
                           )}
                         />
                       </div>
-                      {pa && na && (
+                      {nf && na && nf.start !== null && (
                         <div className={alignOk === false ? "warn" : "muted"}>
-                          {alignOk === false ? "⚠ " : ""}
-                          {t("alignLine", { prev: alignLabel(expected ?? pa.end, lang), next: alignLabel(na.start, lang) })}
+                          {alignOk === false
+                            ? `⚠ ${t("alignLineOff", { here: alignLabel(nf.start, lang), chart: alignLabel(na.start, lang) })}`
+                            : t("alignLineOk", { here: alignLabel(nf.start, lang) })}
                         </div>
                       )}
                       {(c.prevHold || c.nextHold) && (
@@ -316,21 +400,16 @@ export function RoutineEditor({ routine, api, onBack, onOpenFigure }: Props) {
                             {t("fixHoldPrev", { hold: holdName(c.nextHold, lang) })}
                           </button>
                         )}
-                      {alignOk === false && fixDeg !== 0 && Math.abs(norm180((r.item.variant?.rotate ?? 0) + fixDeg)) <= 135 && (
+                      {canFix && (
                         <button
                           className="fix-btn"
                           onClick={() =>
-                            updateItem(r.item.uid, {
-                              variant: { ...r.item.variant, rotate: norm180((r.item.variant?.rotate ?? 0) + fixDeg) || undefined },
-                            })
+                            updateItem(prev.item.uid, { variant: { ...prev.item.variant, extraTurn: fixExtra || undefined } })
                           }
                         >
-                          {(() => {
-                            // Name the resulting start direction like the alignment select does.
-                            const target = Math.round(norm180(na!.start + fixDeg) / 45) * 45;
-                            const key = `alignDir_${target < 0 ? "m" + -target : target === -180 ? 180 : target}`;
-                            return t("alignFixTo", { dir: t(key as StringKey) });
-                          })()}
+                          {t("alignFixPrevTurn", {
+                            dir: fixExtra === 0 ? t("alignAsChart") : t(fixExtra > 0 ? "alignByLeft" : "alignByRight", { n: eighths(fixExtra) }),
+                          })}
                         </button>
                       )}
                     </div>
@@ -501,37 +580,37 @@ export function RoutineEditor({ routine, api, onBack, onOpenFigure }: Props) {
           onRoomChange={(room) => patch((r0) => ({ ...r0, room }))}
           stepCm={stepCm}
           onStepChange={(stepCm) => patch((r0) => ({ ...r0, stepCm }))}
+          firstChartFace={rows[0] ? (figureAlignment(rows[0].fig, { from: rows[0].resolved.from, to: rows[0].resolved.isPart ? rows[0].resolved.to : undefined })?.start ?? null) : null}
           selectedKey={selectedUid}
           onSelect={setSelectedUid}
-          onRotate={(uid, delta) => {
-            const row = rows.find((r) => r.item.uid === uid);
-            if (!row) return;
-            if (delta === "reset") {
-              updateItem(uid, { variant: { ...row.item.variant, rotate: undefined, aim: undefined, extraTurn: undefined } });
-              return;
-            }
-            // Start from the rotation the plan actually used (an aim becomes a fixed rotation).
-            const base = planSeg(row)?.rotate ?? row.item.variant?.rotate ?? 0;
-            updateItem(uid, { variant: { ...row.item.variant, aim: undefined, rotate: norm180(base + delta) || undefined } });
-          }}
         />
       )}
 
       <div className="editor-cols">
         <section className="card items">
           {rows.length === 0 && <p className="empty">{t("emptyRoutine")}</p>}
-          <ol className={`item-list ${showLoop ? "looped" : ""}`}>
+          <ol ref={listRef} className={`item-list ${showLoop ? "looped" : ""} ${drag?.from === null && drag.over !== null ? "drop-target" : ""}`}>
             {rows.map((r, idx) => {
               const prev = idx > 0 ? rows[idx - 1] : null;
 
               return (
                 <li
                   key={r.item.uid}
-                  className={
+                  className={[
                     showLoop && idx >= loopTo
                       ? `in-loop ${idx === loopTo ? "loop-start" : ""} ${idx === rows.length - 1 ? "loop-end" : ""}`
-                      : undefined
-                  }
+                      : "",
+                    drag?.from === idx ? "dragging" : "",
+                    drag && drag.over !== null && drag.from !== null && drag.over === idx && drag.from !== idx
+                      ? drag.over < drag.from ? "drop-before" : "drop-after"
+                      : "",
+                    // a new figure from the picker goes before item `over` (or after the last one)
+                    drag && drag.from === null && drag.over !== null
+                      ? drag.over === idx ? "drop-before" : drag.over === rows.length && idx === rows.length - 1 ? "drop-after" : ""
+                      : "",
+                  ]
+                    .join(" ")
+                    .trim() || undefined}
                 >
                   {prev && renderTransition(prev, r)}
                   <RoutineItemRow
@@ -546,11 +625,12 @@ export function RoutineEditor({ routine, api, onBack, onOpenFigure }: Props) {
                     wallSide={planSeg(r)?.side}
                     wallManual={planSeg(r)?.manualWall}
                     wallAuto={!!planSeg(r)?.autoCorner}
-                    appliedRotate={planSeg(r)?.rotate}
-                    onEditInPlan={progressive && hasFloor(r.fig) ? () => editInPlan(r.item.uid) : undefined}
+                    planFace={planFace(r)}
+                    onEditInPlan={progressive && (hasFloor(r.fig) || !!r.fig.floor?.follows) ? () => editInPlan(r.item.uid) : undefined}
                     classLegal={r.classLegal || routine.cls === "B"}
                     onChange={(patchItem) => updateItem(r.item.uid, patchItem)}
                     onMove={(delta) => move(idx, delta)}
+                    onDragStart={startDrag(idx)}
                     onRemove={() => setItems((items) => items.filter((it) => it.uid !== r.item.uid))}
                     onOpen={() => onOpenFigure(r.fig)}
                   />
@@ -594,8 +674,24 @@ export function RoutineEditor({ routine, api, onBack, onOpenFigure }: Props) {
               return (
                 <li key={f.id} className={legal ? "" : "illegal"}>
                   <button
+                    type="button"
+                    className="icon-btn drag-handle"
+                    onPointerDown={startPickerDrag(f, true)}
+                    aria-label={t("dragToRoutine")}
+                    title={t("dragToRoutine")}
+                  >
+                    ⠿
+                  </button>
+                  <button
                     className="picker-add"
-                    onClick={() => api.addFigure(routine.id, f.id)}
+                    onPointerDown={startPickerDrag(f, false)}
+                    onClick={() => {
+                      if (suppressClick.current) {
+                        suppressClick.current = false;
+                        return;
+                      }
+                      api.addFigure(routine.id, f.id);
+                    }}
                     title={t("addToRoutine")}
                   >
                     <span className="plus">{f.custom ? "★" : "+"}</span>
@@ -611,6 +707,11 @@ export function RoutineEditor({ routine, api, onBack, onOpenFigure }: Props) {
           </ul>
         </aside>
       </div>
+      {drag && drag.from === null && drag.label && (
+        <div className={`drag-ghost ${drag.over === null ? "outside" : ""}`} style={{ left: drag.x + 12, top: drag.y + 12 }} aria-hidden>
+          + {drag.label}
+        </div>
+      )}
     </div>
   );
 }

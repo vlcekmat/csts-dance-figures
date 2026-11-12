@@ -435,6 +435,222 @@ def match_chart(charts, dance, no, name):
     return best if score >= 0.6 else None
 
 
+DEPENDS = re.compile(r"depend|previous figure|figure being danced|quantity of turn danced", re.I)
+
+
+ALIGN_BASE = {"LOD": 0, "DW": -45, "W": -90, "DC": 45, "C": 90}
+ALIGN_NAME = {0: "LOD", 45: "DC", 90: "C", 135: "DC against LOD", 180: "LOD", -135: "DW against LOD", -90: "W", -45: "DW"}
+
+
+def align_angle(text, new_lod=False, desc=""):
+    """Facing (degrees, 0 = LOD, + = centre) at the END of a chart step, in the frame
+    of the figure's first LOD; None if the cell gives no alignment.
+
+    Handles "Backing LOD, toe turned in, end Facing LOD" (pivots: the end counts),
+    "Facing DW of new LOD" (after a corner: new LOD = old LOD turned 90° left),
+    "Facing against LOD", "Toe turned in to DC. End Facing LOD or DW" (first option)."""
+    t = re.sub(r"\(next step.*?(\)|$)", " ", text.replace("\u201d", '"'), flags=re.I)
+    new = new_lod or bool(re.search(r"\bnew\s*LO[DO0]", t, flags=re.I))
+    # the alignment at the end of the step wins
+    m = re.search(r"\b(?:end|finish|then|to end)\b(.*)", t, flags=re.I)
+    if m and re.search(r"\b(LOD|DW|DC|W|C|centre|wall)\b", m.group(1), flags=re.I):
+        t = m.group(1)
+    t = re.split(r"\bbody\b|\bmoving\b|\(next|\bor\b", t, flags=re.I)[0]
+    t = re.sub(r"\b(almost|nearly|slightly|just|of|the|new)\b", " ", t, flags=re.I)
+    # "Pointing between W and DW": half-way between the two
+    mb = re.search(r"\bbetween\s+(LOD|DW|DC|W|C)\s+and\s+(LOD|DW|DC|W|C)\b", t.upper().replace("PW", "DW"))
+    if mb:
+        a = (ALIGN_BASE[mb.group(1)] + ALIGN_BASE[mb.group(2)]) / 2
+        if re.search(r"\bbacking\b", t, flags=re.I) or (re.search(r"\b(bwd|back)\b", desc, flags=re.I) and not re.search(r"facing|pointing", t, flags=re.I)):
+            a += 180
+        return ((a + 180) % 360) - 180
+    u = t.upper().replace("CENTRE", "C").replace("CENTER", "C").replace("WALL", "W").replace("DIAG.", "D").replace("LOO", "LOD")
+    m = re.search(r"\b(FACING|BACKING|BAKING|POINTING|DOWN)?\W*\s*(?:TO\s+)?(?:(LOD|DW|DC|W|C)\b(\s+AGAINST\s+LOD)?|(AGAINST\s+LOD))", u)
+    if not m:
+        return None
+    if m.group(4):
+        a = 180
+    else:
+        a = ALIGN_BASE[m.group(2)]
+        if m.group(3):
+            a = 180 if m.group(2) == "LOD" else (180 - a if a > 0 else -180 - a)
+    if m.group(1) in ("BACKING", "BAKING"):
+        a += 180
+    elif not m.group(1) and re.search(r"\b(bwd|back)\b", desc, flags=re.I):
+        a += 180  # bare "DW" on a backward step = backing DW
+    if new:
+        a += 90
+    return ((a + 180) % 360) - 180
+
+
+def align_code(angle):
+    """Canonical alignment text the app parses ("Facing DC", "Backing DW against LOD")."""
+    if angle is None:
+        return ""
+    a = int(round(angle / 45.0)) * 45
+    a = ((a + 180) % 360) - 180
+    if abs(a) > 90:  # against LOD: dancers say "backing ..."
+        b = ((a + 360) % 360) - 180
+        return "Backing " + ALIGN_NAME[b]
+    return "Facing " + ALIGN_NAME[a]
+
+
+def chart_rows(chart):
+    """Chart steps without a leading "preceding step" row ("Weight on LF")."""
+    steps = list(chart["steps"])
+    while steps and re.match(r"(weight|recover|part weight)\b", steps[0]["desc"], flags=re.I):
+        steps = steps[1:]
+    return steps
+
+
+def fact_desc(desc):
+    """Bare facts of a step (foot + basic direction), not the book's wording."""
+    foot = re.search(r"\b(RF|LF)\b", desc)
+    if not foot:
+        return ""
+    f = foot.group(1)
+    other = "LF" if f == "RF" else "RF"
+    d = desc.lower()
+    if re.search(r"\bcloses?\b", d):
+        return f"{f} closes to {other}"
+    if re.search(r"\bcross", d):
+        return f"{f} crosses " + ("behind" if "behind" in d else "in front of") + f" {other}"
+    found = sorted(
+        (m.start(), w) for w, rx in (("fwd", r"\bfwd\b|forward"), ("bwd", r"\bbwd\b|\bback\b"), ("to side", r"\bside\b"))
+        for m in [re.search(rx, d)] if m
+    )
+    if not found:
+        return f"{f} in place" if re.search(r"in place|replace|transfer", d) else f
+    main = found[0][1]
+    pp = " in PP" if re.search(r"\bpp\b|promenade", d) and main == "fwd" else ""
+    return f"{f} {main}{pp}"
+
+
+def fact_align(chart_step, new_lod):
+    """Normalised alignment (+ travel direction) of a book step, e.g. "Facing DW, moving LOD"."""
+    text = chart_step.get("align", "")
+    if not text or DEPENDS.search(text):
+        return ""
+    code = align_code(align_angle(text, new_lod, chart_step["desc"]))
+    mv = re.search(r"\bmoving\s+(?:along\s+|sideways\s+to\s+|to\s+)?(.*)", re.sub(r"\(next step.*?(\)|$)", "", text, flags=re.I), flags=re.I)
+    if code and mv:
+        a = align_angle("Facing " + mv.group(1), new_lod or bool(re.search(r"new\s*LOD", mv.group(1), flags=re.I)))
+        if a is not None:
+            m = align_code(a)
+            # "moving X": the direction of travel, written as a facing-free code
+            r = int(round(a / 45.0)) * 45
+            r = ((r + 180) % 360) - 180
+            code += ", moving " + ("against LOD" if r == 180 else ALIGN_NAME[r])
+    return code
+
+
+def public_steps(chart):
+    """Facts only (foot, direction, alignment) for the public site."""
+    out = []
+    new_lod = False
+    for st in chart_rows(chart):
+        here_new = bool(re.search(r"\bnew\s*LO[DO0]", re.sub(r"\(next step.*?(\)|$)", "", st.get("align", ""), flags=re.I), flags=re.I))
+        out.append({"desc": fact_desc(st["desc"]), "align": fact_align(st, new_lod), "turn": ""})
+        new_lod = new_lod or here_new
+    return out
+
+
+def book_steps(chart):
+    """Steps of a WDSF book chart in the app's FloorStep format."""
+    out = []
+    new_lod = False  # after "... new LOD" the following steps refer to the new LOD too
+    for st in chart_rows(chart):
+        align = st.get("align", "")
+        here_new = bool(re.search(r"\bnew\s*LO[DO0]", re.sub(r"\(next step.*?(\)|$)", "", align, flags=re.I), flags=re.I))
+        if DEPENDS.search(align):
+            align = ""
+        turn = st.get("turn", "")
+        if DEPENDS.search(turn):
+            turn = ""
+        # "align" = normalised end-of-step facing (used for the floor plan),
+        # "alignText" = the book's wording (shown in the chart table).
+        item = {"desc": st["desc"], "align": align_code(align_angle(align, new_lod, st["desc"])) if align else "", "turn": turn}
+        if align:
+            item["alignText"] = align
+        new_lod = new_lod or here_new
+        if st.get("pos") and not DEPENDS.search(st["pos"]):
+            item["pos"] = st["pos"]
+        if st.get("timing"):
+            item["timing"] = st["timing"]
+        out.append(item)
+    return out
+
+
+def canon(name):
+    """Canonical figure name for matching book titles with catalog / syllabus names."""
+    n = (name or "").lower()
+    n = re.sub(r"\(.*?\)", " ", n)
+    n = n.replace("promenade position", "pp").replace("p.p.", "pp").replace("p.p", "pp")
+    n = n.replace("line of dance", "lod")
+    n = re.sub(r"\b(right|rigth)\b", "r", n)
+    n = re.sub(r"\bleft\b", "l", n)
+    n = re.sub(r"\bbackward\b", "back", n)
+    n = re.sub(r"\blocks\b", "lock", n)
+    n = re.sub(r"\bfoot\b", "", n)
+    n = re.sub(r"\bon (r|l)\b", r"\1", n)  # "closed change on right foot" ~ "closed change on rf"
+    n = re.sub(r"\b(rf|lf)\b", lambda m: m.group(1)[0], n)
+    n = re.sub(r"[^a-z0-9]+", " ", n)
+    return re.sub(r"\s+", " ", n).strip()
+
+
+STANDARD_BOOKS = ["waltz", "tango", "viennese", "quickstep"]
+
+
+# Catalog figures whose book chart has a clearly different title.
+BOOK_TITLE = {
+    "tango-26": ("tango", "OUTSIDE SWIVEL METHOD 2 - AFTER OPEN FINISH AND TURNING TO LEFT"),
+    "samba-8": ("samba", "WHISK TO RIGHT"),
+    "samba-22": ("samba", "UNDERARM TURNING RIGHT"),
+    "samba-23": ("samba", "UNDERARM TURNING LEFT"),
+    "samba-28": ("samba", "MAYPOLE LADY TURNING RIGHT"),
+    "chacha-29": ("chacha", "SIMPLE FOOT CHANGE"),
+}
+
+
+def match_book(technique, dance, titles, fig_id=None):
+    """Man's and lady's chart of the figure in the WDSF book: exact (canonical) title,
+    then a very close one; figures borrowed from another dance ("see Quickstep") are
+    looked up in the other standard books by exact title only."""
+    keys = [canon(t) for t in titles if t]
+
+    def pick(charts, exact_only):
+        best = None
+        for c in charts:
+            ck = canon(c["name"])
+            if ck in keys:
+                return c["name"]
+            # never mix up "... to R" and "... to L", "on RF" and "on LF"
+            sides = lambda k: set(re.findall(r"\b[rl]\b", k))
+            if not exact_only and any(sides(k) == sides(ck) for k in keys):
+                score = max(similarity(t, c["name"]) for t in titles if t)
+                if score >= 0.93 and (best is None or score > best[0]):
+                    best = (score, c["name"])
+        return best[1] if best else None
+
+    charts = technique.get(dance, [])
+    name = BOOK_TITLE.get(fig_id) if fig_id else None
+    if name and name[0] != dance:
+        charts = technique.get(name[0], [])
+    name = name[1] if name else pick(charts, False)
+    if not name and dance in STANDARD_BOOKS:
+        for other in STANDARD_BOOKS:
+            if other != dance:
+                name = pick(technique.get(other, []), True)
+                if name:
+                    charts = technique[other]
+                    break
+    if not name:
+        return None, None
+    man = next((c for c in charts if c["name"] == name and c["role"] == "man"), None)
+    lady = next((c for c in charts if c["name"] == name and c["role"] == "lady"), None)
+    return man, lady
+
+
 def main():
     catalog = json.loads((BUILD / "catalog.json").read_text(encoding="utf-8"))
     syllabus = json.loads((BUILD / "syllabus.json").read_text(encoding="utf-8"))
@@ -444,6 +660,9 @@ def main():
     aliases_by_dance = json.loads((ROOT / "data" / "aliases.json").read_text(encoding="utf-8"))
     charts_path = ROOT / "data" / "alignment.json"
     charts = json.loads(charts_path.read_text(encoding="utf-8")) if charts_path.exists() else {}
+    technique_path = BUILD / "technique.json"
+    technique = json.loads(technique_path.read_text(encoding="utf-8")) if technique_path.exists() else {}
+    turn_ranges = json.loads((ROOT / "data" / "turn_ranges.json").read_text(encoding="utf-8"))
 
     # Resolve "See 3.4.22 ..." entries (Samba) by copying the referenced figure.
     for dance, data in syllabus.items():
@@ -459,6 +678,7 @@ def main():
 
     figures = []
     report = []
+    book_floor = {}  # fig id -> chart from the WDSF technique books (local only)
     for dance, rows in catalog.items():
         syl = syllabus.get(dance, {"figures": []})["figures"]
         for row in rows:
@@ -486,7 +706,11 @@ def main():
                     match = next(f for f in syllabus[target[0]]["figures"] if f["num"] == target[1])
                 score = 1.0
             elif row["en"] and syl:
-                scored = sorted(((similarity(row["en"], f["title"]), f) for f in syl),
+                # "... to R" must never match "... to L" (and RF/LF likewise).
+                sides = lambda k: set(re.findall(r"\b[rl]\b", canon(k)))
+                scored = sorted(((similarity(row["en"], f["title"])
+                                  - (0.5 if sides(row["en"]) and sides(f["title"]) and sides(row["en"]) != sides(f["title"]) else 0), f)
+                                 for f in syl),
                                 key=lambda t: -t[0])
                 score, best = scored[0]
                 # Prefer the syllabus number from the catalog when it is a tie.
@@ -527,6 +751,49 @@ def main():
                     entry["floor"] = chart_to_floor(chart, dance)
                     entry["floor"]["preceding"] = link_names(entry["floor"]["preceding"], dance, rows)
                     entry["floor"]["following"] = link_names(entry["floor"]["following"], dance, rows)
+            # WDSF technique book (primary source): replaces the ISTD chart steps.
+            titles = [row["en"], match["title"] if match else None]
+            man, lady = match_book(technique, dance, titles, fig_id) if row["en"] else (None, None)
+            if man and man["steps"]:
+                fl = entry.get("floor", {"preceding": [], "following": []})
+                steps = book_steps(man)
+                # Copyrighted book content: only into the local, git-ignored file.
+                book_floor[fig_id] = {
+                    "title": man["name"].title(),
+                    "url": "",
+                    "source": "wdsf",
+                    "page": man["page"],
+                    "steps": steps,
+                    "preceding": fl.get("preceding", []),
+                    "following": fl.get("following", []),
+                }
+                # Public site: only the facts (foot, direction, alignment) – checked against
+                # the WDSF technique, no wording, lady's steps or notes from the books.
+                pub = {
+                    "title": fl.get("title") or man["name"].title(),
+                    "url": fl.get("url", ""),
+                    "source": "checked",
+                    "steps": public_steps(man),
+                    "preceding": fl.get("preceding", []),
+                    "following": fl.get("following", []),
+                }
+                if not any(st["align"] for st in pub["steps"]):
+                    pub["follows"] = True
+                if dance in STANDARD_BOOKS:
+                    entry["floor"] = pub
+                bf = book_floor[fig_id]
+                if lady and lady["steps"]:
+                    bf["ladySteps"] = book_steps(lady)
+                if not any(st["align"] for st in steps):
+                    bf["follows"] = True
+                notes = [n for n in man.get("notes", []) + (lady or {}).get("notes", [])]
+                if notes:
+                    bf["bookNotes"] = list(dict.fromkeys(notes))
+            # Allowed under-/overturning comes from the (public) syllabus notes.
+            if fig_id in turn_ranges:
+                for fl in (entry.get("floor"), book_floor.get(fig_id)):
+                    if fl is not None:
+                        fl["turnRange"] = {k: v for k, v in turn_ranges[fig_id].items()}
             al = collect_aliases(entry, aliases_by_dance)
             if al:
                 entry["aliases"] = al
@@ -542,6 +809,11 @@ def main():
         "figures": figures,
     }
     OUT.write_text(json.dumps(payload, ensure_ascii=False, indent=1), encoding="utf-8")
+    local = OUT.parent / "technique.local.json"
+    if book_floor:
+        local.write_text(json.dumps(book_floor, ensure_ascii=False, indent=1), encoding="utf-8")
+    elif local.exists():
+        local.unlink()
 
     # Report hand-written aliases whose figure name doesn't exist (typos).
     names = {(f["dance"], f["en"]) for f in figures}
@@ -553,7 +825,12 @@ def main():
                 print(f"WARNING: aliases.json: no figure '{n}' in {d}")
     unmatched = [f["id"] for f in figures if "syllabus" not in f and f["dance"] != "polka"]
     with_chart = sum(1 for f in figures if "floor" in f)
-    print(f"{with_chart} figures with a step chart")
+    print(f"{with_chart} figures with a public (dancecentral) chart, {len(book_floor)} with a local WDSF book chart "
+          f"({sum(1 for f in book_floor.values() if 'ladySteps' in f)} with lady's steps)")
+    for d in ["waltz", "tango", "viennese", "quickstep", "samba", "chacha", "rumba", "jive"]:
+        miss = [f["id"] for f in figures if f["dance"] == d and f["id"] not in book_floor]
+        if miss:
+            print(f"  no WDSF chart: {miss}")
     print(f"{len(figures)} figures written, {len(unmatched)} without syllabus data: {unmatched}")
     if "--report" in sys.argv:
         for r in sorted(report):

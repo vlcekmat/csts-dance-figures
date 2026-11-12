@@ -2,7 +2,6 @@
 // the steps actually danced, start/finish foot and couple position, and whether
 // the chosen part of the figure is allowed by the WDSF Syllabus notes.
 import type { Dance, Figure } from "./data";
-import type { Aim } from "./floor";
 import {
   finishWeightFoot,
   parseTiming,
@@ -20,11 +19,7 @@ export interface VariantChoice {
   start?: number;
   /** Index into syllabus.variants.finishes; omitted = basic finish. */
   finish?: number;
-  /** Alignment of the whole figure (degrees, + = left), see floor.ts. */
-  rotate?: number;
-  /** Aim the start at a place in the room (resolved by the floor plan). */
-  aim?: Aim;
-  /** Under-/overturn (degrees, + = more to the left). */
+  /** Under-/overturn within the range the technique allows (degrees, + = more to the left). */
   extraTurn?: number;
   /** Hold keys (glossary.ts); omitted = hold from the syllabus. */
   startHold?: string;
@@ -70,6 +65,27 @@ function positionFromDesc(desc: string): string | null {
   return tail.split(/\s+with\s+/i)[0].trim() || null;
 }
 
+/**
+ * Couple position on a chart step of the WDSF book. A cell like "Closed Position
+ * to Promenade Position" or "Close Opp then Open Opp" changes during the step:
+ * `at` picks the position at its start or end.
+ */
+export function bookPosition(fig: Figure, step: number, at: "start" | "end"): string | null {
+  const pos = fig.floor?.source === "wdsf" ? fig.floor.steps[step - 1]?.pos : undefined;
+  if (!pos || /depend/i.test(pos)) return null;
+  const parts = pos.split(/\s+(?:to|then)\s+(?=[A-Z])/);
+  const p = (at === "start" ? parts[0] : parts[parts.length - 1]).replace(/\s+at\b.*$/i, "").trim();
+  return p || null;
+}
+
+/** Foot that takes a chart step of the WDSF book (the weight ends on it). */
+function bookFoot(fig: Figure, step: number): Foot | null {
+  const st = fig.floor?.source === "wdsf" ? fig.floor.steps[step - 1] : undefined;
+  if (!st || /w\/o weight|without weight/i.test(st.desc)) return null;
+  const m = st.desc.match(/\b(RF|LF)\b/);
+  return m ? (m[1] as Foot) : null;
+}
+
 export function resolveItem(fig: Figure, dance: Dance, timing: string, choice: VariantChoice = {}): ResolvedItem {
   const all = timing ? parseTiming(timing, dance) : [];
   const total = all.length;
@@ -99,8 +115,11 @@ export function resolveItem(fig: Figure, dance: Dance, timing: string, choice: V
   let sPos = positionOf(syl?.start);
   let estimated = false;
   if (from > 1) {
-    sFoot = footOfStep(baseStartFoot, from);
-    estimated = true;
+    sFoot = bookFoot(fig, from) ?? footOfStep(baseStartFoot, from);
+    sPos = bookPosition(fig, from, "start") ?? sPos;
+    estimated = !bookFoot(fig, from) || !bookPosition(fig, from, "start");
+  } else if (!sPos) {
+    sPos = bookPosition(fig, 1, "start");
   }
   const startAlt = choice.start !== undefined ? variants.starts?.[choice.start] : undefined;
   if (startAlt) {
@@ -115,8 +134,12 @@ export function resolveItem(fig: Figure, dance: Dance, timing: string, choice: V
   // stays in the position the figure started in.
   let fPos = positionOf(syl?.finish) ?? positionOf(syl?.start);
   if (isPart && to < total) {
-    fFoot = footOfStep(baseStartFoot, to);
-    estimated = true;
+    fFoot = bookFoot(fig, to) ?? footOfStep(baseStartFoot, to);
+    fPos = bookPosition(fig, to, "end") ?? fPos;
+    estimated = estimated || !bookFoot(fig, to) || !bookPosition(fig, to, "end");
+  } else if (!positionOf(syl?.finish)) {
+    // The syllabus finish often names no position: the book's last step does.
+    fPos = bookPosition(fig, total, "end") ?? fPos;
   }
   const finishAlt = choice.finish !== undefined ? variants.finishes?.[choice.finish] : undefined;
   if (finishAlt) fPos = finishAlt.position;

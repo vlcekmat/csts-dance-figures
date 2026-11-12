@@ -258,21 +258,22 @@
    "floor": {
     "title": "Closed Changes",
     "url": "https://www.dancecentral.info/ballroom/international-style/waltz/waltz-closed-changes",
+    "source": "checked",
     "steps": [
      {
-      "desc": "RF forward",
-      "align": "FDC",
-      "turn": "Sway(S)"
+      "desc": "RF fwd",
+      "align": "",
+      "turn": ""
      },
      {
-      "desc": "LF side, slightly fwd",
-      "align": "FDC",
-      "turn": "Sway(R)"
+      "desc": "LF fwd",
+      "align": "",
+      "turn": ""
      },
      {
       "desc": "RF closes to LF",
-      "align": "FD",
-      "turn": "Sway(R)"
+      "align": "",
+      "turn": ""
      }
     ],
     "preceding": [
@@ -344,7 +345,8 @@
       "name": "Hesitation Change",
       "id": "waltz-13"
      }
-    ]
+    ],
+    "follows": true
    },
    "aliases": {
     "en": [
@@ -410,21 +412,22 @@
    "floor": {
     "title": "Closed Changes",
     "url": "https://www.dancecentral.info/ballroom/international-style/waltz/waltz-closed-changes",
+    "source": "checked",
     "steps": [
      {
-      "desc": "LF forward",
-      "align": "FDW",
-      "turn": "Sway(S)"
+      "desc": "LF fwd",
+      "align": "",
+      "turn": ""
      },
      {
-      "desc": "RF side, slightly fwd",
-      "align": "FDW",
-      "turn": "Sway(L)"
+      "desc": "RF fwd",
+      "align": "",
+      "turn": ""
      },
      {
       "desc": "LF closes to RF",
-      "align": "FD",
-      "turn": "Sway(L)"
+      "align": "",
+      "turn": ""
      }
     ],
     "preceding": [
@@ -496,7 +499,8 @@
       "name": "Hesitation Change",
       "id": "waltz-13"
      }
-    ]
+    ],
+    "follows": true
    },
    "aliases": {
     "en": [
@@ -591,36 +595,37 @@
    "floor": {
     "title": "Natural Turn - Waltz",
     "url": "https://www.dancecentral.info/ballroom/international-style/waltz/waltz-natural-turn",
+    "source": "checked",
     "steps": [
      {
       "desc": "RF fwd",
-      "align": "FDW",
-      "turn": "Starts to turn R"
+      "align": "Facing DW",
+      "turn": ""
      },
      {
       "desc": "LF to side",
-      "align": "DC",
-      "turn": "1/4 between 1 and 2"
+      "align": "Backing DC",
+      "turn": ""
      },
      {
       "desc": "RF closes to LF",
-      "align": "LOD",
-      "turn": "1/8 between 2 and 3"
+      "align": "Backing LOD",
+      "turn": ""
      },
      {
-      "desc": "LF back",
-      "align": "BLOD",
-      "turn": "Starts to turn R"
+      "desc": "LF bwd",
+      "align": "Backing LOD",
+      "turn": ""
      },
      {
       "desc": "RF to side",
-      "align": "PDC",
-      "turn": "3/8 between 4 and 5, body turns less"
+      "align": "Facing DC",
+      "turn": ""
      },
      {
       "desc": "LF closes to RF",
-      "align": "FDC",
-      "turn": "body completes turn"
+      "align": "Facing DC",
+      "turn": ""
      }
     ],
     "preceding": [
@@ -803,36 +808,37 @@
    "floor": {
     "title": "Reverse Turn - Waltz",
     "url": "https://www.dancecentral.info/ballroom/international-style/waltz/waltz-reverse-turn",
+    "source": "checked",
     "steps": [
      {
       "desc": "LF fwd",
-      "align": "FDC",
-      "turn": "Stars to turn L"
+      "align": "Facing DC",
+      "turn": ""
      },
      {
       "desc": "RF to side",
-      "align": "BDW",
-      "turn": "1/4 btwn 1-2"
+      "align": "Backing DW",
+      "turn": ""
      },
      {
       "desc": "LF closes to RF",
-      "align": "BLOD",
-      "turn": "1/8 btwn 2-3"
+      "align": "Backing LOD",
+      "turn": ""
      },
      {
-      "desc": "RF back",
-      "align": "BLOD",
-      "turn": "Cont to turn L"
+      "desc": "RF bwd",
+      "align": "Backing LOD",
+      "turn": ""
      },
      {
       "desc": "LF to side",
-      "align": "PDW",
-      "turn": "3/8 btwn 4-5, body turns less"
+      "align": "Facing DW",
+      "turn": ""
      },
      {
       "desc": "RF closes to LF",
-      "align": "FDW",
-      "turn": "body completes turn"
+      "align": "Facing DW",
+      "turn": ""
      }
     ],
     "preceding": [
@@ -986,31 +992,27 @@
    "floor": {
     "title": "Progressive Chassé to Right",
     "url": "https://www.dancecentral.info/ballroom/international-style/waltz/progressive-chasse-to-r",
+    "source": "checked",
     "steps": [
      {
       "desc": "LF fwd",
       "align": "Facing DC",
-      "turn": "Start to turn L"
+      "turn": ""
      },
      {
       "desc": "RF to side",
-      "align": "Backing Wall",
-      "turn": "1/8 between 1 and 2"
+      "align": "Facing C",
+      "turn": ""
      },
      {
       "desc": "LF closes to RF",
       "align": "Backing DW",
-      "turn": "1/8 between 2 and 3, body turns less"
+      "turn": ""
      },
      {
-      "desc": "RF to side and slightly back",
+      "desc": "RF to side",
       "align": "Backing DW",
-      "turn": "--"
-     },
-     {
-      "desc": "LF back in CBMP",
-      "align": "Backing DW",
-      "turn": "--"
+      "turn": ""
      }
     ],
     "preceding": [
@@ -1170,21 +1172,22 @@
    "floor": {
     "title": "Whisk",
     "url": "https://www.dancecentral.info/ballroom/international-style/waltz/waltz-whisk",
+    "source": "checked",
     "steps": [
      {
       "desc": "LF fwd",
-      "align": "FDW",
-      "turn": "Nil"
+      "align": "Facing DW",
+      "turn": ""
      },
      {
-      "desc": "RF to side and slightly fwd",
-      "align": "FDW",
-      "turn": "Nil"
+      "desc": "RF to side",
+      "align": "Facing DW",
+      "turn": ""
      },
      {
-      "desc": "LF crosses behind RF in PP",
-      "align": "FDW",
-      "turn": "Nil"
+      "desc": "LF crosses behind RF",
+      "align": "Facing DW",
+      "turn": ""
      }
     ],
     "preceding": [
@@ -1230,7 +1233,13 @@
       "name": "Cross Hesitation",
       "id": "waltz-27"
      }
-    ]
+    ],
+    "turnRange": {
+     "min": 0,
+     "max": 90,
+     "note": "may turn up to ¼ to L",
+     "noteCs": "může se otočit až o 1/4 vlevo"
+    }
    },
    "aliases": {
     "en": [
@@ -1306,21 +1315,22 @@
    "floor": {
     "title": "Back Whisk",
     "url": "https://www.dancecentral.info/ballroom/international-style/waltz/back-whisk",
+    "source": "checked",
     "steps": [
      {
-      "desc": "LF Back in CBMP",
-      "align": "Backing DC against LOD",
-      "turn": "--"
-     },
-     {
-      "desc": "RF diag back",
-      "align": "Backing DC against LOD",
-      "turn": "--"
-     },
-     {
-      "desc": "LF crosses behind RF in PP",
+      "desc": "LF bwd",
       "align": "Facing DW",
-      "turn": "--"
+      "turn": ""
+     },
+     {
+      "desc": "RF bwd",
+      "align": "Facing DW",
+      "turn": ""
+     },
+     {
+      "desc": "LF crosses behind RF",
+      "align": "Facing DW",
+      "turn": ""
      }
     ],
     "preceding": [
@@ -1369,7 +1379,13 @@
       "name": "Cross Hesitation",
       "id": "waltz-27"
      }
-    ]
+    ],
+    "turnRange": {
+     "min": -135,
+     "max": 0,
+     "note": "May be turned up to 3/8 to R",
+     "noteCs": "může se otočit až o 3/8 vpravo"
+    }
    },
    "aliases": {
     "en": [
@@ -1450,26 +1466,22 @@
    "floor": {
     "title": "Outside Change",
     "url": "https://www.dancecentral.info/ballroom/international-style/waltz/outside-change",
+    "source": "checked",
     "steps": [
      {
-      "desc": "LF back",
-      "align": "BDC",
-      "turn": "--"
+      "desc": "LF bwd",
+      "align": "Backing DC",
+      "turn": ""
      },
      {
-      "desc": "RF back",
-      "align": "BDC",
-      "turn": "starts to turn L"
+      "desc": "RF bwd",
+      "align": "Backing DC",
+      "turn": ""
      },
      {
-      "desc": "LF to side and slightly fwd",
-      "align": "Pointing DW",
-      "turn": "1/4 between 2-3, body turns less"
-     },
-     {
-      "desc": "RF fwd in CBMP, OP",
+      "desc": "LF to side",
       "align": "Facing DW",
-      "turn": "CBM"
+      "turn": ""
      }
     ],
     "preceding": [
@@ -1620,41 +1632,37 @@
    "floor": {
     "title": "Basic Weave - Waltz",
     "url": "https://www.dancecentral.info/ballroom/international-style/waltz/basic-weave",
+    "source": "checked",
     "steps": [
      {
-      "desc": "RF back",
-      "align": "BDW",
-      "turn": "--"
+      "desc": "RF bwd",
+      "align": "Backing DW",
+      "turn": ""
      },
      {
       "desc": "LF fwd",
-      "align": "BDW",
-      "turn": "starts to turn L"
+      "align": "Backing DW",
+      "turn": ""
      },
      {
       "desc": "RF to side",
-      "align": "BLOD",
-      "turn": "1/8 between 2-3"
+      "align": "Backing LOD",
+      "turn": ""
      },
      {
-      "desc": "LF back in CBMP",
-      "align": "BDC",
-      "turn": "1/8 between 3-4"
+      "desc": "LF bwd",
+      "align": "Backing DC",
+      "turn": ""
      },
      {
-      "desc": "RF back",
-      "align": "BDC",
-      "turn": "starts to turn L"
+      "desc": "RF bwd",
+      "align": "Backing DC",
+      "turn": ""
      },
      {
-      "desc": "LF to side and slightly fwd",
-      "align": "PDW",
-      "turn": "1/4 between 5-6, body turns less"
-     },
-     {
-      "desc": "RF fwd in CBMP, OP",
-      "align": "FDW",
-      "turn": "-"
+      "desc": "LF to side",
+      "align": "Facing DW",
+      "turn": ""
      }
     ],
     "preceding": [
@@ -1762,31 +1770,27 @@
    "floor": {
     "title": "Chassé from Promenade Position",
     "url": "https://www.dancecentral.info/ballroom/international-style/waltz/chasse-from-promenade-position",
+    "source": "checked",
     "steps": [
      {
-      "desc": "RF fwd, across in PP and CBMP",
-      "align": "FDW, moving LOD",
-      "turn": "--"
+      "desc": "RF fwd",
+      "align": "Facing DW, moving LOD",
+      "turn": ""
      },
      {
-      "desc": "LF to side and slightly fwd",
-      "align": "FDW",
-      "turn": "--"
+      "desc": "LF to side",
+      "align": "Facing DW",
+      "turn": ""
      },
      {
       "desc": "RF closes to LF",
-      "align": "FDW",
-      "turn": "--"
+      "align": "Facing DW",
+      "turn": ""
      },
      {
-      "desc": "LF to side and slightly fwd",
-      "align": "FDW",
-      "turn": "--"
-     },
-     {
-      "desc": "RF fwd in CBMP, OP",
-      "align": "FDW",
-      "turn": "--"
+      "desc": "LF to side",
+      "align": "Facing DW",
+      "turn": ""
      }
     ],
     "preceding": [
@@ -1920,6 +1924,35 @@
      "query": "slow waltz Backward Lock"
     }
    ],
+   "floor": {
+    "title": "Backward Lock",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "LF bwd",
+      "align": "Backing DW",
+      "turn": ""
+     },
+     {
+      "desc": "RF bwd",
+      "align": "Backing DW",
+      "turn": ""
+     },
+     {
+      "desc": "LF crosses in front of RF",
+      "align": "Backing DW",
+      "turn": ""
+     },
+     {
+      "desc": "RF bwd",
+      "align": "Backing DW",
+      "turn": ""
+     }
+    ],
+    "preceding": [],
+    "following": []
+   },
    "aliases": {
     "en": [
      "Back Lock"
@@ -1990,7 +2023,31 @@
      "length": "2:45",
      "query": "slow waltz Open Natural Turn"
     }
-   ]
+   ],
+   "floor": {
+    "title": "Open Natural Turn",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "RF fwd",
+      "align": "Facing W, moving DW",
+      "turn": ""
+     },
+     {
+      "desc": "LF to side",
+      "align": "Backing LOD",
+      "turn": ""
+     },
+     {
+      "desc": "RF bwd",
+      "align": "Backing DW",
+      "turn": ""
+     }
+    ],
+    "preceding": [],
+    "following": []
+   }
   },
   {
    "id": "waltz-13",
@@ -2055,36 +2112,22 @@
    "floor": {
     "title": "Hesitation Change",
     "url": "https://www.dancecentral.info/ballroom/international-style/waltz/hesitation-change",
+    "source": "checked",
     "steps": [
      {
-      "desc": "RF fwd",
-      "align": "Facing DW",
-      "turn": "Start to turn R"
-     },
-     {
-      "desc": "LF to side",
-      "align": "Backing DC",
-      "turn": "1/4 between 1-2"
-     },
-     {
-      "desc": "3",
-      "align": "RF closes to LF",
-      "turn": "TH"
-     },
-     {
-      "desc": "LF back",
+      "desc": "LF bwd",
       "align": "Backing LOD",
-      "turn": "Start to turn R"
+      "turn": ""
      },
      {
-      "desc": "RF to side small step (Heel Pull)",
+      "desc": "RF to side",
       "align": "Facing DC",
-      "turn": "3/8 between 4-5"
+      "turn": ""
      },
      {
-      "desc": "LF closes to RF without weight",
+      "desc": "LF closes to RF",
       "align": "Facing DC",
-      "turn": "--"
+      "turn": ""
      }
     ],
     "preceding": [
@@ -2224,36 +2267,32 @@
    "floor": {
     "title": "Natural Spin Turn",
     "url": "https://www.dancecentral.info/ballroom/international-style/waltz/waltz-natural-spin-turn",
+    "source": "checked",
     "steps": [
      {
-      "desc": "RF fwd",
-      "align": "FDW",
-      "turn": "Start to turn R"
-     },
-     {
       "desc": "LF to side",
-      "align": "BDC",
-      "turn": "1/4 between 1-2"
+      "align": "Backing DC",
+      "turn": ""
      },
      {
       "desc": "RF closes to LF",
-      "align": "BLOD",
-      "turn": "1/8 between 2-3"
+      "align": "Backing LOD",
+      "turn": ""
      },
      {
-      "desc": "LF back",
-      "align": "BLOD, toe turned in",
-      "turn": "1/2 to R (pivot)"
+      "desc": "LF bwd",
+      "align": "Facing LOD",
+      "turn": ""
      },
      {
-      "desc": "RF fwd in CBMP",
-      "align": "FLOD",
-      "turn": "Cont to turn"
+      "desc": "RF fwd",
+      "align": "Facing LOD",
+      "turn": ""
      },
      {
-      "desc": "LF to side and slightly back",
-      "align": "BDC",
-      "turn": "3/8 between 5-6"
+      "desc": "LF bwd",
+      "align": "Backing DC",
+      "turn": ""
      }
     ],
     "preceding": [
@@ -2324,7 +2363,13 @@
       "name": "Hover Corte",
       "id": "waltz-35"
      }
-    ]
+    ],
+    "turnRange": {
+     "min": -45,
+     "max": 90,
+     "note": "may be underturned to end backing DC against LOD or overturned to end almost backing LOD",
+     "noteCs": "může být podtočená (konec zády DC proti LOD) nebo přetočená (konec téměř zády k LOD)"
+    }
    },
    "aliases": {
     "en": [
@@ -2397,21 +2442,22 @@
    "floor": {
     "title": "Double Reverse Spin",
     "url": "https://www.dancecentral.info/ballroom/international-style/waltz/double-reverse-spin",
+    "source": "checked",
     "steps": [
      {
       "desc": "LF fwd",
       "align": "Facing LOD",
-      "turn": "Starts to turn L"
+      "turn": ""
      },
      {
       "desc": "RF to side",
-      "align": "BDW",
-      "turn": "3/8 btwn 1-2"
+      "align": "Backing DW",
+      "turn": ""
      },
      {
-      "desc": "LF closes to RF without weight (Toe Pivot)",
+      "desc": "LF closes to RF",
       "align": "Facing DW",
-      "turn": "1/2 btwn 2-3"
+      "turn": ""
      }
     ],
     "preceding": [
@@ -2489,7 +2535,13 @@
       "name": "Fallaway Reverse And Slip Pivot",
       "id": "waltz-34"
      }
-    ]
+    ],
+    "turnRange": {
+     "min": -45,
+     "max": 45,
+     "note": "may turn between ¾ and 1 full turn to L",
+     "noteCs": "otočení mezi 3/4 a celou otáčkou vlevo"
+    }
    }
   },
   {
@@ -2555,26 +2607,22 @@
    "floor": {
     "title": "Closed Telemark - Waltz",
     "url": "https://www.dancecentral.info/ballroom/international-style/waltz/closed-telemark",
+    "source": "checked",
     "steps": [
      {
       "desc": "LF fwd",
-      "align": "FDC",
-      "turn": "start to turn L"
+      "align": "Facing DC",
+      "turn": ""
      },
      {
       "desc": "RF to side",
-      "align": "almost BLOD",
-      "turn": "slightly less than 3/8 between 1-2"
+      "align": "Backing DW",
+      "turn": ""
      },
      {
-      "desc": "LF to side and slightly fwd",
-      "align": "Pointing DW",
-      "turn": "slightly over 3/8 between 2-3. body turns less"
-     },
-     {
-      "desc": "RF fwd in CBMP, OP",
-      "align": "DW",
-      "turn": "-"
+      "desc": "LF to side",
+      "align": "Facing DW",
+      "turn": ""
      }
     ],
     "preceding": [
@@ -2695,6 +2743,30 @@
      "query": "slow waltz Telemark to PP"
     }
    ],
+   "floor": {
+    "title": "Telemark To Pp",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "LF fwd",
+      "align": "Facing DC",
+      "turn": ""
+     },
+     {
+      "desc": "RF to side",
+      "align": "Backing DW",
+      "turn": ""
+     },
+     {
+      "desc": "LF to side",
+      "align": "Facing DW, moving LOD",
+      "turn": ""
+     }
+    ],
+    "preceding": [],
+    "following": []
+   },
    "aliases": {
     "en": [
      "Open Telemark"
@@ -2782,41 +2854,37 @@
    "floor": {
     "title": "Weave from Promenade Position",
     "url": "https://www.dancecentral.info/ballroom/international-style/waltz/weave-from-promenade-position",
+    "source": "checked",
     "steps": [
      {
-      "desc": "RF fwd and across in PP and CBMP",
-      "align": "Pointing DC, body facing LOD, traveling DC",
-      "turn": "1/8 btwn preceding step and 1"
+      "desc": "RF fwd",
+      "align": "Facing DC, moving DC",
+      "turn": ""
      },
      {
       "desc": "LF fwd",
-      "align": "Facing center",
-      "turn": "cont to turn L"
+      "align": "Facing DC",
+      "turn": ""
      },
      {
-      "desc": "RF to side and slightly back",
-      "align": "BLOD",
-      "turn": "1/4 btwn 2-3"
+      "desc": "RF to side",
+      "align": "Backing DW",
+      "turn": ""
      },
      {
-      "desc": "LF back in CBMP",
-      "align": "BDC",
-      "turn": "1/8 betwn 3-4"
+      "desc": "LF bwd",
+      "align": "Backing LOD",
+      "turn": ""
      },
      {
-      "desc": "RF back",
-      "align": "BDC",
-      "turn": "start to turn L"
+      "desc": "RF bwd",
+      "align": "Backing LOD",
+      "turn": ""
      },
      {
-      "desc": "LF side and slightly fwd",
-      "align": "Pointing DW",
-      "turn": "1/4 btwn  5-6, body turns less"
-     },
-     {
-      "desc": "RF fwd in CBMP, OP",
+      "desc": "LF to side",
       "align": "Facing DW",
-      "turn": "--"
+      "turn": ""
      }
     ],
     "preceding": [
@@ -2955,26 +3023,22 @@
    "floor": {
     "title": "Closed Impetus",
     "url": "https://www.dancecentral.info/ballroom/international-style/waltz/closed-impetus",
+    "source": "checked",
     "steps": [
      {
-      "desc": "LF back",
+      "desc": "LF bwd",
       "align": "Backing LOD",
-      "turn": "Start to turn R"
+      "turn": ""
      },
      {
-      "desc": "RF closes to LF (Heel Turn)",
+      "desc": "RF closes to LF",
       "align": "Facing DC",
-      "turn": "3/8 between 1-2"
+      "turn": ""
      },
      {
-      "desc": "LF to side and slightly back",
-      "align": "Backing DC against the LOD",
-      "turn": "1/4 between 2-3"
-     },
-     {
-      "desc": "RF back",
-      "align": "Backing DC against the LOD",
-      "turn": "Sway(S)"
+      "desc": "LF to side",
+      "align": "Facing DW",
+      "turn": ""
      }
     ],
     "preceding": [
@@ -3104,6 +3168,30 @@
      "query": "slow waltz Impetus to PP"
     }
    ],
+   "floor": {
+    "title": "Impetus To Pp",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "LF bwd",
+      "align": "Backing LOD",
+      "turn": ""
+     },
+     {
+      "desc": "RF closes to LF",
+      "align": "Facing DC",
+      "turn": ""
+     },
+     {
+      "desc": "LF fwd",
+      "align": "Facing DC, moving DC",
+      "turn": ""
+     }
+    ],
+    "preceding": [],
+    "following": []
+   },
    "aliases": {
     "en": [
      "Open Impetus"
@@ -3177,21 +3265,22 @@
    "floor": {
     "title": "Drag Hesitation",
     "url": "https://www.dancecentral.info/ballroom/international-style/waltz/drag-hesitation",
+    "source": "checked",
     "steps": [
      {
       "desc": "LF fwd",
       "align": "Facing LOD",
-      "turn": "start to turn L"
+      "turn": ""
      },
      {
       "desc": "RF to side",
-      "align": "Backing Wall",
-      "turn": "1/4 btwn 1-2"
+      "align": "Backing DW",
+      "turn": ""
      },
      {
-      "desc": "LF closes to RF w/o weight",
-      "align": "BDW",
-      "turn": "1/8 btwn 2-3"
+      "desc": "LF closes to RF",
+      "align": "Backing DW",
+      "turn": ""
      }
     ],
     "preceding": [
@@ -3303,21 +3392,22 @@
    "floor": {
     "title": "Outside Spin",
     "url": "https://www.dancecentral.info/ballroom/international-style/waltz/outside-spin",
+    "source": "checked",
     "steps": [
      {
-      "desc": "LF back in CBMP (small step)",
-      "align": "DC against LOD, toe turned in",
-      "turn": "3/8 to R on 1 (pivot)"
+      "desc": "LF bwd",
+      "align": "Backing DW",
+      "turn": ""
      },
      {
-      "desc": "RF fwd in CBMP, OP",
-      "align": "Facing against LOD",
-      "turn": "continue to turn"
+      "desc": "RF fwd",
+      "align": "Facing LOD",
+      "turn": ""
      },
      {
-      "desc": "LF to side ending with LF back",
-      "align": "FDC, end FDW",
-      "turn": "3/8 btwn 2-3, 1/4 on 3"
+      "desc": "LF to side",
+      "align": "Facing DC",
+      "turn": ""
      }
     ],
     "preceding": [
@@ -3394,7 +3484,13 @@
       "name": "Hover Corte",
       "id": "waltz-35"
      }
-    ]
+    ],
+    "turnRange": {
+     "min": 0,
+     "max": 180,
+     "note": "may be underturned (no Pivot on step3) in which case the exit is RF bwd into any suitable figure",
+     "noteCs": "může být podtočená (bez pivotu na 3. kroku), pak se pokračuje Pn vzad"
+    }
    }
   },
   {
@@ -3459,7 +3555,42 @@
      "length": "2:20",
      "query": "slow waltz Natural Turning Lock"
     }
-   ]
+   ],
+   "floor": {
+    "title": "Natural Turning Lock",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "RF bwd",
+      "align": "Backing LOD",
+      "turn": ""
+     },
+     {
+      "desc": "LF crosses in front of RF",
+      "align": "Facing C",
+      "turn": ""
+     },
+     {
+      "desc": "RF to side",
+      "align": "Facing LOD",
+      "turn": ""
+     },
+     {
+      "desc": "LF fwd",
+      "align": "Facing LOD, moving DC",
+      "turn": ""
+     }
+    ],
+    "preceding": [],
+    "following": [],
+    "turnRange": {
+     "min": -135,
+     "max": 0,
+     "note": "may overturn to end backing DC in Closed position.",
+     "noteCs": "může se přetočit do konce zády DC v uzavřeném postavení"
+    }
+   }
   },
   {
    "id": "waltz-24",
@@ -3519,7 +3650,36 @@
      "length": "0:43",
      "query": "slow waltz Reverse Turning Lock"
     }
-   ]
+   ],
+   "floor": {
+    "title": "Reverse Turning Lock",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "RF bwd",
+      "align": "Backing DC",
+      "turn": ""
+     },
+     {
+      "desc": "LF crosses in front of RF",
+      "align": "Backing DC",
+      "turn": ""
+     },
+     {
+      "desc": "RF bwd",
+      "align": "Backing DC",
+      "turn": ""
+     },
+     {
+      "desc": "LF to side",
+      "align": "Facing DW",
+      "turn": ""
+     }
+    ],
+    "preceding": [],
+    "following": []
+   }
   },
   {
    "id": "waltz-25",
@@ -3567,6 +3727,30 @@
      "query": "slow waltz Wing"
     }
    ],
+   "floor": {
+    "title": "Wing",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "RF fwd",
+      "align": "Facing DC",
+      "turn": ""
+     },
+     {
+      "desc": "LF closes to RF",
+      "align": "Facing DC",
+      "turn": ""
+     },
+     {
+      "desc": "LF closes to RF",
+      "align": "Facing DC",
+      "turn": ""
+     }
+    ],
+    "preceding": [],
+    "following": []
+   },
    "aliases": {
     "en": [
      "Closed Wing"
@@ -3622,6 +3806,30 @@
      "query": "slow waltz Wing from PP"
     }
    ],
+   "floor": {
+    "title": "Wing From Pp",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "RF fwd",
+      "align": "Facing DC, moving DC",
+      "turn": ""
+     },
+     {
+      "desc": "LF closes to RF",
+      "align": "Facing DC",
+      "turn": ""
+     },
+     {
+      "desc": "LF closes to RF",
+      "align": "Facing DC",
+      "turn": ""
+     }
+    ],
+    "preceding": [],
+    "following": []
+   },
    "aliases": {
     "en": [
      "Open Wing"
@@ -3681,7 +3889,37 @@
      "length": "0:57",
      "query": "slow waltz Cross Hesitation from PP"
     }
-   ]
+   ],
+   "floor": {
+    "title": "Cross Hesitation From Pp",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "RF fwd",
+      "align": "Facing DW, moving LOD",
+      "turn": ""
+     },
+     {
+      "desc": "LF closes to RF",
+      "align": "Facing DW",
+      "turn": ""
+     },
+     {
+      "desc": "RF",
+      "align": "Facing DW",
+      "turn": ""
+     }
+    ],
+    "preceding": [],
+    "following": [],
+    "turnRange": {
+     "min": 0,
+     "max": 90,
+     "note": "may turn up to ¼ to L (Man)",
+     "noteCs": "pán se může otočit až o 1/4 vlevo"
+    }
+   }
   },
   {
    "id": "waltz-28",
@@ -3732,11 +3970,12 @@
    "floor": {
     "title": "Reverse Pivot - Waltz",
     "url": "https://www.dancecentral.info/ballroom/international-style/waltz/reverse-pivot",
+    "source": "checked",
     "steps": [
      {
-      "desc": "RF back in CBMP (small step), LF held in CBMP",
-      "align": "DC toe turned in",
-      "turn": "up to 1/2 to L (Pivot)"
+      "desc": "RF bwd",
+      "align": "Facing LOD",
+      "turn": ""
      }
     ],
     "preceding": [
@@ -3853,7 +4092,46 @@
      "length": "3:13",
      "query": "slow waltz Fallaway Natural Turn"
     }
-   ]
+   ],
+   "floor": {
+    "title": "Fallaway Natural Turn",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "RF fwd",
+      "align": "Facing DW, moving LOD",
+      "turn": ""
+     },
+     {
+      "desc": "LF to side",
+      "align": "Backing DC",
+      "turn": ""
+     },
+     {
+      "desc": "RF bwd",
+      "align": "Backing DC, moving C",
+      "turn": ""
+     },
+     {
+      "desc": "LF bwd",
+      "align": "Backing DC",
+      "turn": ""
+     },
+     {
+      "desc": "RF bwd",
+      "align": "Facing W",
+      "turn": ""
+     },
+     {
+      "desc": "LF to side",
+      "align": "Facing DW",
+      "turn": ""
+     }
+    ],
+    "preceding": [],
+    "following": []
+   }
   },
   {
    "id": "waltz-30",
@@ -3935,7 +4213,51 @@
      "length": "0:30",
      "query": "slow waltz Running Weave from PP"
     }
-   ]
+   ],
+   "floor": {
+    "title": "Running Weave From Pp",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "RF fwd",
+      "align": "Facing LOD, moving DC",
+      "turn": ""
+     },
+     {
+      "desc": "LF to side",
+      "align": "Facing W",
+      "turn": ""
+     },
+     {
+      "desc": "RF bwd",
+      "align": "Backing DC",
+      "turn": ""
+     },
+     {
+      "desc": "LF bwd",
+      "align": "Backing DC",
+      "turn": ""
+     },
+     {
+      "desc": "RF bwd",
+      "align": "Backing DC",
+      "turn": ""
+     },
+     {
+      "desc": "LF to side",
+      "align": "Facing LOD",
+      "turn": ""
+     },
+     {
+      "desc": "RF crosses behind LF",
+      "align": "Facing LOD",
+      "turn": ""
+     }
+    ],
+    "preceding": [],
+    "following": []
+   }
   },
   {
    "id": "waltz-31",
@@ -4001,7 +4323,51 @@
      "length": "8:45",
      "query": "slow waltz Running Spin Turn"
     }
-   ]
+   ],
+   "floor": {
+    "title": "Running Spin Turn",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "RF fwd",
+      "align": "Facing DW",
+      "turn": ""
+     },
+     {
+      "desc": "LF to side",
+      "align": "Backing DC",
+      "turn": ""
+     },
+     {
+      "desc": "RF closes to LF",
+      "align": "Backing LOD",
+      "turn": ""
+     },
+     {
+      "desc": "LF bwd",
+      "align": "Facing LOD",
+      "turn": ""
+     },
+     {
+      "desc": "RF fwd",
+      "align": "Facing LOD",
+      "turn": ""
+     },
+     {
+      "desc": "LF to side",
+      "align": "Backing DC",
+      "turn": ""
+     },
+     {
+      "desc": "RF bwd",
+      "align": "Backing DC",
+      "turn": ""
+     }
+    ],
+    "preceding": [],
+    "following": []
+   }
   },
   {
    "id": "waltz-32",
@@ -4072,7 +4438,71 @@
      "length": "0:11",
      "query": "slow waltz Overturned Running Spin Turn"
     }
-   ]
+   ],
+   "floor": {
+    "title": "Overturned Running Spin Turn",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "RF fwd",
+      "align": "Facing DW",
+      "turn": ""
+     },
+     {
+      "desc": "LF to side",
+      "align": "Backing DC",
+      "turn": ""
+     },
+     {
+      "desc": "RF closes to LF",
+      "align": "Backing LOD",
+      "turn": ""
+     },
+     {
+      "desc": "LF bwd",
+      "align": "Facing LOD",
+      "turn": ""
+     },
+     {
+      "desc": "RF fwd",
+      "align": "Facing LOD",
+      "turn": ""
+     },
+     {
+      "desc": "LF to side",
+      "align": "Backing DC",
+      "turn": ""
+     },
+     {
+      "desc": "RF to side",
+      "align": "Facing DC",
+      "turn": ""
+     },
+     {
+      "desc": "LF crosses behind RF",
+      "align": "Facing DC",
+      "turn": ""
+     },
+     {
+      "desc": "RF fwd",
+      "align": "Facing DC, moving DC",
+      "turn": ""
+     },
+     {
+      "desc": "LF closes to RF",
+      "align": "Facing DC",
+      "turn": ""
+     },
+     {
+      "desc": "LF closes to RF",
+      "align": "Facing DC",
+      "turn": ""
+     }
+    ],
+    "preceding": [],
+    "following": []
+   }
   },
   {
    "id": "waltz-33",
@@ -4144,7 +4574,36 @@
      "length": "5:51",
      "query": "slow waltz Running Cross Chasse"
     }
-   ]
+   ],
+   "floor": {
+    "title": "Running Cross Chasse",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "RF fwd",
+      "align": "Facing DW",
+      "turn": ""
+     },
+     {
+      "desc": "LF fwd",
+      "align": "Facing DW",
+      "turn": ""
+     },
+     {
+      "desc": "RF fwd",
+      "align": "Facing DW",
+      "turn": ""
+     },
+     {
+      "desc": "LF fwd",
+      "align": "Facing DW",
+      "turn": ""
+     }
+    ],
+    "preceding": [],
+    "following": []
+   }
   },
   {
    "id": "waltz-34",
@@ -4219,26 +4678,27 @@
    "floor": {
     "title": "Fallaway Reverse And Slip Pivot",
     "url": "https://www.dancecentral.info/ballroom/international-style/waltz/fallaway-reverse-and-slip-pivot",
+    "source": "checked",
     "steps": [
      {
       "desc": "LF fwd",
-      "align": "FDC",
-      "turn": "Start to turn L"
+      "align": "Facing DC",
+      "turn": ""
      },
      {
-      "desc": "RF back in Fallaway, R side leading",
-      "align": "BDW, Moving down LOD",
-      "turn": "1/4 between step 1-2"
+      "desc": "RF to side",
+      "align": "Backing DW, moving DC",
+      "turn": ""
      },
      {
-      "desc": "LF back in CBMP and Fallaway",
-      "align": "BLOD",
-      "turn": "1/8 between 2-3, body turns less"
+      "desc": "LF bwd",
+      "align": "Backing LOD",
+      "turn": ""
      },
      {
-      "desc": "RF back, LF held in CBMP",
-      "align": "To center, toe turned in, end facing LOD or DW",
-      "turn": "1/4 between 3-4, 1/4 or 1/8 on 4 (pivot)"
+      "desc": "RF bwd",
+      "align": "Facing LOD",
+      "turn": ""
      }
     ],
     "preceding": [
@@ -4295,7 +4755,13 @@
      {
       "name": "Contra Check"
      }
-    ]
+    ],
+    "turnRange": {
+     "min": -315,
+     "max": 0,
+     "note": "may be danced with less or no turn (when danced into a corner).",
+     "noteCs": "v rohu se může tančit s menším nebo žádným otočením"
+    }
    }
   },
   {
@@ -4364,26 +4830,22 @@
    "floor": {
     "title": "Hover Corte",
     "url": "https://www.dancecentral.info/ballroom/international-style/waltz/hover-corte",
+    "source": "checked",
     "steps": [
      {
-      "desc": "RF back",
-      "align": "BLOD",
-      "turn": "Start to turn L"
+      "desc": "RF bwd",
+      "align": "Backing LOD",
+      "turn": ""
      },
      {
-      "desc": "LF to side and slightly fwd",
-      "align": "Pointing DW",
-      "turn": "3/8 btwn 1-2, body turns less; Continue to turn body on step 2."
+      "desc": "LF to side",
+      "align": "Facing DW",
+      "turn": ""
      },
      {
-      "desc": "Transfer weight to RF side and slightly back",
-      "align": "Backing DC against LOD",
-      "turn": "-"
-     },
-     {
-      "desc": "LF back in CBMP",
-      "align": "Backing DC against LOD",
-      "turn": "-"
+      "desc": "RF",
+      "align": "Facing DW",
+      "turn": ""
      }
     ],
     "preceding": [
@@ -4552,6 +5014,30 @@
      "query": "slow waltz Running Finish"
     }
    ],
+   "floor": {
+    "title": "Running Finish",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "LF bwd",
+      "align": "Backing DW",
+      "turn": ""
+     },
+     {
+      "desc": "RF to side",
+      "align": "Facing LOD",
+      "turn": ""
+     },
+     {
+      "desc": "LF fwd",
+      "align": "Facing LOD",
+      "turn": ""
+     }
+    ],
+    "preceding": [],
+    "following": []
+   },
    "aliases": {
     "cs": [
      "běžící zakončení"
@@ -4658,6 +5144,41 @@
      "query": "slow waltz Progressive Chasse to L"
     }
    ],
+   "floor": {
+    "title": "Progressive Chasse To Left",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "RF bwd",
+      "align": "Backing DC",
+      "turn": ""
+     },
+     {
+      "desc": "LF to side",
+      "align": "Facing DW",
+      "turn": ""
+     },
+     {
+      "desc": "RF closes to LF",
+      "align": "Facing DW",
+      "turn": ""
+     },
+     {
+      "desc": "LF to side",
+      "align": "Facing DW",
+      "turn": ""
+     }
+    ],
+    "preceding": [],
+    "following": [],
+    "turnRange": {
+     "min": -90,
+     "max": 45,
+     "note": "may turn up to 3/8 to L.",
+     "noteCs": "může se otočit až o 3/8 vlevo"
+    }
+   },
    "aliases": {
     "en": [
      "Chasse to Left",
@@ -4906,7 +5427,26 @@
      "length": "2:45",
      "query": "ballroom tango Tap - Alternative Entries to PP"
     }
-   ]
+   ],
+   "floor": {
+    "title": "Tap - Alternative Entries To Pp",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "RF fwd",
+      "align": "Facing DW",
+      "turn": ""
+     },
+     {
+      "desc": "LF to side",
+      "align": "Facing DW",
+      "turn": ""
+     }
+    ],
+    "preceding": [],
+    "following": []
+   }
   },
   {
    "id": "tango-3",
@@ -4976,21 +5516,22 @@
    "floor": {
     "title": "Progressive Side Step",
     "url": "https://www.dancecentral.info/ballroom/international-style/tango/progressive-side-step",
+    "source": "checked",
     "steps": [
      {
-      "desc": "LF forward in CBMP",
-      "align": "According to Previous Figure",
-      "turn": "--"
+      "desc": "LF fwd",
+      "align": "Facing DW",
+      "turn": ""
      },
      {
-      "desc": "RF side and slightly back",
-      "align": "--",
-      "turn": "--"
+      "desc": "RF to side",
+      "align": "Facing LOD",
+      "turn": ""
      },
      {
-      "desc": "LF forward in CBMP",
-      "align": "--",
-      "turn": "--"
+      "desc": "LF fwd",
+      "align": "Facing LOD",
+      "turn": ""
      }
     ],
     "preceding": [
@@ -5086,7 +5627,13 @@
      {
       "name": "Contra Check"
      }
-    ]
+    ],
+    "turnRange": {
+     "min": -45,
+     "max": 90,
+     "note": "figure may be turned up to 3/8 to L.",
+     "noteCs": "figura se může otočit až o 3/8 vlevo"
+    }
    }
   },
   {
@@ -5156,26 +5703,27 @@
    "floor": {
     "title": "Brush Tap",
     "url": "https://www.dancecentral.info/ballroom/international-style/tango/brush-tap",
+    "source": "checked",
     "steps": [
      {
-      "desc": "LF fwd in CBMP",
-      "align": "DW",
-      "turn": "1/8 to L between 1-2"
+      "desc": "LF fwd",
+      "align": "Facing DW",
+      "turn": ""
      },
      {
       "desc": "RF to side",
-      "align": "",
-      "turn": "Facing LOD"
+      "align": "Facing LOD",
+      "turn": ""
      },
      {
-      "desc": "LF brushes to RF without weight",
-      "align": "",
-      "turn": "Facing LOD"
+      "desc": "LF",
+      "align": "Facing LOD",
+      "turn": ""
      },
      {
-      "desc": "LF placed to side small step without weight",
-      "align": "",
-      "turn": "Facing LOD"
+      "desc": "LF to side",
+      "align": "Facing LOD",
+      "turn": ""
      }
     ],
     "preceding": [
@@ -5296,7 +5844,13 @@
      {
       "name": "Contra Check"
      }
-    ]
+    ],
+    "turnRange": {
+     "min": -45,
+     "max": 45,
+     "note": "more turn may be made between steps 1 and 2, up to ¼ to L. Figure may be danced without turn.",
+     "noteCs": "mezi 1. a 2. krokem se lze otočit víc, až o 1/4 vlevo; figuru lze tančit i bez otočení"
+    }
    }
   },
   {
@@ -5350,16 +5904,17 @@
    "floor": {
     "title": "Progressive Link",
     "url": "https://www.dancecentral.info/ballroom/international-style/tango/progressive-link",
+    "source": "checked",
     "steps": [
      {
-      "desc": "LF forward in CBMP",
-      "align": "DW",
-      "turn": "No Turn"
+      "desc": "LF fwd",
+      "align": "Facing DW",
+      "turn": ""
      },
      {
-      "desc": "RF side to side and slightly back in PP",
+      "desc": "RF to side",
       "align": "Facing DW",
-      "turn": "1/4 to R"
+      "turn": ""
      }
     ],
     "preceding": [
@@ -5534,26 +6089,27 @@
    "floor": {
     "title": "Closed Promenade",
     "url": "https://www.dancecentral.info/ballroom/international-style/tango/closed-promenade",
+    "source": "checked",
     "steps": [
      {
-      "desc": "LF to side in PP",
-      "align": "",
-      "turn": "Along LOD, pointing DW"
+      "desc": "LF to side",
+      "align": "Facing DW, moving LOD",
+      "turn": ""
      },
      {
-      "desc": "RF forward and across in PP and CBMP",
-      "align": "",
-      "turn": "Along LOD, pointing DW"
+      "desc": "RF fwd",
+      "align": "Facing DW, moving LOD",
+      "turn": ""
      },
      {
-      "desc": "LF to side and slightly fwd",
-      "align": "",
-      "turn": "Pointing DW"
+      "desc": "LF to side",
+      "align": "Facing DW",
+      "turn": ""
      },
      {
-      "desc": "RF closes to LF slightly back",
-      "align": "",
-      "turn": "Facing DW"
+      "desc": "RF closes to LF",
+      "align": "Facing DW",
+      "turn": ""
      }
     ],
     "preceding": [
@@ -5752,26 +6308,27 @@
    "floor": {
     "title": "Open Promenade",
     "url": "https://www.dancecentral.info/ballroom/international-style/tango/open-promenade",
+    "source": "checked",
     "steps": [
      {
-      "desc": "LF to side in PP",
-      "align": "",
-      "turn": "Along LOD, pointing DW"
+      "desc": "LF to side",
+      "align": "Facing DW, moving LOD",
+      "turn": ""
      },
      {
-      "desc": "RF forward and across in PP and CBMP",
-      "align": "",
-      "turn": "Along LOD, pointing DW"
+      "desc": "RF fwd",
+      "align": "Facing DW, moving LOD",
+      "turn": ""
      },
      {
-      "desc": "LF to side and slightly fwd",
-      "align": "",
-      "turn": "Pointing DW"
+      "desc": "LF to side",
+      "align": "Facing W",
+      "turn": ""
      },
      {
-      "desc": "RF fwd in CBMP, OP",
-      "align": "",
-      "turn": "Between Wall and  DW"
+      "desc": "RF fwd",
+      "align": "Facing W",
+      "turn": ""
      }
     ],
     "preceding": [
@@ -5948,26 +6505,27 @@
    "floor": {
     "title": "Back Corte",
     "url": "https://www.dancecentral.info/ballroom/international-style/tango/back-corte",
+    "source": "checked",
     "steps": [
      {
-      "desc": "LF back, L side leading",
-      "align": "",
-      "turn": "Down new LOD"
+      "desc": "LF to side",
+      "align": "Facing W",
+      "turn": ""
      },
      {
-      "desc": "RF back in CBMP",
-      "align": "BDC",
-      "turn": "CBM"
+      "desc": "RF bwd",
+      "align": "Facing W",
+      "turn": ""
      },
      {
-      "desc": "LF to side and slightly fwd",
-      "align": "Pointing DW",
-      "turn": "1/4 to L btwn 2-3"
+      "desc": "LF to side",
+      "align": "Facing DW",
+      "turn": ""
      },
      {
-      "desc": "RF closes to LF slightly back",
-      "align": "",
-      "turn": "Facing DW"
+      "desc": "RF closes to LF",
+      "align": "Facing DW",
+      "turn": ""
      }
     ],
     "preceding": [
@@ -6164,36 +6722,37 @@
    "floor": {
     "title": "Basic Reverse Turn",
     "url": "https://www.dancecentral.info/ballroom/international-style/tango/basic-reverse-turn",
+    "source": "checked",
     "steps": [
      {
-      "desc": "LF fwd in CBMP",
-      "align": "DC",
-      "turn": "CBM"
+      "desc": "LF fwd",
+      "align": "Facing DC",
+      "turn": ""
      },
      {
-      "desc": "RF to side and slightly back",
-      "align": "BLOD",
-      "turn": "3/8 to L btwn 2-3"
+      "desc": "RF to side",
+      "align": "Backing DW",
+      "turn": ""
      },
      {
       "desc": "LF crosses in front of RF",
-      "align": "",
-      "turn": "BLOD"
+      "align": "Backing LOD",
+      "turn": ""
      },
      {
-      "desc": "RF back",
-      "align": "Down LOD",
-      "turn": "CBM"
+      "desc": "RF bwd",
+      "align": "Backing LOD",
+      "turn": ""
      },
      {
-      "desc": "LF to side and slightly fwd",
-      "align": "Pointing DW",
-      "turn": "3/8 to L btwn 5-6"
+      "desc": "LF to side",
+      "align": "Facing DW",
+      "turn": ""
      },
      {
-      "desc": "RF closes to LF slightly back",
-      "align": "",
-      "turn": "Facing DW"
+      "desc": "RF closes to LF",
+      "align": "Facing DW",
+      "turn": ""
      }
     ],
     "preceding": [
@@ -6366,36 +6925,37 @@
    "floor": {
     "title": "Open Reverse Turn, Lady Inline",
     "url": "https://www.dancecentral.info/ballroom/international-style/tango/open-reverse-turn-lady-inside",
+    "source": "checked",
     "steps": [
      {
-      "desc": "LF fwd in CBMP",
-      "align": "DC",
-      "turn": "CBM"
-     },
-     {
-      "desc": "RF to side and slightly back",
-      "align": "Backing LOD",
-      "turn": "3/8 to L"
-     },
-     {
-      "desc": "LF back L side leading",
-      "align": "Down LOD",
+      "desc": "LF fwd",
+      "align": "Facing DC",
       "turn": ""
      },
      {
-      "desc": "RF back in CBMP",
-      "align": "DC",
-      "turn": "1/8 to L"
+      "desc": "RF to side",
+      "align": "Backing DW",
+      "turn": ""
      },
      {
-      "desc": "LF to side and slightly back",
-      "align": "Pointing DW",
-      "turn": "1/4 to L"
+      "desc": "LF bwd",
+      "align": "Backing LOD",
+      "turn": ""
      },
      {
-      "desc": "RF closes to LF slightly back",
-      "align": "",
-      "turn": "Facing DW"
+      "desc": "RF bwd",
+      "align": "Backing LOD",
+      "turn": ""
+     },
+     {
+      "desc": "LF to side",
+      "align": "Facing DW",
+      "turn": ""
+     },
+     {
+      "desc": "RF closes to LF",
+      "align": "Facing DW",
+      "turn": ""
      }
     ],
     "preceding": [
@@ -6556,6 +7116,30 @@
      "query": "ballroom tango Rock on LF"
     }
    ],
+   "floor": {
+    "title": "Rock On Left Foot",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "LF bwd",
+      "align": "Backing DC, moving LOD",
+      "turn": ""
+     },
+     {
+      "desc": "RF fwd",
+      "align": "Backing DC, moving LOD",
+      "turn": ""
+     },
+     {
+      "desc": "LF bwd",
+      "align": "Backing DC, moving LOD",
+      "turn": ""
+     }
+    ],
+    "preceding": [],
+    "following": []
+   },
    "aliases": {
     "en": [
      "Left Foot Rock"
@@ -6613,6 +7197,30 @@
      "query": "ballroom tango Rock on RF"
     }
    ],
+   "floor": {
+    "title": "Rock On Right Foot",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "RF bwd",
+      "align": "Backing DC, moving LOD",
+      "turn": ""
+     },
+     {
+      "desc": "LF fwd",
+      "align": "Backing DC, moving LOD",
+      "turn": ""
+     },
+     {
+      "desc": "RF bwd",
+      "align": "Backing DC, moving LOD",
+      "turn": ""
+     }
+    ],
+    "preceding": [],
+    "following": []
+   },
    "aliases": {
     "en": [
      "Right Foot Rock"
@@ -6687,7 +7295,51 @@
      "length": "0:29",
      "query": "ballroom tango Natural Rock Turn"
     }
-   ]
+   ],
+   "floor": {
+    "title": "Natural Rock Turn",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "RF fwd",
+      "align": "Facing DW",
+      "turn": ""
+     },
+     {
+      "desc": "LF to side",
+      "align": "Facing W, moving DC",
+      "turn": ""
+     },
+     {
+      "desc": "RF fwd",
+      "align": "Backing DC, moving DW against LOD",
+      "turn": ""
+     },
+     {
+      "desc": "LF bwd",
+      "align": "Backing DC",
+      "turn": ""
+     },
+     {
+      "desc": "RF bwd",
+      "align": "Backing DC",
+      "turn": ""
+     },
+     {
+      "desc": "LF to side",
+      "align": "Facing DW",
+      "turn": ""
+     },
+     {
+      "desc": "RF closes to LF",
+      "align": "Facing DW",
+      "turn": ""
+     }
+    ],
+    "preceding": [],
+    "following": []
+   }
   },
   {
    "id": "tango-14",
@@ -6765,7 +7417,52 @@
      "length": "0:06",
      "query": "ballroom tango Natural Twist Turn from PP"
     }
-   ]
+   ],
+   "floor": {
+    "title": "Natural Twist Turn From Pp",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "LF to side",
+      "align": "Facing DW, moving LOD",
+      "turn": ""
+     },
+     {
+      "desc": "RF fwd",
+      "align": "Facing DW, moving LOD",
+      "turn": ""
+     },
+     {
+      "desc": "LF to side",
+      "align": "Backing DC",
+      "turn": ""
+     },
+     {
+      "desc": "RF crosses behind LF",
+      "align": "Backing LOD",
+      "turn": ""
+     },
+     {
+      "desc": "",
+      "align": "",
+      "turn": ""
+     },
+     {
+      "desc": "",
+      "align": "Facing DW",
+      "turn": ""
+     }
+    ],
+    "preceding": [],
+    "following": [],
+    "turnRange": {
+     "min": -90,
+     "max": 0,
+     "note": "it may end in Close Position. In this case the Man will turn 7/8 to R on steps 5-6. Follow with Rock on LF or Back Corte.",
+     "noteCs": "může končit v uzavřeném postavení – pán se pak na krocích 5–6 otočí o 7/8 vpravo"
+    }
+   }
   },
   {
    "id": "tango-15",
@@ -6831,7 +7528,36 @@
      "length": "0:18",
      "query": "ballroom tango Natural Turn from PP"
     }
-   ]
+   ],
+   "floor": {
+    "title": "Natural Turn From Pp",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "LF to side",
+      "align": "Facing DW, moving LOD",
+      "turn": ""
+     },
+     {
+      "desc": "RF fwd",
+      "align": "Facing DW, moving LOD",
+      "turn": ""
+     },
+     {
+      "desc": "LF to side",
+      "align": "Backing LOD",
+      "turn": ""
+     },
+     {
+      "desc": "RF fwd",
+      "align": "Facing DC",
+      "turn": ""
+     }
+    ],
+    "preceding": [],
+    "following": []
+   }
   },
   {
    "id": "tango-16",
@@ -6892,7 +7618,31 @@
      "length": "0:14",
      "query": "ballroom tango Promenade Link turned to R"
     }
-   ]
+   ],
+   "floor": {
+    "title": "Promenade Link Turned To Right",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "LF to side",
+      "align": "Facing DW, moving LOD",
+      "turn": ""
+     },
+     {
+      "desc": "RF fwd",
+      "align": "Facing DW, moving LOD",
+      "turn": ""
+     },
+     {
+      "desc": "LF to side",
+      "align": "Facing W",
+      "turn": ""
+     }
+    ],
+    "preceding": [],
+    "following": []
+   }
   },
   {
    "id": "tango-17",
@@ -6907,8 +7657,8 @@
    "wdsfRef": "16",
    "plamRef": "14",
    "syllabus": {
-    "section": "2.4.16",
-    "title": "PROMENADE LINK TURNED TO RIGHT",
+    "section": "2.4.17",
+    "title": "PROMENADE LINK TURNED TO LEFT",
     "start": "LF to side (Promenade Position)",
     "finish": "LF to side w/o weight (Closed Position)",
     "startCs": "Ln stranou (Promenade Position)",
@@ -6919,6 +7669,10 @@
      {
       "topic": "General",
       "text": "it may start from step 2."
+     },
+     {
+      "topic": "Couple Position/Quantity of Turn",
+      "text": "it may end in Promenade Position. In this case the Lady has no turn."
      }
     ],
     "variants": {
@@ -6927,6 +7681,12 @@
        "from": 2,
        "to": null,
        "text": "it may start from step 2."
+      }
+     ],
+     "finishes": [
+      {
+       "position": "Promenade Position",
+       "text": "it may end in Promenade Position."
       }
      ]
     }
@@ -6953,7 +7713,31 @@
      "length": "0:46",
      "query": "ballroom tango Promenade Link turned to L"
     }
-   ]
+   ],
+   "floor": {
+    "title": "Promenade Link Turned To Left",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "LF to side",
+      "align": "Facing DW, moving LOD",
+      "turn": ""
+     },
+     {
+      "desc": "RF fwd",
+      "align": "Facing DW, moving LOD",
+      "turn": ""
+     },
+     {
+      "desc": "LF to side",
+      "align": "Facing DW",
+      "turn": ""
+     }
+    ],
+    "preceding": [],
+    "following": []
+   }
   },
   {
    "id": "tango-18",
@@ -7022,21 +7806,27 @@
    "floor": {
     "title": "Back Open Promenade",
     "url": "https://www.dancecentral.info/ballroom/international-style/tango/back-open-promenade",
+    "source": "checked",
     "steps": [
      {
-      "desc": "LF to side in PP",
-      "align": "",
-      "turn": "Along LOD, pointing DW"
+      "desc": "LF to side",
+      "align": "Facing DW, moving LOD",
+      "turn": ""
      },
      {
-      "desc": "LF to side and slightly back",
+      "desc": "RF fwd",
+      "align": "Facing DW, moving LOD",
+      "turn": ""
+     },
+     {
+      "desc": "LF to side",
       "align": "Backing DC",
-      "turn": "1/8 to R"
+      "turn": ""
      },
      {
-      "desc": "RF back",
-      "align": "BDC",
-      "turn": "Body turns to L"
+      "desc": "RF bwd",
+      "align": "Backing DC",
+      "turn": ""
      }
     ],
     "preceding": [
@@ -7187,36 +7977,37 @@
    "floor": {
     "title": "Fallaway Promenade",
     "url": "https://www.dancecentral.info/ballroom/international-style/tango/fallaway-promenade",
+    "source": "checked",
     "steps": [
      {
-      "desc": "LF to side in PP",
-      "align": "Along LOD, pointing DW",
-      "turn": "1/4 to R between 1-4"
+      "desc": "LF to side",
+      "align": "Facing DW, moving LOD",
+      "turn": ""
      },
      {
-      "desc": "RF forward and across in PP and CBMP",
-      "align": "Along LOD, pointing DW",
-      "turn": "CBM"
+      "desc": "RF fwd",
+      "align": "Facing DW, moving LOD",
+      "turn": ""
      },
      {
-      "desc": "LF to side in PP",
-      "align": "",
-      "turn": "Backing almost DC"
+      "desc": "LF to side",
+      "align": "Backing LOD",
+      "turn": ""
      },
      {
-      "desc": "RF back in Fallaway R side leading",
-      "align": "To centre backing DC",
-      "turn": "1/8 to L between 4-5"
+      "desc": "RF bwd",
+      "align": "Backing LOD, moving DC",
+      "turn": ""
      },
      {
-      "desc": "LF back in CBMP and Fallaway",
-      "align": "",
-      "turn": "To center LF pointing to Wall"
+      "desc": "LF bwd",
+      "align": "Facing W, moving DC",
+      "turn": ""
      },
      {
-      "desc": "RF closes to LF slightly back in PP",
-      "align": "Facing wall",
-      "turn": "Body completes turn"
+      "desc": "RF closes to LF",
+      "align": "Facing W",
+      "turn": ""
      }
     ],
     "preceding": [
@@ -7356,7 +8147,31 @@
      "length": "2:06",
      "query": "ballroom tango Whisk"
     }
-   ]
+   ],
+   "floor": {
+    "title": "Whisk",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "LF fwd",
+      "align": "Backing DC",
+      "turn": ""
+     },
+     {
+      "desc": "RF to side",
+      "align": "Facing DW",
+      "turn": ""
+     },
+     {
+      "desc": "LF crosses behind RF",
+      "align": "Facing DW",
+      "turn": ""
+     }
+    ],
+    "preceding": [],
+    "following": []
+   }
   },
   {
    "id": "tango-21",
@@ -7404,7 +8219,31 @@
      "length": "0:31",
      "query": "ballroom tango Back Whisk"
     }
-   ]
+   ],
+   "floor": {
+    "title": "Back Whisk",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "LF bwd",
+      "align": "Facing DW",
+      "turn": ""
+     },
+     {
+      "desc": "RF bwd",
+      "align": "Facing DW",
+      "turn": ""
+     },
+     {
+      "desc": "LF crosses behind RF",
+      "align": "Facing DW",
+      "turn": ""
+     }
+    ],
+    "preceding": [],
+    "following": []
+   }
   },
   {
    "id": "tango-22",
@@ -7474,56 +8313,57 @@
    "floor": {
     "title": "Progressive Side Step Reverse Turn",
     "url": "https://www.dancecentral.info/ballroom/international-style/tango/progressive-side-step-reverse-turn",
+    "source": "checked",
     "steps": [
      {
-      "desc": "LF fwd in CBMP",
-      "align": "DC",
-      "turn": "CBM"
-     },
-     {
-      "desc": "RF to side and slightly back",
-      "align": "FDC against LOD",
-      "turn": "1/4 to L"
-     },
-     {
-      "desc": "LF fwd in CBMP",
-      "align": "Almost against LOD",
-      "turn": "1/8 to L"
-     },
-     {
-      "desc": "RF fwd R side leading",
+      "desc": "LF fwd",
       "align": "",
-      "turn": "Against LOD"
-     },
-     {
-      "desc": "Transfer weight back to LF, L side leading",
-      "align": "BLOD",
       "turn": ""
      },
      {
-      "desc": "Transfer weight fwd to RF, R side leading",
-      "align": "BLOD",
-      "turn": ""
-     },
-     {
-      "desc": "LF back small step L side leading",
-      "align": "Down LOD",
-      "turn": ""
-     },
-     {
-      "desc": "RF back in CBMP",
-      "align": "DC",
-      "turn": "1/8 to L"
-     },
-     {
-      "desc": "LF to side and slightly fwd",
-      "align": "Pointing DW",
-      "turn": "1/4 to L"
-     },
-     {
-      "desc": "RF closes to LF slightly back",
+      "desc": "RF to side",
       "align": "",
-      "turn": "Facing DW"
+      "turn": ""
+     },
+     {
+      "desc": "LF fwd",
+      "align": "",
+      "turn": ""
+     },
+     {
+      "desc": "RF fwd",
+      "align": "",
+      "turn": ""
+     },
+     {
+      "desc": "LF bwd",
+      "align": "",
+      "turn": ""
+     },
+     {
+      "desc": "RF fwd",
+      "align": "",
+      "turn": ""
+     },
+     {
+      "desc": "LF bwd",
+      "align": "",
+      "turn": ""
+     },
+     {
+      "desc": "RF bwd",
+      "align": "",
+      "turn": ""
+     },
+     {
+      "desc": "LF to side",
+      "align": "",
+      "turn": ""
+     },
+     {
+      "desc": "RF closes to LF",
+      "align": "",
+      "turn": ""
      }
     ],
     "preceding": [
@@ -7619,7 +8459,8 @@
      {
       "name": "Contra Check"
      }
-    ]
+    ],
+    "follows": true
    }
   },
   {
@@ -7677,26 +8518,27 @@
    "floor": {
     "title": "Four Step",
     "url": "https://www.dancecentral.info/ballroom/international-style/tango/four-step",
+    "source": "checked",
     "steps": [
      {
-      "desc": "LF fwd in CBMP",
-      "align": "To Wall",
-      "turn": "1/8 to L between 1-2"
+      "desc": "LF fwd",
+      "align": "Backing DC",
+      "turn": ""
      },
      {
-      "desc": "RF to side and slightly back",
-      "align": "",
-      "turn": "Backing DC against LOD"
+      "desc": "RF to side",
+      "align": "Facing DW",
+      "turn": ""
      },
      {
-      "desc": "LF back in CBMP",
-      "align": "",
-      "turn": "Backing DC against LOD"
+      "desc": "LF bwd",
+      "align": "Facing DW",
+      "turn": ""
      },
      {
-      "desc": "RF closes to LF slightly back in PP",
-      "align": "",
-      "turn": "Facing DW"
+      "desc": "RF closes to LF",
+      "align": "Facing DW",
+      "turn": ""
      }
     ],
     "preceding": [
@@ -7841,6 +8683,35 @@
      "query": "ballroom tango Fallaway Four Step"
     }
    ],
+   "floor": {
+    "title": "Fallaway Four Step",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "LF fwd",
+      "align": "Facing LOD",
+      "turn": ""
+     },
+     {
+      "desc": "RF to side",
+      "align": "Facing DC, moving W",
+      "turn": ""
+     },
+     {
+      "desc": "LF bwd",
+      "align": "Facing DC, moving W",
+      "turn": ""
+     },
+     {
+      "desc": "RF closes to LF",
+      "align": "Facing DC",
+      "turn": ""
+     }
+    ],
+    "preceding": [],
+    "following": []
+   },
    "aliases": {
     "en": [
      "Fallaway Fourstep"
@@ -7905,7 +8776,31 @@
      "length": "3:03",
      "query": "ballroom tango Outside Swivel - method 1: after Open Finish and Turning to R"
     }
-   ]
+   ],
+   "floor": {
+    "title": "Outside Swivel Method 1 - After Open Finish And Turning To R",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "LF bwd",
+      "align": "Facing W",
+      "turn": ""
+     },
+     {
+      "desc": "RF fwd",
+      "align": "Facing DW, moving LOD",
+      "turn": ""
+     },
+     {
+      "desc": "LF to side",
+      "align": "Facing DW",
+      "turn": ""
+     }
+    ],
+    "preceding": [],
+    "following": []
+   }
   },
   {
    "id": "tango-26",
@@ -7965,7 +8860,36 @@
      "length": "0:12",
      "query": "ballroom tango Outside Swivel - method 2: Turning to L"
     }
-   ]
+   ],
+   "floor": {
+    "title": "Outside Swivel Method 2 - After Open Finish And Turning To Left",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "LF bwd",
+      "align": "Facing LOD",
+      "turn": ""
+     },
+     {
+      "desc": "RF fwd",
+      "align": "Facing DC, moving DC",
+      "turn": ""
+     },
+     {
+      "desc": "LF to side",
+      "align": "Facing DC",
+      "turn": ""
+     }
+    ],
+    "preceding": [],
+    "following": []
+   },
+   "aliases": {
+    "en": [
+     "Outside Swivel Method 2 - After Open Finish And Turning To Left"
+    ]
+   }
   },
   {
    "id": "tango-27",
@@ -8029,7 +8953,47 @@
      "length": "0:19",
      "query": "ballroom tango Outside Swivel - method 3: Reverse Outside Swivel"
     }
-   ]
+   ],
+   "floor": {
+    "title": "Outside Swivel Method 3 - Reverse Outside Swivel",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "LF fwd",
+      "align": "Facing DC",
+      "turn": ""
+     },
+     {
+      "desc": "RF to side",
+      "align": "Backing DW",
+      "turn": ""
+     },
+     {
+      "desc": "LF bwd",
+      "align": "Facing W",
+      "turn": ""
+     },
+     {
+      "desc": "RF fwd",
+      "align": "Facing DW, moving DW",
+      "turn": ""
+     },
+     {
+      "desc": "LF to side",
+      "align": "Facing DW",
+      "turn": ""
+     }
+    ],
+    "preceding": [],
+    "following": [],
+    "turnRange": {
+     "min": -90,
+     "max": 0,
+     "note": "may be underturned when danced into a corner.",
+     "noteCs": "do rohu může být podtočená"
+    }
+   }
   },
   {
    "id": "tango-28",
@@ -8087,16 +9051,27 @@
    "floor": {
     "title": "Four Step Change",
     "url": "https://www.dancecentral.info/ballroom/international-style/tango/four-step-change",
+    "source": "checked",
     "steps": [
      {
-      "desc": "LF fwd in CBMP",
-      "align": "DW",
-      "turn": "1/4 to L between 1-2"
+      "desc": "LF fwd",
+      "align": "Facing DW",
+      "turn": ""
      },
      {
-      "desc": "RF to side and slightly back",
-      "align": "",
-      "turn": "Facing DC"
+      "desc": "RF to side",
+      "align": "Facing DC",
+      "turn": ""
+     },
+     {
+      "desc": "LF closes to RF",
+      "align": "Facing DC",
+      "turn": ""
+     },
+     {
+      "desc": "RF bwd",
+      "align": "Facing DC",
+      "turn": ""
      }
     ],
     "preceding": [
@@ -8266,31 +9241,32 @@
    "floor": {
     "title": "Five Step",
     "url": "https://www.dancecentral.info/ballroom/international-style/tango/five-step",
+    "source": "checked",
     "steps": [
      {
-      "desc": "LF fwd in CBMP",
-      "align": "DW",
-      "turn": "1/4 to L between step 1-2."
+      "desc": "LF fwd",
+      "align": "Facing DC",
+      "turn": ""
      },
      {
-      "desc": "RF to sdie and slightly back",
-      "align": "",
-      "turn": "BDW against LOD"
+      "desc": "RF to side",
+      "align": "Backing LOD",
+      "turn": ""
      },
      {
-      "desc": "LF back in CBMP",
-      "align": "",
-      "turn": "DW against LOD"
+      "desc": "LF bwd",
+      "align": "Backing DC",
+      "turn": ""
      },
      {
-      "desc": "RF back and slightly rightwards",
-      "align": "",
-      "turn": "DW against LOD"
+      "desc": "RF bwd",
+      "align": "Backing DC",
+      "turn": ""
      },
      {
-      "desc": "LF placed to side w/o weight in PP",
-      "align": "Facing DW of new LOD",
-      "turn": "Body turns to R"
+      "desc": "LF to side",
+      "align": "Facing DW",
+      "turn": ""
      }
     ],
     "preceding": [
@@ -8376,7 +9352,13 @@
       "name": "Fallaway Promenade",
       "id": "tango-19"
      }
-    ]
+    ],
+    "turnRange": {
+     "min": -90,
+     "max": 0,
+     "note": "may be underturned when danced into a corner.",
+     "noteCs": "do rohu může být podtočená"
+    }
    }
   },
   {
@@ -8436,7 +9418,47 @@
      "length": "0:45",
      "query": "ballroom tango Mini Five Step"
     }
-   ]
+   ],
+   "floor": {
+    "title": "Mini Five Step",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "LF fwd",
+      "align": "Facing DW",
+      "turn": ""
+     },
+     {
+      "desc": "RF to side",
+      "align": "Facing DC",
+      "turn": ""
+     },
+     {
+      "desc": "LF bwd",
+      "align": "Facing DC",
+      "turn": ""
+     },
+     {
+      "desc": "RF bwd",
+      "align": "Facing DC",
+      "turn": ""
+     },
+     {
+      "desc": "LF to side",
+      "align": "Facing DC",
+      "turn": ""
+     }
+    ],
+    "preceding": [],
+    "following": [],
+    "turnRange": {
+     "min": -90,
+     "max": 0,
+     "note": "figure can be danced also without turn starting DC and continuing with the same alignments described in the chart.",
+     "noteCs": "lze tančit i bez otočení (začátek DC, dál stejná směrování jako v grafu)"
+    }
+   }
   },
   {
    "id": "tango-31",
@@ -8501,7 +9523,46 @@
      "length": "0:19",
      "query": "ballroom tango Quick Reverse Turn"
     }
-   ]
+   ],
+   "floor": {
+    "title": "Quick Reverse Turn",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "LF fwd",
+      "align": "Facing DC",
+      "turn": ""
+     },
+     {
+      "desc": "RF to side",
+      "align": "Backing DW",
+      "turn": ""
+     },
+     {
+      "desc": "LF crosses in front of RF",
+      "align": "Backing LOD",
+      "turn": ""
+     },
+     {
+      "desc": "RF bwd",
+      "align": "Backing LOD",
+      "turn": ""
+     },
+     {
+      "desc": "LF to side",
+      "align": "Facing DW",
+      "turn": ""
+     },
+     {
+      "desc": "RF closes to LF",
+      "align": "Facing DW",
+      "turn": ""
+     }
+    ],
+    "preceding": [],
+    "following": []
+   }
   },
   {
    "id": "tango-32",
@@ -8561,26 +9622,27 @@
    "floor": {
     "title": "Fallaway Reverse and Slip Pivot - Tango",
     "url": "https://www.dancecentral.info/ballroom/international-style/tango/fallaway-reverse-and-slip-pivot",
+    "source": "checked",
     "steps": [
      {
-      "desc": "LF fwd in CBMP",
-      "align": "DC",
-      "turn": "CBM"
+      "desc": "LF fwd",
+      "align": "Facing DC",
+      "turn": ""
      },
      {
-      "desc": "RF back in Fallaway, R side leading",
-      "align": "",
-      "turn": "BDW, moving down LOD"
+      "desc": "RF to side",
+      "align": "Backing DW, moving DC",
+      "turn": ""
      },
      {
-      "desc": "LF back in CBMP and Fallaway",
-      "align": "",
-      "turn": "Down LOD"
+      "desc": "LF bwd",
+      "align": "Backing LOD",
+      "turn": ""
      },
      {
-      "desc": "RF back, LF held in CBMP",
-      "align": "To center, toe turned in, end LOD or DW",
-      "turn": "CBM"
+      "desc": "RF bwd",
+      "align": "Facing LOD",
+      "turn": ""
      }
     ],
     "preceding": [
@@ -8679,7 +9741,13 @@
       "name": "Contra Check",
       "note": "if ended in DW"
      }
-    ]
+    ],
+    "turnRange": {
+     "min": -135,
+     "max": 0,
+     "note": "when danced into a corner there will be no turn on step 4 (Pivot). The Lady’s quantity of turn will change accordingly.",
+     "noteCs": "do rohu bez otočení na 4. kroku (pivot)"
+    }
    }
   },
   {
@@ -8728,7 +9796,31 @@
      "length": "11:15",
      "query": "ballroom tango Telemark to PP"
     }
-   ]
+   ],
+   "floor": {
+    "title": "Telemark To Pp",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "LF fwd",
+      "align": "Facing DC",
+      "turn": ""
+     },
+     {
+      "desc": "RF to side",
+      "align": "Backing DW",
+      "turn": ""
+     },
+     {
+      "desc": "LF to side",
+      "align": "Facing DW",
+      "turn": ""
+     }
+    ],
+    "preceding": [],
+    "following": []
+   }
   },
   {
    "id": "tango-34",
@@ -8792,7 +9884,36 @@
      "length": "2:11",
      "query": "ballroom tango Open Natural Turn"
     }
-   ]
+   ],
+   "floor": {
+    "title": "Open Natural Turn",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "LF to side",
+      "align": "Facing W, moving DW",
+      "turn": ""
+     },
+     {
+      "desc": "RF fwd",
+      "align": "Facing W, moving DW",
+      "turn": ""
+     },
+     {
+      "desc": "LF to side",
+      "align": "Backing LOD",
+      "turn": ""
+     },
+     {
+      "desc": "RF bwd",
+      "align": "Backing DW",
+      "turn": ""
+     }
+    ],
+    "preceding": [],
+    "following": []
+   }
   },
   {
    "id": "tango-35",
@@ -8848,7 +9969,37 @@
      "length": "0:24",
      "query": "ballroom tango Outside Spin"
     }
-   ]
+   ],
+   "floor": {
+    "title": "Outside Spin",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "LF bwd",
+      "align": "Backing DW",
+      "turn": ""
+     },
+     {
+      "desc": "RF fwd",
+      "align": "Facing LOD",
+      "turn": ""
+     },
+     {
+      "desc": "LF to side",
+      "align": "Facing DC",
+      "turn": ""
+     }
+    ],
+    "preceding": [],
+    "following": [],
+    "turnRange": {
+     "min": 0,
+     "max": 180,
+     "note": "when the figure is underturned (no pivot on step 3) the following step will be taken with RF Bwd (Man) and LF Fwd (Lady).",
+     "noteCs": "může být podtočená (bez pivotu na 3. kroku), další krok pak Pn vzad"
+    }
+   }
   },
   {
    "id": "tango-36",
@@ -8911,36 +10062,32 @@
    "floor": {
     "title": "Natural Twist Turn - Tango",
     "url": "https://www.dancecentral.info/ballroom/international-style/tango/natural-twist-turn",
+    "source": "checked",
     "steps": [
      {
-      "desc": "LF to side in PP",
-      "align": "",
-      "turn": "Along LOD Pointing DW"
-     },
-     {
-      "desc": "RF fwd and across in PP and CBMP",
-      "align": "Along LOD Pointing DW",
-      "turn": "CBM"
+      "desc": "RF fwd",
+      "align": "Facing LOD",
+      "turn": ""
      },
      {
       "desc": "LF to side",
-      "align": "",
-      "turn": "Backing DC"
+      "align": "Backing DC",
+      "turn": ""
      },
      {
       "desc": "RF crosses behind LF",
-      "align": "",
-      "turn": "Backing LOD"
+      "align": "Backing LOD",
+      "turn": ""
      },
      {
-      "desc": "Start to twist R allowing feet to uncross",
+      "desc": "",
       "align": "",
-      "turn": "Toward the alignment of 6"
+      "turn": ""
      },
      {
-      "desc": "Feet almost closed weight on RF in PP",
-      "align": "",
-      "turn": "Facing DW"
+      "desc": "",
+      "align": "Facing DC",
+      "turn": ""
      }
     ],
     "preceding": [
@@ -8984,7 +10131,13 @@
      {
       "name": "LF Rock"
      }
-    ]
+    ],
+    "turnRange": {
+     "min": -90,
+     "max": 0,
+     "note": "it may end in Closed Position. The Man will turn 5/8 to R between 5 and 6, to end backing DC against LOD. Follow with Back Corte.",
+     "noteCs": "může končit v uzavřeném postavení – pán se mezi 5. a 6. krokem otočí o 5/8 vpravo (konec zády DC proti LOD)"
+    }
    }
   },
   {
@@ -9053,36 +10206,37 @@
    "floor": {
     "title": "The Chase",
     "url": "https://www.dancecentral.info/ballroom/international-style/tango/the-chase",
+    "source": "checked",
     "steps": [
      {
-      "desc": "LF to side in PP",
-      "align": "",
-      "turn": "Along LOD pointing DW"
-     },
-     {
-      "desc": "RF fwd and across in PP and CBMP",
-      "align": "Along LOD pointing DW",
-      "turn": "3/4 to R between steps 2-6"
-     },
-     {
-      "desc": "LF to side and slightly fwd",
-      "align": "",
-      "turn": "Facing wall."
-     },
-     {
-      "desc": "RF fwd in CBMP, OP",
-      "align": "Almost against LOD",
-      "turn": "CBM"
-     },
-     {
-      "desc": "LF back in CBMP",
-      "align": "Almost DW",
+      "desc": "LF to side",
+      "align": "Facing DW, moving LOD",
       "turn": ""
      },
      {
-      "desc": "RF to side, small step in PP",
-      "align": "",
-      "turn": "Facing DC"
+      "desc": "RF fwd",
+      "align": "Facing DW, moving LOD",
+      "turn": ""
+     },
+     {
+      "desc": "LF to side",
+      "align": "Facing W",
+      "turn": ""
+     },
+     {
+      "desc": "RF fwd",
+      "align": "Backing LOD",
+      "turn": ""
+     },
+     {
+      "desc": "LF bwd",
+      "align": "Backing DW",
+      "turn": ""
+     },
+     {
+      "desc": "RF to side",
+      "align": "Facing C",
+      "turn": ""
      }
     ],
     "preceding": [
@@ -9188,7 +10342,56 @@
      "length": "4:28",
      "query": "ballroom tango Chase Alternative Ending: Chase, Chasse"
     }
-   ]
+   ],
+   "floor": {
+    "title": "Chase Alternative Endings - Chase Chasse",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "LF to side",
+      "align": "Facing DW, moving LOD",
+      "turn": ""
+     },
+     {
+      "desc": "RF fwd",
+      "align": "Facing DW, moving LOD",
+      "turn": ""
+     },
+     {
+      "desc": "LF to side",
+      "align": "Facing W",
+      "turn": ""
+     },
+     {
+      "desc": "RF fwd",
+      "align": "Backing LOD",
+      "turn": ""
+     },
+     {
+      "desc": "LF bwd",
+      "align": "Backing DW",
+      "turn": ""
+     },
+     {
+      "desc": "RF to side",
+      "align": "Facing C",
+      "turn": ""
+     },
+     {
+      "desc": "LF closes to RF",
+      "align": "Facing C",
+      "turn": ""
+     },
+     {
+      "desc": "RF to side",
+      "align": "Facing C",
+      "turn": ""
+     }
+    ],
+    "preceding": [],
+    "following": []
+   }
   },
   {
    "id": "tango-39",
@@ -9240,7 +10443,31 @@
      "length": "2:39",
      "query": "ballroom tango Chase Alternative Ending - method 1: Whisk, fwd step to PP"
     }
-   ]
+   ],
+   "floor": {
+    "title": "Chase Alternative Endings - Method 1 Whisk Fwd Step To Pp",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "LF crosses behind RF",
+      "align": "Facing C",
+      "turn": ""
+     },
+     {
+      "desc": "RF fwd",
+      "align": "Facing C, moving DC against LOD",
+      "turn": ""
+     },
+     {
+      "desc": "LF to side",
+      "align": "Facing C",
+      "turn": ""
+     }
+    ],
+    "preceding": [],
+    "following": []
+   }
   },
   {
    "id": "tango-40",
@@ -9292,7 +10519,31 @@
      "length": "2:13",
      "query": "ballroom tango Chase Alternative Ending - method 2: Whisk, Promenade Link"
     }
-   ]
+   ],
+   "floor": {
+    "title": "Chase Alternative Endings - Method 2 Whisk Promenade Link",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "LF crosses behind RF",
+      "align": "Facing C",
+      "turn": ""
+     },
+     {
+      "desc": "RF fwd",
+      "align": "Backing DW, moving DC against LOD",
+      "turn": ""
+     },
+     {
+      "desc": "LF to side",
+      "align": "Backing DW",
+      "turn": ""
+     }
+    ],
+    "preceding": [],
+    "following": []
+   }
   },
   {
    "id": "tango-41",
@@ -9344,7 +10595,31 @@
      "length": "0:23",
      "query": "ballroom tango Chase Alternative Ending - method 3: Whisk, close step to PP"
     }
-   ]
+   ],
+   "floor": {
+    "title": "Chase Alternative Endings - Method 3 Whisk Close Step To Pp",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "RF crosses behind LF",
+      "align": "Backing LOD",
+      "turn": ""
+     },
+     {
+      "desc": "LF closes to RF",
+      "align": "Backing LOD",
+      "turn": ""
+     },
+     {
+      "desc": "RF to side",
+      "align": "Backing LOD",
+      "turn": ""
+     }
+    ],
+    "preceding": [],
+    "following": []
+   }
   },
   {
    "id": "tango-42",
@@ -9391,7 +10666,26 @@
      "length": "0:21",
      "query": "ballroom tango Chase Alternative Ending - method 4: Progressive Link"
     }
-   ]
+   ],
+   "floor": {
+    "title": "Chase Alternative Endings - Method 4 Progressive Link",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "LF fwd",
+      "align": "Facing DC",
+      "turn": ""
+     },
+     {
+      "desc": "RF to side",
+      "align": "Facing DC",
+      "turn": ""
+     }
+    ],
+    "preceding": [],
+    "following": []
+   }
   },
   {
    "id": "tango-43",
@@ -9443,7 +10737,21 @@
      "length": "0:14",
      "query": "ballroom tango Reverse Pivot"
     }
-   ]
+   ],
+   "floor": {
+    "title": "Reverse Pivot",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "RF bwd",
+      "align": "Facing LOD",
+      "turn": ""
+     }
+    ],
+    "preceding": [],
+    "following": []
+   }
   },
   {
    "id": "tango-44",
@@ -9565,36 +10873,37 @@
    "floor": {
     "title": "Natural Turn - V Waltz",
     "url": "https://www.dancecentral.info/ballroom/international-style/viennese-waltz/natural-turn",
+    "source": "checked",
     "steps": [
      {
       "desc": "RF fwd",
-      "align": "LOD",
-      "turn": "1/8 to R btwn preceding step and 1"
+      "align": "Facing LOD",
+      "turn": ""
      },
      {
       "desc": "LF to side",
-      "align": "Back Center",
-      "turn": "1/4 to R btwn 1 and 2"
+      "align": "Facing W",
+      "turn": ""
      },
      {
       "desc": "RF closes to LF",
-      "align": "BDC",
-      "turn": "1/8 to R btwn 2 and 3"
+      "align": "Backing DC",
+      "turn": ""
      },
      {
-      "desc": "LF back and slightly to side",
-      "align": "BLOD",
-      "turn": "1/8 to R btwn 3 and 4"
+      "desc": "LF bwd",
+      "align": "Backing LOD",
+      "turn": ""
      },
      {
       "desc": "RF to side",
-      "align": "Pointing DC",
-      "turn": "3/8 to R btwn 4 and 5, body turns less"
+      "align": "Facing DC",
+      "turn": ""
      },
      {
       "desc": "LF closes to RF",
-      "align": "FDC",
-      "turn": "body completes turn"
+      "align": "Facing DC",
+      "turn": ""
      }
     ],
     "preceding": [
@@ -9713,36 +11022,37 @@
    "floor": {
     "title": "Reverse Turn - V Waltz",
     "url": "https://www.dancecentral.info/ballroom/international-style/viennese-waltz/reverse-turn",
+    "source": "checked",
     "steps": [
      {
       "desc": "LF fwd",
       "align": "Facing LOD",
-      "turn": "1/8 to L between preceding step and 1"
+      "turn": ""
      },
      {
-      "desc": "RF to side and slightly back",
-      "align": "Backing Wall",
-      "turn": "1/4 L btwn 1 and 2"
+      "desc": "RF to side",
+      "align": "Facing C",
+      "turn": ""
      },
      {
       "desc": "LF crosses in front of RF",
-      "align": "BDW",
-      "turn": "1/8 L btwn 2 and 3"
+      "align": "Backing DW",
+      "turn": ""
      },
      {
-      "desc": "RF back and slightly to side",
-      "align": "BLOD",
-      "turn": "1/8 L btwn 3 and 4"
+      "desc": "RF bwd",
+      "align": "Backing LOD",
+      "turn": ""
      },
      {
       "desc": "LF to side",
-      "align": "Pointing DW",
-      "turn": "3/8 L btwn 4 and 5, body turns less"
+      "align": "Facing DW",
+      "turn": ""
      },
      {
       "desc": "RF closes to LF",
-      "align": "FDW",
-      "turn": "body completes turn"
+      "align": "Facing DW",
+      "turn": ""
      }
     ],
     "preceding": [
@@ -9840,6 +11150,30 @@
      "query": "viennese waltz RF Forward Change Step - Natural to Reverse"
     }
    ],
+   "floor": {
+    "title": "Rf Forward Change Step Natural To Reverse",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "RF fwd",
+      "align": "Facing LOD",
+      "turn": ""
+     },
+     {
+      "desc": "LF fwd",
+      "align": "Facing DW",
+      "turn": ""
+     },
+     {
+      "desc": "RF closes to LF",
+      "align": "Facing DW",
+      "turn": ""
+     }
+    ],
+    "preceding": [],
+    "following": []
+   },
    "aliases": {
     "en": [
      "Forward Change",
@@ -9897,6 +11231,30 @@
      "query": "viennese waltz LF Forward Change Step - Reverse to Natural"
     }
    ],
+   "floor": {
+    "title": "Lf Forward Change Step Reverse To Natural",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "LF fwd",
+      "align": "Facing LOD",
+      "turn": ""
+     },
+     {
+      "desc": "RF fwd",
+      "align": "Facing DC",
+      "turn": ""
+     },
+     {
+      "desc": "LF closes to RF",
+      "align": "Facing DC",
+      "turn": ""
+     }
+    ],
+    "preceding": [],
+    "following": []
+   },
    "aliases": {
     "en": [
      "Forward Change",
@@ -9954,6 +11312,30 @@
      "query": "viennese waltz LF Backward Change Step - Natural to Reverse"
     }
    ],
+   "floor": {
+    "title": "Lf Backward Change Step Natural To Reverse",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "LF bwd",
+      "align": "Backing LOD",
+      "turn": ""
+     },
+     {
+      "desc": "RF bwd",
+      "align": "Backing DW",
+      "turn": ""
+     },
+     {
+      "desc": "LF closes to RF",
+      "align": "Backing DW",
+      "turn": ""
+     }
+    ],
+    "preceding": [],
+    "following": []
+   },
    "aliases": {
     "en": [
      "Backward Change"
@@ -10015,6 +11397,25 @@
      "query": "viennese waltz RF Backward Change Step - Reverse to Natural"
     }
    ],
+   "floor": {
+    "title": "Rf Backward Change Step Reverse To Natural",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "LF bwd",
+      "align": "Backing DC",
+      "turn": ""
+     },
+     {
+      "desc": "RF closes to LF",
+      "align": "Backing DC",
+      "turn": ""
+     }
+    ],
+    "preceding": [],
+    "following": []
+   },
    "aliases": {
     "en": [
      "Backward Change"
@@ -11259,7 +12660,13 @@
       "name": "Curved Feather to Back Feather",
       "id": "slowfox-36"
      }
-    ]
+    ],
+    "turnRange": {
+     "min": 0,
+     "max": 90,
+     "note": "It may turn ½ to L when danced into a corner.",
+     "noteCs": "do rohu se může otočit o 1/2 vlevo"
+    }
    }
   },
   {
@@ -14162,7 +15569,13 @@
       "name": "Open Telemark and Feather Ending",
       "note": "At corner"
      }
-    ]
+    ],
+    "turnRange": {
+     "min": -45,
+     "max": 0,
+     "note": "The figure may be danced without turn on step 4, when danced into a corner.",
+     "noteCs": "do rohu lze tančit bez otočení na 4. kroku"
+    }
    }
   },
   {
@@ -14770,36 +16183,22 @@
    "floor": {
     "title": "Natural Turn",
     "url": "https://www.dancecentral.info/ballroom/international-style/quickstep/natural-turn",
+    "source": "checked",
     "steps": [
      {
       "desc": "RF fwd",
-      "align": "FDW",
-      "turn": "Start to turn R"
+      "align": "Facing DW",
+      "turn": ""
      },
      {
-      "desc": "LF side",
-      "align": "BDC",
-      "turn": "1/4 to R between 1-2"
+      "desc": "LF to side",
+      "align": "Backing DC",
+      "turn": ""
      },
      {
       "desc": "RF closes to LF",
-      "align": "BLOD",
-      "turn": "1/8 to R between 2-3"
-     },
-     {
-      "desc": "LF back",
-      "align": "BLOD",
-      "turn": "cont to turn R"
-     },
-     {
-      "desc": "RF to side, small step (heel pull)",
-      "align": "FDW of new LOD",
-      "turn": "3/8 between 4-5"
-     },
-     {
-      "desc": "LF fwd",
-      "align": "FDW",
-      "turn": "--"
+      "align": "Backing LOD",
+      "turn": ""
      }
     ],
     "preceding": [
@@ -14971,21 +16370,22 @@
    "floor": {
     "title": "Chasse Reverse Turn",
     "url": "https://www.dancecentral.info/ballroom/international-style/quickstep/chasse-reverse-turn",
+    "source": "checked",
     "steps": [
      {
       "desc": "LF fwd",
-      "align": "FDC",
-      "turn": "Starts to turn L"
+      "align": "Facing DC",
+      "turn": ""
      },
      {
       "desc": "RF to side",
-      "align": "BDW",
-      "turn": "1/4 between 1-2"
+      "align": "Backing DW",
+      "turn": ""
      },
      {
       "desc": "LF closes to RF",
-      "align": "BLOD",
-      "turn": "1/8 between 2-3"
+      "align": "Backing LOD",
+      "turn": ""
      }
     ],
     "preceding": [
@@ -15055,12 +16455,12 @@
    "wdsfRef": "4",
    "plamRef": "19",
    "syllabus": {
-    "section": "2.3.4",
-    "title": "PROGRESSIVE CHASSE TO L",
-    "start": "RF back and slightly to side (Closed Position)",
-    "finish": "LF to side and slightly fwd (Closed Position)",
-    "startCs": "Pn back a mírně stranou (Closed Position)",
-    "finishCs": "Ln stranou a mírně vpřed (Closed Position)",
+    "section": "2.3.3",
+    "title": "PROGRESSIVE CHASSE TO R",
+    "start": "LF fwd and slightly to side (Closed Position)",
+    "finish": "RF to side and slightly Bwd (Closed Position)",
+    "startCs": "Ln vpřed a mírně stranou (Closed Position)",
+    "finishCs": "Pn stranou a mírně vzad (Closed Position)",
     "timing": "SQQS",
     "altTimings": [],
     "notes": [],
@@ -15092,31 +16492,27 @@
    "floor": {
     "title": "Progressive Chassé to Right",
     "url": "https://www.dancecentral.info/ballroom/international-style/quickstep/progressive-chasse-to-r",
+    "source": "checked",
     "steps": [
      {
       "desc": "LF fwd",
       "align": "Facing DC",
-      "turn": "Start to turn L"
+      "turn": ""
      },
      {
       "desc": "RF to side",
-      "align": "Backing Wall",
-      "turn": "1/8 between 1 and 2"
+      "align": "Facing C",
+      "turn": ""
      },
      {
       "desc": "LF closes to RF",
       "align": "Backing DW",
-      "turn": "1/8 between 2 and 3, body turns less"
+      "turn": ""
      },
      {
-      "desc": "RF to side and slightly back",
+      "desc": "RF to side",
       "align": "Backing DW",
-      "turn": "--"
-     },
-     {
-      "desc": "LF back in CBMP",
-      "align": "Backing DW",
-      "turn": "--"
+      "turn": ""
      }
     ],
     "preceding": [
@@ -15240,31 +16636,27 @@
    "floor": {
     "title": "Progressive Chasse",
     "url": "https://www.dancecentral.info/ballroom/international-style/quickstep/progressive-chasse",
+    "source": "checked",
     "steps": [
      {
-      "desc": "RF back",
-      "align": "BDC",
-      "turn": "start to turn L"
+      "desc": "RF bwd",
+      "align": "Backing DC",
+      "turn": ""
      },
      {
       "desc": "LF to side",
-      "align": "PDW",
-      "turn": "1/4 between 1-2,  body turns less"
+      "align": "Facing DW",
+      "turn": ""
      },
      {
       "desc": "RF closes to LF",
-      "align": "DW",
-      "turn": "slight body turn"
+      "align": "Facing DW",
+      "turn": ""
      },
      {
-      "desc": "LF to side/slightly fwd",
-      "align": "DW",
-      "turn": "--"
-     },
-     {
-      "desc": "RF fwd in CBMP, OP",
-      "align": "DW",
-      "turn": "--"
+      "desc": "LF to side",
+      "align": "Facing DW",
+      "turn": ""
      }
     ],
     "preceding": [
@@ -15392,31 +16784,22 @@
    "floor": {
     "title": "Cross Chasse",
     "url": "https://www.dancecentral.info/ballroom/international-style/quickstep/cross-chasse",
+    "source": "checked",
     "steps": [
      {
-      "desc": "RF fwd, OP",
-      "align": "",
-      "turn": "FDW"
-     },
-     {
       "desc": "LF fwd",
-      "align": "FDW",
-      "turn": "--"
+      "align": "Facing DW",
+      "turn": ""
      },
      {
       "desc": "RF to side",
-      "align": "FDW",
-      "turn": "--"
+      "align": "Facing DW",
+      "turn": ""
      },
      {
       "desc": "LF closes to RF",
-      "align": "FDW",
-      "turn": "--"
-     },
-     {
-      "desc": "RF fwd in CBMP, OP",
-      "align": "FDW",
-      "turn": "--"
+      "align": "Facing DW",
+      "turn": ""
      }
     ],
     "preceding": [
@@ -15536,26 +16919,27 @@
    "floor": {
     "title": "Quarter Turn to Right",
     "url": "https://www.dancecentral.info/ballroom/international-style/quickstep/quarter-turn-to-right",
+    "source": "checked",
     "steps": [
      {
       "desc": "RF fwd",
-      "align": "FDW",
-      "turn": "Start to turn R"
+      "align": "Facing DW",
+      "turn": ""
      },
      {
-      "desc": "LF side",
-      "align": "BC",
-      "turn": "1/8 to R between 1-2"
+      "desc": "LF to side",
+      "align": "Facing W",
+      "turn": ""
      },
      {
       "desc": "RF closes to LF",
-      "align": "BDC",
-      "turn": "1/8 to R between 2-3"
+      "align": "Backing DC",
+      "turn": ""
      },
      {
-      "desc": "LF side/slightly back",
-      "align": "BDC",
-      "turn": "--"
+      "desc": "LF to side",
+      "align": "Backing DC",
+      "turn": ""
      }
     ],
     "preceding": [
@@ -15670,6 +17054,30 @@
      "query": "quickstep Quarter Turn to L"
     }
    ],
+   "floor": {
+    "title": "Quarter Turn To Left",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "RF bwd",
+      "align": "Backing DC",
+      "turn": ""
+     },
+     {
+      "desc": "LF to side",
+      "align": "Facing DW",
+      "turn": ""
+     },
+     {
+      "desc": "RF closes to LF",
+      "align": "Facing DW",
+      "turn": ""
+     }
+    ],
+    "preceding": [],
+    "following": []
+   },
    "aliases": {
     "en": [
      "Heel Pivot",
@@ -15736,7 +17144,31 @@
      "length": "4:01",
      "query": "quickstep Outside Change"
     }
-   ]
+   ],
+   "floor": {
+    "title": "Outside Change",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "LF bwd",
+      "align": "Backing DC",
+      "turn": ""
+     },
+     {
+      "desc": "RF bwd",
+      "align": "Backing DC",
+      "turn": ""
+     },
+     {
+      "desc": "LF to side",
+      "align": "Facing DW",
+      "turn": ""
+     }
+    ],
+    "preceding": [],
+    "following": []
+   }
   },
   {
    "id": "quickstep-9",
@@ -15974,26 +17406,22 @@
    "floor": {
     "title": "Running Finish",
     "url": "https://www.dancecentral.info/ballroom/international-style/quickstep/running-finish",
+    "source": "checked",
     "steps": [
      {
-      "desc": "LF back in CBMP",
+      "desc": "LF bwd",
       "align": "Backing DW",
-      "turn": "Start to turn R"
+      "turn": ""
      },
      {
-      "desc": "RF to side and slightly fwd",
-      "align": "Pointing to LOD",
-      "turn": "3/8 between 1-2, body turns less"
-     },
-     {
-      "desc": "LF fwd preparing to step OP left side leading",
+      "desc": "RF to side",
       "align": "Facing LOD",
-      "turn": "Body turn to R"
+      "turn": ""
      },
      {
-      "desc": "RF fwd in CBMP, OP",
+      "desc": "LF fwd",
       "align": "Facing LOD",
-      "turn": "-"
+      "turn": ""
      }
     ],
     "preceding": [
@@ -16118,6 +17546,35 @@
      "query": "quickstep Backward Lock"
     }
    ],
+   "floor": {
+    "title": "Backward Lock",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "LF bwd",
+      "align": "Backing DW",
+      "turn": ""
+     },
+     {
+      "desc": "RF bwd",
+      "align": "Backing DW",
+      "turn": ""
+     },
+     {
+      "desc": "LF crosses in front of RF",
+      "align": "Backing DW",
+      "turn": ""
+     },
+     {
+      "desc": "RF bwd",
+      "align": "Backing DW",
+      "turn": ""
+     }
+    ],
+    "preceding": [],
+    "following": []
+   },
    "aliases": {
     "en": [
      "Back Lock"
@@ -16195,26 +17652,27 @@
    "floor": {
     "title": "Forward Lock",
     "url": "https://www.dancecentral.info/ballroom/international-style/quickstep/forward-lock",
+    "source": "checked",
     "steps": [
      {
-      "desc": "RF fwd in CBMP, OP",
-      "align": "FDW",
-      "turn": "--"
+      "desc": "RF fwd",
+      "align": "Facing DW",
+      "turn": ""
      },
      {
-      "desc": "LF diag fwd",
-      "align": "FDW",
-      "turn": "--"
+      "desc": "LF fwd",
+      "align": "Facing DW",
+      "turn": ""
      },
      {
-      "desc": "RF cross behind LF",
-      "align": "FDW",
-      "turn": "--"
+      "desc": "RF crosses behind LF",
+      "align": "Facing DW",
+      "turn": ""
      },
      {
-      "desc": "LF diag fwd",
-      "align": "FDW",
-      "turn": "--"
+      "desc": "LF fwd",
+      "align": "Facing DW",
+      "turn": ""
      }
     ],
     "preceding": [
@@ -16371,7 +17829,31 @@
      "length": "6:06",
      "query": "quickstep Open Natural Turn"
     }
-   ]
+   ],
+   "floor": {
+    "title": "Open Natural Turn",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "RF fwd",
+      "align": "Facing W, moving DW",
+      "turn": ""
+     },
+     {
+      "desc": "LF to side",
+      "align": "Backing LOD",
+      "turn": ""
+     },
+     {
+      "desc": "RF bwd",
+      "align": "Backing DW",
+      "turn": ""
+     }
+    ],
+    "preceding": [],
+    "following": []
+   }
   },
   {
    "id": "quickstep-14",
@@ -16446,36 +17928,37 @@
    "floor": {
     "title": "Natural Spin Turn",
     "url": "https://www.dancecentral.info/ballroom/international-style/quickstep/natural-spin-turn",
+    "source": "checked",
     "steps": [
      {
       "desc": "RF fwd",
-      "align": "FDW",
-      "turn": "Start to turn R"
+      "align": "Facing DW",
+      "turn": ""
      },
      {
       "desc": "LF to side",
-      "align": "BDC",
-      "turn": "1/4 between 1-2"
+      "align": "Backing DC",
+      "turn": ""
      },
      {
       "desc": "RF closes to LF",
-      "align": "BLOD",
-      "turn": "1/8 between 2-3"
+      "align": "Backing LOD",
+      "turn": ""
      },
      {
-      "desc": "LF back",
-      "align": "BLOD, toe turned in",
-      "turn": "1/2 to R (pivot)"
+      "desc": "LF bwd",
+      "align": "Facing LOD",
+      "turn": ""
      },
      {
-      "desc": "RF fwd in CBMP",
-      "align": "FLOD",
-      "turn": "Cont to turn"
+      "desc": "RF fwd",
+      "align": "Facing LOD",
+      "turn": ""
      },
      {
-      "desc": "LF to side and slightly back",
-      "align": "BDC",
-      "turn": "3/8 between 5-6"
+      "desc": "LF bwd",
+      "align": "Backing DC",
+      "turn": ""
      }
     ],
     "preceding": [
@@ -16567,7 +18050,13 @@
       "name": "Hover Corte",
       "id": "quickstep-42"
      }
-    ]
+    ],
+    "turnRange": {
+     "min": -45,
+     "max": 90,
+     "note": "It may be underturned (ending backing DC against LOD) or overturned (ending almost backing LOD)",
+     "noteCs": "může být podtočená (konec zády DC proti LOD) nebo přetočená (konec téměř zády k LOD)"
+    }
    }
   },
   {
@@ -16633,7 +18122,31 @@
      "length": "0:33",
      "query": "quickstep Hesitation Change"
     }
-   ]
+   ],
+   "floor": {
+    "title": "Hesitation Change",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "LF bwd",
+      "align": "Backing LOD",
+      "turn": ""
+     },
+     {
+      "desc": "RF to side",
+      "align": "Facing DC",
+      "turn": ""
+     },
+     {
+      "desc": "LF closes to RF",
+      "align": "Facing DC",
+      "turn": ""
+     }
+    ],
+    "preceding": [],
+    "following": []
+   }
   },
   {
    "id": "quickstep-16",
@@ -16685,21 +18198,22 @@
    "floor": {
     "title": "Double Reverse Spin",
     "url": "https://www.dancecentral.info/ballroom/international-style/quickstep/double-reverse-spin",
+    "source": "checked",
     "steps": [
      {
       "desc": "LF fwd",
       "align": "Facing LOD",
-      "turn": "Stars to turn L"
+      "turn": ""
      },
      {
       "desc": "RF to side",
-      "align": "BDW",
-      "turn": "3/8 btwn 1-2"
+      "align": "Backing DW",
+      "turn": ""
      },
      {
-      "desc": "LF closes to RF without weight (Toe Pivot)",
+      "desc": "LF closes to RF",
       "align": "Facing DW",
-      "turn": "1/2 btwn 2-3"
+      "turn": ""
      }
     ],
     "preceding": [
@@ -16823,26 +18337,22 @@
    "floor": {
     "title": "Closed Impetus",
     "url": "https://www.dancecentral.info/ballroom/international-style/quickstep/closed-impetus",
+    "source": "checked",
     "steps": [
      {
-      "desc": "LF back",
+      "desc": "LF bwd",
       "align": "Backing LOD",
-      "turn": "Start to turn R"
+      "turn": ""
      },
      {
-      "desc": "RF closes to LF (Heel Turn)",
+      "desc": "RF closes to LF",
       "align": "Facing DC",
-      "turn": "3/8 between 1-2"
+      "turn": ""
      },
      {
-      "desc": "LF to side and slightly back",
-      "align": "Backing DC against the LOD",
-      "turn": "1/4 between 2-3"
-     },
-     {
-      "desc": "RF back",
-      "align": "Backing DC against the LOD",
-      "turn": "-"
+      "desc": "LF to side",
+      "align": "Facing DW",
+      "turn": ""
      }
     ],
     "preceding": [
@@ -16956,7 +18466,31 @@
      "length": "0:42",
      "query": "quickstep Impetus to PP"
     }
-   ]
+   ],
+   "floor": {
+    "title": "Impetus To Pp",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "LF bwd",
+      "align": "Backing LOD",
+      "turn": ""
+     },
+     {
+      "desc": "RF closes to LF",
+      "align": "Facing DC",
+      "turn": ""
+     },
+     {
+      "desc": "LF fwd",
+      "align": "Facing DC",
+      "turn": ""
+     }
+    ],
+    "preceding": [],
+    "following": []
+   }
   },
   {
    "id": "quickstep-19",
@@ -17015,26 +18549,22 @@
    "floor": {
     "title": "Closed Telemark - Quickstep",
     "url": "https://www.dancecentral.info/ballroom/international-style/quickstep/closed-telemark",
+    "source": "checked",
     "steps": [
      {
       "desc": "LF fwd",
-      "align": "FDC",
-      "turn": "start to turn L"
+      "align": "Facing DC",
+      "turn": ""
      },
      {
-      "desc": "Rf to sdie",
-      "align": "almost BLOD",
-      "turn": "slightly less than 3/8 between 1-2"
+      "desc": "RF to side",
+      "align": "Backing LOD",
+      "turn": ""
      },
      {
-      "desc": "LF to side and slightly fwd",
-      "align": "Pointing DW",
-      "turn": "slighlty over 3/8 between 2-3. body turns less"
-     },
-     {
-      "desc": "RF fwd in CBMP, OP",
-      "align": "DW",
-      "turn": "--"
+      "desc": "LF to side",
+      "align": "Facing DW",
+      "turn": ""
      }
     ],
     "preceding": [
@@ -17149,7 +18679,31 @@
      "length": "0:31",
      "query": "quickstep Telemark to PP"
     }
-   ]
+   ],
+   "floor": {
+    "title": "Telemark To Pp",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "LF fwd",
+      "align": "Facing DC",
+      "turn": ""
+     },
+     {
+      "desc": "RF to side",
+      "align": "Backing DW",
+      "turn": ""
+     },
+     {
+      "desc": "LF to side",
+      "align": "Facing DW",
+      "turn": ""
+     }
+    ],
+    "preceding": [],
+    "following": []
+   }
   },
   {
    "id": "quickstep-21",
@@ -17204,7 +18758,31 @@
      "length": "0:42",
      "query": "quickstep Whisk"
     }
-   ]
+   ],
+   "floor": {
+    "title": "Whisk",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "LF fwd",
+      "align": "Facing DW",
+      "turn": ""
+     },
+     {
+      "desc": "RF to side",
+      "align": "Facing DW",
+      "turn": ""
+     },
+     {
+      "desc": "LF crosses behind RF",
+      "align": "Facing DW",
+      "turn": ""
+     }
+    ],
+    "preceding": [],
+    "following": []
+   }
   },
   {
    "id": "quickstep-22",
@@ -17263,7 +18841,31 @@
      "length": "0:38",
      "query": "quickstep Back Whisk"
     }
-   ]
+   ],
+   "floor": {
+    "title": "Back Whisk",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "LF bwd",
+      "align": "Facing DW",
+      "turn": ""
+     },
+     {
+      "desc": "RF bwd",
+      "align": "Facing DW",
+      "turn": ""
+     },
+     {
+      "desc": "LF crosses behind RF",
+      "align": "Facing DW",
+      "turn": ""
+     }
+    ],
+    "preceding": [],
+    "following": []
+   }
   },
   {
    "id": "quickstep-23",
@@ -17312,6 +18914,30 @@
      "query": "quickstep Open Reverse Turn"
     }
    ],
+   "floor": {
+    "title": "Open Reverse Turn",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "LF fwd",
+      "align": "Facing DC",
+      "turn": ""
+     },
+     {
+      "desc": "RF to side",
+      "align": "Backing DW",
+      "turn": ""
+     },
+     {
+      "desc": "LF bwd",
+      "align": "Backing LOD",
+      "turn": ""
+     }
+    ],
+    "preceding": [],
+    "following": []
+   },
    "aliases": {
     "en": [
      "Quick Open Reverse"
@@ -17385,9 +19011,39 @@
      "query": "quickstep Tipple Chasse to R - at the corner"
     }
    ],
+   "floor": {
+    "title": "Tipple Chasse To Right - At Corner",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "LF bwd",
+      "align": "Backing LOD",
+      "turn": ""
+     },
+     {
+      "desc": "RF to side",
+      "align": "Facing C",
+      "turn": ""
+     },
+     {
+      "desc": "LF closes to RF",
+      "align": "Facing C",
+      "turn": ""
+     },
+     {
+      "desc": "RF to side",
+      "align": "Facing DC",
+      "turn": ""
+     }
+    ],
+    "preceding": [],
+    "following": []
+   },
    "aliases": {
     "en": [
-     "Tipple Chasse"
+     "Tipple Chasse",
+     "Tipple Chasse To Right - At Corner"
     ],
     "cs": [
      "tipple šasé"
@@ -17458,9 +19114,39 @@
      "query": "quickstep Tipple Chasse to R - along LOD"
     }
    ],
+   "floor": {
+    "title": "Tipple Chasse To Right - Along Line Of Dance",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "LF bwd",
+      "align": "Backing DW",
+      "turn": ""
+     },
+     {
+      "desc": "RF to side",
+      "align": "Facing LOD",
+      "turn": ""
+     },
+     {
+      "desc": "LF closes to RF",
+      "align": "Facing LOD",
+      "turn": ""
+     },
+     {
+      "desc": "RF to side",
+      "align": "Facing DW",
+      "turn": ""
+     }
+    ],
+    "preceding": [],
+    "following": []
+   },
    "aliases": {
     "en": [
-     "Tipple Chasse"
+     "Tipple Chasse",
+     "Tipple Chasse To Right - Along Line Of Dance"
     ],
     "cs": [
      "tipple šasé"
@@ -17538,6 +19224,35 @@
      "query": "quickstep Tipple Chasse to L"
     }
    ],
+   "floor": {
+    "title": "Tipple Chasse To Left",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "RF fwd",
+      "align": "Facing DW",
+      "turn": ""
+     },
+     {
+      "desc": "LF to side",
+      "align": "Backing DC",
+      "turn": ""
+     },
+     {
+      "desc": "RF closes to LF",
+      "align": "Backing LOD",
+      "turn": ""
+     },
+     {
+      "desc": "LF to side",
+      "align": "Backing LOD",
+      "turn": ""
+     }
+    ],
+    "preceding": [],
+    "following": []
+   },
    "aliases": {
     "en": [
      "Tipple Chasse"
@@ -17597,41 +19312,37 @@
    "floor": {
     "title": "Four Quick Run",
     "url": "https://www.dancecentral.info/ballroom/international-style/quickstep/four-quick-run",
+    "source": "checked",
     "steps": [
      {
-      "desc": "RF back",
+      "desc": "RF bwd",
       "align": "Backing LOD",
-      "turn": "start to turn L"
+      "turn": ""
      },
      {
-      "desc": "LF to side and slightly fwd",
-      "align": "Pointing DW",
-      "turn": "3/8 between 1-2 body turns less"
-     },
-     {
-      "desc": "RF fwd in CBMP",
+      "desc": "LF to side",
       "align": "Facing DW",
-      "turn": "slight body turn to L"
+      "turn": ""
      },
      {
-      "desc": "LF diag fwd",
+      "desc": "RF fwd",
       "align": "Facing DW",
-      "turn": "--"
+      "turn": ""
+     },
+     {
+      "desc": "LF fwd",
+      "align": "Facing DW",
+      "turn": ""
      },
      {
       "desc": "RF crosses behind LF",
       "align": "Facing DW",
-      "turn": "--"
+      "turn": ""
      },
      {
-      "desc": "LF diag fwd",
+      "desc": "LF fwd",
       "align": "Facing DW",
-      "turn": "--"
-     },
-     {
-      "desc": "RF fwd in CBMP, OP",
-      "align": "Facing DW",
-      "turn": "--"
+      "turn": ""
      }
     ],
     "preceding": [
@@ -17811,7 +19522,46 @@
      "length": "0:37",
      "query": "quickstep Zig Zag"
     }
-   ]
+   ],
+   "floor": {
+    "title": "Zig Zag",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "LF fwd",
+      "align": "Facing LOD",
+      "turn": ""
+     },
+     {
+      "desc": "RF to side",
+      "align": "Facing C",
+      "turn": ""
+     },
+     {
+      "desc": "LF bwd",
+      "align": "Backing DW",
+      "turn": ""
+     },
+     {
+      "desc": "RF bwd",
+      "align": "Backing DW",
+      "turn": ""
+     },
+     {
+      "desc": "LF crosses in front of RF",
+      "align": "Backing DW",
+      "turn": ""
+     },
+     {
+      "desc": "RF bwd",
+      "align": "Backing DW",
+      "turn": ""
+     }
+    ],
+    "preceding": [],
+    "following": []
+   }
   },
   {
    "id": "quickstep-29",
@@ -18074,7 +19824,37 @@
      "length": "10:59",
      "query": "quickstep Outside Spin"
     }
-   ]
+   ],
+   "floor": {
+    "title": "Outside Spin",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "LF bwd",
+      "align": "Backing DW",
+      "turn": ""
+     },
+     {
+      "desc": "RF fwd",
+      "align": "Facing LOD",
+      "turn": ""
+     },
+     {
+      "desc": "LF to side",
+      "align": "Facing DC",
+      "turn": ""
+     }
+    ],
+    "preceding": [],
+    "following": [],
+    "turnRange": {
+     "min": 0,
+     "max": 180,
+     "note": "it may be underturned (no turn on step3) in which case the following step will be bwd.",
+     "noteCs": "může být podtočená (bez otočení na 3. kroku), další krok pak vzad"
+    }
+   }
   },
   {
    "id": "quickstep-31",
@@ -18121,7 +19901,21 @@
      "length": "0:54",
      "query": "quickstep Reverse Pivot"
     }
-   ]
+   ],
+   "floor": {
+    "title": "Reverse Pivot",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "RF bwd",
+      "align": "Facing LOD",
+      "turn": ""
+     }
+    ],
+    "preceding": [],
+    "following": []
+   }
   },
   {
    "id": "quickstep-32",
@@ -18190,7 +19984,42 @@
      "length": "0:28",
      "query": "quickstep Natural Turning Lock"
     }
-   ]
+   ],
+   "floor": {
+    "title": "Natural Turning Lock",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "RF bwd",
+      "align": "Backing LOD",
+      "turn": ""
+     },
+     {
+      "desc": "LF crosses in front of RF",
+      "align": "Facing C",
+      "turn": ""
+     },
+     {
+      "desc": "RF to side",
+      "align": "Facing LOD",
+      "turn": ""
+     },
+     {
+      "desc": "LF fwd",
+      "align": "Facing LOD, moving DC",
+      "turn": ""
+     }
+    ],
+    "preceding": [],
+    "following": [],
+    "turnRange": {
+     "min": -135,
+     "max": 0,
+     "note": "May be overturned to end in Closed Position (Man backing DC)",
+     "noteCs": "může se přetočit do uzavřeného postavení (pán zády DC)"
+    }
+   }
   },
   {
    "id": "quickstep-33",
@@ -18237,7 +20066,31 @@
      "length": "0:19",
      "query": "quickstep Drag Hesitation"
     }
-   ]
+   ],
+   "floor": {
+    "title": "Drag Hesitation",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "LF fwd",
+      "align": "Facing LOD",
+      "turn": ""
+     },
+     {
+      "desc": "RF to side",
+      "align": "Backing DW",
+      "turn": ""
+     },
+     {
+      "desc": "LF closes to RF",
+      "align": "Backing DW",
+      "turn": ""
+     }
+    ],
+    "preceding": [],
+    "following": []
+   }
   },
   {
    "id": "quickstep-34",
@@ -18288,21 +20141,17 @@
    "floor": {
     "title": "Cross Swivel",
     "url": "https://www.dancecentral.info/ballroom/international-style/quickstep/cross-swivel",
+    "source": "checked",
     "steps": [
      {
       "desc": "LF fwd",
       "align": "Facing DW",
-      "turn": "start to turn L"
+      "turn": ""
      },
      {
-      "desc": "RF closes (or nearly closes) to LF slightly back w/o weight",
+      "desc": "RF closes to LF",
       "align": "Facing DC",
-      "turn": "1/4 to L between 1-2"
-     },
-     {
-      "desc": "RF fwd in CBMP, OP",
-      "align": "Facing DC",
-      "turn": "--"
+      "turn": ""
      }
     ],
     "preceding": [
@@ -18389,41 +20238,37 @@
    "floor": {
     "title": "Fishtail",
     "url": "https://www.dancecentral.info/ballroom/international-style/quickstep/fishtail",
+    "source": "checked",
     "steps": [
      {
-      "desc": "RF fwd in CBMP, OP",
+      "desc": "RF fwd",
       "align": "Facing DC",
-      "turn": "start to turn R"
+      "turn": ""
      },
      {
       "desc": "LF crosses behind RF",
       "align": "Facing LOD",
-      "turn": "1/8 between 1-2"
+      "turn": ""
      },
      {
-      "desc": "RF fwd and slightly to side (small step)",
+      "desc": "RF fwd",
       "align": "Facing DW",
-      "turn": "1/8 between 2-3"
+      "turn": ""
      },
      {
-      "desc": "LF diag fwd L side leading",
+      "desc": "LF fwd",
       "align": "Facing DW",
-      "turn": "--"
+      "turn": ""
      },
      {
       "desc": "RF crosses behind LF",
       "align": "Facing DW",
-      "turn": "--"
+      "turn": ""
      },
      {
-      "desc": "LF diag fwd",
+      "desc": "LF fwd",
       "align": "Facing DW",
-      "turn": "--"
-     },
-     {
-      "desc": "RF fwd in CBMP, OP",
-      "align": "Facing DW",
-      "turn": "--"
+      "turn": ""
      }
     ],
     "preceding": [
@@ -18515,7 +20360,13 @@
       "note": "into 2-12 V6; or into 2-5 Back Lock down LOD",
       "id": "quickstep-40"
      }
-    ]
+    ],
+    "turnRange": {
+     "min": 0,
+     "max": 90,
+     "note": "it may be danced without turn.",
+     "noteCs": "lze tančit i bez otočení"
+    }
    }
   },
   {
@@ -18604,7 +20455,66 @@
      "length": "3:09",
      "query": "quickstep Running Natural Turn"
     }
-   ]
+   ],
+   "floor": {
+    "title": "Running Natural Turn",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "RF fwd",
+      "align": "Facing DW",
+      "turn": ""
+     },
+     {
+      "desc": "LF to side",
+      "align": "Backing DC",
+      "turn": ""
+     },
+     {
+      "desc": "RF closes to LF",
+      "align": "Backing LOD",
+      "turn": ""
+     },
+     {
+      "desc": "LF bwd",
+      "align": "Facing LOD",
+      "turn": ""
+     },
+     {
+      "desc": "RF fwd",
+      "align": "Facing LOD",
+      "turn": ""
+     },
+     {
+      "desc": "LF to side",
+      "align": "Backing DC",
+      "turn": ""
+     },
+     {
+      "desc": "RF bwd",
+      "align": "Backing LOD",
+      "turn": ""
+     },
+     {
+      "desc": "LF bwd",
+      "align": "Backing LOD",
+      "turn": ""
+     },
+     {
+      "desc": "RF to side",
+      "align": "Facing DC",
+      "turn": ""
+     },
+     {
+      "desc": "LF fwd",
+      "align": "Facing DC",
+      "turn": ""
+     }
+    ],
+    "preceding": [],
+    "following": []
+   }
   },
   {
    "id": "quickstep-37",
@@ -18663,7 +20573,36 @@
      "length": "0:49",
      "query": "quickstep Running Cross Chasse"
     }
-   ]
+   ],
+   "floor": {
+    "title": "Running Cross Chasse",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "RF fwd",
+      "align": "Facing DW",
+      "turn": ""
+     },
+     {
+      "desc": "LF fwd",
+      "align": "Facing DW",
+      "turn": ""
+     },
+     {
+      "desc": "RF fwd",
+      "align": "Facing DW",
+      "turn": ""
+     },
+     {
+      "desc": "LF fwd",
+      "align": "Facing DW",
+      "turn": ""
+     }
+    ],
+    "preceding": [],
+    "following": []
+   }
   },
   {
    "id": "quickstep-38",
@@ -18719,41 +20658,37 @@
    "floor": {
     "title": "Six Quick Run",
     "url": "https://www.dancecentral.info/ballroom/international-style/quickstep/six-quick-run",
+    "source": "checked",
     "steps": [
      {
-      "desc": "RF back",
+      "desc": "RF bwd",
       "align": "Backing DC",
-      "turn": "start to turn L"
+      "turn": ""
      },
      {
-      "desc": "LF to side and slightly fwd",
-      "align": "Pointing DW",
-      "turn": "1/2 between 1-2 body turns less"
-     },
-     {
-      "desc": "RF fwd in CBMP, OP",
+      "desc": "LF to side",
       "align": "Facing DW",
-      "turn": "--"
+      "turn": ""
      },
      {
-      "desc": "LF diag fwd",
+      "desc": "RF fwd",
       "align": "Facing DW",
-      "turn": "--"
+      "turn": ""
+     },
+     {
+      "desc": "LF fwd",
+      "align": "Facing DW",
+      "turn": ""
      },
      {
       "desc": "RF crosses behind LF",
       "align": "Facing DW",
-      "turn": "--"
+      "turn": ""
      },
      {
-      "desc": "LF diag fwd",
+      "desc": "LF fwd",
       "align": "Facing DW",
-      "turn": "--"
-     },
-     {
-      "desc": "RF fwd in CBMP, OP",
-      "align": "Facing DW",
-      "turn": "--"
+      "turn": ""
      }
     ],
     "preceding": [
@@ -18885,21 +20820,22 @@
    "floor": {
     "title": "Tipsy to Right and Left",
     "url": "https://www.dancecentral.info/ballroom/international-style/quickstep/tipsy-to-right-and-left",
+    "source": "checked",
     "steps": [
      {
-      "desc": "RF to side (small step)",
-      "align": "According to preceding figure",
-      "turn": "None, or up to 3/8 to R or L (see note)"
+      "desc": "RF to side",
+      "align": "Facing DC",
+      "turn": ""
      },
      {
-      "desc": "Move LF halfway towards RF",
-      "align": "T",
-      "turn": "Lower e/o 2"
+      "desc": "LF closes to RF",
+      "align": "Facing DC",
+      "turn": ""
      },
      {
-      "desc": "RF to side (small step)",
-      "align": "IE of T and IE of T of LF",
-      "turn": "Down, with sharp flexing of knees"
+      "desc": "RF to side",
+      "align": "Facing LOD",
+      "turn": ""
      }
     ],
     "preceding": [
@@ -19080,21 +21016,22 @@
    "floor": {
     "title": "Tipsy to Right and Left",
     "url": "https://www.dancecentral.info/ballroom/international-style/quickstep/tipsy-to-right-and-left",
+    "source": "checked",
     "steps": [
      {
-      "desc": "RF to side (small step)",
-      "align": "According to preceding figure",
-      "turn": "None, or up to 3/8 to R or L (see note)"
+      "desc": "LF to side",
+      "align": "Backing DC",
+      "turn": ""
      },
      {
-      "desc": "Move LF halfway towards RF",
-      "align": "T",
-      "turn": "Lower e/o 2"
+      "desc": "RF closes to LF",
+      "align": "Backing DC",
+      "turn": ""
      },
      {
-      "desc": "RF to side (small step)",
-      "align": "IE of T and IE of T of LF",
-      "turn": "Down, with sharp flexing of knees"
+      "desc": "LF to side",
+      "align": "Backing LOD",
+      "turn": ""
      }
     ],
     "preceding": [
@@ -19271,7 +21208,36 @@
      "length": "0:28",
      "query": "quickstep Rumba Cross"
     }
-   ]
+   ],
+   "floor": {
+    "title": "Rumba Cross",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "LF fwd",
+      "align": "Facing LOD",
+      "turn": ""
+     },
+     {
+      "desc": "RF crosses behind LF",
+      "align": "Facing W",
+      "turn": ""
+     },
+     {
+      "desc": "LF to side",
+      "align": "Facing LOD",
+      "turn": ""
+     }
+    ],
+    "preceding": [],
+    "following": []
+   },
+   "aliases": {
+    "en": [
+     "Cross"
+    ]
+   }
   },
   {
    "id": "quickstep-42",
@@ -19335,26 +21301,22 @@
    "floor": {
     "title": "Hover Corte",
     "url": "https://www.dancecentral.info/ballroom/international-style/quickstep/hover-corte",
+    "source": "checked",
     "steps": [
      {
-      "desc": "RF back",
-      "align": "BLOD",
-      "turn": "Start to turn L"
+      "desc": "RF bwd",
+      "align": "Backing LOD",
+      "turn": ""
      },
      {
-      "desc": "LF to side and slightly fwd",
-      "align": "Pointing DW",
-      "turn": "3/8 to L between 1-2. Body turns less. Continue to turn body on step 2."
+      "desc": "LF to side",
+      "align": "Facing DW",
+      "turn": ""
      },
      {
-      "desc": "Transfer weight to RF; side and slightly back",
-      "align": "Backing DC against LOD",
-      "turn": "--"
-     },
-     {
-      "desc": "LF back in CBMP",
-      "align": "Backing DC against LOD",
-      "turn": "--"
+      "desc": "RF",
+      "align": "Facing DW",
+      "turn": ""
      }
     ],
     "preceding": [
@@ -19486,7 +21448,46 @@
      "length": "0:40",
      "query": "quickstep Weave from PP"
     }
-   ]
+   ],
+   "floor": {
+    "title": "Weave From Pp",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "RF fwd",
+      "align": "Facing DC, moving DC",
+      "turn": ""
+     },
+     {
+      "desc": "LF fwd",
+      "align": "Facing DC",
+      "turn": ""
+     },
+     {
+      "desc": "RF to side",
+      "align": "Backing DW",
+      "turn": ""
+     },
+     {
+      "desc": "LF bwd",
+      "align": "Backing LOD",
+      "turn": ""
+     },
+     {
+      "desc": "RF bwd",
+      "align": "Backing LOD",
+      "turn": ""
+     },
+     {
+      "desc": "LF to side",
+      "align": "Facing DW",
+      "turn": ""
+     }
+    ],
+    "preceding": [],
+    "following": []
+   }
   },
   {
    "id": "quickstep-44",
@@ -19599,7 +21600,31 @@
      "length": "0:12",
      "query": "quickstep Wing"
     }
-   ]
+   ],
+   "floor": {
+    "title": "Wing",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "RF fwd",
+      "align": "Facing DC",
+      "turn": ""
+     },
+     {
+      "desc": "LF closes to RF",
+      "align": "Facing DC",
+      "turn": ""
+     },
+     {
+      "desc": "LF closes to RF",
+      "align": "Facing DC",
+      "turn": ""
+     }
+    ],
+    "preceding": [],
+    "following": []
+   }
   },
   {
    "id": "quickstep-46",
@@ -19646,7 +21671,31 @@
      "length": "0:12",
      "query": "quickstep Wing from PP"
     }
-   ]
+   ],
+   "floor": {
+    "title": "Wing From Pp",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "RF fwd",
+      "align": "Facing DC, moving DC",
+      "turn": ""
+     },
+     {
+      "desc": "LF closes to RF",
+      "align": "Facing DC",
+      "turn": ""
+     },
+     {
+      "desc": "LF closes to RF",
+      "align": "Facing DC",
+      "turn": ""
+     }
+    ],
+    "preceding": [],
+    "following": []
+   }
   },
   {
    "id": "quickstep-47",
@@ -19762,31 +21811,42 @@
    "floor": {
     "title": "Running Spin Turn",
     "url": "https://www.dancecentral.info/ballroom/international-style/quickstep/running-spin-turn",
+    "source": "checked",
     "steps": [
      {
-      "desc": "LF back, pivot, RF held in CMBP",
-      "align": "BLOD",
-      "turn": "1/2 pivot turn to R, continue to turn R"
+      "desc": "RF fwd",
+      "align": "Facing DW",
+      "turn": ""
      },
      {
-      "desc": "RF fwd in CBMP",
-      "align": "LOD",
-      "turn": "3/8 turn to R"
+      "desc": "LF to side",
+      "align": "Backing DC",
+      "turn": ""
      },
      {
-      "desc": "LF to side, slightly back",
-      "align": "",
-      "turn": "BDC"
+      "desc": "RF closes to LF",
+      "align": "Backing LOD",
+      "turn": ""
      },
      {
-      "desc": "RF back, R side leading",
-      "align": "",
-      "turn": "BDC"
+      "desc": "LF bwd",
+      "align": "Facing LOD",
+      "turn": ""
      },
      {
-      "desc": "LF back, small step, CBMP",
-      "align": "",
-      "turn": "BDC"
+      "desc": "RF fwd",
+      "align": "Facing LOD",
+      "turn": ""
+     },
+     {
+      "desc": "LF to side",
+      "align": "Backing DC",
+      "turn": ""
+     },
+     {
+      "desc": "RF bwd",
+      "align": "Backing DC",
+      "turn": ""
      }
     ],
     "preceding": [],

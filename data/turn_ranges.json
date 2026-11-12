@@ -1,0 +1,171 @@
+{
+ "_comment": "Allowed under-/overturning per figure (degrees, + = more to the left), from the Quantity of Turn notes of the WDSF Syllabus / technique books. Used by the routine editor.",
+ "waltz-6": {
+  "min": 0,
+  "max": 90,
+  "note": "may turn up to ¼ to L",
+  "noteCs": "může se otočit až o 1/4 vlevo"
+ },
+ "waltz-7": {
+  "min": -135,
+  "max": 0,
+  "note": "May be turned up to 3/8 to R",
+  "noteCs": "může se otočit až o 3/8 vpravo"
+ },
+ "waltz-14": {
+  "min": -45,
+  "max": 90,
+  "note": "may be underturned to end backing DC against LOD or overturned to end almost backing LOD",
+  "noteCs": "může být podtočená (konec zády DC proti LOD) nebo přetočená (konec téměř zády k LOD)"
+ },
+ "waltz-15": {
+  "min": -45,
+  "max": 45,
+  "note": "may turn between ¾ and 1 full turn to L",
+  "noteCs": "otočení mezi 3/4 a celou otáčkou vlevo"
+ },
+ "waltz-22": {
+  "min": 0,
+  "max": 180,
+  "note": "may be underturned (no Pivot on step3) in which case the exit is RF bwd into any suitable figure",
+  "noteCs": "může být podtočená (bez pivotu na 3. kroku), pak se pokračuje Pn vzad"
+ },
+ "waltz-23": {
+  "min": -135,
+  "max": 0,
+  "note": "may overturn to end backing DC in Closed position.",
+  "noteCs": "může se přetočit do konce zády DC v uzavřeném postavení"
+ },
+ "waltz-27": {
+  "min": 0,
+  "max": 90,
+  "note": "may turn up to ¼ to L (Man)",
+  "noteCs": "pán se může otočit až o 1/4 vlevo"
+ },
+ "waltz-34": {
+  "min": -315,
+  "max": 0,
+  "note": "may be danced with less or no turn (when danced into a corner).",
+  "noteCs": "v rohu se může tančit s menším nebo žádným otočením"
+ },
+ "waltz-39": {
+  "min": -90,
+  "max": 45,
+  "note": "may turn up to 3/8 to L.",
+  "noteCs": "může se otočit až o 3/8 vlevo"
+ },
+ "tango-3": {
+  "min": -45,
+  "max": 90,
+  "note": "figure may be turned up to 3/8 to L.",
+  "noteCs": "figura se může otočit až o 3/8 vlevo"
+ },
+ "tango-4": {
+  "min": -45,
+  "max": 45,
+  "note": "more turn may be made between steps 1 and 2, up to ¼ to L. Figure may be danced without turn.",
+  "noteCs": "mezi 1. a 2. krokem se lze otočit víc, až o 1/4 vlevo; figuru lze tančit i bez otočení"
+ },
+ "tango-14": {
+  "min": -90,
+  "max": 0,
+  "note": "it may end in Close Position. In this case the Man will turn 7/8 to R on steps 5-6. Follow with Rock on LF or Back Corte.",
+  "noteCs": "může končit v uzavřeném postavení – pán se pak na krocích 5–6 otočí o 7/8 vpravo"
+ },
+ "tango-27": {
+  "min": -90,
+  "max": 0,
+  "note": "may be underturned when danced into a corner.",
+  "noteCs": "do rohu může být podtočená"
+ },
+ "tango-29": {
+  "min": -90,
+  "max": 0,
+  "note": "may be underturned when danced into a corner.",
+  "noteCs": "do rohu může být podtočená"
+ },
+ "tango-30": {
+  "min": -90,
+  "max": 0,
+  "note": "figure can be danced also without turn starting DC and continuing with the same alignments described in the chart.",
+  "noteCs": "lze tančit i bez otočení (začátek DC, dál stejná směrování jako v grafu)"
+ },
+ "tango-32": {
+  "min": -135,
+  "max": 0,
+  "note": "when danced into a corner there will be no turn on step 4 (Pivot). The Lady’s quantity of turn will change accordingly.",
+  "noteCs": "do rohu bez otočení na 4. kroku (pivot)"
+ },
+ "tango-35": {
+  "min": 0,
+  "max": 180,
+  "note": "when the figure is underturned (no pivot on step 3) the following step will be taken with RF Bwd (Man) and LF Fwd (Lady).",
+  "noteCs": "může být podtočená (bez pivotu na 3. kroku), další krok pak Pn vzad"
+ },
+ "tango-36": {
+  "min": -90,
+  "max": 0,
+  "note": "it may end in Closed Position. The Man will turn 5/8 to R between 5 and 6, to end backing DC against LOD. Follow with Back Corte.",
+  "noteCs": "může končit v uzavřeném postavení – pán se mezi 5. a 6. krokem otočí o 5/8 vpravo (konec zády DC proti LOD)"
+ },
+ "slowfox-10": {
+  "min": 0,
+  "max": 90,
+  "note": "It may turn ½ to L when danced into a corner.",
+  "noteCs": "do rohu se může otočit o 1/2 vlevo"
+ },
+ "slowfox-12": {
+  "min": 0,
+  "max": 90,
+  "note": "It may turn up to ¼ to L.",
+  "noteCs": "může se otočit až o 1/4 vlevo"
+ },
+ "slowfox-13": {
+  "min": -135,
+  "max": 0,
+  "note": "It may turn up to 3/8 to R.",
+  "noteCs": "může se otočit až o 3/8 vpravo"
+ },
+ "slowfox-27": {
+  "min": -135,
+  "max": 0,
+  "note": "Swivel may be turned up to 3/8 to R.",
+  "noteCs": "švih (swivel) se může otočit až o 3/8 vpravo"
+ },
+ "slowfox-28": {
+  "min": 0,
+  "max": 180,
+  "note": "When the outside Spin is underturned (no Pivot on step 3) the following step will be taken bwd.",
+  "noteCs": "může být podtočená (bez pivotu na 3. kroku), další krok pak vzad"
+ },
+ "slowfox-39": {
+  "min": -45,
+  "max": 0,
+  "note": "The figure may be danced without turn on step 4, when danced into a corner.",
+  "noteCs": "do rohu lze tančit bez otočení na 4. kroku"
+ },
+ "quickstep-14": {
+  "min": -45,
+  "max": 90,
+  "note": "It may be underturned (ending backing DC against LOD) or overturned (ending almost backing LOD)",
+  "noteCs": "může být podtočená (konec zády DC proti LOD) nebo přetočená (konec téměř zády k LOD)"
+ },
+ "quickstep-30": {
+  "min": 0,
+  "max": 180,
+  "note": "it may be underturned (no turn on step3) in which case the following step will be bwd.",
+  "noteCs": "může být podtočená (bez otočení na 3. kroku), další krok pak vzad"
+ },
+ "quickstep-32": {
+  "min": -135,
+  "max": 0,
+  "note": "May be overturned to end in Closed Position (Man backing DC)",
+  "noteCs": "může se přetočit do uzavřeného postavení (pán zády DC)"
+ },
+ "quickstep-35": {
+  "min": 0,
+  "max": 90,
+  "note": "it may be danced without turn.",
+  "noteCs": "lze tančit i bez otočení"
+ }
+}
