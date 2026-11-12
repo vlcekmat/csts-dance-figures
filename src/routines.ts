@@ -36,6 +36,8 @@ export interface Routine {
   loopTo?: number;
   /** Hide the loop visualisation (rail, strip marker, repetitions in the plan). */
   loopHidden?: boolean;
+  /** Preparatory step before the first figure (foot and direction). */
+  prep?: { foot: "LF" | "RF"; dir: "fwd" | "bwd" | "side" | "place" };
   /** Where the routine starts in the room (floor plan). */
   start?: { side: number; along: number; dist: number; face?: number };
   id: string;

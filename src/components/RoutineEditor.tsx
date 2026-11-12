@@ -119,6 +119,18 @@ export function RoutineEditor({ routine, api, onBack, onOpenFigure }: Props) {
             reps: showLoop ? repeat : 1,
             loopTo,
             loop: !!routine.loop,
+            prep: routine.prep
+              ? {
+                  ...routine.prep,
+                  label: t("prepStep"),
+                  // the man faces where the routine starts: chosen start direction, else the first figure's
+                  face:
+                    routine.start?.face ??
+                    (rows[0]
+                      ? (figureAlignment(rows[0].fig, { from: rows[0].resolved.from, to: rows[0].resolved.isPart ? rows[0].resolved.to : undefined })?.start ?? 0)
+                      : 0),
+                }
+              : undefined,
           })
         : null,
     // rows are rebuilt every render; the routine object is the real dependency
@@ -482,6 +494,40 @@ export function RoutineEditor({ routine, api, onBack, onOpenFigure }: Props) {
             {t("print")}
           </button>
         </div>
+      </div>
+
+      <div className="loop-row prep-row">
+        <label className="field">
+          <span>{t("prepStep")}</span>
+          <select
+            value={routine.prep ? `${routine.prep.foot}-${routine.prep.dir}` : ""}
+            onChange={(e) => {
+              const v = e.target.value;
+              patch((r0) => ({
+                ...r0,
+                prep: v ? { foot: v.split("-")[0] as "LF" | "RF", dir: v.split("-")[1] as "fwd" | "bwd" | "side" | "place" } : undefined,
+              }));
+            }}
+          >
+            <option value="">{t("prepNone")}</option>
+            {(["LF", "RF"] as const).flatMap((foot) =>
+              (["side", "fwd", "bwd", "place"] as const).map((dir) => (
+                <option key={`${foot}-${dir}`} value={`${foot}-${dir}`}>
+                  {(lang === "cs" ? (foot === "LF" ? "Ln" : "Pn") : foot) + " " + t(`dir_${dir}` as StringKey)}
+                </option>
+              )),
+            )}
+          </select>
+        </label>
+        {routine.prep && rows[0] && (
+          <span className={`small ${rows[0].resolved.startFoot && rows[0].resolved.startFoot === routine.prep.foot ? "warn" : "ok"}`}>
+            {rows[0].resolved.startFoot === routine.prep.foot
+              ? `⚠ ${t("prepFootWarn", { foot: rows[0].resolved.startFoot ?? "?" })}`
+              : rows[0].resolved.startFoot
+                ? `✓ ${t("prepFootOk", { foot: rows[0].resolved.startFoot })}`
+                : ""}
+          </span>
+        )}
       </div>
 
       {rows.length > 1 && (

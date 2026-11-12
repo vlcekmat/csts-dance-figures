@@ -50,6 +50,8 @@ export function buildPlan(opts: {
   loopTo: number;
   /** The routine is danced repeatedly (connect its end to the loop target). */
   loop?: boolean;
+  /** Preparatory step before the first figure; `face` = the man's facing (relative to LOD). */
+  prep?: { foot: "LF" | "RF"; dir: "fwd" | "bwd" | "side" | "place"; face: number; label: string };
 }): Plan {
   const { dance, lang, items, room, start, stepCm, reps, loopTo } = opts;
   const bpm = tempoBpm(dance) ?? 30;
@@ -105,6 +107,28 @@ export function buildPlan(opts: {
       all.push({ ...it, wall: undefined, key: `${it.key}#${r}`, label: `${it.label} (${r + 1}.×)` });
       nums.push(from + i + 1);
     });
+  // Preparatory step: danced once before the first figure (number 0 = "P" in the plan).
+  let wrap = opts.loop ? from : undefined;
+  if (opts.prep) {
+    const p = opts.prep;
+    const desc = `${p.foot} ${p.dir === "side" ? "to side" : p.dir === "place" ? "in place" : p.dir}`;
+    all.unshift({
+      key: "prep#0",
+      label: p.label,
+      dance: dance.id,
+      steps: [{ desc, align: "", turn: "", face: p.face }],
+      bars: 1 / dance.beatsPerBar,
+      seconds: 60 / bpm / dance.beatsPerBar,
+      cornerAfter: false,
+      stepMetres: (stepCm / 100) * 0.6, // a small step
+    });
+    nums.unshift(0);
+    if (wrap !== undefined) wrap += 1;
+  }
   // A repeated routine: its (last) end connects to the loop target figure.
-  return { ...simulateRoutine(all, room, start, opts.loop ? from : undefined), nums, baseLen: items.length || 1 };
+  return {
+    ...simulateRoutine(all, room, start, wrap),
+    nums,
+    baseLen: (items.length || 1) + (opts.prep ? 1 : 0),
+  };
 }

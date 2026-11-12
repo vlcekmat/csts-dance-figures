@@ -114,7 +114,11 @@ export function FloorPlan({
   const { t, lang } = useI18n();
   const baseLen = sim.baseLen;
   /** Figure number within the routine (the plan may contain repetitions). */
-  const figNo = (n: number) => sim.nums[n - 1] ?? n;
+  /** Figure number within the routine ("P" = the preparatory step). */
+  const figNo = (n: number): number | string => {
+    const v = sim.nums[n - 1] ?? n;
+    return v === 0 ? "P" : v;
+  };
   const selSeg = selectedKey ? sim.segments.find((sg) => sg.key === `${selectedKey}#0`) : undefined;
 
   // Room -> SVG: keep the real aspect ratio, x along the length, y up from the first long wall.
