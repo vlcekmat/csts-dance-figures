@@ -461,7 +461,9 @@ def phrase_angle(phrase, bwd=False):
     Returns (angle, almost) or None. `bwd`: a bare code on a backward step means backing."""
     u = phrase.upper().replace("”", " ").replace("CENTRE", "C").replace("CENTER", "C")
     u = re.sub(r"\bLO[OLC0]\b", "LOD", u.replace("WALL", "W"))
-    u = re.sub(r"\bWW+\b", "W", u).replace("PW", "DW").replace("DIAG.", "D")
+    u = re.sub(r"\bWW+\b", "W", u)
+    u = re.sub(r"\bAGAIN\S*", "AGAINST", u)  # OCR: "Agains'"
+    u = re.sub(r"\bFACIN\w*", "FACING", u).replace("BACKIN ", "BACKING ").replace("PW", "DW").replace("DIAG.", "D")
     u = re.sub(r"\b(FACING|BACKING|POINTING)(?=[A-Z])", r"\1 ", u)  # OCR: "BackingDC"
     almost = bool(re.search(r"\b(ALMOST|AIMOST|NEARLY|JUST UNDER)\b", u))
     u = re.sub(r"\b(ALMOST|AIMOST|NEARLY|JUST|UNDER|OVER|SLIGHTLY|OF|THE|NEW|A)\b", " ", u)
@@ -638,7 +640,13 @@ def fact_turn(turn):
     parts = [f"{a} {b or side}".strip() for a, b in fr]
     if not parts:
         return ("starts to turn " + side).strip() if re.search(r"com|start", turn, flags=re.I) else ""
-    return ", then ".join(parts)
+    out = ", then ".join(parts)
+    # when the turn happens: before the step ("between 1 and 2") or as a pivot after it ("on 4")
+    if re.search(r"\bon\s*\d|pivot", turn, flags=re.I):
+        out += " (pivot)"
+    elif re.search(r"between", turn, flags=re.I):
+        out += " (between steps)"
+    return out
 
 
 POS_WORDS = set("""close closed promenade counter outside partner fallaway wing position pos pos. opp opp. opposing
@@ -712,7 +720,57 @@ def build_steps(chart, public):
         if facing is not None:
             prev = facing
         new_lod = new_lod or here_new
+    spread_constant_rotation(chart_rows(chart), out)
     return out
+
+
+def block_turn(text):
+    """Amount of turn of a merged cell covering several steps ("3 turns to R", "1 1/2 turns to L")."""
+    if not text:
+        return None
+    side = "R" if re.search(r"\bto\s*R\b|\bR\b|right", text) else "L" if re.search(r"\bto\s*L\b|\bL\b|left", text) else None
+    if not side:
+        return None
+    deg = 0.0
+    m = re.search(r"(\d+)\s+(?:and\s+)?(\d)\s*/\s*(\d)|(\d)\s*/\s*(\d)|(\d+)\s*(?:full\s*)?turns?", text, re.I)
+    if not m:
+        return None
+    if m.group(1):
+        deg = int(m.group(1)) * 360 + int(m.group(2)) / int(m.group(3)) * 360
+    elif m.group(4):
+        deg = int(m.group(4)) / int(m.group(5)) * 360
+    else:
+        deg = int(m.group(6)) * 360
+    return deg if side == "L" else -deg
+
+
+def spread_constant_rotation(rows, out):
+    """Charts with one merged "Quantity of Turn" cell for many steps and no alignment
+    per step ("constant rotation"): spread the turn evenly over the steps so that the
+    block ends in the alignment that follows it."""
+    i = 0
+    while i < len(out):
+        t = rows[i].get("turn", "") if i < len(rows) else ""
+        j = i
+        while j + 1 < len(out) and j + 1 < len(rows) and rows[j + 1].get("turn", "") == t and t:
+            j += 1
+        block = range(i, j + 1)
+        total = block_turn(t) if j - i >= 2 else None
+        if total is not None and all("face" not in out[k] for k in block if k < j) :
+            # alignment reached at the end of the block (its last step, or the step after it)
+            end_k = next((k for k in range(j, min(j + 2, len(out))) if "face" in out[k]), None)
+            if end_k is not None:
+                end = out[end_k].get("end", out[end_k]["face"])
+                n = end_k - i + 1
+                for idx, k in enumerate(range(i, end_k + 1)):
+                    if k == end_k:
+                        break
+                    a = _norm(end - total * (1 - (idx + 1) / n))
+                    out[k]["face"] = round(a, 1)
+                    out[k]["align"] = align_code(a)
+                for k in block:
+                    out[k]["turn"] = ""  # the per-step share is in the facings now
+        i = j + 1
 
 
 def canon(name):

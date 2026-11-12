@@ -279,7 +279,10 @@ export function tracePath(
         facing = Math.abs(norm180(a1 - expected)) <= Math.abs(norm180(a2 - expected)) ? a1 : a2;
       }
     }
-    const f = facing ?? 0;
+    let f = facing ?? 0;
+    // Latin "Facing LOD turn to Facing W" with the turn on this very step (no pivot,
+    // not "between" steps): the partner turns while stepping, the step goes the new way.
+    if (s.end !== undefined && /\d\s*\/\s*\d/.test(s.turn) && !/between|\bon\b|pivot|then/i.test(s.turn)) f = s.end;
     // Side steps happen while turning: use the orientation half-way through.
     const d = s.desc.toLowerCase();
     const mid = prev !== null && /\bside\b/.test(d) ? norm180(prev + norm180(f - prev) / 2) : f;

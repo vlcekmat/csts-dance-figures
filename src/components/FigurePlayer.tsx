@@ -17,7 +17,7 @@ import {
   turnHintOf,
   type FloorStep,
 } from "../floor";
-import { parseTiming, tempoBpm } from "../timing";
+import { parseTiming, positionOf, tempoBpm } from "../timing";
 
 type Role = "man" | "lady" | "both";
 
@@ -77,6 +77,28 @@ function footprints(
 }
 
 /** Where the lady stands relative to the man at the start (metres, man's frame: fwd, to his right). */
+/** Couple positions danced in a closed hold: the partners turn around their common centre. */
+function closeHold(pos: string): boolean {
+  const parts = pos.toLowerCase().split(/\s+(?:to|then)\s+(?=[a-z])/);
+  const p = parts[parts.length - 1] ?? "";
+  if (/\bopen\b|ex\.? open|apart|\bfan\b|side same|side by side|shadow|tandem/.test(p)) return false;
+  return /clos|promenade|\bpp\b|outside partner|\bop\b|fallaway|wing|contra/.test(p);
+}
+
+/** Signed amount of turn of a chart step (degrees, + = left), or null. */
+function signedTurn(text: string | undefined): number | null {
+  if (!text) return null;
+  let total = 0;
+  let found = false;
+  for (const m of text.matchAll(/(\d)\s*\/\s*(\d)\s*(?:turn\s*)?(?:to\s*)?(?:the\s*)?([LR])?(?![a-z])/gi)) {
+    const side = m[3]?.toUpperCase() ?? (/\bR\b|right|toR/i.test(text) ? "R" : /\bL\b|left|toL/i.test(text) ? "L" : null);
+    if (!side) return null;
+    total += ((+m[1] / +m[2]) * 360) * (side === "L" ? 1 : -1);
+    found = true;
+  }
+  return found ? total : null;
+}
+
 function ladyOffset(pos: string, latin: boolean): { fwd: number; right: number } {
   // Couple position at the end of the step ("Closed Position to Promenade Position" -> PP).
   // Distances (metres, centre to centre) keep the partners' shoulders from overlapping.
@@ -130,36 +152,58 @@ export function FigurePlayer({ fig }: { fig: Figure }) {
     const m = footprints(man, stepM, 0, 0, hint, charted ? null : 0);
     // The lady starts where the couple position puts her, facing the way her chart says
     // (or facing the man when the chart gives no alignment).
-    const off = ladyOffset(man[0]?.pos ?? "", latin);
+    // Position before the first step: the figure's start in the syllabus (the chart
+    // gives the position after each step), else the first step's.
+    const startPos = positionOf(fig.syllabus?.start) ?? man[0]?.pos ?? "";
+    const off = ladyOffset(startPos, latin);
     const f = m.start.face;
     const lx = Math.cos(rad(f)) * off.fwd + Math.cos(rad(f - 90)) * off.right;
     const ly = Math.sin(rad(f)) * off.fwd + Math.sin(rad(f - 90)) * off.right;
     const ladyCharted = lady.some((s) => parseAlign(s.align) !== null);
     const traced = hasLady ? footprints(lady, stepM, lx, ly, (-hint || 0) as -1 | 0 | 1, ladyCharted ? null : norm180(f + 180)) : null;
-    // The lady's own chart gives her steps and where she faces; where she stands is
-    // taken relative to the man from the couple position of each step, so the
-    // partners stay together (different step sizes, heel turns …).
-    const place = (x: number, y: number, face: number, pos: string) => {
+    if (!traced) return { m, l: null };
+    // Where the partners stand. In a closed hold (closed, PP, outside partner, close
+    // opposing …) they keep the couple position and turn around their common centre;
+    // apart / without hold (open, side by side, fan, spot turns) each dances on their
+    // own path and turns around their own axis. Corrections carry over to later steps.
+    const offsetVec = (pos: string, face: number) => {
       const o = ladyOffset(pos, latin);
       return {
-        x: x + Math.cos(rad(face)) * o.fwd + Math.cos(rad(face - 90)) * o.right,
-        y: y + Math.sin(rad(face)) * o.fwd + Math.sin(rad(face - 90)) * o.right,
+        x: Math.cos(rad(face)) * o.fwd + Math.cos(rad(face - 90)) * o.right,
+        y: Math.sin(rad(face)) * o.fwd + Math.sin(rad(face - 90)) * o.right,
       };
     };
-    const l = traced
-      ? {
-          start: traced.start,
-          feet: traced.feet.map((lf, i) => {
-            const mf = m.feet[Math.min(i, m.feet.length - 1)];
-            const pos = man[Math.min(i, man.length - 1)]?.pos ?? man[0]?.pos ?? "";
-            const b = place(mf.bx, mf.by, mf.bodyFace, pos);
-            const side = lf.foot === "L" ? 90 : lf.foot === "R" ? -90 : 0;
-            const a = rad(lf.face + side);
-            return { ...lf, bx: b.x, by: b.y, x: b.x + (side ? Math.cos(a) * 0.12 : 0), y: b.y + (side ? Math.sin(a) * 0.12 : 0) };
-          }),
-        }
-      : null;
-    return { m, l };
+    const moveTo = (f: Foot, bx: number, by: number): Foot => ({ ...f, bx, by, x: bx + (f.x - f.bx), y: by + (f.y - f.by) });
+    let dm = { x: 0, y: 0 };
+    let dl = { x: 0, y: 0 };
+    let lastPos = startPos;
+    const mFeet: Foot[] = [];
+    const lFeet: Foot[] = [];
+    const count = Math.max(m.feet.length, traced.feet.length);
+    for (let i = 0; i < count; i++) {
+      const mf = m.feet[i];
+      const lf = traced.feet[i];
+      lastPos = man[i]?.pos || lastPos;
+      const mx = mf ? mf.bx + dm.x : mFeet[mFeet.length - 1]?.bx ?? 0;
+      const my = mf ? mf.by + dm.y : mFeet[mFeet.length - 1]?.by ?? 0;
+      const lx2 = lf ? lf.bx + dl.x : lFeet[lFeet.length - 1]?.bx ?? 0;
+      const ly2 = lf ? lf.by + dl.y : lFeet[lFeet.length - 1]?.by ?? 0;
+      if (closeHold(lastPos) && mf && lf) {
+        const o = offsetVec(lastPos, mf.bodyFace);
+        const cx = (mx + lx2) / 2;
+        const cy = (my + ly2) / 2;
+        const nm = { x: cx - o.x / 2, y: cy - o.y / 2 };
+        const nl = { x: cx + o.x / 2, y: cy + o.y / 2 };
+        dm = { x: nm.x - mf.bx, y: nm.y - mf.by };
+        dl = { x: nl.x - lf.bx, y: nl.y - lf.by };
+        mFeet.push(moveTo(mf, nm.x, nm.y));
+        lFeet.push(moveTo(lf, nl.x, nl.y));
+      } else {
+        if (mf) mFeet.push(moveTo(mf, mx, my));
+        if (lf) lFeet.push(moveTo(lf, lx2, ly2));
+      }
+    }
+    return { m: { start: m.start, feet: mFeet }, l: { start: traced.start, feet: lFeet } };
   }, [fig, man, lady, hasLady, dance]);
 
   // Playback: wait the step's duration at the competition tempo (scaled by speed).
@@ -247,11 +291,16 @@ export function FigurePlayer({ fig }: { fig: Figure }) {
   const bodyAfter = (p: { start: { x: number; y: number; face: number }; feet: Foot[] }, i: number) =>
     i === 0 ? { x: p.start.x, y: p.start.y, face: p.start.face } : { x: p.feet[i - 1].bx, y: p.feet[i - 1].by, face: p.feet[i - 1].bodyFace };
   /** Body after step k, during smooth playback part of the way to step k + 1. */
-  const bodyAt = (p: { start: { x: number; y: number; face: number }; feet: Foot[] }) => {
+  const bodyAt = (p: { start: { x: number; y: number; face: number }; feet: Foot[] }, steps: FloorStep[]) => {
     const a = bodyAfter(p, k);
     if (!frac || k >= p.feet.length) return a;
     const b = bodyAfter(p, k + 1);
-    return { x: a.x + (b.x - a.x) * frac, y: a.y + (b.y - a.y) * frac, face: a.face + norm180(b.face - a.face) * frac };
+    // Turn the way the chart says (direction and amount, incl. full turns), not
+    // simply the shorter way round.
+    let delta = norm180(b.face - a.face);
+    const t = signedTurn(steps[k]?.turn);
+    if (t !== null && Math.abs(t) > 1 && Math.abs(norm180(a.face + t - b.face)) < 30) delta = t;
+    return { x: a.x + (b.x - a.x) * frac, y: a.y + (b.y - a.y) * frac, face: a.face + delta * frac };
   };
 
   const renderFeet = (p: { feet: Foot[] }, who: "man" | "lady") =>
@@ -284,8 +333,8 @@ export function FigurePlayer({ fig }: { fig: Figure }) {
   const ms = k > 0 ? man[k - 1] : null;
   const ls = k > 0 && hasLady ? lady[k - 1] : null;
   const pos = (ms ?? man[0])?.pos;
-  const mBody = bodyAt(geo.m);
-  const lBody = geo.l ? bodyAt(geo.l) : null;
+  const mBody = bodyAt(geo.m, man);
+  const lBody = geo.l ? bodyAt(geo.l, lady) : null;
 
   return (
     <figure className="floor figure-floor player">

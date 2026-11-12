@@ -181,6 +181,9 @@ def main():
                 prev_cell = None
                 for row in t["rows"]:
                     cell = (row[i_step] or "").strip()
+                    if re.search(r"\bprec", cell, re.I):
+                        prev_cell = cell
+                        continue  # "Prec. Step": the step before the figure, not part of it
                     desc0 = (row[i_foot] if i_foot is not None else "").strip()
                     # A step cell merged over two sub-rows ("RF fwd" / "Recover LF") is
                     # repeated in both: the second sub-row belongs to the same step.
@@ -218,6 +221,8 @@ def main():
                 by_n = {s["n"]: s for s in cur["steps"]}
                 expected = 1
                 for row in t["rows"]:
+                    if re.search(r"\bprec", row[0] or "", re.I):
+                        continue
                     ns = [n for n in step_numbers(row[0]) if n < 40] or [expected]
                     expected = ns[-1] + 1
                     for n in ns:
