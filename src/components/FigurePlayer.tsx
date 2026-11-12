@@ -78,14 +78,25 @@ function footprints(
 
 /** Where the lady stands relative to the man at the start (metres, man's frame: fwd, to his right). */
 function ladyOffset(pos: string, latin: boolean): { fwd: number; right: number } {
-  const p = pos.toLowerCase();
-  if (/promenade|\bpp\b/.test(p) && !/counter/.test(p)) return { fwd: 0.15, right: 0.35 };
-  if (/counter promenade|\bcpp\b/.test(p)) return { fwd: 0.15, right: -0.35 };
+  // Couple position at the end of the step ("Closed Position to Promenade Position" -> PP).
+  const parts = pos.toLowerCase().split(/\s+(?:to|then)\s+(?=[a-z])/);
+  const p = parts[parts.length - 1] ?? "";
+  if (/counter prom|\bcpp\b|cnt prom/.test(p)) return { fwd: 0.15, right: -0.35 };
+  if (/promenade|\bpp\b|prom\b/.test(p)) return latin ? { fwd: 0.3, right: 0.6 } : { fwd: 0.12, right: 0.32 };
+  if (/fallaway/.test(p)) return { fwd: 0, right: 0.32 };
+  if (/outside partner|\bop\b/.test(p)) return { fwd: 0.3, right: -0.08 };
+  if (/wing/.test(p)) return { fwd: 0.12, right: -0.32 };
   if (/shadow/.test(p)) return { fwd: 0.35, right: 0.25 };
+  if (/tandem/.test(p)) return { fwd: 0.4, right: 0 };
   if (/side by side|side-by-side/.test(p)) return { fwd: 0, right: 0.5 };
-  if (/fan/.test(p)) return { fwd: 0.6, right: 0.7 };
+  if (/\bl(?:eft)? side\b/.test(p)) return { fwd: 0.1, right: -0.45 };
+  if (/\br(?:ight)? side\b/.test(p)) return { fwd: 0.1, right: 0.45 };
+  if (/fan/.test(p)) return { fwd: 0.6, right: -0.75 };
+  if (/\bl(?:eft)? diag/.test(p)) return { fwd: 0.5, right: -0.45 };
+  if (/\br(?:ight)? diag/.test(p)) return { fwd: 0.5, right: 0.45 };
+  if (/ex(?:tended)?\.? open/.test(p)) return { fwd: 1.3, right: 0 };
   if (/open|apart/.test(p) || (latin && !/close/.test(p))) return { fwd: 0.9, right: 0 };
-  return { fwd: latin ? 0.35 : 0.3, right: latin ? 0.05 : 0.15 };
+  return { fwd: latin ? 0.35 : 0.3, right: latin ? 0.05 : 0.12 };
 }
 
 export function FigurePlayer({ fig }: { fig: Figure }) {
@@ -120,7 +131,30 @@ export function FigurePlayer({ fig }: { fig: Figure }) {
     const lx = Math.cos(rad(f)) * off.fwd + Math.cos(rad(f - 90)) * off.right;
     const ly = Math.sin(rad(f)) * off.fwd + Math.sin(rad(f - 90)) * off.right;
     const ladyCharted = lady.some((s) => parseAlign(s.align) !== null);
-    const l = hasLady ? footprints(lady, stepM, lx, ly, (-hint || 0) as -1 | 0 | 1, ladyCharted ? null : norm180(f + 180)) : null;
+    const traced = hasLady ? footprints(lady, stepM, lx, ly, (-hint || 0) as -1 | 0 | 1, ladyCharted ? null : norm180(f + 180)) : null;
+    // The lady's own chart gives her steps and where she faces; where she stands is
+    // taken relative to the man from the couple position of each step, so the
+    // partners stay together (different step sizes, heel turns …).
+    const place = (x: number, y: number, face: number, pos: string) => {
+      const o = ladyOffset(pos, latin);
+      return {
+        x: x + Math.cos(rad(face)) * o.fwd + Math.cos(rad(face - 90)) * o.right,
+        y: y + Math.sin(rad(face)) * o.fwd + Math.sin(rad(face - 90)) * o.right,
+      };
+    };
+    const l = traced
+      ? {
+          start: traced.start,
+          feet: traced.feet.map((lf, i) => {
+            const mf = m.feet[Math.min(i, m.feet.length - 1)];
+            const pos = man[Math.min(i, man.length - 1)]?.pos ?? man[0]?.pos ?? "";
+            const b = place(mf.bx, mf.by, mf.bodyFace, pos);
+            const side = lf.foot === "L" ? 90 : lf.foot === "R" ? -90 : 0;
+            const a = rad(lf.face + side);
+            return { ...lf, bx: b.x, by: b.y, x: b.x + (side ? Math.cos(a) * 0.12 : 0), y: b.y + (side ? Math.sin(a) * 0.12 : 0) };
+          }),
+        }
+      : null;
     return { m, l };
   }, [fig, man, lady, hasLady, dance]);
 
