@@ -181,15 +181,38 @@ export function stepVector(desc: string, facing: number): { angle: number; len: 
   // The stepping foot is the first one named ("RF closes to LF" moves the right foot).
   const fm = d.match(/\b(rf|lf)\b/);
   const foot = fm ? (fm[1] === "lf" ? "L" : "R") : null;
-  if (/\bclose|\bbrush|\bin place|\bweight|\bpivot\b(?!.*(fwd|back|bwd))/.test(d) && !/\bside\b/.test(d)) return { angle: facing, len: 0 };
-  if (/\bside\b/.test(d)) {
-    const side = foot === "L" ? 90 : -90;
-    const tweak = /fwd|forward/.test(d) ? (foot === "L" ? -30 : 30) : /back|bwd/.test(d) ? (foot === "L" ? 30 : -30) : 0;
-    return { angle: facing + side + tweak, len: 0.9 };
+  const sideSign = foot === "L" ? 1 : -1; // + = to the man's left
+  // Closing, brushing, pivoting on the spot and taps without weight don't move the body.
+  if (/w\/o weight|without weight/.test(d)) return { angle: facing, len: 0 };
+  if (/\bclose|\bbrush|\bin place|\bweight|\bpivot\b(?!.*(fwd|back|bwd))|feet/.test(d) && !/\bside\b/.test(d))
+    return { angle: facing, len: 0 };
+  const small = /small step/.test(d) ? 0.5 : 1;
+  // Main direction = the one named first ("LF fwd and slightly to side" is a forward step).
+  const dirs: [number, "fwd" | "bwd" | "side"][] = [];
+  const at = (re: RegExp, dir: "fwd" | "bwd" | "side") => {
+    const m = d.match(re);
+    if (m && m.index !== undefined) dirs.push([m.index, dir]);
+  };
+  at(/\bfwd\b|\bforward\b/, "fwd");
+  at(/\bbwd\b|\bback(?:ward)?\b/, "bwd");
+  at(/\bside\b/, "side");
+  dirs.sort((a, b) => a[0] - b[0]);
+  const main = dirs[0]?.[1];
+  const second = dirs.find((x) => x[1] !== main)?.[1];
+  const off = /slightly/.test(d) ? 20 : 45; // how much the second direction bends the step
+  const diag = /\bdiag/.test(d) ? 45 : 0;
+  if (main === "fwd") {
+    let a = facing + sideSign * (second === "side" ? off : diag);
+    if (/across/.test(d)) a -= sideSign * 15; // across the body, in CBMP
+    return { angle: a, len: small };
   }
-  if (/\bback\b|\bbwd\b|backward/.test(d)) return { angle: facing + 180, len: 1 };
-  if (/\bfwd\b|forward|across/.test(d)) return { angle: facing, len: 1 };
-  return { angle: facing, len: 0.4 };
+  if (main === "bwd") return { angle: facing + 180 - sideSign * (second === "side" ? off : diag), len: small };
+  if (main === "side") {
+    const bend = second === "fwd" ? -off : second === "bwd" ? off : 0;
+    return { angle: facing + sideSign * (90 + bend), len: 0.9 * small };
+  }
+  if (/across|cross/.test(d)) return { angle: facing, len: 0.4 * small };
+  return { angle: facing, len: 0.4 * small };
 }
 
 export interface PathPoint {

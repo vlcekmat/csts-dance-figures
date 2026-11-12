@@ -460,7 +460,8 @@ def phrase_angle(phrase, bwd=False):
     "almost Facing C", "L Toe Pointing to W") in degrees (0 = LOD, + = centre).
     Returns (angle, almost) or None. `bwd`: a bare code on a backward step means backing."""
     u = phrase.upper().replace("”", " ").replace("CENTRE", "C").replace("CENTER", "C")
-    u = u.replace("WALL", "W").replace("LOO", "LOD").replace("PW", "DW").replace("DIAG.", "D")
+    u = re.sub(r"\bLO[OLC0]\b", "LOD", u.replace("WALL", "W"))
+    u = re.sub(r"\bWW+\b", "W", u).replace("PW", "DW").replace("DIAG.", "D")
     u = re.sub(r"\b(FACING|BACKING|POINTING)(?=[A-Z])", r"\1 ", u)  # OCR: "BackingDC"
     almost = bool(re.search(r"\b(ALMOST|AIMOST|NEARLY|JUST UNDER)\b", u))
     u = re.sub(r"\b(ALMOST|AIMOST|NEARLY|JUST|UNDER|OVER|SLIGHTLY|OF|THE|NEW|A)\b", " ", u)
@@ -500,6 +501,7 @@ def parse_alignment(text, desc, new_lod, prev, frame=None):
         return out, False
     t = re.sub(r"\(next step.*?(\)|$)", " ", text, flags=re.I)
     t = re.sub(r"\(\d\)|\"", " ", t)
+    t = re.sub(r"\bturn\s+tc\b", "turn to", t, flags=re.I)  # OCR
     new_here = bool(re.search(r"\bnew\s*LO[DO0]", t, flags=re.I))
     bwd = bool(re.search(r"\b(bwd|back)\b", desc, flags=re.I))
     # end of the step: "…, then …", "end Facing …", latin "Facing W turn to Facing LOD" / "Facing W to Facing DW"
@@ -743,6 +745,9 @@ BOOK_TITLE = {
     "chacha-29": ("chacha", "SIMPLE FOOT CHANGE"),
     "quickstep-44": ("waltz", "FALLAWAY NATURAL TURN"),
     "jive-34": ("jive", "CHUGGING"),
+    "paso-35": ("paso", "4 LEFT FOOT VARIATION"),
+    "paso-36": ("paso", "5A COUP DE PIQUE CHANGING LF TO RF"),
+    "paso-37": ("paso", "5B COUP DE PIQUE CHANGING RF TO LF"),
     "waltz-40": ("slowfox", "BOUNCE FALLAWAY WITH WEAVE ENDING"),
     "waltz-41": ("slowfox", "QUICK OPEN REVERSE TURN"),
 }
@@ -918,6 +923,30 @@ def main():
                 if lady and lady["steps"]:
                     pub["ladySteps"] = build_steps(lady, public=True)
                 entry["floor"] = pub
+                # Holds allowed by the technique book ("Lead - Hold" column and notes) extend the
+                # syllabus holds: e.g. Time Step "usually w/o Hold, but any appropriate Hold".
+                hold_texts = [st.get("hold", "") for st in man["steps"] + ((lady or {}).get("steps") or [])]
+                hold_texts += man.get("notes", []) + ((lady or {}).get("notes") or [])
+                sy = entry.get("syllabus")
+                if sy is not None:
+                    h = sy.get("holds") or {"alts": []}
+                    changed = False
+                    for ht in hold_texts:
+                        if not ht or DEPENDS.search(ht):
+                            continue
+                        # only holds the book explicitly allows as options, not the hold
+                        # changes during the figure
+                        if not re.search(r"\bmay\b|\bor\b|\bany\b|alternativ|option|also", ht, re.I):
+                            continue
+                        if re.search(r"\bany\s+(?:other\s+)?(?:appropriate\s+|suitable\s+)?hold", ht, re.I) and not h.get("any"):
+                            h["any"] = True
+                            changed = True
+                        for k in holds_in(ht):
+                            if k not in h["alts"] and k != h.get("start") and k != h.get("finish"):
+                                h["alts"].append(k)
+                                changed = True
+                    if changed or sy.get("holds"):
+                        sy["holds"] = h
                 bf = book_floor[fig_id]
                 if lady and lady["steps"]:
                     bf["ladySteps"] = build_steps(lady, public=False)
@@ -964,7 +993,7 @@ def main():
     with_chart = sum(1 for f in figures if "floor" in f)
     print(f"{with_chart} figures with a public (dancecentral) chart, {len(book_floor)} with a local WDSF book chart "
           f"({sum(1 for f in book_floor.values() if 'ladySteps' in f)} with lady's steps)")
-    for d in ["waltz", "tango", "viennese", "quickstep", "samba", "chacha", "rumba", "jive"]:
+    for d in ["waltz", "tango", "viennese", "slowfox", "quickstep", "samba", "chacha", "rumba", "paso", "jive"]:
         miss = [f["id"] for f in figures if f["dance"] == d and f["id"] not in book_floor]
         if miss:
             print(f"  no WDSF chart: {miss}")

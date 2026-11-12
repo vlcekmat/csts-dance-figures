@@ -17,3 +17,4 @@ mainReferences/
 
 # Charts extracted from the WDSF technique books (copyrighted) – local use only.
 src/data/technique.local.json
+data/technique_manual.json

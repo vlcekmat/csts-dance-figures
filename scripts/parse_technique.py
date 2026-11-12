@@ -16,7 +16,7 @@ OUT = ROOT / "data" / "build" / "technique.json"
 
 BOOKS = {
     "Waltz": "waltz", "Tango": "tango", "Valčík": "viennese", "Quickstep": "quickstep",
-    "Slowfox": "slowfox", "Chacha": "chacha", "Rumba": "rumba", "Samba": "samba", "Jive": "jive",
+    "Slowfox": "slowfox", "Paso": "paso", "Chacha": "chacha", "Rumba": "rumba", "Samba": "samba", "Jive": "jive",
 }
 
 TITLE_RE = re.compile(r"^(?P<name>.+?)\s*(?:[({\[]\s*(?P<role>Man|Lady|Men|Lad[yv])\s*[)}\]]?)?\s*[-–—~.]*\s*Side\s*(?P<side>[12l|I])", re.I)
@@ -235,6 +235,16 @@ def main():
     for figs in out.values():
         for f in figs:
             f.pop("paired", None)
+    # Hand transcriptions of charts the OCR could not read replace the OCR'd ones.
+    manual = ROOT / "data" / "technique_manual.json"
+    if manual.exists():
+        for dance, charts in json.loads(manual.read_text()).items():
+            if dance.startswith("_"):
+                continue
+            figs = out.setdefault(dance, [])
+            for c in charts:
+                figs[:] = [f for f in figs if not (f["name"] == c["name"] and f["role"] == c["role"])]
+                figs.append(c)
     OUT.write_text(json.dumps(out, ensure_ascii=False, indent=1))
 
 

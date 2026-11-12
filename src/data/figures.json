@@ -4939,6 +4939,7 @@
       "align": "Facing DC",
       "turn": "starts to turn L",
       "face": 45,
+      "body": 0,
       "moving": 45,
       "timing": "1",
       "pos": "Promenade Position"
@@ -14223,7 +14224,7 @@
       "align": "Backing LOD",
       "turn": "",
       "face": -180,
-      "body": 135
+      "body": -135
      },
      {
       "desc": "LF fwd and across in CBMP",
@@ -14406,14 +14407,14 @@
       "align": "Backing LOD",
       "turn": "1/4 R",
       "face": -180,
-      "body": 135
+      "body": -135
      },
      {
       "desc": "LF closes to RF",
       "align": "Backing LOD",
       "turn": "",
       "face": -180,
-      "body": 150
+      "body": -150
      },
      {
       "desc": "RF to side w/o weight",
@@ -21059,9 +21060,9 @@
      },
      {
       "desc": "RF bwd in CBMP",
-      "align": "Backing DC",
+      "align": "Facing DW",
       "turn": "1/4 L",
-      "face": -135,
+      "face": -45,
       "pos": "Closed Position"
      }
     ]
@@ -30198,6 +30199,7 @@
       "align": "Facing DC",
       "turn": "starts to turn L",
       "face": 45,
+      "body": 0,
       "moving": 45,
       "timing": "1",
       "pos": "Promenade Position"
@@ -34954,46 +34956,53 @@
     "steps": [
      {
       "desc": "RF crosses in front of LF",
-      "align": "Facing DC",
+      "align": "Facing W",
       "turn": "3/8 R",
       "face": 45,
+      "end": -90,
       "pos": "Ex Open Prom"
      },
      {
       "desc": "LF to side and slightly bwd",
-      "align": "Facing DC",
+      "align": "Facing W",
       "turn": "3/8 R",
-      "face": 45
+      "face": 45,
+      "end": -90
      },
      {
       "desc": "RF crosses in front of LF",
-      "align": "Facing DC",
+      "align": "Facing W",
       "turn": "3/8 R",
-      "face": 45
+      "face": 45,
+      "end": -90
      },
      {
       "desc": "LF to side and slightly bwd",
-      "align": "Facing DC",
+      "align": "Facing W",
       "turn": "3/8 R",
-      "face": 45
+      "face": 45,
+      "end": -90
      },
      {
       "desc": "RF crosses in front of LF",
-      "align": "Facing DC",
+      "align": "Facing W",
       "turn": "3/8 R",
-      "face": 45
+      "face": 45,
+      "end": -90
      },
      {
       "desc": "LF to side and slightly bwd",
-      "align": "Facing DC",
+      "align": "Facing W",
       "turn": "3/8 R",
-      "face": 45
+      "face": 45,
+      "end": -90
      },
      {
       "desc": "RF crosses in front of LF",
-      "align": "Facing DC",
+      "align": "Facing W",
       "turn": "3/8 R",
-      "face": 45
+      "face": 45,
+      "end": -90
      }
     ],
     "preceding": [],
@@ -38985,30 +38994,34 @@
      },
      {
       "desc": "RF to side and slightly bwd",
-      "align": "Backing DC",
+      "align": "Facing W",
       "turn": "1/8 L",
       "face": -135,
+      "end": -90,
       "pos": "Open Opp"
      },
      {
       "desc": "LF crosses in front of RF",
-      "align": "Backing DC",
+      "align": "Facing W",
       "turn": "1/8 L",
       "face": -135,
+      "end": -90,
       "pos": "Open Opp"
      },
      {
       "desc": "RF to side",
-      "align": "Backing DC",
+      "align": "Facing W",
       "turn": "1/8 L",
       "face": -135,
+      "end": -90,
       "pos": "Open Opp"
      },
      {
       "desc": "LF fwd",
-      "align": "Backing DC",
+      "align": "Facing W",
       "turn": "1/8 L",
       "face": -135,
+      "end": -90,
       "pos": "Open Opp"
      }
     ],
@@ -39794,7 +39807,8 @@
     "holds": {
      "alts": [],
      "start": "none",
-     "finish": "none"
+     "finish": "none",
+     "any": true
     }
    },
    "videos": [
@@ -40487,15 +40501,17 @@
      },
      {
       "desc": "RF crosses in front of LF",
-      "align": "",
+      "align": "Facing W",
       "turn": "",
+      "face": -90,
       "timing": "&",
       "pos": "Open Opp"
      },
      {
       "desc": "LF bwd",
-      "align": "",
+      "align": "Facing C",
       "turn": "",
+      "face": 90,
       "timing": "1",
       "pos": "Open Opp"
      }
@@ -41850,9 +41866,10 @@
      },
      {
       "desc": "LF fwd and slightly bwd and across",
-      "align": "Facing W",
+      "align": "Facing C",
       "turn": "3/8 R",
       "face": -90,
+      "end": 90,
       "timing": "2",
       "pos": "Close L Angle then Close Opp"
      },
@@ -42586,9 +42603,9 @@
      },
      {
       "desc": "RF fwd outside partner",
-      "align": "Backing DC",
+      "align": "Facing DW",
       "turn": "",
-      "face": -135,
+      "face": -45,
       "timing": "2",
       "pos": "R Diag Opp"
      },
@@ -44414,9 +44431,10 @@
      },
      {
       "desc": "RF bwd",
-      "align": "Facing W",
+      "align": "Facing LOD",
       "turn": "",
       "face": -90,
+      "end": 0,
       "timing": "2",
       "pos": "L Diag R Angle then Open Opp"
      },
@@ -44572,7 +44590,9 @@
     ],
     "variants": {},
     "holds": {
-     "alts": [],
+     "alts": [
+      "none"
+     ],
      "start": "lh-rh",
      "finish": "lh-rh"
     }
@@ -45492,7 +45512,9 @@
      ]
     },
     "holds": {
-     "alts": [],
+     "alts": [
+      "rh-rh"
+     ],
      "start": "lh-rh",
      "finish": "normal"
     }
@@ -47666,17 +47688,19 @@
      },
      {
       "desc": "RF bwd",
-      "align": "Facing W",
+      "align": "Facing LOD",
       "turn": "",
       "face": -90,
+      "end": 0,
       "timing": "2",
       "pos": "L Diag L Angle then Diag Same"
      },
      {
       "desc": "LF in place",
-      "align": "Facing W",
+      "align": "Facing LOD",
       "turn": "1/4 L",
-      "face": -90
+      "face": -90,
+      "end": 0
      },
      {
       "desc": "RF to side",
@@ -47760,23 +47784,26 @@
      },
      {
       "desc": "RF fwd and across",
-      "align": "Facing W",
+      "align": "Backing LOD",
       "turn": "3/4 L",
       "face": -90,
+      "end": -180,
       "timing": "3"
      },
      {
       "desc": "LF fwd",
-      "align": "Facing W",
+      "align": "Backing LOD",
       "turn": "3/4 L",
       "face": -90,
+      "end": -180,
       "timing": "4"
      },
      {
       "desc": "RF",
-      "align": "Facing W",
+      "align": "Backing LOD",
       "turn": "3/4 L",
       "face": -90,
+      "end": -180,
       "timing": "&"
      },
      {
@@ -47980,9 +48007,10 @@
      },
      {
       "desc": "RF fwd",
-      "align": "Facing C",
+      "align": "Facing LOD",
       "turn": "1/4 R",
       "face": 90,
+      "end": 0,
       "pos": "R Diag Opp then R Diag R Angle"
      },
      {
@@ -54712,9 +54740,10 @@
     "steps": [
      {
       "desc": "RF fwd and to side",
-      "align": "Facing W",
+      "align": "Facing LOD",
       "turn": "1/4 L",
       "face": -90,
+      "end": 0,
       "timing": "4.1",
       "pos": "Ex Open Opp"
      },
@@ -55478,7 +55507,9 @@
      ]
     },
     "holds": {
-     "alts": [],
+     "alts": [
+      "normal"
+     ],
      "start": "lh-rh",
      "finish": "lh-rh"
     }
@@ -56671,7 +56702,9 @@
      ]
     },
     "holds": {
-     "alts": [],
+     "alts": [
+      "normal"
+     ],
      "start": "lh-rh",
      "finish": "none"
     }
@@ -56878,7 +56911,9 @@
     ],
     "variants": {},
     "holds": {
-     "alts": [],
+     "alts": [
+      "normal"
+     ],
      "start": "rh-rh",
      "finish": "lh-rh"
     }
@@ -58071,9 +58106,10 @@
      },
      {
       "desc": "RF fwd and across",
-      "align": "Facing C",
+      "align": "Facing LOD",
       "turn": "3/4 L",
       "face": 90,
+      "end": 0,
       "timing": "4.1",
       "pos": "R Diag Opp then R Side R Angle"
      },
@@ -59956,9 +59992,10 @@
      },
      {
       "desc": "RF fwd",
-      "align": "Facing C",
+      "align": "Facing W",
       "turn": "1/2 R",
       "face": 90,
+      "end": -90,
       "timing": "4.1",
       "pos": "Close Opp then Close Same"
      },
@@ -60709,9 +60746,9 @@
     "steps": [
      {
       "desc": "LF fwd",
-      "align": "Facing DW",
+      "align": "Backing DC",
       "turn": "",
-      "face": -45,
+      "face": -135,
       "timing": "2",
       "pos": "Ex Open Opp then Ex Open Same"
      },
@@ -60938,6 +60975,141 @@
      "query": "paso doble Basic Movement"
     }
    ],
+   "floor": {
+    "title": "Basic Movement",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "RF fwd",
+      "align": "Facing C",
+      "turn": "1/2 L",
+      "face": 90,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "LF fwd",
+      "align": "Facing W",
+      "turn": "1/2 L",
+      "face": 90,
+      "end": -90,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "RF fwd",
+      "align": "Facing W",
+      "turn": "1/2 L",
+      "face": 90,
+      "end": -90,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "LF fwd",
+      "align": "Facing W",
+      "turn": "1/2 L",
+      "face": 90,
+      "end": -90,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "RF fwd",
+      "align": "Facing W",
+      "turn": "1/2 L",
+      "face": 90,
+      "end": -90,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "LF fwd",
+      "align": "Facing W",
+      "turn": "1/2 L",
+      "face": 90,
+      "end": -90,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "RF fwd",
+      "align": "Facing W",
+      "turn": "1/2 L",
+      "face": 90,
+      "end": -90,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "LF fwd",
+      "align": "Facing W",
+      "turn": "1/2 L",
+      "face": -90,
+      "pos": "Close Opp"
+     }
+    ],
+    "preceding": [],
+    "following": [],
+    "ladySteps": [
+     {
+      "desc": "LF bwd",
+      "align": "Facing W",
+      "turn": "1/2 L",
+      "face": -90,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "RF bwd",
+      "align": "Facing C",
+      "turn": "1/2 L",
+      "face": -90,
+      "end": 90,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "LF bwd",
+      "align": "Facing C",
+      "turn": "1/2 L",
+      "face": -90,
+      "end": 90,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "RF bwd",
+      "align": "Facing C",
+      "turn": "1/2 L",
+      "face": -90,
+      "end": 90,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "LF bwd",
+      "align": "Facing C",
+      "turn": "1/2 L",
+      "face": -90,
+      "end": 90,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "RF bwd",
+      "align": "Facing C",
+      "turn": "1/2 L",
+      "face": -90,
+      "end": 90,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "LF bwd",
+      "align": "Facing C",
+      "turn": "1/2 L",
+      "face": -90,
+      "end": 90,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "RF bwd",
+      "align": "Facing C",
+      "turn": "1/2 L",
+      "face": 90,
+      "pos": "Close Opp"
+     }
+    ]
+   },
    "aliases": {
     "en": [
      "Basic"
@@ -61017,7 +61189,74 @@
      "length": "0:48",
      "query": "paso doble Sur Place"
     }
-   ]
+   ],
+   "floor": {
+    "title": "Sur Place",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "RF in place",
+      "align": "Facing W",
+      "turn": "",
+      "face": -90,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "LF in place",
+      "align": "Facing W",
+      "turn": "",
+      "face": -90,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "RF in place",
+      "align": "Facing W",
+      "turn": "",
+      "face": -90,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "LF in place",
+      "align": "Facing W",
+      "turn": "",
+      "face": -90,
+      "pos": "Close Opp"
+     }
+    ],
+    "preceding": [],
+    "following": [],
+    "ladySteps": [
+     {
+      "desc": "LF in place",
+      "align": "Facing C",
+      "turn": "",
+      "face": 90,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "RF in place",
+      "align": "Facing C",
+      "turn": "",
+      "face": 90,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "LF in place",
+      "align": "Facing C",
+      "turn": "",
+      "face": 90,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "RF in place",
+      "align": "Facing C",
+      "turn": "",
+      "face": 90,
+      "pos": "Close Opp"
+     }
+    ]
+   }
   },
   {
    "id": "paso-3",
@@ -61062,7 +61301,9 @@
      ]
     },
     "holds": {
-     "alts": [],
+     "alts": [
+      "promenade"
+     ],
      "start": "normal",
      "finish": "normal"
     }
@@ -61089,7 +61330,74 @@
      "length": "1:22",
      "query": "paso doble Chasses to R"
     }
-   ]
+   ],
+   "floor": {
+    "title": "Chasses To Right",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "RF to side",
+      "align": "Facing C",
+      "turn": "1/4 R",
+      "face": 90,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "LF",
+      "align": "Facing C",
+      "turn": "1/4 R",
+      "face": 90,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "RF to side",
+      "align": "Facing C",
+      "turn": "1/4 R",
+      "face": 90,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "LF",
+      "align": "Facing C",
+      "turn": "1/4 R",
+      "face": 90,
+      "pos": "Close Opp"
+     }
+    ],
+    "preceding": [],
+    "following": [],
+    "ladySteps": [
+     {
+      "desc": "LF to side",
+      "align": "Facing W",
+      "turn": "1/4 R",
+      "face": -90,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "RF",
+      "align": "Facing W",
+      "turn": "1/4 R",
+      "face": -90,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "LF to side",
+      "align": "Facing W",
+      "turn": "1/4 R",
+      "face": -90,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "RF",
+      "align": "Facing W",
+      "turn": "1/4 R",
+      "face": -90,
+      "pos": "Close Opp"
+     }
+    ]
+   }
   },
   {
    "id": "paso-4",
@@ -61141,7 +61449,70 @@
      "length": "0:28",
      "query": "paso doble Drag"
     }
-   ]
+   ],
+   "floor": {
+    "title": "Drag",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "",
+      "align": "Facing C",
+      "turn": "",
+      "face": 90,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "RF to side",
+      "align": "Facing C",
+      "turn": "",
+      "face": 90,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "RF fwd",
+      "align": "Facing C",
+      "turn": "",
+      "face": 90,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "LF",
+      "align": "",
+      "turn": ""
+     }
+    ],
+    "preceding": [],
+    "following": [],
+    "ladySteps": [
+     {
+      "desc": "",
+      "align": "Facing W",
+      "turn": "",
+      "face": -90,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "LF to side",
+      "align": "Facing W",
+      "turn": "",
+      "face": -90,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "LF bwd",
+      "align": "Facing W",
+      "turn": "",
+      "face": -90,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "RF",
+      "align": "",
+      "turn": ""
+     }
+    ]
+   }
   },
   {
    "id": "paso-5",
@@ -61193,7 +61564,9 @@
      ]
     },
     "holds": {
-     "alts": [],
+     "alts": [
+      "promenade"
+     ],
      "start": "normal",
      "finish": "normal"
     }
@@ -61220,7 +61593,74 @@
      "length": "0:33",
      "query": "paso doble Chasses to L"
     }
-   ]
+   ],
+   "floor": {
+    "title": "Chasses To Left",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "RF in place",
+      "align": "Facing W",
+      "turn": "1/4 R",
+      "face": -90,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "LF to side",
+      "align": "Facing W",
+      "turn": "1/4 R",
+      "face": -90,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "RF",
+      "align": "Facing W",
+      "turn": "1/4 R",
+      "face": -90,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "LF to side",
+      "align": "Facing W",
+      "turn": "1/4 R",
+      "face": -90,
+      "pos": "Close Opp"
+     }
+    ],
+    "preceding": [],
+    "following": [],
+    "ladySteps": [
+     {
+      "desc": "LF in place",
+      "align": "Facing C",
+      "turn": "1/4 R",
+      "face": 90,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "RF to side",
+      "align": "Facing C",
+      "turn": "1/4 R",
+      "face": 90,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "LF",
+      "align": "Facing C",
+      "turn": "1/4 R",
+      "face": 90,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "RF to side",
+      "align": "Facing C",
+      "turn": "1/4 R",
+      "face": 90,
+      "pos": "Close Opp"
+     }
+    ]
+   }
   },
   {
    "id": "paso-6",
@@ -61250,7 +61690,9 @@
     ],
     "variants": {},
     "holds": {
-     "alts": [],
+     "alts": [
+      "promenade"
+     ],
      "start": "normal",
      "finish": "normal"
     }
@@ -61278,6 +61720,76 @@
      "query": "paso doble Attack"
     }
    ],
+   "floor": {
+    "title": "Attack",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "RF in place",
+      "align": "Facing C",
+      "turn": "",
+      "face": 90,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "LF fwd and slightly to side",
+      "align": "Backing DW",
+      "turn": "1/8 L",
+      "face": 90,
+      "end": 135,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "RF to side",
+      "align": "Backing LOD",
+      "turn": "1/8 L",
+      "face": 135,
+      "end": -180,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "LF",
+      "align": "Backing LOD",
+      "turn": "",
+      "face": -180,
+      "pos": "Close Opp"
+     }
+    ],
+    "preceding": [],
+    "following": [],
+    "ladySteps": [
+     {
+      "desc": "LF in place",
+      "align": "Facing W",
+      "turn": "",
+      "face": -90,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "RF diag bwd",
+      "align": "Facing DW",
+      "turn": "1/8 L",
+      "face": -90,
+      "end": -45,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "LF to side",
+      "align": "Facing DW",
+      "turn": "1/8 L",
+      "face": -45,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "RF",
+      "align": "Facing LOD",
+      "turn": "",
+      "face": 0,
+      "pos": "Close Opp"
+     }
+    ]
+   },
    "aliases": {
     "en": [
      "Appel"
@@ -61343,6 +61855,138 @@
      "query": "paso doble Huit"
     }
    ],
+   "floor": {
+    "title": "Huit",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "RF fwd and across",
+      "align": "Facing DW",
+      "turn": "",
+      "face": -45,
+      "moving": 0,
+      "pos": "Close Prom"
+     },
+     {
+      "desc": "LF",
+      "align": "Facing W",
+      "turn": "1/8 R",
+      "face": -45,
+      "end": -90
+     },
+     {
+      "desc": "RF in place",
+      "align": "Facing W",
+      "turn": "",
+      "face": -90,
+      "pos": "L Diag L Angle"
+     },
+     {
+      "desc": "LF in place",
+      "align": "Facing W",
+      "turn": "",
+      "face": -90,
+      "pos": "Close L Angle"
+     },
+     {
+      "desc": "RF in place",
+      "align": "Facing W",
+      "turn": "",
+      "face": -90
+     },
+     {
+      "desc": "LF in place",
+      "align": "Facing W",
+      "turn": "",
+      "face": -90,
+      "pos": "R Diag R Angle"
+     },
+     {
+      "desc": "RF in place",
+      "align": "Facing W",
+      "turn": "",
+      "face": -90,
+      "pos": "Close R Angle"
+     },
+     {
+      "desc": "LF in place",
+      "align": "Facing W",
+      "turn": "",
+      "face": -90,
+      "pos": "Close Opp"
+     }
+    ],
+    "preceding": [],
+    "following": [],
+    "ladySteps": [
+     {
+      "desc": "LF fwd and across",
+      "align": "Backing LOD",
+      "turn": "",
+      "face": 45,
+      "end": -180,
+      "moving": 0,
+      "pos": "Close Prom"
+     },
+     {
+      "desc": "RF fwd and slightly bwd",
+      "align": "Backing LOD",
+      "turn": "3/8 L",
+      "face": 45,
+      "end": -180,
+      "moving": 0
+     },
+     {
+      "desc": "LF in place",
+      "align": "Backing LOD",
+      "turn": "3/8 L",
+      "face": 45,
+      "end": -180,
+      "moving": 0,
+      "pos": "L Diag L Angle"
+     },
+     {
+      "desc": "RF fwd and across",
+      "align": "Facing LOD",
+      "turn": "",
+      "face": -180,
+      "end": 0,
+      "pos": "Close L Angle"
+     },
+     {
+      "desc": "LF fwd and slightly bwd",
+      "align": "Facing LOD",
+      "turn": "1/2 R",
+      "face": -180,
+      "end": 0
+     },
+     {
+      "desc": "RF in place",
+      "align": "Facing LOD",
+      "turn": "1/2 R",
+      "face": -180,
+      "end": 0,
+      "pos": "R Diag R Angle"
+     },
+     {
+      "desc": "LF fwd and across",
+      "align": "Facing DC",
+      "turn": "1/8 L",
+      "face": 0,
+      "end": 45,
+      "pos": "Close Prom"
+     },
+     {
+      "desc": "RF",
+      "align": "Facing C",
+      "turn": "1/8 L",
+      "face": 45,
+      "end": 90,
+      "pos": "Close Opp"
+     }
+    ]
+   },
    "aliases": {
     "en": [
      "Cape"
@@ -61407,7 +62051,124 @@
      "length": "0:47",
      "query": "paso doble Separation"
     }
-   ]
+   ],
+   "floor": {
+    "title": "Separation",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "RF in place",
+      "align": "Backing LOD",
+      "turn": "",
+      "face": -180,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "LF fwd",
+      "align": "Backing LOD",
+      "turn": "",
+      "face": -180,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "RF",
+      "align": "Backing LOD",
+      "turn": "",
+      "face": -180,
+      "pos": "Open Opp"
+     },
+     {
+      "desc": "LF in place",
+      "align": "Backing LOD",
+      "turn": "",
+      "face": -180,
+      "pos": "Ex Open Opp"
+     },
+     {
+      "desc": "RF in place",
+      "align": "Backing LOD",
+      "turn": "",
+      "face": -180
+     },
+     {
+      "desc": "LF in place",
+      "align": "Backing LOD",
+      "turn": "",
+      "face": -180
+     },
+     {
+      "desc": "RF in place",
+      "align": "Backing LOD",
+      "turn": "",
+      "face": -180
+     },
+     {
+      "desc": "LF in place",
+      "align": "Backing LOD",
+      "turn": "",
+      "face": -180,
+      "pos": "Close Opp"
+     }
+    ],
+    "preceding": [],
+    "following": [],
+    "ladySteps": [
+     {
+      "desc": "LF in place",
+      "align": "Facing LOD",
+      "turn": "",
+      "face": 0,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "RF bwd",
+      "align": "Facing LOD",
+      "turn": "",
+      "face": 0,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "LF bwd",
+      "align": "Facing LOD",
+      "turn": "",
+      "face": 0,
+      "pos": "Open Opp"
+     },
+     {
+      "desc": "RF",
+      "align": "Facing LOD",
+      "turn": "",
+      "face": 0,
+      "pos": "Ex Open Opp"
+     },
+     {
+      "desc": "LF fwd",
+      "align": "Facing LOD",
+      "turn": "",
+      "face": 0
+     },
+     {
+      "desc": "RF fwd",
+      "align": "Facing LOD",
+      "turn": "",
+      "face": 0
+     },
+     {
+      "desc": "LF fwd",
+      "align": "Facing LOD",
+      "turn": "",
+      "face": 0
+     },
+     {
+      "desc": "RF",
+      "align": "Facing LOD",
+      "turn": "",
+      "face": 0,
+      "pos": "Close Opp"
+     }
+    ]
+   }
   },
   {
    "id": "paso-9",
@@ -61472,7 +62233,144 @@
      "length": "0:21",
      "query": "paso doble Natural Twist Turn"
     }
-   ]
+   ],
+   "floor": {
+    "title": "Natural Twist Turn",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "RF in place",
+      "align": "Facing W",
+      "turn": "1/8 L",
+      "face": -90,
+      "pos": "Close Opp then Close Prom"
+     },
+     {
+      "desc": "LF diag fwd",
+      "align": "Facing DW",
+      "turn": "",
+      "face": -45,
+      "moving": 0,
+      "pos": "Close Prom"
+     },
+     {
+      "desc": "RF fwd and across",
+      "align": "Facing DW",
+      "turn": "",
+      "face": -45,
+      "moving": 0,
+      "pos": "Close Prom"
+     },
+     {
+      "desc": "LF fwd and slightly bwd",
+      "align": "Backing LOD",
+      "turn": "3/8 R",
+      "face": -45,
+      "end": -180,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "RF crosses behind LF",
+      "align": "Backing DW",
+      "turn": "1/8 R",
+      "face": -180,
+      "end": 135,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "LF to side and slightly bwd",
+      "align": "Facing DW",
+      "turn": "1/2 R",
+      "face": 135,
+      "end": -45,
+      "pos": "R Diag Opp"
+     },
+     {
+      "desc": "RF fwd and across",
+      "align": "Facing DW",
+      "turn": "1/2 R",
+      "face": 135,
+      "end": -45,
+      "pos": "R Diag Opp"
+     },
+     {
+      "desc": "LF",
+      "align": "Facing W",
+      "turn": "1/8 R",
+      "face": -45,
+      "end": -90,
+      "pos": "Close Opp"
+     }
+    ],
+    "preceding": [],
+    "following": [],
+    "ladySteps": [
+     {
+      "desc": "LF in place",
+      "align": "Facing C",
+      "turn": "1/8 R",
+      "face": 90,
+      "pos": "Close Opp then Close Prom"
+     },
+     {
+      "desc": "RF diag fwd",
+      "align": "Facing DC",
+      "turn": "",
+      "face": 45,
+      "moving": 0,
+      "pos": "Close Prom"
+     },
+     {
+      "desc": "LF fwd and across",
+      "align": "Facing DC",
+      "turn": "",
+      "face": 45,
+      "moving": 0,
+      "pos": "Close Prom"
+     },
+     {
+      "desc": "RF fwd",
+      "align": "Facing LOD",
+      "turn": "1/8 R",
+      "face": 45,
+      "end": 0,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "LF fwd",
+      "align": "Facing DW",
+      "turn": "1/8 R",
+      "face": 0,
+      "end": -45,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "RF fwd outside partner",
+      "align": "Backing DW",
+      "turn": "1/2 R",
+      "face": -45,
+      "end": 135,
+      "pos": "R Diag Opp"
+     },
+     {
+      "desc": "LF fwd outside partner",
+      "align": "Backing DW",
+      "turn": "1/2 R",
+      "face": -45,
+      "end": 135,
+      "pos": "R Diag Opp"
+     },
+     {
+      "desc": "RF",
+      "align": "Facing C",
+      "turn": "1/8 R",
+      "face": 135,
+      "end": 90,
+      "pos": "Close Opp"
+     }
+    ]
+   }
   },
   {
    "id": "paso-10",
@@ -61537,7 +62435,140 @@
      "length": "0:11",
      "query": "paso doble Promenade"
     }
-   ]
+   ],
+   "floor": {
+    "title": "Promenade",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "RF in place",
+      "align": "Facing W",
+      "turn": "1/8 L",
+      "face": -90,
+      "pos": "Close Opp then Close Prom"
+     },
+     {
+      "desc": "LF diag fwd",
+      "align": "Facing DW",
+      "turn": "",
+      "face": -45,
+      "moving": 0,
+      "pos": "Close Prom"
+     },
+     {
+      "desc": "RF fwd and across",
+      "align": "Facing DW",
+      "turn": "",
+      "face": -45,
+      "moving": 0,
+      "pos": "Close Prom"
+     },
+     {
+      "desc": "LF fwd and slightly bwd",
+      "align": "Backing LOD",
+      "turn": "3/8 R",
+      "face": -45,
+      "end": -180,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "RF bwd",
+      "align": "Backing DW",
+      "turn": "1/8 R",
+      "face": -180,
+      "end": 135,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "LF bwd",
+      "align": "Facing C",
+      "turn": "1/8 R",
+      "face": 135,
+      "end": 90,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "RF to side",
+      "align": "Facing C",
+      "turn": "",
+      "face": 90,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "LF",
+      "align": "Facing C",
+      "turn": "",
+      "face": 90,
+      "pos": "Close Opp"
+     }
+    ],
+    "preceding": [],
+    "following": [],
+    "ladySteps": [
+     {
+      "desc": "LF in place",
+      "align": "Facing C",
+      "turn": "1/8 R",
+      "face": 90,
+      "pos": "Close Opp then Close Prom"
+     },
+     {
+      "desc": "RF diag fwd",
+      "align": "Facing DC",
+      "turn": "",
+      "face": 45,
+      "moving": 0,
+      "pos": "Close Prom"
+     },
+     {
+      "desc": "LF fwd and across",
+      "align": "Facing DC",
+      "turn": "",
+      "face": 45,
+      "moving": 0,
+      "pos": "Close Prom"
+     },
+     {
+      "desc": "RF fwd",
+      "align": "Facing LOD",
+      "turn": "1/8 R",
+      "face": 45,
+      "end": 0,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "LF fwd",
+      "align": "Facing LOD",
+      "turn": "",
+      "face": 0,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "RF fwd outside partner",
+      "align": "Facing DW",
+      "turn": "1/8 R",
+      "face": 0,
+      "end": -45,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "LF to side",
+      "align": "Facing W",
+      "turn": "1/8 R",
+      "face": -45,
+      "end": -90,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "RF",
+      "align": "Facing W",
+      "turn": "",
+      "face": -90,
+      "pos": "Close Opp"
+     }
+    ]
+   }
   },
   {
    "id": "paso-11",
@@ -61603,9 +62634,81 @@
      "query": "paso doble Closed promenade"
     }
    ],
+   "floor": {
+    "title": "Closed Promenadf",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "RF fwd and across",
+      "align": "Facing DW",
+      "turn": "",
+      "face": -45,
+      "moving": 0,
+      "pos": "Close Prom"
+     },
+     {
+      "desc": "LF",
+      "align": "Facing W",
+      "turn": "1/8 R",
+      "face": -45,
+      "end": -90,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "RF to side",
+      "align": "Facing W",
+      "turn": "",
+      "face": -90,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "LF",
+      "align": "Facing W",
+      "turn": "",
+      "face": -90,
+      "pos": "Close Opp"
+     }
+    ],
+    "preceding": [],
+    "following": [],
+    "ladySteps": [
+     {
+      "desc": "LF fwd and across",
+      "align": "Facing DC",
+      "turn": "",
+      "face": 45,
+      "moving": 0,
+      "pos": "Close Prom"
+     },
+     {
+      "desc": "RF",
+      "align": "Facing C",
+      "turn": "1/8 L",
+      "face": 45,
+      "end": 90,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "LF to side",
+      "align": "Facing C",
+      "turn": "",
+      "face": 90,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "RF",
+      "align": "Facing C",
+      "turn": "",
+      "face": 90,
+      "pos": "Close Opp"
+     }
+    ]
+   },
    "aliases": {
     "en": [
-     "Promenade Close"
+     "Promenade Close",
+     "Closed Promenadf"
     ]
    }
   },
@@ -61664,7 +62767,80 @@
      "length": "0:28",
      "query": "paso doble Promenade Link"
     }
-   ]
+   ],
+   "floor": {
+    "title": "Promenade Link",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "RF in place",
+      "align": "Facing W",
+      "turn": "1/8 L",
+      "face": -90,
+      "pos": "Close Opp then Close Prom"
+     },
+     {
+      "desc": "LF diag fwd",
+      "align": "Facing DW",
+      "turn": "",
+      "face": -45,
+      "moving": 0,
+      "pos": "Close Prom"
+     },
+     {
+      "desc": "RF fwd and across",
+      "align": "Facing DW",
+      "turn": "",
+      "face": -45,
+      "moving": 0,
+      "pos": "Close Prom"
+     },
+     {
+      "desc": "LF",
+      "align": "Facing W",
+      "turn": "1/8 R",
+      "face": -45,
+      "end": -90,
+      "pos": "Close Opp"
+     }
+    ],
+    "preceding": [],
+    "following": [],
+    "ladySteps": [
+     {
+      "desc": "LF in place",
+      "align": "Facing C",
+      "turn": "1/8 R",
+      "face": 90,
+      "pos": "Close Opp then Close Prom"
+     },
+     {
+      "desc": "RF diag fwd",
+      "align": "Facing DC",
+      "turn": "",
+      "face": 45,
+      "moving": 0,
+      "pos": "Close Prom"
+     },
+     {
+      "desc": "LF fwd and across",
+      "align": "Facing DC",
+      "turn": "",
+      "face": 45,
+      "moving": 0,
+      "pos": "Close Prom"
+     },
+     {
+      "desc": "RF",
+      "align": "Facing C",
+      "turn": "1/8 L",
+      "face": 45,
+      "end": 90,
+      "pos": "Close Opp"
+     }
+    ]
+   }
   },
   {
    "id": "paso-13",
@@ -61733,7 +62909,262 @@
      "length": "0:17",
      "query": "paso doble Sixteen"
     }
-   ]
+   ],
+   "floor": {
+    "title": "Sixteen",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "RF in place",
+      "align": "Facing W",
+      "turn": "1/8 L",
+      "face": -90,
+      "pos": "Close Opp then Close Prom"
+     },
+     {
+      "desc": "LF diag fwd",
+      "align": "Facing DW",
+      "turn": "",
+      "face": -45,
+      "moving": 0,
+      "pos": "Close Prom"
+     },
+     {
+      "desc": "RF fwd and across",
+      "align": "Facing DW",
+      "turn": "",
+      "face": -45,
+      "moving": 0,
+      "pos": "Close Prom"
+     },
+     {
+      "desc": "LF fwd and slightly bwd",
+      "align": "Backing LOD",
+      "turn": "3/8 R",
+      "face": -45,
+      "end": -180,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "RF bwd",
+      "align": "Backing DW",
+      "turn": "1/8 R",
+      "face": -180,
+      "end": 135,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "LF bwd",
+      "align": "Facing C",
+      "turn": "1/8 R",
+      "face": 135,
+      "end": 90,
+      "pos": "R Diag Opp then R Diag R Angle"
+     },
+     {
+      "desc": "RF",
+      "align": "Facing C",
+      "turn": "1/8 R",
+      "face": 135,
+      "end": 90,
+      "pos": "R Diag Opp then R Diag R Angle"
+     },
+     {
+      "desc": "LF in place",
+      "align": "Facing C",
+      "turn": "",
+      "face": 90,
+      "pos": "R Diag R Angle"
+     },
+     {
+      "desc": "RF in place",
+      "align": "Facing C",
+      "turn": "",
+      "face": 90,
+      "pos": "Close R Angle"
+     },
+     {
+      "desc": "LF in place",
+      "align": "Facing C",
+      "turn": "",
+      "face": 90,
+      "pos": "L Diag R Angle then L Diag L Angle"
+     },
+     {
+      "desc": "RF in place",
+      "align": "Facing C",
+      "turn": "",
+      "face": 90,
+      "pos": "L Diag R Angle then L Diag L Angle"
+     },
+     {
+      "desc": "LF in place",
+      "align": "Facing C",
+      "turn": "",
+      "face": 90,
+      "pos": "Close L Angle"
+     },
+     {
+      "desc": "RF in place",
+      "align": "Facing C",
+      "turn": "",
+      "face": 90,
+      "pos": "R Diag L Angle then R Diag R Angle"
+     },
+     {
+      "desc": "LF in place",
+      "align": "Facing C",
+      "turn": "",
+      "face": 90,
+      "pos": "R Diag L Angle then R Diag R Angle"
+     },
+     {
+      "desc": "RF in place",
+      "align": "Facing C",
+      "turn": "",
+      "face": 90,
+      "pos": "Close R Angle"
+     },
+     {
+      "desc": "LF in place",
+      "align": "Facing C",
+      "turn": "",
+      "face": 90,
+      "pos": "Close Opp"
+     }
+    ],
+    "preceding": [],
+    "following": [],
+    "ladySteps": [
+     {
+      "desc": "LF in place",
+      "align": "Facing C",
+      "turn": "1/8 R",
+      "face": 90,
+      "pos": "Close Opp then Close Prom"
+     },
+     {
+      "desc": "RF diag fwd",
+      "align": "Facing DC",
+      "turn": "",
+      "face": 45,
+      "moving": 0,
+      "pos": "Close Prom"
+     },
+     {
+      "desc": "LF fwd and across",
+      "align": "Facing DC",
+      "turn": "",
+      "face": 45,
+      "moving": 0,
+      "pos": "Close Prom"
+     },
+     {
+      "desc": "RF fwd",
+      "align": "Facing LOD",
+      "turn": "1/8 R",
+      "face": 45,
+      "end": 0,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "LF fwd",
+      "align": "Facing LOD",
+      "turn": "",
+      "face": 0,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "RF fwd outside partner",
+      "align": "Backing LOD",
+      "turn": "",
+      "face": 0,
+      "end": -180,
+      "pos": "R Diag Opp then R Diag R Angle"
+     },
+     {
+      "desc": "LF fwd and slightly bwd",
+      "align": "Backing LOD",
+      "turn": "1/2 R",
+      "face": 0,
+      "end": -180,
+      "pos": "R Diag Opp then R Diag R Angle"
+     },
+     {
+      "desc": "RF in place",
+      "align": "Backing LOD",
+      "turn": "1/2 R",
+      "face": 0,
+      "end": -180,
+      "pos": "R Diag R Angle"
+     },
+     {
+      "desc": "LF fwd and across",
+      "align": "Facing LOD",
+      "turn": "",
+      "face": -180,
+      "end": 0,
+      "pos": "Close R Angle"
+     },
+     {
+      "desc": "RF fwd and slightly bwd",
+      "align": "Facing LOD",
+      "turn": "1/2 L",
+      "face": -180,
+      "end": 0,
+      "pos": "L Diag R Angle then L Diag L Angle"
+     },
+     {
+      "desc": "LF in place",
+      "align": "Facing LOD",
+      "turn": "1/2 L",
+      "face": -180,
+      "end": 0,
+      "pos": "L Diag R Angle then L Diag L Angle"
+     },
+     {
+      "desc": "RF fwd and across",
+      "align": "Backing LOD",
+      "turn": "",
+      "face": 0,
+      "end": -180,
+      "pos": "Close L Angle"
+     },
+     {
+      "desc": "LF fwd and slightly bwd",
+      "align": "Backing LOD",
+      "turn": "1/2 R",
+      "face": 0,
+      "end": -180,
+      "pos": "R Diag L Angle then R Diag R Angle"
+     },
+     {
+      "desc": "RF in place",
+      "align": "Backing LOD",
+      "turn": "1/2 R",
+      "face": 0,
+      "end": -180,
+      "pos": "R Diag L Angle then R Diag R Angle"
+     },
+     {
+      "desc": "LF fwd",
+      "align": "Facing W",
+      "turn": "1/4 L",
+      "face": -180,
+      "end": -90,
+      "pos": "Close R Angle"
+     },
+     {
+      "desc": "RF",
+      "align": "Facing W",
+      "turn": "1/4 L",
+      "face": -180,
+      "end": -90,
+      "pos": "Close Opp"
+     }
+    ]
+   }
   },
   {
    "id": "paso-14",
@@ -61798,7 +63229,138 @@
      "length": "0:32",
      "query": "paso doble Promenade to Counter Promenade"
     }
-   ]
+   ],
+   "floor": {
+    "title": "Promenade To Counter Promenade",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "RF in place",
+      "align": "Facing W",
+      "turn": "1/8",
+      "face": -90,
+      "pos": "Close Opp then Close Prom"
+     },
+     {
+      "desc": "LF diag fwd",
+      "align": "Facing DW",
+      "turn": "",
+      "face": -45,
+      "moving": 0,
+      "pos": "Close Prom"
+     },
+     {
+      "desc": "RF fwd and across",
+      "align": "Facing DW",
+      "turn": "",
+      "face": -45,
+      "moving": 0,
+      "pos": "Close Prom"
+     },
+     {
+      "desc": "LF fwd and slightly bwd",
+      "align": "Facing DW",
+      "turn": "3/8 R",
+      "face": -45,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "RF diag fwd",
+      "align": "Facing DC",
+      "turn": "3/8 R",
+      "face": -180,
+      "end": 45
+     },
+     {
+      "desc": "LF fwd",
+      "align": "Facing LOD",
+      "turn": "1/8 R",
+      "face": 45,
+      "end": 0
+     },
+     {
+      "desc": "RF fwd",
+      "align": "Facing DW",
+      "turn": "1/8 R",
+      "face": 0,
+      "end": -45,
+      "pos": "Close Opp then Close Prom"
+     },
+     {
+      "desc": "LF diag fwd",
+      "align": "Facing DW",
+      "turn": "",
+      "face": -45,
+      "moving": 0,
+      "pos": "Close Prom"
+     }
+    ],
+    "preceding": [],
+    "following": [],
+    "ladySteps": [
+     {
+      "desc": "LF in place",
+      "align": "Facing C",
+      "turn": "1/8 R",
+      "face": 90,
+      "pos": "Close Opp then Close Prom"
+     },
+     {
+      "desc": "RF diag fwd",
+      "align": "Facing DC",
+      "turn": "",
+      "face": 45,
+      "moving": 0,
+      "pos": "Close Prom"
+     },
+     {
+      "desc": "LF fwd and across",
+      "align": "Facing DC",
+      "turn": "",
+      "face": 45,
+      "moving": 0,
+      "pos": "Close Prom"
+     },
+     {
+      "desc": "RF fwd",
+      "align": "Facing LOD",
+      "turn": "1/8 R",
+      "face": 45,
+      "end": 0,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "LF diag fwd",
+      "align": "Facing DW",
+      "turn": "1/8 R",
+      "face": 0,
+      "end": -45
+     },
+     {
+      "desc": "RF fwd and across",
+      "align": "Facing DW",
+      "turn": "",
+      "face": -45
+     },
+     {
+      "desc": "LF fwd and across",
+      "align": "Facing C",
+      "turn": "5/8 R",
+      "face": -45,
+      "end": 90,
+      "pos": "Close Opp then Close Prom"
+     },
+     {
+      "desc": "RF diag fwd",
+      "align": "Facing DC",
+      "turn": "1/8 R",
+      "face": 90,
+      "end": 45,
+      "pos": "Close Prom"
+     }
+    ]
+   }
   },
   {
    "id": "paso-15",
@@ -61869,7 +63431,132 @@
      "length": "6:13",
      "query": "paso doble Grand Circle"
     }
-   ]
+   ],
+   "floor": {
+    "title": "Grand Circle",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "RF fwd and across",
+      "align": "Facing LOD",
+      "turn": "1/8 L",
+      "face": 0,
+      "pos": "Close Prom"
+     },
+     {
+      "desc": "",
+      "align": "Facing LOD",
+      "turn": "",
+      "face": 0
+     },
+     {
+      "desc": "",
+      "align": "Facing LOD",
+      "turn": "",
+      "face": 0
+     },
+     {
+      "desc": "",
+      "align": "Facing LOD",
+      "turn": "",
+      "face": 0
+     },
+     {
+      "desc": "feet together",
+      "align": "Backing DW",
+      "turn": "3/8 L",
+      "face": 0,
+      "end": 135
+     },
+     {
+      "desc": "LF fwd",
+      "align": "Backing DW",
+      "turn": "3/8 L",
+      "face": 0,
+      "end": 135
+     },
+     {
+      "desc": "RF fwd and across",
+      "align": "Backing DW",
+      "turn": "",
+      "face": 135,
+      "moving": -180,
+      "pos": "Close Prom"
+     },
+     {
+      "desc": "LF",
+      "align": "Facing C",
+      "turn": "1/8 R",
+      "face": 45,
+      "end": 90,
+      "pos": "Close Opp"
+     }
+    ],
+    "preceding": [],
+    "following": [],
+    "ladySteps": [
+     {
+      "desc": "LF fwd and across",
+      "align": "Facing LOD",
+      "turn": "1/8 R",
+      "face": 0,
+      "pos": "Close Prom"
+     },
+     {
+      "desc": "RF fwd",
+      "align": "Backing DC",
+      "turn": "5/8 L",
+      "face": 0,
+      "end": -135
+     },
+     {
+      "desc": "LF fwd",
+      "align": "Backing DC",
+      "turn": "5/8 L",
+      "face": 0,
+      "end": -135
+     },
+     {
+      "desc": "RF fwd",
+      "align": "Backing DC",
+      "turn": "5/8 L",
+      "face": 0,
+      "end": -135,
+      "pos": "Close R Angle"
+     },
+     {
+      "desc": "LF fwd",
+      "align": "Backing DC",
+      "turn": "5/8 L",
+      "face": 0,
+      "end": -135
+     },
+     {
+      "desc": "RF fwd",
+      "align": "Backing DC",
+      "turn": "5/8 L",
+      "face": 0,
+      "end": -135
+     },
+     {
+      "desc": "LF fwd and across",
+      "align": "Facing DW",
+      "turn": "",
+      "face": -45,
+      "moving": -180,
+      "pos": "Close Prom"
+     },
+     {
+      "desc": "RF",
+      "align": "Facing W",
+      "turn": "1/8 L",
+      "face": -45,
+      "end": -90,
+      "pos": "Close Opp"
+     }
+    ]
+   }
   },
   {
    "id": "paso-16",
@@ -61926,7 +63613,246 @@
      "length": "0:18",
      "query": "paso doble Banderillas"
     }
-   ]
+   ],
+   "floor": {
+    "title": "Banderillas",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "RF in place",
+      "align": "Facing C",
+      "turn": "",
+      "face": 90,
+      "pos": "L Diag Opp"
+     },
+     {
+      "desc": "LF in place",
+      "align": "Facing C",
+      "turn": "",
+      "face": 90,
+      "pos": "L Diag Opp"
+     },
+     {
+      "desc": "RF in place",
+      "align": "Facing C",
+      "turn": "",
+      "face": 90,
+      "pos": "L Diag Opp"
+     },
+     {
+      "desc": "LF in place",
+      "align": "Facing C",
+      "turn": "",
+      "face": 90,
+      "pos": "L Diag Opp"
+     },
+     {
+      "desc": "RF in place",
+      "align": "Facing C",
+      "turn": "",
+      "face": 90,
+      "pos": "L Diag Opp"
+     },
+     {
+      "desc": "LF to side",
+      "align": "Facing C",
+      "turn": "",
+      "face": 90
+     },
+     {
+      "desc": "RF",
+      "align": "Facing C",
+      "turn": "",
+      "face": 90,
+      "pos": "R Diag Opp"
+     },
+     {
+      "desc": "LF in place",
+      "align": "Facing C",
+      "turn": "",
+      "face": 90,
+      "pos": "R Diag Opp"
+     },
+     {
+      "desc": "RF fwd outside partner",
+      "align": "Facing C",
+      "turn": "",
+      "face": 90,
+      "pos": "R Diag Opp"
+     },
+     {
+      "desc": "LF to side and slightly bwd",
+      "align": "Facing C",
+      "turn": "",
+      "face": 90,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "RF bwd and to side",
+      "align": "Facing C",
+      "turn": "",
+      "face": 90
+     },
+     {
+      "desc": "LF bwd",
+      "align": "Facing W",
+      "turn": "1/2 L",
+      "face": 90,
+      "end": -90,
+      "pos": "L Diag Opp"
+     },
+     {
+      "desc": "RF bwd",
+      "align": "Facing W",
+      "turn": "1/2 L",
+      "face": 90,
+      "end": -90,
+      "pos": "L Diag Opp"
+     },
+     {
+      "desc": "LF bwd",
+      "align": "Facing W",
+      "turn": "1/2 L",
+      "face": 90,
+      "end": -90,
+      "pos": "L Diag Opp"
+     },
+     {
+      "desc": "RF bwd",
+      "align": "Facing W",
+      "turn": "1/2 L",
+      "face": 90,
+      "end": -90
+     },
+     {
+      "desc": "LF bwd",
+      "align": "Facing W",
+      "turn": "1/2 L",
+      "face": 90,
+      "end": -90,
+      "pos": "Close Opp"
+     }
+    ],
+    "preceding": [],
+    "following": [],
+    "ladySteps": [
+     {
+      "desc": "LF in place",
+      "align": "Facing W",
+      "turn": "",
+      "face": -90,
+      "pos": "L Diag Opp"
+     },
+     {
+      "desc": "RF in place",
+      "align": "Facing W",
+      "turn": "",
+      "face": -90,
+      "pos": "L Diag Opp"
+     },
+     {
+      "desc": "LF in place",
+      "align": "Facing W",
+      "turn": "",
+      "face": -90,
+      "pos": "L Diag Opp"
+     },
+     {
+      "desc": "RF in place",
+      "align": "Facing W",
+      "turn": "",
+      "face": -90,
+      "pos": "L Diag Opp"
+     },
+     {
+      "desc": "LF in place",
+      "align": "Facing W",
+      "turn": "",
+      "face": -90,
+      "pos": "L Diag Opp"
+     },
+     {
+      "desc": "RF in place",
+      "align": "Facing W",
+      "turn": "",
+      "face": -90
+     },
+     {
+      "desc": "LF in place",
+      "align": "Facing W",
+      "turn": "",
+      "face": -90,
+      "pos": "R Diag Opp"
+     },
+     {
+      "desc": "RF in place",
+      "align": "Facing W",
+      "turn": "",
+      "face": -90,
+      "pos": "R Diag Opp"
+     },
+     {
+      "desc": "LF bwd",
+      "align": "Facing W",
+      "turn": "",
+      "face": -90,
+      "pos": "R Diag Opp"
+     },
+     {
+      "desc": "RF to side and slightly fwd",
+      "align": "Facing W",
+      "turn": "",
+      "face": -90,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "LF fwd and to side outside partner",
+      "align": "Facing W",
+      "turn": "1/2 L",
+      "face": -90
+     },
+     {
+      "desc": "RF fwd",
+      "align": "Facing C",
+      "turn": "1/2 L",
+      "face": -90,
+      "end": 90,
+      "pos": "L Diag Opp"
+     },
+     {
+      "desc": "LF fwd",
+      "align": "Facing C",
+      "turn": "1/2 L",
+      "face": -90,
+      "end": 90,
+      "pos": "L Diag Opp"
+     },
+     {
+      "desc": "RF fwd",
+      "align": "Facing C",
+      "turn": "1/2 L",
+      "face": -90,
+      "end": 90,
+      "pos": "L Diag Opp"
+     },
+     {
+      "desc": "LF fwd",
+      "align": "Facing C",
+      "turn": "1/2 L",
+      "face": -90,
+      "end": 90
+     },
+     {
+      "desc": "RF fwd",
+      "align": "Facing C",
+      "turn": "1/2 L",
+      "face": -90,
+      "end": 90,
+      "pos": "Close Opp"
+     }
+    ]
+   }
   },
   {
    "id": "paso-17",
@@ -61988,6 +63914,138 @@
      "query": "paso doble Fallaway Reverse"
     }
    ],
+   "floor": {
+    "title": "Fallaway Reverse",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "RF in place",
+      "align": "Facing C",
+      "turn": "",
+      "face": 90,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "LF fwd",
+      "align": "Backing DW",
+      "turn": "1/8 L",
+      "face": 90,
+      "end": 135,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "RF to side",
+      "align": "Backing LOD",
+      "turn": "1/8 L",
+      "face": 135,
+      "end": -180
+     },
+     {
+      "desc": "LF",
+      "align": "Backing DC",
+      "turn": "1/8 L",
+      "face": -180,
+      "end": -135,
+      "pos": "Close Fallaway"
+     },
+     {
+      "desc": "RF bwd and slightly to side",
+      "align": "Facing DC",
+      "turn": "1/2 L",
+      "face": -135,
+      "end": 45,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "LF fwd",
+      "align": "Facing DW",
+      "turn": "3/4 L",
+      "face": 45,
+      "end": -45,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "RF to side",
+      "align": "Facing DW",
+      "turn": "3/4 L",
+      "face": 45,
+      "end": -45,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "LF diag fwd",
+      "align": "Facing DW",
+      "turn": "3/4 L",
+      "face": 45,
+      "end": -45,
+      "pos": "Close Prom"
+     }
+    ],
+    "preceding": [],
+    "following": [],
+    "ladySteps": [
+     {
+      "desc": "LF in place",
+      "align": "Facing W",
+      "turn": "",
+      "face": -90,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "RF bwd",
+      "align": "Facing W",
+      "turn": "",
+      "face": -90,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "LF bwd",
+      "align": "Facing W",
+      "turn": "",
+      "face": -90
+     },
+     {
+      "desc": "RF",
+      "align": "Facing W",
+      "turn": "3/8 L",
+      "face": -90,
+      "pos": "Close Fallaway"
+     },
+     {
+      "desc": "LF fwd",
+      "align": "Backing DC",
+      "turn": "1/2 L",
+      "face": 45,
+      "end": -135,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "RF bwd and slightly to side",
+      "align": "Facing DC",
+      "turn": "1/2 L",
+      "face": -135,
+      "end": 45,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "LF",
+      "align": "Facing DC",
+      "turn": "1/2 L",
+      "face": -135,
+      "end": 45,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "RF diag fwd",
+      "align": "Facing DC",
+      "turn": "1/2 L",
+      "face": -135,
+      "end": 45,
+      "pos": "Close Prom"
+     }
+    ]
+   },
    "aliases": {
     "en": [
      "Fallaway Reverse Turn"
@@ -62044,7 +64102,76 @@
      "length": "1:01",
      "query": "paso doble Fallaway Whisk"
     }
-   ]
+   ],
+   "floor": {
+    "title": "Fallaway Whisk",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "RF in place",
+      "align": "Facing W",
+      "turn": "",
+      "face": -90,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "LF fwd",
+      "align": "Facing W",
+      "turn": "",
+      "face": -90,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "RF to side",
+      "align": "Facing DW",
+      "turn": "",
+      "face": -90,
+      "end": -45
+     },
+     {
+      "desc": "LF",
+      "align": "Backing DC",
+      "turn": "1/8 L",
+      "face": -135,
+      "moving": -180,
+      "pos": "Close Fallaway"
+     }
+    ],
+    "preceding": [],
+    "following": [],
+    "ladySteps": [
+     {
+      "desc": "LF in place",
+      "align": "Facing C",
+      "turn": "",
+      "face": 90,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "RF bwd",
+      "align": "Facing C",
+      "turn": "",
+      "face": 90,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "LF to side",
+      "align": "Facing DC",
+      "turn": "",
+      "face": 90,
+      "end": 45
+     },
+     {
+      "desc": "RF",
+      "align": "Facing DC",
+      "turn": "1/8 R",
+      "face": 45,
+      "moving": -180,
+      "pos": "Close Fallaway"
+     }
+    ]
+   }
   },
   {
    "id": "paso-19",
@@ -62101,7 +64228,140 @@
      "length": "0:13",
      "query": "paso doble Spanish Lines"
     }
-   ]
+   ],
+   "floor": {
+    "title": "Spanish Lines",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "RF fwd and across",
+      "align": "Facing DW",
+      "turn": "",
+      "face": -45,
+      "moving": 0,
+      "pos": "Close Prom"
+     },
+     {
+      "desc": "LF fwd and slightly bwd",
+      "align": "Backing LOD",
+      "turn": "3/8 R",
+      "face": -45,
+      "end": -180,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "RF bwd toe turned out",
+      "align": "Backing DW",
+      "turn": "1/8 R",
+      "face": -180,
+      "end": 135,
+      "pos": "L Side Same"
+     },
+     {
+      "desc": "LF and across",
+      "align": "Backing DW",
+      "turn": "",
+      "face": 135,
+      "pos": "L Side Same"
+     },
+     {
+      "desc": "LF fwd",
+      "align": "Backing LOD",
+      "turn": "1/8 L",
+      "face": -180,
+      "pos": "L Side Same"
+     },
+     {
+      "desc": "RF fwd and slightly bwd",
+      "align": "Facing LOD",
+      "turn": "3/8 L",
+      "face": 0,
+      "end": 0,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "LF bwd toe turned out",
+      "align": "Facing DC",
+      "turn": "1/8 L",
+      "face": 0,
+      "end": 45,
+      "pos": "R Side Same"
+     },
+     {
+      "desc": "RF and across",
+      "align": "Facing DC",
+      "turn": "",
+      "face": 45,
+      "pos": "R Side Same"
+     }
+    ],
+    "preceding": [],
+    "following": [],
+    "ladySteps": [
+     {
+      "desc": "LF fwd and across",
+      "align": "Facing DC",
+      "turn": "",
+      "face": 45,
+      "moving": 0,
+      "pos": "Close Prom"
+     },
+     {
+      "desc": "RF fwd and slightly bwd",
+      "align": "Backing LOD",
+      "turn": "3/8 L",
+      "face": 45,
+      "end": -180,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "LF bwd toe turned out",
+      "align": "Backing DC",
+      "turn": "1/8 L",
+      "face": -180,
+      "end": -135,
+      "pos": "L Side Same"
+     },
+     {
+      "desc": "RF and across",
+      "align": "Backing DC",
+      "turn": "",
+      "face": -135,
+      "pos": "L Side Same"
+     },
+     {
+      "desc": "RF fwd",
+      "align": "Backing LOD",
+      "turn": "1/8 R",
+      "face": -180,
+      "pos": "L Side Same"
+     },
+     {
+      "desc": "LF fwd and slightly bwd",
+      "align": "Facing LOD",
+      "turn": "3/8 R",
+      "face": -180,
+      "end": 0,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "RF bwd toe turned out",
+      "align": "Facing DW",
+      "turn": "1/8 R",
+      "face": 0,
+      "end": -45,
+      "pos": "R Side Same"
+     },
+     {
+      "desc": "LF and across",
+      "align": "Facing DW",
+      "turn": "",
+      "face": -45,
+      "pos": "R Side Same"
+     }
+    ]
+   }
   },
   {
    "id": "paso-20",
@@ -62166,7 +64426,261 @@
      "length": "0:43",
      "query": "paso doble La Passe"
     }
-   ]
+   ],
+   "floor": {
+    "title": "La Passe",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "RF in place",
+      "align": "Facing W",
+      "turn": "1/8 L",
+      "face": -90,
+      "pos": "Close Opp then Close Prom"
+     },
+     {
+      "desc": "LF diag fwd",
+      "align": "Facing DW",
+      "turn": "",
+      "face": -45,
+      "moving": 0,
+      "pos": "Close Prom"
+     },
+     {
+      "desc": "RF fwd and across",
+      "align": "Facing DW",
+      "turn": "",
+      "face": -45,
+      "moving": 0,
+      "pos": "Close Prom"
+     },
+     {
+      "desc": "LF fwd and slightly bwd",
+      "align": "Backing LOD",
+      "turn": "3/8 R",
+      "face": -45,
+      "end": -180,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "RF bwd",
+      "align": "Backing LOD",
+      "turn": "",
+      "face": -180,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "LF bwd",
+      "align": "Backing DW",
+      "turn": "1/8 R",
+      "face": -180,
+      "end": 135,
+      "pos": "R Diag Opp then R Diag R Angle"
+     },
+     {
+      "desc": "RF fwd",
+      "align": "Facing C",
+      "turn": "1/8 R",
+      "face": 135,
+      "end": 90,
+      "pos": "R Diag Opp then R Diag R Angle"
+     },
+     {
+      "desc": "",
+      "align": "Facing C",
+      "turn": "",
+      "face": 90,
+      "pos": "R Diag R Angle"
+     },
+     {
+      "desc": "RF fwd",
+      "align": "Facing C",
+      "turn": "",
+      "face": 90,
+      "pos": "Close R Angle"
+     },
+     {
+      "desc": "LF fwd",
+      "align": "Facing C",
+      "turn": "",
+      "face": 90,
+      "pos": "L Diag R Angle then L Diag L Angle"
+     },
+     {
+      "desc": "",
+      "align": "Facing C",
+      "turn": "",
+      "face": 90,
+      "pos": "L Diag R Angle then L Diag L Angle"
+     },
+     {
+      "desc": "LF fwd",
+      "align": "Facing C",
+      "turn": "",
+      "face": 90,
+      "pos": "Close L Angle"
+     },
+     {
+      "desc": "RF fwd",
+      "align": "Facing C",
+      "turn": "",
+      "face": 90,
+      "pos": "R Diag L Angle then R Diag R Angle"
+     },
+     {
+      "desc": "",
+      "align": "Facing C",
+      "turn": "",
+      "face": 90,
+      "pos": "R Diag L Angle then R Diag R Angle"
+     },
+     {
+      "desc": "RF fwd",
+      "align": "Facing C",
+      "turn": "",
+      "face": 90,
+      "pos": "Close R Angle"
+     },
+     {
+      "desc": "LF",
+      "align": "Facing C",
+      "turn": "",
+      "face": 90,
+      "pos": "Close Opp"
+     }
+    ],
+    "preceding": [],
+    "following": [],
+    "ladySteps": [
+     {
+      "desc": "LF in place",
+      "align": "Facing C",
+      "turn": "1/8 R",
+      "face": 90,
+      "pos": "Close Opp then Close Prom"
+     },
+     {
+      "desc": "RF diag fwd",
+      "align": "Facing DC",
+      "turn": "",
+      "face": 45,
+      "moving": 0,
+      "pos": "Close Prom"
+     },
+     {
+      "desc": "LF fwd and across",
+      "align": "Facing DC",
+      "turn": "",
+      "face": 45,
+      "moving": 0,
+      "pos": "Close Prom"
+     },
+     {
+      "desc": "RF fwd",
+      "align": "Facing LOD",
+      "turn": "1/8 R",
+      "face": 45,
+      "end": 0,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "LF fwd",
+      "align": "Facing LOD",
+      "turn": "",
+      "face": 0,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "RF fwd outside partner",
+      "align": "Facing DW",
+      "turn": "1/8 R",
+      "face": 0,
+      "end": -45,
+      "pos": "R Diag Opp then R Diag R Angle"
+     },
+     {
+      "desc": "LF fwd and slightly bwd",
+      "align": "Backing LOD",
+      "turn": "3/8 R",
+      "face": -45,
+      "end": -180,
+      "pos": "R Diag Opp then R Diag R Angle"
+     },
+     {
+      "desc": "RF diag fwd",
+      "align": "Backing LOD",
+      "turn": "3/8 R",
+      "face": -45,
+      "end": -180,
+      "pos": "R Diag R Angle"
+     },
+     {
+      "desc": "LF fwd and across",
+      "align": "Facing LOD",
+      "turn": "",
+      "face": -180,
+      "end": 0,
+      "pos": "Close R Angle"
+     },
+     {
+      "desc": "RF fwd and slightly bwd",
+      "align": "Facing LOD",
+      "turn": "1/2 L",
+      "face": -180,
+      "end": 0,
+      "pos": "L Diag R Angle then L Diag L Angle"
+     },
+     {
+      "desc": "LF diag fwd",
+      "align": "Facing LOD",
+      "turn": "1/2 L",
+      "face": -180,
+      "end": 0,
+      "pos": "L Diag R Angle then L Diag L Angle"
+     },
+     {
+      "desc": "RF fwd and across",
+      "align": "Backing LOD",
+      "turn": "",
+      "face": 0,
+      "end": -180,
+      "pos": "Close L Angle"
+     },
+     {
+      "desc": "LF fwd and slightly bwd",
+      "align": "Backing LOD",
+      "turn": "1/2 R",
+      "face": 0,
+      "end": -180,
+      "pos": "R Diag L Angle then R Diag R Angle"
+     },
+     {
+      "desc": "RF diag fwd",
+      "align": "Backing LOD",
+      "turn": "1/2 R",
+      "face": 0,
+      "end": -180,
+      "pos": "R Diag L Angle then R Diag R Angle"
+     },
+     {
+      "desc": "LF fwd",
+      "align": "Facing DW",
+      "turn": "1/8 L",
+      "face": -180,
+      "end": -45,
+      "pos": "Close R Angle"
+     },
+     {
+      "desc": "RF",
+      "align": "Facing W",
+      "turn": "1/8 L",
+      "face": -135,
+      "end": -90,
+      "pos": "Close Opp"
+     }
+    ]
+   }
   },
   {
    "id": "paso-21",
@@ -62223,7 +64737,149 @@
      "length": "0:59",
      "query": "paso doble Syncopated Separation"
     }
-   ]
+   ],
+   "floor": {
+    "title": "Syncopated Separation",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "RF in place",
+      "align": "Facing LOD",
+      "turn": "",
+      "face": 0,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "LF bwd",
+      "align": "Facing LOD",
+      "turn": "",
+      "face": 0,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "RF",
+      "align": "",
+      "turn": "",
+      "pos": "Open Opp"
+     },
+     {
+      "desc": "LF in place",
+      "align": "",
+      "turn": "",
+      "pos": "Ex Open Opp"
+     },
+     {
+      "desc": "LF",
+      "align": "Backing LOD",
+      "turn": "",
+      "face": -180
+     },
+     {
+      "desc": "LF crosses behind RF",
+      "align": "Backing LOD",
+      "turn": "",
+      "face": -180,
+      "pos": "Open Opp"
+     },
+     {
+      "desc": "LF",
+      "align": "Backing LOD",
+      "turn": "",
+      "face": -180,
+      "pos": "Open Opp"
+     },
+     {
+      "desc": "LF crosses behind RF",
+      "align": "Backing LOD",
+      "turn": "",
+      "face": -180,
+      "pos": "Open Opp"
+     },
+     {
+      "desc": "RF",
+      "align": "Backing LOD",
+      "turn": "",
+      "face": -180,
+      "pos": "Open Opp"
+     },
+     {
+      "desc": "LF to side w/o weight",
+      "align": "Backing LOD",
+      "turn": "",
+      "face": -180,
+      "pos": "Open Opp"
+     },
+     {
+      "desc": "LF",
+      "align": "Backing LOD",
+      "turn": "",
+      "face": -180,
+      "pos": "Open Opp"
+     },
+     {
+      "desc": "RF to side",
+      "align": "Backing LOD",
+      "turn": "",
+      "face": -180,
+      "pos": "Open Opp"
+     },
+     {
+      "desc": "LF bwd",
+      "align": "Backing LOD",
+      "turn": "",
+      "face": -180,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "LF bwd",
+      "align": "Facing DW",
+      "turn": "3/8 L",
+      "face": -180,
+      "end": -45,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "RF fwd and across outside partner",
+      "align": "Facing DW",
+      "turn": "3/8 L",
+      "face": -180,
+      "end": -45,
+      "pos": "Close R Diag Opp"
+     },
+     {
+      "desc": "feet together",
+      "align": "Facing DC",
+      "turn": "1/4 L",
+      "face": -45,
+      "end": 45,
+      "pos": "Close R Angle"
+     },
+     {
+      "desc": "feet together",
+      "align": "Facing DC",
+      "turn": "1/4 L",
+      "face": -45,
+      "end": 45
+     },
+     {
+      "desc": "LF in place",
+      "align": "Facing DC",
+      "turn": "1/4 L",
+      "face": -45,
+      "end": 45
+     },
+     {
+      "desc": "",
+      "align": "Facing DC",
+      "turn": "",
+      "face": 45,
+      "pos": "Close L Diag Opp"
+     }
+    ],
+    "preceding": [],
+    "following": []
+   }
   },
   {
    "id": "paso-22",
@@ -62294,7 +64950,133 @@
      "length": "1:50",
      "query": "paso doble Flamenco Taps"
     }
-   ]
+   ],
+   "floor": {
+    "title": "Flamenco Taps",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "LF in place",
+      "align": "Backing LOD",
+      "turn": "",
+      "face": -180,
+      "pos": "L Side Same"
+     },
+     {
+      "desc": "RF in place w/o weight",
+      "align": "Backing LOD",
+      "turn": "",
+      "face": -180,
+      "pos": "L Side Same"
+     },
+     {
+      "desc": "RF in place w/o weight",
+      "align": "Backing LOD",
+      "turn": "",
+      "face": -180,
+      "pos": "L Side Same"
+     },
+     {
+      "desc": "RF bwd toe turned out",
+      "align": "Backing LOD",
+      "turn": "",
+      "face": -180,
+      "pos": "L Side Same"
+     },
+     {
+      "desc": "LF and across",
+      "align": "Backing LOD",
+      "turn": "",
+      "face": -180,
+      "pos": "L Side Same"
+     }
+    ],
+    "preceding": [],
+    "following": [],
+    "ladySteps": [
+     {
+      "desc": "RF and across",
+      "align": "",
+      "turn": ""
+     },
+     {
+      "desc": "LF fwd and across",
+      "align": "",
+      "turn": ""
+     },
+     {
+      "desc": "RF fwd and across",
+      "align": "",
+      "turn": ""
+     },
+     {
+      "desc": "LF fwd",
+      "align": "",
+      "turn": ""
+     },
+     {
+      "desc": "RF fwd and across",
+      "align": "",
+      "turn": ""
+     },
+     {
+      "desc": "LF",
+      "align": "",
+      "turn": ""
+     },
+     {
+      "desc": "RF to side w/o weight",
+      "align": "",
+      "turn": ""
+     },
+     {
+      "desc": "RF",
+      "align": "",
+      "turn": ""
+     },
+     {
+      "desc": "LF to side",
+      "align": "",
+      "turn": ""
+     },
+     {
+      "desc": "LF fwd and to side and across outside partner",
+      "align": "",
+      "turn": ""
+     },
+     {
+      "desc": "RF to side and slightly bwd",
+      "align": "",
+      "turn": "3/8 L"
+     },
+     {
+      "desc": "LF bwd",
+      "align": "",
+      "turn": "3/8 L"
+     },
+     {
+      "desc": "RF diag fwd",
+      "align": "",
+      "turn": "1/4 R"
+     },
+     {
+      "desc": "LF fwd",
+      "align": "",
+      "turn": "1/2 L"
+     },
+     {
+      "desc": "RF fwd",
+      "align": "",
+      "turn": "1/2 L"
+     },
+     {
+      "desc": "",
+      "align": "",
+      "turn": "1/2 L"
+     }
+    ]
+   }
   },
   {
    "id": "paso-23",
@@ -62359,7 +65141,244 @@
      "length": "7:23",
      "query": "paso doble Twists"
     }
-   ]
+   ],
+   "floor": {
+    "title": "Twists",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "RF in place",
+      "align": "Facing W",
+      "turn": "1/8 L",
+      "face": -90,
+      "pos": "Close Opp then Close Prom"
+     },
+     {
+      "desc": "LF diag fwd",
+      "align": "Facing DW",
+      "turn": "",
+      "face": -45,
+      "moving": 0,
+      "pos": "Close Prom"
+     },
+     {
+      "desc": "RF fwd and across",
+      "align": "Facing DW",
+      "turn": "",
+      "face": -45,
+      "moving": 0,
+      "pos": "Close Prom"
+     },
+     {
+      "desc": "LF fwd and slightly bwd",
+      "align": "Facing DW",
+      "turn": "3/8 R",
+      "face": -45,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "RF crosses behind LF",
+      "align": "Backing DW",
+      "turn": "1/8 R",
+      "face": -180,
+      "end": 135,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "LF to side and slightly bwd",
+      "align": "Facing DC",
+      "turn": "1/4 R",
+      "face": 135,
+      "end": 45
+     },
+     {
+      "desc": "RF fwd outside partner",
+      "align": "Facing LOD",
+      "turn": "1/8 R",
+      "face": 45,
+      "end": 0
+     },
+     {
+      "desc": "LF fwd and slightly bwd",
+      "align": "Facing LOD",
+      "turn": "3/8 R",
+      "face": 0,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "RF crosses behind LF",
+      "align": "Backing LOD",
+      "turn": "1/8 R",
+      "face": -135,
+      "end": -180,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "LF to side and slightly bwd",
+      "align": "Facing DC",
+      "turn": "3/8 R",
+      "face": -180,
+      "end": 45
+     },
+     {
+      "desc": "RF fwd outside partner",
+      "align": "Facing LOD",
+      "turn": "1/8 R",
+      "face": 45,
+      "end": 0
+     },
+     {
+      "desc": "LF fwd and slightly bwd",
+      "align": "Backing DC",
+      "turn": "3/8 R",
+      "face": 0,
+      "end": -135,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "RF crosses behind LF",
+      "align": "Backing LOD",
+      "turn": "1/8 R",
+      "face": -135,
+      "end": -180,
+      "pos": "Close R Diag Opp"
+     },
+     {
+      "desc": "LF to side and slightly bwd",
+      "align": "Facing DC",
+      "turn": "3/8 R",
+      "face": -180,
+      "end": 45,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "RF",
+      "align": "Facing DC",
+      "turn": "",
+      "face": 45,
+      "pos": "Close Opp"
+     }
+    ],
+    "preceding": [],
+    "following": [],
+    "ladySteps": [
+     {
+      "desc": "LF in place",
+      "align": "Facing C",
+      "turn": "1/8 R",
+      "face": 90,
+      "pos": "Close Opp then Close Prom"
+     },
+     {
+      "desc": "RF diag fwd",
+      "align": "Facing DC",
+      "turn": "",
+      "face": 45,
+      "moving": 0,
+      "pos": "Close Prom"
+     },
+     {
+      "desc": "LF fwd and across",
+      "align": "Facing DC",
+      "turn": "",
+      "face": 45,
+      "moving": 0,
+      "pos": "Close Prom"
+     },
+     {
+      "desc": "RF fwd",
+      "align": "Facing LOD",
+      "turn": "1/8 R",
+      "face": 45,
+      "end": 0,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "LF fwd",
+      "align": "Facing DW",
+      "turn": "1/8 R",
+      "face": 0,
+      "end": -45,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "RF fwd and across outside partner",
+      "align": "Backing DC",
+      "turn": "1/4 R",
+      "face": -45,
+      "end": -135
+     },
+     {
+      "desc": "LF bwd",
+      "align": "Backing LOD",
+      "turn": "1/8 R",
+      "face": -135,
+      "end": -180
+     },
+     {
+      "desc": "RF",
+      "align": "Facing DC",
+      "turn": "3/8 R",
+      "face": -180,
+      "end": 45,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "LF fwd",
+      "align": "Facing LOD",
+      "turn": "1/8 R",
+      "face": 45,
+      "end": 0,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "RF fwd and across outside partner",
+      "align": "Backing DC",
+      "turn": "3/8 R",
+      "face": 0,
+      "end": -135
+     },
+     {
+      "desc": "LF bwd",
+      "align": "Backing LOD",
+      "turn": "1/8 R",
+      "face": -135,
+      "end": -180
+     },
+     {
+      "desc": "RF",
+      "align": "Facing DC",
+      "turn": "3/8 R",
+      "face": -180,
+      "end": 45,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "LF fwd",
+      "align": "Facing LOD",
+      "turn": "1/8 R",
+      "face": 45,
+      "end": 0,
+      "pos": "Close R Diag Opp"
+     },
+     {
+      "desc": "RF fwd and across outside partner",
+      "align": "Backing DC",
+      "turn": "3/8 R",
+      "face": 0,
+      "end": -135,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "LF",
+      "align": "Backing DC",
+      "turn": "",
+      "face": -135,
+      "pos": "Close Opp"
+     }
+    ]
+   }
   },
   {
    "id": "paso-24",
@@ -62416,7 +65435,179 @@
      "length": "0:17",
      "query": "paso doble Chasse Cape"
     }
-   ]
+   ],
+   "floor": {
+    "title": "Chasse Cape",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "RF to side and slightly bwd",
+      "align": "",
+      "turn": ""
+     },
+     {
+      "desc": "LF bwd",
+      "align": "",
+      "turn": "1/4 R"
+     },
+     {
+      "desc": "RF fwd",
+      "align": "",
+      "turn": "1/4 R"
+     },
+     {
+      "desc": "LF to side",
+      "align": "",
+      "turn": "1/4 R"
+     },
+     {
+      "desc": "RF",
+      "align": "",
+      "turn": ""
+     },
+     {
+      "desc": "LF to side",
+      "align": "",
+      "turn": ""
+     },
+     {
+      "desc": "RF",
+      "align": "",
+      "turn": "1/4 L"
+     },
+     {
+      "desc": "LF fwd",
+      "align": "",
+      "turn": "1/4 L"
+     },
+     {
+      "desc": "RF to side",
+      "align": "",
+      "turn": "1/4 L"
+     },
+     {
+      "desc": "LF",
+      "align": "",
+      "turn": ""
+     },
+     {
+      "desc": "RF to side",
+      "align": "",
+      "turn": ""
+     },
+     {
+      "desc": "LF",
+      "align": "",
+      "turn": "1/4 R"
+     },
+     {
+      "desc": "RF fwd",
+      "align": "",
+      "turn": "1/4 R"
+     },
+     {
+      "desc": "LF to side",
+      "align": "",
+      "turn": "1/4 R"
+     },
+     {
+      "desc": "RF",
+      "align": "",
+      "turn": ""
+     },
+     {
+      "desc": "LF to side",
+      "align": "",
+      "turn": ""
+     }
+    ],
+    "preceding": [],
+    "following": [],
+    "follows": true,
+    "ladySteps": [
+     {
+      "desc": "LF to side and slightly fwd",
+      "align": "",
+      "turn": ""
+     },
+     {
+      "desc": "RF fwd outside partner",
+      "align": "",
+      "turn": "1/4 R"
+     },
+     {
+      "desc": "LF fwd",
+      "align": "",
+      "turn": "1/2 R"
+     },
+     {
+      "desc": "RF fwd",
+      "align": "",
+      "turn": ""
+     },
+     {
+      "desc": "LF crosses behind RF",
+      "align": "",
+      "turn": "1/8 L"
+     },
+     {
+      "desc": "RF fwd",
+      "align": "",
+      "turn": "1/8 R"
+     },
+     {
+      "desc": "LF fwd outside partner",
+      "align": "",
+      "turn": "1/4 L"
+     },
+     {
+      "desc": "RF fwd",
+      "align": "",
+      "turn": "5/8 L"
+     },
+     {
+      "desc": "LF fwd",
+      "align": "",
+      "turn": ""
+     },
+     {
+      "desc": "RF crosses behind LF",
+      "align": "",
+      "turn": ""
+     },
+     {
+      "desc": "LF fwd",
+      "align": "",
+      "turn": ""
+     },
+     {
+      "desc": "RF fwd outside partner",
+      "align": "",
+      "turn": "1/8 R"
+     },
+     {
+      "desc": "LF crosses in front of RF w/o weight",
+      "align": "",
+      "turn": "3/4 R"
+     },
+     {
+      "desc": "RF fwd",
+      "align": "",
+      "turn": ""
+     },
+     {
+      "desc": "LF crosses behind RF",
+      "align": "",
+      "turn": "1/8 L"
+     },
+     {
+      "desc": "RF fwd and across w/o weight",
+      "align": "",
+      "turn": "1/8 R"
+     }
+    ]
+   }
   },
   {
    "id": "paso-25",
@@ -62475,7 +65666,76 @@
      "length": "0:17",
      "query": "paso doble Chasse Cape Ending 1"
     }
-   ]
+   ],
+   "floor": {
+    "title": "Chasse Cape Ending 1",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "LF in place",
+      "align": "Facing LOD",
+      "turn": "",
+      "face": 0,
+      "pos": "L Side Same"
+     },
+     {
+      "desc": "RF in place w/o weight",
+      "align": "Facing C",
+      "turn": "1/4 L",
+      "face": 0,
+      "end": 90,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "RF to side",
+      "align": "Facing C",
+      "turn": "",
+      "face": 90,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "LF",
+      "align": "Facing C",
+      "turn": "",
+      "face": 90,
+      "pos": "Close Opp"
+     }
+    ],
+    "preceding": [],
+    "following": [],
+    "ladySteps": [
+     {
+      "desc": "RF in place",
+      "align": "Facing LOD",
+      "turn": "",
+      "face": 0,
+      "pos": "L Side Same"
+     },
+     {
+      "desc": "LF in place w/o weight",
+      "align": "Facing W",
+      "turn": "1/4 R",
+      "face": 0,
+      "end": -90,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "LF to side",
+      "align": "Facing W",
+      "turn": "",
+      "face": -90,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "RF",
+      "align": "Facing W",
+      "turn": "",
+      "face": -90,
+      "pos": "Close Opp"
+     }
+    ]
+   }
   },
   {
    "id": "paso-26",
@@ -62527,7 +65787,90 @@
      "length": "0:25",
      "query": "paso doble Chasse Cape Ending 2"
     }
-   ]
+   ],
+   "floor": {
+    "title": "Chasse Cape Ending 2",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "LF in place",
+      "align": "Facing LOD",
+      "turn": "",
+      "face": 0,
+      "pos": "L Side Same"
+     },
+     {
+      "desc": "RF to side",
+      "align": "Facing C",
+      "turn": "1/4 L",
+      "face": 0,
+      "end": 90,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "LF",
+      "align": "Facing C",
+      "turn": "",
+      "face": 90,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "RF to side",
+      "align": "Facing C",
+      "turn": "",
+      "face": 90,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "LF",
+      "align": "Facing C",
+      "turn": "",
+      "face": 90,
+      "pos": "Close Opp"
+     }
+    ],
+    "preceding": [],
+    "following": [],
+    "ladySteps": [
+     {
+      "desc": "RF in place",
+      "align": "Facing LOD",
+      "turn": "",
+      "face": 0,
+      "pos": "L Side Same"
+     },
+     {
+      "desc": "LF to side",
+      "align": "Facing W",
+      "turn": "1/4 R",
+      "face": 0,
+      "end": -90,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "RF",
+      "align": "Facing W",
+      "turn": "",
+      "face": -90,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "LF to side",
+      "align": "Facing W",
+      "turn": "",
+      "face": -90,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "RF",
+      "align": "Facing W",
+      "turn": "",
+      "face": -90,
+      "pos": "Close Opp"
+     }
+    ]
+   }
   },
   {
    "id": "paso-27",
@@ -62584,7 +65927,92 @@
      "length": "0:29",
      "query": "paso doble Chasse Cape Ending 3"
     }
-   ]
+   ],
+   "floor": {
+    "title": "Chasse Cape Ending 3",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "LF",
+      "align": "Facing C",
+      "turn": "1/4 L",
+      "face": 0,
+      "end": 90,
+      "pos": "Open R Angle"
+     },
+     {
+      "desc": "RF",
+      "align": "Facing C",
+      "turn": "1/4 L",
+      "face": 90,
+      "pos": "Open R Angle then Close Opp"
+     },
+     {
+      "desc": "LF",
+      "align": "Facing C",
+      "turn": "1/4 L",
+      "face": 90,
+      "pos": "Open R Angle then Close Opp"
+     },
+     {
+      "desc": "RF to side",
+      "align": "Facing C",
+      "turn": "",
+      "face": 90,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "LF",
+      "align": "Facing C",
+      "turn": "",
+      "face": 90,
+      "pos": "Close Opp"
+     }
+    ],
+    "preceding": [],
+    "following": [],
+    "ladySteps": [
+     {
+      "desc": "RF crosses in front of LF",
+      "align": "Backing LOD",
+      "turn": "3/8 R",
+      "face": -45,
+      "end": -180,
+      "pos": "Open R Angle"
+     },
+     {
+      "desc": "RF in place",
+      "align": "Facing W",
+      "turn": "3/4 R",
+      "face": -180,
+      "end": -90,
+      "pos": "Open R Angle then Close Opp"
+     },
+     {
+      "desc": "RF in place",
+      "align": "Facing W",
+      "turn": "3/4 R",
+      "face": -180,
+      "end": -90,
+      "pos": "Open R Angle then Close Opp"
+     },
+     {
+      "desc": "LF to side",
+      "align": "Facing W",
+      "turn": "",
+      "face": -90,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "RF",
+      "align": "Facing W",
+      "turn": "",
+      "face": -90,
+      "pos": "Close Opp"
+     }
+    ]
+   }
   },
   {
    "id": "paso-28",
@@ -62655,7 +66083,144 @@
      "length": "4:46",
      "query": "paso doble Travelling Spins from PP"
     }
-   ]
+   ],
+   "floor": {
+    "title": "Travelling Spins From Promenade Position",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "RF in place",
+      "align": "Facing W",
+      "turn": "1/8",
+      "face": -90,
+      "pos": "Close Opp then Close Prom"
+     },
+     {
+      "desc": "LF diag fwd",
+      "align": "Facing DW",
+      "turn": "",
+      "face": -45,
+      "moving": 0,
+      "pos": "Close Prom"
+     },
+     {
+      "desc": "RF fwd and across",
+      "align": "Facing DW",
+      "turn": "",
+      "face": -45,
+      "moving": 0,
+      "pos": "Close Prom"
+     },
+     {
+      "desc": "LF diag fwd",
+      "align": "Facing DW",
+      "turn": "",
+      "face": -45,
+      "moving": 0,
+      "pos": "Close Prom"
+     },
+     {
+      "desc": "RF fwd and across",
+      "align": "Facing DW",
+      "turn": "",
+      "face": -45,
+      "moving": 0,
+      "pos": "Close Prom"
+     },
+     {
+      "desc": "LF diag fwd",
+      "align": "Facing DW",
+      "turn": "",
+      "face": -45,
+      "moving": 0,
+      "pos": "Close Prom"
+     },
+     {
+      "desc": "RF fwd and across",
+      "align": "Facing DW",
+      "turn": "",
+      "face": -45,
+      "moving": 0,
+      "pos": "Close Prom"
+     },
+     {
+      "desc": "LF diag fwd",
+      "align": "Facing DW",
+      "turn": "",
+      "face": -45,
+      "moving": 0,
+      "pos": "Close Prom"
+     }
+    ],
+    "preceding": [],
+    "following": [],
+    "ladySteps": [
+     {
+      "desc": "LF in place",
+      "align": "Facing C",
+      "turn": "1/8 R",
+      "face": 90,
+      "pos": "Close Opp then Close Prom"
+     },
+     {
+      "desc": "RF diag fwd",
+      "align": "Facing DC",
+      "turn": "",
+      "face": 45,
+      "moving": 0,
+      "pos": "Close Prom"
+     },
+     {
+      "desc": "LF fwd and across",
+      "align": "Facing C",
+      "turn": "7/8 R",
+      "face": 45,
+      "end": 90,
+      "pos": "Close Prom"
+     },
+     {
+      "desc": "RF diag fwd",
+      "align": "Facing DC",
+      "turn": "1/8 R",
+      "face": 90,
+      "end": 45,
+      "pos": "Close Prom"
+     },
+     {
+      "desc": "LF fwd and across",
+      "align": "Facing C",
+      "turn": "7/8 R",
+      "face": 45,
+      "end": 90,
+      "pos": "Close Prom"
+     },
+     {
+      "desc": "RF diag fwd",
+      "align": "Facing DC",
+      "turn": "1/8 R",
+      "face": 90,
+      "end": 45,
+      "pos": "Close Prom"
+     },
+     {
+      "desc": "LF fwd and across",
+      "align": "Facing C",
+      "turn": "7/8 R",
+      "face": 45,
+      "end": 90,
+      "pos": "Close Prom"
+     },
+     {
+      "desc": "RF diag fwd",
+      "align": "Facing DC",
+      "turn": "1/8 R",
+      "face": 90,
+      "end": 45,
+      "pos": "Close Prom"
+     }
+    ]
+   }
   },
   {
    "id": "paso-29",
@@ -62726,7 +66291,144 @@
      "length": "0:46",
      "query": "paso doble Travelling Spins from CPP"
     }
-   ]
+   ],
+   "floor": {
+    "title": "Travelling Spins From Promenade Position",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "RF in place",
+      "align": "Facing W",
+      "turn": "1/8",
+      "face": -90,
+      "pos": "Close Opp then Close Prom"
+     },
+     {
+      "desc": "LF diag fwd",
+      "align": "Facing DW",
+      "turn": "",
+      "face": -45,
+      "moving": 0,
+      "pos": "Close Prom"
+     },
+     {
+      "desc": "RF fwd and across",
+      "align": "Facing DW",
+      "turn": "",
+      "face": -45,
+      "moving": 0,
+      "pos": "Close Prom"
+     },
+     {
+      "desc": "LF diag fwd",
+      "align": "Facing DW",
+      "turn": "",
+      "face": -45,
+      "moving": 0,
+      "pos": "Close Prom"
+     },
+     {
+      "desc": "RF fwd and across",
+      "align": "Facing DW",
+      "turn": "",
+      "face": -45,
+      "moving": 0,
+      "pos": "Close Prom"
+     },
+     {
+      "desc": "LF diag fwd",
+      "align": "Facing DW",
+      "turn": "",
+      "face": -45,
+      "moving": 0,
+      "pos": "Close Prom"
+     },
+     {
+      "desc": "RF fwd and across",
+      "align": "Facing DW",
+      "turn": "",
+      "face": -45,
+      "moving": 0,
+      "pos": "Close Prom"
+     },
+     {
+      "desc": "LF diag fwd",
+      "align": "Facing DW",
+      "turn": "",
+      "face": -45,
+      "moving": 0,
+      "pos": "Close Prom"
+     }
+    ],
+    "preceding": [],
+    "following": [],
+    "ladySteps": [
+     {
+      "desc": "LF in place",
+      "align": "Facing C",
+      "turn": "1/8 R",
+      "face": 90,
+      "pos": "Close Opp then Close Prom"
+     },
+     {
+      "desc": "RF diag fwd",
+      "align": "Facing DC",
+      "turn": "",
+      "face": 45,
+      "moving": 0,
+      "pos": "Close Prom"
+     },
+     {
+      "desc": "LF fwd and across",
+      "align": "Facing C",
+      "turn": "7/8 R",
+      "face": 45,
+      "end": 90,
+      "pos": "Close Prom"
+     },
+     {
+      "desc": "RF diag fwd",
+      "align": "Facing DC",
+      "turn": "1/8 R",
+      "face": 90,
+      "end": 45,
+      "pos": "Close Prom"
+     },
+     {
+      "desc": "LF fwd and across",
+      "align": "Facing C",
+      "turn": "7/8 R",
+      "face": 45,
+      "end": 90,
+      "pos": "Close Prom"
+     },
+     {
+      "desc": "RF diag fwd",
+      "align": "Facing DC",
+      "turn": "1/8 R",
+      "face": 90,
+      "end": 45,
+      "pos": "Close Prom"
+     },
+     {
+      "desc": "LF fwd and across",
+      "align": "Facing C",
+      "turn": "7/8 R",
+      "face": 45,
+      "end": 90,
+      "pos": "Close Prom"
+     },
+     {
+      "desc": "RF diag fwd",
+      "align": "Facing DC",
+      "turn": "1/8 R",
+      "face": 90,
+      "end": 45,
+      "pos": "Close Prom"
+     }
+    ]
+   }
   },
   {
    "id": "paso-30",
@@ -62785,7 +66487,155 @@
      "length": "0:34",
      "query": "paso doble Syncopated Coup de Pique"
     }
-   ]
+   ],
+   "floor": {
+    "title": "Syncopated Coup De Pique",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "RF in place",
+      "align": "Facing C",
+      "turn": "1/8",
+      "face": 90,
+      "pos": "Close Opp then Close Prom"
+     },
+     {
+      "desc": "LF diag fwd",
+      "align": "Backing LOD",
+      "turn": "1/8",
+      "face": 135,
+      "end": -180,
+      "moving": -180,
+      "pos": "Close Prom"
+     },
+     {
+      "desc": "RF fwd and across w/o weight",
+      "align": "Backing LOD",
+      "turn": "1/8",
+      "face": 135,
+      "end": -180,
+      "moving": -180,
+      "pos": "Close Prom"
+     },
+     {
+      "desc": "RF",
+      "align": "Facing C",
+      "turn": "1/4 R",
+      "face": -180,
+      "end": 90,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "LF bwd",
+      "align": "Backing LOD",
+      "turn": "1/4 L",
+      "face": 90,
+      "end": -180,
+      "pos": "Close Fallaway"
+     },
+     {
+      "desc": "RF to side",
+      "align": "Facing C",
+      "turn": "1/4 R",
+      "face": -180,
+      "end": 90,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "LF",
+      "align": "",
+      "turn": "1/4 L",
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "RF to side",
+      "align": "",
+      "turn": "1/4 L",
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "LF",
+      "align": "",
+      "turn": "1/4 L",
+      "pos": "Close Opp"
+     }
+    ],
+    "preceding": [],
+    "following": [],
+    "ladySteps": [
+     {
+      "desc": "LF in place",
+      "align": "Facing W",
+      "turn": "1/8 R",
+      "face": -90,
+      "pos": "Close Opp then Close Prom"
+     },
+     {
+      "desc": "RF diag fwd",
+      "align": "Backing LOD",
+      "turn": "1/8 R",
+      "face": -135,
+      "end": -180,
+      "moving": -180,
+      "pos": "Close Prom"
+     },
+     {
+      "desc": "LF fwd and across w/o weight",
+      "align": "Backing LOD",
+      "turn": "1/8 R",
+      "face": -135,
+      "end": -180,
+      "moving": -180,
+      "pos": "Close Prom"
+     },
+     {
+      "desc": "LF",
+      "align": "Facing W",
+      "turn": "1/4 L",
+      "face": -180,
+      "end": -90,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "RF bwd",
+      "align": "Backing LOD",
+      "turn": "1/4 R",
+      "face": -90,
+      "end": -180,
+      "pos": "Close Fallaway"
+     },
+     {
+      "desc": "LF to side",
+      "align": "Facing W",
+      "turn": "1/4 L",
+      "face": -180,
+      "end": -90,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "RF",
+      "align": "Facing W",
+      "turn": "1/4 R",
+      "face": -90,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "LF to side",
+      "align": "Facing W",
+      "turn": "1/4 R",
+      "face": -90,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "RF",
+      "align": "Facing W",
+      "turn": "1/4 R",
+      "face": -90,
+      "pos": "Close Opp"
+     }
+    ]
+   }
   },
   {
    "id": "paso-31",
@@ -62842,7 +66692,211 @@
      "length": "0:15",
      "query": "paso doble Separation with Lady’s Caping Walks"
     }
-   ]
+   ],
+   "floor": {
+    "title": "Separation With Lady'S Caping Walks",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "RF in place",
+      "align": "Backing LOD",
+      "turn": "",
+      "face": -180,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "LF fwd",
+      "align": "Backing LOD",
+      "turn": "",
+      "face": -180,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "RF fwd",
+      "align": "Backing LOD",
+      "turn": "",
+      "face": -180,
+      "pos": "Open Opp"
+     },
+     {
+      "desc": "LF in place",
+      "align": "Backing LOD",
+      "turn": "",
+      "face": -180,
+      "pos": "Ex Open Opp"
+     },
+     {
+      "desc": "RF in place",
+      "align": "Backing LOD",
+      "turn": "",
+      "face": -180
+     },
+     {
+      "desc": "LF in place",
+      "align": "Backing LOD",
+      "turn": "",
+      "face": -180
+     },
+     {
+      "desc": "RF in place",
+      "align": "Backing LOD",
+      "turn": "",
+      "face": -180
+     },
+     {
+      "desc": "LF fwd",
+      "align": "Backing LOD",
+      "turn": "",
+      "face": -180
+     },
+     {
+      "desc": "RF in place",
+      "align": "Backing LOD",
+      "turn": "",
+      "face": -180
+     },
+     {
+      "desc": "LF in place",
+      "align": "Backing LOD",
+      "turn": "",
+      "face": -180
+     },
+     {
+      "desc": "RF bwd",
+      "align": "Backing LOD",
+      "turn": "3/8 R",
+      "face": -180,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "LF bwd and slightly to side",
+      "align": "Backing DC",
+      "turn": "1/4 R",
+      "face": 45,
+      "end": -135,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "RF to side and slightly fwd",
+      "align": "Facing W",
+      "turn": "1/8 R",
+      "face": -135,
+      "end": -90,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "LF",
+      "align": "Backing DC",
+      "turn": "1/8 L",
+      "face": -90,
+      "end": -135,
+      "pos": "Close Fallaway"
+     }
+    ],
+    "preceding": [],
+    "following": [],
+    "ladySteps": [
+     {
+      "desc": "LF in place",
+      "align": "Facing LOD",
+      "turn": "",
+      "face": 0,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "RF bwd",
+      "align": "Facing LOD",
+      "turn": "",
+      "face": 0,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "LF bwd",
+      "align": "Facing LOD",
+      "turn": "",
+      "face": 0,
+      "pos": "Open Opp"
+     },
+     {
+      "desc": "RF",
+      "align": "Facing LOD",
+      "turn": "",
+      "face": 0,
+      "pos": "Ex Open Opp"
+     },
+     {
+      "desc": "RF fwd",
+      "align": "Facing LOD",
+      "turn": "",
+      "face": 0
+     },
+     {
+      "desc": "RF fwd",
+      "align": "Facing LOD",
+      "turn": "",
+      "face": 0
+     },
+     {
+      "desc": "LF fwd",
+      "align": "Facing LOD",
+      "turn": "starts to turn R",
+      "face": 0,
+      "end": 0
+     },
+     {
+      "desc": "RF fwd",
+      "align": "Facing LOD",
+      "turn": "starts to turn R",
+      "face": 0,
+      "end": 0
+     },
+     {
+      "desc": "LF fwd",
+      "align": "Facing LOD",
+      "turn": "starts to turn R",
+      "face": 0,
+      "end": 0
+     },
+     {
+      "desc": "RF fwd",
+      "align": "Facing LOD",
+      "turn": "starts to turn R",
+      "face": 0,
+      "end": 0
+     },
+     {
+      "desc": "LF bwd and slightly to side",
+      "align": "Facing DW",
+      "turn": "3/8 R",
+      "face": 0,
+      "end": -45,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "RF fwd",
+      "align": "Facing DW",
+      "turn": "1/4 R",
+      "face": -45,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "LF bwd",
+      "align": "Facing C",
+      "turn": "1/8 R",
+      "face": 135,
+      "end": 90,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "RF",
+      "align": "Backing DW",
+      "turn": "1/8 R",
+      "face": 90,
+      "end": 135
+     }
+    ]
+   }
   },
   {
    "id": "paso-32",
@@ -62911,7 +66965,295 @@
      "length": "1:06",
      "query": "paso doble Farol"
     }
-   ]
+   ],
+   "floor": {
+    "title": "Farol",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "RF in place",
+      "align": "Facing W",
+      "turn": "1/8 L",
+      "face": -90,
+      "pos": "Close Opp then Close Prom"
+     },
+     {
+      "desc": "RF",
+      "align": "Facing DW",
+      "turn": "",
+      "face": -45,
+      "moving": 0,
+      "pos": "Close Prom"
+     },
+     {
+      "desc": "",
+      "align": "Facing DW",
+      "turn": "",
+      "face": -45,
+      "moving": 0,
+      "pos": "Close Prom"
+     },
+     {
+      "desc": "",
+      "align": "Facing DW",
+      "turn": "3/8 R",
+      "face": -45,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "",
+      "align": "Backing DW",
+      "turn": "1/8 R",
+      "face": -180,
+      "end": 135,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "RF",
+      "align": "Backing DW",
+      "turn": "1/8 R",
+      "face": -180,
+      "end": 135,
+      "pos": "Close R Diag Opp"
+     },
+     {
+      "desc": "RF to side",
+      "align": "Backing DW",
+      "turn": "1/8 R",
+      "face": 135,
+      "pos": "Open R Diag R Angle"
+     },
+     {
+      "desc": "",
+      "align": "Facing C",
+      "turn": "",
+      "face": 90,
+      "pos": "Open R Diag R Angle"
+     },
+     {
+      "desc": "",
+      "align": "Facing C",
+      "turn": "",
+      "face": 90
+     },
+     {
+      "desc": "",
+      "align": "Facing C",
+      "turn": "",
+      "face": 90
+     },
+     {
+      "desc": "",
+      "align": "Facing C",
+      "turn": "",
+      "face": 90,
+      "pos": "Close L Side Opp"
+     },
+     {
+      "desc": "",
+      "align": "Facing C",
+      "turn": "",
+      "face": 90,
+      "pos": "Close L Side Opp"
+     },
+     {
+      "desc": "",
+      "align": "Facing C",
+      "turn": "",
+      "face": 90
+     },
+     {
+      "desc": "",
+      "align": "Facing C",
+      "turn": "",
+      "face": 90
+     },
+     {
+      "desc": "",
+      "align": "Facing C",
+      "turn": "",
+      "face": 90
+     },
+     {
+      "desc": "",
+      "align": "Facing C",
+      "turn": "",
+      "face": 90
+     },
+     {
+      "desc": "",
+      "align": "Facing C",
+      "turn": "",
+      "face": 90
+     },
+     {
+      "desc": "",
+      "align": "Facing C",
+      "turn": "",
+      "face": 90,
+      "pos": "Close Opp"
+     }
+    ],
+    "preceding": [],
+    "following": [],
+    "ladySteps": [
+     {
+      "desc": "LF in place",
+      "align": "Facing C",
+      "turn": "1/8",
+      "face": 90
+     },
+     {
+      "desc": "LF fwd",
+      "align": "Facing DC",
+      "turn": "",
+      "face": 45,
+      "moving": 0,
+      "pos": "Close Prom"
+     },
+     {
+      "desc": "RF",
+      "align": "Facing DC",
+      "turn": "",
+      "face": 45,
+      "moving": 0,
+      "pos": "Close Prom"
+     },
+     {
+      "desc": "LF fwd",
+      "align": "Facing DC",
+      "turn": "1/8 R",
+      "face": 45,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "RF",
+      "align": "Facing DW",
+      "turn": "1/8 R",
+      "face": 0,
+      "end": -45,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "",
+      "align": "Facing DW",
+      "turn": "1/8 R",
+      "face": 0,
+      "end": -45,
+      "pos": "Close R Diag Opp"
+     },
+     {
+      "desc": "",
+      "align": "Facing DW",
+      "turn": "3/8 R",
+      "face": -45,
+      "pos": "Open R Diag R Angle"
+     },
+     {
+      "desc": "",
+      "align": "Backing LOD",
+      "turn": "",
+      "face": -180,
+      "pos": "Open R Diag R Angle"
+     },
+     {
+      "desc": "",
+      "align": "Facing W",
+      "turn": "1/4 L",
+      "face": -180,
+      "end": -90
+     },
+     {
+      "desc": "LF bwd",
+      "align": "Facing W",
+      "turn": "1/4 L",
+      "face": -180,
+      "end": -90
+     },
+     {
+      "desc": "RF",
+      "align": "Facing W",
+      "turn": "1/4 L",
+      "face": -180,
+      "end": -90,
+      "pos": "Close L Side Opp"
+     },
+     {
+      "desc": "",
+      "align": "Facing W",
+      "turn": "starts to turn",
+      "face": -90,
+      "end": -90,
+      "pos": "Close L Side Opp"
+     },
+     {
+      "desc": "",
+      "align": "Backing DW",
+      "turn": "5/8 L",
+      "face": -90,
+      "end": 135
+     },
+     {
+      "desc": "LF fwd",
+      "align": "Backing DW",
+      "turn": "5/8 L",
+      "face": -90,
+      "end": 135
+     },
+     {
+      "desc": "RF",
+      "align": "Backing DW",
+      "turn": "5/8 L",
+      "face": -90,
+      "end": 135
+     },
+     {
+      "desc": "",
+      "align": "Backing DW",
+      "turn": "5/8 L",
+      "face": -90,
+      "end": 135
+     },
+     {
+      "desc": "",
+      "align": "Backing DW",
+      "turn": "1/4 L",
+      "face": 135
+     },
+     {
+      "desc": "",
+      "align": "Facing DW",
+      "turn": "1/8 L",
+      "face": -45,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "",
+      "align": "Facing W",
+      "turn": "",
+      "face": -90,
+      "end": -90,
+      "pos": "Close R Angle"
+     },
+     {
+      "desc": "",
+      "align": "Facing W",
+      "turn": "",
+      "face": -90,
+      "end": -90,
+      "pos": "Close L Angle"
+     },
+     {
+      "desc": "",
+      "align": "Facing W",
+      "turn": "",
+      "face": -90,
+      "end": -90,
+      "pos": "Close Opp"
+     }
+    ]
+   }
   },
   {
    "id": "paso-33",
@@ -62980,7 +67322,164 @@
      "length": "1:08",
      "query": "paso doble Fregolina"
     }
-   ]
+   ],
+   "floor": {
+    "title": "Fregolina",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "RF in place",
+      "align": "",
+      "turn": "1/8"
+     },
+     {
+      "desc": "LF diag fwd",
+      "align": "",
+      "turn": ""
+     },
+     {
+      "desc": "RF fwd and across",
+      "align": "",
+      "turn": ""
+     },
+     {
+      "desc": "LF fwd and slightly bwd",
+      "align": "",
+      "turn": "3/8 R"
+     },
+     {
+      "desc": "RF bwd",
+      "align": "",
+      "turn": "1/8 R"
+     },
+     {
+      "desc": "LF bwd",
+      "align": "",
+      "turn": "1/8 R"
+     },
+     {
+      "desc": "RF to side",
+      "align": "",
+      "turn": "1/8 R"
+     },
+     {
+      "desc": "LF",
+      "align": "",
+      "turn": ""
+     },
+     {
+      "desc": "",
+      "align": "",
+      "turn": ""
+     },
+     {
+      "desc": "",
+      "align": "",
+      "turn": ""
+     },
+     {
+      "desc": "",
+      "align": "",
+      "turn": ""
+     },
+     {
+      "desc": "",
+      "align": "",
+      "turn": ""
+     },
+     {
+      "desc": "",
+      "align": "",
+      "turn": ""
+     }
+    ],
+    "preceding": [],
+    "following": [],
+    "follows": true,
+    "ladySteps": [
+     {
+      "desc": "",
+      "align": "",
+      "turn": "1/8 R"
+     },
+     {
+      "desc": "LF",
+      "align": "",
+      "turn": ""
+     },
+     {
+      "desc": "RF",
+      "align": "",
+      "turn": ""
+     },
+     {
+      "desc": "LF fwd",
+      "align": "",
+      "turn": "1/8 R"
+     },
+     {
+      "desc": "RF",
+      "align": "",
+      "turn": "1/8 R"
+     },
+     {
+      "desc": "",
+      "align": "",
+      "turn": "1/8 R"
+     },
+     {
+      "desc": "",
+      "align": "",
+      "turn": "3/8 R"
+     },
+     {
+      "desc": "LF fwd",
+      "align": "",
+      "turn": ""
+     },
+     {
+      "desc": "RF",
+      "align": "",
+      "turn": "1/4 L"
+     },
+     {
+      "desc": "",
+      "align": "",
+      "turn": "1/4 L"
+     },
+     {
+      "desc": "LF fwd",
+      "align": "",
+      "turn": "1/4 L"
+     },
+     {
+      "desc": "RF fwd and across",
+      "align": "",
+      "turn": "starts to turn"
+     },
+     {
+      "desc": "RF",
+      "align": "",
+      "turn": "5/8 L"
+     },
+     {
+      "desc": "",
+      "align": "",
+      "turn": "5/8 L"
+     },
+     {
+      "desc": "RF",
+      "align": "",
+      "turn": "5/8 L"
+     },
+     {
+      "desc": "",
+      "align": "",
+      "turn": "5/8 L"
+     }
+    ]
+   }
   },
   {
    "id": "paso-34",
@@ -63037,7 +67536,93 @@
      "length": "0:54",
      "query": "paso doble Syncopated Chasse"
     }
-   ]
+   ],
+   "floor": {
+    "title": "3 Syncopated Chasse",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "LF fwd",
+      "align": "Facing C",
+      "turn": "",
+      "face": 90,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "RF to side",
+      "align": "Facing C",
+      "turn": "1/4 L",
+      "face": 90,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "LF",
+      "align": "Facing C",
+      "turn": "1/4 L",
+      "face": 90,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "RF to side",
+      "align": "Facing C",
+      "turn": "1/4 L",
+      "face": 90,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "LF",
+      "align": "Facing C",
+      "turn": "1/4 L",
+      "face": 90,
+      "pos": "Close Opp"
+     }
+    ],
+    "preceding": [],
+    "following": [],
+    "ladySteps": [
+     {
+      "desc": "RF bwd",
+      "align": "Facing W",
+      "turn": "",
+      "face": -90,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "LF to side",
+      "align": "Facing W",
+      "turn": "1/4 L",
+      "face": -90,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "RF",
+      "align": "Facing W",
+      "turn": "1/4 L",
+      "face": -90,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "LF to side",
+      "align": "Facing W",
+      "turn": "1/4 L",
+      "face": -90,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "RF",
+      "align": "Facing W",
+      "turn": "1/4 L",
+      "face": -90,
+      "pos": "Close Opp"
+     }
+    ]
+   },
+   "aliases": {
+    "en": [
+     "3 Syncopated Chasse"
+    ]
+   }
   },
   {
    "id": "paso-35",
@@ -63089,7 +67674,139 @@
      "length": "1:31",
      "query": "paso doble Left Foot Variation"
     }
-   ]
+   ],
+   "floor": {
+    "title": "4 Left Foot Variation",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "LF fwd",
+      "align": "Facing DC",
+      "turn": "",
+      "face": 45,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "RF fwd",
+      "align": "Facing DC",
+      "turn": "",
+      "face": 45,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "LF diag fwd",
+      "align": "Facing DC",
+      "turn": "",
+      "face": 45,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "RF fwd and across outside partner w/o weight",
+      "align": "Facing DC",
+      "turn": "",
+      "face": 45
+     },
+     {
+      "desc": "RF",
+      "align": "Facing DC",
+      "turn": "",
+      "face": 45
+     },
+     {
+      "desc": "LF to side w/o weight",
+      "align": "Facing DC",
+      "turn": "",
+      "face": 45
+     },
+     {
+      "desc": "LF",
+      "align": "Facing DC",
+      "turn": "",
+      "face": 45
+     },
+     {
+      "desc": "RF to side",
+      "align": "Facing DC",
+      "turn": "",
+      "face": 45
+     },
+     {
+      "desc": "LF",
+      "align": "Facing DC",
+      "turn": "",
+      "face": 45,
+      "pos": "Close Opp"
+     }
+    ],
+    "preceding": [],
+    "following": [],
+    "ladySteps": [
+     {
+      "desc": "RF bwd",
+      "align": "Backing DC",
+      "turn": "",
+      "face": -135,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "LF bwd",
+      "align": "Backing DC",
+      "turn": "",
+      "face": -135,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "RF diag bwd",
+      "align": "Backing DC",
+      "turn": "",
+      "face": -135,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "LF bwd and across w/o weight",
+      "align": "Backing DC",
+      "turn": "",
+      "face": -135
+     },
+     {
+      "desc": "LF",
+      "align": "Backing DC",
+      "turn": "",
+      "face": -135
+     },
+     {
+      "desc": "RF to side w/o weight",
+      "align": "Backing DC",
+      "turn": "",
+      "face": -135
+     },
+     {
+      "desc": "RF",
+      "align": "Backing DC",
+      "turn": "",
+      "face": -135
+     },
+     {
+      "desc": "LF to side",
+      "align": "Backing DC",
+      "turn": "",
+      "face": -135
+     },
+     {
+      "desc": "RF",
+      "align": "Backing DC",
+      "turn": "",
+      "face": -135,
+      "pos": "Close Opp"
+     }
+    ]
+   },
+   "aliases": {
+    "en": [
+     "4 Left Foot Variation"
+    ]
+   }
   },
   {
    "id": "paso-36",
@@ -63142,9 +67859,115 @@
      "query": "paso doble Coup de Pique (changing from LF to RF)"
     }
    ],
+   "floor": {
+    "title": "5A Coup De Pique Changing Lf To Rf",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "LF diag fwd",
+      "align": "Backing LOD",
+      "turn": "1/4 L",
+      "face": 90,
+      "end": -180,
+      "pos": "Close Opp Close Prom"
+     },
+     {
+      "desc": "RF fwd and across w/o weight",
+      "align": "Backing LOD",
+      "turn": "1/4 L",
+      "face": 90,
+      "end": -180,
+      "pos": "Close Opp Close Prom"
+     },
+     {
+      "desc": "RF",
+      "align": "Facing C",
+      "turn": "1/4 R",
+      "face": -180,
+      "end": 90,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "LF bwd",
+      "align": "Backing LOD",
+      "turn": "1/4 L",
+      "face": 90,
+      "end": -180,
+      "pos": "Close Fallaway"
+     },
+     {
+      "desc": "RF",
+      "align": "Facing C",
+      "turn": "1/4 R",
+      "face": -180,
+      "end": 90,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "LF in place",
+      "align": "Facing C",
+      "turn": "",
+      "face": 90,
+      "pos": "Close Opp"
+     }
+    ],
+    "preceding": [],
+    "following": [],
+    "ladySteps": [
+     {
+      "desc": "RF diag fwd",
+      "align": "Backing LOD",
+      "turn": "1/4 R",
+      "face": -90,
+      "end": -180,
+      "pos": "Close Opp To Close Prom"
+     },
+     {
+      "desc": "LF fwd and across w/o weight",
+      "align": "Backing LOD",
+      "turn": "1/4 R",
+      "face": -90,
+      "end": -180,
+      "pos": "Close Opp To Close Prom"
+     },
+     {
+      "desc": "LF",
+      "align": "Facing W",
+      "turn": "1/4 L",
+      "face": -180,
+      "end": -90,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "RF bwd",
+      "align": "Backing LOD",
+      "turn": "1/4 R",
+      "face": -90,
+      "end": -180,
+      "pos": "Close Fallaway"
+     },
+     {
+      "desc": "LF",
+      "align": "Facing W",
+      "turn": "1/4 L",
+      "face": -180,
+      "end": -90,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "RF in place",
+      "align": "Facing W",
+      "turn": "",
+      "face": -90,
+      "pos": "Close Opp"
+     }
+    ]
+   },
    "aliases": {
     "en": [
-     "Changing From Lf To Rf"
+     "Changing From Lf To Rf",
+     "5A Coup De Pique Changing Lf To Rf"
     ]
    }
   },
@@ -63204,9 +68027,68 @@
      "query": "paso doble Coup de Pique (changing from RF to LF)"
     }
    ],
+   "floor": {
+    "title": "5B Coup De Pique Changing Rf To Lf",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "RF in place",
+      "align": "Facing C",
+      "turn": "1/8 L",
+      "face": 90,
+      "pos": "Close Opp then Close Prom"
+     },
+     {
+      "desc": "LF diag fwd",
+      "align": "Backing LOD",
+      "turn": "1/8 L",
+      "face": 135,
+      "end": -180,
+      "moving": -180,
+      "pos": "Close Prom"
+     },
+     {
+      "desc": "RF fwd and across w/o weight",
+      "align": "Backing LOD",
+      "turn": "1/8 L",
+      "face": 135,
+      "end": -180,
+      "moving": -180,
+      "pos": "Close Prom"
+     },
+     {
+      "desc": "RF",
+      "align": "Facing C",
+      "turn": "1/4 R",
+      "face": -180,
+      "end": 90,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "LF bwd",
+      "align": "Backing LOD",
+      "turn": "1/4 L",
+      "face": 90,
+      "end": -180,
+      "pos": "Close Fallaway"
+     },
+     {
+      "desc": "RF",
+      "align": "Facing C",
+      "turn": "1/4 R",
+      "face": -180,
+      "end": 90,
+      "pos": "Close Opp"
+     }
+    ],
+    "preceding": [],
+    "following": []
+   },
    "aliases": {
     "en": [
-     "Changing From Rf To Lf"
+     "Changing From Rf To Lf",
+     "5B Coup De Pique Changing Rf To Lf"
     ]
    }
   },
@@ -63254,7 +68136,8 @@
     "holds": {
      "alts": [
       "double",
-      "none"
+      "none",
+      "lh-rh"
      ],
      "start": "normal",
      "finish": "normal"
@@ -64142,7 +69025,8 @@
     },
     "holds": {
      "alts": [
-      "lh-rh"
+      "lh-rh",
+      "normal"
      ],
      "start": "rh-rh",
      "finish": "lh-rh"
@@ -64356,9 +69240,10 @@
      },
      {
       "desc": "RF fwd",
-      "align": "Facing C",
+      "align": "Backing LOD",
       "turn": "3/4 R",
       "face": 90,
+      "end": -180,
       "pos": "Close Opp then Close L Angle"
      },
      {
@@ -65373,6 +70258,100 @@
      "query": "jive Promenade Walks - Quick"
     }
    ],
+   "floor": {
+    "title": "Promenade Walks - Quick",
+    "url": "",
+    "source": "checked",
+    "steps": [
+     {
+      "desc": "LF bwd",
+      "align": "",
+      "turn": "1/8 L",
+      "timing": "1"
+     },
+     {
+      "desc": "RF in place",
+      "align": "",
+      "turn": "1/8 R",
+      "timing": "2"
+     },
+     {
+      "desc": "LF to side",
+      "align": "",
+      "turn": "",
+      "timing": "3"
+     },
+     {
+      "desc": "RF",
+      "align": "",
+      "turn": "",
+      "timing": "4"
+     },
+     {
+      "desc": "LF to side",
+      "align": "",
+      "turn": "",
+      "timing": "1"
+     },
+     {
+      "desc": "RF",
+      "align": "",
+      "turn": "",
+      "timing": "2"
+     }
+    ],
+    "preceding": [],
+    "following": [],
+    "follows": true,
+    "ladySteps": [
+     {
+      "desc": "RF bwd",
+      "align": "Facing C",
+      "turn": "1/8 R",
+      "face": 90,
+      "pos": "Close Fallaway"
+     },
+     {
+      "desc": "LF in place",
+      "align": "Facing LOD",
+      "turn": "",
+      "face": 45,
+      "end": 0
+     },
+     {
+      "desc": "RF to side small step",
+      "align": "Facing LOD",
+      "turn": "1/4 R",
+      "face": 45,
+      "end": 0,
+      "pos": "Close Opp"
+     },
+     {
+      "desc": "LF fwd",
+      "align": "Facing C",
+      "turn": "1/4 L",
+      "face": 0,
+      "end": 90,
+      "pos": "Close Opp then Close Prom\")"
+     },
+     {
+      "desc": "RF to side small step",
+      "align": "Facing LOD",
+      "turn": "1/4 R",
+      "face": 90,
+      "end": 0,
+      "pos": "Close Prom then Close Opp"
+     },
+     {
+      "desc": "LF fwd",
+      "align": "Facing C",
+      "turn": "1/4 L",
+      "face": 0,
+      "end": 90,
+      "pos": "Close Opp then Close Prom\"!"
+     }
+    ]
+   },
    "aliases": {
     "en": [
      "Promenade Walks"
@@ -66106,7 +71085,7 @@
       "desc": "RF crosses behind LF",
       "align": "Facing DW",
       "turn": "3/4 R",
-      "face": -45,
+      "face": -135,
       "end": -45,
       "pos": "Close Opp"
      },
@@ -67140,18 +72119,24 @@
      },
      {
       "desc": "LF diag fwd",
-      "align": "",
-      "turn": "1/4 R"
+      "align": "Facing W",
+      "turn": "1/4 R",
+      "face": -90,
+      "end": -90
      },
      {
       "desc": "RF",
-      "align": "",
-      "turn": "1/4 R"
+      "align": "Facing W",
+      "turn": "1/4 R",
+      "face": -90,
+      "end": -90
      },
      {
       "desc": "LF to side",
-      "align": "",
-      "turn": "1/4 R"
+      "align": "Facing W",
+      "turn": "1/4 R",
+      "face": -90,
+      "end": -90
      },
      {
       "desc": "RF fwd and across",
@@ -68197,24 +73182,24 @@
      },
      {
       "desc": "LF fwd",
-      "align": "Facing DW",
+      "align": "Backing DC",
       "turn": "1/8 R",
-      "face": -45,
-      "end": -45
+      "face": -135,
+      "end": -135
      },
      {
       "desc": "RF",
-      "align": "Facing DW",
+      "align": "Backing DC",
       "turn": "1/8 R",
-      "face": -45,
-      "end": -45
+      "face": -135,
+      "end": -135
      },
      {
       "desc": "LF diag fwd",
-      "align": "Facing DW",
+      "align": "Backing DC",
       "turn": "1/4 R",
-      "face": -45,
-      "end": -45
+      "face": -135,
+      "end": -135
      },
      {
       "desc": "RF fwd",
@@ -69683,10 +74668,10 @@
      },
      {
       "desc": "LF",
-      "align": "Facing DW",
+      "align": "Backing DC",
       "turn": "1/4 R",
-      "face": -45,
-      "end": -45
+      "face": -135,
+      "end": -135
      },
      {
       "desc": "RF crosses behind LF",
@@ -69743,10 +74728,10 @@
      },
      {
       "desc": "RF",
-      "align": "Facing DW",
+      "align": "Backing DC",
       "turn": "1/4 L",
-      "face": -45,
-      "end": -45
+      "face": -135,
+      "end": -135
      },
      {
       "desc": "LF crosses behind RF",
@@ -70463,7 +75448,7 @@
       "desc": "LF fwd",
       "align": "Facing DC",
       "turn": "1/8 L",
-      "face": 45,
+      "face": 0,
       "end": 45,
       "pos": "R Diag Same"
      },
@@ -70471,7 +75456,7 @@
       "desc": "LF bwd",
       "align": "Facing DC",
       "turn": "1/8 L",
-      "face": 45,
+      "face": 0,
       "end": 45,
       "pos": "R Diag Same"
      },
@@ -70479,7 +75464,7 @@
       "desc": "RF in place",
       "align": "Facing DC",
       "turn": "1/8 L",
-      "face": 45,
+      "face": 0,
       "end": 45,
       "pos": "R Diag Same"
      },
@@ -70882,7 +75867,7 @@
       "desc": "LF fwd",
       "align": "Facing DC",
       "turn": "1/8 L",
-      "face": 45,
+      "face": 0,
       "end": 45,
       "pos": "R Diag Same"
      },
@@ -70890,7 +75875,7 @@
       "desc": "LF bwd",
       "align": "Facing DC",
       "turn": "1/8 L",
-      "face": 45,
+      "face": 0,
       "end": 45,
       "pos": "R Diag Same"
      },
@@ -70898,7 +75883,7 @@
       "desc": "RF in place",
       "align": "Facing DC",
       "turn": "1/8 L",
-      "face": 45,
+      "face": 0,
       "end": 45,
       "pos": "R Diag Same"
      },
