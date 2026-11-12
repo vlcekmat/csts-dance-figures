@@ -79,13 +79,14 @@ function footprints(
 /** Where the lady stands relative to the man at the start (metres, man's frame: fwd, to his right). */
 function ladyOffset(pos: string, latin: boolean): { fwd: number; right: number } {
   // Couple position at the end of the step ("Closed Position to Promenade Position" -> PP).
+  // Distances (metres, centre to centre) keep the partners' shoulders from overlapping.
   const parts = pos.toLowerCase().split(/\s+(?:to|then)\s+(?=[a-z])/);
   const p = parts[parts.length - 1] ?? "";
-  if (/counter prom|\bcpp\b|cnt prom/.test(p)) return { fwd: 0.15, right: -0.35 };
-  if (/promenade|\bpp\b|prom\b/.test(p)) return latin ? { fwd: 0.3, right: 0.6 } : { fwd: 0.12, right: 0.32 };
-  if (/fallaway/.test(p)) return { fwd: 0, right: 0.32 };
-  if (/outside partner|\bop\b/.test(p)) return { fwd: 0.3, right: -0.08 };
-  if (/wing/.test(p)) return { fwd: 0.12, right: -0.32 };
+  if (/counter prom|\bcpp\b|cnt prom/.test(p)) return latin ? { fwd: 0.3, right: -0.6 } : { fwd: 0.2, right: -0.45 };
+  if (/promenade|\bpp\b|prom\b/.test(p)) return latin ? { fwd: 0.3, right: 0.6 } : { fwd: 0.2, right: 0.45 };
+  if (/fallaway/.test(p)) return { fwd: 0.05, right: 0.45 };
+  if (/outside partner|\bop\b/.test(p)) return { fwd: 0.32, right: -0.15 };
+  if (/wing/.test(p)) return { fwd: 0.2, right: -0.45 };
   if (/shadow/.test(p)) return { fwd: 0.35, right: 0.25 };
   if (/tandem/.test(p)) return { fwd: 0.4, right: 0 };
   if (/side by side|side-by-side/.test(p)) return { fwd: 0, right: 0.5 };
