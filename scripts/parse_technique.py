@@ -16,7 +16,7 @@ OUT = ROOT / "data" / "build" / "technique.json"
 
 BOOKS = {
     "Waltz": "waltz", "Tango": "tango", "Valčík": "viennese", "Quickstep": "quickstep",
-    "Chacha": "chacha", "Rumba": "rumba", "Samba": "samba", "Jive": "jive",
+    "Slowfox": "slowfox", "Chacha": "chacha", "Rumba": "rumba", "Samba": "samba", "Jive": "jive",
 }
 
 TITLE_RE = re.compile(r"^(?P<name>.+?)\s*(?:[({\[]\s*(?P<role>Man|Lady|Men|Lad[yv])\s*[)}\]]?)?\s*[-–—~.]*\s*Side\s*(?P<side>[12l|I])", re.I)
@@ -58,6 +58,7 @@ def fix_ocr(s: str) -> str:
 # OCR slips in chart titles.
 NAME_FIXES = [
     (r"\bCLOSLD\b", "CLOSED"),
+    (r"^TELEMARK$", "TELEMARK"),
     (r"^H?AGE ALTERNATIVE", "CHASE ALTERNATIVE"),
     (r"^CUUNST.*METHOD 4.*", "CHASE ALTERNATIVE ENDINGS - METHOD 4 PROGRESSIVE LINK"),
     (r"PROMENADE INK MAN", "PROMENADE LINK"),
@@ -132,20 +133,21 @@ def main():
                             figures[-1]["notes"].append(n)
                 continue
             header = [clean(h) for h in t["header"]]
-            side = 1 if col(header, "foot place", "placement") is not None else 2 if col(header, "couple") is not None else 0
+            side = 1 if col(header, "foot place", "placement", "piacement", "lacement") is not None else 2 if col(header, "couple") is not None else 0
             if not side:
                 continue
-            title = clean(t["title"])
-            rm = re.search(r"\b(Man|Men|Mun|Lady|Ladv|Lad)\b", title, re.I)
+            title = clean(t["title"]).replace("[© PP", "TO PP").replace("[© ", "TO ")
+            # role only from "(Man)" / "(Lady)" – titles like "Maypole Lady Turning Right" name the lady too
+            rm = re.search(r"[({\[|]\s*(Man|Men|Mun|Lady|Ladv|Lad)\b", title, re.I) or re.search(r"\b(Man|Lady)\s*[)}\]]", title, re.I)
             role = ""
             if rm:
                 role = "lady" if rm.group(1).lower().startswith("lad") else "man"
             # name = text before "(Man)" / "- Side"
             name = re.split(r"[({\[]|\s[-–—~]+\s*Side|\sSide\b", title)[0]
             name = re.sub(r"[^A-Z0-9 '&/-]", "", name.upper()).strip(" -")
-            if len(name) < 3 or not re.search(r"[A-Z]{3}", name):
+            if len(name) < 2 or not re.search(r"[A-Z]{3}|^V\d", name):
                 name = None
-            if not name or len(name) < 3:
+            if not name or len(name) < 2:
                 name, role = last_title if last_title else (None, "")
             if not name:
                 continue
@@ -172,7 +174,7 @@ def main():
                 cur = {"name": name, "role": role, "page": t["page"], "steps": [], "notes": []}
                 figures.append(cur)
                 i_step = 0
-                i_foot = col(header, "placement")
+                i_foot = col(header, "placement", "piacement", "lacement")
                 i_align = col(header, "alignment")
                 i_turn = col(header, "quantity", "turn")
                 i_time = col(header, "timing")

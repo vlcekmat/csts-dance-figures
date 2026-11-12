@@ -25,7 +25,7 @@ Na GitHub Pages se aplikace nasazuje automaticky při každém pushi do `main`
 | WDSF Syllabus | `data/raw/WDSF_Syllabus.pdf` | začátek, konec, rytmizace, poznámky |
 | YouTube vyhledávání | `data/videos.json` | ukázková videa (automaticky, max. 3 na figuru) |
 | Technické příručky WDSF (skeny) | `mainReferences/WDSF *.pdf` → OCR | grafy kroků pána i dámy: směrování, otočení, postavení – **jen lokálně** (`src/data/technique.local.json`, v gitu ignorovaný; autorská práva) |
-| dancecentral.info (technika ISTD) | `data/alignment.json` | grafy pro figury bez příručky WDSF (pomalý valčík) a návaznosti figur |
+| dancecentral.info (technika ISTD) | `data/alignment.json` | grafy pro figury bez příručky WDSF a návaznosti figur |
 | ručně | `data/turn_ranges.json` | povolené podtočení / přetočení figur (z poznámek „Quantity of Turn“) |
 | ručně | `data/dances.json` | metadata tanců (takt, tempo, hodnoty S/Q) a poznámky katalogu |
 | ručně | `data/aliases.json` | jiné běžné názvy figur (CZ/EN); doplňují se k názvům ze syllabu a dancecentral.info |
@@ -50,8 +50,9 @@ npm run videos   # stáhne/aktualizuje videa (pokračuje, kde skončilo) a přeg
 - `scripts/scrape_videos.py` – vyhledání videí na YouTube
 - `scripts/scrape_alignment.py` – grafy kroků z dancecentral.info (`python3 -I scripts/scrape_alignment.py`, pak `npm run data`)
 - `scripts/ocr_technique.py` – OCR naskenovaných příruček WDSF po buňkách tabulek (tesseract, Pillow, numpy);
-  stránky nejdřív vytáhni `pdfimages -png "mainReferences/WDSF Waltz.pdf" data/build/ocr/Waltz/p`,
-  pak `python3 -I scripts/ocr_technique.py Waltz Tango Valčík Quickstep Chacha Rumba Samba Jive`
+  stránky nejdřív vytáhni `pdfimages -png "mainReferences/WDSF Waltz.pdf" data/build/ocr/Waltz/p`
+  (slowfox je ve `mainReferences/slowfox/` jako obrázky stránek – zkopíruj je seřazené do `data/build/ocr/Slowfox/p-NNN.png`),
+  pak `python3 -I scripts/ocr_technique.py Waltz Tango Valčík Slowfox Quickstep Chacha Rumba Samba Jive`
   (výsledky se ukládají po stránkách, opakované spuštění pokračuje)
 - `scripts/parse_technique.py` – z OCR tabulek grafy pána a dámy → `data/build/technique.json`; `npm run data` z nich
   vytvoří `src/data/technique.local.json`, který aplikace použije, jen když existuje (veřejný web je nemá)

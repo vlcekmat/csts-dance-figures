@@ -13,6 +13,7 @@ Output:
 import difflib
 import unicodedata
 import json
+import os
 import re
 import sys
 from pathlib import Path
@@ -487,7 +488,7 @@ def phrase_angle(phrase, bwd=False):
     return _norm(a), almost
 
 
-def parse_alignment(text, desc, new_lod, prev):
+def parse_alignment(text, desc, new_lod, prev, frame=None):
     """Precise alignment facts of one chart step.
 
     Returns {face, end, body, moving} in degrees in the frame of the figure's
@@ -501,14 +502,18 @@ def parse_alignment(text, desc, new_lod, prev):
     t = re.sub(r"\(\d\)|\"", " ", t)
     new_here = bool(re.search(r"\bnew\s*LO[DO0]", t, flags=re.I))
     bwd = bool(re.search(r"\b(bwd|back)\b", desc, flags=re.I))
-    em = re.search(r"\b(?:then|end|to end|finish(?:ing)?)\b", t, flags=re.I)
+    # end of the step: "…, then …", "end Facing …", latin "Facing W turn to Facing LOD" / "Facing W to Facing DW"
+    em = re.search(r"\b(?:then|end|to end|finish(?:ing)?|turn(?:ing)? to|to(?=\s+(?:facing|backing|pointing)\b))\b", t, flags=re.I)
     main, endp = (t[:em.start()], t[em.end():]) if em else (t, "")
 
     def pick(part, key_new):
         body = re.search(r"\bbody\s+(.*?)(?=,|\bmoving\b|$)", part, flags=re.I)
         mov = re.search(r"\bmoving\s+(?:along\s+|sideways\s+(?:to\s+)?|to\s+|towards?\s+)?(.*?)(?=,|$)", part, flags=re.I)
         core = re.split(r"\bbody\b|\bmoving\b|\bor\b", part, flags=re.I)[0]
-        shift = 90 if key_new or re.search(r"\bnew\b", part, flags=re.I) else 0
+        if frame is not None:
+            shift = frame
+        else:
+            shift = 90 if key_new or re.search(r"\bnew\b", part, flags=re.I) else 0
         res = {}
         for key, ph, back in (("face", core, bwd), ("body", body.group(1) if body else "", False),
                               ("moving", "Facing " + mov.group(1) if mov else "", False)):
@@ -645,6 +650,22 @@ def is_position_terms(pos):
     return bool(words) and len(pos) <= 70 and all(w.lower() in POS_WORDS for w in words)
 
 
+def turn_amount(text):
+    """Signed amount of turn written in a chart cell (degrees, + = left), None if unknown."""
+    if not text or DEPENDS.search(text) or re.search(r"\bor\b|just|over|almost|slight|body", text, flags=re.I):
+        return None
+    total = 0.0
+    found = False
+    for m in re.finditer(r"(\d)\s*/\s*(\d)\s*(?:to\s*)?([LR])?", text):
+        side = m.group(3) or ("R" if re.search(r"\bR\b|right", text) else "L" if re.search(r"\bL\b|left", text) else None)
+        if not side:
+            return None
+        frac = int(m.group(1)) / int(m.group(2)) * 360
+        total += frac if side == "L" else -frac
+        found = True
+    return total if found else (0.0 if not text.strip() else None)
+
+
 def build_steps(chart, public):
     """Steps of a WDSF chart in the app's FloorStep format with precise alignment facts.
     public=True: facts only (no book wording, positions, timing)."""
@@ -654,6 +675,18 @@ def build_steps(chart, public):
     for st in chart_rows(chart):
         align = st.get("align", "")
         al, here_new = parse_alignment(align, st["desc"], new_lod, prev)
+        if (here_new or new_lod) and prev is not None and not os.environ.get("NO_FRAME_PICK"):
+            # "… new LOD": the book is not consistent about which steps after a corner refer to
+            # the new LOD. Take the reading that agrees with the charted amount of turn.
+            # only the turn before the step's own alignment ("…, then 1/2 on 3" comes after it)
+            t = turn_amount(re.split(r"\bthen\b", st.get("turn", ""), flags=re.I)[0])
+            expected = _norm(prev + (t or 0))
+            options = [parse_alignment(align, st["desc"], new_lod, prev, frame=f)[0] for f in (0, 90)]
+            def dist(o):
+                v = o["face"]
+                return 999 if v is None else abs(_norm(v - expected))
+            if t is not None or not here_new:
+                al = min(options, key=dist)
         facing = al["end"] if al["end"] is not None else al["face"]
         item = {
             "desc": fact_desc(st["desc"]) if public else st["desc"],
@@ -697,7 +730,7 @@ def canon(name):
     return re.sub(r"\s+", " ", n).strip()
 
 
-STANDARD_BOOKS = ["waltz", "tango", "viennese", "quickstep"]
+STANDARD_BOOKS = ["waltz", "tango", "viennese", "slowfox", "quickstep"]
 
 
 # Catalog figures whose book chart has a clearly different title.
@@ -708,6 +741,10 @@ BOOK_TITLE = {
     "samba-23": ("samba", "UNDERARM TURNING LEFT"),
     "samba-28": ("samba", "MAYPOLE LADY TURNING RIGHT"),
     "chacha-29": ("chacha", "SIMPLE FOOT CHANGE"),
+    "quickstep-44": ("waltz", "FALLAWAY NATURAL TURN"),
+    "jive-34": ("jive", "CHUGGING"),
+    "waltz-40": ("slowfox", "BOUNCE FALLAWAY WITH WEAVE ENDING"),
+    "waltz-41": ("slowfox", "QUICK OPEN REVERSE TURN"),
 }
 
 
