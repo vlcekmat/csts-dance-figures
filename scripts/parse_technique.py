@@ -183,7 +183,17 @@ def main():
                     cell = (row[i_step] or "").strip()
                     if re.search(r"\bprec", cell, re.I):
                         prev_cell = cell
-                        continue  # "Prec. Step": the step before the figure, not part of it
+                        # "Prec. Step": the step before the figure, not part of it – kept
+                        # separately (preparatory step of a routine starting with this figure).
+                        if i_foot is not None and not cur.get("prec"):
+                            pdesc, _ = split_placement(row[i_foot] or "")
+                            cur["prec"] = {
+                                "desc": pdesc,
+                                "align": fix_ocr(row[i_align]) if i_align is not None else "",
+                                "turn": fix_ocr(row[i_turn]) if i_turn is not None else "",
+                                "timing": clean(row[i_time]) if i_time is not None else "",
+                            }
+                        continue
                     desc0 = (row[i_foot] if i_foot is not None else "").strip()
                     # A step cell merged over two sub-rows ("RF fwd" / "Recover LF") is
                     # repeated in both: the second sub-row belongs to the same step.

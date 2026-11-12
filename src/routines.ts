@@ -26,6 +26,25 @@ export interface Room {
   width: number;
 }
 
+export type PrepDir = "fwd" | "bwd" | "side" | "fwd-side" | "bwd-side" | "place";
+export const PREP_DIRS: PrepDir[] = ["side", "fwd", "bwd", "fwd-side", "bwd-side", "place"];
+
+/** One preparatory step: it moves the couple like any other step. */
+export interface PrepStep {
+  foot: "LF" | "RF";
+  dir: PrepDir;
+  /** Length relative to a normal step (1 = the routine's step length). */
+  size?: number;
+  /** Man's facing relative to the start of the first figure (degrees, + = to the left). */
+  turn?: number;
+}
+
+/** The routine's preparatory steps (handles the older single-step format). */
+export function prepSteps(r: Pick<Routine, "prep">): PrepStep[] {
+  if (!r.prep) return [];
+  return Array.isArray(r.prep) ? r.prep : [r.prep];
+}
+
 export interface Routine {
   room?: Room;
   /** Step length for the floor plan in cm (default depends on the dance). */
@@ -36,8 +55,8 @@ export interface Routine {
   loopTo?: number;
   /** Hide the loop visualisation (rail, strip marker, repetitions in the plan). */
   loopHidden?: boolean;
-  /** Preparatory step before the first figure (foot and direction). */
-  prep?: { foot: "LF" | "RF"; dir: "fwd" | "bwd" | "side" | "place" };
+  /** Preparatory steps before the first figure (older data: a single step object). */
+  prep?: PrepStep[] | PrepStep;
   /** Where the routine starts in the room (floor plan). */
   start?: { side: number; along: number; dist: number; face?: number };
   id: string;

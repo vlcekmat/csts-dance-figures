@@ -687,6 +687,39 @@ def turn_amount(text):
     return total if found else (0.0 if not text.strip() else None)
 
 
+def prep_from_book(man):
+    """Facts about the step before the figure ("Prec. Step" row): foot, direction and
+    the alignment relative to the figure's first LOD. None when the book gives nothing."""
+    pr = man.get("prec")
+    if not pr:
+        return None
+    desc = (pr.get("desc") or "").strip()
+    out = {}
+    fm = re.search(r"\b(RF|LF)\b", desc)
+    first = re.search(r"\b(RF|LF)\b", (man["steps"][0].get("desc") or "") if man.get("steps") else "")
+    # The step before must leave the other foot free: a row naming the same foot as
+    # step 1 is a misread (e.g. the previous figure's last action), keep only its alignment.
+    if fm and first and fm.group(1) == first.group(1):
+        fm = None
+    if fm:
+        out["foot"] = fm.group(1)
+        d = desc.lower()
+        if re.search(r"recover|weight|wt on|close|in place", d):
+            out["dir"] = "place"
+        else:
+            dirs = [(m.start(), k) for k, rx in (("fwd", r"\bfwd|forward"), ("bwd", r"\bbwd|\bback"), ("side", r"\bside"))
+                    for m in [re.search(rx, d)] if m]
+            dirs.sort()
+            if dirs:
+                main = dirs[0][1]
+                second = next((k for _, k in dirs[1:] if k != main), None)
+                out["dir"] = f"{main}-side" if main in ("fwd", "bwd") and second == "side" else main
+    al, _ = parse_alignment(pr.get("align") or "", desc, False, None)
+    if al["face"] is not None:
+        out["face"] = al["face"]
+    return out or None
+
+
 def build_steps(chart, public):
     """Steps of a WDSF chart in the app's FloorStep format with precise alignment facts.
     public=True: facts only (no book wording, positions, timing)."""
@@ -1029,6 +1062,9 @@ def main():
                     pub["follows"] = True
                 if lady and lady["steps"]:
                     pub["ladySteps"] = build_steps(lady, public=True)
+                prep = prep_from_book(man)
+                if prep:
+                    pub["prep"] = prep
                 entry["floor"] = pub
                 # Holds allowed by the technique book ("Lead - Hold" column and notes) extend the
                 # syllabus holds: e.g. Time Step "usually w/o Hold, but any appropriate Hold".

@@ -490,8 +490,9 @@ export function FloorPlan({
       </figure>
 
       <ol className="floor-legend small">
-        {sim.segments.slice(0, baseLen).map((s) => (
-          <li key={s.key} className={s.estimated ? "muted" : ""}>
+        {sim.segments.slice(0, baseLen).map((s, i) => (
+          <li key={s.key} className={`${s.estimated ? "muted" : ""}${figNo(i + 1) === "P" ? " prep-li" : ""}`} value={figNo(i + 1) === "P" ? undefined : Number(figNo(i + 1))}>
+            {figNo(i + 1) === "P" ? <b>P </b> : null}
             {s.label.replace(/ \(\d+\.×\)$/, "")}
             {s.estimated ? " *" : ""}
             {s.onSpot ? ` (${t("onSpot")})` : ""}

@@ -977,3 +977,10 @@ p { max-width: 75ch; line-height: 1.6; }
 .step-length-val.changed { font-weight: 700; color: var(--standard); }
 @media (max-width: 760px) { .plan-rotate.above { position: static; } }
 .plan-rotate.above { max-height: 70vh; overflow: auto; }
+
+/* Preparatory steps before the first figure */
+.prep-row { flex-direction: column; align-items: stretch; gap: .5rem; }
+.prep-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: .3rem .8rem; }
+.prep-step, .prep-actions { display: flex; flex-wrap: wrap; align-items: center; gap: .4rem .5rem; }
+.prep-no { font-weight: 700; color: var(--muted); min-width: 1.4rem; }
+.floor-legend li.prep-li { list-style: none; margin-left: -1.2rem; }

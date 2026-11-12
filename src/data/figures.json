@@ -2148,7 +2148,10 @@
       "timing": "3",
       "pos": "Closed Position"
      }
-    ]
+    ],
+    "prep": {
+     "face": 135
+    }
    }
   },
   {
@@ -5260,7 +5263,10 @@
       "timing": "&",
       "pos": "Closed Position"
      }
-    ]
+    ],
+    "prep": {
+     "face": -180
+    }
    }
   },
   {
@@ -7599,7 +7605,12 @@
       "body": 90,
       "pos": "Promenade Position"
      }
-    ]
+    ],
+    "prep": {
+     "foot": "RF",
+     "dir": "fwd",
+     "face": -45
+    }
    }
   },
   {
@@ -11967,7 +11978,10 @@
       "face": 135,
       "pos": "Closed Position"
      }
-    ]
+    ],
+    "prep": {
+     "face": -45
+    }
    }
   },
   {
@@ -12086,7 +12100,10 @@
       "face": -135,
       "pos": "Closed Position"
      }
-    ]
+    ],
+    "prep": {
+     "face": -45
+    }
    },
    "aliases": {
     "en": [
@@ -13460,7 +13477,12 @@
       "face": -45,
       "pos": "Closed Position"
      }
-    ]
+    ],
+    "prep": {
+     "foot": "LF",
+     "dir": "side",
+     "face": -90
+    }
    }
   },
   {
@@ -14628,7 +14650,10 @@
       "end": -180,
       "pos": "Closed Position"
      }
-    ]
+    ],
+    "prep": {
+     "face": -180
+    }
    }
   },
   {
@@ -14883,7 +14908,10 @@
       "timing": "3",
       "pos": "Closed Position"
      }
-    ]
+    ],
+    "prep": {
+     "face": 45
+    }
    },
    "aliases": {
     "en": [
@@ -15096,7 +15124,10 @@
       "face": 135,
       "pos": "Closed Position"
      }
-    ]
+    ],
+    "prep": {
+     "face": -45
+    }
    },
    "aliases": {
     "en": [
@@ -15187,7 +15218,10 @@
      }
     ],
     "preceding": [],
-    "following": []
+    "following": [],
+    "prep": {
+     "face": 45
+    }
    },
    "aliases": {
     "en": [
@@ -15277,7 +15311,10 @@
      }
     ],
     "preceding": [],
-    "following": []
+    "following": [],
+    "prep": {
+     "face": -45
+    }
    },
    "aliases": {
     "en": [
@@ -15367,7 +15404,10 @@
      }
     ],
     "preceding": [],
-    "following": []
+    "following": [],
+    "prep": {
+     "face": -135
+    }
    },
    "aliases": {
     "en": [
@@ -15461,7 +15501,10 @@
      }
     ],
     "preceding": [],
-    "following": []
+    "following": [],
+    "prep": {
+     "face": 135
+    }
    },
    "aliases": {
     "en": [
@@ -16041,7 +16084,12 @@
       "face": 135,
       "pos": "Outside Partner Position"
      }
-    ]
+    ],
+    "prep": {
+     "foot": "LF",
+     "dir": "side",
+     "face": -45
+    }
    }
   },
   {
@@ -19441,7 +19489,12 @@
       "face": -45,
       "pos": "Outside Partner Position"
      }
-    ]
+    ],
+    "prep": {
+     "foot": "RF",
+     "dir": "fwd",
+     "face": -45
+    }
    }
   },
   {
@@ -21427,7 +21480,12 @@
       "face": 0,
       "pos": "Outside Partner Position"
      }
-    ]
+    ],
+    "prep": {
+     "foot": "RF",
+     "dir": "fwd",
+     "face": -135
+    }
    }
   },
   {
@@ -22633,7 +22691,10 @@
       "end": -180,
       "pos": "Closed Position"
      }
-    ]
+    ],
+    "prep": {
+     "face": -180
+    }
    }
   },
   {
@@ -27793,7 +27854,10 @@
       "end": -180,
       "pos": "Closed Position"
      }
-    ]
+    ],
+    "prep": {
+     "face": -180
+    }
    }
   },
   {
@@ -28388,6 +28452,10 @@
       "pos": "Closed Position"
      }
     ],
+    "prep": {
+     "foot": "LF",
+     "dir": "place"
+    },
     "turnRange": {
      "min": 0,
      "max": 90,
@@ -40218,7 +40286,11 @@
       "face": 90,
       "timing": "1"
      }
-    ]
+    ],
+    "prep": {
+     "foot": "RF",
+     "dir": "side"
+    }
    },
    "aliases": {
     "en": [
@@ -42844,7 +42916,11 @@
       "timing": "1",
       "pos": "Open Opp"
      }
-    ]
+    ],
+    "prep": {
+     "foot": "RF",
+     "dir": "place"
+    }
    }
   },
   {
@@ -46162,7 +46238,11 @@
       "timing": "1",
       "pos": "R Side Opp"
      }
-    ]
+    ],
+    "prep": {
+     "foot": "LF",
+     "dir": "side"
+    }
    }
   },
   {
@@ -54834,7 +54914,11 @@
       "timing": "4.1",
       "pos": "Close Opp"
      }
-    ]
+    ],
+    "prep": {
+     "foot": "RF",
+     "dir": "fwd-side"
+    }
    }
   },
   {
@@ -57603,7 +57687,11 @@
       "face": 90,
       "timing": "4.1"
      }
-    ]
+    ],
+    "prep": {
+     "foot": "LF",
+     "dir": "side"
+    }
    }
   },
   {
@@ -69996,7 +70084,11 @@
       "pos": "Close Opp",
       "rot": -63.0
      }
-    ]
+    ],
+    "prep": {
+     "foot": "LF",
+     "dir": "side"
+    }
    }
   },
   {
@@ -71236,7 +71328,11 @@
       "pos": "Close Opp",
       "rot": -15.0
      }
-    ]
+    ],
+    "prep": {
+     "foot": "LF",
+     "dir": "side"
+    }
    }
   },
   {
@@ -71406,7 +71502,11 @@
       "face": 90,
       "moving": -135
      }
-    ]
+    ],
+    "prep": {
+     "foot": "LF",
+     "dir": "side"
+    }
    },
    "aliases": {
     "en": [

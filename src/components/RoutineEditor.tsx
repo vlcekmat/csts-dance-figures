@@ -16,7 +16,7 @@ import {
   type Figure,
 } from "../data";
 import { useI18n, type StringKey } from "../i18n";
-import { downloadJson, newId, type Routine, type RoutineItem, type RoutinesApi } from "../routines";
+import { PREP_DIRS, downloadJson, newId, prepSteps, type PrepStep, type Routine, type RoutineItem, type RoutinesApi } from "../routines";
 import { ROUND_RANGE, formatBars, formatSeconds, tempoRange, totalBeats } from "../timing";
 import { connect, partLabel, resolveItem } from "../variants";
 import { RoutineItemRow } from "./RoutineItemRow";
@@ -42,6 +42,9 @@ interface Props {
   onOpenFigure: (fig: Figure) => void;
 }
 
+const PREP_SIZES = [0.25, 0.5, 0.75, 1, 1.25, 1.5];
+const PREP_TURNS = [0, 45, -45, 90, -90, 135, -135, 180];
+
 export function RoutineEditor({ routine, api, onBack, onOpenFigure }: Props) {
   const { t, lang, barsWord } = useI18n();
   const dance = getDance(routine.dance);
@@ -57,6 +60,7 @@ export function RoutineEditor({ routine, api, onBack, onOpenFigure }: Props) {
   const rows = routine.items
     .map((item) => {
       const fig = getFigure(item.figureId);
+
       if (!fig) return null;
       const timing = item.timing ?? fig.syllabus?.timing ?? "";
       const resolved = resolveItem(fig, dance, timing, item.variant);
@@ -73,6 +77,27 @@ export function RoutineEditor({ routine, api, onBack, onOpenFigure }: Props) {
       };
     })
     .filter((r): r is NonNullable<typeof r> => r !== null);
+  // Preparatory steps: they move the couple before the first figure.
+  const prep = prepSteps(routine);
+  const firstRow = rows[0];
+  const firstAlign = firstRow
+    ? figureAlignment(firstRow.fig, { from: firstRow.resolved.from, to: firstRow.resolved.isPart ? firstRow.resolved.to : undefined })
+    : null;
+  const firstFoot = firstRow?.resolved.startFoot ?? null;
+  // Suggestion from the technique (the step before the figure), else a weight change on the other foot.
+  const bookPrep = firstRow && firstRow.resolved.from <= 1 ? firstRow.fig.floor?.prep : undefined;
+  const suggested: PrepStep = {
+    foot: bookPrep?.foot ?? (firstFoot === "LF" ? "RF" : "LF"),
+    dir: PREP_DIRS.includes(bookPrep?.dir as PrepStep["dir"]) ? (bookPrep!.dir as PrepStep["dir"]) : "place",
+  };
+  if (bookPrep?.face !== undefined && firstAlign) {
+    const turn = Math.round(norm180(bookPrep.face - firstAlign.start) / 45) * 45;
+    if (turn) suggested.turn = turn;
+  }
+  const writePrep = (steps: PrepStep[]) => patch((r0) => ({ ...r0, prep: steps.length ? steps : undefined }));
+  const setPrep = (i: number, change: Partial<PrepStep>) =>
+    writePrep(prep.map((st, k) => (k === i ? { ...st, ...change } : st)));
+  const footName = (f: "LF" | "RF") => (lang === "cs" ? (f === "LF" ? "Ln" : "Pn") : f);
 
   const beats = rows.reduce((s, r) => s + r.beats, 0);
   const tempo = tempoRange(dance);
@@ -119,16 +144,12 @@ export function RoutineEditor({ routine, api, onBack, onOpenFigure }: Props) {
             reps: showLoop ? repeat : 1,
             loopTo,
             loop: !!routine.loop,
-            prep: routine.prep
+            prep: prep.length
               ? {
-                  ...routine.prep,
+                  steps: prep,
                   label: t("prepStep"),
                   // the man faces where the routine starts: chosen start direction, else the first figure's
-                  face:
-                    routine.start?.face ??
-                    (rows[0]
-                      ? (figureAlignment(rows[0].fig, { from: rows[0].resolved.from, to: rows[0].resolved.isPart ? rows[0].resolved.to : undefined })?.start ?? 0)
-                      : 0),
+                  face: routine.start?.face ?? firstAlign?.start ?? 0,
                 }
               : undefined,
           })
@@ -497,37 +518,66 @@ export function RoutineEditor({ routine, api, onBack, onOpenFigure }: Props) {
       </div>
 
       <div className="loop-row prep-row">
-        <label className="field">
-          <span>{t("prepStep")}</span>
-          <select
-            value={routine.prep ? `${routine.prep.foot}-${routine.prep.dir}` : ""}
-            onChange={(e) => {
-              const v = e.target.value;
-              patch((r0) => ({
-                ...r0,
-                prep: v ? { foot: v.split("-")[0] as "LF" | "RF", dir: v.split("-")[1] as "fwd" | "bwd" | "side" | "place" } : undefined,
-              }));
+        <div className="prep-head">
+          <strong>{t("prepStep")}</strong>
+          <span className="small muted">{t("prepHint")}</span>
+        </div>
+        {prep.map((st, i) => (
+          <div className="prep-step" key={i}>
+            <span className="prep-no">{i + 1}.</span>
+            <select aria-label={t("prepFoot")} value={st.foot} onChange={(e) => setPrep(i, { foot: e.target.value as PrepStep["foot"] })}>
+              {(["LF", "RF"] as const).map((f) => (
+                <option key={f} value={f}>{footName(f)}</option>
+              ))}
+            </select>
+            <select aria-label={t("prepDir")} value={st.dir} onChange={(e) => setPrep(i, { dir: e.target.value as PrepStep["dir"] })}>
+              {PREP_DIRS.map((d) => (
+                <option key={d} value={d}>{t(`prepDir_${d}` as StringKey)}</option>
+              ))}
+            </select>
+            {st.dir !== "place" && (
+              <select aria-label={t("prepSize")} value={st.size ?? 1} onChange={(e) => setPrep(i, { size: Number(e.target.value) === 1 ? undefined : Number(e.target.value) })}>
+                {PREP_SIZES.map((k) => (
+                  <option key={k} value={k}>{t("prepSizeCm", { cm: String(Math.round(k * stepCm)) })}</option>
+                ))}
+              </select>
+            )}
+            <select aria-label={t("prepTurn")} value={st.turn ?? 0} onChange={(e) => setPrep(i, { turn: Number(e.target.value) || undefined })}>
+              {PREP_TURNS.map((deg) => (
+                <option key={deg} value={deg}>
+                  {deg === 0 ? t("prepTurnAsFigure") : t(deg > 0 ? "alignByLeft" : "alignByRight", { n: eighths(deg) })}
+                </option>
+              ))}
+            </select>
+            <button className="btn small" aria-label={t("prepRemove")} title={t("prepRemove")} onClick={() => writePrep(prep.filter((_, k) => k !== i))}>
+              ✕
+            </button>
+            {i > 0 && prep[i - 1].foot === st.foot && <span className="small warn">⚠ {t("prepSameFoot")}</span>}
+          </div>
+        ))}
+        <div className="prep-actions">
+          <button
+            className="btn small"
+            onClick={() => {
+              const last = prep[prep.length - 1];
+              const foot = last ? (last.foot === "LF" ? "RF" : "LF") : firstFoot === "LF" ? "RF" : "LF";
+              writePrep([...prep, { foot, dir: "side" }]);
             }}
           >
-            <option value="">{t("prepNone")}</option>
-            {(["LF", "RF"] as const).flatMap((foot) =>
-              (["side", "fwd", "bwd", "place"] as const).map((dir) => (
-                <option key={`${foot}-${dir}`} value={`${foot}-${dir}`}>
-                  {(lang === "cs" ? (foot === "LF" ? "Ln" : "Pn") : foot) + " " + t(`dir_${dir}` as StringKey)}
-                </option>
-              )),
-            )}
-          </select>
-        </label>
-        {routine.prep && rows[0] && (
-          <span className={`small ${rows[0].resolved.startFoot && rows[0].resolved.startFoot === routine.prep.foot ? "warn" : "ok"}`}>
-            {rows[0].resolved.startFoot === routine.prep.foot
-              ? `⚠ ${t("prepFootWarn", { foot: rows[0].resolved.startFoot ?? "?" })}`
-              : rows[0].resolved.startFoot
-                ? `✓ ${t("prepFootOk", { foot: rows[0].resolved.startFoot })}`
-                : ""}
-          </span>
-        )}
+            + {t("prepAdd")}
+          </button>
+          {rows[0] && (
+            <button className="btn small" onClick={() => writePrep([suggested])} title={t("prepBookTitle")}>
+              {t("prepBook")}: {footName(suggested.foot)} {t(`prepDir_${suggested.dir}` as StringKey)}
+              {suggested.turn ? `, ${t(suggested.turn > 0 ? "alignByLeft" : "alignByRight", { n: eighths(suggested.turn) })}` : ""}
+            </button>
+          )}
+          {prep.length > 0 && rows[0] && firstFoot && (
+            <span className={`small ${prep[prep.length - 1].foot === firstFoot ? "warn" : "ok"}`}>
+              {prep[prep.length - 1].foot === firstFoot ? `⚠ ${t("prepFootWarn", { foot: firstFoot })}` : `✓ ${t("prepFootOk", { foot: firstFoot })}`}
+            </span>
+          )}
+        </div>
       </div>
 
       {rows.length > 1 && (

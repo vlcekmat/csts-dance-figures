@@ -16,6 +16,7 @@ import {
 } from "./floor";
 import { tempoBpm, totalBeats } from "./timing";
 import type { ResolvedItem } from "./variants";
+import type { PrepDir, PrepStep } from "./routines";
 
 export interface PlanInput {
   key: string;
@@ -51,7 +52,8 @@ export function buildPlan(opts: {
   /** The routine is danced repeatedly (connect its end to the loop target). */
   loop?: boolean;
   /** Preparatory step before the first figure; `face` = the man's facing (relative to LOD). */
-  prep?: { foot: "LF" | "RF"; dir: "fwd" | "bwd" | "side" | "place"; face: number; label: string };
+  /** Preparatory steps; `face` = man's facing at the start of the first figure. */
+  prep?: { steps: PrepStep[]; face: number; label: string };
 }): Plan {
   const { dance, lang, items, room, start, stepCm, reps, loopTo } = opts;
   const bpm = tempoBpm(dance) ?? 30;
@@ -109,18 +111,23 @@ export function buildPlan(opts: {
     });
   // Preparatory step: danced once before the first figure (number 0 = "P" in the plan).
   let wrap = opts.loop ? from : undefined;
-  if (opts.prep) {
-    const p = opts.prep;
-    const desc = `${p.foot} ${p.dir === "side" ? "to side" : p.dir === "place" ? "in place" : p.dir}`;
+  const prep = opts.prep && opts.prep.steps.length ? opts.prep : undefined;
+  if (prep) {
+    // One beat per step; each travels like a figure's step (direction relative to the facing).
+    const DESC: Record<PrepDir, string> = {
+      fwd: "fwd", bwd: "bwd", side: "to side", "fwd-side": "fwd and side", "bwd-side": "bwd and side", place: "in place",
+    };
+    const n = prep.steps.length;
     all.unshift({
       key: "prep#0",
-      label: p.label,
+      label: prep.label,
       dance: dance.id,
-      steps: [{ desc, align: "", turn: "", face: p.face }],
-      bars: 1 / dance.beatsPerBar,
-      seconds: 60 / bpm / dance.beatsPerBar,
+      steps: prep.steps.map((s) => ({ desc: `${s.foot} ${DESC[s.dir]}`, align: "", turn: "", face: prep.face + (s.turn ?? 0) })),
+      stepScales: prep.steps.map((s) => s.size ?? 1),
+      bars: n / dance.beatsPerBar,
+      seconds: (60 / bpm / dance.beatsPerBar) * n,
       cornerAfter: false,
-      stepMetres: (stepCm / 100) * 0.6, // a small step
+      stepMetres: stepCm / 100,
     });
     nums.unshift(0);
     if (wrap !== undefined) wrap += 1;
@@ -129,6 +136,6 @@ export function buildPlan(opts: {
   return {
     ...simulateRoutine(all, room, start, wrap),
     nums,
-    baseLen: (items.length || 1) + (opts.prep ? 1 : 0),
+    baseLen: (items.length || 1) + (prep ? 1 : 0),
   };
 }

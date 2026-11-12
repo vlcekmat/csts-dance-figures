@@ -65,6 +65,8 @@ export interface FloorData {
   follows?: boolean;
   /** Under-/overturning allowed by the technique. */
   turnRange?: TurnRange;
+  /** The step before the figure per the technique: foot, direction, man's facing (figure frame). */
+  prep?: { foot?: "LF" | "RF"; dir?: string; face?: number };
   preceding: FigureLink[];
   following: FigureLink[];
 }
