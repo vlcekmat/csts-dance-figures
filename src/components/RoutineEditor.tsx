@@ -585,6 +585,27 @@ export function RoutineEditor({ routine, api, onBack, onOpenFigure }: Props) {
           firstChartFace={rows[0] ? (figureAlignment(rows[0].fig, { from: rows[0].resolved.from, to: rows[0].resolved.isPart ? rows[0].resolved.to : undefined })?.start ?? null) : null}
           selectedKey={selectedUid}
           onSelect={setSelectedUid}
+          turnControl={(() => {
+            const row = rows.find((r) => r.item.uid === selectedUid);
+            if (!row || !(hasFloor(row.fig) || row.fig.floor?.follows)) return undefined;
+            const range = row.fig.floor?.turnRange ?? null;
+            const v = row.item.variant;
+            const chosen = v?.choreo ? v.extraTurn : allowedExtra(row.fig, v?.extraTurn);
+            const auto = chosen === undefined;
+            return {
+              range: range ? { min: range.min, max: range.max } : null,
+              value: chosen ?? planSeg(row)?.autoTurn ?? 0,
+              auto: auto && !!range,
+              onChange: (deg: number | "auto") => {
+                if (deg === "auto") {
+                  updateItem(row.item.uid, { variant: { ...v, extraTurn: undefined, choreo: undefined } });
+                  return;
+                }
+                const ok = range ? deg >= range.min && deg <= range.max : deg === 0;
+                updateItem(row.item.uid, { variant: { ...v, extraTurn: deg, choreo: ok ? undefined : true } });
+              },
+            };
+          })()}
         />
       )}
 

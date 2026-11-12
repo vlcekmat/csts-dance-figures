@@ -958,3 +958,12 @@ p { max-width: 75ch; line-height: 1.6; }
 .next-options summary { cursor: pointer; color: var(--standard); }
 .next-options .chips { display: flex; flex-wrap: wrap; gap: .3rem; margin-top: .35rem; }
 .next-option.illegal { opacity: .55; }
+
+/* Amount-of-turn control in the floor plan */
+.plan-rotate.above { position: sticky; top: 4.2rem; z-index: 5; }
+.turn-dial { margin: .4rem 0; }
+.turn-dial-row { display: flex; align-items: center; gap: .5rem; }
+.turn-dial-track { position: relative; flex: 1; min-width: 0; padding-top: .2rem; }
+.turn-dial-track input[type="range"] { width: 100%; position: relative; z-index: 1; background: transparent; }
+.turn-dial-range { position: absolute; top: .55rem; height: .55rem; border-radius: .3rem; background: var(--good-tint); border: 1px solid var(--good); }
+.turn-dial-labels { display: flex; justify-content: space-between; }

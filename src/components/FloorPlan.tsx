@@ -69,6 +69,7 @@ export function FloorPlan({
   selectedKey,
   onSelect,
   firstChartFace,
+  turnControl,
 }: {
   dance: Dance;
   /** Simulation computed by the routine editor (see plan.ts). */
@@ -78,6 +79,16 @@ export function FloorPlan({
   onSelect?: (key: string | null) => void;
   /** Charted start facing of the first figure (relative to LOD), for the start direction default. */
   firstChartFace?: number | null;
+  /** Amount of turn of the selected figure, adjustable right in the plan. */
+  turnControl?: {
+    /** WDSF range (degrees, + = left); null = only the charted amount. */
+    range: { min: number; max: number } | null;
+    /** The turn in use (chosen, or picked automatically). */
+    value: number;
+    /** True when the plan picks it automatically. */
+    auto: boolean;
+    onChange: (deg: number | "auto") => void;
+  };
   /** Loop visualisation is shown (routine repeats and not hidden). */
   loop: boolean;
   /** The routine is set to repeat (the toggle is offered even when hidden). */
@@ -313,6 +324,7 @@ export function FloorPlan({
               )}
               <button className="btn small" onClick={() => onSelect?.(null)}>{t("planSelClose")}</button>
             </div>
+            {turnControl && <TurnDial control={turnControl} />}
             <p className="small muted">{t("planRotateHint")}</p>
           </div>
         )}
@@ -467,5 +479,74 @@ export function FloorPlan({
         {sim.segments.some((s) => s.estimated) && <p className="muted">{t("floorMissing")}</p>}
       </details>
     </section>
+  );
+}
+
+/**
+ * Amount-of-turn control of the selected figure: a slider that snaps to eighths of
+ * a turn (−1/2 … +1/2), with the WDSF range marked; outside it = by the choreography.
+ */
+function TurnDial({
+  control,
+}: {
+  control: { range: { min: number; max: number } | null; value: number; auto: boolean; onChange: (deg: number | "auto") => void };
+}) {
+  const { t } = useI18n();
+  const { range, value, auto, onChange } = control;
+  const lo = range?.min ?? 0;
+  const hi = range?.max ?? 0;
+  const inRange = value >= lo && value <= hi;
+  const pct = (d: number) => ((d + 180) / 360) * 100;
+  const label = (d: number) =>
+    d === 0 ? t("alignAsChart") : t(d > 0 ? "alignByLeft" : "alignByRight", { n: ["1/8", "1/4", "3/8", "1/2"][Math.round(Math.abs(d) / 45) - 1] ?? "" });
+  const set = (d: number) => onChange(Math.max(-180, Math.min(180, Math.round(d / 45) * 45)));
+  return (
+    <div className="turn-dial">
+      <div className="turn-dial-head small">
+        <strong>{t("alignTurn")}:</strong> {label(value)}
+        {auto ? <span className="muted"> · {t("turnDialAuto")}</span> : !inRange ? <span className="warn"> · {t("alignChoreoChip")}</span> : null}
+      </div>
+      <div className="turn-dial-row">
+        <button type="button" className="btn small" onClick={() => set(value + 45)} aria-label={t("alignByLeft", { n: "1/8" })}>
+          ↺ 1/8
+        </button>
+        <div className="turn-dial-track">
+          {/* WDSF range (the slider is mirrored: right = turning to the right) */}
+          <span className="turn-dial-range" style={{ left: `${pct(-hi)}%`, width: `${Math.max(1.5, pct(hi) - pct(lo))}%` }} />
+          <input
+            type="range"
+            min={-180}
+            max={180}
+            step={45}
+            // the slider runs left-to-right = turning to the right
+            value={-value}
+            onChange={(e) => set(-+e.target.value)}
+            aria-label={t("alignTurn")}
+            list="turn-dial-ticks"
+          />
+          <datalist id="turn-dial-ticks">
+            {[-180, -135, -90, -45, 0, 45, 90, 135, 180].map((d) => (
+              <option key={d} value={d} />
+            ))}
+          </datalist>
+          <div className="turn-dial-labels small muted">
+            <span>{t("turnDialLeft")}</span>
+            <span>0</span>
+            <span>{t("turnDialRight")}</span>
+          </div>
+        </div>
+        <button type="button" className="btn small" onClick={() => set(value - 45)} aria-label={t("alignByRight", { n: "1/8" })}>
+          ↻ 1/8
+        </button>
+      </div>
+      <div className="chips">
+        <button type="button" className={`btn small ${auto ? "primary" : ""}`} onClick={() => onChange("auto")}>
+          {t("turnDialAutoBtn")}
+        </button>
+        <button type="button" className="btn small" onClick={() => onChange(0)}>
+          {t("alignAsChart")}
+        </button>
+      </div>
+    </div>
   );
 }
