@@ -256,6 +256,10 @@ export function tracePath(
   // in the direction the previous figure ended.
   let facing: number | null = initialFacing;
   let sign: -1 | 0 | 1 = turnHint;
+  // Chasse (side – close – side with the same foot): the second side step continues
+  // the line of the first one, even while the body keeps turning.
+  let lastSide: { foot: string; angle: number } | null = null;
+  let closedSince = false;
   steps.forEach((s, i) => {
     const turn = parseTurn(s.turn);
     if (turn.sign) sign = turn.sign;
@@ -291,6 +295,13 @@ export function tracePath(
     // A side step goes relative to the body ("Pointing DC, body turns less": the foot
     // points further than the body faces).
     let v = stepVector(s.desc, /\bside\b/.test(d) && s.body !== undefined ? s.body : f);
+    const footM = d.match(/\b(rf|lf)\b/);
+    const isSide = /\bside\b/.test(d) && v.len > 0;
+    // Under-/overturn: the extra turn grows linearly from the first to the last step.
+    const extra = steps.length > 1 ? (extraTurn * i) / (steps.length - 1) : extraTurn;
+    if (isSide && closedSince && lastSide && footM && lastSide.foot === footM[1]) {
+      v = { angle: lastSide.angle - extra, len: v.len };
+    }
     if (al?.moving !== null && al?.moving !== undefined && v.len > 0) {
       // Chart gives the travel direction explicitly ("moving LOD").
       v = { angle: al.moving, len: v.len };
@@ -299,8 +310,15 @@ export function tracePath(
       // about 45° left of where his body faces.
       v = { angle: f + 45, len: v.len };
     }
-    // Under-/overturn: the extra turn grows linearly from the first to the last step.
-    const extra = steps.length > 1 ? (extraTurn * i) / (steps.length - 1) : extraTurn;
+    if (isSide && footM) {
+      lastSide = { foot: footM[1], angle: v.angle + extra };
+      closedSince = false;
+    } else if (v.len === 0 && /\bclose/.test(d)) {
+      closedSince = true;
+    } else {
+      lastSide = null;
+      closedSince = false;
+    }
     x += Math.cos(rad(v.angle + rotation + extra)) * v.len;
     y += Math.sin(rad(v.angle + rotation + extra)) * v.len;
     const known = !!al || facing !== null;
