@@ -20,7 +20,7 @@ interface Props {
   /** An automatic corner was inserted before this figure. */
   wallAuto?: boolean;
   /** Facing of the man at the start / end in the floor plan (degrees relative to the LOD of wallSide). */
-  planFace?: { start: number | null; end: number | null; offChart: number };
+  planFace?: { start: number | null; end: number | null; offChart: number; autoTurn?: number };
   /** Jump to the figure in the floor plan. */
   onEditInPlan?: () => void;
   /** Dance travels around the floor (corner markers make sense). */
@@ -102,7 +102,10 @@ export function RoutineItemRow(props: Props) {
         ? t(deg > 0 ? "alignByLeft" : "alignByRight", { n: eighths(deg) })
         : t(Math.sign(deg) === Math.sign(turnDir) ? "alignMore" : "alignLess", { n: eighths(deg) });
   // A stored turn outside the allowed range (older data) is not applied.
-  const extra = range && variant.extraTurn && variant.extraTurn >= range.min && variant.extraTurn <= range.max ? variant.extraTurn : 0;
+  // undefined = automatic (the plan picks an allowed amount that connects to the next figure)
+  const chosen = range && variant.extraTurn !== undefined && variant.extraTurn >= range.min && variant.extraTurn <= range.max ? variant.extraTurn : undefined;
+  const autoTurn = chosen === undefined ? (planFace?.autoTurn ?? 0) : 0;
+  const extra = chosen ?? autoTurn;
   if (extra) chips.push(`${t("alignTurn")}: ${turnLabel(extra)}`);
   const offChart = planFace?.offChart ?? 0;
   if (progressive && alignBase && Math.abs(offChart) >= 22.5)
@@ -342,7 +345,13 @@ export function RoutineItemRow(props: Props) {
                 {range ? (
                   <label className="field">
                     <span>{t("alignTurn")}</span>
-                    <select value={extra} onChange={(e) => setVariant({ extraTurn: +e.target.value || undefined })}>
+                    <select
+                      value={chosen === undefined ? "auto" : chosen}
+                      onChange={(e) => setVariant({ extraTurn: e.target.value === "auto" ? undefined : +e.target.value })}
+                    >
+                      <option value="auto">
+                        {t("alignTurnAuto", { turn: turnLabel(autoTurn) })}
+                      </option>
                       {turnOptions(range).map((deg) => (
                         <option key={deg} value={deg}>
                           {turnLabel(deg)}

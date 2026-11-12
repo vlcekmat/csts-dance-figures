@@ -110,6 +110,7 @@ const STRINGS = {
     en: "The figure starts turned differently than the technique gives ({dir}). The ČSTS catalog only recommends the alignment of whole figures, but check the connection.",
   },
   alignOffChartShort: { cs: "mimo směrování techniky ({dir})", en: "off the technique alignment ({dir})" },
+  alignTurnAuto: { cs: "automaticky podle navazující figury ({turn})", en: "automatic, to connect to the next figure ({turn})" },
   alignTurnRule: { cs: "Povoleno", en: "Allowed" },
   alignTurnFixed: {
     cs: "Míru otočení technika u této figury neumožňuje měnit.",

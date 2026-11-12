@@ -167,5 +167,59 @@
   "max": 90,
   "note": "it may be danced without turn.",
   "noteCs": "lze tančit i bez otočení"
+ },
+ "waltz-5": {
+  "min": 0,
+  "max": 90,
+  "note": "up to 1/2 turn to the left",
+  "noteCs": "může se otočit až o 1/2 vlevo"
+ },
+ "waltz-38": {
+  "min": -135,
+  "max": 0,
+  "note": "the swivel up to 3/8 to the right",
+  "noteCs": "švih se může otočit až o 3/8 vpravo"
+ },
+ "slowfox-46": {
+  "min": 0,
+  "max": 90,
+  "note": "up to 1/2 turn to the left",
+  "noteCs": "může se otočit až o 1/2 vlevo"
+ },
+ "quickstep-3": {
+  "min": 0,
+  "max": 90,
+  "note": "up to 1/2 turn to the left",
+  "noteCs": "může se otočit až o 1/2 vlevo"
+ },
+ "quickstep-4": {
+  "min": -90,
+  "max": 45,
+  "note": "up to 3/8 to the left",
+  "noteCs": "může se otočit až o 3/8 vlevo"
+ },
+ "quickstep-16": {
+  "min": -45,
+  "max": 45,
+  "note": "between 3/4 and a full turn to the left",
+  "noteCs": "otočení mezi 3/4 a celou otáčkou vlevo"
+ },
+ "quickstep-21": {
+  "min": 0,
+  "max": 90,
+  "note": "up to 1/4 to the left",
+  "noteCs": "může se otočit až o 1/4 vlevo"
+ },
+ "quickstep-22": {
+  "min": -135,
+  "max": 0,
+  "note": "up to 3/8 to the right",
+  "noteCs": "může se otočit až o 3/8 vpravo"
+ },
+ "quickstep-38": {
+  "min": 0,
+  "max": 135,
+  "note": "3/8 to the left when started backing LOD",
+  "noteCs": "může se otočit o 3/8 vlevo, když začíná zády k LOD"
  }
 }

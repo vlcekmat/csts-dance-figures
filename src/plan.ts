@@ -8,6 +8,7 @@ import {
   simulateRoutine,
   travelFactor,
   turnHintOf,
+  turnOptions,
   type RoomSize,
   type SimItem,
   type SimResult,
@@ -69,6 +70,9 @@ export function buildPlan(opts: {
       stepMetres: stepCm / 100,
       extraTurn: it.extraTurn,
       follows: !!it.fig.floor?.follows,
+      // the user didn't choose an amount of turn: let the plan pick an allowed one
+      autoTurnOptions:
+        it.extraTurn === undefined && it.fig.floor?.turnRange ? turnOptions(it.fig.floor.turnRange) : undefined,
       ladySteps: steps && it.fig.floor?.ladySteps
         ? it.fig.floor.ladySteps.slice(it.resolved.from - 1, it.resolved.isPart ? it.resolved.to : undefined)
         : null,

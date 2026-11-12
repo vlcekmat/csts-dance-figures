@@ -414,6 +414,11 @@ export interface SimItem {
   follows?: boolean;
   /** Lady's chart steps (same part as `steps`), for her facing in the plan. */
   ladySteps?: FloorStep[] | null;
+  /**
+   * Allowed amounts of under-/overturn when the user didn't choose one: the plan
+   * picks the one that lets the next figure start in its charted alignment.
+   */
+  autoTurnOptions?: number[];
   /** From this figure on, the couple dances along this wall (0–3). */
   wall?: number;
 }
@@ -435,6 +440,8 @@ export interface SimSegment {
   /** Lady's facing at the start / end (room degrees), null without her chart. */
   ladyStartFace: number | null;
   ladyEndFace: number | null;
+  /** Under-/overturn chosen automatically to connect to the next figure (degrees, + = left). */
+  autoTurn: number;
   /** The wall was set by the user at this figure. */
   manualWall: boolean;
   /** Danced on the spot (no chart, stationary figure). */
@@ -568,13 +575,49 @@ export function simulateRoutine(items: SimItem[], room: RoomSize, start: StartSp
       // The user says: from this figure on we are on wall `item.wall`.
       side += (((item.wall - side) % 4) + 4) % 4;
       manualWall = true;
-    } else if (item.wall === undefined && !turnedJustNow && remaining(side, x, y, room) < CORNER_ZONE) {
-      // Reached the corner: the line of dance turns 90° to the left.
+    }
+    // Near the end wall the line of dance turns at the corner (decided below,
+    // together with the figure's alignment).
+    const nearEnd = item.wall === undefined && !manualWall && !turnedJustNow && remaining(side, x, y, room) < CORNER_ZONE;
+    // Charted facing of the figure in its own (LOD) frame.
+    const chart = pathFacings(item, null);
+    // A figure starting in promenade gives the direction of the foot ("Pointing W,
+    // moving DW"): the body may differ from it by up to 1/8.
+    const first = item.steps?.[0];
+    const tolerance = first && (/\bpp\b|promenade/i.test(first.desc) || /promenade|\bpp\b/i.test(first.pos ?? "")) ? 50 : 22.5;
+    // Does the figure start as charted on wall `s` (directly, or by an allowed under-/overturn)?
+    const startOff = (s: number) => (face === null || chart.start === null ? 0 : norm180(face - s * 90 - chart.start));
+    const fitsOn = (s: number) => {
+      if (face === null || chart.start === null) return false;
+      const d = startOff(s);
+      return Math.abs(d) < tolerance || !!item.autoTurnOptions?.some((x) => Math.abs(norm180(x + d)) < 1);
+    };
+    if (nearEnd) {
+      // Reached the corner: turn the LOD unless the figure clearly belongs to this wall
+      // (its charted start fits here better than after the corner).
+      const known = face !== null && chart.start !== null;
+      if (!known || Math.abs(startOff(side + 1)) < Math.abs(startOff(side)) || !fitsOn(side)) {
+        side += 1;
+        autoCorner = true;
+      }
+    }
+    // Corner by alignment: the figure only fits the technique along the next wall and
+    // the couple is in the far half of the current one (e.g. Back Whisk overturned
+    // 3/8 R after Natural Turn 1-3 ends facing DW of the new LOD).
+    if (
+      item.wall === undefined &&
+      !autoCorner &&
+      !manualWall &&
+      !turnedJustNow &&
+      item.steps &&
+      !fitsOn(side) &&
+      Math.abs(startOff(side)) > 67.5 &&
+      fitsOn(side + 1) &&
+      remaining(side, x, y, room) < 0.5 * (side % 2 === 0 ? room.length : room.width)
+    ) {
       side += 1;
       autoCorner = true;
     }
-    // Charted facing of the figure in its own (LOD) frame.
-    const chart = pathFacings(item, null);
     const faceLocal = face === null ? null : norm180(face - side * 90);
     let rotate = 0;
     let init: number | null = null;
@@ -583,6 +626,43 @@ export function simulateRoutine(items: SimItem[], room: RoomSize, start: StartSp
       if (faceLocal !== null) rotate = norm180(faceLocal - chart.start);
     } else if (item.steps) {
       init = faceLocal ?? 0; // no alignments in the chart: just continue
+    }
+    // Allowed under-/overturn chosen automatically:
+    // 1) the figure starts off its charted alignment by an amount its technique
+    //    allows to under-/overturn -> it is danced with that turn and ends as charted;
+    // 2) otherwise the turn that lets the next figure start as charted
+    //    (e.g. Progressive Chasse to R turned up to 1/2 L before an Outside Change).
+    let autoTurn = 0;
+    let absorbed = false;
+    if (item.steps && item.autoTurnOptions?.length && chart.start !== null && faceLocal !== null && Math.abs(rotate) > 22.5) {
+      const e = item.autoTurnOptions.find((x) => Math.abs(norm180(x + rotate)) < 1);
+      if (e !== undefined) {
+        autoTurn = e;
+        absorbed = true;
+        item = { ...item, extraTurn: e };
+      }
+    }
+    const next = items[i + 1];
+    if (!absorbed && item.steps && item.autoTurnOptions?.length && next?.steps) {
+      const nextChart = pathFacings(next, null).start;
+      if (nextChart !== null) {
+        const nextSide = side + (item.cornerAfter ? 1 : 0) + (next.wall !== undefined ? (((next.wall - side) % 4) + 4) % 4 : 0);
+        const want = norm180(nextChart + nextSide * 90);
+        const endWith = (extra: number) => {
+          const f = pathFacings({ ...item, extraTurn: extra }, init, rotate).end;
+          return f === null ? 999 : Math.abs(norm180(f + side * 90 - want));
+        };
+        // Smallest change that gets closest to the next figure's alignment.
+        let best = endWith(0);
+        for (const extra of [...item.autoTurnOptions].sort((x, y) => Math.abs(x) - Math.abs(y))) {
+          const d = endWith(extra);
+          if (d < best - 1) {
+            best = d;
+            autoTurn = extra;
+          }
+        }
+        if (autoTurn) item = { ...item, extraTurn: autoTurn };
+      }
     }
     const local = localPath(item, init, rotate);
     const faces = item.steps ? pathFacings(item, init, rotate) : { start: null, end: null };
@@ -615,7 +695,8 @@ export function simulateRoutine(items: SimItem[], room: RoomSize, start: StartSp
     segments.push({
       startFace,
       endFace,
-      offChart: item.steps && chart.start !== null ? rotate : 0,
+      offChart: item.steps && chart.start !== null && !absorbed && Math.abs(rotate) >= tolerance ? rotate : 0,
+      autoTurn,
       ladyStartFace: lady.start === null ? null : norm180(lady.start + side * 90),
       ladyEndFace: lady.end === null ? null : norm180(lady.end + side * 90),
       manualWall,
@@ -701,9 +782,9 @@ export function turnOptions(range: TurnRange): number[] {
   return [...out].sort((a, b) => b - a);
 }
 
-/** The user's under-/overturn if the figure's technique allows it, else undefined (as charted). */
+/** The user's under-/overturn if the figure's technique allows it (0 = as charted), else undefined (automatic). */
 export function allowedExtra(fig: Figure, extra: number | undefined): number | undefined {
   const r = fig.floor?.turnRange;
-  if (!r || !extra) return undefined;
+  if (!r || extra === undefined) return undefined; // undefined = chosen automatically by the plan
   return extra >= r.min && extra <= r.max ? extra : undefined;
 }

@@ -1330,7 +1330,13 @@
       "timing": "3",
       "pos": "Closed Position"
      }
-    ]
+    ],
+    "turnRange": {
+     "min": 0,
+     "max": 90,
+     "note": "up to 1/2 turn to the left",
+     "noteCs": "může se otočit až o 1/2 vlevo"
+    }
    },
    "aliases": {
     "en": [
@@ -6915,7 +6921,13 @@
       "moving": -45,
       "pos": "Outside Partner Position Promenade Position"
      }
-    ]
+    ],
+    "turnRange": {
+     "min": -135,
+     "max": 0,
+     "note": "the swivel up to 3/8 to the right",
+     "noteCs": "švih se může otočit až o 3/8 vpravo"
+    }
    }
   },
   {
@@ -22894,7 +22906,13 @@
       "timing": "3",
       "pos": "Closed Position"
      }
-    ]
+    ],
+    "turnRange": {
+     "min": 0,
+     "max": 90,
+     "note": "up to 1/2 turn to the left",
+     "noteCs": "může se otočit až o 1/2 vlevo"
+    }
    }
   },
   {
@@ -23442,7 +23460,13 @@
       "face": -45,
       "pos": "Closed Position"
      }
-    ]
+    ],
+    "turnRange": {
+     "min": 0,
+     "max": 90,
+     "note": "up to 1/2 turn to the left",
+     "noteCs": "může se otočit až o 1/2 vlevo"
+    }
    },
    "aliases": {
     "en": [
@@ -23627,7 +23651,13 @@
       "face": 135,
       "pos": "Closed Position"
      }
-    ]
+    ],
+    "turnRange": {
+     "min": -90,
+     "max": 45,
+     "note": "up to 3/8 to the left",
+     "noteCs": "může se otočit až o 3/8 vlevo"
+    }
    },
    "aliases": {
     "en": [
@@ -25564,7 +25594,13 @@
       "face": 135,
       "pos": "Closed Position"
      }
-    ]
+    ],
+    "turnRange": {
+     "min": -45,
+     "max": 45,
+     "note": "between 3/4 and a full turn to the left",
+     "noteCs": "otočení mezi 3/4 a celou otáčkou vlevo"
+    }
    }
   },
   {
@@ -26223,7 +26259,13 @@
       "body": 105,
       "pos": "Promenade Position"
      }
-    ]
+    ],
+    "turnRange": {
+     "min": 0,
+     "max": 90,
+     "note": "up to 1/4 to the left",
+     "noteCs": "může se otočit až o 1/4 vlevo"
+    }
    }
   },
   {
@@ -26337,7 +26379,13 @@
       "body": 90,
       "pos": "Promenade Position"
      }
-    ]
+    ],
+    "turnRange": {
+     "min": -135,
+     "max": 0,
+     "note": "up to 3/8 to the right",
+     "noteCs": "může se otočit až o 3/8 vpravo"
+    }
    }
   },
   {
@@ -28928,7 +28976,13 @@
       "face": 135,
       "pos": "Closed Position"
      }
-    ]
+    ],
+    "turnRange": {
+     "min": 0,
+     "max": 135,
+     "note": "3/8 to the left when started backing LOD",
+     "noteCs": "může se otočit o 3/8 vlevo, když začíná zády k LOD"
+    }
    },
    "aliases": {
     "en": [

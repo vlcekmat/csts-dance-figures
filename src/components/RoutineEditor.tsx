@@ -283,7 +283,7 @@ export function RoutineEditor({ routine, api, onBack, onOpenFigure }: Props) {
     const sg = planSeg(row);
     if (!sg) return undefined;
     const rel = (f: number | null) => (f === null ? null : norm180(f - sg.side * 90));
-    return { start: rel(sg.startFace), end: rel(sg.endFace), offChart: sg.offChart };
+    return { start: rel(sg.startFace), end: rel(sg.endFace), offChart: sg.offChart, autoTurn: sg.autoTurn };
   };
 
   /**
