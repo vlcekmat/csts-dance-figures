@@ -114,6 +114,9 @@ export function RoutineItemRow(props: Props) {
   const autoTurn = chosen === undefined ? (planFace?.autoTurn ?? 0) : 0;
   const extra = chosen ?? autoTurn;
   if (extra) chips.push(`${t("alignTurn")}: ${turnLabel(extra)}${choreo ? ` (${t("alignChoreoChip")})` : ""}`);
+  if (variant.startTurn)
+    chips.push(`${t("startTurnLabel")}: ${t(variant.startTurn > 0 ? "alignByLeft" : "alignByRight", { n: eighths(variant.startTurn) })}`);
+  if (variant.stepScales?.some((x) => x !== 1)) chips.push(t("stepLengthsChanged"));
   // Turns by the choreography: any 1/8 up to 1/2 either way, outside the WDSF range.
   const allowedTurns = range ? turnOptions(range) : [0];
   const choreoTurns = [180, 135, 90, 45, -45, -90, -135, -180].filter((d) => !allowedTurns.includes(d));

@@ -15,7 +15,7 @@ import {
   type ClassId,
   type Figure,
 } from "../data";
-import { useI18n } from "../i18n";
+import { useI18n, type StringKey } from "../i18n";
 import { downloadJson, newId, type Routine, type RoutineItem, type RoutinesApi } from "../routines";
 import { ROUND_RANGE, formatBars, formatSeconds, tempoRange, totalBeats } from "../timing";
 import { connect, partLabel, resolveItem } from "../variants";
@@ -25,7 +25,7 @@ import { useCustom } from "./CustomFigureHost";
 import { Glossed } from "./Glossary";
 import { FloorPlan } from "./FloorPlan";
 import { holdName, localizePositions } from "../glossary";
-import { DEFAULT_START, ROOM_PRESETS, STEP_BY_DANCE, allowedExtra, eighths, figureAlignment, hasFloor, norm180, turnOptions, alignLabel } from "../floor";
+import { DEFAULT_START, ROOM_PRESETS, STEP_BY_DANCE, allowedExtra, chartSteps, eighths, figureAlignment, hasFloor, norm180, turnOptions, alignLabel } from "../floor";
 import { TimingStrip, type StripSegment } from "./TimingStrip";
 
 /** Is the hold named for this figure by the syllabus (base, notes, or "any")? */
@@ -109,6 +109,8 @@ export function RoutineEditor({ routine, api, onBack, onOpenFigure }: Props) {
               resolved: r.resolved,
               corner: !!r.item.corner,
               extraTurn: allowedExtra(r.fig, r.item.variant?.extraTurn, r.item.variant?.choreo),
+              startTurn: r.item.variant?.startTurn,
+              stepScales: r.item.variant?.stepScales,
               wall: r.item.wall,
             })),
             room,
@@ -125,14 +127,15 @@ export function RoutineEditor({ routine, api, onBack, onOpenFigure }: Props) {
   );
   /** First-pass plan segment of a routine row (wall, resolved rotation). */
   const planSeg = (row: { item: RoutineItem }) => plan?.segments.find((sg) => sg.key === `${row.item.uid}#0`);
-  const anyAlignChange = routine.items.some((it) => it.variant?.extraTurn);
+  const anyAlignChange = routine.items.some((it) => it.variant?.extraTurn !== undefined || it.variant?.startTurn);
   const resetAllAlignment = () =>
     setItems((items) =>
       items.map((it) => {
         if (!it.variant) return it;
-        const { extraTurn: _e, choreo: _c, ...rest } = it.variant;
+        const { extraTurn: _e, choreo: _c, startTurn: _s, ...rest } = it.variant;
         void _e;
         void _c;
+        void _s;
         return { ...it, variant: Object.keys(rest).length ? rest : undefined };
       }),
     );
@@ -322,7 +325,7 @@ export function RoutineEditor({ routine, api, onBack, onOpenFigure }: Props) {
                         {c.footOk === false
                           ? `⚠ ${t("footWarn", { prev: c.prevFoot!, next: c.nextFoot! })}`
                           : c.footOk
-                            ? `↓ ${t("footOk")} (${c.prevFoot} → ${c.nextFoot})`
+                            ? `↓ ${t("footOk")} (${c.prevFoot} → ${c.nextFoot}${c.nextDir ? ` ${t(`dir_${c.nextDir}` as StringKey)}` : ""})`
                             : `↓ ${t("footUnknown")}`}
                       </div>
                       <div className={c.posOk === false ? "warn" : "muted"}>
@@ -592,10 +595,27 @@ export function RoutineEditor({ routine, api, onBack, onOpenFigure }: Props) {
             const v = row.item.variant;
             const chosen = v?.choreo ? v.extraTurn : allowedExtra(row.fig, v?.extraTurn);
             const auto = chosen === undefined;
+            const seg = planSeg(row);
             return {
               range: range ? { min: range.min, max: range.max } : null,
-              value: chosen ?? planSeg(row)?.autoTurn ?? 0,
+              value: chosen ?? seg?.autoTurn ?? 0,
               auto: auto && !!range,
+              startTurn: v?.startTurn ?? 0,
+              // how far the figure starts off its charted alignment (to straighten it)
+              offChart: seg?.offChart ?? 0,
+              steps: row.resolved.steps.map((st, i) => ({
+                label: st.label,
+                desc: (hasFloor(row.fig) || row.fig.floor?.follows ? chartSteps(row.fig) : [])[row.resolved.from - 1 + i]?.desc ?? "",
+                scale: v?.stepScales?.[i] ?? 1,
+              })),
+              onStepScale: (i: number, scale: number) => {
+                const n = row.resolved.steps.length;
+                const scales = Array.from({ length: n }, (_, k) => v?.stepScales?.[k] ?? 1);
+                scales[i] = Math.round(Math.max(0.5, Math.min(1.5, scale)) * 10) / 10;
+                updateItem(row.item.uid, { variant: { ...v, stepScales: scales.every((x) => x === 1) ? undefined : scales } });
+              },
+              onStartTurn: (deg: number) =>
+                updateItem(row.item.uid, { variant: { ...v, startTurn: norm180(deg) ? Math.max(-180, Math.min(180, deg)) : undefined } }),
               onChange: (deg: number | "auto") => {
                 if (deg === "auto") {
                   updateItem(row.item.uid, { variant: { ...v, extraTurn: undefined, choreo: undefined } });

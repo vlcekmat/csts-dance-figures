@@ -6,6 +6,7 @@
 import type { Dance } from "../data";
 import { useI18n, type StringKey } from "../i18n";
 import { Glossed } from "./Glossary";
+import { localizeStep } from "../glossary";
 import {
   ROOM_PRESETS,
   STEP_BY_DANCE,
@@ -88,6 +89,13 @@ export function FloorPlan({
     /** True when the plan picks it automatically. */
     auto: boolean;
     onChange: (deg: number | "auto") => void;
+    /** Turn at the start of the figure (degrees, + = left) and how far it starts off the chart. */
+    startTurn: number;
+    offChart: number;
+    onStartTurn: (deg: number) => void;
+    /** The figure's steps with the user's length of each. */
+    steps: { label: string; desc: string; scale: number }[];
+    onStepScale: (i: number, scale: number) => void;
   };
   /** Loop visualisation is shown (routine repeats and not hidden). */
   loop: boolean;
@@ -405,6 +413,24 @@ export function FloorPlan({
                       </g>
                     ),
                   )}
+                {/* after the routine's last figure: where the partners face at its end */}
+                {s.n === baseLen &&
+                  ([
+                    ["man", s.endFace],
+                    ["lady", s.ladyEndFace],
+                  ] as const).map(([who, face]) => {
+                    const en = s.pts[s.pts.length - 1];
+                    return face === null ? null : (
+                      <g
+                        key={`end-${who}`}
+                        transform={`translate(${sx(en.x)} ${sy(en.y)}) rotate(${-face})`}
+                        className={`fp-facing end ${who}`}
+                      >
+                        <line x1={0} y1={0} x2={15} y2={0} />
+                        <path d="M 13 -4.5 L 21 0 L 13 4.5 Z" />
+                      </g>
+                    );
+                  })}
                 {s.autoCorner && s.n <= baseLen && (
                   // Corner marker right above the figure it belongs to.
                   <text x={sx(st.x)} y={sy(st.y) - 16} textAnchor="middle" className="fp-label strong fp-corner">
@@ -489,10 +515,21 @@ export function FloorPlan({
 function TurnDial({
   control,
 }: {
-  control: { range: { min: number; max: number } | null; value: number; auto: boolean; onChange: (deg: number | "auto") => void };
+  control: {
+    range: { min: number; max: number } | null;
+    value: number;
+    auto: boolean;
+    onChange: (deg: number | "auto") => void;
+    startTurn: number;
+    offChart: number;
+    onStartTurn: (deg: number) => void;
+    steps: { label: string; desc: string; scale: number }[];
+    onStepScale: (i: number, scale: number) => void;
+  };
 }) {
-  const { t } = useI18n();
-  const { range, value, auto, onChange } = control;
+  const { t, lang } = useI18n();
+  const { range, value, auto, onChange, startTurn, offChart, onStartTurn, steps, onStepScale } = control;
+  const snap = (d: number) => Math.max(-180, Math.min(180, Math.round(d / 45) * 45));
   const lo = range?.min ?? 0;
   const hi = range?.max ?? 0;
   const inRange = value >= lo && value <= hi;
@@ -539,7 +576,39 @@ function TurnDial({
           ↻ 1/8
         </button>
       </div>
+      <div className="turn-dial-head small">
+        <strong>{t("startTurnLabel")}:</strong> {label(startTurn)}
+        {Math.abs(offChart) >= 22.5 && (
+          <span className="warn"> · {t("startTurnOff", { dir: label(Math.round(-offChart / 45) * 45) })}</span>
+        )}
+      </div>
+      <div className="turn-dial-row">
+        <button type="button" className="btn small" onClick={() => onStartTurn(snap(startTurn + 45))}>↺ 1/8</button>
+        <div className="turn-dial-track">
+          <input
+            type="range"
+            min={-180}
+            max={180}
+            step={45}
+            value={-startTurn}
+            onChange={(e) => onStartTurn(snap(-+e.target.value))}
+            aria-label={t("startTurnLabel")}
+            list="turn-dial-ticks"
+          />
+        </div>
+        <button type="button" className="btn small" onClick={() => onStartTurn(snap(startTurn - 45))}>↻ 1/8</button>
+      </div>
       <div className="chips">
+        {Math.abs(offChart) >= 22.5 && (
+          <button type="button" className="btn small primary" onClick={() => onStartTurn(snap(startTurn - offChart))}>
+            {t("startTurnStraighten")}
+          </button>
+        )}
+        {startTurn !== 0 && (
+          <button type="button" className="btn small" onClick={() => onStartTurn(0)}>
+            {t("startTurnReset")}
+          </button>
+        )}
         <button type="button" className={`btn small ${auto ? "primary" : ""}`} onClick={() => onChange("auto")}>
           {t("turnDialAutoBtn")}
         </button>
@@ -547,6 +616,27 @@ function TurnDial({
           {t("alignAsChart")}
         </button>
       </div>
+      {steps.length > 0 && (
+        <details className="step-lengths">
+          <summary className="small">{t("stepLengths")}</summary>
+          <ol className="step-length-list">
+            {steps.map((st, i) => (
+              <li key={i} className="small">
+                <span className="step-length-name">
+                  {i + 1}. {st.desc ? localizeStep(st.desc, lang) : st.label}
+                </span>
+                <button type="button" className="icon-btn" onClick={() => onStepScale(i, st.scale - 0.1)} aria-label={t("stepShorter")} title={t("stepShorter")}>
+                  −
+                </button>
+                <span className={`step-length-val ${st.scale !== 1 ? "changed" : ""}`}>{Math.round(st.scale * 100)} %</span>
+                <button type="button" className="icon-btn" onClick={() => onStepScale(i, st.scale + 0.1)} aria-label={t("stepLonger")} title={t("stepLonger")}>
+                  +
+                </button>
+              </li>
+            ))}
+          </ol>
+        </details>
+      )}
     </div>
   );
 }

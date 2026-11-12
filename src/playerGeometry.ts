@@ -91,6 +91,15 @@ export function signedTurn(text: string | undefined): number | null {
   if (!text) return null;
   let total = 0;
   let found = false;
+  // whole turns ("1 turn R", "2 turns to L")
+  const whole = text.match(/(\d+)\s*(?:full\s*)?turns?\s*(?:to\s*)?([LR])?/i);
+  if (whole) {
+    const side = whole[2]?.toUpperCase() ?? (/\bR\b|right|toR/i.test(text) ? "R" : /\bL\b|left|toL/i.test(text) ? "L" : null);
+    if (side) {
+      total += +whole[1] * 360 * (side === "L" ? 1 : -1);
+      found = true;
+    }
+  }
   for (const m of text.matchAll(/(\d)\s*\/\s*(\d)\s*(?:turn\s*)?(?:to\s*)?(?:the\s*)?([LR])?(?![a-z])/gi)) {
     const side = m[3]?.toUpperCase() ?? (/\bR\b|right|toR/i.test(text) ? "R" : /\bL\b|left|toL/i.test(text) ? "L" : null);
     if (!side) return null;
@@ -228,4 +237,20 @@ export function figureGeometry(
     lStart = { ...traced.start, x: m.start.x + o.x, y: m.start.y + o.y };
   }
   return { m: { start: m.start, feet: mFeet }, l: { start: lStart, feet: lFeet } };
+}
+
+/**
+ * Where a step goes relative to the partner: into the partner (between the
+ * partner's feet, closed hold), away from them, outside the partner (outside
+ * partner / CBMP outside) or beside them (promenade). Null when not applicable.
+ */
+export function partnerRelation(desc: string, pos: string): "toward" | "away" | "outside" | "beside" | null {
+  const d = desc.toLowerCase();
+  const fwd = /\bfwd\b|forward/.test(d);
+  const bwd = /\bbwd\b|\bback\b/.test(d);
+  if (!fwd && !bwd) return null;
+  if (/outside partner|\bop\b|outside/.test(d) || /outside partner/i.test(pos)) return "outside";
+  if (promenadeSide(pos) !== 0 && fwd) return "beside";
+  if (closeHold(pos)) return fwd ? "toward" : "away";
+  return null;
 }

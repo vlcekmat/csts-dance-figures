@@ -19,6 +19,8 @@ export interface FloorStep {
   end?: number;
   body?: number;
   moving?: number;
+  /** Signed amount of turn made during this step (degrees, + = left), when the chart spreads a turn over steps. */
+  rot?: number;
   /** Amount of turn text, e.g. "1/4 between 1-2". */
   turn: string;
   /** Couple position on this step (WDSF book), e.g. "Closed Position", "PP". */
@@ -249,6 +251,8 @@ export function tracePath(
   turnHint: -1 | 0 | 1 = 0,
   extraTurn = 0,
   initialFacing: number | null = null,
+  /** The user's length of each step (1 = as computed). */
+  scales: number[] = [],
 ): PathPoint[] {
   const pts: PathPoint[] = [{ x: x0, y: y0, n: 0, facing: null }];
   let x = x0;
@@ -323,6 +327,11 @@ export function tracePath(
       lastSide = null;
       closedSince = false;
     }
+    // Length by the count: a whole beat / slow is a full step, a quick a bit shorter,
+    // an "&" / "a" (chasse, lock) a short one; then the user's own adjustment.
+    const tm = (s.timing ?? "").trim();
+    const byCount = /^[&a]$/i.test(tm) ? 0.6 : /^S$/i.test(tm) ? 1.1 : /^Q$/i.test(tm) ? 0.9 : 1;
+    v = { angle: v.angle, len: v.len * byCount * (scales[i] ?? 1) };
     x += Math.cos(rad(v.angle + rotation + extraTravel)) * v.len;
     y += Math.sin(rad(v.angle + rotation + extraTravel)) * v.len;
     const known = !!al || facing !== null;
@@ -439,6 +448,10 @@ export interface SimItem {
   stepMetres?: number;
   /** Under-/overturn chosen within the figure's allowed range (degrees, + = left). */
   extraTurn?: number;
+  /** The couple turns this much at the start of the figure, before its first step (degrees, + = left). */
+  startTurn?: number;
+  /** The user's length of each step of the figure (1 = as computed). */
+  stepScales?: number[];
   /** The chart gives no alignment: continue where the previous figure ended. */
   follows?: boolean;
   /** Lady's chart steps (same part as `steps`), for her facing in the plan. */
@@ -543,7 +556,7 @@ export function spotFromPoint(x: number, y: number, room: RoomSize): StartSpot {
 function localPath(item: SimItem, initialFacing: number | null = null, rotate = 0): { x: number; y: number }[] {
   if (item.steps) {
     const m = item.stepMetres ?? STEP_METRES;
-    return tracePath(item.steps, 0, 0, rotate, item.turnHint ?? 0, item.extraTurn ?? 0, initialFacing).map((p) => ({
+    return tracePath(item.steps, 0, 0, rotate, item.turnHint ?? 0, item.extraTurn ?? 0, initialFacing, item.stepScales ?? []).map((p) => ({
       x: p.x * m,
       y: p.y * m,
     }));
@@ -614,6 +627,8 @@ export function simulateRoutine(
     // Near the end wall the line of dance turns at the corner (decided below,
     // together with the figure's alignment).
     const nearEnd = item.wall === undefined && !manualWall && !turnedJustNow && remaining(side, x, y, room) < CORNER_ZONE;
+    // A turn made at the start of this figure (set on the figure itself).
+    if (item.startTurn && face !== null) face = norm180(face + item.startTurn);
     // Charted facing of the figure in its own (LOD) frame.
     const chart = pathFacings(item, null);
     // A figure starting in promenade gives the direction of the foot ("Pointing W,
@@ -636,10 +651,9 @@ export function simulateRoutine(
       // Reached the corner: turn the LOD unless the figure clearly belongs to this wall
       // (its charted start fits here better than after the corner).
       const known = face !== null && chart.start !== null;
-      // the figure would run into the end wall: turn the corner anyway
-      const advance = Math.max(0, ...localPath(item, item.follows && face !== null ? norm180(face - side * 90) : null).map((p) => p.x));
-      const hitsWall = remaining(side, x, y, room) - advance < 0.3;
-      if (!known || hitsWall || Math.abs(startOff(side + 1)) < Math.abs(startOff(side)) || !fitsOn(side)) {
+      // (a figure that clearly belongs to this wall stays on it even if it runs out
+      // of room – the plan then reports that the routine leaves the floor)
+      if (!known || Math.abs(startOff(side + 1)) < Math.abs(startOff(side)) || !fitsOn(side)) {
         side += 1;
         autoCorner = true;
       }

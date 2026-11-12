@@ -3,7 +3,7 @@
 // and the couple position. Top view, LOD to the right, wall at the bottom.
 import { useEffect, useMemo, useState } from "react";
 import { getDance, type Figure } from "../data";
-import { useI18n } from "../i18n";
+import { useI18n, type StringKey } from "../i18n";
 import { Glossed } from "./Glossary";
 import { localizePositions, localizeStep, localizeTurn } from "../glossary";
 import {
@@ -13,7 +13,7 @@ import {
   type FloorStep,
 } from "../floor";
 import { parseTiming, tempoBpm } from "../timing";
-import { figureGeometry, signedTurn, type Foot } from "../playerGeometry";
+import { closeHold, figureGeometry, partnerRelation, signedTurn, type Foot } from "../playerGeometry";
 
 type Role = "man" | "lady" | "both";
 
@@ -133,7 +133,7 @@ export function FigurePlayer({ fig }: { fig: Figure }) {
     // Turn the way the chart says (direction and amount, incl. full turns), not
     // simply the shorter way round.
     let delta = norm180(b.face - a.face);
-    const t = signedTurn(steps[k]?.turn);
+    const t = steps[k]?.rot ?? signedTurn(steps[k]?.turn);
     if (t !== null && Math.abs(t) > 1 && Math.abs(norm180(a.face + t - b.face)) < 30) delta = t;
     return { x: a.x + (b.x - a.x) * frac, y: a.y + (b.y - a.y) * frac, face: a.face + delta * frac };
   };
@@ -168,8 +168,33 @@ export function FigurePlayer({ fig }: { fig: Figure }) {
   const ms = k > 0 ? man[k - 1] : null;
   const ls = k > 0 && hasLady ? lady[k - 1] : null;
   const pos = (ms ?? man[0])?.pos;
-  const mBody = bodyAt(geo.m, man);
-  const lBody = geo.l ? bodyAt(geo.l, lady) : null;
+  const relText = (r: ReturnType<typeof partnerRelation>) => (r ? t(`rel_${r}` as StringKey) : "");
+  let mBody = bodyAt(geo.m, man);
+  let lBody = geo.l ? bodyAt(geo.l, lady) : null;
+  // In a closed hold the couple turns around its common centre: move both along an
+  // arc (the line between them rotates with the man's turn) instead of straight lines.
+  if (frac && lBody && geo.l && k < geo.m.feet.length && k < geo.l.feet.length && closeHold(man[k]?.pos || man[k - 1]?.pos || "")) {
+    const ma = bodyAfter(geo.m, k);
+    const mb = bodyAfter(geo.m, k + 1);
+    const la = bodyAfter(geo.l, k);
+    const lb = bodyAfter(geo.l, k + 1);
+    const ang = (x: number, y: number) => (Math.atan2(y, x) * 180) / Math.PI;
+    const aA = ang(la.x - ma.x, la.y - ma.y);
+    const aB = ang(lb.x - mb.x, lb.y - mb.y);
+    let dv = norm180(aB - aA);
+    // keep the direction (and size) of the man's turn on this step
+    const mTurn = mBody.face - ma.face;
+    const full = frac ? mTurn / frac : 0;
+    if (Math.abs(full) > 180 && Math.sign(dv) !== Math.sign(full)) dv += 360 * Math.sign(full);
+    const lenA = Math.hypot(la.x - ma.x, la.y - ma.y);
+    const lenB = Math.hypot(lb.x - mb.x, lb.y - mb.y);
+    const len = lenA + (lenB - lenA) * frac;
+    const cx = (ma.x + la.x) / 2 + (((mb.x + lb.x) - (ma.x + la.x)) / 2) * frac;
+    const cy = (ma.y + la.y) / 2 + (((mb.y + lb.y) - (ma.y + la.y)) / 2) * frac;
+    const a = ((aA + dv * frac) * Math.PI) / 180;
+    mBody = { ...mBody, x: cx - (Math.cos(a) * len) / 2, y: cy - (Math.sin(a) * len) / 2 };
+    lBody = { ...lBody, x: cx + (Math.cos(a) * len) / 2, y: cy + (Math.sin(a) * len) / 2 };
+  }
 
   return (
     <figure className="floor figure-floor player">
@@ -267,6 +292,7 @@ export function FigurePlayer({ fig }: { fig: Figure }) {
                 <td><Glossed text={ms ? localizeStep(ms.desc, lang) : "–"} /></td>
                 <td>{alignLabel(mBody.face, lang)}</td>
                 <td>{ms?.turn ? <Glossed text={localizeTurn(ms.turn, lang)} /> : ""}</td>
+                <td className="muted">{relText(ms ? partnerRelation(ms.desc, ms.pos ?? pos ?? "") : null)}</td>
               </tr>
             )}
             {showLady && lBody && (
@@ -275,6 +301,7 @@ export function FigurePlayer({ fig }: { fig: Figure }) {
                 <td><Glossed text={ls ? localizeStep(ls.desc, lang) : "–"} /></td>
                 <td>{alignLabel(lBody.face, lang)}</td>
                 <td>{ls?.turn ? <Glossed text={localizeTurn(ls.turn, lang)} /> : ""}</td>
+                <td className="muted">{relText(ls ? partnerRelation(ls.desc, ms?.pos ?? pos ?? "") : null)}</td>
               </tr>
             )}
           </tbody>

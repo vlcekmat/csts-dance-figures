@@ -785,8 +785,13 @@ def spread_constant_rotation(rows, out):
         # a merged alignment cell too ("Backing W turn to Backing W" for a whole turn):
         # spread the turn from the block's start alignment
         same_align = j > i and len({rows[k].get("align", "") for k in block}) == 1 and "face" in out[i]
-        if total is not None and abs(total) >= 180 and same_align:
+        if total is not None and abs(total) >= 45 and same_align:
             start = out[i]["face"]
+            # "Turn to Facing X" names only the end: the turn starts where the previous step ended
+            if re.match(r"\s*turn\s+to\b", rows[i].get("align", ""), re.I) and i > 0:
+                prev_face = out[i - 1].get("end", out[i - 1].get("face"))
+                if prev_face is not None:
+                    start = prev_face
             n = j - i + 1
             for idx, k in enumerate(block):
                 a = _norm(start + total * (idx + 1) / n)
@@ -794,6 +799,7 @@ def spread_constant_rotation(rows, out):
                 out[k]["end"] = round(a, 1)
                 out[k]["align"] = align_code(a)
                 out[k]["turn"] = ""
+                out[k]["rot"] = round(total / n, 1)  # signed turn during this step (+ = left)
             i = j + 1
             continue
         if j - i < 2:
@@ -810,6 +816,7 @@ def spread_constant_rotation(rows, out):
                     a = _norm(end - total * (1 - (idx + 1) / n))
                     out[k]["face"] = round(a, 1)
                     out[k]["align"] = align_code(a)
+                    out[k]["rot"] = round(total / n, 1)
                 for k in block:
                     out[k]["turn"] = ""  # the per-step share is in the facings now
         i = j + 1

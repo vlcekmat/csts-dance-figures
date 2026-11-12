@@ -20047,17 +20047,21 @@
      },
      {
       "desc": "feet uncross",
-      "align": "Facing DC",
-      "turn": "3/8 R",
+      "align": "Facing LOD",
+      "turn": "",
       "face": 45,
-      "pos": "Outside Partner Position"
+      "pos": "Outside Partner Position",
+      "end": -22.5,
+      "rot": -67.5
      },
      {
       "desc": "feet uncross",
-      "align": "Facing DC",
-      "turn": "3/8 R",
-      "face": 45,
-      "pos": "Closed Position"
+      "align": "Facing W",
+      "turn": "",
+      "face": -22.5,
+      "pos": "Closed Position",
+      "end": -90.0,
+      "rot": -67.5
      },
      {
       "desc": "LF diag fwd and to side L side leading",
@@ -20275,7 +20279,8 @@
       "turn": "",
       "face": 0,
       "pos": "Outside Partner Position",
-      "end": -90.0
+      "end": -90.0,
+      "rot": -90.0
      },
      {
       "desc": "feet uncross",
@@ -20283,7 +20288,8 @@
       "turn": "",
       "face": -90.0,
       "pos": "Closed Position",
-      "end": -180.0
+      "end": -180.0,
+      "rot": -90.0
      },
      {
       "desc": "LF to side and slightly bwd",
@@ -20497,17 +20503,21 @@
      },
      {
       "desc": "feet uncross",
-      "align": "Facing DC",
-      "turn": "3/8 R (pivot)",
+      "align": "Facing LOD",
+      "turn": "",
       "face": 45,
-      "pos": "Outside Partner Position"
+      "pos": "Outside Partner Position",
+      "end": -22.5,
+      "rot": -67.5
      },
      {
       "desc": "feet uncross",
-      "align": "Facing DC",
-      "turn": "3/8 R (pivot)",
-      "face": 45,
-      "pos": "Closed Position"
+      "align": "Facing W",
+      "turn": "",
+      "face": -22.5,
+      "pos": "Closed Position",
+      "end": -90.0,
+      "rot": -67.5
      },
      {
       "desc": "LF to side and slightly bwd",
@@ -20699,17 +20709,21 @@
      },
      {
       "desc": "feet uncross",
-      "align": "Facing DC",
-      "turn": "3/8 R (pivot)",
+      "align": "Facing LOD",
+      "turn": "",
       "face": 45,
-      "pos": "Outside Partner Position"
+      "pos": "Outside Partner Position",
+      "end": -22.5,
+      "rot": -67.5
      },
      {
       "desc": "feet uncross",
-      "align": "Facing DC",
-      "turn": "3/8 R (pivot)",
-      "face": 45,
-      "pos": "Closed Position"
+      "align": "Facing W",
+      "turn": "",
+      "face": -22.5,
+      "pos": "Closed Position",
+      "end": -90.0,
+      "rot": -67.5
      },
      {
       "desc": "LF to side",
@@ -32318,51 +32332,57 @@
     "steps": [
      {
       "desc": "LF fwd",
-      "align": "Backing LOD",
-      "turn": "3/8 L",
+      "align": "Facing C",
+      "turn": "",
       "face": 45,
-      "end": -180,
-      "pos": "Close Opp"
+      "end": 90.0,
+      "pos": "Close Opp",
+      "rot": 45.0
      },
      {
       "desc": "RF to side and slightly bwd",
-      "align": "Backing LOD",
-      "turn": "3/8 L",
-      "face": 45,
-      "end": -180,
-      "pos": "Open Opp"
+      "align": "Backing DW",
+      "turn": "",
+      "face": 90.0,
+      "end": 135.0,
+      "pos": "Open Opp",
+      "rot": 45.0
      },
      {
       "desc": "LF crosses in front of RF",
       "align": "Backing LOD",
-      "turn": "3/8 L",
-      "face": 45,
-      "end": -180,
-      "pos": "Open Opp"
+      "turn": "",
+      "face": 135.0,
+      "end": -180.0,
+      "pos": "Open Opp",
+      "rot": 45.0
      },
      {
       "desc": "RF bwd and slightly to side",
-      "align": "Facing DW",
-      "turn": "3/8 L",
+      "align": "Backing DC",
+      "turn": "",
       "face": -180,
-      "end": -45,
-      "pos": "Close Opp"
+      "end": -135.0,
+      "pos": "Close Opp",
+      "rot": 45.0
      },
      {
       "desc": "LF to side",
-      "align": "Facing DW",
-      "turn": "3/8 L",
-      "face": -180,
-      "end": -45,
-      "pos": "Close Opp"
+      "align": "Facing W",
+      "turn": "",
+      "face": -135.0,
+      "end": -90.0,
+      "pos": "Close Opp",
+      "rot": 45.0
      },
      {
       "desc": "RF",
       "align": "Facing DW",
-      "turn": "3/8 L",
-      "face": -180,
-      "end": -45,
-      "pos": "Close Opp"
+      "turn": "",
+      "face": -90.0,
+      "end": -45.0,
+      "pos": "Close Opp",
+      "rot": 45.0
      }
     ],
     "preceding": [
@@ -32451,51 +32471,57 @@
     "ladySteps": [
      {
       "desc": "RF bwd and slightly to side",
-      "align": "Facing LOD",
-      "turn": "3/8 L",
+      "align": "Facing W",
+      "turn": "",
       "face": -135,
-      "end": 0,
-      "pos": "Close Opp"
+      "end": -90.0,
+      "pos": "Close Opp",
+      "rot": 45.0
      },
      {
       "desc": "LF to side",
-      "align": "Facing LOD",
-      "turn": "3/8 L",
-      "face": -135,
-      "end": 0,
-      "pos": "Open Opp"
+      "align": "Facing DW",
+      "turn": "",
+      "face": -90.0,
+      "end": -45.0,
+      "pos": "Open Opp",
+      "rot": 45.0
      },
      {
       "desc": "RF",
       "align": "Facing LOD",
-      "turn": "3/8 L",
-      "face": -135,
-      "end": 0,
-      "pos": "Open Opp"
+      "turn": "",
+      "face": -45.0,
+      "end": 0.0,
+      "pos": "Open Opp",
+      "rot": 45.0
      },
      {
       "desc": "LF fwd",
-      "align": "Backing DW",
-      "turn": "3/8 L",
+      "align": "Facing DC",
+      "turn": "",
       "face": 0,
-      "end": 135,
-      "pos": "Close Opp"
+      "end": 45.0,
+      "pos": "Close Opp",
+      "rot": 45.0
      },
      {
       "desc": "RF to side and slightly bwd",
-      "align": "Backing DW",
-      "turn": "3/8 L",
-      "face": 0,
-      "end": 135,
-      "pos": "Close Opp"
+      "align": "Facing C",
+      "turn": "",
+      "face": 45.0,
+      "end": 90.0,
+      "pos": "Close Opp",
+      "rot": 45.0
      },
      {
       "desc": "LF crosses in front of RF",
       "align": "Backing DW",
-      "turn": "3/8 L",
-      "face": 0,
-      "end": 135,
-      "pos": "Close Opp"
+      "turn": "",
+      "face": 90.0,
+      "end": 135.0,
+      "pos": "Close Opp",
+      "rot": 45.0
      }
     ]
    }
@@ -32599,19 +32625,21 @@
      },
      {
       "desc": "RF to side",
-      "align": "Facing DW",
-      "turn": "1/8 L",
-      "face": -45,
-      "end": -45,
-      "pos": "Close Opp R Side Same"
+      "align": "Facing W",
+      "turn": "",
+      "face": -90,
+      "end": -67.5,
+      "pos": "Close Opp R Side Same",
+      "rot": 22.5
      },
      {
       "desc": "LF in place",
       "align": "Facing DW",
-      "turn": "1/8 L",
-      "face": -45,
-      "end": -45,
-      "pos": "Close Opp R Side Same"
+      "turn": "",
+      "face": -67.5,
+      "end": -45.0,
+      "pos": "Close Opp R Side Same",
+      "rot": 22.5
      },
      {
       "desc": "RF fwd and across",
@@ -32641,19 +32669,21 @@
      },
      {
       "desc": "RF to side",
-      "align": "Facing LOD",
-      "turn": "3/8 L",
-      "face": 0,
-      "end": 0,
-      "pos": "L Side Same R Side Same"
+      "align": "Facing W",
+      "turn": "",
+      "face": -135,
+      "end": -67.5,
+      "pos": "L Side Same R Side Same",
+      "rot": 67.5
      },
      {
       "desc": "LF in place",
       "align": "Facing LOD",
-      "turn": "3/8 L",
-      "face": 0,
-      "end": 0,
-      "pos": "L Side Same R Side Same"
+      "turn": "",
+      "face": -67.5,
+      "end": 0.0,
+      "pos": "L Side Same R Side Same",
+      "rot": 67.5
      }
     ],
     "preceding": [],
@@ -32668,19 +32698,21 @@
      },
      {
       "desc": "LF to side",
-      "align": "Facing DC",
-      "turn": "1/8 R",
-      "face": 45,
-      "end": 45,
-      "pos": "Close Opp R Side Same"
+      "align": "Facing C",
+      "turn": "",
+      "face": 90,
+      "end": 67.5,
+      "pos": "Close Opp R Side Same",
+      "rot": -22.5
      },
      {
       "desc": "RF in place",
       "align": "Facing DC",
-      "turn": "1/8 R",
-      "face": 45,
-      "end": 45,
-      "pos": "Close Opp R Side Same"
+      "turn": "",
+      "face": 67.5,
+      "end": 45.0,
+      "pos": "Close Opp R Side Same",
+      "rot": -22.5
      },
      {
       "desc": "LF fwd and across",
@@ -32691,19 +32723,21 @@
      },
      {
       "desc": "RF to side",
-      "align": "Backing DW",
-      "turn": "1/4 L",
-      "face": 135,
-      "end": 135,
-      "pos": "R Side Same L Side Same"
+      "align": "Facing C",
+      "turn": "",
+      "face": 45,
+      "end": 90.0,
+      "pos": "R Side Same L Side Same",
+      "rot": 45.0
      },
      {
       "desc": "LF in place",
       "align": "Backing DW",
-      "turn": "1/4 L",
-      "face": 135,
-      "end": 135,
-      "pos": "R Side Same L Side Same"
+      "turn": "",
+      "face": 90.0,
+      "end": 135.0,
+      "pos": "R Side Same L Side Same",
+      "rot": 45.0
      },
      {
       "desc": "RF fwd and across",
@@ -32714,19 +32748,21 @@
      },
      {
       "desc": "LF to side",
-      "align": "Facing LOD",
-      "turn": "3/8 R",
-      "face": 0,
-      "end": 0,
-      "pos": "L Side Same R Side Same"
+      "align": "Facing C",
+      "turn": "",
+      "face": 135,
+      "end": 67.5,
+      "pos": "L Side Same R Side Same",
+      "rot": -67.5
      },
      {
       "desc": "RF in place",
       "align": "Facing LOD",
-      "turn": "3/8 R",
-      "face": 0,
-      "end": 0,
-      "pos": "L Side Same R Side Same"
+      "turn": "",
+      "face": 67.5,
+      "end": 0.0,
+      "pos": "L Side Same R Side Same",
+      "rot": -67.5
      }
     ]
    },
@@ -32988,17 +33024,19 @@
      },
      {
       "desc": "RF to side and slightly fwd",
-      "align": "Facing DC",
-      "turn": "1/8 L",
-      "face": 45,
-      "end": 45
+      "align": "Facing LOD",
+      "turn": "",
+      "face": 0,
+      "end": 22.5,
+      "rot": 22.5
      },
      {
       "desc": "LF in place",
       "align": "Facing DC",
-      "turn": "1/8 L",
-      "face": 45,
-      "end": 45
+      "turn": "",
+      "face": 22.5,
+      "end": 45.0,
+      "rot": 22.5
      },
      {
       "desc": "RF fwd and to side outside partner",
@@ -33008,17 +33046,19 @@
      },
      {
       "desc": "LF to side and slightly fwd",
-      "align": "Facing DW",
-      "turn": "1/4 R",
-      "face": -45,
-      "end": -45
+      "align": "Facing LOD",
+      "turn": "",
+      "face": 45,
+      "end": 0.0,
+      "rot": -45.0
      },
      {
       "desc": "RF in place",
       "align": "Facing DW",
-      "turn": "1/4 R",
-      "face": -45,
-      "end": -45
+      "turn": "",
+      "face": 0.0,
+      "end": -45.0,
+      "rot": -45.0
      },
      {
       "desc": "LF fwd and to side outside partner",
@@ -33028,17 +33068,19 @@
      },
      {
       "desc": "RF to side and slightly fwd",
-      "align": "Facing DC",
-      "turn": "1/4 L",
-      "face": 45,
-      "end": 45
+      "align": "Facing LOD",
+      "turn": "",
+      "face": -45,
+      "end": 0.0,
+      "rot": 45.0
      },
      {
       "desc": "LF in place",
       "align": "Facing DC",
-      "turn": "1/4 L",
-      "face": 45,
-      "end": 45
+      "turn": "",
+      "face": 0.0,
+      "end": 45.0,
+      "rot": 45.0
      }
     ],
     "preceding": [],
@@ -33053,17 +33095,19 @@
      },
      {
       "desc": "LF to side and slightly bwd",
-      "align": "Backing DC",
-      "turn": "1/8 L",
-      "face": -135,
-      "end": -135
+      "align": "Backing LOD",
+      "turn": "",
+      "face": -180,
+      "end": -157.5,
+      "rot": 22.5
      },
      {
       "desc": "RF in place",
       "align": "Backing DC",
-      "turn": "1/8 L",
-      "face": -135,
-      "end": -135
+      "turn": "",
+      "face": -157.5,
+      "end": -135.0,
+      "rot": 22.5
      },
      {
       "desc": "LF bwd and to side",
@@ -33073,17 +33117,19 @@
      },
      {
       "desc": "RF to side and slightly bwd",
-      "align": "Backing DW",
-      "turn": "1/4 R",
-      "face": 135,
-      "end": 135
+      "align": "Backing LOD",
+      "turn": "",
+      "face": -135,
+      "end": -180.0,
+      "rot": -45.0
      },
      {
       "desc": "LF in place",
       "align": "Backing DW",
-      "turn": "1/4 R",
-      "face": 135,
-      "end": 135
+      "turn": "",
+      "face": -180.0,
+      "end": 135.0,
+      "rot": -45.0
      },
      {
       "desc": "RF bwd and to side",
@@ -33093,17 +33139,19 @@
      },
      {
       "desc": "LF to side and slightly bwd",
-      "align": "Backing DC",
-      "turn": "1/4 L",
-      "face": -135,
-      "end": -135
+      "align": "Backing LOD",
+      "turn": "",
+      "face": 135,
+      "end": -180.0,
+      "rot": 45.0
      },
      {
       "desc": "RF in place",
       "align": "Backing DC",
-      "turn": "1/4 L",
-      "face": -135,
-      "end": -135
+      "turn": "",
+      "face": -180.0,
+      "end": -135.0,
+      "rot": 45.0
      }
     ]
    }
@@ -33193,17 +33241,19 @@
      },
      {
       "desc": "LF to side and slightly bwd",
-      "align": "Backing DC",
-      "turn": "1/8 L",
-      "face": -135,
-      "end": -135
+      "align": "Backing LOD",
+      "turn": "",
+      "face": -180,
+      "end": -157.5,
+      "rot": 22.5
      },
      {
       "desc": "RF in place",
       "align": "Backing DC",
-      "turn": "1/8 L",
-      "face": -135,
-      "end": -135
+      "turn": "",
+      "face": -157.5,
+      "end": -135.0,
+      "rot": 22.5
      },
      {
       "desc": "LF bwd and to side",
@@ -33213,17 +33263,19 @@
      },
      {
       "desc": "RF to side and slightly bwd",
-      "align": "Backing DW",
-      "turn": "1/4 R",
-      "face": 135,
-      "end": 135
+      "align": "Backing LOD",
+      "turn": "",
+      "face": -135,
+      "end": -180.0,
+      "rot": -45.0
      },
      {
       "desc": "LF in place",
       "align": "Backing DW",
-      "turn": "1/4 R",
-      "face": 135,
-      "end": 135
+      "turn": "",
+      "face": -180.0,
+      "end": 135.0,
+      "rot": -45.0
      },
      {
       "desc": "RF bwd and to side",
@@ -33233,35 +33285,43 @@
      },
      {
       "desc": "LF to side and slightly bwd",
-      "align": "Facing W",
-      "turn": "3/8 L",
-      "face": -90,
-      "end": -90
+      "align": "Backing LOD",
+      "turn": "",
+      "face": 135,
+      "end": -157.5,
+      "rot": 67.5
      },
      {
       "desc": "RF in place",
       "align": "Facing W",
-      "turn": "3/8 L",
-      "face": -90,
-      "end": -90
+      "turn": "",
+      "face": -157.5,
+      "end": -90.0,
+      "rot": 67.5
      },
      {
       "desc": "LF bwd and to side",
       "align": "Facing W",
-      "turn": "1/8 L",
-      "face": -90
+      "turn": "",
+      "face": -90,
+      "end": -75.0,
+      "rot": 15.0
      },
      {
       "desc": "RF to side and slightly fwd",
-      "align": "Facing W",
-      "turn": "1/8 L",
-      "face": -90
+      "align": "Facing DW",
+      "turn": "",
+      "face": -75.0,
+      "end": -60.0,
+      "rot": 15.0
      },
      {
       "desc": "LF in place",
-      "align": "Facing W",
-      "turn": "1/8 L",
-      "face": -90
+      "align": "Facing DW",
+      "turn": "",
+      "face": -60.0,
+      "end": -45.0,
+      "rot": 15.0
      }
     ],
     "preceding": [],
@@ -33276,17 +33336,19 @@
      },
      {
       "desc": "RF to side and slightly fwd",
-      "align": "Facing DC",
-      "turn": "1/8 L",
-      "face": 45,
-      "end": 45
+      "align": "Facing LOD",
+      "turn": "",
+      "face": 0,
+      "end": 22.5,
+      "rot": 22.5
      },
      {
       "desc": "LF in place",
       "align": "Facing DC",
-      "turn": "1/8 L",
-      "face": 45,
-      "end": 45
+      "turn": "",
+      "face": 22.5,
+      "end": 45.0,
+      "rot": 22.5
      },
      {
       "desc": "RF fwd and to side outside partner",
@@ -33296,17 +33358,19 @@
      },
      {
       "desc": "LF to side and slightly fwd",
-      "align": "Facing DW",
-      "turn": "1/4 R",
-      "face": -45,
-      "end": -45
+      "align": "Facing LOD",
+      "turn": "",
+      "face": 45,
+      "end": 0.0,
+      "rot": -45.0
      },
      {
       "desc": "RF in place",
       "align": "Facing DW",
-      "turn": "1/4 R",
-      "face": -45,
-      "end": -45
+      "turn": "",
+      "face": 0.0,
+      "end": -45.0,
+      "rot": -45.0
      },
      {
       "desc": "LF fwd and to side outside partner",
@@ -33316,38 +33380,43 @@
      },
      {
       "desc": "RF to side and slightly fwd",
-      "align": "Facing C",
-      "turn": "3/8 L",
-      "face": 90,
-      "end": 90
+      "align": "Facing LOD",
+      "turn": "",
+      "face": -45,
+      "end": 22.5,
+      "rot": 67.5
      },
      {
       "desc": "LF in place",
       "align": "Facing C",
-      "turn": "3/8 L",
-      "face": 90,
-      "end": 90
+      "turn": "",
+      "face": 22.5,
+      "end": 90.0,
+      "rot": 67.5
      },
      {
       "desc": "RF fwd and to side outside partner",
-      "align": "Facing DC",
-      "turn": "1/8 R",
-      "face": 45,
-      "end": 45
+      "align": "Facing C",
+      "turn": "",
+      "face": 90.0,
+      "end": 75.0,
+      "rot": -15.0
      },
      {
       "desc": "LF to side and slightly fwd",
       "align": "Facing DC",
-      "turn": "1/8 R",
-      "face": 45,
-      "end": 45
+      "turn": "",
+      "face": 75.0,
+      "end": 60.0,
+      "rot": -15.0
      },
      {
       "desc": "RF in place",
       "align": "Facing DC",
-      "turn": "1/8 R",
-      "face": 45,
-      "end": 45
+      "turn": "",
+      "face": 60.0,
+      "end": 45.0,
+      "rot": -15.0
      }
     ]
    }
@@ -33430,51 +33499,57 @@
     "steps": [
      {
       "desc": "LF fwd",
-      "align": "Facing DC",
-      "turn": "1/4 L",
+      "align": "Facing LOD",
+      "turn": "",
       "face": -45,
-      "end": 45,
-      "pos": "Ex Open Prom then Man passes behind Lady L Diag Same"
+      "end": -15.0,
+      "pos": "Ex Open Prom then Man passes behind Lady L Diag Same",
+      "rot": 30.0
      },
      {
       "desc": "RF to side and slightly fwd",
-      "align": "Facing DC",
-      "turn": "1/4 L",
-      "face": -45,
-      "end": 45,
-      "pos": "Ex Open Prom then Man passes behind Lady L Diag Same"
+      "align": "Facing LOD",
+      "turn": "",
+      "face": -15.0,
+      "end": 15.0,
+      "pos": "Ex Open Prom then Man passes behind Lady L Diag Same",
+      "rot": 30.0
      },
      {
       "desc": "LF in place",
       "align": "Facing DC",
-      "turn": "1/4 L",
-      "face": -45,
-      "end": 45,
-      "pos": "Ex Open Cnt Prom"
+      "turn": "",
+      "face": 15.0,
+      "end": 45.0,
+      "pos": "Ex Open Cnt Prom",
+      "rot": 30.0
      },
      {
       "desc": "RF fwd",
-      "align": "Facing DW",
-      "turn": "1/4 R",
+      "align": "Facing LOD",
+      "turn": "",
       "face": 45,
-      "end": -45,
-      "pos": "Man passes behind Lady R Diag Same"
+      "end": 15.0,
+      "pos": "Man passes behind Lady R Diag Same",
+      "rot": -30.0
      },
      {
       "desc": "LF to side and slightly fwd",
-      "align": "Facing DW",
-      "turn": "1/4 R",
-      "face": 45,
-      "end": -45,
-      "pos": "Man passes behind Lady R Diag Same"
+      "align": "Facing LOD",
+      "turn": "",
+      "face": 15.0,
+      "end": -15.0,
+      "pos": "Man passes behind Lady R Diag Same",
+      "rot": -30.0
      },
      {
       "desc": "RF in place",
       "align": "Facing DW",
-      "turn": "1/4 R",
-      "face": 45,
-      "end": -45,
-      "pos": "Ex Open Prom"
+      "turn": "",
+      "face": -15.0,
+      "end": -45.0,
+      "pos": "Ex Open Prom",
+      "rot": -30.0
      }
     ],
     "preceding": [],
@@ -33482,51 +33557,57 @@
     "ladySteps": [
      {
       "desc": "RF fwd",
-      "align": "Facing DW",
-      "turn": "1/4 R",
+      "align": "Facing LOD",
+      "turn": "",
       "face": 45,
-      "end": -45,
-      "pos": "Ex Open Prom then Lady passes front Man L Diag Same"
+      "end": 15.0,
+      "pos": "Ex Open Prom then Lady passes front Man L Diag Same",
+      "rot": -30.0
      },
      {
       "desc": "LF to side and slightly fwd",
-      "align": "Facing DW",
-      "turn": "1/4 R",
-      "face": 45,
-      "end": -45,
-      "pos": "Ex Open Prom then Lady passes front Man L Diag Same"
+      "align": "Facing LOD",
+      "turn": "",
+      "face": 15.0,
+      "end": -15.0,
+      "pos": "Ex Open Prom then Lady passes front Man L Diag Same",
+      "rot": -30.0
      },
      {
       "desc": "RF in place",
       "align": "Facing DW",
-      "turn": "1/4 R",
-      "face": 45,
-      "end": -45,
-      "pos": "Ex Open Cnt Prom"
+      "turn": "",
+      "face": -15.0,
+      "end": -45.0,
+      "pos": "Ex Open Cnt Prom",
+      "rot": -30.0
      },
      {
       "desc": "LF fwd",
-      "align": "Facing DC",
-      "turn": "1/4 L",
+      "align": "Facing LOD",
+      "turn": "",
       "face": -45,
-      "end": 45,
-      "pos": "Lady passes front Man R Diag Same"
+      "end": -15.0,
+      "pos": "Lady passes front Man R Diag Same",
+      "rot": 30.0
      },
      {
       "desc": "RF to side and slightly fwd",
-      "align": "Facing DC",
-      "turn": "1/4 L",
-      "face": -45,
-      "end": 45,
-      "pos": "Lady passes front Man R Diag Same"
+      "align": "Facing LOD",
+      "turn": "",
+      "face": -15.0,
+      "end": 15.0,
+      "pos": "Lady passes front Man R Diag Same",
+      "rot": 30.0
      },
      {
       "desc": "LF in place",
       "align": "Facing DC",
-      "turn": "1/4 L",
-      "face": -45,
-      "end": 45,
-      "pos": "Ex Open Prom"
+      "turn": "",
+      "face": 15.0,
+      "end": 45.0,
+      "pos": "Ex Open Prom",
+      "rot": 30.0
      }
     ]
    },
@@ -33625,27 +33706,30 @@
     "steps": [
      {
       "desc": "LF crosses in front of RF",
-      "align": "Facing C",
-      "turn": "3/8 L",
+      "align": "Facing LOD",
+      "turn": "",
       "face": -45,
-      "end": 90,
-      "pos": "Ex Open Prom"
+      "end": 0.0,
+      "pos": "Ex Open Prom",
+      "rot": 45.0
      },
      {
       "desc": "RF to side and slightly bwd",
-      "align": "Facing C",
-      "turn": "3/8 L",
-      "face": -45,
-      "end": 90,
-      "pos": "Man passes behind Lady L Diag Same"
+      "align": "Facing DC",
+      "turn": "",
+      "face": 0.0,
+      "end": 45.0,
+      "pos": "Man passes behind Lady L Diag Same",
+      "rot": 45.0
      },
      {
       "desc": "LF crosses in front of RF",
       "align": "Facing C",
-      "turn": "3/8 L",
-      "face": -45,
-      "end": 90,
-      "pos": "Man passes behind Lady L Diag Same"
+      "turn": "",
+      "face": 45.0,
+      "end": 90.0,
+      "pos": "Man passes behind Lady L Diag Same",
+      "rot": 45.0
      },
      {
       "desc": "RF to side and slightly bwd",
@@ -33681,27 +33765,30 @@
     "ladySteps": [
      {
       "desc": "RF crosses in front of LF",
-      "align": "Facing W",
-      "turn": "3/8 R",
+      "align": "Facing LOD",
+      "turn": "",
       "face": 45,
-      "end": -90,
-      "pos": "Ex Open Prom"
+      "end": 0.0,
+      "pos": "Ex Open Prom",
+      "rot": -45.0
      },
      {
       "desc": "LF to side and slightly bwd",
-      "align": "Facing W",
-      "turn": "3/8 R",
-      "face": 45,
-      "end": -90,
-      "pos": "Lady passes front Man L Diag Same"
+      "align": "Facing DW",
+      "turn": "",
+      "face": 0.0,
+      "end": -45.0,
+      "pos": "Lady passes front Man L Diag Same",
+      "rot": -45.0
      },
      {
       "desc": "RF crosses in front of LF",
       "align": "Facing W",
-      "turn": "3/8 R",
-      "face": 45,
-      "end": -90,
-      "pos": "Lady passes front Man L Diag Same"
+      "turn": "",
+      "face": -45.0,
+      "end": -90.0,
+      "pos": "Lady passes front Man L Diag Same",
+      "rot": -45.0
      },
      {
       "desc": "LF to side and slightly bwd",
@@ -33820,27 +33907,30 @@
     "steps": [
      {
       "desc": "RF crosses in front of LF",
-      "align": "Facing W",
-      "turn": "3/8 R",
+      "align": "Facing LOD",
+      "turn": "",
       "face": 45,
-      "end": -90,
-      "pos": "Ex Open Cnt Prom"
+      "end": 0.0,
+      "pos": "Ex Open Cnt Prom",
+      "rot": -45.0
      },
      {
       "desc": "LF to side and slightly bwd",
-      "align": "Facing W",
-      "turn": "3/8 R",
-      "face": 45,
-      "end": -90,
-      "pos": "Man passes behind Lady R Diag Same"
+      "align": "Facing DW",
+      "turn": "",
+      "face": 0.0,
+      "end": -45.0,
+      "pos": "Man passes behind Lady R Diag Same",
+      "rot": -45.0
      },
      {
       "desc": "RF crosses in front of LF",
       "align": "Facing W",
-      "turn": "3/8 R",
-      "face": 45,
-      "end": -90,
-      "pos": "Man passes behind Lady R Diag Same"
+      "turn": "",
+      "face": -45.0,
+      "end": -90.0,
+      "pos": "Man passes behind Lady R Diag Same",
+      "rot": -45.0
      },
      {
       "desc": "LF to side and slightly bwd",
@@ -33876,27 +33966,30 @@
     "ladySteps": [
      {
       "desc": "LF crosses in front of RF",
-      "align": "Facing C",
-      "turn": "3/8 L",
+      "align": "Facing LOD",
+      "turn": "",
       "face": -45,
-      "end": 90,
-      "pos": "Ex Open Cnt Prom"
+      "end": 0.0,
+      "pos": "Ex Open Cnt Prom",
+      "rot": 45.0
      },
      {
       "desc": "RF to side and slightly bwd",
-      "align": "Facing C",
-      "turn": "3/8 L",
-      "face": -45,
-      "end": 90,
-      "pos": "Man passes behind Lady R Diag Same"
+      "align": "Facing DC",
+      "turn": "",
+      "face": 0.0,
+      "end": 45.0,
+      "pos": "Man passes behind Lady R Diag Same",
+      "rot": 45.0
      },
      {
       "desc": "LF crosses in front of RF",
       "align": "Facing C",
-      "turn": "3/8 L",
-      "face": -45,
-      "end": 90,
-      "pos": "Man passes behind Lady R Diag Same"
+      "turn": "",
+      "face": 45.0,
+      "end": 90.0,
+      "pos": "Man passes behind Lady R Diag Same",
+      "rot": 45.0
      },
      {
       "desc": "RF to side and slightly bwd",
@@ -34285,21 +34378,24 @@
       "turn": "",
       "face": 90,
       "end": -30.0,
-      "pos": "Close Opp"
+      "pos": "Close Opp",
+      "rot": -120.0
      },
      {
       "desc": "LF to side and slightly bwd",
       "align": "Backing DC",
       "turn": "",
       "face": -30.0,
-      "end": -150.0
+      "end": -150.0,
+      "rot": -120.0
      },
      {
       "desc": "RF crosses in front of LF",
       "align": "Facing C",
       "turn": "",
       "face": -150.0,
-      "end": 90.0
+      "end": 90.0,
+      "rot": -120.0
      }
     ]
    },
@@ -34417,21 +34513,24 @@
       "turn": "",
       "face": -90,
       "end": 30.0,
-      "pos": "Open Opp"
+      "pos": "Open Opp",
+      "rot": 120.0
      },
      {
       "desc": "RF to side and slightly bwd",
       "align": "Backing DW",
       "turn": "",
       "face": 30.0,
-      "end": 150.0
+      "end": 150.0,
+      "rot": 120.0
      },
      {
       "desc": "LF crosses in front of RF",
       "align": "Facing W",
       "turn": "",
       "face": 150.0,
-      "end": -90.0
+      "end": -90.0,
+      "rot": 120.0
      }
     ]
    },
@@ -34807,53 +34906,60 @@
     "steps": [
      {
       "desc": "LF crosses in front of RF",
-      "align": "Facing C",
-      "turn": "3/8 L",
+      "align": "Facing DW",
+      "turn": "",
       "face": -45,
-      "end": 90,
-      "pos": "Ex Open Prom"
+      "end": -25.7,
+      "pos": "Ex Open Prom",
+      "rot": 19.3
+     },
+     {
+      "desc": "RF to side and slightly bwd",
+      "align": "Facing LOD",
+      "turn": "",
+      "face": -25.7,
+      "end": -6.4,
+      "rot": 19.3
+     },
+     {
+      "desc": "LF crosses in front of RF",
+      "align": "Facing LOD",
+      "turn": "",
+      "face": -6.4,
+      "end": 12.9,
+      "rot": 19.3
+     },
+     {
+      "desc": "RF to side and slightly bwd",
+      "align": "Facing DC",
+      "turn": "",
+      "face": 12.9,
+      "end": 32.1,
+      "rot": 19.3
+     },
+     {
+      "desc": "LF crosses in front of RF",
+      "align": "Facing DC",
+      "turn": "",
+      "face": 32.1,
+      "end": 51.4,
+      "rot": 19.3
      },
      {
       "desc": "RF to side and slightly bwd",
       "align": "Facing C",
-      "turn": "3/8 L",
-      "face": -45,
-      "end": 90
+      "turn": "",
+      "face": 51.4,
+      "end": 70.7,
+      "rot": 19.3
      },
      {
       "desc": "LF crosses in front of RF",
       "align": "Facing C",
-      "turn": "3/8 L",
-      "face": -45,
-      "end": 90
-     },
-     {
-      "desc": "RF to side and slightly bwd",
-      "align": "Facing C",
-      "turn": "3/8 L",
-      "face": -45,
-      "end": 90
-     },
-     {
-      "desc": "LF crosses in front of RF",
-      "align": "Facing C",
-      "turn": "3/8 L",
-      "face": -45,
-      "end": 90
-     },
-     {
-      "desc": "RF to side and slightly bwd",
-      "align": "Facing C",
-      "turn": "3/8 L",
-      "face": -45,
-      "end": 90
-     },
-     {
-      "desc": "LF crosses in front of RF",
-      "align": "Facing C",
-      "turn": "3/8 L",
-      "face": -45,
-      "end": 90
+      "turn": "",
+      "face": 70.7,
+      "end": 90.0,
+      "rot": 19.3
      }
     ],
     "preceding": [],
@@ -34998,53 +35104,60 @@
     "steps": [
      {
       "desc": "RF crosses in front of LF",
-      "align": "Facing W",
-      "turn": "3/8 R",
+      "align": "Facing DC",
+      "turn": "",
       "face": 45,
-      "end": -90,
-      "pos": "Ex Open Prom"
+      "end": 25.7,
+      "pos": "Ex Open Prom",
+      "rot": -19.3
+     },
+     {
+      "desc": "LF to side and slightly bwd",
+      "align": "Facing LOD",
+      "turn": "",
+      "face": 25.7,
+      "end": 6.4,
+      "rot": -19.3
+     },
+     {
+      "desc": "RF crosses in front of LF",
+      "align": "Facing LOD",
+      "turn": "",
+      "face": 6.4,
+      "end": -12.9,
+      "rot": -19.3
+     },
+     {
+      "desc": "LF to side and slightly bwd",
+      "align": "Facing DW",
+      "turn": "",
+      "face": -12.9,
+      "end": -32.1,
+      "rot": -19.3
+     },
+     {
+      "desc": "RF crosses in front of LF",
+      "align": "Facing DW",
+      "turn": "",
+      "face": -32.1,
+      "end": -51.4,
+      "rot": -19.3
      },
      {
       "desc": "LF to side and slightly bwd",
       "align": "Facing W",
-      "turn": "3/8 R",
-      "face": 45,
-      "end": -90
+      "turn": "",
+      "face": -51.4,
+      "end": -70.7,
+      "rot": -19.3
      },
      {
       "desc": "RF crosses in front of LF",
       "align": "Facing W",
-      "turn": "3/8 R",
-      "face": 45,
-      "end": -90
-     },
-     {
-      "desc": "LF to side and slightly bwd",
-      "align": "Facing W",
-      "turn": "3/8 R",
-      "face": 45,
-      "end": -90
-     },
-     {
-      "desc": "RF crosses in front of LF",
-      "align": "Facing W",
-      "turn": "3/8 R",
-      "face": 45,
-      "end": -90
-     },
-     {
-      "desc": "LF to side and slightly bwd",
-      "align": "Facing W",
-      "turn": "3/8 R",
-      "face": 45,
-      "end": -90
-     },
-     {
-      "desc": "RF crosses in front of LF",
-      "align": "Facing W",
-      "turn": "3/8 R",
-      "face": 45,
-      "end": -90
+      "turn": "",
+      "face": -70.7,
+      "end": -90.0,
+      "rot": -19.3
      }
     ],
     "preceding": [],
@@ -35533,19 +35646,21 @@
     "steps": [
      {
       "desc": "LF fwd and slightly to side",
-      "align": "Facing W",
-      "turn": "1/4 R",
+      "align": "Facing DW",
+      "turn": "",
       "face": 0,
-      "end": -90,
-      "pos": "R Side Same"
+      "end": -45.0,
+      "pos": "R Side Same",
+      "rot": -45.0
      },
      {
       "desc": "RF crosses in front of LF",
       "align": "Facing W",
-      "turn": "1/4 R",
-      "face": 0,
-      "end": -90,
-      "pos": "Opp"
+      "turn": "",
+      "face": -45.0,
+      "end": -90.0,
+      "pos": "Opp",
+      "rot": -45.0
      }
     ],
     "preceding": [],
@@ -35553,19 +35668,21 @@
     "ladySteps": [
      {
       "desc": "RF fwd and slightly to side",
-      "align": "Facing C",
-      "turn": "1/4 L",
+      "align": "Facing DC",
+      "turn": "",
       "face": 0,
-      "end": 90,
-      "pos": "R Side Same then Close Opp"
+      "end": 45.0,
+      "pos": "R Side Same then Close Opp",
+      "rot": 45.0
      },
      {
       "desc": "LF crosses in front of RF",
       "align": "Facing C",
-      "turn": "1/4 L",
-      "face": 0,
-      "end": 90,
-      "pos": "R Side Same then Close Opp"
+      "turn": "",
+      "face": 45.0,
+      "end": 90.0,
+      "pos": "R Side Same then Close Opp",
+      "rot": 45.0
      }
     ]
    }
@@ -35638,7 +35755,8 @@
       "turn": "",
       "face": -45,
       "end": -117.0,
-      "pos": "R Diag Opp"
+      "pos": "R Diag Opp",
+      "rot": -72.0
      },
      {
       "desc": "LF to side and slightly bwd",
@@ -35646,7 +35764,8 @@
       "turn": "",
       "face": -117.0,
       "end": 171.0,
-      "pos": "R Diag Opp"
+      "pos": "R Diag Opp",
+      "rot": -72.0
      },
      {
       "desc": "RF crosses in front of LF",
@@ -35654,7 +35773,8 @@
       "turn": "",
       "face": 171.0,
       "end": 99.0,
-      "pos": "R Diag Opp"
+      "pos": "R Diag Opp",
+      "rot": -72.0
      },
      {
       "desc": "LF to side and slightly bwd",
@@ -35662,7 +35782,8 @@
       "turn": "",
       "face": 99.0,
       "end": 27.0,
-      "pos": "R Diag Opp"
+      "pos": "R Diag Opp",
+      "rot": -72.0
      },
      {
       "desc": "RF crosses in front of LF",
@@ -35670,21 +35791,24 @@
       "turn": "",
       "face": 27.0,
       "end": -45.0,
-      "pos": "R Diag Opp"
+      "pos": "R Diag Opp",
+      "rot": -72.0
      },
      {
       "desc": "LF to side and slightly fwd",
-      "align": "Backing DC",
-      "turn": "1/4 R",
-      "face": -135,
-      "end": -135
+      "align": "Facing W",
+      "turn": "",
+      "face": -45.0,
+      "end": -90.0,
+      "rot": -45.0
      },
      {
       "desc": "RF in place",
       "align": "Backing DC",
-      "turn": "1/4 R",
-      "face": -135,
-      "end": -135
+      "turn": "",
+      "face": -90.0,
+      "end": -135.0,
+      "rot": -45.0
      }
     ],
     "preceding": [],
@@ -35696,7 +35820,8 @@
       "turn": "",
       "face": 135,
       "end": 63.0,
-      "pos": "R Diag Opp"
+      "pos": "R Diag Opp",
+      "rot": -72.0
      },
      {
       "desc": "LF to side and slightly bwd",
@@ -35704,7 +35829,8 @@
       "turn": "",
       "face": 63.0,
       "end": -9.0,
-      "pos": "R Diag Opp"
+      "pos": "R Diag Opp",
+      "rot": -72.0
      },
      {
       "desc": "RF crosses in front of LF",
@@ -35712,7 +35838,8 @@
       "turn": "",
       "face": -9.0,
       "end": -81.0,
-      "pos": "R Diag Opp"
+      "pos": "R Diag Opp",
+      "rot": -72.0
      },
      {
       "desc": "LF to side and slightly bwd",
@@ -35720,7 +35847,8 @@
       "turn": "",
       "face": -81.0,
       "end": -153.0,
-      "pos": "R Diag Opp"
+      "pos": "R Diag Opp",
+      "rot": -72.0
      },
      {
       "desc": "RF crosses in front of LF",
@@ -35728,21 +35856,24 @@
       "turn": "",
       "face": -153.0,
       "end": 135.0,
-      "pos": "R Diag Opp"
+      "pos": "R Diag Opp",
+      "rot": -72.0
      },
      {
       "desc": "LF to side and slightly fwd",
-      "align": "Facing DC",
-      "turn": "1/4 R",
-      "face": 135,
-      "end": 45
+      "align": "Facing C",
+      "turn": "",
+      "face": 135.0,
+      "end": 90.0,
+      "rot": -45.0
      },
      {
       "desc": "RF in place",
       "align": "Facing DC",
-      "turn": "1/4 R",
-      "face": 45,
-      "end": 45
+      "turn": "",
+      "face": 90.0,
+      "end": 45.0,
+      "rot": -45.0
      }
     ]
    },
@@ -35860,17 +35991,19 @@
      },
      {
       "desc": "RF to side and slightly fwd",
-      "align": "Facing DW",
-      "turn": "1/4 L",
+      "align": "Facing W",
+      "turn": "",
       "face": -135,
-      "end": -45
+      "end": -90.0,
+      "rot": 45.0
      },
      {
       "desc": "LF in place",
       "align": "Facing DW",
-      "turn": "1/4 L",
-      "face": -45,
-      "end": -45
+      "turn": "",
+      "face": -90.0,
+      "end": -45.0,
+      "rot": 45.0
      }
     ],
     "preceding": [],
@@ -35882,7 +36015,8 @@
       "turn": "",
       "face": 45,
       "end": 117.0,
-      "pos": "L Diag Opp"
+      "pos": "L Diag Opp",
+      "rot": 72.0
      },
      {
       "desc": "RF to side and slightly bwd",
@@ -35890,7 +36024,8 @@
       "turn": "",
       "face": 117.0,
       "end": -171.0,
-      "pos": "L Diag Opp"
+      "pos": "L Diag Opp",
+      "rot": 72.0
      },
      {
       "desc": "LF crosses in front of RF",
@@ -35898,7 +36033,8 @@
       "turn": "",
       "face": -171.0,
       "end": -99.0,
-      "pos": "L Diag Opp"
+      "pos": "L Diag Opp",
+      "rot": 72.0
      },
      {
       "desc": "RF to side and slightly bwd",
@@ -35906,7 +36042,8 @@
       "turn": "",
       "face": -99.0,
       "end": -27.0,
-      "pos": "L Diag Opp"
+      "pos": "L Diag Opp",
+      "rot": 72.0
      },
      {
       "desc": "LF crosses in front of RF",
@@ -35914,21 +36051,24 @@
       "turn": "",
       "face": -27.0,
       "end": 45.0,
-      "pos": "L Diag Opp"
+      "pos": "L Diag Opp",
+      "rot": 72.0
      },
      {
       "desc": "RF to side and slightly fwd",
-      "align": "Backing DW",
-      "turn": "1/4 L",
-      "face": 135,
-      "end": 135
+      "align": "Facing C",
+      "turn": "",
+      "face": 45.0,
+      "end": 90.0,
+      "rot": 45.0
      },
      {
       "desc": "LF in place",
       "align": "Backing DW",
-      "turn": "1/4 L",
-      "face": 135,
-      "end": 135
+      "turn": "",
+      "face": 90.0,
+      "end": 135.0,
+      "rot": 45.0
      }
     ]
    },
@@ -36193,51 +36333,57 @@
     "ladySteps": [
      {
       "desc": "RF fwd and to side outside partner",
-      "align": "Facing DC",
-      "turn": "1/4 R",
+      "align": "Facing C",
+      "turn": "",
       "face": 135,
-      "end": 45,
-      "pos": "L Diag Opp then R Diag Opp"
+      "end": 105.0,
+      "pos": "L Diag Opp then R Diag Opp",
+      "rot": -30.0
      },
      {
       "desc": "LF to side and slightly fwd",
-      "align": "Facing DC",
-      "turn": "1/4 R",
-      "face": 135,
-      "end": 45,
-      "pos": "L Diag Opp then R Diag Opp"
+      "align": "Facing C",
+      "turn": "",
+      "face": 105.0,
+      "end": 75.0,
+      "pos": "L Diag Opp then R Diag Opp",
+      "rot": -30.0
      },
      {
       "desc": "RF in place",
       "align": "Facing DC",
-      "turn": "1/4 R",
-      "face": 135,
-      "end": 45,
-      "pos": "L Diag Opp then R Diag Opp"
+      "turn": "",
+      "face": 75.0,
+      "end": 45.0,
+      "pos": "L Diag Opp then R Diag Opp",
+      "rot": -30.0
      },
      {
       "desc": "LF fwd and to side outside partner",
-      "align": "Backing DW",
-      "turn": "1/4 L",
+      "align": "Facing C",
+      "turn": "",
       "face": 45,
-      "end": 135,
-      "pos": "R Diag Opp then L Diag Opp"
+      "end": 75.0,
+      "pos": "R Diag Opp then L Diag Opp",
+      "rot": 30.0
      },
      {
       "desc": "RF to side and slightly fwd",
-      "align": "Backing DW",
-      "turn": "1/4 L",
-      "face": 45,
-      "end": 135,
-      "pos": "R Diag Opp then L Diag Opp"
+      "align": "Facing C",
+      "turn": "",
+      "face": 75.0,
+      "end": 105.0,
+      "pos": "R Diag Opp then L Diag Opp",
+      "rot": 30.0
      },
      {
       "desc": "LF in place",
       "align": "Backing DW",
-      "turn": "1/4 L",
-      "face": 45,
-      "end": 135,
-      "pos": "R Diag Opp then L Diag Opp"
+      "turn": "",
+      "face": 105.0,
+      "end": 135.0,
+      "pos": "R Diag Opp then L Diag Opp",
+      "rot": 30.0
      }
     ]
    },
@@ -37299,17 +37445,21 @@
      },
      {
       "desc": "LF",
-      "align": "Backing DC",
-      "turn": "1/8 L",
+      "align": "Facing W",
+      "turn": "",
       "face": -135,
-      "pos": "L Diag Opp"
+      "pos": "L Diag Opp",
+      "end": -112.5,
+      "rot": 22.5
      },
      {
       "desc": "RF crosses in front of LF",
-      "align": "Backing DC",
-      "turn": "1/8 L",
-      "face": -135,
-      "pos": "L Diag Opp"
+      "align": "Facing W",
+      "turn": "",
+      "face": -112.5,
+      "pos": "L Diag Opp",
+      "end": -90.0,
+      "rot": 22.5
      }
     ]
    },
@@ -37524,25 +37674,28 @@
     "ladySteps": [
      {
       "desc": "LF diag bwd",
-      "align": "Facing C",
-      "turn": "1/4 R",
+      "align": "Backing DW",
+      "turn": "",
       "face": -180,
-      "end": 90,
-      "pos": "Close Opp"
+      "end": 150.0,
+      "pos": "Close Opp",
+      "rot": -30.0
      },
      {
       "desc": "RF diag bwd",
-      "align": "Facing C",
-      "turn": "1/4 R",
-      "face": -180,
-      "end": 90
+      "align": "Backing DW",
+      "turn": "",
+      "face": 150.0,
+      "end": 120.0,
+      "rot": -30.0
      },
      {
       "desc": "LF",
       "align": "Facing C",
-      "turn": "1/4 R",
-      "face": -180,
-      "end": 90
+      "turn": "",
+      "face": 120.0,
+      "end": 90.0,
+      "rot": -30.0
      },
      {
       "desc": "RF diag fwd and diag bwd",
@@ -37555,16 +37708,18 @@
      {
       "desc": "LF diag bwd",
       "align": "Facing W",
-      "turn": "1/8 L",
-      "face": -90,
-      "end": -90
+      "turn": "",
+      "face": -135,
+      "end": -112.5,
+      "rot": 22.5
      },
      {
       "desc": "RF",
       "align": "Facing W",
-      "turn": "1/8 L",
-      "face": -90,
-      "end": -90
+      "turn": "",
+      "face": -112.5,
+      "end": -90.0,
+      "rot": 22.5
      },
      {
       "desc": "LF diag fwd and diag bwd",
@@ -37577,16 +37732,18 @@
      {
       "desc": "RF diag bwd",
       "align": "Facing C",
-      "turn": "1/8 R",
-      "face": 90,
-      "end": 90
+      "turn": "",
+      "face": 135,
+      "end": 112.5,
+      "rot": -22.5
      },
      {
       "desc": "LF",
       "align": "Facing C",
-      "turn": "1/8 R",
-      "face": 90,
-      "end": 90
+      "turn": "",
+      "face": 112.5,
+      "end": 90.0,
+      "rot": -22.5
      }
     ]
    }
@@ -38008,51 +38165,65 @@
      {
       "desc": "RF fwd",
       "align": "Facing W",
-      "turn": "1/4 R",
+      "turn": "",
       "face": -90,
-      "pos": "Open Opp"
+      "pos": "Open Opp",
+      "end": -102.9,
+      "rot": -12.9
      },
      {
       "desc": "LF fwd and slightly to side",
-      "align": "Facing W",
-      "turn": "1/4 R",
-      "face": -90,
-      "pos": "Open Opp"
+      "align": "Backing DC",
+      "turn": "",
+      "face": -102.9,
+      "pos": "Open Opp",
+      "end": -115.7,
+      "rot": -12.9
      },
      {
       "desc": "RF",
-      "align": "Facing W",
-      "turn": "1/4 R",
-      "face": -90,
-      "pos": "Open Opp"
+      "align": "Backing DC",
+      "turn": "",
+      "face": -115.7,
+      "pos": "Open Opp",
+      "end": -128.6,
+      "rot": -12.9
      },
      {
       "desc": "LF bwd and slightly to side",
-      "align": "Facing W",
-      "turn": "1/4 R",
-      "face": -90,
-      "pos": "Open Opp"
+      "align": "Backing DC",
+      "turn": "",
+      "face": -128.6,
+      "pos": "Open Opp",
+      "end": -141.4,
+      "rot": -12.9
      },
      {
       "desc": "RF",
-      "align": "Facing W",
-      "turn": "1/4 R",
-      "face": -90,
-      "pos": "Open Opp"
+      "align": "Backing DC",
+      "turn": "",
+      "face": -141.4,
+      "pos": "Open Opp",
+      "end": -154.3,
+      "rot": -12.9
      },
      {
       "desc": "LF fwd and slightly to side",
-      "align": "Facing W",
-      "turn": "1/4 R",
-      "face": -90,
-      "pos": "Open Opp"
+      "align": "Backing LOD",
+      "turn": "",
+      "face": -154.3,
+      "pos": "Open Opp",
+      "end": -167.1,
+      "rot": -12.9
      },
      {
       "desc": "RF",
-      "align": "Facing W",
-      "turn": "1/4 R",
-      "face": -90,
-      "pos": "Open Opp"
+      "align": "Backing LOD",
+      "turn": "",
+      "face": -167.1,
+      "pos": "Open Opp",
+      "end": -180.0,
+      "rot": -12.9
      }
     ],
     "preceding": [
@@ -38124,51 +38295,65 @@
      {
       "desc": "LF bwd",
       "align": "Facing C",
-      "turn": "1/4 R",
+      "turn": "",
       "face": 90,
-      "pos": "Open Opp"
+      "pos": "Open Opp",
+      "end": 77.1,
+      "rot": -12.9
      },
      {
       "desc": "RF bwd and slightly to side",
-      "align": "Facing C",
-      "turn": "1/4 R",
-      "face": 90,
-      "pos": "Open Opp"
+      "align": "Facing DC",
+      "turn": "",
+      "face": 77.1,
+      "pos": "Open Opp",
+      "end": 64.3,
+      "rot": -12.9
      },
      {
       "desc": "LF",
-      "align": "Facing C",
-      "turn": "1/4 R",
-      "face": 90,
-      "pos": "Open Opp"
+      "align": "Facing DC",
+      "turn": "",
+      "face": 64.3,
+      "pos": "Open Opp",
+      "end": 51.4,
+      "rot": -12.9
      },
      {
       "desc": "RF fwd and slightly to side",
-      "align": "Facing C",
-      "turn": "1/4 R",
-      "face": 90,
-      "pos": "Open Opp"
+      "align": "Facing DC",
+      "turn": "",
+      "face": 51.4,
+      "pos": "Open Opp",
+      "end": 38.6,
+      "rot": -12.9
      },
      {
       "desc": "LF",
-      "align": "Facing C",
-      "turn": "1/4 R",
-      "face": 90,
-      "pos": "Open Opp"
+      "align": "Facing DC",
+      "turn": "",
+      "face": 38.6,
+      "pos": "Open Opp",
+      "end": 25.7,
+      "rot": -12.9
      },
      {
       "desc": "RF bwd and slightly to side",
-      "align": "Facing C",
-      "turn": "1/4 R",
-      "face": 90,
-      "pos": "Open Opp"
+      "align": "Facing LOD",
+      "turn": "",
+      "face": 25.7,
+      "pos": "Open Opp",
+      "end": 12.9,
+      "rot": -12.9
      },
      {
       "desc": "LF",
-      "align": "Facing C",
-      "turn": "1/4 R",
-      "face": 90,
-      "pos": "Open Opp"
+      "align": "Facing LOD",
+      "turn": "",
+      "face": 12.9,
+      "pos": "Open Opp",
+      "end": 0.0,
+      "rot": -12.9
      }
     ]
    },
@@ -38530,19 +38715,21 @@
     "ladySteps": [
      {
       "desc": "LF bwd",
-      "align": "Facing DC",
-      "turn": "1/4 R",
+      "align": "Facing C",
+      "turn": "",
       "face": 135,
-      "end": 45,
-      "pos": "R Diag Opp"
+      "end": 90.0,
+      "pos": "R Diag Opp",
+      "rot": -45.0
      },
      {
       "desc": "RF to side",
       "align": "Facing DC",
-      "turn": "1/4 R",
-      "face": 45,
-      "end": 45,
-      "pos": "Close Prom"
+      "turn": "",
+      "face": 90.0,
+      "end": 45.0,
+      "pos": "Close Prom",
+      "rot": -45.0
      },
      {
       "desc": "LF fwd and across",
@@ -38553,19 +38740,21 @@
      },
      {
       "desc": "RF fwd small step",
-      "align": "Facing DW",
-      "turn": "1/8 R",
-      "face": -45,
-      "end": -45,
-      "pos": "Close Opp"
+      "align": "Facing LOD",
+      "turn": "",
+      "face": 0,
+      "end": -22.5,
+      "pos": "Close Opp",
+      "rot": -22.5
      },
      {
       "desc": "LF to side",
       "align": "Facing DW",
-      "turn": "1/8 R",
-      "face": -45,
-      "end": -45,
-      "pos": "Close Cnt Prom"
+      "turn": "",
+      "face": -22.5,
+      "end": -45.0,
+      "pos": "Close Cnt Prom",
+      "rot": -22.5
      },
      {
       "desc": "RF fwd and across",
@@ -38672,18 +38861,20 @@
     "steps": [
      {
       "desc": "RF bwd and slightly to side",
-      "align": "Facing DW",
-      "turn": "3/8 L",
+      "align": "Facing W",
+      "turn": "",
       "face": -180,
-      "end": -45
+      "end": -112.5,
+      "rot": 67.5
      },
      {
       "desc": "LF to side and slightly fwd",
       "align": "Facing DW",
-      "turn": "3/8 L",
-      "face": -180,
-      "end": -45,
-      "pos": "R Diag Opp"
+      "turn": "",
+      "face": -112.5,
+      "end": -45.0,
+      "pos": "R Diag Opp",
+      "rot": 67.5
      }
     ],
     "preceding": [],
@@ -38691,18 +38882,20 @@
     "ladySteps": [
      {
       "desc": "LF fwd",
-      "align": "Backing DW",
-      "turn": "3/8 L",
+      "align": "Facing C",
+      "turn": "",
       "face": 0,
-      "end": 135
+      "end": 67.5,
+      "rot": 67.5
      },
      {
       "desc": "RF fwd and slightly bwd",
       "align": "Backing DW",
-      "turn": "3/8 L",
-      "face": 0,
-      "end": 135,
-      "pos": "R Diag Opp"
+      "turn": "",
+      "face": 67.5,
+      "end": 135.0,
+      "pos": "R Diag Opp",
+      "rot": 67.5
      }
     ]
    }
@@ -38868,17 +39061,19 @@
      },
      {
       "desc": "LF",
-      "align": "Backing DC",
+      "align": "Backing DW",
       "turn": "",
-      "face": 0,
-      "end": -135.0
+      "face": -90,
+      "end": 135.0,
+      "rot": -135.0
      },
      {
       "desc": "RF to side",
-      "align": "Facing C",
+      "align": "Facing LOD",
       "turn": "",
-      "face": -135.0,
-      "end": 90.0
+      "face": 135.0,
+      "end": 0.0,
+      "rot": -135.0
      },
      {
       "desc": "LF",
@@ -38895,17 +39090,19 @@
      },
      {
       "desc": "RF",
-      "align": "Backing DW",
+      "align": "Backing DC",
       "turn": "",
-      "face": 0,
-      "end": 135.0
+      "face": 90,
+      "end": -135.0,
+      "rot": 135.0
      },
      {
       "desc": "LF to side",
-      "align": "Facing W",
+      "align": "Facing LOD",
       "turn": "",
-      "face": 135.0,
-      "end": -90.0
+      "face": -135.0,
+      "end": 0.0,
+      "rot": 135.0
      },
      {
       "desc": "RF",
@@ -39024,35 +39221,39 @@
      },
      {
       "desc": "RF to side and slightly bwd",
-      "align": "Facing W",
-      "turn": "1/8 L",
+      "align": "Backing DC",
+      "turn": "",
       "face": -135,
-      "end": -90,
-      "pos": "Open Opp"
+      "end": -123.8,
+      "pos": "Open Opp",
+      "rot": 11.2
      },
      {
       "desc": "LF crosses in front of RF",
       "align": "Facing W",
-      "turn": "1/8 L",
-      "face": -135,
-      "end": -90,
-      "pos": "Open Opp"
+      "turn": "",
+      "face": -123.8,
+      "end": -112.5,
+      "pos": "Open Opp",
+      "rot": 11.2
      },
      {
       "desc": "RF to side",
       "align": "Facing W",
-      "turn": "1/8 L",
-      "face": -135,
-      "end": -90,
-      "pos": "Open Opp"
+      "turn": "",
+      "face": -112.5,
+      "end": -101.2,
+      "pos": "Open Opp",
+      "rot": 11.2
      },
      {
       "desc": "LF fwd",
       "align": "Facing W",
-      "turn": "1/8 L",
-      "face": -135,
-      "end": -90,
-      "pos": "Open Opp"
+      "turn": "",
+      "face": -101.2,
+      "end": -90.0,
+      "pos": "Open Opp",
+      "rot": 11.2
      }
     ],
     "preceding": [],
@@ -39060,35 +39261,39 @@
     "ladySteps": [
      {
       "desc": "RF to side and slightly bwd",
-      "align": "Backing DW",
-      "turn": "1/8 L",
+      "align": "Facing C",
+      "turn": "",
       "face": 90,
-      "end": 135,
-      "pos": "Open Opp"
+      "end": 101.2,
+      "pos": "Open Opp",
+      "rot": 11.2
      },
      {
       "desc": "LF crosses in front of RF",
-      "align": "Backing DW",
-      "turn": "1/8 L",
-      "face": 90,
-      "end": 135,
-      "pos": "Open Opp"
+      "align": "Facing C",
+      "turn": "",
+      "face": 101.2,
+      "end": 112.5,
+      "pos": "Open Opp",
+      "rot": 11.2
      },
      {
       "desc": "RF to side",
       "align": "Backing DW",
-      "turn": "1/8 L",
-      "face": 90,
-      "end": 135,
-      "pos": "Open Opp"
+      "turn": "",
+      "face": 112.5,
+      "end": 123.8,
+      "pos": "Open Opp",
+      "rot": 11.2
      },
      {
       "desc": "LF fwd",
       "align": "Backing DW",
-      "turn": "1/8 L",
-      "face": 90,
-      "end": 135,
-      "pos": "Open Opp"
+      "turn": "",
+      "face": 123.8,
+      "end": 135.0,
+      "pos": "Open Opp",
+      "rot": 11.2
      },
      {
       "desc": "LF to side and slightly bwd",
@@ -41914,19 +42119,23 @@
      },
      {
       "desc": "RF in place",
-      "align": "Backing DC",
-      "turn": "1/8 L",
+      "align": "Facing W",
+      "turn": "",
       "face": -135,
       "timing": "3",
-      "pos": "L Diag Opp"
+      "pos": "L Diag Opp",
+      "end": -112.5,
+      "rot": 22.5
      },
      {
       "desc": "LF to side",
-      "align": "Backing DC",
-      "turn": "1/8 L",
-      "face": -135,
+      "align": "Facing W",
+      "turn": "",
+      "face": -112.5,
       "timing": "4",
-      "pos": "Open Opp"
+      "pos": "Open Opp",
+      "end": -90.0,
+      "rot": 22.5
      },
      {
       "desc": "RF",
@@ -43267,30 +43476,33 @@
      },
      {
       "desc": "LF bwd",
-      "align": "Backing LOD",
-      "turn": "1/8 L",
+      "align": "Backing DW",
+      "turn": "",
       "face": 135,
-      "end": -180,
+      "end": 150.0,
       "timing": "4",
-      "pos": "L Side L Angle"
+      "pos": "L Side L Angle",
+      "rot": 15.0
      },
      {
       "desc": "RF crosses in front of LF",
       "align": "Backing LOD",
-      "turn": "1/8 L",
-      "face": 135,
-      "end": -180,
+      "turn": "",
+      "face": 150.0,
+      "end": 165.0,
       "timing": "&",
-      "pos": "L Side L Angle"
+      "pos": "L Side L Angle",
+      "rot": 15.0
      },
      {
       "desc": "LF bwd",
       "align": "Backing LOD",
-      "turn": "1/8 L",
-      "face": 135,
-      "end": -180,
+      "turn": "",
+      "face": 165.0,
+      "end": -180.0,
       "timing": "1",
-      "pos": "Fan L Angle"
+      "pos": "Fan L Angle",
+      "rot": 15.0
      }
     ]
    }
@@ -43641,30 +43853,33 @@
      },
      {
       "desc": "LF bwd",
-      "align": "Backing LOD",
-      "turn": "1/8 L",
+      "align": "Backing DW",
+      "turn": "",
       "face": 135,
-      "end": -180,
+      "end": 150.0,
       "timing": "4",
-      "pos": "L Side L Angle"
+      "pos": "L Side L Angle",
+      "rot": 15.0
      },
      {
       "desc": "RF crosses in front of LF",
       "align": "Backing LOD",
-      "turn": "1/8 L",
-      "face": 135,
-      "end": -180,
+      "turn": "",
+      "face": 150.0,
+      "end": 165.0,
       "timing": "&",
-      "pos": "L Side L Angle"
+      "pos": "L Side L Angle",
+      "rot": 15.0
      },
      {
       "desc": "LF bwd",
       "align": "Backing LOD",
-      "turn": "1/8 L",
-      "face": 135,
-      "end": -180,
+      "turn": "",
+      "face": 165.0,
+      "end": -180.0,
       "timing": "1",
-      "pos": "Fan L Angle"
+      "pos": "Fan L Angle",
+      "rot": 15.0
      }
     ]
    }
@@ -43803,20 +44018,22 @@
      },
      {
       "desc": "LF in place",
-      "align": "Facing LOD",
-      "turn": "3/8 L",
+      "align": "Facing W",
+      "turn": "",
       "face": -135,
-      "end": 0,
-      "pos": "L Diag R Angle then L Side L Angle"
+      "end": -67.5,
+      "pos": "L Diag R Angle then L Side L Angle",
+      "rot": 67.5
      },
      {
       "desc": "RF to side",
       "align": "Facing LOD",
-      "turn": "3/8 L",
-      "face": -135,
-      "end": 0,
+      "turn": "",
+      "face": -67.5,
+      "end": 0.0,
       "timing": "4",
-      "pos": "Open Opp"
+      "pos": "Open Opp",
+      "rot": 67.5
      },
      {
       "desc": "LF",
@@ -44154,26 +44371,32 @@
      {
       "desc": "LF bwd",
       "align": "Backing LOD",
-      "turn": "1/8 L",
+      "turn": "",
       "face": -180,
       "timing": "4",
-      "pos": "L Side L Angle"
+      "pos": "L Side L Angle",
+      "end": -165.0,
+      "rot": 15.0
      },
      {
       "desc": "RF crosses in front of LF",
-      "align": "Backing LOD",
-      "turn": "1/8 L",
-      "face": -180,
+      "align": "Backing DC",
+      "turn": "",
+      "face": -165.0,
       "timing": "&",
-      "pos": "L Side L Angle"
+      "pos": "L Side L Angle",
+      "end": -150.0,
+      "rot": 15.0
      },
      {
       "desc": "LF bwd",
-      "align": "Backing LOD",
-      "turn": "1/8 L",
-      "face": -180,
+      "align": "Backing DC",
+      "turn": "",
+      "face": -150.0,
       "timing": "1",
-      "pos": "Fan L Angle"
+      "pos": "Fan L Angle",
+      "end": -135.0,
+      "rot": 15.0
      }
     ]
    }
@@ -44399,7 +44622,8 @@
       "face": 0,
       "end": 90.0,
       "timing": "3",
-      "pos": "L Diag R Angle then Open Opp"
+      "pos": "L Diag R Angle then Open Opp",
+      "rot": 90.0
      },
      {
       "desc": "LF to side",
@@ -44408,7 +44632,8 @@
       "face": 90.0,
       "end": -180.0,
       "timing": "4",
-      "pos": "Open Opp"
+      "pos": "Open Opp",
+      "rot": 90.0
      },
      {
       "desc": "RF",
@@ -44532,20 +44757,22 @@
      {
       "desc": "RF bwd",
       "align": "Backing DC",
-      "turn": "1/8 R",
+      "turn": "",
       "face": -120,
-      "end": -135,
+      "end": -142.5,
       "timing": "2",
-      "pos": "Open Same"
+      "pos": "Open Same",
+      "rot": -22.5
      },
      {
       "desc": "LF in place",
-      "align": "Backing DC",
-      "turn": "1/8 R",
-      "face": -135,
-      "end": -135,
+      "align": "Backing LOD",
+      "turn": "",
+      "face": -142.5,
+      "end": -165.0,
       "timing": "3",
-      "pos": "Open Same then Open Opp"
+      "pos": "Open Same then Open Opp",
+      "rot": -22.5
      },
      {
       "desc": "RF fwd",
@@ -44720,26 +44947,32 @@
      {
       "desc": "LF bwd",
       "align": "Facing DC",
-      "turn": "1/8 L",
+      "turn": "",
       "face": 45,
       "timing": "4",
-      "pos": "Open Opp"
+      "pos": "Open Opp",
+      "end": 60.0,
+      "rot": 15.0
      },
      {
       "desc": "RF crosses in front of LF",
-      "align": "Facing DC",
-      "turn": "1/8 L",
-      "face": 45,
+      "align": "Facing C",
+      "turn": "",
+      "face": 60.0,
       "timing": "&",
-      "pos": "Open Opp"
+      "pos": "Open Opp",
+      "end": 75.0,
+      "rot": 15.0
      },
      {
       "desc": "LF bwd",
-      "align": "Facing DC",
-      "turn": "1/8 L",
-      "face": 45,
+      "align": "Facing C",
+      "turn": "",
+      "face": 75.0,
       "timing": "1",
-      "pos": "Open Opp"
+      "pos": "Open Opp",
+      "end": 90.0,
+      "rot": 15.0
      }
     ]
    }
@@ -44945,7 +45178,8 @@
       "face": -135,
       "end": -22.5,
       "timing": "3.&",
-      "pos": "L Diag Same then L Diag Opp"
+      "pos": "L Diag Same then L Diag Opp",
+      "rot": 112.5
      },
      {
       "desc": "LF to side",
@@ -44954,7 +45188,8 @@
       "face": -22.5,
       "end": 90.0,
       "timing": "4",
-      "pos": "Open Opp"
+      "pos": "Open Opp",
+      "rot": 112.5
      },
      {
       "desc": "RF",
@@ -45643,98 +45878,112 @@
       "desc": "RF crosses behind LF",
       "align": "Backing LOD",
       "turn": "",
-      "face": -162.0
+      "face": -162.0,
+      "rot": -72.0
      },
      {
       "desc": "LF to side",
       "align": "Backing DW",
       "turn": "",
       "timing": "3",
-      "face": 126.0
+      "face": 126.0,
+      "rot": -72.0
      },
      {
       "desc": "RF crosses in front of LF",
       "align": "Facing DC",
       "turn": "",
       "timing": "4",
-      "face": 54.0
+      "face": 54.0,
+      "rot": -72.0
      },
      {
       "desc": "LF to side and slightly bwd",
       "align": "Facing LOD",
       "turn": "",
       "timing": "&",
-      "face": -18.0
+      "face": -18.0,
+      "rot": -72.0
      },
      {
       "desc": "RF crosses in front of LF",
       "align": "Facing W",
       "turn": "",
       "timing": "1",
-      "face": -90.0
+      "face": -90.0,
+      "rot": -72.0
      },
      {
       "desc": "LF to side and slightly fwd",
       "align": "Backing LOD",
       "turn": "",
       "timing": "2",
-      "face": -162.0
+      "face": -162.0,
+      "rot": -72.0
      },
      {
       "desc": "RF crosses behind LF",
       "align": "Backing DW",
       "turn": "",
       "timing": "3",
-      "face": 126.0
+      "face": 126.0,
+      "rot": -72.0
      },
      {
       "desc": "LF to side",
       "align": "Facing DC",
       "turn": "",
       "timing": "4",
-      "face": 54.0
+      "face": 54.0,
+      "rot": -72.0
      },
      {
       "desc": "RF",
       "align": "Facing LOD",
       "turn": "",
       "timing": "&",
-      "face": -18.0
+      "face": -18.0,
+      "rot": -72.0
      },
      {
       "desc": "LF to side and slightly fwd",
       "align": "Facing W",
       "turn": "",
       "timing": "1",
-      "face": -90.0
+      "face": -90.0,
+      "rot": -72.0
      },
      {
       "desc": "RF crosses behind LF",
       "align": "Backing LOD",
       "turn": "",
       "timing": "2",
-      "face": -162.0
+      "face": -162.0,
+      "rot": -72.0
      },
      {
       "desc": "LF to side",
       "align": "Backing DW",
       "turn": "",
       "timing": "3",
-      "face": 126.0
+      "face": 126.0,
+      "rot": -72.0
      },
      {
       "desc": "RF fwd and across",
       "align": "Facing DC",
       "turn": "",
       "timing": "4",
-      "face": 54.0
+      "face": 54.0,
+      "rot": -72.0
      },
      {
       "desc": "LF crosses behind RF",
       "align": "Facing LOD",
       "turn": "",
       "timing": "&",
-      "face": -18.0
+      "face": -18.0,
+      "rot": -72.0
      },
      {
       "desc": "RF fwd and across",
@@ -45787,7 +46036,8 @@
       "turn": "",
       "timing": "2",
       "pos": "Close Opp",
-      "face": 18.0
+      "face": 18.0,
+      "rot": -72.0
      },
      {
       "desc": "RF fwd and across",
@@ -45795,21 +46045,24 @@
       "turn": "",
       "timing": "3",
       "pos": "Close Opp",
-      "face": -54.0
+      "face": -54.0,
+      "rot": -72.0
      },
      {
       "desc": "LF to side and slightly bwd",
       "align": "Backing DC",
       "turn": "",
       "pos": "Close Opp",
-      "face": -126.0
+      "face": -126.0,
+      "rot": -72.0
      },
      {
       "desc": "RF crosses in front of LF",
       "align": "Backing LOD",
       "turn": "",
       "pos": "Close Opp",
-      "face": 162.0
+      "face": 162.0,
+      "rot": -72.0
      },
      {
       "desc": "LF to side and slightly bwd",
@@ -45817,7 +46070,8 @@
       "turn": "",
       "timing": "a",
       "pos": "Close Opp",
-      "face": 90.0
+      "face": 90.0,
+      "rot": -72.0
      },
      {
       "desc": "RF fwd and across",
@@ -45825,7 +46079,8 @@
       "turn": "",
       "timing": "2",
       "pos": "Close Opp",
-      "face": 18.0
+      "face": 18.0,
+      "rot": -72.0
      },
      {
       "desc": "LF to side and slightly bwd",
@@ -45833,7 +46088,8 @@
       "turn": "",
       "timing": "3",
       "pos": "Close Opp",
-      "face": -54.0
+      "face": -54.0,
+      "rot": -72.0
      },
      {
       "desc": "RF crosses in front of LF",
@@ -45841,7 +46097,8 @@
       "turn": "",
       "timing": "4",
       "pos": "Close Opp",
-      "face": -126.0
+      "face": -126.0,
+      "rot": -72.0
      },
      {
       "desc": "LF to side and slightly bwd",
@@ -45849,7 +46106,8 @@
       "turn": "",
       "timing": "&",
       "pos": "Close Opp",
-      "face": 162.0
+      "face": 162.0,
+      "rot": -72.0
      },
      {
       "desc": "RF crosses in front of LF",
@@ -45857,7 +46115,8 @@
       "turn": "",
       "timing": "1",
       "pos": "Close Opp",
-      "face": 90.0
+      "face": 90.0,
+      "rot": -72.0
      },
      {
       "desc": "LF to side and slightly bwd",
@@ -45865,7 +46124,8 @@
       "turn": "",
       "timing": "2",
       "pos": "Close Opp",
-      "face": 18.0
+      "face": 18.0,
+      "rot": -72.0
      },
      {
       "desc": "RF fwd and across",
@@ -45873,7 +46133,8 @@
       "turn": "",
       "timing": "3",
       "pos": "Close Opp",
-      "face": -54.0
+      "face": -54.0,
+      "rot": -72.0
      },
      {
       "desc": "LF fwd and across",
@@ -45881,7 +46142,8 @@
       "turn": "",
       "timing": "4",
       "pos": "R Diag Opp",
-      "face": -126.0
+      "face": -126.0,
+      "rot": -72.0
      },
      {
       "desc": "RF crosses behind LF",
@@ -45889,7 +46151,8 @@
       "turn": "",
       "timing": "&",
       "pos": "R Diag Opp",
-      "face": 162.0
+      "face": 162.0,
+      "rot": -72.0
      },
      {
       "desc": "LF fwd and across",
@@ -45996,26 +46259,29 @@
      },
      {
       "desc": "LF bwd and slightly to side",
-      "align": "Facing DW",
-      "turn": "1/8 L",
+      "align": "Facing W",
+      "turn": "",
       "face": -90,
-      "end": -45
+      "end": -75.0,
+      "rot": 15.0
      },
      {
       "desc": "RF",
       "align": "Facing DW",
-      "turn": "1/8 L",
-      "face": -90,
-      "end": -45,
-      "timing": "&"
+      "turn": "",
+      "face": -75.0,
+      "end": -60.0,
+      "timing": "&",
+      "rot": 15.0
      },
      {
       "desc": "LF to side",
       "align": "Facing DW",
-      "turn": "1/8 L",
-      "face": -90,
-      "end": -45,
-      "timing": "1"
+      "turn": "",
+      "face": -60.0,
+      "end": -45.0,
+      "timing": "1",
+      "rot": 15.0
      },
      {
       "desc": "RF in place",
@@ -46027,20 +46293,22 @@
      },
      {
       "desc": "LF in place",
-      "align": "Facing C",
-      "turn": "1/4 L",
+      "align": "Facing DC",
+      "turn": "",
       "face": 0,
-      "end": 90,
+      "end": 45.0,
       "timing": "3",
-      "pos": "L Diag R Angle then Open Opp"
+      "pos": "L Diag R Angle then Open Opp",
+      "rot": 45.0
      },
      {
       "desc": "RF to side",
       "align": "Facing C",
-      "turn": "1/4 L",
-      "face": 0,
-      "end": 90,
-      "timing": "4"
+      "turn": "",
+      "face": 45.0,
+      "end": 90.0,
+      "timing": "4",
+      "rot": 45.0
      },
      {
       "desc": "LF",
@@ -46198,21 +46466,23 @@
      },
      {
       "desc": "RF to side and slightly fwd",
-      "align": "Backing DW",
-      "turn": "1/8 L",
+      "align": "Facing C",
+      "turn": "",
       "face": 90,
-      "end": 135,
+      "end": 112.5,
       "timing": "4",
-      "pos": "Close Opp then R Diag R Angle"
+      "pos": "Close Opp then R Diag R Angle",
+      "rot": 22.5
      },
      {
       "desc": "LF",
       "align": "Backing DW",
-      "turn": "1/8 L",
-      "face": 90,
-      "end": 135,
+      "turn": "",
+      "face": 112.5,
+      "end": 135.0,
       "timing": "&",
-      "pos": "Close Opp then R Diag R Angle"
+      "pos": "Close Opp then R Diag R Angle",
+      "rot": 22.5
      },
      {
       "desc": "RF to side and slightly fwd",
@@ -46360,30 +46630,33 @@
      },
      {
       "desc": "LF bwd and slightly to side",
-      "align": "Facing DW",
-      "turn": "1/8 L",
+      "align": "Facing W",
+      "turn": "",
       "face": -90,
-      "end": -45,
+      "end": -75.0,
       "timing": "4",
-      "pos": "Close Opp then R Diag R Angle"
+      "pos": "Close Opp then R Diag R Angle",
+      "rot": 15.0
      },
      {
       "desc": "RF",
       "align": "Facing DW",
-      "turn": "1/8 L",
-      "face": -90,
-      "end": -45,
+      "turn": "",
+      "face": -75.0,
+      "end": -60.0,
       "timing": "&",
-      "pos": "Close Opp then R Diag R Angle"
+      "pos": "Close Opp then R Diag R Angle",
+      "rot": 15.0
      },
      {
       "desc": "LF to side",
       "align": "Facing DW",
-      "turn": "1/8 L",
-      "face": -90,
-      "end": -45,
+      "turn": "",
+      "face": -60.0,
+      "end": -45.0,
       "timing": "1",
-      "pos": "Close R Angle then Close Same"
+      "pos": "Close R Angle then Close Same",
+      "rot": 15.0
      },
      {
       "desc": "RF crosses behind LF",
@@ -46395,21 +46668,23 @@
      },
      {
       "desc": "LF diag fwd",
-      "align": "Facing C",
-      "turn": "1/4 L",
+      "align": "Facing DC",
+      "turn": "",
       "face": 0,
-      "end": 90,
+      "end": 45.0,
       "timing": "3",
-      "pos": "L Diag R Angle then Open Opp"
+      "pos": "L Diag R Angle then Open Opp",
+      "rot": 45.0
      },
      {
       "desc": "RF to side",
       "align": "Facing C",
-      "turn": "1/4 L",
-      "face": 0,
-      "end": 90,
+      "turn": "",
+      "face": 45.0,
+      "end": 90.0,
       "timing": "4",
-      "pos": "Open Opp then Close Opp"
+      "pos": "Open Opp then Close Opp",
+      "rot": 45.0
      },
      {
       "desc": "LF",
@@ -46601,29 +46876,32 @@
      },
      {
       "desc": "RF fwd and slightly to side",
-      "align": "Backing DC",
-      "turn": "1/8 R",
+      "align": "Facing W",
+      "turn": "",
       "face": -90,
-      "end": -135,
-      "pos": "Close Opp then R Diag R Angle"
+      "end": -105.0,
+      "pos": "Close Opp then R Diag R Angle",
+      "rot": -15.0
      },
      {
       "desc": "LF crosses behind RF",
       "align": "Backing DC",
-      "turn": "1/8 R",
-      "face": -90,
-      "end": -135,
+      "turn": "",
+      "face": -105.0,
+      "end": -120.0,
       "timing": "&",
-      "pos": "Close Opp then R Diag R Angle"
+      "pos": "Close Opp then R Diag R Angle",
+      "rot": -15.0
      },
      {
       "desc": "RF fwd and slightly to side",
       "align": "Backing DC",
-      "turn": "1/8 R",
-      "face": -90,
-      "end": -135,
+      "turn": "",
+      "face": -120.0,
+      "end": -135.0,
       "timing": "1",
-      "pos": "Close Opp then R Diag R Angle"
+      "pos": "Close Opp then R Diag R Angle",
+      "rot": -15.0
      },
      {
       "desc": "LF fwd",
@@ -46646,26 +46924,32 @@
      {
       "desc": "LF bwd",
       "align": "Facing DC",
-      "turn": "1/8 L",
+      "turn": "",
       "face": 45,
       "timing": "4",
-      "pos": "Open Opp"
+      "pos": "Open Opp",
+      "end": 60.0,
+      "rot": 15.0
      },
      {
       "desc": "RF crosses in front of LF",
-      "align": "Facing DC",
-      "turn": "1/8 L",
-      "face": 45,
+      "align": "Facing C",
+      "turn": "",
+      "face": 60.0,
       "timing": "&",
-      "pos": "Open Opp"
+      "pos": "Open Opp",
+      "end": 75.0,
+      "rot": 15.0
      },
      {
       "desc": "LF bwd",
-      "align": "Facing DC",
-      "turn": "1/8 L",
-      "face": 45,
+      "align": "Facing C",
+      "turn": "",
+      "face": 75.0,
       "timing": "1",
-      "pos": "Open Opp"
+      "pos": "Open Opp",
+      "end": 90.0,
+      "rot": 15.0
      }
     ]
    }
@@ -46874,18 +47158,20 @@
      },
      {
       "desc": "RF in place",
-      "align": "Facing LOD",
-      "turn": "1/4 L",
+      "align": "Facing DW",
+      "turn": "",
       "face": -90,
-      "end": 0
+      "end": -45.0,
+      "rot": 45.0
      },
      {
       "desc": "LF to side",
       "align": "Facing LOD",
-      "turn": "1/4 L",
-      "face": -90,
-      "end": 0,
-      "pos": "Open Opp"
+      "turn": "",
+      "face": -45.0,
+      "end": 0.0,
+      "pos": "Open Opp",
+      "rot": 45.0
      }
     ],
     "preceding": [],
@@ -46900,19 +47186,21 @@
      },
      {
       "desc": "LF in place",
-      "align": "Backing LOD",
-      "turn": "1/4 R",
+      "align": "Backing DC",
+      "turn": "",
       "face": -90,
-      "end": -180,
-      "pos": "L Side Same"
+      "end": -135.0,
+      "pos": "L Side Same",
+      "rot": -45.0
      },
      {
       "desc": "RF to side",
       "align": "Backing LOD",
-      "turn": "1/4 R",
-      "face": -90,
-      "end": -180,
-      "pos": "Open Opp"
+      "turn": "",
+      "face": -135.0,
+      "end": -180.0,
+      "pos": "Open Opp",
+      "rot": -45.0
      }
     ]
    }
@@ -46995,18 +47283,20 @@
      },
      {
       "desc": "LF in place",
-      "align": "Facing LOD",
-      "turn": "1/4 R",
+      "align": "Facing DC",
+      "turn": "",
       "face": 90,
-      "end": 0
+      "end": 45.0,
+      "rot": -45.0
      },
      {
       "desc": "RF to side",
       "align": "Facing LOD",
-      "turn": "1/4 R",
-      "face": 90,
-      "end": 0,
-      "pos": "Open Opp"
+      "turn": "",
+      "face": 45.0,
+      "end": 0.0,
+      "pos": "Open Opp",
+      "rot": -45.0
      }
     ],
     "preceding": [],
@@ -47021,19 +47311,21 @@
      },
      {
       "desc": "RF in place",
-      "align": "Backing LOD",
-      "turn": "1/4 L",
+      "align": "Backing DW",
+      "turn": "",
       "face": 90,
-      "end": -180,
-      "pos": "R Side Same"
+      "end": 135.0,
+      "pos": "R Side Same",
+      "rot": 45.0
      },
      {
       "desc": "LF to side",
       "align": "Backing LOD",
-      "turn": "1/4 L",
-      "face": 90,
-      "end": -180,
-      "pos": "Open Opp"
+      "turn": "",
+      "face": 135.0,
+      "end": -180.0,
+      "pos": "Open Opp",
+      "rot": 45.0
      }
     ]
    }
@@ -47110,20 +47402,22 @@
      },
      {
       "desc": "RF in place",
-      "align": "Facing LOD",
-      "turn": "1/4 L",
+      "align": "Facing DW",
+      "turn": "",
       "face": -90,
-      "end": 0,
-      "pos": "L Side Same"
+      "end": -45.0,
+      "pos": "L Side Same",
+      "rot": 45.0
      },
      {
       "desc": "LF to side",
       "align": "Facing LOD",
-      "turn": "1/4 L",
-      "face": -90,
-      "end": 0,
+      "turn": "",
+      "face": -45.0,
+      "end": 0.0,
       "timing": "3",
-      "pos": "Open Opp"
+      "pos": "Open Opp",
+      "rot": 45.0
      },
      {
       "desc": "RF in place",
@@ -47143,20 +47437,22 @@
      },
      {
       "desc": "RF in place",
-      "align": "Facing LOD",
-      "turn": "1/4 L",
+      "align": "Facing DW",
+      "turn": "",
       "face": -90,
-      "end": 0,
-      "pos": "L Side Same"
+      "end": -45.0,
+      "pos": "L Side Same",
+      "rot": 45.0
      },
      {
       "desc": "LF to side",
       "align": "Facing LOD",
-      "turn": "1/4 L",
-      "face": -90,
-      "end": 0,
+      "turn": "",
+      "face": -45.0,
+      "end": 0.0,
       "timing": "1",
-      "pos": "Open Opp"
+      "pos": "Open Opp",
+      "rot": 45.0
      }
     ],
     "preceding": [],
@@ -47172,20 +47468,22 @@
      },
      {
       "desc": "LF in place",
-      "align": "Backing LOD",
-      "turn": "1/4 R",
+      "align": "Backing DC",
+      "turn": "",
       "face": -90,
-      "end": -180,
-      "pos": "L Side Same"
+      "end": -135.0,
+      "pos": "L Side Same",
+      "rot": -45.0
      },
      {
       "desc": "RF to side",
       "align": "Backing LOD",
-      "turn": "1/4 R",
-      "face": -90,
-      "end": -180,
+      "turn": "",
+      "face": -135.0,
+      "end": -180.0,
       "timing": "3",
-      "pos": "Open Opp"
+      "pos": "Open Opp",
+      "rot": -45.0
      },
      {
       "desc": "LF in place",
@@ -47205,20 +47503,22 @@
      },
      {
       "desc": "LF in place",
-      "align": "Backing LOD",
-      "turn": "1/4 R",
+      "align": "Backing DC",
+      "turn": "",
       "face": -90,
-      "end": -180,
-      "pos": "L Side Same"
+      "end": -135.0,
+      "pos": "L Side Same",
+      "rot": -45.0
      },
      {
       "desc": "RF to side",
       "align": "Backing LOD",
-      "turn": "1/4 R",
-      "face": -90,
-      "end": -180,
+      "turn": "",
+      "face": -135.0,
+      "end": -180.0,
       "timing": "1",
-      "pos": "Open Opp"
+      "pos": "Open Opp",
+      "rot": -45.0
      }
     ]
    }
@@ -47294,19 +47594,21 @@
      },
      {
       "desc": "LF in place",
-      "align": "Facing LOD",
-      "turn": "1/4 R",
+      "align": "Facing DC",
+      "turn": "",
       "face": 90,
-      "end": 0
+      "end": 45.0,
+      "rot": -45.0
      },
      {
       "desc": "RF to side",
       "align": "Facing LOD",
-      "turn": "1/4 R",
-      "face": 90,
-      "end": 0,
+      "turn": "",
+      "face": 45.0,
+      "end": 0.0,
       "timing": "3",
-      "pos": "Open Opp"
+      "pos": "Open Opp",
+      "rot": -45.0
      },
      {
       "desc": "LF in place",
@@ -47326,20 +47628,22 @@
      },
      {
       "desc": "LF in place",
-      "align": "Facing LOD",
-      "turn": "1/4 R",
+      "align": "Facing DC",
+      "turn": "",
       "face": 90,
-      "end": 0,
-      "pos": "R Side Same"
+      "end": 45.0,
+      "pos": "R Side Same",
+      "rot": -45.0
      },
      {
       "desc": "RF to side",
       "align": "Facing LOD",
-      "turn": "1/4 R",
-      "face": 90,
-      "end": 0,
+      "turn": "",
+      "face": 45.0,
+      "end": 0.0,
       "timing": "1",
-      "pos": "Open Opp"
+      "pos": "Open Opp",
+      "rot": -45.0
      }
     ],
     "preceding": [],
@@ -47354,18 +47658,20 @@
      },
      {
       "desc": "RF in place",
-      "align": "Backing LOD",
-      "turn": "1/4 L",
+      "align": "Backing DW",
+      "turn": "",
       "face": 90,
-      "end": -180
+      "end": 135.0,
+      "rot": 45.0
      },
      {
       "desc": "LF to side",
       "align": "Backing LOD",
-      "turn": "1/4 L",
-      "face": 90,
-      "end": -180,
-      "timing": "3"
+      "turn": "",
+      "face": 135.0,
+      "end": -180.0,
+      "timing": "3",
+      "rot": 45.0
      },
      {
       "desc": "RF in place",
@@ -47383,18 +47689,20 @@
      },
      {
       "desc": "RF in place",
-      "align": "Backing LOD",
-      "turn": "1/4 L",
+      "align": "Backing DW",
+      "turn": "",
       "face": 90,
-      "end": -180
+      "end": 135.0,
+      "rot": 45.0
      },
      {
       "desc": "LF to side",
       "align": "Backing LOD",
-      "turn": "1/4 L",
-      "face": 90,
-      "end": -180,
-      "timing": "1"
+      "turn": "",
+      "face": 135.0,
+      "end": -180.0,
+      "timing": "1",
+      "rot": 45.0
      }
     ]
    }
@@ -47519,19 +47827,21 @@
      },
      {
       "desc": "LF in place",
-      "align": "Facing LOD",
-      "turn": "1/4 L",
+      "align": "Facing DW",
+      "turn": "",
       "face": -90,
-      "end": 0,
-      "pos": "L Diag L Angle then Diag Same"
+      "end": -45.0,
+      "pos": "L Diag L Angle then Diag Same",
+      "rot": 45.0
      },
      {
       "desc": "RF to side",
       "align": "Facing LOD",
-      "turn": "1/4 L",
-      "face": -90,
-      "end": 0,
-      "timing": "4"
+      "turn": "",
+      "face": -45.0,
+      "end": 0.0,
+      "timing": "4",
+      "rot": 45.0
      },
      {
       "desc": "LF",
@@ -47760,19 +48070,21 @@
      },
      {
       "desc": "LF in place",
-      "align": "Facing LOD",
-      "turn": "1/4 L",
+      "align": "Facing DW",
+      "turn": "",
       "face": -90,
-      "end": 0,
-      "pos": "L Diag L Angle"
+      "end": -45.0,
+      "pos": "L Diag L Angle",
+      "rot": 45.0
      },
      {
       "desc": "RF to side",
       "align": "Facing LOD",
-      "turn": "1/4 L",
-      "face": -90,
-      "end": 0,
-      "timing": "4"
+      "turn": "",
+      "face": -45.0,
+      "end": 0.0,
+      "timing": "4",
+      "rot": 45.0
      },
      {
       "desc": "LF",
@@ -48242,13 +48554,15 @@
       "desc": "",
       "align": "Facing C",
       "turn": "",
-      "face": 90.0
+      "face": 90.0,
+      "rot": -45.0
      },
      {
       "desc": "",
       "align": "Facing DC",
       "turn": "",
-      "face": 45.0
+      "face": 45.0,
+      "rot": -45.0
      },
      {
       "desc": "LF to side",
@@ -48716,25 +49030,28 @@
      },
      {
       "desc": "RF to side",
-      "align": "Facing DW",
+      "align": "Backing DW",
       "turn": "",
-      "face": -90,
-      "end": -30.0
+      "face": 90,
+      "end": 150.0,
+      "rot": 60.0
      },
      {
       "desc": "LF",
-      "align": "Facing DC",
+      "align": "Backing DC",
       "turn": "",
-      "face": -30.0,
-      "end": 30.0
+      "face": 150.0,
+      "end": -150.0,
+      "rot": 60.0
      },
      {
       "desc": "RF to side",
-      "align": "Facing C",
+      "align": "Facing W",
       "turn": "",
-      "face": 30.0,
-      "end": 90.0,
-      "timing": "1"
+      "face": -150.0,
+      "end": -90.0,
+      "timing": "1",
+      "rot": 60.0
      },
      {
       "desc": "LF bwd",
@@ -48967,7 +49284,8 @@
       "turn": "",
       "face": 45,
       "end": -45.0,
-      "timing": "2"
+      "timing": "2",
+      "rot": -90.0
      },
      {
       "desc": "RF in place",
@@ -48976,7 +49294,8 @@
       "face": -45.0,
       "end": -135.0,
       "timing": "3",
-      "pos": "Ex Open Same"
+      "pos": "Ex Open Same",
+      "rot": -90.0
      },
      {
       "desc": "LF fwd",
@@ -49009,7 +49328,8 @@
       "face": -135,
       "end": -45.0,
       "timing": "2",
-      "pos": "Ex Open Same"
+      "pos": "Ex Open Same",
+      "rot": 90.0
      },
      {
       "desc": "",
@@ -49017,7 +49337,8 @@
       "turn": "",
       "face": -45.0,
       "end": 45.0,
-      "timing": "3"
+      "timing": "3",
+      "rot": 90.0
      },
      {
       "desc": "",
@@ -49272,7 +49593,8 @@
       "turn": "",
       "face": 45,
       "end": -45.0,
-      "timing": "2"
+      "timing": "2",
+      "rot": -90.0
      },
      {
       "desc": "",
@@ -49281,7 +49603,8 @@
       "face": -45.0,
       "end": -135.0,
       "timing": "3",
-      "pos": "Ex Open Same"
+      "pos": "Ex Open Same",
+      "rot": -90.0
      },
      {
       "desc": "",
@@ -49314,7 +49637,8 @@
       "face": -135,
       "end": -45.0,
       "timing": "2",
-      "pos": "Ex Open Same"
+      "pos": "Ex Open Same",
+      "rot": 90.0
      },
      {
       "desc": "",
@@ -49322,7 +49646,8 @@
       "turn": "",
       "face": -45.0,
       "end": 45.0,
-      "timing": "3"
+      "timing": "3",
+      "rot": 90.0
      },
      {
       "desc": "",
@@ -49613,14 +49938,16 @@
       "align": "Facing DC",
       "turn": "",
       "timing": "4",
-      "face": 45.0
+      "face": 45.0,
+      "rot": -15.0
      },
      {
       "desc": "LF crosses behind RF",
       "align": "Facing DC",
       "turn": "",
       "timing": "&",
-      "face": 30.0
+      "face": 30.0,
+      "rot": -15.0
      },
      {
       "desc": "RF fwd",
@@ -49992,26 +50319,32 @@
      {
       "desc": "LF bwd",
       "align": "Backing LOD",
-      "turn": "1/8 L",
+      "turn": "",
       "face": -180,
       "timing": "4",
-      "pos": "L Side L Angle"
+      "pos": "L Side L Angle",
+      "end": -165.0,
+      "rot": 15.0
      },
      {
       "desc": "RF crosses in front of LF",
-      "align": "Backing LOD",
-      "turn": "1/8 L",
-      "face": -180,
+      "align": "Backing DC",
+      "turn": "",
+      "face": -165.0,
       "timing": "&",
-      "pos": "L Side L Angle"
+      "pos": "L Side L Angle",
+      "end": -150.0,
+      "rot": 15.0
      },
      {
       "desc": "LF bwd",
-      "align": "Backing LOD",
-      "turn": "1/8 L",
-      "face": -180,
+      "align": "Backing DC",
+      "turn": "",
+      "face": -150.0,
       "timing": "1",
-      "pos": "Fan L Angle"
+      "pos": "Fan L Angle",
+      "end": -135.0,
+      "rot": 15.0
      }
     ]
    }
@@ -50209,82 +50542,92 @@
      {
       "desc": "RF fwd",
       "align": "Backing DW",
-      "turn": "1/8 R",
+      "turn": "",
       "face": 135,
-      "end": 135,
-      "timing": "2"
+      "end": 130.5,
+      "timing": "2",
+      "rot": -4.5
      },
      {
       "desc": "LF fwd",
       "align": "Backing DW",
-      "turn": "1/8 R",
-      "face": 135,
-      "end": 135,
-      "timing": "3"
+      "turn": "",
+      "face": 130.5,
+      "end": 126.0,
+      "timing": "3",
+      "rot": -4.5
      },
      {
       "desc": "RF fwd",
       "align": "Backing DW",
-      "turn": "1/8 R",
-      "face": 135,
-      "end": 135,
-      "timing": "4"
+      "turn": "",
+      "face": 126.0,
+      "end": 121.5,
+      "timing": "4",
+      "rot": -4.5
      },
      {
       "desc": "LF crosses behind RF",
       "align": "Backing DW",
-      "turn": "1/8 R",
-      "face": 135,
-      "end": 135,
-      "timing": "&"
+      "turn": "",
+      "face": 121.5,
+      "end": 117.0,
+      "timing": "&",
+      "rot": -4.5
      },
      {
       "desc": "RF fwd",
-      "align": "Backing DW",
-      "turn": "1/8 R",
-      "face": 135,
-      "end": 135,
-      "timing": "1"
+      "align": "Facing C",
+      "turn": "",
+      "face": 117.0,
+      "end": 112.5,
+      "timing": "1",
+      "rot": -4.5
      },
      {
       "desc": "LF fwd",
-      "align": "Backing DW",
-      "turn": "1/8 R",
-      "face": 135,
-      "end": 135,
-      "timing": "2"
+      "align": "Facing C",
+      "turn": "",
+      "face": 112.5,
+      "end": 108.0,
+      "timing": "2",
+      "rot": -4.5
      },
      {
       "desc": "RF fwd",
-      "align": "Backing DW",
-      "turn": "1/8 R",
-      "face": 135,
-      "end": 135,
-      "timing": "3"
+      "align": "Facing C",
+      "turn": "",
+      "face": 108.0,
+      "end": 103.5,
+      "timing": "3",
+      "rot": -4.5
      },
      {
       "desc": "LF fwd",
-      "align": "Backing DW",
-      "turn": "1/8 R",
-      "face": 135,
-      "end": 135,
-      "timing": "4"
+      "align": "Facing C",
+      "turn": "",
+      "face": 103.5,
+      "end": 99.0,
+      "timing": "4",
+      "rot": -4.5
      },
      {
       "desc": "RF crosses behind LF",
-      "align": "Backing DW",
-      "turn": "1/8 R",
-      "face": 135,
-      "end": 135,
-      "timing": "&"
+      "align": "Facing C",
+      "turn": "",
+      "face": 99.0,
+      "end": 94.5,
+      "timing": "&",
+      "rot": -4.5
      },
      {
       "desc": "LF fwd",
-      "align": "Backing DW",
-      "turn": "1/8 R",
-      "face": 135,
-      "end": 135,
-      "timing": "1"
+      "align": "Facing C",
+      "turn": "",
+      "face": 94.5,
+      "end": 90.0,
+      "timing": "1",
+      "rot": -4.5
      }
     ]
    }
@@ -50523,48 +50866,53 @@
      },
      {
       "desc": "LF fwd and slightly to side",
-      "align": "Backing DC",
-      "turn": "1/8 L",
+      "align": "Backing LOD",
+      "turn": "",
       "face": -180,
-      "end": -135,
+      "end": -171.0,
       "timing": "3",
-      "pos": "Open Same then Close Same"
+      "pos": "Open Same then Close Same",
+      "rot": 9.0
      },
      {
       "desc": "RF crosses behind LF",
-      "align": "Backing DC",
-      "turn": "1/8 L",
-      "face": -180,
-      "end": -135,
+      "align": "Backing LOD",
+      "turn": "",
+      "face": -171.0,
+      "end": -162.0,
       "timing": "&",
-      "pos": "Open Same then Close Same"
+      "pos": "Open Same then Close Same",
+      "rot": 9.0
      },
      {
       "desc": "LF fwd",
       "align": "Backing DC",
-      "turn": "1/8 L",
-      "face": -180,
-      "end": -135,
+      "turn": "",
+      "face": -162.0,
+      "end": -153.0,
       "timing": "4",
-      "pos": "Open Same then Close Same"
+      "pos": "Open Same then Close Same",
+      "rot": 9.0
      },
      {
       "desc": "RF crosses behind LF",
       "align": "Backing DC",
-      "turn": "1/8 L",
-      "face": -180,
-      "end": -135,
+      "turn": "",
+      "face": -153.0,
+      "end": -144.0,
       "timing": "&",
-      "pos": "Open Same then Close Same"
+      "pos": "Open Same then Close Same",
+      "rot": 9.0
      },
      {
       "desc": "LF fwd",
       "align": "Backing DC",
-      "turn": "1/8 L",
-      "face": -180,
-      "end": -135,
+      "turn": "",
+      "face": -144.0,
+      "end": -135.0,
       "timing": "1",
-      "pos": "Open Same then Close Same"
+      "pos": "Open Same then Close Same",
+      "rot": 9.0
      }
     ]
    }
@@ -51093,7 +51441,8 @@
       "face": -135,
       "end": -180.0,
       "timing": "2",
-      "pos": "L Side Same"
+      "pos": "L Side Same",
+      "rot": -45.0
      },
      {
       "desc": "RF diag fwd",
@@ -51102,7 +51451,8 @@
       "face": -180.0,
       "end": 135.0,
       "timing": "3",
-      "pos": "L Side Same"
+      "pos": "L Side Same",
+      "rot": -45.0
      },
      {
       "desc": "LF fwd",
@@ -51110,7 +51460,8 @@
       "turn": "",
       "face": 135.0,
       "end": 90.0,
-      "timing": "4"
+      "timing": "4",
+      "rot": -45.0
      },
      {
       "desc": "RF fwd",
@@ -51118,7 +51469,8 @@
       "turn": "",
       "face": 90.0,
       "end": 45.0,
-      "timing": "&"
+      "timing": "&",
+      "rot": -45.0
      },
      {
       "desc": "LF diag fwd and to side",
@@ -51126,7 +51478,8 @@
       "turn": "",
       "face": 45.0,
       "end": 0.0,
-      "timing": "1"
+      "timing": "1",
+      "rot": -45.0
      },
      {
       "desc": "RF crosses behind LF",
@@ -51182,14 +51535,16 @@
       "align": "Facing LOD",
       "turn": "",
       "face": -45,
-      "end": 0.0
+      "end": 0.0,
+      "rot": 45.0
      },
      {
       "desc": "LF diag fwd",
       "align": "Facing DC",
       "turn": "",
       "face": 0.0,
-      "end": 45.0
+      "end": 45.0,
+      "rot": 45.0
      },
      {
       "desc": "RF fwd",
@@ -51197,7 +51552,8 @@
       "turn": "",
       "face": 45.0,
       "end": 90.0,
-      "timing": "4"
+      "timing": "4",
+      "rot": 45.0
      },
      {
       "desc": "LF fwd",
@@ -51205,7 +51561,8 @@
       "turn": "",
       "face": 90.0,
       "end": 135.0,
-      "timing": "&"
+      "timing": "&",
+      "rot": 45.0
      },
      {
       "desc": "RF diag fwd and to side",
@@ -51213,7 +51570,8 @@
       "turn": "",
       "face": 135.0,
       "end": -180.0,
-      "timing": "1"
+      "timing": "1",
+      "rot": 45.0
      },
      {
       "desc": "LF crosses behind RF",
@@ -51787,17 +52145,21 @@
      },
      {
       "desc": "RF in place",
-      "align": "Facing W",
-      "turn": "1/4 L",
-      "face": -90
+      "align": "Facing DW",
+      "turn": "",
+      "face": -90,
+      "end": -45.0,
+      "rot": 45.0
      },
      {
       "desc": "LF to side",
-      "align": "Facing W",
-      "turn": "1/4 L",
-      "face": -90,
+      "align": "Facing LOD",
+      "turn": "",
+      "face": -45.0,
       "timing": "4.1",
-      "pos": "Open Opp"
+      "pos": "Open Opp",
+      "end": 0.0,
+      "rot": 45.0
      }
     ],
     "preceding": [],
@@ -51813,20 +52175,22 @@
      },
      {
       "desc": "LF in place",
-      "align": "Backing LOD",
-      "turn": "1/4 R",
+      "align": "Backing DC",
+      "turn": "",
       "face": -90,
-      "end": -180,
-      "pos": "L Side Same then Open Opp"
+      "end": -135.0,
+      "pos": "L Side Same then Open Opp",
+      "rot": -45.0
      },
      {
       "desc": "RF to side",
       "align": "Backing LOD",
-      "turn": "1/4 R",
-      "face": -90,
-      "end": -180,
+      "turn": "",
+      "face": -135.0,
+      "end": -180.0,
       "timing": "4.1",
-      "pos": "Open Opp"
+      "pos": "Open Opp",
+      "rot": -45.0
      }
     ]
    },
@@ -51907,20 +52271,22 @@
      },
      {
       "desc": "LF in place",
-      "align": "Facing LOD",
-      "turn": "1/4 R",
+      "align": "Facing DC",
+      "turn": "",
       "face": 90,
-      "end": 0,
-      "pos": "R Side Same then Open Opp"
+      "end": 45.0,
+      "pos": "R Side Same then Open Opp",
+      "rot": -45.0
      },
      {
       "desc": "RF to side",
       "align": "Facing LOD",
-      "turn": "1/4 R",
-      "face": 90,
-      "end": 0,
+      "turn": "",
+      "face": 45.0,
+      "end": 0.0,
       "timing": "4.1",
-      "pos": "Open Opp"
+      "pos": "Open Opp",
+      "rot": -45.0
      }
     ],
     "preceding": [],
@@ -51936,20 +52302,22 @@
      },
      {
       "desc": "RF in place",
-      "align": "Backing LOD",
-      "turn": "1/4 L",
+      "align": "Backing DW",
+      "turn": "",
       "face": 90,
-      "end": -180,
-      "pos": "R Side Same then Open Opp"
+      "end": 135.0,
+      "pos": "R Side Same then Open Opp",
+      "rot": 45.0
      },
      {
       "desc": "LF to side",
       "align": "Backing LOD",
-      "turn": "1/4 L",
-      "face": 90,
-      "end": -180,
+      "turn": "",
+      "face": 135.0,
+      "end": -180.0,
       "timing": "4.1",
-      "pos": "Open Opp"
+      "pos": "Open Opp",
+      "rot": 45.0
      }
     ]
    },
@@ -54276,19 +54644,21 @@
      },
      {
       "desc": "RF in place",
-      "align": "Facing DW",
-      "turn": "1/8 L, then 1/8 R",
+      "align": "Backing LOD",
+      "turn": "",
       "face": -135,
-      "end": -45,
-      "timing": "3"
+      "end": -157.5,
+      "timing": "3",
+      "rot": -22.5
      },
      {
       "desc": "LF to side",
-      "align": "Facing DW",
-      "turn": "1/8 L, then 1/8 R",
-      "face": -45,
-      "end": -45,
-      "pos": "Open Opp"
+      "align": "Backing LOD",
+      "turn": "",
+      "face": -157.5,
+      "end": -180.0,
+      "pos": "Open Opp",
+      "rot": -22.5
      },
      {
       "desc": "RF fwd",
@@ -54903,20 +55273,22 @@
      },
      {
       "desc": "LF in place",
-      "align": "Facing DW",
-      "turn": "1/8 L",
+      "align": "Facing W",
+      "turn": "",
       "face": -90,
-      "end": -45,
-      "pos": "Ex Open Same"
+      "end": -67.5,
+      "pos": "Ex Open Same",
+      "rot": 22.5
      },
      {
       "desc": "RF fwd and across",
       "align": "Facing DW",
-      "turn": "1/8 L",
-      "face": -90,
-      "end": -45,
+      "turn": "",
+      "face": -67.5,
+      "end": -45.0,
       "timing": "4.1",
-      "pos": "Ex Open Opp then R Diag Opp"
+      "pos": "Ex Open Opp then R Diag Opp",
+      "rot": 22.5
      }
     ],
     "preceding": [
@@ -55437,58 +55809,72 @@
      {
       "desc": "LF fwd",
       "align": "Facing W",
-      "turn": "1/4 L",
+      "turn": "",
       "face": -90,
       "timing": "2",
-      "pos": "R Diag Same"
+      "pos": "R Diag Same",
+      "end": -77.1,
+      "rot": 12.9
      },
      {
       "desc": "RF fwd",
-      "align": "Facing W",
-      "turn": "1/4 L",
-      "face": -90,
+      "align": "Facing DW",
+      "turn": "",
+      "face": -77.1,
       "timing": "3",
-      "pos": "R Diag Same"
+      "pos": "R Diag Same",
+      "end": -64.3,
+      "rot": 12.9
      },
      {
       "desc": "LF fwd",
-      "align": "Facing W",
-      "turn": "1/4 L",
-      "face": -90,
+      "align": "Facing DW",
+      "turn": "",
+      "face": -64.3,
       "timing": "4.1",
-      "pos": "R Diag Same"
+      "pos": "R Diag Same",
+      "end": -51.4,
+      "rot": 12.9
      },
      {
       "desc": "RF fwd",
-      "align": "Facing W",
-      "turn": "1/4 L",
-      "face": -90,
+      "align": "Facing DW",
+      "turn": "",
+      "face": -51.4,
       "timing": "2",
-      "pos": "R Diag Same"
+      "pos": "R Diag Same",
+      "end": -38.6,
+      "rot": 12.9
      },
      {
       "desc": "LF fwd",
-      "align": "Facing W",
-      "turn": "1/4 L",
-      "face": -90,
+      "align": "Facing DW",
+      "turn": "",
+      "face": -38.6,
       "timing": "3",
-      "pos": "R Diag Same"
+      "pos": "R Diag Same",
+      "end": -25.7,
+      "rot": 12.9
      },
      {
       "desc": "RF fwd",
-      "align": "Facing W",
-      "turn": "1/4 L",
-      "face": -90,
+      "align": "Facing LOD",
+      "turn": "",
+      "face": -25.7,
       "timing": "4.1",
-      "pos": "R Diag Same"
+      "pos": "R Diag Same",
+      "end": -12.9,
+      "rot": 12.9
      },
      {
       "desc": "LF fwd",
-      "align": "Facing W",
-      "turn": "1/4 L",
-      "face": -90,
+      "align": "Facing LOD",
+      "turn": "",
+      "face": -12.9,
       "timing": "2",
-      "pos": "Ex Open Same"
+      "pos": "Ex Open Same",
+      "end": 0.0,
+      "rot": 12.9
      },
      {
       "desc": "RF fwd and slightly bwd",
@@ -55671,50 +56057,62 @@
      {
       "desc": "LF fwd",
       "align": "Facing W",
-      "turn": "1/4 L",
+      "turn": "",
       "face": -90,
       "timing": "2",
-      "pos": "R Diag Same"
+      "pos": "R Diag Same",
+      "end": -75.0,
+      "rot": 15.0
      },
      {
       "desc": "RF fwd",
-      "align": "Facing W",
-      "turn": "1/4 L",
-      "face": -90,
+      "align": "Facing DW",
+      "turn": "",
+      "face": -75.0,
       "timing": "3",
-      "pos": "R Diag Same"
+      "pos": "R Diag Same",
+      "end": -60.0,
+      "rot": 15.0
      },
      {
       "desc": "LF fwd",
-      "align": "Facing W",
-      "turn": "1/4 L",
-      "face": -90,
+      "align": "Facing DW",
+      "turn": "",
+      "face": -60.0,
       "timing": "4.1",
-      "pos": "R Diag Same"
+      "pos": "R Diag Same",
+      "end": -45.0,
+      "rot": 15.0
      },
      {
       "desc": "RF fwd",
-      "align": "Facing W",
-      "turn": "1/4 L",
-      "face": -90,
+      "align": "Facing DW",
+      "turn": "",
+      "face": -45.0,
       "timing": "2",
-      "pos": "R Diag Same"
+      "pos": "R Diag Same",
+      "end": -30.0,
+      "rot": 15.0
      },
      {
       "desc": "LF fwd",
-      "align": "Facing W",
-      "turn": "1/4 L",
-      "face": -90,
+      "align": "Facing LOD",
+      "turn": "",
+      "face": -30.0,
       "timing": "3",
-      "pos": "R Diag Same"
+      "pos": "R Diag Same",
+      "end": -15.0,
+      "rot": 15.0
      },
      {
       "desc": "RF fwd",
-      "align": "Facing W",
-      "turn": "1/4 L",
-      "face": -90,
+      "align": "Facing LOD",
+      "turn": "",
+      "face": -15.0,
       "timing": "4.1",
-      "pos": "R Diag Same"
+      "pos": "R Diag Same",
+      "end": 0.0,
+      "rot": 15.0
      },
      {
       "desc": "LF fwd",
@@ -58034,21 +58432,23 @@
      },
      {
       "desc": "LF in place",
-      "align": "Facing LOD",
-      "turn": "1/4 L, then 3/4 L",
-      "face": 0,
-      "end": 0,
+      "align": "Facing DW",
+      "turn": "",
+      "face": -90,
+      "end": -45.0,
       "timing": "3",
-      "pos": "R Side Same"
+      "pos": "R Side Same",
+      "rot": 45.0
      },
      {
       "desc": "RF fwd and across",
       "align": "Facing LOD",
-      "turn": "1/4 L, then 3/4 L",
-      "face": 0,
-      "end": 0,
+      "turn": "",
+      "face": -45.0,
+      "end": 0.0,
       "timing": "4.1",
-      "pos": "R Side R Angle then Close Same"
+      "pos": "R Side R Angle then Close Same",
+      "rot": 45.0
      },
      {
       "desc": "LF fwd",
@@ -58195,21 +58595,23 @@
      },
      {
       "desc": "LF in place",
-      "align": "Facing LOD",
-      "turn": "1/4 L, then 7/8 L",
+      "align": "Facing DW",
+      "turn": "",
       "face": -90,
-      "end": 0,
+      "end": -45.0,
       "timing": "3",
-      "pos": "R Side Same"
+      "pos": "R Side Same",
+      "rot": 45.0
      },
      {
       "desc": "RF fwd and across",
       "align": "Facing LOD",
-      "turn": "1/4 L, then 7/8 L",
-      "face": -90,
-      "end": 0,
+      "turn": "",
+      "face": -45.0,
+      "end": 0.0,
       "timing": "4.1",
-      "pos": "R Side R Angle then Close Same"
+      "pos": "R Side R Angle then Close Same",
+      "rot": 45.0
      },
      {
       "desc": "LF fwd and slightly to side",
@@ -58356,21 +58758,23 @@
      },
      {
       "desc": "LF in place",
-      "align": "Facing LOD",
-      "turn": "1/4 L, then 7/8 L",
+      "align": "Facing DW",
+      "turn": "",
       "face": -90,
-      "end": 0,
+      "end": -45.0,
       "timing": "3",
-      "pos": "R Side Same"
+      "pos": "R Side Same",
+      "rot": 45.0
      },
      {
       "desc": "RF fwd and across",
       "align": "Facing LOD",
-      "turn": "1/4 L, then 7/8 L",
-      "face": -90,
-      "end": 0,
+      "turn": "",
+      "face": -45.0,
+      "end": 0.0,
       "timing": "4.1",
-      "pos": "R Side R Angle then Close Same"
+      "pos": "R Side R Angle then Close Same",
+      "rot": 45.0
      },
      {
       "desc": "LF fwd",
@@ -58557,20 +58961,22 @@
      },
      {
       "desc": "LF in place",
-      "align": "Facing DW",
-      "turn": "1/8 L",
+      "align": "Facing W",
+      "turn": "",
       "face": -90,
-      "end": -45,
-      "pos": "Ex Open Same then Ex Open Opp"
+      "end": -67.5,
+      "pos": "Ex Open Same then Ex Open Opp",
+      "rot": 22.5
      },
      {
       "desc": "RF fwd and across",
       "align": "Facing DW",
-      "turn": "1/8 L",
-      "face": -90,
-      "end": -45,
+      "turn": "",
+      "face": -67.5,
+      "end": -45.0,
       "timing": "4.1",
-      "pos": "R Diag Opp"
+      "pos": "R Diag Opp",
+      "rot": 22.5
      }
     ],
     "preceding": [
@@ -59179,20 +59585,22 @@
      },
      {
       "desc": "LF in place",
-      "align": "Facing DW",
-      "turn": "1/8 L",
+      "align": "Facing W",
+      "turn": "",
       "face": -90,
-      "end": -45,
-      "pos": "Open Same then Open Opp"
+      "end": -67.5,
+      "pos": "Open Same then Open Opp",
+      "rot": 22.5
      },
      {
       "desc": "RF fwd and across",
       "align": "Facing DW",
-      "turn": "1/8 L",
-      "face": -90,
-      "end": -45,
+      "turn": "",
+      "face": -67.5,
+      "end": -45.0,
       "timing": "4.1",
-      "pos": "R Diag Opp"
+      "pos": "R Diag Opp",
+      "rot": 22.5
      }
     ],
     "preceding": [],
@@ -59899,51 +60307,57 @@
     "ladySteps": [
      {
       "desc": "RF fwd",
-      "align": "Facing C",
-      "turn": "1/8 R",
+      "align": "Backing DW",
+      "turn": "",
       "face": 135,
-      "end": 90,
-      "timing": "2"
+      "end": 127.5,
+      "timing": "2",
+      "rot": -7.5
      },
      {
       "desc": "LF fwd",
-      "align": "Facing C",
-      "turn": "1/8 R",
-      "face": 135,
-      "end": 90,
-      "timing": "3"
+      "align": "Backing DW",
+      "turn": "",
+      "face": 127.5,
+      "end": 120.0,
+      "timing": "3",
+      "rot": -7.5
      },
      {
       "desc": "RF fwd",
       "align": "Facing C",
-      "turn": "1/8 R",
-      "face": 135,
-      "end": 90,
-      "timing": "4.1"
+      "turn": "",
+      "face": 120.0,
+      "end": 112.5,
+      "timing": "4.1",
+      "rot": -7.5
      },
      {
       "desc": "LF fwd",
       "align": "Facing C",
-      "turn": "1/8 R",
-      "face": 135,
-      "end": 90,
-      "timing": "2"
+      "turn": "",
+      "face": 112.5,
+      "end": 105.0,
+      "timing": "2",
+      "rot": -7.5
      },
      {
       "desc": "RF fwd",
       "align": "Facing C",
-      "turn": "1/8 R",
-      "face": 135,
-      "end": 90,
-      "timing": "3"
+      "turn": "",
+      "face": 105.0,
+      "end": 97.5,
+      "timing": "3",
+      "rot": -7.5
      },
      {
       "desc": "LF to side",
       "align": "Facing C",
-      "turn": "1/8 R",
-      "face": 135,
-      "end": 90,
-      "timing": "4.1"
+      "turn": "",
+      "face": 97.5,
+      "end": 90.0,
+      "timing": "4.1",
+      "rot": -7.5
      }
     ]
    }
@@ -60310,7 +60724,8 @@
       "face": -135,
       "end": 135.0,
       "timing": "&",
-      "pos": "Open Same then Open Opp"
+      "pos": "Open Same then Open Opp",
+      "rot": -90.0
      },
      {
       "desc": "LF fwd",
@@ -60319,7 +60734,8 @@
       "face": 135.0,
       "end": 45.0,
       "timing": "4.1",
-      "pos": "Open Same then Open Opp"
+      "pos": "Open Same then Open Opp",
+      "rot": -90.0
      },
      {
       "desc": "RF fwd",
@@ -61410,20 +61826,22 @@
      },
      {
       "desc": "RF fwd and slightly bwd",
-      "align": "Backing LOD",
-      "turn": "3/8 L",
+      "align": "Facing C",
+      "turn": "",
       "face": 45,
-      "end": -180,
-      "moving": 0
+      "end": 112.5,
+      "moving": 0,
+      "rot": 67.5
      },
      {
       "desc": "LF in place",
       "align": "Backing LOD",
-      "turn": "3/8 L",
-      "face": 45,
-      "end": -180,
+      "turn": "",
+      "face": 112.5,
+      "end": -180.0,
       "moving": 0,
-      "pos": "L Diag L Angle"
+      "pos": "L Diag L Angle",
+      "rot": 67.5
      },
      {
       "desc": "RF fwd and across",
@@ -61438,7 +61856,8 @@
       "align": "Facing C",
       "turn": "",
       "face": -180,
-      "end": 90.0
+      "end": 90.0,
+      "rot": -90.0
      },
      {
       "desc": "RF in place",
@@ -61446,7 +61865,8 @@
       "turn": "",
       "face": 90.0,
       "end": 0.0,
-      "pos": "R Diag R Angle"
+      "pos": "R Diag R Angle",
+      "rot": -90.0
      },
      {
       "desc": "LF fwd and across",
@@ -61764,7 +62184,8 @@
       "turn": "",
       "face": 135,
       "end": 45.0,
-      "pos": "R Diag Opp"
+      "pos": "R Diag Opp",
+      "rot": -90.0
      },
      {
       "desc": "RF fwd and across",
@@ -61772,7 +62193,8 @@
       "turn": "",
       "face": 45.0,
       "end": -45.0,
-      "pos": "R Diag Opp"
+      "pos": "R Diag Opp",
+      "rot": -90.0
      },
      {
       "desc": "LF",
@@ -61832,7 +62254,8 @@
       "turn": "",
       "face": -45,
       "end": -135.0,
-      "pos": "R Diag Opp"
+      "pos": "R Diag Opp",
+      "rot": -90.0
      },
      {
       "desc": "LF fwd outside partner",
@@ -61840,7 +62263,8 @@
       "turn": "",
       "face": -135.0,
       "end": 135.0,
-      "pos": "R Diag Opp"
+      "pos": "R Diag Opp",
+      "rot": -90.0
      },
      {
       "desc": "RF",
@@ -62576,7 +63000,8 @@
       "turn": "",
       "face": 0,
       "end": -90.0,
-      "pos": "R Diag Opp then R Diag R Angle"
+      "pos": "R Diag Opp then R Diag R Angle",
+      "rot": -90.0
      },
      {
       "desc": "RF in place",
@@ -62584,7 +63009,8 @@
       "turn": "",
       "face": -90.0,
       "end": -180.0,
-      "pos": "R Diag R Angle"
+      "pos": "R Diag R Angle",
+      "rot": -90.0
      },
      {
       "desc": "LF fwd and across",
@@ -62600,7 +63026,8 @@
       "turn": "",
       "face": -180,
       "end": -90.0,
-      "pos": "L Diag R Angle then L Diag L Angle"
+      "pos": "L Diag R Angle then L Diag L Angle",
+      "rot": 90.0
      },
      {
       "desc": "LF in place",
@@ -62608,7 +63035,8 @@
       "turn": "",
       "face": -90.0,
       "end": 0.0,
-      "pos": "L Diag R Angle then L Diag L Angle"
+      "pos": "L Diag R Angle then L Diag L Angle",
+      "rot": 90.0
      },
      {
       "desc": "RF fwd and across",
@@ -62624,7 +63052,8 @@
       "turn": "",
       "face": 0,
       "end": -90.0,
-      "pos": "R Diag L Angle then R Diag R Angle"
+      "pos": "R Diag L Angle then R Diag R Angle",
+      "rot": -90.0
      },
      {
       "desc": "RF in place",
@@ -62632,23 +63061,26 @@
       "turn": "",
       "face": -90.0,
       "end": -180.0,
-      "pos": "R Diag L Angle then R Diag R Angle"
+      "pos": "R Diag L Angle then R Diag R Angle",
+      "rot": -90.0
      },
      {
       "desc": "LF fwd",
-      "align": "Facing W",
-      "turn": "1/4 L",
+      "align": "Backing DC",
+      "turn": "",
       "face": -180,
-      "end": -90,
-      "pos": "Close R Angle"
+      "end": -135.0,
+      "pos": "Close R Angle",
+      "rot": 45.0
      },
      {
       "desc": "RF",
       "align": "Facing W",
-      "turn": "1/4 L",
-      "face": -180,
-      "end": -90,
-      "pos": "Close Opp"
+      "turn": "",
+      "face": -135.0,
+      "end": -90.0,
+      "pos": "Close Opp",
+      "rot": 45.0
      }
     ]
    }
@@ -62953,17 +63385,19 @@
      },
      {
       "desc": "feet together",
-      "align": "Backing DW",
-      "turn": "3/8 L",
+      "align": "Facing C",
+      "turn": "",
       "face": 0,
-      "end": 135
+      "end": 67.5,
+      "rot": 67.5
      },
      {
       "desc": "LF fwd",
       "align": "Backing DW",
-      "turn": "3/8 L",
-      "face": 0,
-      "end": 135
+      "turn": "",
+      "face": 67.5,
+      "end": 135.0,
+      "rot": 67.5
      },
      {
       "desc": "RF fwd and across",
@@ -62997,14 +63431,16 @@
       "align": "Facing DC",
       "turn": "",
       "face": 0,
-      "end": 45.0
+      "end": 45.0,
+      "rot": 45.0
      },
      {
       "desc": "LF fwd",
       "align": "Facing C",
       "turn": "",
       "face": 45.0,
-      "end": 90.0
+      "end": 90.0,
+      "rot": 45.0
      },
      {
       "desc": "RF fwd",
@@ -63012,21 +63448,24 @@
       "turn": "",
       "face": 90.0,
       "end": 135.0,
-      "pos": "Close R Angle"
+      "pos": "Close R Angle",
+      "rot": 45.0
      },
      {
       "desc": "LF fwd",
       "align": "Backing LOD",
       "turn": "",
       "face": 135.0,
-      "end": -180.0
+      "end": -180.0,
+      "rot": 45.0
      },
      {
       "desc": "RF fwd",
       "align": "Backing DC",
       "turn": "",
       "face": -180.0,
-      "end": -135.0
+      "end": -135.0,
+      "rot": 45.0
      },
      {
       "desc": "LF fwd and across",
@@ -63189,7 +63628,8 @@
       "turn": "",
       "face": 90,
       "end": 126.0,
-      "pos": "L Diag Opp"
+      "pos": "L Diag Opp",
+      "rot": 36.0
      },
      {
       "desc": "RF bwd",
@@ -63197,7 +63637,8 @@
       "turn": "",
       "face": 126.0,
       "end": 162.0,
-      "pos": "L Diag Opp"
+      "pos": "L Diag Opp",
+      "rot": 36.0
      },
      {
       "desc": "LF bwd",
@@ -63205,14 +63646,16 @@
       "turn": "",
       "face": 162.0,
       "end": -162.0,
-      "pos": "L Diag Opp"
+      "pos": "L Diag Opp",
+      "rot": 36.0
      },
      {
       "desc": "RF bwd",
       "align": "Backing DC",
       "turn": "",
       "face": -162.0,
-      "end": -126.0
+      "end": -126.0,
+      "rot": 36.0
      },
      {
       "desc": "LF bwd",
@@ -63220,7 +63663,8 @@
       "turn": "",
       "face": -126.0,
       "end": -90.0,
-      "pos": "Close Opp"
+      "pos": "Close Opp",
+      "rot": 36.0
      }
     ],
     "preceding": [],
@@ -63452,7 +63896,8 @@
       "turn": "",
       "face": 45,
       "end": 135.0,
-      "pos": "Close Opp"
+      "pos": "Close Opp",
+      "rot": 90.0
      },
      {
       "desc": "RF to side",
@@ -63460,7 +63905,8 @@
       "turn": "",
       "face": 135.0,
       "end": -135.0,
-      "pos": "Close Opp"
+      "pos": "Close Opp",
+      "rot": 90.0
      },
      {
       "desc": "LF diag fwd",
@@ -63468,7 +63914,8 @@
       "turn": "",
       "face": -135.0,
       "end": -45.0,
-      "pos": "Close Prom"
+      "pos": "Close Prom",
+      "rot": 90.0
      }
     ],
     "preceding": [],
@@ -64092,19 +64539,21 @@
      },
      {
       "desc": "LF fwd and slightly bwd",
-      "align": "Backing LOD",
-      "turn": "3/8 R",
+      "align": "Facing W",
+      "turn": "",
       "face": -45,
-      "end": -180,
-      "pos": "R Diag Opp then R Diag R Angle"
+      "end": -112.5,
+      "pos": "R Diag Opp then R Diag R Angle",
+      "rot": -67.5
      },
      {
       "desc": "RF diag fwd",
       "align": "Backing LOD",
-      "turn": "3/8 R",
-      "face": -45,
-      "end": -180,
-      "pos": "R Diag R Angle"
+      "turn": "",
+      "face": -112.5,
+      "end": -180.0,
+      "pos": "R Diag R Angle",
+      "rot": -67.5
      },
      {
       "desc": "LF fwd and across",
@@ -64120,7 +64569,8 @@
       "turn": "",
       "face": -180,
       "end": -90.0,
-      "pos": "L Diag R Angle then L Diag L Angle"
+      "pos": "L Diag R Angle then L Diag L Angle",
+      "rot": 90.0
      },
      {
       "desc": "LF diag fwd",
@@ -64128,7 +64578,8 @@
       "turn": "",
       "face": -90.0,
       "end": 0.0,
-      "pos": "L Diag R Angle then L Diag L Angle"
+      "pos": "L Diag R Angle then L Diag L Angle",
+      "rot": 90.0
      },
      {
       "desc": "RF fwd and across",
@@ -64144,7 +64595,8 @@
       "turn": "",
       "face": 0,
       "end": -90.0,
-      "pos": "R Diag L Angle then R Diag R Angle"
+      "pos": "R Diag L Angle then R Diag R Angle",
+      "rot": -90.0
      },
      {
       "desc": "RF diag fwd",
@@ -64152,7 +64604,8 @@
       "turn": "",
       "face": -90.0,
       "end": -180.0,
-      "pos": "R Diag L Angle then R Diag R Angle"
+      "pos": "R Diag L Angle then R Diag R Angle",
+      "rot": -90.0
      },
      {
       "desc": "LF fwd",
@@ -64324,41 +64777,46 @@
      },
      {
       "desc": "LF bwd",
-      "align": "Facing DW",
-      "turn": "3/8 L",
+      "align": "Facing W",
+      "turn": "",
       "face": -180,
-      "end": -45,
-      "pos": "Close Opp"
+      "end": -112.5,
+      "pos": "Close Opp",
+      "rot": 67.5
      },
      {
       "desc": "RF fwd and across outside partner",
       "align": "Facing DW",
-      "turn": "3/8 L",
-      "face": -180,
-      "end": -45,
-      "pos": "Close R Diag Opp"
+      "turn": "",
+      "face": -112.5,
+      "end": -45.0,
+      "pos": "Close R Diag Opp",
+      "rot": 67.5
      },
      {
       "desc": "feet together",
-      "align": "Facing DC",
-      "turn": "1/4 L",
+      "align": "Facing LOD",
+      "turn": "",
       "face": -45,
-      "end": 45,
-      "pos": "Close R Angle"
+      "end": -15.0,
+      "pos": "Close R Angle",
+      "rot": 30.0
      },
      {
       "desc": "feet together",
-      "align": "Facing DC",
-      "turn": "1/4 L",
-      "face": -45,
-      "end": 45
+      "align": "Facing LOD",
+      "turn": "",
+      "face": -15.0,
+      "end": 15.0,
+      "rot": 30.0
      },
      {
       "desc": "LF in place",
       "align": "Facing DC",
-      "turn": "1/4 L",
-      "face": -45,
-      "end": 45
+      "turn": "",
+      "face": 15.0,
+      "end": 45.0,
+      "rot": 30.0
      },
      {
       "desc": "",
@@ -65482,7 +65940,8 @@
       "turn": "",
       "face": -180,
       "end": 45.0,
-      "pos": "Open R Angle then Close Opp"
+      "pos": "Open R Angle then Close Opp",
+      "rot": -135.0
      },
      {
       "desc": "RF in place",
@@ -65490,7 +65949,8 @@
       "turn": "",
       "face": 45.0,
       "end": -90.0,
-      "pos": "Open R Angle then Close Opp"
+      "pos": "Open R Angle then Close Opp",
+      "rot": -135.0
      },
      {
       "desc": "LF to side",
@@ -66663,25 +67123,28 @@
      },
      {
       "desc": "",
-      "align": "Facing W",
-      "turn": "1/4 L",
+      "align": "Backing DC",
+      "turn": "",
       "face": -180,
-      "end": -90
+      "end": -150.0,
+      "rot": 30.0
      },
      {
       "desc": "LF bwd",
-      "align": "Facing W",
-      "turn": "1/4 L",
-      "face": -180,
-      "end": -90
+      "align": "Backing DC",
+      "turn": "",
+      "face": -150.0,
+      "end": -120.0,
+      "rot": 30.0
      },
      {
       "desc": "RF",
       "align": "Facing W",
-      "turn": "1/4 L",
-      "face": -180,
-      "end": -90,
-      "pos": "Close L Side Opp"
+      "turn": "",
+      "face": -120.0,
+      "end": -90.0,
+      "pos": "Close L Side Opp",
+      "rot": 30.0
      },
      {
       "desc": "",
@@ -66696,28 +67159,32 @@
       "align": "Facing DW",
       "turn": "",
       "face": -90,
-      "end": -33.8
+      "end": -33.8,
+      "rot": 56.2
      },
      {
       "desc": "LF fwd",
       "align": "Facing LOD",
       "turn": "",
       "face": -33.8,
-      "end": 22.5
+      "end": 22.5,
+      "rot": 56.2
      },
      {
       "desc": "RF",
       "align": "Facing C",
       "turn": "",
       "face": 22.5,
-      "end": 78.8
+      "end": 78.8,
+      "rot": 56.2
      },
      {
       "desc": "",
       "align": "Backing DW",
       "turn": "",
       "face": 78.8,
-      "end": 135.0
+      "end": 135.0,
+      "rot": 56.2
      },
      {
       "desc": "",
@@ -67056,30 +67523,38 @@
      {
       "desc": "RF to side",
       "align": "Facing C",
-      "turn": "1/4 L",
+      "turn": "",
       "face": 90,
-      "pos": "Close Opp"
+      "pos": "Close Opp",
+      "end": 112.5,
+      "rot": 22.5
      },
      {
       "desc": "LF",
-      "align": "Facing C",
-      "turn": "1/4 L",
-      "face": 90,
-      "pos": "Close Opp"
+      "align": "Backing DW",
+      "turn": "",
+      "face": 112.5,
+      "pos": "Close Opp",
+      "end": 135.0,
+      "rot": 22.5
      },
      {
       "desc": "RF to side",
-      "align": "Facing C",
-      "turn": "1/4 L",
-      "face": 90,
-      "pos": "Close Opp"
+      "align": "Backing LOD",
+      "turn": "",
+      "face": 135.0,
+      "pos": "Close Opp",
+      "end": 157.5,
+      "rot": 22.5
      },
      {
       "desc": "LF",
-      "align": "Facing C",
-      "turn": "1/4 L",
-      "face": 90,
-      "pos": "Close Opp"
+      "align": "Backing LOD",
+      "turn": "",
+      "face": 157.5,
+      "pos": "Close Opp",
+      "end": -180.0,
+      "rot": 22.5
      }
     ],
     "preceding": [],
@@ -67095,30 +67570,38 @@
      {
       "desc": "LF to side",
       "align": "Facing W",
-      "turn": "1/4 L",
+      "turn": "",
       "face": -90,
-      "pos": "Close Opp"
+      "pos": "Close Opp",
+      "end": -67.5,
+      "rot": 22.5
      },
      {
       "desc": "RF",
-      "align": "Facing W",
-      "turn": "1/4 L",
-      "face": -90,
-      "pos": "Close Opp"
+      "align": "Facing DW",
+      "turn": "",
+      "face": -67.5,
+      "pos": "Close Opp",
+      "end": -45.0,
+      "rot": 22.5
      },
      {
       "desc": "LF to side",
-      "align": "Facing W",
-      "turn": "1/4 L",
-      "face": -90,
-      "pos": "Close Opp"
+      "align": "Facing LOD",
+      "turn": "",
+      "face": -45.0,
+      "pos": "Close Opp",
+      "end": -22.5,
+      "rot": 22.5
      },
      {
       "desc": "RF",
-      "align": "Facing W",
-      "turn": "1/4 L",
-      "face": -90,
-      "pos": "Close Opp"
+      "align": "Facing LOD",
+      "turn": "",
+      "face": -22.5,
+      "pos": "Close Opp",
+      "end": 0.0,
+      "rot": 22.5
      }
     ]
    },
@@ -67370,19 +67853,21 @@
     "steps": [
      {
       "desc": "LF diag fwd",
-      "align": "Backing LOD",
-      "turn": "1/4 L",
+      "align": "Backing DW",
+      "turn": "",
       "face": 90,
-      "end": -180,
-      "pos": "Close Opp Close Prom"
+      "end": 135.0,
+      "pos": "Close Opp Close Prom",
+      "rot": 45.0
      },
      {
       "desc": "RF fwd and across w/o weight",
       "align": "Backing LOD",
-      "turn": "1/4 L",
-      "face": 90,
-      "end": -180,
-      "pos": "Close Opp Close Prom"
+      "turn": "",
+      "face": 135.0,
+      "end": -180.0,
+      "pos": "Close Opp Close Prom",
+      "rot": 45.0
      },
      {
       "desc": "RF",
@@ -67421,19 +67906,21 @@
     "ladySteps": [
      {
       "desc": "RF diag fwd",
-      "align": "Backing LOD",
-      "turn": "1/4 R",
+      "align": "Backing DC",
+      "turn": "",
       "face": -90,
-      "end": -180,
-      "pos": "Close Opp To Close Prom"
+      "end": -135.0,
+      "pos": "Close Opp To Close Prom",
+      "rot": -45.0
      },
      {
       "desc": "LF fwd and across w/o weight",
       "align": "Backing LOD",
-      "turn": "1/4 R",
-      "face": -90,
-      "end": -180,
-      "pos": "Close Opp To Close Prom"
+      "turn": "",
+      "face": -135.0,
+      "end": -180.0,
+      "pos": "Close Opp To Close Prom",
+      "rot": -45.0
      },
      {
       "desc": "LF",
@@ -67547,20 +68034,22 @@
      {
       "desc": "LF diag fwd",
       "align": "Backing LOD",
-      "turn": "1/8 L",
+      "turn": "",
       "face": 135,
-      "end": -180,
+      "end": 157.5,
       "moving": -180,
-      "pos": "Close Prom"
+      "pos": "Close Prom",
+      "rot": 22.5
      },
      {
       "desc": "RF fwd and across w/o weight",
       "align": "Backing LOD",
-      "turn": "1/8 L",
-      "face": 135,
-      "end": -180,
+      "turn": "",
+      "face": 157.5,
+      "end": -180.0,
       "moving": -180,
-      "pos": "Close Prom"
+      "pos": "Close Prom",
+      "rot": 22.5
      },
      {
       "desc": "RF",
@@ -67942,18 +68431,20 @@
      {
       "desc": "RF in place",
       "align": "Facing W",
-      "turn": "1/8 R",
+      "turn": "",
       "face": -45,
-      "end": -90,
-      "pos": "Close Fallaway then Close Opp"
+      "end": -67.5,
+      "pos": "Close Fallaway then Close Opp",
+      "rot": -22.5
      },
      {
       "desc": "LF to side",
       "align": "Facing W",
-      "turn": "1/8 R",
-      "face": -45,
-      "end": -90,
-      "pos": "Close Fallaway then Close Opp"
+      "turn": "",
+      "face": -67.5,
+      "end": -90.0,
+      "pos": "Close Fallaway then Close Opp",
+      "rot": -22.5
      },
      {
       "desc": "RF",
@@ -68002,17 +68493,21 @@
      },
      {
       "desc": "LF in place",
-      "align": "Facing DC",
-      "turn": "1/8 L",
+      "align": "Facing C",
+      "turn": "",
       "face": 45,
-      "pos": "Close Fallaway then Close Opp"
+      "pos": "Close Fallaway then Close Opp",
+      "end": 67.5,
+      "rot": 22.5
      },
      {
       "desc": "RF to side",
-      "align": "Facing DC",
-      "turn": "1/8 L",
-      "face": 45,
-      "pos": "Close Fallaway then Close Opp"
+      "align": "Facing C",
+      "turn": "",
+      "face": 67.5,
+      "pos": "Close Fallaway then Close Opp",
+      "end": 90.0,
+      "rot": 22.5
      },
      {
       "desc": "LF",
@@ -68164,27 +68659,30 @@
      },
      {
       "desc": "RF fwd and slightly to side",
-      "align": "Facing LOD",
-      "turn": "1/8 L",
+      "align": "Facing DW",
+      "turn": "",
       "face": -45,
-      "end": 0,
-      "pos": "Open Opp"
+      "end": -30.0,
+      "pos": "Open Opp",
+      "rot": 15.0
      },
      {
       "desc": "LF",
       "align": "Facing LOD",
-      "turn": "1/8 L",
-      "face": -45,
-      "end": 0,
-      "pos": "Open Opp"
+      "turn": "",
+      "face": -30.0,
+      "end": -15.0,
+      "pos": "Open Opp",
+      "rot": 15.0
      },
      {
       "desc": "RF fwd and slightly to side",
       "align": "Facing LOD",
-      "turn": "1/8 L",
-      "face": -45,
-      "end": 0,
-      "pos": "Open Opp"
+      "turn": "",
+      "face": -15.0,
+      "end": 0.0,
+      "pos": "Open Opp",
+      "rot": 15.0
      }
     ],
     "preceding": [],
@@ -68199,27 +68697,30 @@
      },
      {
       "desc": "LF in place",
-      "align": "Facing C",
-      "turn": "1/8 L",
+      "align": "Facing DC",
+      "turn": "",
       "face": 45,
-      "end": 90,
-      "pos": "Close Prom then Close Opp"
+      "end": 60.0,
+      "pos": "Close Prom then Close Opp",
+      "rot": 15.0
      },
      {
       "desc": "RF to side",
       "align": "Facing C",
-      "turn": "1/8 L",
-      "face": 45,
-      "end": 90,
-      "pos": "Close Prom then Close Opp"
+      "turn": "",
+      "face": 60.0,
+      "end": 75.0,
+      "pos": "Close Prom then Close Opp",
+      "rot": 15.0
      },
      {
       "desc": "LF",
       "align": "Facing C",
-      "turn": "1/8 L",
-      "face": 45,
-      "end": 90,
-      "pos": "Close Prom then Close Opp"
+      "turn": "",
+      "face": 75.0,
+      "end": 90.0,
+      "pos": "Close Prom then Close Opp",
+      "rot": 15.0
      },
      {
       "desc": "RF to side",
@@ -68231,27 +68732,30 @@
      },
      {
       "desc": "LF diag bwd",
-      "align": "Backing LOD",
-      "turn": "1/8 R",
+      "align": "Backing DC",
+      "turn": "",
       "face": -135,
-      "end": -180,
-      "pos": "Open Opp"
+      "end": -150.0,
+      "pos": "Open Opp",
+      "rot": -15.0
      },
      {
       "desc": "RF",
       "align": "Backing LOD",
-      "turn": "1/8 R",
-      "face": -135,
-      "end": -180,
-      "pos": "Open Opp"
+      "turn": "",
+      "face": -150.0,
+      "end": -165.0,
+      "pos": "Open Opp",
+      "rot": -15.0
      },
      {
       "desc": "LF bwd",
       "align": "Backing LOD",
-      "turn": "1/8 R",
-      "face": -135,
-      "end": -180,
-      "pos": "Open Opp"
+      "turn": "",
+      "face": -165.0,
+      "end": -180.0,
+      "pos": "Open Opp",
+      "rot": -15.0
      }
     ]
    },
@@ -68428,19 +68932,21 @@
      },
      {
       "desc": "RF fwd",
-      "align": "Facing DC",
-      "turn": "1/8 L",
+      "align": "Backing LOD",
+      "turn": "",
       "face": -180,
-      "end": 45,
-      "pos": "Close Opp"
+      "end": -157.5,
+      "pos": "Close Opp",
+      "rot": 22.5
      },
      {
       "desc": "LF",
-      "align": "Facing DC",
-      "turn": "1/8 L",
-      "face": -180,
-      "end": 45,
-      "pos": "Close Same"
+      "align": "Backing DC",
+      "turn": "",
+      "face": -157.5,
+      "end": -135.0,
+      "pos": "Close Same",
+      "rot": 22.5
      },
      {
       "desc": "RF to side and slightly fwd",
@@ -68451,27 +68957,30 @@
      },
      {
       "desc": "LF bwd",
-      "align": "Facing DC",
-      "turn": "1/8 L",
+      "align": "Facing LOD",
+      "turn": "",
       "face": 0,
-      "end": 45,
-      "pos": "Open Opp"
+      "end": 15.0,
+      "pos": "Open Opp",
+      "rot": 15.0
      },
      {
       "desc": "RF",
       "align": "Facing DC",
-      "turn": "1/8 L",
-      "face": 0,
-      "end": 45,
-      "pos": "Open Opp"
+      "turn": "",
+      "face": 15.0,
+      "end": 30.0,
+      "pos": "Open Opp",
+      "rot": 15.0
      },
      {
       "desc": "LF bwd",
       "align": "Facing DC",
-      "turn": "1/8 L",
-      "face": 0,
-      "end": 45,
-      "pos": "Open Opp"
+      "turn": "",
+      "face": 30.0,
+      "end": 45.0,
+      "pos": "Open Opp",
+      "rot": 15.0
      }
     ]
    },
@@ -68750,27 +69259,30 @@
      },
      {
       "desc": "LF to side",
-      "align": "Facing C",
-      "turn": "1/4 R",
+      "align": "Backing DW",
+      "turn": "",
       "face": -180,
-      "end": 90,
-      "pos": "Close L Angle then Open Opp"
+      "end": 150.0,
+      "pos": "Close L Angle then Open Opp",
+      "rot": -30.0
      },
      {
       "desc": "RF",
-      "align": "Facing C",
-      "turn": "1/4 R",
-      "face": -180,
-      "end": 90,
-      "pos": "Close L Angle then Open Opp"
+      "align": "Backing DW",
+      "turn": "",
+      "face": 150.0,
+      "end": 120.0,
+      "pos": "Close L Angle then Open Opp",
+      "rot": -30.0
      },
      {
       "desc": "LF bwd",
       "align": "Facing C",
-      "turn": "1/4 R",
-      "face": -180,
-      "end": 90,
-      "pos": "Close L Angle then Open Opp"
+      "turn": "",
+      "face": 120.0,
+      "end": 90.0,
+      "pos": "Close L Angle then Open Opp",
+      "rot": -30.0
      }
     ]
    }
@@ -68953,24 +69465,27 @@
      },
      {
       "desc": "LF to side and slightly bwd",
-      "align": "Facing C",
-      "turn": "1/8 R",
+      "align": "Backing DW",
+      "turn": "",
       "face": 135,
-      "end": 90
+      "end": 120.0,
+      "rot": -15.0
      },
      {
       "desc": "RF",
       "align": "Facing C",
-      "turn": "1/8 R",
-      "face": 135,
-      "end": 90
+      "turn": "",
+      "face": 120.0,
+      "end": 105.0,
+      "rot": -15.0
      },
      {
       "desc": "LF to side and slightly bwd",
       "align": "Facing C",
-      "turn": "1/8 R",
-      "face": 135,
-      "end": 90
+      "turn": "",
+      "face": 105.0,
+      "end": 90.0,
+      "rot": -15.0
      }
     ]
    },
@@ -69346,7 +69861,8 @@
       "turn": "",
       "face": -135,
       "end": 90.0,
-      "pos": "Close Opp"
+      "pos": "Close Opp",
+      "rot": -135.0
      },
      {
       "desc": "LF to side",
@@ -69354,31 +69870,35 @@
       "turn": "",
       "face": 90.0,
       "end": -45.0,
-      "pos": "Close Opp"
+      "pos": "Close Opp",
+      "rot": -135.0
      },
      {
       "desc": "RF to side",
-      "align": "Facing W",
-      "turn": "1/8 R",
+      "align": "Facing DW",
+      "turn": "",
       "face": -45,
-      "end": -90,
-      "pos": "Close Opp"
+      "end": -60.0,
+      "pos": "Close Opp",
+      "rot": -15.0
      },
      {
       "desc": "LF",
       "align": "Facing W",
-      "turn": "1/8 R",
-      "face": -45,
-      "end": -90,
-      "pos": "Close Opp"
+      "turn": "",
+      "face": -60.0,
+      "end": -75.0,
+      "pos": "Close Opp",
+      "rot": -15.0
      },
      {
       "desc": "RF to side",
       "align": "Facing W",
-      "turn": "1/8 R",
-      "face": -45,
-      "end": -90,
-      "pos": "Close Opp"
+      "turn": "",
+      "face": -75.0,
+      "end": -90.0,
+      "pos": "Close Opp",
+      "rot": -15.0
      }
     ],
     "preceding": [
@@ -69437,7 +69957,8 @@
       "turn": "",
       "face": 45,
       "end": -18.0,
-      "pos": "Close Opp"
+      "pos": "Close Opp",
+      "rot": -63.0
      },
      {
       "desc": "RF fwd and across",
@@ -69445,7 +69966,8 @@
       "turn": "",
       "face": -18.0,
       "end": -81.0,
-      "pos": "Close Opp"
+      "pos": "Close Opp",
+      "rot": -63.0
      },
      {
       "desc": "LF to side and slightly fwd",
@@ -69453,7 +69975,8 @@
       "turn": "",
       "face": -81.0,
       "end": -144.0,
-      "pos": "Close Opp"
+      "pos": "Close Opp",
+      "rot": -63.0
      },
      {
       "desc": "RF",
@@ -69461,7 +69984,8 @@
       "turn": "",
       "face": -144.0,
       "end": 153.0,
-      "pos": "Close Opp"
+      "pos": "Close Opp",
+      "rot": -63.0
      },
      {
       "desc": "LF to side",
@@ -69469,7 +69993,8 @@
       "turn": "",
       "face": 153.0,
       "end": 90.0,
-      "pos": "Close Opp"
+      "pos": "Close Opp",
+      "rot": -63.0
      }
     ]
    }
@@ -69618,18 +70143,20 @@
      {
       "desc": "LF in place",
       "align": "Facing C",
-      "turn": "1/8 L",
+      "turn": "",
       "face": 45,
-      "end": 90,
-      "pos": "Close Prom then Close Opp"
+      "end": 67.5,
+      "pos": "Close Prom then Close Opp",
+      "rot": 22.5
      },
      {
       "desc": "RF to side",
       "align": "Facing C",
-      "turn": "1/8 L",
-      "face": 45,
-      "end": 90,
-      "pos": "Close Prom then Close Opp"
+      "turn": "",
+      "face": 67.5,
+      "end": 90.0,
+      "pos": "Close Prom then Close Opp",
+      "rot": 22.5
      },
      {
       "desc": "LF",
@@ -69980,23 +70507,29 @@
      {
       "desc": "RF fwd and slightly to side",
       "align": "Facing LOD",
-      "turn": "1/8 L",
+      "turn": "",
       "face": 0,
-      "pos": "Open Opp"
+      "pos": "Open Opp",
+      "end": 15.0,
+      "rot": 15.0
      },
      {
       "desc": "LF",
-      "align": "Facing LOD",
-      "turn": "1/8 L",
-      "face": 0,
-      "pos": "Open Opp"
+      "align": "Facing DC",
+      "turn": "",
+      "face": 15.0,
+      "pos": "Open Opp",
+      "end": 30.0,
+      "rot": 15.0
      },
      {
       "desc": "RF fwd and slightly to side",
-      "align": "Facing LOD",
-      "turn": "1/8 L",
-      "face": 0,
-      "pos": "Open Opp"
+      "align": "Facing DC",
+      "turn": "",
+      "face": 30.0,
+      "pos": "Open Opp",
+      "end": 45.0,
+      "rot": 15.0
      }
     ],
     "preceding": [
@@ -70108,27 +70641,30 @@
      },
      {
       "desc": "LF bwd and slightly to side",
-      "align": "Backing DC",
-      "turn": "1/8 L",
+      "align": "Facing LOD",
+      "turn": "",
       "face": 0,
-      "end": -135,
-      "pos": "Open Opp"
+      "end": 15.0,
+      "pos": "Open Opp",
+      "rot": 15.0
      },
      {
       "desc": "RF",
-      "align": "Backing DC",
-      "turn": "1/8 L",
-      "face": 0,
-      "end": -135,
-      "pos": "Open Opp"
+      "align": "Facing DC",
+      "turn": "",
+      "face": 15.0,
+      "end": 30.0,
+      "pos": "Open Opp",
+      "rot": 15.0
      },
      {
       "desc": "LF bwd and slightly to side",
-      "align": "Backing DC",
-      "turn": "1/8 L",
-      "face": 0,
-      "end": -135,
-      "pos": "Open Opp"
+      "align": "Facing DC",
+      "turn": "",
+      "face": 30.0,
+      "end": 45.0,
+      "pos": "Open Opp",
+      "rot": 15.0
      }
     ]
    },
@@ -70266,16 +70802,18 @@
      {
       "desc": "LF in place",
       "align": "Facing C",
-      "turn": "1/8 L",
+      "turn": "",
       "face": 45,
-      "end": 90
+      "end": 67.5,
+      "rot": 22.5
      },
      {
       "desc": "RF to side",
       "align": "Facing C",
-      "turn": "1/8 L",
-      "face": 45,
-      "end": 90
+      "turn": "",
+      "face": 67.5,
+      "end": 90.0,
+      "rot": 22.5
      },
      {
       "desc": "LF",
@@ -70292,24 +70830,27 @@
      },
      {
       "desc": "LF to side",
-      "align": "Facing C",
+      "align": "Facing LOD",
       "turn": "",
-      "face": -180,
-      "end": 90.0
+      "face": 90,
+      "end": 0.0,
+      "rot": -90.0
      },
      {
       "desc": "RF crosses in front of LF",
-      "align": "Facing LOD",
-      "turn": "",
-      "face": 90.0,
-      "end": 0.0
-     },
-     {
-      "desc": "LF to side",
       "align": "Facing W",
       "turn": "",
       "face": 0.0,
-      "end": -90.0
+      "end": -90.0,
+      "rot": -90.0
+     },
+     {
+      "desc": "LF to side",
+      "align": "Backing LOD",
+      "turn": "",
+      "face": -90.0,
+      "end": -180.0,
+      "rot": -90.0
      }
     ]
    }
@@ -70398,27 +70939,30 @@
      },
      {
       "desc": "LF fwd",
-      "align": "Backing DC",
-      "turn": "3/8 R",
+      "align": "Facing DW",
+      "turn": "",
       "face": 0,
-      "end": -135,
-      "pos": "Open Opp Close Same"
+      "end": -45.0,
+      "pos": "Open Opp Close Same",
+      "rot": -45.0
      },
      {
       "desc": "RF",
-      "align": "Backing DC",
-      "turn": "3/8 R",
-      "face": 0,
-      "end": -135,
-      "pos": "Open Opp Close Same"
+      "align": "Facing W",
+      "turn": "",
+      "face": -45.0,
+      "end": -90.0,
+      "pos": "Open Opp Close Same",
+      "rot": -45.0
      },
      {
       "desc": "LF diag fwd and slightly bwd",
       "align": "Backing DC",
-      "turn": "3/8 R",
-      "face": 0,
-      "end": -135,
-      "pos": "Close Same then Open Same"
+      "turn": "",
+      "face": -90.0,
+      "end": -135.0,
+      "pos": "Close Same then Open Same",
+      "rot": -45.0
      },
      {
       "desc": "RF fwd",
@@ -70461,19 +71005,21 @@
      },
      {
       "desc": "RF fwd",
-      "align": "Backing DC",
-      "turn": "1/8 L",
+      "align": "Backing LOD",
+      "turn": "",
       "face": -180,
-      "end": -135,
-      "pos": "Open Opp Close Same"
+      "end": -157.5,
+      "pos": "Open Opp Close Same",
+      "rot": 22.5
      },
      {
       "desc": "LF",
       "align": "Backing DC",
-      "turn": "1/8 L",
-      "face": -180,
-      "end": -135,
-      "pos": "Open Opp Close Same"
+      "turn": "",
+      "face": -157.5,
+      "end": -135.0,
+      "pos": "Open Opp Close Same",
+      "rot": 22.5
      },
      {
       "desc": "RF crosses in front of LF",
@@ -70485,17 +71031,21 @@
      },
      {
       "desc": "LF fwd",
-      "align": "Backing DC",
-      "turn": "1/8 L",
+      "align": "Facing W",
+      "turn": "",
       "face": -135,
-      "pos": "Open Same"
+      "pos": "Open Same",
+      "end": -112.5,
+      "rot": 22.5
      },
      {
       "desc": "RF crosses behind LF",
-      "align": "Backing DC",
-      "turn": "1/8 L",
-      "face": -135,
-      "pos": "Open Same"
+      "align": "Facing W",
+      "turn": "",
+      "face": -112.5,
+      "pos": "Open Same",
+      "end": -90.0,
+      "rot": 22.5
      },
      {
       "desc": "LF fwd and slightly bwd",
@@ -70597,24 +71147,27 @@
      },
      {
       "desc": "RF to side",
-      "align": "Facing LOD",
-      "turn": "1/8 R",
+      "align": "Facing DC",
+      "turn": "",
       "face": 45,
-      "end": 0
+      "end": 30.0,
+      "rot": -15.0
      },
      {
       "desc": "LF",
       "align": "Facing LOD",
-      "turn": "1/8 R",
-      "face": 45,
-      "end": 0
+      "turn": "",
+      "face": 30.0,
+      "end": 15.0,
+      "rot": -15.0
      },
      {
       "desc": "RF to side",
       "align": "Facing LOD",
-      "turn": "1/8 R",
-      "face": 45,
-      "end": 0
+      "turn": "",
+      "face": 15.0,
+      "end": 0.0,
+      "rot": -15.0
      }
     ],
     "preceding": [],
@@ -70626,7 +71179,8 @@
       "turn": "",
       "face": 135,
       "end": 67.5,
-      "pos": "Close Opp"
+      "pos": "Close Opp",
+      "rot": -67.5
      },
      {
       "desc": "RF fwd and across",
@@ -70634,7 +71188,8 @@
       "turn": "",
       "face": 67.5,
       "end": 0.0,
-      "pos": "Close Opp"
+      "pos": "Close Opp",
+      "rot": -67.5
      },
      {
       "desc": "LF fwd and slightly to side",
@@ -70642,7 +71197,8 @@
       "turn": "",
       "face": 0.0,
       "end": -67.5,
-      "pos": "Close Opp"
+      "pos": "Close Opp",
+      "rot": -67.5
      },
      {
       "desc": "RF fwd and across",
@@ -70650,31 +71206,35 @@
       "turn": "",
       "face": -67.5,
       "end": -135.0,
-      "pos": "Close Opp"
+      "pos": "Close Opp",
+      "rot": -67.5
      },
      {
       "desc": "LF to side and slightly fwd",
-      "align": "Backing LOD",
-      "turn": "1/8 R",
-      "face": -180,
-      "end": -180,
-      "pos": "Close Opp"
+      "align": "Backing DC",
+      "turn": "",
+      "face": -135.0,
+      "end": -150.0,
+      "pos": "Close Opp",
+      "rot": -15.0
      },
      {
       "desc": "RF",
       "align": "Backing LOD",
-      "turn": "1/8 R",
-      "face": -180,
-      "end": -180,
-      "pos": "Close Opp"
+      "turn": "",
+      "face": -150.0,
+      "end": -165.0,
+      "pos": "Close Opp",
+      "rot": -15.0
      },
      {
       "desc": "LF to side",
       "align": "Backing LOD",
-      "turn": "1/8 R",
-      "face": -180,
-      "end": -180,
-      "pos": "Close Opp"
+      "turn": "",
+      "face": -165.0,
+      "end": -180.0,
+      "pos": "Close Opp",
+      "rot": -15.0
      }
     ]
    }
@@ -70758,27 +71318,30 @@
      },
      {
       "desc": "RF to side small step",
-      "align": "Facing W",
-      "turn": "1/8 R",
+      "align": "Facing DW",
+      "turn": "",
       "face": -45,
-      "end": -90,
-      "pos": "Close Opp"
+      "end": -60.0,
+      "pos": "Close Opp",
+      "rot": -15.0
      },
      {
       "desc": "LF",
       "align": "Facing W",
-      "turn": "1/8 R",
-      "face": -45,
-      "end": -90,
-      "pos": "Open Opp"
+      "turn": "",
+      "face": -60.0,
+      "end": -75.0,
+      "pos": "Open Opp",
+      "rot": -15.0
      },
      {
       "desc": "RF to side small step",
       "align": "Facing W",
-      "turn": "1/8 R",
-      "face": -45,
-      "end": -90,
-      "pos": "Open Opp"
+      "turn": "",
+      "face": -75.0,
+      "end": -90.0,
+      "pos": "Open Opp",
+      "rot": -15.0
      }
     ],
     "preceding": [
@@ -70946,27 +71509,30 @@
      },
      {
       "desc": "LF diag fwd",
-      "align": "Facing LOD",
-      "turn": "1/8 L",
+      "align": "Facing DW",
+      "turn": "",
       "face": -45,
-      "end": 0,
-      "pos": "Close Prom"
+      "end": -30.0,
+      "pos": "Close Prom",
+      "rot": 15.0
      },
      {
       "desc": "LF diag fwd",
       "align": "Facing LOD",
-      "turn": "1/8 L",
-      "face": -45,
-      "end": 0,
-      "pos": "Close Prom"
+      "turn": "",
+      "face": -30.0,
+      "end": -15.0,
+      "pos": "Close Prom",
+      "rot": 15.0
      },
      {
       "desc": "LF diag fwd",
       "align": "Facing LOD",
-      "turn": "1/8 L",
-      "face": -45,
-      "end": 0,
-      "pos": "Close Opp"
+      "turn": "",
+      "face": -15.0,
+      "end": 0.0,
+      "pos": "Close Opp",
+      "rot": 15.0
      },
      {
       "desc": "RF to side",
@@ -70986,27 +71552,30 @@
      },
      {
       "desc": "RF to side",
-      "align": "Facing W",
-      "turn": "1/4 L",
-      "face": -90,
-      "end": -90,
-      "pos": "Close Opp"
+      "align": "Backing DC",
+      "turn": "",
+      "face": -180,
+      "end": -150.0,
+      "pos": "Close Opp",
+      "rot": 30.0
+     },
+     {
+      "desc": "RF to side",
+      "align": "Backing DC",
+      "turn": "",
+      "face": -150.0,
+      "end": -120.0,
+      "pos": "Close Opp",
+      "rot": 30.0
      },
      {
       "desc": "RF to side",
       "align": "Facing W",
-      "turn": "1/4 L",
-      "face": -90,
-      "end": -90,
-      "pos": "Close Opp"
-     },
-     {
-      "desc": "RF to side",
-      "align": "Facing W",
-      "turn": "1/4 L",
-      "face": -90,
-      "end": -90,
-      "pos": "Close Opp"
+      "turn": "",
+      "face": -120.0,
+      "end": -90.0,
+      "pos": "Close Opp",
+      "rot": 30.0
      }
     ],
     "preceding": [
@@ -71077,24 +71646,27 @@
      },
      {
       "desc": "RF diag fwd",
-      "align": "Backing LOD",
-      "turn": "3/8 L",
-      "face": -180,
-      "end": -180
+      "align": "Facing C",
+      "turn": "",
+      "face": 45,
+      "end": 90.0,
+      "rot": 45.0
      },
      {
       "desc": "LF",
-      "align": "Backing LOD",
-      "turn": "3/8 L",
-      "face": -180,
-      "end": -180
+      "align": "Backing DW",
+      "turn": "",
+      "face": 90.0,
+      "end": 135.0,
+      "rot": 45.0
      },
      {
       "desc": "RF to side",
       "align": "Backing LOD",
-      "turn": "3/8 L",
-      "face": -180,
-      "end": -180
+      "turn": "",
+      "face": 135.0,
+      "end": -180.0,
+      "rot": 45.0
      },
      {
       "desc": "LF crosses behind RF",
@@ -71111,24 +71683,27 @@
      },
      {
       "desc": "LF to side",
-      "align": "Facing C",
-      "turn": "1/4 L",
-      "face": 90,
-      "end": 90
+      "align": "Facing DC",
+      "turn": "",
+      "face": 0,
+      "end": 30.0,
+      "rot": 30.0
      },
      {
       "desc": "RF",
-      "align": "Facing C",
-      "turn": "1/4 L",
-      "face": 90,
-      "end": 90
+      "align": "Facing DC",
+      "turn": "",
+      "face": 30.0,
+      "end": 60.0,
+      "rot": 30.0
      },
      {
       "desc": "LF to side",
       "align": "Facing C",
-      "turn": "1/4 L",
-      "face": 90,
-      "end": 90
+      "turn": "",
+      "face": 60.0,
+      "end": 90.0,
+      "rot": 30.0
      }
     ]
    }
@@ -71216,27 +71791,30 @@
      },
      {
       "desc": "LF fwd",
-      "align": "Backing LOD",
-      "turn": "1/4 R",
-      "face": -180,
-      "end": -180,
-      "pos": "Close Same then Close R Angle"
+      "align": "Backing DC",
+      "turn": "",
+      "face": -90,
+      "end": -120.0,
+      "pos": "Close Same then Close R Angle",
+      "rot": -30.0
      },
      {
       "desc": "RF",
-      "align": "Backing LOD",
-      "turn": "1/4 R",
-      "face": -180,
-      "end": -180,
-      "pos": "Close Same then Close R Angle"
+      "align": "Backing DC",
+      "turn": "",
+      "face": -120.0,
+      "end": -150.0,
+      "pos": "Close Same then Close R Angle",
+      "rot": -30.0
      },
      {
       "desc": "LF to side",
       "align": "Backing LOD",
-      "turn": "1/4 R",
-      "face": -180,
-      "end": -180,
-      "pos": "Close Opp"
+      "turn": "",
+      "face": -150.0,
+      "end": -180.0,
+      "pos": "Close Opp",
+      "rot": -30.0
      }
     ],
     "preceding": [
@@ -71272,27 +71850,30 @@
      },
      {
       "desc": "RF fwd",
-      "align": "Facing C",
+      "align": "Backing LOD",
       "turn": "",
-      "face": 0,
-      "end": 90.0,
-      "pos": "Close Same then Close R Angle"
+      "face": 90,
+      "end": -180.0,
+      "pos": "Close Same then Close R Angle",
+      "rot": 90.0
      },
      {
       "desc": "LF",
-      "align": "Backing LOD",
-      "turn": "",
-      "face": 90.0,
-      "end": -180.0,
-      "pos": "Close Same then Close R Angle"
-     },
-     {
-      "desc": "RF crosses in front of LF",
       "align": "Facing W",
       "turn": "",
       "face": -180.0,
       "end": -90.0,
-      "pos": "Close Opp"
+      "pos": "Close Same then Close R Angle",
+      "rot": 90.0
+     },
+     {
+      "desc": "RF crosses in front of LF",
+      "align": "Facing LOD",
+      "turn": "",
+      "face": -90.0,
+      "end": 0.0,
+      "pos": "Close Opp",
+      "rot": 90.0
      }
     ]
    }
@@ -71448,23 +72029,29 @@
      {
       "desc": "LF in place",
       "align": "Facing DC",
-      "turn": "1/8 L",
+      "turn": "",
       "face": 45,
-      "pos": "Close Prom"
+      "pos": "Close Prom",
+      "end": 60.0,
+      "rot": 15.0
      },
      {
       "desc": "RF diag fwd",
-      "align": "Facing DC",
-      "turn": "1/8 L",
-      "face": 45,
-      "pos": "Close Prom"
+      "align": "Facing C",
+      "turn": "",
+      "face": 60.0,
+      "pos": "Close Prom",
+      "end": 75.0,
+      "rot": 15.0
      },
      {
       "desc": "LF crosses behind RF",
-      "align": "Facing DC",
-      "turn": "1/8 L",
-      "face": 45,
-      "pos": "Close Prom"
+      "align": "Facing C",
+      "turn": "",
+      "face": 75.0,
+      "pos": "Close Prom",
+      "end": 90.0,
+      "rot": 15.0
      },
      {
       "desc": "RF fwd",
@@ -71476,17 +72063,19 @@
      },
      {
       "desc": "LF fwd",
-      "align": "Facing DC",
-      "turn": "1/8 L",
+      "align": "Facing LOD",
+      "turn": "",
       "face": 0,
-      "end": 45
+      "end": 22.5,
+      "rot": 22.5
      },
      {
       "desc": "RF crosses behind LF",
       "align": "Facing DC",
-      "turn": "1/8 L",
-      "face": 0,
-      "end": 45
+      "turn": "",
+      "face": 22.5,
+      "end": 45.0,
+      "rot": 22.5
      },
      {
       "desc": "LF fwd and bwd",
@@ -71589,24 +72178,27 @@
      },
      {
       "desc": "LF diag fwd",
-      "align": "Facing W",
-      "turn": "1/4 R",
-      "face": -90,
-      "end": -90
+      "align": "Facing DW",
+      "turn": "",
+      "face": 0,
+      "end": -30.0,
+      "rot": -30.0
      },
      {
       "desc": "RF",
-      "align": "Facing W",
-      "turn": "1/4 R",
-      "face": -90,
-      "end": -90
+      "align": "Facing DW",
+      "turn": "",
+      "face": -30.0,
+      "end": -60.0,
+      "rot": -30.0
      },
      {
       "desc": "LF to side",
       "align": "Facing W",
-      "turn": "1/4 R",
-      "face": -90,
-      "end": -90
+      "turn": "",
+      "face": -60.0,
+      "end": -90.0,
+      "rot": -30.0
      },
      {
       "desc": "RF fwd and across",
@@ -71739,24 +72331,27 @@
      },
      {
       "desc": "RF fwd",
-      "align": "Facing DC",
+      "align": "Backing DC",
       "turn": "",
-      "face": 0,
-      "end": 60.0
+      "face": -180,
+      "end": -120.0,
+      "rot": 60.0
      },
      {
       "desc": "LF",
-      "align": "Backing DW",
+      "align": "Facing DW",
       "turn": "",
-      "face": 60.0,
-      "end": 120.0
+      "face": -120.0,
+      "end": -60.0,
+      "rot": 60.0
      },
      {
       "desc": "RF diag bwd",
-      "align": "Backing LOD",
+      "align": "Facing LOD",
       "turn": "",
-      "face": 120.0,
-      "end": -180.0
+      "face": -60.0,
+      "end": 0.0,
+      "rot": 60.0
      },
      {
       "desc": "LF bwd",
@@ -71777,21 +72372,24 @@
       "align": "Facing DW",
       "turn": "",
       "face": 0,
-      "end": -60.0
+      "end": -60.0,
+      "rot": -60.0
      },
      {
       "desc": "RF",
       "align": "Backing DC",
       "turn": "",
       "face": -60.0,
-      "end": -120.0
+      "end": -120.0,
+      "rot": -60.0
      },
      {
       "desc": "LF diag bwd",
       "align": "Backing LOD",
       "turn": "",
       "face": -120.0,
-      "end": -180.0
+      "end": -180.0,
+      "rot": -60.0
      }
     ]
    }
@@ -71894,24 +72492,27 @@
      },
      {
       "desc": "RF diag fwd and to side",
-      "align": "Facing LOD",
-      "turn": "1/4 L",
-      "face": 0,
-      "end": 0
+      "align": "Facing DW",
+      "turn": "",
+      "face": -90,
+      "end": -60.0,
+      "rot": 30.0
      },
      {
       "desc": "LF",
-      "align": "Facing LOD",
-      "turn": "1/4 L",
-      "face": 0,
-      "end": 0
+      "align": "Facing DW",
+      "turn": "",
+      "face": -60.0,
+      "end": -30.0,
+      "rot": 30.0
      },
      {
       "desc": "RF diag fwd and bwd",
       "align": "Facing LOD",
-      "turn": "1/4 L",
-      "face": 0,
-      "end": 0
+      "turn": "",
+      "face": -30.0,
+      "end": 0.0,
+      "rot": 30.0
      }
     ],
     "preceding": [
@@ -72030,24 +72631,27 @@
      },
      {
       "desc": "LF diag fwd and to side",
-      "align": "Backing LOD",
-      "turn": "1/4 R",
-      "face": -180,
-      "end": -180
+      "align": "Backing DC",
+      "turn": "",
+      "face": -90,
+      "end": -120.0,
+      "rot": -30.0
      },
      {
       "desc": "RF",
-      "align": "Backing LOD",
-      "turn": "1/4 R",
-      "face": -180,
-      "end": -180
+      "align": "Backing DC",
+      "turn": "",
+      "face": -120.0,
+      "end": -150.0,
+      "rot": -30.0
      },
      {
       "desc": "LF diag fwd and bwd",
       "align": "Backing LOD",
-      "turn": "1/4 R",
-      "face": -180,
-      "end": -180
+      "turn": "",
+      "face": -150.0,
+      "end": -180.0,
+      "rot": -30.0
      }
     ]
    }
@@ -72166,27 +72770,30 @@
      },
      {
       "desc": "RF fwd and slightly to side",
-      "align": "Facing C",
-      "turn": "1/8 L",
-      "face": 90,
-      "end": 90,
-      "pos": "Open Opp"
+      "align": "Facing DC",
+      "turn": "",
+      "face": 45,
+      "end": 60.0,
+      "pos": "Open Opp",
+      "rot": 15.0
      },
      {
       "desc": "LF",
       "align": "Facing C",
-      "turn": "1/8 L",
-      "face": 90,
-      "end": 90,
-      "pos": "Open Opp"
+      "turn": "",
+      "face": 60.0,
+      "end": 75.0,
+      "pos": "Open Opp",
+      "rot": 15.0
      },
      {
       "desc": "RF to side and slightly fwd",
       "align": "Facing C",
-      "turn": "1/8 L",
-      "face": 90,
-      "end": 90,
-      "pos": "Open Opp"
+      "turn": "",
+      "face": 75.0,
+      "end": 90.0,
+      "pos": "Open Opp",
+      "rot": 15.0
      }
     ],
     "preceding": [
@@ -72278,27 +72885,30 @@
      },
      {
       "desc": "LF diag bwd",
-      "align": "Facing W",
-      "turn": "1/4 L",
-      "face": -90,
-      "end": -90,
-      "pos": "Open Opp"
+      "align": "Backing DC",
+      "turn": "",
+      "face": -180,
+      "end": -150.0,
+      "pos": "Open Opp",
+      "rot": 30.0
      },
      {
       "desc": "RF",
-      "align": "Facing W",
-      "turn": "1/4 L",
-      "face": -90,
-      "end": -90,
-      "pos": "Open Opp"
+      "align": "Backing DC",
+      "turn": "",
+      "face": -150.0,
+      "end": -120.0,
+      "pos": "Open Opp",
+      "rot": 30.0
      },
      {
       "desc": "LF diag bwd",
       "align": "Facing W",
-      "turn": "1/4 L",
-      "face": -90,
-      "end": -90,
-      "pos": "Open Opp"
+      "turn": "",
+      "face": -120.0,
+      "end": -90.0,
+      "pos": "Open Opp",
+      "rot": 30.0
      }
     ]
    }
@@ -72651,17 +73261,19 @@
      },
      {
       "desc": "LF fwd",
-      "align": "Backing DC",
-      "turn": "1/8 R",
+      "align": "Backing LOD",
+      "turn": "",
       "face": -135,
-      "end": -135
+      "end": -157.5,
+      "rot": -22.5
      },
      {
       "desc": "RF",
-      "align": "Backing DC",
-      "turn": "1/8 R",
-      "face": -135,
-      "end": -135
+      "align": "Backing LOD",
+      "turn": "",
+      "face": -157.5,
+      "end": -180.0,
+      "rot": -22.5
      },
      {
       "desc": "LF diag fwd",
@@ -72704,17 +73316,19 @@
      },
      {
       "desc": "LF fwd",
-      "align": "Facing DC",
-      "turn": "1/8 R",
-      "face": 45,
-      "end": 45
+      "align": "Backing LOD",
+      "turn": "",
+      "face": -135,
+      "end": -157.5,
+      "rot": -22.5
      },
      {
       "desc": "RF",
-      "align": "Facing DC",
-      "turn": "1/8 R",
-      "face": 45,
-      "end": 45
+      "align": "Backing LOD",
+      "turn": "",
+      "face": -157.5,
+      "end": -180.0,
+      "rot": -22.5
      },
      {
       "desc": "LF diag fwd",
@@ -72725,24 +73339,27 @@
      },
      {
       "desc": "RF fwd",
-      "align": "Facing LOD",
-      "turn": "1/8 R",
-      "face": 0,
-      "end": 0
+      "align": "Facing DC",
+      "turn": "",
+      "face": 45,
+      "end": 30.0,
+      "rot": -15.0
      },
      {
       "desc": "LF",
       "align": "Facing LOD",
-      "turn": "1/8 R",
-      "face": 0,
-      "end": 0
+      "turn": "",
+      "face": 30.0,
+      "end": 15.0,
+      "rot": -15.0
      },
      {
       "desc": "RF fwd",
       "align": "Facing LOD",
-      "turn": "1/8 R",
-      "face": 0,
-      "end": 0
+      "turn": "",
+      "face": 15.0,
+      "end": 0.0,
+      "rot": -15.0
      }
     ],
     "preceding": [
@@ -72838,24 +73455,27 @@
      },
      {
       "desc": "LF to side and diag bwd",
-      "align": "Facing DC",
-      "turn": "3/8 R",
-      "face": 45,
-      "end": 45
+      "align": "Backing DW",
+      "turn": "",
+      "face": -180,
+      "end": 135.0,
+      "rot": -45.0
      },
      {
       "desc": "RF",
-      "align": "Facing DC",
-      "turn": "3/8 R",
-      "face": 45,
-      "end": 45
+      "align": "Facing C",
+      "turn": "",
+      "face": 135.0,
+      "end": 90.0,
+      "rot": -45.0
      },
      {
       "desc": "LF bwd and slightly to side",
       "align": "Facing DC",
-      "turn": "3/8 R",
-      "face": 45,
-      "end": 45
+      "turn": "",
+      "face": 90.0,
+      "end": 45.0,
+      "rot": -45.0
      },
      {
       "desc": "RF bwd",
@@ -72894,24 +73514,27 @@
      },
      {
       "desc": "LF fwd and to side",
-      "align": "Backing DC",
+      "align": "Facing DC",
       "turn": "",
-      "face": -90,
-      "end": -150.0
+      "face": 90,
+      "end": 30.0,
+      "rot": -60.0
      },
      {
       "desc": "RF crosses in front of LF",
-      "align": "Backing DW",
+      "align": "Facing DW",
       "turn": "",
-      "face": -150.0,
-      "end": 150.0
+      "face": 30.0,
+      "end": -30.0,
+      "rot": -60.0
      },
      {
       "desc": "LF to side",
-      "align": "Facing C",
+      "align": "Facing W",
       "turn": "",
-      "face": 150.0,
-      "end": 90.0
+      "face": -30.0,
+      "end": -90.0,
+      "rot": -60.0
      }
     ]
    }
@@ -73130,32 +73753,36 @@
      },
      {
       "desc": "LF diag fwd",
-      "align": "Backing LOD",
-      "turn": "1/4 R",
-      "face": -180,
-      "end": -180
+      "align": "Backing DC",
+      "turn": "",
+      "face": -90,
+      "end": -120.0,
+      "rot": -30.0
      },
      {
       "desc": "RF",
-      "align": "Backing LOD",
-      "turn": "1/4 R",
-      "face": -180,
-      "end": -180
+      "align": "Backing DC",
+      "turn": "",
+      "face": -120.0,
+      "end": -150.0,
+      "rot": -30.0
      },
      {
       "desc": "LF to side",
       "align": "Backing LOD",
-      "turn": "1/4 R",
-      "face": -180,
-      "end": -180
+      "turn": "",
+      "face": -150.0,
+      "end": -180.0,
+      "rot": -30.0
      },
      {
       "desc": "RF crosses behind LF",
       "align": "Facing C",
       "turn": "",
-      "face": -180,
+      "face": -180.0,
       "end": 90.0,
-      "pos": "R Side R Angle"
+      "pos": "R Side R Angle",
+      "rot": -90.0
      },
      {
       "desc": "LF to side",
@@ -73163,28 +73790,32 @@
       "turn": "",
       "face": 90.0,
       "end": 0.0,
-      "pos": "R Side R Angle"
+      "pos": "R Side R Angle",
+      "rot": -90.0
      },
      {
       "desc": "RF diag fwd",
-      "align": "Facing W",
-      "turn": "1/4 R",
-      "face": -90,
-      "end": -90
+      "align": "Facing DW",
+      "turn": "",
+      "face": 0.0,
+      "end": -30.0,
+      "rot": -30.0
      },
      {
       "desc": "LF",
-      "align": "Facing W",
-      "turn": "1/4 R",
-      "face": -90,
-      "end": -90
+      "align": "Facing DW",
+      "turn": "",
+      "face": -30.0,
+      "end": -60.0,
+      "rot": -30.0
      },
      {
       "desc": "RF diag fwd",
       "align": "Facing W",
-      "turn": "1/4 R",
-      "face": -90,
-      "end": -90
+      "turn": "",
+      "face": -60.0,
+      "end": -90.0,
+      "rot": -30.0
      }
     ],
     "preceding": [
@@ -73278,61 +73909,69 @@
      },
      {
       "desc": "RF diag fwd",
-      "align": "Backing DC",
-      "turn": "3/8 L",
-      "face": -135,
-      "end": -135
+      "align": "Backing DW",
+      "turn": "",
+      "face": 90,
+      "end": 135.0,
+      "rot": 45.0
      },
      {
       "desc": "LF",
-      "align": "Backing DC",
-      "turn": "3/8 L",
-      "face": -135,
-      "end": -135
+      "align": "Backing LOD",
+      "turn": "",
+      "face": 135.0,
+      "end": -180.0,
+      "rot": 45.0
      },
      {
       "desc": "RF fwd and slightly bwd",
       "align": "Backing DC",
-      "turn": "3/8 L",
-      "face": -135,
-      "end": -135
+      "turn": "",
+      "face": -180.0,
+      "end": -135.0,
+      "rot": 45.0
      },
      {
       "desc": "LF bwd",
-      "align": "Facing DW",
+      "align": "Backing DW",
       "turn": "",
-      "face": 45,
-      "end": -45.0,
-      "pos": "R Side R Angle"
+      "face": -135.0,
+      "end": 135.0,
+      "pos": "R Side R Angle",
+      "rot": -90.0
      },
      {
       "desc": "RF bwd and slightly fwd",
-      "align": "Backing DC",
+      "align": "Facing DC",
       "turn": "",
-      "face": -45.0,
-      "end": -135.0,
-      "pos": "R Side R Angle"
+      "face": 135.0,
+      "end": 45.0,
+      "pos": "R Side R Angle",
+      "rot": -90.0
      },
      {
       "desc": "LF diag fwd",
-      "align": "Facing C",
-      "turn": "3/8 R",
-      "face": 90,
-      "end": 90
+      "align": "Facing LOD",
+      "turn": "",
+      "face": 45.0,
+      "end": 0.0,
+      "rot": -45.0
      },
      {
       "desc": "RF",
-      "align": "Facing C",
-      "turn": "3/8 R",
-      "face": 90,
-      "end": 90
+      "align": "Facing DW",
+      "turn": "",
+      "face": 0.0,
+      "end": -45.0,
+      "rot": -45.0
      },
      {
       "desc": "LF diag bwd",
-      "align": "Facing C",
-      "turn": "3/8 R",
-      "face": 90,
-      "end": 90
+      "align": "Facing W",
+      "turn": "",
+      "face": -45.0,
+      "end": -90.0,
+      "rot": -45.0
      }
     ]
    }
@@ -73563,7 +74202,8 @@
       "turn": "",
       "face": 45,
       "pos": "Open Opp then Open Same",
-      "end": -135.0
+      "end": -135.0,
+      "rot": -180.0
      },
      {
       "desc": "LF to side and slightly bwd",
@@ -73571,7 +74211,8 @@
       "turn": "",
       "face": -135.0,
       "pos": "Open Same then Open Opp",
-      "end": 45.0
+      "end": 45.0,
+      "rot": -180.0
      }
     ]
    }
@@ -74301,27 +74942,30 @@
      },
      {
       "desc": "LF fwd",
-      "align": "Facing W",
-      "turn": "1/4 R",
-      "face": -90,
-      "end": -90,
-      "pos": "Open Open then L Side Same"
+      "align": "Facing DW",
+      "turn": "",
+      "face": 0,
+      "end": -30.0,
+      "pos": "Open Open then L Side Same",
+      "rot": -30.0
      },
      {
       "desc": "RF",
-      "align": "Facing W",
-      "turn": "1/4 R",
-      "face": -90,
-      "end": -90,
-      "pos": "Open Open then L Side Same"
+      "align": "Facing DW",
+      "turn": "",
+      "face": -30.0,
+      "end": -60.0,
+      "pos": "Open Open then L Side Same",
+      "rot": -30.0
      },
      {
       "desc": "LF to side",
       "align": "Facing W",
-      "turn": "1/4 R",
-      "face": -90,
-      "end": -90,
-      "pos": "Open Open then L Side Same"
+      "turn": "",
+      "face": -60.0,
+      "end": -90.0,
+      "pos": "Open Open then L Side Same",
+      "rot": -30.0
      },
      {
       "desc": "RF crosses behind LF",
@@ -74542,24 +75186,27 @@
      },
      {
       "desc": "RF to side small step",
-      "align": "Facing W",
-      "turn": "1/4 L",
+      "align": "Facing DW",
+      "turn": "",
       "face": -90,
-      "end": -90
+      "end": -60.0,
+      "rot": 30.0
      },
      {
       "desc": "LF",
-      "align": "Facing W",
-      "turn": "1/4 L",
-      "face": -90,
-      "end": -90
+      "align": "Facing DW",
+      "turn": "",
+      "face": -60.0,
+      "end": -30.0,
+      "rot": 30.0
      },
      {
       "desc": "RF to side small step",
-      "align": "Facing W",
-      "turn": "1/4 L",
-      "face": -90,
-      "end": -90
+      "align": "Facing LOD",
+      "turn": "",
+      "face": -30.0,
+      "end": 0.0,
+      "rot": 30.0
      },
      {
       "desc": "LF bwd",
@@ -74596,27 +75243,30 @@
      },
      {
       "desc": "RF to side small step",
-      "align": "Facing LOD",
-      "turn": "1/4 L",
-      "face": 0,
-      "end": 0,
-      "pos": "L Side Same then Open Opp"
+      "align": "Facing DW",
+      "turn": "",
+      "face": -90,
+      "end": -60.0,
+      "pos": "L Side Same then Open Opp",
+      "rot": 30.0
      },
      {
       "desc": "LF",
-      "align": "Facing LOD",
-      "turn": "1/4 L",
-      "face": 0,
-      "end": 0,
-      "pos": "L Side Same then Open Opp"
+      "align": "Facing DW",
+      "turn": "",
+      "face": -60.0,
+      "end": -30.0,
+      "pos": "L Side Same then Open Opp",
+      "rot": 30.0
      },
      {
       "desc": "RF bwd small step",
       "align": "Facing LOD",
-      "turn": "1/4 L",
-      "face": 0,
-      "end": 0,
-      "pos": "L Side Same then Open Opp"
+      "turn": "",
+      "face": -30.0,
+      "end": 0.0,
+      "pos": "L Side Same then Open Opp",
+      "rot": 30.0
      }
     ],
     "preceding": [
@@ -74690,42 +75340,48 @@
       "align": "Facing C",
       "turn": "",
       "pos": "Open Opp then R Diag Same",
-      "face": 78.8
+      "face": 78.8,
+      "rot": 33.8
      },
      {
       "desc": "LF",
       "align": "Facing C",
       "turn": "",
       "pos": "Open Opp then R Diag Same",
-      "face": 112.5
+      "face": 112.5,
+      "rot": 33.8
      },
      {
       "desc": "RF fwd",
       "align": "Backing DW",
       "turn": "",
       "pos": "Open Opp then R Diag Same",
-      "face": 146.2
+      "face": 146.2,
+      "rot": 33.8
      },
      {
       "desc": "LF to side",
-      "align": "Backing LOD",
-      "turn": "1/8 L",
+      "align": "Backing DW",
+      "turn": "",
       "face": 135,
-      "end": -180
+      "end": 150.0,
+      "rot": 15.0
      },
      {
       "desc": "RF",
       "align": "Backing LOD",
-      "turn": "1/8 L",
-      "face": 135,
-      "end": -180
+      "turn": "",
+      "face": 150.0,
+      "end": 165.0,
+      "rot": 15.0
      },
      {
       "desc": "LF to side",
       "align": "Backing LOD",
-      "turn": "1/8 L",
-      "face": 135,
-      "end": -180
+      "turn": "",
+      "face": 165.0,
+      "end": -180.0,
+      "rot": 15.0
      },
      {
       "desc": "RF bwd",
@@ -74760,27 +75416,30 @@
      },
      {
       "desc": "LF to side",
-      "align": "Backing LOD",
-      "turn": "1/4 R",
-      "face": -180,
-      "end": -180,
-      "pos": "L Side Same then Open Opp"
+      "align": "Facing DC",
+      "turn": "",
+      "face": 90,
+      "end": 60.0,
+      "pos": "L Side Same then Open Opp",
+      "rot": -30.0
      },
      {
       "desc": "RF",
-      "align": "Backing LOD",
-      "turn": "1/4 R",
-      "face": -180,
-      "end": -180,
-      "pos": "L Side Same then Open Opp"
+      "align": "Facing DC",
+      "turn": "",
+      "face": 60.0,
+      "end": 30.0,
+      "pos": "L Side Same then Open Opp",
+      "rot": -30.0
      },
      {
       "desc": "LF bwd",
-      "align": "Backing LOD",
-      "turn": "1/4 R",
-      "face": -180,
-      "end": -180,
-      "pos": "L Side Same then Open Opp"
+      "align": "Facing LOD",
+      "turn": "",
+      "face": 30.0,
+      "end": 0.0,
+      "pos": "L Side Same then Open Opp",
+      "rot": -30.0
      }
     ]
    }
@@ -74982,23 +75641,29 @@
      {
       "desc": "RF diag fwd",
       "align": "Backing LOD",
-      "turn": "1/8 L",
+      "turn": "",
       "face": -180,
-      "pos": "Open Opp"
+      "pos": "Open Opp",
+      "end": -165.0,
+      "rot": 15.0
      },
      {
       "desc": "LF",
-      "align": "Backing LOD",
-      "turn": "1/8 L",
-      "face": -180,
-      "pos": "Open Opp"
+      "align": "Backing DC",
+      "turn": "",
+      "face": -165.0,
+      "pos": "Open Opp",
+      "end": -150.0,
+      "rot": 15.0
      },
      {
       "desc": "RF diag fwd",
-      "align": "Backing LOD",
-      "turn": "1/8 L",
-      "face": -180,
-      "pos": "Open Opp"
+      "align": "Backing DC",
+      "turn": "",
+      "face": -150.0,
+      "pos": "Open Opp",
+      "end": -135.0,
+      "rot": 15.0
      }
     ],
     "preceding": [
@@ -75074,25 +75739,28 @@
      },
      {
       "desc": "RF fwd",
-      "align": "Backing DW",
-      "turn": "1/8 L, then 1/2 R",
+      "align": "Facing C",
+      "turn": "",
       "face": 90,
-      "end": 135
+      "end": 75.0,
+      "rot": -15.0
      },
      {
       "desc": "LF",
-      "align": "Backing DW",
-      "turn": "1/8 L, then 1/2 R",
-      "face": 90,
-      "end": 135
+      "align": "Facing DC",
+      "turn": "",
+      "face": 75.0,
+      "end": 60.0,
+      "rot": -15.0
      },
      {
       "desc": "RF fwd",
-      "align": "Backing DW",
-      "turn": "1/8 L, then 1/2 R",
-      "face": 90,
-      "end": 135,
-      "pos": "R Side Opp then R Side"
+      "align": "Facing DC",
+      "turn": "",
+      "face": 60.0,
+      "end": 45.0,
+      "pos": "R Side Opp then R Side",
+      "rot": -15.0
      },
      {
       "desc": "LF fwd",
@@ -75185,27 +75853,30 @@
      },
      {
       "desc": "LF diag bwd",
-      "align": "Facing LOD",
-      "turn": "3/8 L",
+      "align": "Facing W",
+      "turn": "",
       "face": -135,
-      "end": 0,
-      "pos": "Open Opp"
+      "end": -90.0,
+      "pos": "Open Opp",
+      "rot": 45.0
      },
      {
       "desc": "RF",
-      "align": "Facing LOD",
-      "turn": "3/8 L",
-      "face": -135,
-      "end": 0,
-      "pos": "Open Opp"
+      "align": "Facing DW",
+      "turn": "",
+      "face": -90.0,
+      "end": -45.0,
+      "pos": "Open Opp",
+      "rot": 45.0
      },
      {
       "desc": "",
       "align": "Facing LOD",
-      "turn": "3/8 L",
-      "face": -135,
-      "end": 0,
-      "pos": "Open Opp"
+      "turn": "",
+      "face": -45.0,
+      "end": 0.0,
+      "pos": "Open Opp",
+      "rot": 45.0
      }
     ]
    }
@@ -75401,23 +76072,29 @@
      {
       "desc": "RF diag fwd",
       "align": "Backing LOD",
-      "turn": "1/8 L",
+      "turn": "",
       "face": -180,
-      "pos": "Open Opp"
+      "pos": "Open Opp",
+      "end": -165.0,
+      "rot": 15.0
      },
      {
       "desc": "LF",
-      "align": "Backing LOD",
-      "turn": "1/8 L",
-      "face": -180,
-      "pos": "Open Opp"
+      "align": "Backing DC",
+      "turn": "",
+      "face": -165.0,
+      "pos": "Open Opp",
+      "end": -150.0,
+      "rot": 15.0
      },
      {
       "desc": "RF diag fwd",
-      "align": "Backing LOD",
-      "turn": "1/8 L",
-      "face": -180,
-      "pos": "Open Opp"
+      "align": "Backing DC",
+      "turn": "",
+      "face": -150.0,
+      "pos": "Open Opp",
+      "end": -135.0,
+      "rot": 15.0
      }
     ],
     "preceding": [],
@@ -75437,25 +76114,28 @@
      },
      {
       "desc": "RF fwd",
-      "align": "Backing DW",
-      "turn": "1/8 L, then 1/2 R",
+      "align": "Facing C",
+      "turn": "",
       "face": 90,
-      "end": 135
+      "end": 75.0,
+      "rot": -15.0
      },
      {
       "desc": "LF",
-      "align": "Backing DW",
-      "turn": "1/8 L, then 1/2 R",
-      "face": 90,
-      "end": 135
+      "align": "Facing DC",
+      "turn": "",
+      "face": 75.0,
+      "end": 60.0,
+      "rot": -15.0
      },
      {
       "desc": "RF fwd",
-      "align": "Backing DW",
-      "turn": "1/8 L, then 1/2 R",
-      "face": 90,
-      "end": 135,
-      "pos": "R Side Opp then R Side"
+      "align": "Facing DC",
+      "turn": "",
+      "face": 60.0,
+      "end": 45.0,
+      "pos": "R Side Opp then R Side",
+      "rot": -15.0
      },
      {
       "desc": "LF fwd",
@@ -75548,27 +76228,30 @@
      },
      {
       "desc": "LF diag bwd",
-      "align": "Facing LOD",
-      "turn": "3/8 L",
+      "align": "Facing W",
+      "turn": "",
       "face": -135,
-      "end": 0,
-      "pos": "Open Opp"
+      "end": -90.0,
+      "pos": "Open Opp",
+      "rot": 45.0
      },
      {
       "desc": "RF",
-      "align": "Facing LOD",
-      "turn": "3/8 L",
-      "face": -135,
-      "end": 0,
-      "pos": "Open Opp"
+      "align": "Facing DW",
+      "turn": "",
+      "face": -90.0,
+      "end": -45.0,
+      "pos": "Open Opp",
+      "rot": 45.0
      },
      {
       "desc": "",
       "align": "Facing LOD",
-      "turn": "3/8 L",
-      "face": -135,
-      "end": 0,
-      "pos": "Open Opp"
+      "turn": "",
+      "face": -45.0,
+      "end": 0.0,
+      "pos": "Open Opp",
+      "rot": 45.0
      }
     ]
    },
@@ -75650,41 +76333,53 @@
      {
       "desc": "LF diag fwd small step",
       "align": "Facing W",
-      "turn": "1/8 R",
+      "turn": "",
       "face": -90,
-      "pos": "Open Opp then R Side Same"
+      "pos": "Open Opp then R Side Same",
+      "end": -105.0,
+      "rot": -15.0
      },
      {
       "desc": "RF",
-      "align": "Facing W",
-      "turn": "1/8 R",
-      "face": -90,
-      "pos": "Open Opp then R Side Same"
+      "align": "Backing DC",
+      "turn": "",
+      "face": -105.0,
+      "pos": "Open Opp then R Side Same",
+      "end": -120.0,
+      "rot": -15.0
      },
      {
       "desc": "LF diag fwd small step",
-      "align": "Facing W",
-      "turn": "1/8 R",
-      "face": -90,
-      "pos": "Open Opp then R Side Same"
+      "align": "Backing DC",
+      "turn": "",
+      "face": -120.0,
+      "pos": "Open Opp then R Side Same",
+      "end": -135.0,
+      "rot": -15.0
      },
      {
       "desc": "RF diag fwd small step",
       "align": "Facing W",
-      "turn": "1/8 L",
-      "face": -90
+      "turn": "",
+      "face": -90,
+      "end": -75.0,
+      "rot": 15.0
      },
      {
       "desc": "LF",
-      "align": "Facing W",
-      "turn": "1/8 L",
-      "face": -90
+      "align": "Facing DW",
+      "turn": "",
+      "face": -75.0,
+      "end": -60.0,
+      "rot": 15.0
      },
      {
       "desc": "RF diag fwd small step",
-      "align": "Facing W",
-      "turn": "1/8 L",
-      "face": -90
+      "align": "Facing DW",
+      "turn": "",
+      "face": -60.0,
+      "end": -45.0,
+      "rot": 15.0
      },
      {
       "desc": "LF fwd",
@@ -75701,38 +76396,50 @@
      {
       "desc": "LF to side small step",
       "align": "Facing W",
-      "turn": "1/8 L",
-      "face": -90
+      "turn": "",
+      "face": -90,
+      "end": -75.0,
+      "rot": 15.0
      },
      {
       "desc": "RF",
-      "align": "Facing W",
-      "turn": "1/8 L",
-      "face": -90
+      "align": "Facing DW",
+      "turn": "",
+      "face": -75.0,
+      "end": -60.0,
+      "rot": 15.0
      },
      {
       "desc": "LF to side small step",
-      "align": "Facing W",
-      "turn": "1/8 L",
-      "face": -90
+      "align": "Facing DW",
+      "turn": "",
+      "face": -60.0,
+      "end": -45.0,
+      "rot": 15.0
      },
      {
       "desc": "RF diag fwd small step",
       "align": "Facing W",
-      "turn": "1/8 R",
-      "face": -90
+      "turn": "",
+      "face": -90,
+      "end": -105.0,
+      "rot": -15.0
      },
      {
       "desc": "LF",
-      "align": "Facing W",
-      "turn": "1/8 R",
-      "face": -90
+      "align": "Backing DC",
+      "turn": "",
+      "face": -105.0,
+      "end": -120.0,
+      "rot": -15.0
      },
      {
       "desc": "RF diag fwd",
-      "align": "Facing W",
-      "turn": "1/8 R",
-      "face": -90
+      "align": "Backing DC",
+      "turn": "",
+      "face": -120.0,
+      "end": -135.0,
+      "rot": -15.0
      }
     ],
     "preceding": [
@@ -75814,27 +76521,30 @@
      },
      {
       "desc": "RF fwd",
-      "align": "Facing W",
-      "turn": "1/8 L, then 3/8 L",
+      "align": "Facing C",
+      "turn": "",
       "face": 90,
-      "end": -90,
-      "pos": "Open Opp then R Side Same"
+      "end": 105.0,
+      "pos": "Open Opp then R Side Same",
+      "rot": 15.0
      },
      {
       "desc": "LF",
-      "align": "Facing W",
-      "turn": "1/8 L, then 3/8 L",
-      "face": 90,
-      "end": -90,
-      "pos": "Open Opp then R Side Same"
+      "align": "Backing DW",
+      "turn": "",
+      "face": 105.0,
+      "end": 120.0,
+      "pos": "Open Opp then R Side Same",
+      "rot": 15.0
      },
      {
       "desc": "RF fwd and slightly bwd",
-      "align": "Facing W",
-      "turn": "1/8 L, then 3/8 L",
-      "face": 90,
-      "end": -90,
-      "pos": "Open Opp then R Side Same"
+      "align": "Backing DW",
+      "turn": "",
+      "face": 120.0,
+      "end": 135.0,
+      "pos": "Open Opp then R Side Same",
+      "rot": 15.0
      },
      {
       "desc": "LF diag bwd",
@@ -75888,24 +76598,27 @@
      },
      {
       "desc": "LF fwd and to side",
-      "align": "Facing LOD",
+      "align": "Backing DC",
       "turn": "",
-      "face": 90,
-      "end": 15.0
+      "face": -45,
+      "end": -120.0,
+      "rot": -75.0
      },
      {
       "desc": "RF crosses in front of LF",
-      "align": "Facing DW",
+      "align": "Backing LOD",
       "turn": "",
-      "face": 15.0,
-      "end": -60.0
+      "face": -120.0,
+      "end": 165.0,
+      "rot": -75.0
      },
      {
       "desc": "LF to side",
-      "align": "Backing DC",
+      "align": "Facing C",
       "turn": "",
-      "face": -60.0,
-      "end": -135.0
+      "face": 165.0,
+      "end": 90.0,
+      "rot": -75.0
      }
     ]
    }

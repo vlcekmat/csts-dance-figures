@@ -23,6 +23,10 @@ export interface VariantChoice {
   extraTurn?: number;
   /** extraTurn chosen by the choreography, outside the WDSF range (ČSTS catalog point 2). */
   choreo?: boolean;
+  /** The couple turns this much at the start of the figure (degrees, + = left). */
+  startTurn?: number;
+  /** Length of each danced step relative to the computed one (1 = as computed). */
+  stepScales?: number[];
   /** Hold keys (glossary.ts); omitted = hold from the syllabus. */
   startHold?: string;
   finishHold?: string;
@@ -40,6 +44,8 @@ export interface ResolvedItem {
   /** Part matches one allowed in the syllabus notes (always true for the whole figure). */
   partAllowed: boolean;
   startFoot: Foot | null;
+  /** Direction of the first danced step (from the chart). */
+  startDir: "fwd" | "bwd" | "side" | "place" | null;
   startPos: string | null;
   finishFoot: Foot | null;
   finishPos: string | null;
@@ -88,6 +94,31 @@ function bookFoot(fig: Figure, step: number): Foot | null {
   return m ? (m[1] as Foot) : null;
 }
 
+/** Foot carrying the weight after chart step `step` (a step "w/o weight" leaves it on the previous foot). */
+function weightFootAfter(fig: Figure, step: number): Foot | null {
+  for (let k = step; k >= 1; k--) {
+    const f = bookFoot(fig, k);
+    if (f) return f;
+  }
+  return null;
+}
+
+/** Direction of a chart step: fwd / bwd / side / in place. */
+export function stepDir(fig: Figure, step: number): "fwd" | "bwd" | "side" | "place" | null {
+  const d = (fig.floor?.steps[step - 1]?.desc ?? "").toLowerCase();
+  if (!d) return null;
+  const found: [number, "fwd" | "bwd" | "side" | "place"][] = [];
+  const at = (re: RegExp, k: "fwd" | "bwd" | "side" | "place") => {
+    const m = d.match(re);
+    if (m && m.index !== undefined) found.push([m.index, k]);
+  };
+  at(/\bfwd\b|forward/, "fwd");
+  at(/\bbwd\b|\bback\b/, "bwd");
+  at(/\bside\b/, "side");
+  at(/close|in place|cross/, "place");
+  return found.sort((a, b) => a[0] - b[0])[0]?.[1] ?? null;
+}
+
 export function resolveItem(fig: Figure, dance: Dance, timing: string, choice: VariantChoice = {}): ResolvedItem {
   const all = timing ? parseTiming(timing, dance) : [];
   const total = all.length;
@@ -112,7 +143,8 @@ export function resolveItem(fig: Figure, dance: Dance, timing: string, choice: V
     (variants.parts ?? []).some((p) => p.from === choice.part!.from && p.to === choice.part!.to);
 
   // --- start ---
-  const baseStartFoot = startFoot(fig);
+  // The step chart says best which foot starts and carries the weight at the end.
+  const baseStartFoot = bookFoot(fig, 1) ?? startFoot(fig);
   let sFoot = baseStartFoot;
   let sPos = positionOf(syl?.start);
   let estimated = false;
@@ -131,12 +163,12 @@ export function resolveItem(fig: Figure, dance: Dance, timing: string, choice: V
   }
 
   // --- finish ---
-  let fFoot = finishWeightFoot(fig);
+  let fFoot = (fig.floor?.source ? weightFootAfter(fig, total || (fig.floor?.steps.length ?? 0)) : null) ?? finishWeightFoot(fig);
   // Many standard finishes ("LF closes to RF") omit the position: the couple
   // stays in the position the figure started in.
   let fPos = positionOf(syl?.finish) ?? positionOf(syl?.start);
   if (isPart && to < total) {
-    fFoot = bookFoot(fig, to) ?? footOfStep(baseStartFoot, to);
+    fFoot = weightFootAfter(fig, to) ?? footOfStep(baseStartFoot, to);
     fPos = bookPosition(fig, to, "end") ?? fPos;
     estimated = estimated || !bookFoot(fig, to) || !bookPosition(fig, to, "end");
   } else if (!positionOf(syl?.finish)) {
@@ -168,6 +200,7 @@ export function resolveItem(fig: Figure, dance: Dance, timing: string, choice: V
     isPart,
     partAllowed,
     startFoot: sFoot,
+    startDir: startAlt ? null : stepDir(fig, from),
     startPos: sPos,
     finishFoot: fFoot,
     finishPos: fPos,
@@ -200,6 +233,7 @@ export interface Connection {
   posOk: boolean | null;
   prevFoot: Foot | null;
   nextFoot: Foot | null;
+  nextDir: "fwd" | "bwd" | "side" | "place" | null;
   prevPos: string | null;
   nextPos: string | null;
   holdOk: boolean | null;
@@ -225,6 +259,7 @@ export function connect(prevFig: Figure, prev: ResolvedItem, nextFig: Figure, ne
     posOk,
     prevFoot: prev.finishFoot,
     nextFoot: next.startFoot,
+    nextDir: next.startDir,
     prevPos: prev.finishPos,
     nextPos: next.startPos,
   };

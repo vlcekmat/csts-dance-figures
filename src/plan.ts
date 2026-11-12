@@ -23,6 +23,8 @@ export interface PlanInput {
   resolved: ResolvedItem;
   corner: boolean;
   extraTurn?: number;
+  startTurn?: number;
+  stepScales?: number[];
   wall?: number;
 }
 
@@ -72,6 +74,8 @@ export function buildPlan(opts: {
       stepMetres: stepCm / 100,
       extraTurn: it.extraTurn,
       follows: !!it.fig.floor?.follows,
+      startTurn: it.startTurn,
+      stepScales: it.stepScales,
       // the user didn't choose an amount of turn: let the plan pick an allowed one
       autoTurnOptions:
         it.extraTurn === undefined && it.fig.floor?.turnRange ? turnOptions(it.fig.floor.turnRange) : undefined,

@@ -31,7 +31,7 @@ for (const fig of FIGURES) {
     if (i > 0) {
       const prev = m.feet[i - 1];
       const jump = Math.abs(norm180(mf.bodyFace - prev.bodyFace));
-      const t = signedTurn(man[i]?.turn) ?? signedTurn(man[i - 1]?.turn);
+      const t = man[i]?.rot ?? man[i - 1]?.rot ?? signedTurn(man[i]?.turn) ?? signedTurn(man[i - 1]?.turn);
       if (jump > 100 && (t === null || Math.abs(t) < jump - 60)) add(`step ${i + 1}: man turns ${jump.toFixed(0)}° without a charted turn`);
     }
   });

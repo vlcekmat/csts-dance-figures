@@ -967,3 +967,13 @@ p { max-width: 75ch; line-height: 1.6; }
 .turn-dial-track input[type="range"] { width: 100%; position: relative; z-index: 1; background: transparent; }
 .turn-dial-range { position: absolute; top: .55rem; height: .55rem; border-radius: .3rem; background: var(--good-tint); border: 1px solid var(--good); }
 .turn-dial-labels { display: flex; justify-content: space-between; }
+.fp-facing.end line { stroke-width: 2.4; }
+.step-lengths { margin-top: .4rem; }
+.step-lengths summary { cursor: pointer; color: var(--standard); }
+.step-length-list { list-style: none; padding: 0; margin: .3rem 0 0; display: grid; gap: .2rem; }
+.step-length-list li { display: flex; align-items: center; gap: .4rem; }
+.step-length-name { flex: 1; min-width: 0; }
+.step-length-val { width: 3.2rem; text-align: center; font-variant-numeric: tabular-nums; }
+.step-length-val.changed { font-weight: 700; color: var(--standard); }
+@media (max-width: 760px) { .plan-rotate.above { position: static; } }
+.plan-rotate.above { max-height: 70vh; overflow: auto; }
