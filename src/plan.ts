@@ -46,6 +46,8 @@ export function buildPlan(opts: {
   /** Repetitions: a count, or "round" = fill a competition round. */
   reps: number | "round";
   loopTo: number;
+  /** The routine is danced repeatedly (connect its end to the loop target). */
+  loop?: boolean;
 }): Plan {
   const { dance, lang, items, room, start, stepCm, reps, loopTo } = opts;
   const bpm = tempoBpm(dance) ?? 30;
@@ -99,5 +101,6 @@ export function buildPlan(opts: {
       all.push({ ...it, wall: undefined, key: `${it.key}#${r}`, label: `${it.label} (${r + 1}.×)` });
       nums.push(from + i + 1);
     });
-  return { ...simulateRoutine(all, room, start), nums, baseLen: items.length || 1 };
+  // A repeated routine: its (last) end connects to the loop target figure.
+  return { ...simulateRoutine(all, room, start, opts.loop ? from : undefined), nums, baseLen: items.length || 1 };
 }

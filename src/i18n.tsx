@@ -466,6 +466,8 @@ const STRINGS = {
   allowedParts: { cs: "Lze tančit jen část", en: "Only part may be danced" },
   moveUp: { cs: "Posunout nahoru", en: "Move up" },
   moveDown: { cs: "Posunout dolů", en: "Move down" },
+  nextOptions: { cs: "Možnosti pokračování", en: "What can follow" },
+  nextOptionAdd: { cs: "Vložit za tuto figuru", en: "Insert after this figure" },
   dragHint: { cs: "Přetáhni na jiné místo v sestavě", en: "Drag to another place in the routine" },
   dragToRoutine: { cs: "Přetáhni do sestavy na zvolené místo", en: "Drag into the routine at the chosen place" },
   remove: { cs: "Odebrat", en: "Remove" },

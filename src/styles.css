@@ -954,3 +954,7 @@ p { max-width: 75ch; line-height: 1.6; }
 .picker-list li { gap: .2rem; }
 .picker-list .drag-handle { flex: none; }
 .player-controls select { width: auto; min-width: 0; }
+.next-options { margin-top: .4rem; }
+.next-options summary { cursor: pointer; color: var(--standard); }
+.next-options .chips { display: flex; flex-wrap: wrap; gap: .3rem; margin-top: .35rem; }
+.next-option.illegal { opacity: .55; }

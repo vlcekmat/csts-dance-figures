@@ -463,6 +463,17 @@ def phrase_angle(phrase, bwd=False):
     u = re.sub(r"\bLO[OLC0]\b", "LOD", u.replace("WALL", "W"))
     u = re.sub(r"\bWW+\b", "W", u)
     u = re.sub(r"\bAGAIN\S*", "AGAINST", u)  # OCR: "Agains'"
+    # OCR slips: "Rackino LON", "Rarkina ION", "Racking NC"
+    u = re.sub(r"\b[RB]A[CR]K\w*", "BACKING", u)
+    u = re.sub(r"\b[DF]A[CG]IN\w*", "FACING", u)
+    u = re.sub(r"\b[LI1]O[NDL0]\b", "LOD", u)
+    u = re.sub(r"\bNC\b", "DC", u)
+    # garbage text that happens to contain "LOD": no prefix word and unknown words
+    known = {"FACING", "BACKING", "POINTING", "DOWN", "TOE", "TURNED", "IN", "OUT", "TO", "BODY", "AGAINST",
+             "LOD", "DW", "DC", "W", "C", "TURN", "AND", "BETWEEN", "L", "R", "THEN", "END", "ALONG"}
+    words = re.findall(r"[A-Z]{2,}", u)
+    if not re.search(r"\b(FACING|BACKING|POINTING|DOWN|TOE)\b", u) and sum(1 for w in words if w not in known) >= 2:
+        return None
     u = re.sub(r"\bFACIN\w*", "FACING", u).replace("BACKIN ", "BACKING ").replace("PW", "DW").replace("DIAG.", "D")
     u = re.sub(r"\b(FACING|BACKING|POINTING)(?=[A-Z])", r"\1 ", u)  # OCR: "BackingDC"
     almost = bool(re.search(r"\b(ALMOST|AIMOST|NEARLY|JUST UNDER)\b", u))
@@ -697,6 +708,15 @@ def build_steps(chart, public):
                 return 999 if v is None else abs(_norm(v - expected))
             if t is not None or not here_new:
                 al = min(options, key=dist)
+        # OCR lost "against LOD" ("Facing DW" for "Facing DW against LOD"): a step that
+        # jumps by more than 60° although the mirrored reading continues exactly
+        turn_text = st.get("turn", "")
+        if (al["face"] is not None and prev is not None and not re.search(r"against", align, re.I)
+                and re.search(r"\d\s*/\s*\d", turn_text) and not re.search(r"between|\bon\b|pivot", turn_text, re.I)
+                and abs(_norm(al["face"] - prev)) > 60):
+            mirrored = _norm(180 - al["face"])
+            if abs(_norm(mirrored - prev)) < 10:
+                al["face"] = round(mirrored, 1)
         facing = al["end"] if al["end"] is not None else al["face"]
         item = {
             "desc": fact_desc(st["desc"]) if public else st["desc"],
@@ -734,7 +754,7 @@ def block_turn(text):
     """Amount of turn of a merged cell covering several steps ("3 turns to R", "1 1/2 turns to L")."""
     if not text:
         return None
-    side = "R" if re.search(r"\bto\s*R\b|\bR\b|right", text) else "L" if re.search(r"\bto\s*L\b|\bL\b|left", text) else None
+    side = "R" if re.search(r"to\s*R\b|\bR\b|right", text) else "L" if re.search(r"to\s*L\b|\bL\b|left", text) else None
     if not side:
         return None
     deg = 0.0
@@ -761,7 +781,23 @@ def spread_constant_rotation(rows, out):
         while j + 1 < len(out) and j + 1 < len(rows) and rows[j + 1].get("turn", "") == t and t:
             j += 1
         block = range(i, j + 1)
-        total = block_turn(t) if j - i >= 2 else None
+        total = block_turn(t) if j - i >= 1 else None
+        # a merged alignment cell too ("Backing W turn to Backing W" for a whole turn):
+        # spread the turn from the block's start alignment
+        same_align = j > i and len({rows[k].get("align", "") for k in block}) == 1 and "face" in out[i]
+        if total is not None and abs(total) >= 180 and same_align:
+            start = out[i]["face"]
+            n = j - i + 1
+            for idx, k in enumerate(block):
+                a = _norm(start + total * (idx + 1) / n)
+                out[k]["face"] = round(_norm(start + total * idx / n), 1) if idx else start
+                out[k]["end"] = round(a, 1)
+                out[k]["align"] = align_code(a)
+                out[k]["turn"] = ""
+            i = j + 1
+            continue
+        if j - i < 2:
+            total = None
         if total is not None and all("face" not in out[k] for k in block if k < j) :
             # alignment reached at the end of the block (its last step, or the step after it)
             end_k = next((k for k in range(j, min(j + 2, len(out))) if "face" in out[k]), None)

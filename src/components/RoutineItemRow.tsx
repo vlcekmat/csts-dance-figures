@@ -2,7 +2,7 @@
 // and personal note. The variant panel offers the options found in the
 // WDSF Syllabus notes plus a custom step range (flagged when not allowed).
 import { useState } from "react";
-import { figureNames, type ClassId, type Dance, type Figure } from "../data";
+import { figureNames, getFigure, isLegal, type ClassId, type Dance, type Figure } from "../data";
 import { useI18n, type StringKey } from "../i18n";
 import type { RoutineItem } from "../routines";
 import { formatBars, totalBeats } from "../timing";
@@ -38,11 +38,13 @@ interface Props {
   /** Start dragging this figure to a new place (pointer on the drag handle). */
   onDragStart?: (e: React.PointerEvent) => void;
   onRemove: () => void;
+  /** Insert a figure right after this one ("what can follow"). */
+  onInsertAfter?: (figureId: string) => void;
   onOpen: () => void;
 }
 
 export function RoutineItemRow(props: Props) {
-  const { wallSide, wallManual, wallAuto, planFace, onEditInPlan, progressive, index, count, item, fig, dance, cls, resolved, classLegal, onChange, onMove, onDragStart, onRemove, onOpen } = props;
+  const { wallSide, wallManual, wallAuto, planFace, onEditInPlan, progressive, index, count, item, fig, dance, cls, resolved, classLegal, onChange, onMove, onDragStart, onRemove, onOpen, onInsertAfter } = props;
   const { t, lang, barsWord } = useI18n();
   const [open, setOpen] = useState(false);
   const { main, sub } = figureNames(fig, lang);
@@ -110,6 +112,12 @@ export function RoutineItemRow(props: Props) {
   const offChart = planFace?.offChart ?? 0;
   if (progressive && alignBase && Math.abs(offChart) >= 22.5)
     chips.push(`↻ ${t("alignOffChartShort", { dir: t(offChart > 0 ? "alignByLeft" : "alignByRight", { n: eighths(offChart) }) })}`);
+
+  // Figures that can follow (from the step charts' "follows" lists), catalog ones only.
+  const followers = (fig.floor?.following ?? [])
+    .map((l) => ({ fig: l.id ? getFigure(l.id) : undefined, note: l.note }))
+    .filter((x): x is { fig: Figure; note: string | undefined } => !!x.fig && x.fig.dance === fig.dance)
+    .filter((x, i, a) => a.findIndex((y) => y.fig.id === x.fig.id && y.note === x.note) === i);
 
   const hasOptions =
     parts.length > 0 ||
@@ -419,6 +427,27 @@ export function RoutineItemRow(props: Props) {
           onChange={(e) => onChange({ note: e.target.value })}
           aria-label={t("noteLabel")}
         />
+        {onInsertAfter && followers.length > 0 && (
+          <details className="next-options">
+            <summary className="small">
+              {t("nextOptions")} ({followers.length})
+            </summary>
+            <div className="chips">
+              {followers.map(({ fig: nf, note }) => (
+                <button
+                  key={nf.id + (note ?? "")}
+                  type="button"
+                  className={`btn small next-option ${isLegal(nf, cls) || cls === "B" ? "" : "illegal"}`}
+                  onClick={() => onInsertAfter(nf.id)}
+                  title={t("nextOptionAdd")}
+                >
+                  + {figureNames(nf, lang).main}
+                  {note && <span className="muted"> ({note})</span>}
+                </button>
+              ))}
+            </div>
+          </details>
+        )}
         {progressive && index < count - 1 && (
           <label className="check small corner-check">
             <input type="checkbox" checked={!!item.corner} onChange={(e) => onChange({ corner: e.target.checked || undefined })} />

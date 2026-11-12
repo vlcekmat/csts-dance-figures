@@ -8,7 +8,8 @@
     "build": "tsc -b && vite build",
     "preview": "vite preview",
     "data": "pdftotext -layout \"data/raw/SC02_260701_Katalog figur.pdf\" data/build/catalog.txt && pdftotext -layout data/raw/WDSF_Syllabus.pdf data/build/syllabus.txt && python3 -I scripts/parse_catalog.py && python3 -I scripts/parse_syllabus.py && python3 -I scripts/build_data.py",
-    "videos": "python3 -I scripts/scrape_videos.py && python3 -I scripts/build_data.py"
+    "videos": "python3 -I scripts/scrape_videos.py && python3 -I scripts/build_data.py",
+    "audit": "rolldown scripts/audit_figures.ts --platform node --format esm -o data/build/audit.mjs && node data/build/audit.mjs"
   },
   "dependencies": {
     "react": "^19.3.1",

@@ -116,6 +116,7 @@ export function RoutineEditor({ routine, api, onBack, onOpenFigure }: Props) {
             stepCm,
             reps: showLoop ? repeat : 1,
             loopTo,
+            loop: !!routine.loop,
           })
         : null,
     // rows are rebuilt every render; the routine object is the real dependency
@@ -632,6 +633,13 @@ export function RoutineEditor({ routine, api, onBack, onOpenFigure }: Props) {
                     onMove={(delta) => move(idx, delta)}
                     onDragStart={startDrag(idx)}
                     onRemove={() => setItems((items) => items.filter((it) => it.uid !== r.item.uid))}
+                    onInsertAfter={(figureId) =>
+                      setItems((items) => {
+                        const next = [...items];
+                        next.splice(idx + 1, 0, { uid: newId(), figureId });
+                        return next;
+                      })
+                    }
                     onOpen={() => onOpenFigure(r.fig)}
                   />
                 </li>

@@ -129,8 +129,11 @@ export const DANCES: Dance[] = db.dances;
 // Step charts from the WDSF technique books are copyrighted: they are generated
 // into a local, git-ignored file and only used when it exists (local builds).
 // The public site works with the WDSF Syllabus and dancecentral.info charts.
+// (import.meta.glob exists under Vite; scripts bundled for Node audit the public data.)
 const bookCharts = Object.values(
-  import.meta.glob<{ default: Record<string, FloorData> }>("./data/technique.local.json", { eager: true }),
+  typeof import.meta.glob === "function"
+    ? import.meta.glob<{ default: Record<string, FloorData> }>("./data/technique.local.json", { eager: true })
+    : {},
 )[0]?.default ?? {};
 
 export const FIGURES: Figure[] = db.figures.map((f) => (bookCharts[f.id] ? { ...f, floor: bookCharts[f.id] } : f));

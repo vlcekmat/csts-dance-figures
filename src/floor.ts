@@ -213,7 +213,8 @@ export function stepVector(desc: string, facing: number): { angle: number; len: 
     return { angle: facing + sideSign * (90 + bend), len: 0.9 * small };
   }
   if (/across|cross/.test(d)) return { angle: facing, len: 0.4 * small };
-  return { angle: facing, len: 0.4 * small };
+  // No direction given (e.g. the chart's "LF closes to RF" read only as "LF"): in place.
+  return { angle: facing, len: 0 };
 }
 
 export interface PathPoint {
@@ -299,8 +300,11 @@ export function tracePath(
     const isSide = /\bside\b/.test(d) && v.len > 0;
     // Under-/overturn: the extra turn grows linearly from the first to the last step.
     const extra = steps.length > 1 ? (extraTurn * i) / (steps.length - 1) : extraTurn;
+    // The body turns the extra amount over the figure; each step still travels the way
+    // the body faced before it (the turn follows the step), so the line doesn't bend early.
+    const extraTravel = steps.length > 1 ? (extraTurn * Math.max(0, i - 1)) / (steps.length - 1) : 0;
     if (isSide && closedSince && lastSide && footM && lastSide.foot === footM[1]) {
-      v = { angle: lastSide.angle - extra, len: v.len };
+      v = { angle: lastSide.angle - extraTravel, len: v.len };
     }
     if (al?.moving !== null && al?.moving !== undefined && v.len > 0) {
       // Chart gives the travel direction explicitly ("moving LOD").
@@ -311,7 +315,7 @@ export function tracePath(
       v = { angle: f + 45, len: v.len };
     }
     if (isSide && footM) {
-      lastSide = { foot: footM[1], angle: v.angle + extra };
+      lastSide = { foot: footM[1], angle: v.angle + extraTravel };
       closedSince = false;
     } else if (v.len === 0 && /\bclose/.test(d)) {
       closedSince = true;
@@ -319,8 +323,8 @@ export function tracePath(
       lastSide = null;
       closedSince = false;
     }
-    x += Math.cos(rad(v.angle + rotation + extra)) * v.len;
-    y += Math.sin(rad(v.angle + rotation + extra)) * v.len;
+    x += Math.cos(rad(v.angle + rotation + extraTravel)) * v.len;
+    y += Math.sin(rad(v.angle + rotation + extraTravel)) * v.len;
     const known = !!al || facing !== null;
     // After a pivot ("… end Facing LOD") the man faces the end alignment.
     if (s.end !== undefined) facing = s.end;
@@ -578,7 +582,13 @@ function pathFacings(item: SimItem, initialFacing: number | null, rotate = 0): {
  * floor (anticlockwise). Corners are taken where the user marked them, or
  * automatically when the next figure would run into the end wall.
  */
-export function simulateRoutine(items: SimItem[], room: RoomSize, start: StartSpot = DEFAULT_START): SimResult {
+export function simulateRoutine(
+  items: SimItem[],
+  room: RoomSize,
+  start: StartSpot = DEFAULT_START,
+  /** The routine is repeated: after the last item it continues with items[wrapTo]. */
+  wrapTo?: number,
+): SimResult {
   const p0 = startPoint(start, room);
   let x = p0.x;
   let y = p0.y;
@@ -667,7 +677,7 @@ export function simulateRoutine(items: SimItem[], room: RoomSize, start: StartSp
         item = { ...item, extraTurn: e };
       }
     }
-    const next = items[i + 1];
+    const next = items[i + 1] ?? (wrapTo !== undefined ? items[wrapTo] : undefined);
     if (!absorbed && item.steps && item.autoTurnOptions?.length && next?.steps) {
       const nextChart = pathFacings(next, null).start;
       if (nextChart !== null) {
