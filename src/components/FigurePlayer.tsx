@@ -77,6 +77,15 @@ function footprints(
 }
 
 /** Where the lady stands relative to the man at the start (metres, man's frame: fwd, to his right). */
+/** +1 promenade (lady on the man's right), -1 counter promenade, 0 otherwise – at the end of the step. */
+function promenadeSide(pos: string): number {
+  const parts = pos.toLowerCase().split(/\s+(?:to|then)\s+(?=[a-z])/);
+  const p = parts[parts.length - 1] ?? "";
+  if (/counter prom|\bcpp\b|cnt prom/.test(p)) return -1;
+  if (/promenade|\bpp\b|\bprom\b/.test(p)) return 1;
+  return 0;
+}
+
 /** Couple positions danced in a closed hold: the partners turn around their common centre. */
 function closeHold(pos: string): boolean {
   const parts = pos.toLowerCase().split(/\s+(?:to|then)\s+(?=[a-z])/);
@@ -166,7 +175,15 @@ export function FigurePlayer({ fig }: { fig: Figure }) {
     // opposing …) they keep the couple position and turn around their common centre;
     // apart / without hold (open, side by side, fan, spot turns) each dances on their
     // own path and turns around their own axis. Corrections carry over to later steps.
-    const offsetVec = (pos: string, face: number) => {
+    const offsetVec = (pos: string, face: number, ladyFace?: number) => {
+      // Promenade: the couple forms a "V" opening to where they travel – the lady stands
+      // beside the man (his right, CPP his left), measured from the middle of their facings.
+      const prom = promenadeSide(pos);
+      if (prom && ladyFace !== undefined) {
+        const mid = face + norm180(ladyFace - face) / 2;
+        const side = (latin ? 0.6 : 0.45) * prom;
+        return { x: Math.cos(rad(mid - 90)) * side, y: Math.sin(rad(mid - 90)) * side };
+      }
       const o = ladyOffset(pos, latin);
       return {
         x: Math.cos(rad(face)) * o.fwd + Math.cos(rad(face - 90)) * o.right,
@@ -189,7 +206,7 @@ export function FigurePlayer({ fig }: { fig: Figure }) {
       const lx2 = lf ? lf.bx + dl.x : lFeet[lFeet.length - 1]?.bx ?? 0;
       const ly2 = lf ? lf.by + dl.y : lFeet[lFeet.length - 1]?.by ?? 0;
       if (closeHold(lastPos) && mf && lf) {
-        const o = offsetVec(lastPos, mf.bodyFace);
+        const o = offsetVec(lastPos, mf.bodyFace, lf.bodyFace);
         const cx = (mx + lx2) / 2;
         const cy = (my + ly2) / 2;
         const nm = { x: cx - o.x / 2, y: cy - o.y / 2 };
@@ -203,7 +220,13 @@ export function FigurePlayer({ fig }: { fig: Figure }) {
         if (lf) lFeet.push(moveTo(lf, lx2, ly2));
       }
     }
-    return { m: { start: m.start, feet: mFeet }, l: { start: traced.start, feet: lFeet } };
+    // Starting position in promenade: place the lady beside the man the same way.
+    let lStart = traced.start;
+    if (promenadeSide(startPos)) {
+      const o = offsetVec(startPos, m.start.face, traced.start.face);
+      lStart = { ...traced.start, x: m.start.x + o.x, y: m.start.y + o.y };
+    }
+    return { m: { start: m.start, feet: mFeet }, l: { start: lStart, feet: lFeet } };
   }, [fig, man, lady, hasLady, dance]);
 
   // Playback: wait the step's duration at the competition tempo (scaled by speed).
