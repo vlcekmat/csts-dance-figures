@@ -254,3 +254,103 @@ export function partnerRelation(desc: string, pos: string): "toward" | "away" | 
   if (closeHold(pos)) return fwd ? "toward" : "away";
   return null;
 }
+
+/** Where one foot of a dancer is: position (m), direction, whether it holds the weight. */
+export interface FootState {
+  x: number;
+  y: number;
+  face: number;
+  weight: boolean;
+}
+/** Both feet of a dancer after a step (index 0 = starting position). */
+export interface FeetState {
+  L: FootState;
+  R: FootState;
+  /** The foot that moved on this step (null at the start or when unknown). */
+  moved: "L" | "R" | null;
+}
+
+/** Steps that put the foot down without taking the weight. */
+const NO_WEIGHT = /w\/o weight|without weight|\btap\b|\bpoint|\bbrush|\bflick|\bkick/i;
+
+/**
+ * Live feet of a dancer through the figure: on every step only the stepping foot
+ * moves (to its footprint); the other foot stays where it is and swivels with the
+ * body's turn (pivots, spins). The weight goes onto the stepping foot unless the
+ * step is a tap, point, kick … without weight.
+ */
+export function liveFeet(p: Partner, steps: FloorStep[]): FeetState[] {
+  const OFF = 0.09;
+  const s = p.start;
+  const side = (sign: number): FootState => ({
+    x: s.x + Math.cos(rad(s.face + 90 * sign)) * OFF,
+    y: s.y + Math.sin(rad(s.face + 90 * sign)) * OFF,
+    face: s.face,
+    weight: false,
+  });
+  // At the start the weight is on the foot that does not step first.
+  const firstFoot = p.feet.find((f) => f.foot)?.foot ?? "L";
+  let cur: FeetState = { L: side(1), R: side(-1), moved: null };
+  cur[firstFoot === "L" ? "R" : "L"].weight = true;
+  const out: FeetState[] = [cur];
+  let bodyFace = s.face;
+  let bx = s.x;
+  let by = s.y;
+  p.feet.forEach((f, i) => {
+    const turn = norm180(f.bodyFace - bodyFace);
+    const next: FeetState = { L: { ...cur.L }, R: { ...cur.R }, moved: f.foot };
+    if (f.foot) {
+      const other = f.foot === "L" ? "R" : "L";
+      const noWeight = NO_WEIGHT.test(steps[i]?.desc ?? "");
+      next[f.foot] = { x: f.x, y: f.y, face: f.face, weight: !noWeight };
+      // the supporting foot swivels with the body
+      next[other] = { ...next[other], face: next[other].face + turn, weight: noWeight ? true : false };
+    } else {
+      // both feet / unknown: the whole dancer moves with the body
+      const dx = f.bx - bx;
+      const dy = f.by - by;
+      for (const k of ["L", "R"] as const) next[k] = { ...next[k], x: next[k].x + dx, y: next[k].y + dy, face: next[k].face + turn };
+    }
+    out.push(next);
+    cur = next;
+    bodyFace = f.bodyFace;
+    bx = f.bx;
+    by = f.by;
+  });
+  return out;
+}
+
+/** Feet part of the way (t = 0–1) from one state to the next: the stepping foot
+ * travels past the supporting foot (as in a real step), the other one swivels. */
+export function feetBetween(a: FeetState, b: FeetState, t: number): FeetState {
+  const lerpA = (x: number, y: number) => x + norm180(y - x) * t;
+  const res: FeetState = { L: { ...a.L }, R: { ...a.R }, moved: b.moved };
+  for (const k of ["L", "R"] as const) {
+    const fa = a[k];
+    const fb = b[k];
+    if (b.moved === k) {
+      // quadratic curve through a point pulled towards the supporting foot
+      const o = a[k === "L" ? "R" : "L"];
+      const mx = (fa.x + fb.x) / 2;
+      const my = (fa.y + fb.y) / 2;
+      const cx = mx + (o.x - mx) * 0.55;
+      const cy = my + (o.y - my) * 0.55;
+      const u = 1 - t;
+      res[k] = {
+        x: u * u * fa.x + 2 * u * t * cx + t * t * fb.x,
+        y: u * u * fa.y + 2 * u * t * cy + t * t * fb.y,
+        face: lerpA(fa.face, fb.face),
+        // the weight arrives when the foot lands
+        weight: t > 0.6 ? fb.weight : false,
+      };
+    } else {
+      res[k] = {
+        x: fa.x + (fb.x - fa.x) * t,
+        y: fa.y + (fb.y - fa.y) * t,
+        face: fa.face + (fb.face - fa.face) * t,
+        weight: b.moved ? (t > 0.6 ? fb.weight : true) : fb.weight,
+      };
+    }
+  }
+  return res;
+}

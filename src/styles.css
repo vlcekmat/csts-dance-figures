@@ -724,7 +724,7 @@ p { max-width: 75ch; line-height: 1.6; }
 .start-fields legend { font-weight: 700; padding: 0 .3rem; }
 .start-fields p { grid-column: 1 / -1; margin: 0; }
 .start-fields input[type="range"] { accent-color: var(--latin); width: 100%; }
-.room-svg { cursor: crosshair; }
+.room-svg { cursor: default; }
 .fp-bib-group { cursor: pointer; }
 .fp-bib-group:hover .fp-bib { stroke: var(--standard); stroke-width: 2.5; }
 .fp-bib-group.selected .fp-bib { stroke: var(--latin); stroke-width: 3; }
@@ -802,7 +802,7 @@ p { max-width: 75ch; line-height: 1.6; }
 .start-fields legend { font-weight: 700; padding: 0 .3rem; }
 .start-fields p { grid-column: 1 / -1; margin: 0; }
 .start-fields input[type="range"] { accent-color: var(--latin); width: 100%; }
-.room-svg { cursor: crosshair; }
+.room-svg { cursor: default; }
 .fp-bib-group { cursor: pointer; }
 .fp-bib-group:hover .fp-bib { stroke: var(--standard); stroke-width: 2.5; }
 .fp-bib-group.selected .fp-bib { stroke: var(--latin); stroke-width: 3; }
@@ -984,3 +984,57 @@ p { max-width: 75ch; line-height: 1.6; }
 .prep-step, .prep-actions { display: flex; flex-wrap: wrap; align-items: center; gap: .4rem .5rem; }
 .prep-no { font-weight: 700; color: var(--muted); min-width: 1.4rem; }
 .floor-legend li.prep-li { list-style: none; margin-left: -1.2rem; }
+
+/* Figure player: live feet, dancers, timeline */
+.fp-path { fill: none; stroke-width: 1.5; opacity: .25; stroke-dasharray: 3 5; }
+.fp-path.done { opacity: .8; stroke-dasharray: none; stroke-width: 2.5; }
+.fp-path.man { stroke: var(--standard); }
+.fp-path.lady { stroke: var(--latin); }
+.fp-print path { fill: none; stroke-width: 1.2; }
+.fp-print.man path { stroke: var(--standard); }
+.fp-print.lady path { stroke: var(--latin); }
+.fp-print.future { opacity: .3; }
+.fp-print.done { opacity: .6; }
+.fp-print-num { font: 700 9px var(--font); fill: var(--muted); }
+.fp-next path { fill: none; stroke-width: 2; stroke-dasharray: 4 3; }
+.fp-next.man path { stroke: var(--standard); }
+.fp-next.lady path { stroke: var(--latin); }
+.fp-next-num { font: 800 11px var(--font); }
+.fp-next.man .fp-next-num { fill: var(--standard); }
+.fp-next.lady .fp-next-num { fill: var(--latin); }
+.fp-torso ellipse { opacity: .35; }
+.fp-dancer.man .fp-torso ellipse, .fp-dancer.man .fp-nose { fill: var(--standard); }
+.fp-dancer.lady .fp-torso ellipse, .fp-dancer.lady .fp-nose { fill: var(--latin); }
+.fp-head { fill: var(--surface); stroke: var(--ink); stroke-width: 1; opacity: .9; }
+.fp-dancer .fp-body-label { fill: var(--ink); font: 800 10px var(--font); pointer-events: none; }
+.fp-live path { stroke-width: 2; }
+.fp-dancer.man .fp-live path { stroke: var(--standard); }
+.fp-dancer.lady .fp-live path { stroke: var(--latin); }
+.fp-dancer.man .fp-live.weight path { fill: var(--standard); }
+.fp-dancer.lady .fp-live.weight path { fill: var(--latin); }
+.fp-live.free path { fill: var(--surface); }
+.fp-live.moving path { stroke-width: 3; }
+.fp-live-letter { font: 800 9px var(--font); fill: var(--ink); pointer-events: none; }
+.fp-live.weight .fp-live-letter { fill: #fff; }
+.fp-hold { stroke: var(--ink); stroke-width: 2; opacity: .35; stroke-linecap: round; }
+.player-timeline { display: flex; flex-wrap: wrap; gap: .3rem; list-style: none; margin: .5rem 0 0; padding: 0; }
+.player-timeline button {
+  display: flex; flex-direction: column; align-items: center; min-width: 2.4rem; padding: .2rem .4rem;
+  border: 1px solid var(--line); border-radius: var(--r-sm); background: var(--surface); color: var(--ink); cursor: pointer; line-height: 1.15;
+}
+.player-timeline button.done { background: var(--standard-tint); }
+.player-timeline button.active { background: var(--standard); border-color: var(--standard); color: #fff; }
+.player-timeline .tl-n { font-weight: 800; font-size: .9rem; }
+.player-timeline .tl-c { font-size: .72rem; opacity: .8; }
+.fp-dancer-name { font: 800 12px var(--font); paint-order: stroke; stroke: var(--surface); stroke-width: 3px; pointer-events: none; }
+.fp-dancer.man .fp-dancer-name { fill: var(--standard); }
+.fp-dancer.lady .fp-dancer-name { fill: var(--latin); }
+/* calmer dancers: outlined torso, thinner paths */
+.fp-torso ellipse { opacity: .22; }
+.fp-dancer .fp-torso ellipse { stroke-width: 1.5; }
+.fp-dancer.man .fp-torso ellipse { stroke: var(--standard); }
+.fp-dancer.lady .fp-torso ellipse { stroke: var(--latin); }
+.fp-path.done { opacity: .45; stroke-width: 1.5; }
+.fp-path { opacity: .18; }
+.plan-move { display: flex; align-items: center; gap: .3rem; justify-content: flex-end; margin-bottom: .3rem; }
+.plan-move .icon-btn { min-width: 2rem; font-weight: 800; }

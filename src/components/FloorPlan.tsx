@@ -340,22 +340,37 @@ export function FloorPlan({
             <p className="small muted">{t("planRotateHint")}</p>
           </div>
         )}
+        <div className="plan-move" role="group" aria-label={t("planMove")}>
+          <span className="small muted">{t("planMove")}</span>
+          {([
+            ["←", -1, 0, "planMoveLeft"],
+            ["↑", 0, 1, "planMoveUp"],
+            ["↓", 0, -1, "planMoveDown"],
+            ["→", 1, 0, "planMoveRight"],
+          ] as const).map(([icon, dx, dy, key]) => (
+            <button
+              key={key}
+              type="button"
+              className="icon-btn"
+              aria-label={t(key)}
+              title={t(key)}
+              onClick={() => {
+                // Move the whole routine by half a metre on the screen; the wall stays.
+                const p = startPoint(start, room);
+                const x = Math.min(room.length - 0.3, Math.max(0.3, p.x + dx * 0.5));
+                const y = Math.min(room.width - 0.3, Math.max(0.3, p.y + dy * 0.5));
+                onStartChange({ ...spotOnSide(x, y, start.side, room), face: start.face });
+              }}
+            >
+              {icon}
+            </button>
+          ))}
+        </div>
         <svg
           viewBox={`0 0 ${VW} ${VH}`}
           role="img"
           aria-label={t("floorPlan")}
           className="room-svg"
-          onClick={(e) => {
-            // Click in the room = new start spot (nearest wall decides the side).
-            const box = e.currentTarget.getBoundingClientRect();
-            const px = ((e.clientX - box.left) / box.width) * VW;
-            const py = ((e.clientY - box.top) / box.height) * VH;
-            const x = (px - pad) / scale;
-            const y = (VH - pad - py) / scale;
-            if (x < 0 || y < 0 || x > room.length || y > room.width) return;
-            // The wall stays as chosen; the click only moves the spot along / away from it.
-            onStartChange({ ...spotOnSide(x, y, start.side, room), face: start.face });
-          }}
         >
           <Arrowheads />
           <rect x={sx(0)} y={sy(room.width)} width={room.length * scale} height={room.width * scale} className="fp-room" />

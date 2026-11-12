@@ -13,7 +13,7 @@ import {
   type FloorStep,
 } from "../floor";
 import { parseTiming, tempoBpm } from "../timing";
-import { closeHold, figureGeometry, partnerRelation, signedTurn, type Foot } from "../playerGeometry";
+import { closeHold, feetBetween, figureGeometry, liveFeet, partnerRelation, signedTurn, type FeetState, type Foot } from "../playerGeometry";
 
 type Role = "man" | "lady" | "both";
 
@@ -30,6 +30,9 @@ export function FigurePlayer({ fig }: { fig: Figure }) {
   // Smooth playback: the partners glide between the steps instead of jumping.
   const [smooth, setSmooth] = useState(true);
   const [frac, setFrac] = useState(0); // progress from step k towards step k + 1 (0–1)
+  // All footprints of the figure (a map) instead of only the current feet.
+  const [trail, setTrail] = useState(false);
+  const [follow, setFollow] = useState(true);
   const n = man.length;
 
   // Reset when the figure changes.
@@ -40,13 +43,15 @@ export function FigurePlayer({ fig }: { fig: Figure }) {
   }, [fig.id, hasLady]);
 
   const geo = useMemo(() => figureGeometry(fig, dance, man, lady), [fig, man, lady, dance]);
+  const mFeet = useMemo(() => liveFeet(geo.m, man), [geo, man]);
+  const lFeet = useMemo(() => (geo.l ? liveFeet(geo.l, lady) : null), [geo, lady]);
 
   // Playback: wait the step's duration at the competition tempo (scaled by speed).
-  const beats = useMemo(() => {
+  const parsedTiming = useMemo(() => {
     const timing = fig.syllabus?.timing;
-    const parsed = timing && dance ? parseTiming(timing, dance) : [];
-    return man.map((_, i) => parsed[i]?.beats ?? 1);
-  }, [fig, dance, man]);
+    return timing && dance ? parseTiming(timing, dance) : [];
+  }, [fig, dance]);
+  const beats = useMemo(() => man.map((_, i) => parsedTiming[i]?.beats ?? 1), [man, parsedTiming]);
   const stepMs = (i: number) => {
     const bpm = (dance && tempoBpm(dance)) || 30;
     const beatsPerMin = bpm * (dance?.beatsPerBar ?? 4);
@@ -108,7 +113,8 @@ export function FigurePlayer({ fig }: { fig: Figure }) {
   const maxX = Math.max(...all.map((p) => p.x)) + 0.45;
   const minY = Math.min(...all.map((p) => p.y)) - 0.45;
   const maxY = Math.max(...all.map((p) => p.y)) + 0.45;
-  const S = Math.min(120, 560 / (maxX - minX));
+  // Follow mode: a close-up that moves with the couple; else the whole figure.
+  const S = follow ? 170 : Math.min(120, 560 / (maxX - minX));
   const VW = Math.max(320, (maxX - minX) * S + 60);
   const VH = Math.max(200, (maxY - minY) * S + 60);
   const ox = (VW - (maxX - minX) * S) / 2;
@@ -118,9 +124,10 @@ export function FigurePlayer({ fig }: { fig: Figure }) {
   const footLen = 0.23 * S;
   const footW = 0.095 * S;
   const gridX: number[] = [];
-  for (let g = Math.ceil(minX * 2) / 2; g <= maxX; g += 0.5) gridX.push(g);
+  const gm = follow ? 2.5 : 0; // the close-up may show the floor around the figure
+  for (let g = Math.ceil((minX - gm) * 2) / 2; g <= maxX + gm; g += 0.5) gridX.push(g);
   const gridY: number[] = [];
-  for (let g = Math.ceil(minY * 2) / 2; g <= maxY; g += 0.5) gridY.push(g);
+  for (let g = Math.ceil((minY - gm) * 2) / 2; g <= maxY + gm; g += 0.5) gridY.push(g);
 
   /** Body of a partner after step k: position and facing. */
   const bodyAfter = (p: { start: { x: number; y: number; face: number }; feet: Foot[] }, i: number) =>
@@ -138,35 +145,67 @@ export function FigurePlayer({ fig }: { fig: Figure }) {
     return { x: a.x + (b.x - a.x) * frac, y: a.y + (b.y - a.y) * frac, face: a.face + delta * frac };
   };
 
-  const renderFeet = (p: { feet: Foot[] }, who: "man" | "lady") =>
-    p.feet.map((f) => {
-      const state = f.n === k || (frac > 0 && f.n === k + 1) ? "current" : f.n < k ? "done" : "future";
-      return (
-        <g key={`${who}${f.n}`} transform={`translate(${X(f.x)} ${Y(f.y)}) rotate(${-f.face})`} className={`fp-step ${state}`}>
-          <path
-            d={`M ${footLen / 2} 0 C ${footLen / 2} ${-footW / 2}, ${-footLen / 3} ${-footW / 2}, ${-footLen / 2} ${-footW / 3} L ${-footLen / 2} ${footW / 3} C ${-footLen / 3} ${footW / 2}, ${footLen / 2} ${footW / 2}, ${footLen / 2} 0 Z`}
-            className={`fp-foot ${who} ${f.foot === "L" ? "left" : f.foot === "R" ? "right" : ""}`}
-          />
-          <text transform={`rotate(${f.face})`} y={4} textAnchor="middle" className={`fp-foot-num ${f.foot === "R" ? "on-dark" : ""}`}>
-            {f.n}
-          </text>
-        </g>
-      );
-    });
+  const footPath = `M ${footLen / 2} 0 C ${footLen / 2} ${-footW / 2}, ${-footLen / 3} ${-footW / 2}, ${-footLen / 2} ${-footW / 3} L ${-footLen / 2} ${footW / 3} C ${-footLen / 3} ${footW / 2}, ${footLen / 2} ${footW / 2}, ${footLen / 2} 0 Z`;
+  const footLetter = (f: "L" | "R") => (f === "L" ? "L" : lang === "cs" ? "P" : "R");
 
-  const renderBody = (b: { x: number; y: number; face: number }, who: "man" | "lady") => (
-    <g transform={`translate(${X(b.x)} ${Y(b.y)}) rotate(${-b.face})`} className={`fp-body ${who}`}>
-      {/* shoulders across the facing direction, nose = small triangle in front */}
-      <ellipse rx={0.09 * S} ry={0.21 * S} />
-      <path d={`M ${0.1 * S} ${-0.06 * S} L ${0.2 * S} 0 L ${0.1 * S} ${0.06 * S} Z`} />
-      <text transform={`rotate(${b.face})`} y={4} textAnchor="middle" className="fp-body-label">
-        {who === "man" ? t("roleManShort") : t("roleLadyShort")}
+  /** All footprints (map of the figure), numbered; shown on request. */
+  const renderTrail = (p: { feet: Foot[] }, who: "man" | "lady") =>
+    p.feet.map((f) => (
+      <g key={`${who}${f.n}`} transform={`translate(${X(f.x)} ${Y(f.y)}) rotate(${-f.face})`} className={`fp-print ${who} ${f.n <= k ? "done" : "future"}`}>
+        <path d={footPath} />
+        <text transform={`rotate(${f.face})`} y={4} textAnchor="middle" className="fp-print-num">{f.n}</text>
+      </g>
+    ));
+
+  /** Where the stepping foot lands on the next step (dashed outline). */
+  const renderNext = (st: FeetState[] | null, who: "man" | "lady") => {
+    if (!st || k >= n || frac > 0) return null;
+    const nx = st[k + 1];
+    if (!nx?.moved) return null;
+    const f = nx[nx.moved];
+    return (
+      <g transform={`translate(${X(f.x)} ${Y(f.y)}) rotate(${-f.face})`} className={`fp-next ${who}`}>
+        <path d={footPath} />
+        <text transform={`rotate(${f.face})`} y={4} textAnchor="middle" className="fp-next-num">{k + 1}</text>
+      </g>
+    );
+  };
+
+  /** A dancer from above: both feet where they are now (filled = weight on it), shoulders, head. */
+  const renderDancer = (b: { x: number; y: number; face: number }, feet: FeetState, who: "man" | "lady") => (
+    <g className={`fp-dancer ${who}`}>
+      <g transform={`translate(${X(b.x)} ${Y(b.y)}) rotate(${-b.face})`} className="fp-torso">
+        <ellipse rx={0.1 * S} ry={0.23 * S} />
+        <circle cx={0.02 * S} r={0.075 * S} className="fp-head" />
+        <path d={`M ${0.1 * S} ${-0.05 * S} L ${0.17 * S} 0 L ${0.1 * S} ${0.05 * S} Z`} className="fp-nose" />
+      </g>
+      {(["L", "R"] as const).map((k2) => {
+        const f = feet[k2];
+        const moving = frac > 0 && feet.moved === k2;
+        return (
+          <g key={k2} transform={`translate(${X(f.x)} ${Y(f.y)}) rotate(${-f.face})`} className={`fp-live ${f.weight ? "weight" : "free"} ${moving ? "moving" : ""}`}>
+            <path d={footPath} />
+            <text transform={`rotate(${f.face})`} y={4} textAnchor="middle" className="fp-live-letter">{footLetter(k2)}</text>
+          </g>
+        );
+      })}
+      <text x={X(b.x)} y={Y(b.y) - 0.3 * S} textAnchor="middle" className="fp-dancer-name">
+        {who === "man" ? t("roleMan") : t("roleLady")}
       </text>
     </g>
   );
+  const feetNow = (st: FeetState[]) => (frac > 0 && k < n ? feetBetween(st[k], st[k + 1], frac) : st[Math.min(k, st.length - 1)]);
+  /** Path travelled so far (solid) and still to go (faint). */
+  const bodyLine = (p: { start: { x: number; y: number }; feet: Foot[] }, upto: { x: number; y: number }) => {
+    const pts = [p.start, ...p.feet.map((f) => ({ x: f.bx, y: f.by }))];
+    const done = [...pts.slice(0, k + 1), upto];
+    return { done: done.map((q) => `${X(q.x)},${Y(q.y)}`).join(" "), all: pts.map((q) => `${X(q.x)},${Y(q.y)}`).join(" ") };
+  };
 
-  const ms = k > 0 ? man[k - 1] : null;
-  const ls = k > 0 && hasLady ? lady[k - 1] : null;
+  // The step shown in the text: while moving, the one being danced.
+  const shown = frac > 0 && k < n ? k + 1 : k;
+  const ms = shown > 0 ? man[shown - 1] : null;
+  const ls = shown > 0 && hasLady ? lady[shown - 1] : null;
   const pos = (ms ?? man[0])?.pos;
   const relText = (r: ReturnType<typeof partnerRelation>) => (r ? t(`rel_${r}` as StringKey) : "");
   let mBody = bodyAt(geo.m, man);
@@ -195,6 +234,17 @@ export function FigurePlayer({ fig }: { fig: Figure }) {
     mBody = { ...mBody, x: cx - (Math.cos(a) * len) / 2, y: cy - (Math.sin(a) * len) / 2 };
     lBody = { ...lBody, x: cx + (Math.cos(a) * len) / 2, y: cy + (Math.sin(a) * len) / 2 };
   }
+
+  // Camera: centred on the couple (follow) or the whole figure.
+  const cam = (() => {
+    const pts = [showMan ? mBody : null, showLady ? lBody : null].filter((q): q is NonNullable<typeof q> => !!q);
+    const cx = pts.reduce((a, q) => a + q.x, 0) / (pts.length || 1);
+    const cy = pts.reduce((a, q) => a + q.y, 0) / (pts.length || 1);
+    return { cx, cy };
+  })();
+  const view = follow
+    ? { x: X(cam.cx) - 260, y: Y(cam.cy) - 170, w: 520, h: 340 }
+    : { x: 0, y: 0, w: VW, h: VH };
 
   return (
     <figure className="floor figure-floor player">
@@ -227,54 +277,87 @@ export function FigurePlayer({ fig }: { fig: Figure }) {
             <option value={1}>1× ({t("playerTempo")})</option>
           </select>
           <label className="check small player-smooth">
+            <input type="checkbox" checked={follow} onChange={(e) => setFollow(e.target.checked)} />
+            {t("playerFollow")}
+          </label>
+          <label className="check small player-smooth">
+            <input type="checkbox" checked={trail} onChange={(e) => setTrail(e.target.checked)} />
+            {t("playerTrail")}
+          </label>
+          <label className="check small player-smooth">
             <input type="checkbox" checked={smooth} onChange={(e) => setSmooth(e.target.checked)} />
             {t("playerSmooth")}
           </label>
         </div>
-        <input
-          type="range"
-          min={0}
-          max={n}
-          value={k}
-          onChange={(e) => { setPlaying(false); setK(+e.target.value); }}
-          aria-label={t("playerStep")}
-          className="player-slider"
-        />
       </div>
 
-      <svg viewBox={`0 0 ${VW} ${VH}`} role="img" aria-label={t("floorFigure")}>
+      <svg viewBox={`${view.x} ${view.y} ${view.w} ${view.h}`} role="img" aria-label={t("floorFigure")} className={follow ? "follow" : ""}>
         {gridX.map((g) => (
-          <line key={`gx${g}`} x1={X(g)} y1={0} x2={X(g)} y2={VH} className={`fp-grid ${Number.isInteger(g) ? "major" : ""}`} />
+          <line key={`gx${g}`} x1={X(g)} y1={Y(maxY + gm)} x2={X(g)} y2={Y(minY - gm)} className={`fp-grid ${Number.isInteger(g) ? "major" : ""}`} />
         ))}
         {gridY.map((g) => (
-          <line key={`gy${g}`} x1={0} y1={Y(g)} x2={VW} y2={Y(g)} className={`fp-grid ${Number.isInteger(g) ? "major" : ""}`} />
+          <line key={`gy${g}`} x1={X(minX - gm)} y1={Y(g)} x2={X(maxX + gm)} y2={Y(g)} className={`fp-grid ${Number.isInteger(g) ? "major" : ""}`} />
         ))}
-        <text x={12} y={20} className="fp-label strong">LOD →</text>
-        <text x={VW - 10} y={20} textAnchor="end" className="fp-label">↑ {t("floorCentre")}</text>
-        <line x1={6} y1={VH - 4} x2={VW - 6} y2={VH - 4} className="fp-wall" />
-        <text x={VW - 10} y={VH - 10} textAnchor="end" className="fp-label">{t("floorWall")} ↓</text>
-        <line x1={12} y1={VH - 16} x2={12 + S} y2={VH - 16} className="fp-scale" />
-        <text x={16 + S} y={VH - 12} className="fp-label">1 m</text>
 
-        {showMan && (
-          <polyline points={[geo.m.start, ...geo.m.feet.map((f) => ({ x: f.bx, y: f.by }))].map((p) => `${X(p.x)},${Y(p.y)}`).join(" ")} className="fp-weight man" />
-        )}
-        {showLady && geo.l && (
-          <polyline points={[geo.l.start, ...geo.l.feet.map((f) => ({ x: f.bx, y: f.by }))].map((p) => `${X(p.x)},${Y(p.y)}`).join(" ")} className="fp-weight lady" />
-        )}
-        {showMan && renderFeet(geo.m, "man")}
-        {showLady && geo.l && renderFeet(geo.l, "lady")}
-        {showMan && renderBody(mBody, "man")}
-        {showLady && lBody && renderBody(lBody, "lady")}
+        {(() => {
+          const mLine = bodyLine(geo.m, mBody);
+          const lLine = geo.l && lBody ? bodyLine(geo.l, lBody) : null;
+          const hold = closeHold((k > 0 ? man[k - 1]?.pos : null) || man[0]?.pos || fig.syllabus?.start || "");
+          return (
+            <>
+              {showMan && <polyline points={mLine.all} className="fp-path man" />}
+              {showLady && lLine && <polyline points={lLine.all} className="fp-path lady" />}
+              {showMan && <polyline points={mLine.done} className="fp-path man done" />}
+              {showLady && lLine && <polyline points={lLine.done} className="fp-path lady done" />}
+              {trail && showMan && renderTrail(geo.m, "man")}
+              {trail && showLady && geo.l && renderTrail(geo.l, "lady")}
+              {showMan && renderNext(mFeet, "man")}
+              {showLady && renderNext(lFeet, "lady")}
+              {showMan && showLady && lBody && hold && (
+                <line x1={X(mBody.x)} y1={Y(mBody.y)} x2={X(lBody.x)} y2={Y(lBody.y)} className="fp-hold" />
+              )}
+              {showMan && renderDancer(mBody, feetNow(mFeet), "man")}
+              {showLady && lBody && lFeet && renderDancer(lBody, feetNow(lFeet), "lady")}
+            </>
+          );
+        })()}
+        <g transform={`translate(${view.x} ${view.y})`}>
+          <text x={12} y={20} className="fp-label strong">LOD →</text>
+          <text x={view.w - 10} y={20} textAnchor="end" className="fp-label">↑ {t("floorCentre")}</text>
+          {!follow && <line x1={6} y1={view.h - 4} x2={view.w - 6} y2={view.h - 4} className="fp-wall" />}
+          <text x={view.w - 10} y={view.h - 10} textAnchor="end" className="fp-label">{t("floorWall")} ↓</text>
+          <line x1={12} y1={view.h - 16} x2={12 + S} y2={view.h - 16} className="fp-scale" />
+          <text x={16 + S} y={view.h - 12} className="fp-label">1 m</text>
+        </g>
       </svg>
+
+      <ol className="player-timeline" aria-label={t("playerStep")}>
+        <li>
+          <button className={k === 0 && !frac ? "active" : k > 0 ? "done" : ""} onClick={() => { setPlaying(false); setK(0); }} title={t("playerStartPos")}>
+            <span className="tl-n">0</span>
+            <span className="tl-c">{t("playerStartShort")}</span>
+          </button>
+        </li>
+        {man.map((st, i) => (
+          <li key={i}>
+            <button
+              className={(k === i + 1 && !frac) || (frac > 0 && k === i) ? "active" : i + 1 < k + (frac > 0 ? 1 : 0) ? "done" : ""}
+              onClick={() => { setPlaying(false); setK(i + 1); }}
+            >
+              <span className="tl-n">{i + 1}</span>
+              <span className="tl-c">{st.timing || parsedTiming[i]?.label || "·"}</span>
+            </button>
+          </li>
+        ))}
+      </ol>
 
       <div className="player-info" aria-live="polite">
         <div className="player-step">
-          {k === 0 ? (
+          {shown === 0 ? (
             <strong>{t("playerStartPos")}</strong>
           ) : (
             <strong>
-              {t("playerStepN", { n: String(k), of: String(n) })}
+              {t("playerStepN", { n: String(shown), of: String(n) })}
               {ms?.timing ? ` · ${t("playerCount")} ${ms.timing}` : ""}
             </strong>
           )}
