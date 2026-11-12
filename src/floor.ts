@@ -12,6 +12,13 @@ export interface FloorStep {
   align: string;
   /** The book's own wording of the alignment (WDSF charts). */
   alignText?: string;
+  /** Precise alignment facts (degrees, 0 = LOD, + = towards centre, in the frame of the figure's first LOD):
+   *  face = direction of the step / foot, end = facing after a pivot, body = body facing when it differs,
+   *  moving = direction of travel. */
+  face?: number;
+  end?: number;
+  body?: number;
+  moving?: number;
   /** Amount of turn text, e.g. "1/4 between 1-2". */
   turn: string;
   /** Couple position on this step (WDSF book), e.g. "Closed Position", "PP". */
@@ -174,7 +181,7 @@ export function stepVector(desc: string, facing: number): { angle: number; len: 
   // The stepping foot is the first one named ("RF closes to LF" moves the right foot).
   const fm = d.match(/\b(rf|lf)\b/);
   const foot = fm ? (fm[1] === "lf" ? "L" : "R") : null;
-  if (/\bclose|\bin place|\bweight|\bpivot\b(?!.*(fwd|back))/.test(d) && !/\bside\b/.test(d)) return { angle: facing, len: 0 };
+  if (/\bclose|\bbrush|\bin place|\bweight|\bpivot\b(?!.*(fwd|back|bwd))/.test(d) && !/\bside\b/.test(d)) return { angle: facing, len: 0 };
   if (/\bside\b/.test(d)) {
     const side = foot === "L" ? 90 : -90;
     const tweak = /fwd|forward/.test(d) ? (foot === "L" ? -30 : 30) : /back|bwd/.test(d) ? (foot === "L" ? 30 : -30) : 0;
@@ -190,7 +197,12 @@ export interface PathPoint {
   y: number;
   /** 1-based step number in the figure. */
   n: number;
+  /** Facing after the step (body; incl. a pivot on the step). */
   facing: number | null;
+  /** Direction of the step itself (the foot), e.g. the start of a pivot. */
+  stepFacing?: number | null;
+  /** Body facing when the chart states it separately ("body almost Facing W"). */
+  body?: number | null;
 }
 
 /**
@@ -223,7 +235,10 @@ export function tracePath(
   steps.forEach((s, i) => {
     const turn = parseTurn(s.turn);
     if (turn.sign) sign = turn.sign;
-    const al = parseAlign(s.align);
+    const al =
+      s.face !== undefined
+        ? { angle: s.face, explicit: true, moving: s.moving ?? null }
+        : parseAlign(s.align);
     const prev = facing;
     if (!al && turn.deg > 0) {
       // Latin charts give no alignment, only the amount of turn: rotate by it.
@@ -258,7 +273,18 @@ export function tracePath(
     const extra = steps.length > 1 ? (extraTurn * i) / (steps.length - 1) : extraTurn;
     x += Math.cos(rad(v.angle + rotation + extra)) * v.len;
     y += Math.sin(rad(v.angle + rotation + extra)) * v.len;
-    pts.push({ x, y, n: i + 1, facing: al || facing !== null ? f + rotation + extra : null });
+    const known = !!al || facing !== null;
+    // After a pivot ("… end Facing LOD") the man faces the end alignment.
+    if (s.end !== undefined) facing = s.end;
+    const after = facing ?? 0;
+    pts.push({
+      x,
+      y,
+      n: i + 1,
+      facing: known ? after + rotation + extra : null,
+      stepFacing: known ? f + rotation + extra : null,
+      body: s.body !== undefined ? s.body + rotation + extra : null,
+    });
   });
   return pts;
 }

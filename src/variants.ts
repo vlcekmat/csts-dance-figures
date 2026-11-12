@@ -71,7 +71,7 @@ function positionFromDesc(desc: string): string | null {
  * `at` picks the position at its start or end.
  */
 export function bookPosition(fig: Figure, step: number, at: "start" | "end"): string | null {
-  const pos = fig.floor?.source === "wdsf" ? fig.floor.steps[step - 1]?.pos : undefined;
+  const pos = (fig.floor?.source === "wdsf" || fig.floor?.source === "checked") ? fig.floor.steps[step - 1]?.pos : undefined;
   if (!pos || /depend/i.test(pos)) return null;
   const parts = pos.split(/\s+(?:to|then)\s+(?=[A-Z])/);
   const p = (at === "start" ? parts[0] : parts[parts.length - 1]).replace(/\s+at\b.*$/i, "").trim();
@@ -80,7 +80,7 @@ export function bookPosition(fig: Figure, step: number, at: "start" | "end"): st
 
 /** Foot that takes a chart step of the WDSF book (the weight ends on it). */
 function bookFoot(fig: Figure, step: number): Foot | null {
-  const st = fig.floor?.source === "wdsf" ? fig.floor.steps[step - 1] : undefined;
+  const st = (fig.floor?.source === "wdsf" || fig.floor?.source === "checked") ? fig.floor.steps[step - 1] : undefined;
   if (!st || /w\/o weight|without weight/i.test(st.desc)) return null;
   const m = st.desc.match(/\b(RF|LF)\b/);
   return m ? (m[1] as Foot) : null;

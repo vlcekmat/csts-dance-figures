@@ -48,7 +48,7 @@ def norm(a):
 
 def check_total(fig, role, steps):
     """Start and end alignment must differ by the figure's total amount of turn."""
-    angles = [angle(st.get("align", "")) for st in steps]
+    angles = [st.get("end", st.get("face")) if "face" in st else angle(st.get("align", "")) for st in steps]
     known = [(i, a) for i, a in enumerate(angles) if a is not None]
     if len(known) < 2:
         return 0

@@ -24,7 +24,10 @@ type Role = "man" | "lady" | "both";
 interface Foot {
   n: number;
   foot: "L" | "R" | null;
+  /** Direction of the footprint (the step). */
   face: number;
+  /** Body facing after the step. */
+  bodyFace: number;
   /** Footprint position (beside the line of weight). */
   x: number;
   y: number;
@@ -45,11 +48,14 @@ function footprints(
   initialFacing: number | null,
 ): { start: { x: number; y: number; face: number }; feet: Foot[] } {
   const body = tracePath(steps, 0, 0, 0, hint, 0, initialFacing);
-  let face = body.find((b) => b.facing !== null)?.facing ?? initialFacing ?? 0;
+  const first = body.find((b) => b.facing !== null);
+  let face = first?.stepFacing ?? first?.facing ?? initialFacing ?? 0;
   const startFace = face;
   const FOOT_OFFSET = 0.12;
   const feet = body.slice(1).map((b, i) => {
-    if (b.facing !== null) face = b.facing;
+    if (b.stepFacing !== null && b.stepFacing !== undefined) face = b.stepFacing;
+    else if (b.facing !== null) face = b.facing;
+    const bodyFace = b.body ?? b.facing ?? face;
     const m = steps[i].desc.match(/\b(RF|LF)\b/i);
     const foot = m ? (m[1].toUpperCase() === "LF" ? "L" : "R") : null;
     const side = foot === "L" ? 90 : foot === "R" ? -90 : 0;
@@ -60,6 +66,7 @@ function footprints(
       n: b.n,
       foot,
       face,
+      bodyFace,
       x: bx + (side ? Math.cos(a) * FOOT_OFFSET : 0),
       y: by + (side ? Math.sin(a) * FOOT_OFFSET : 0),
       bx,
@@ -165,7 +172,7 @@ export function FigurePlayer({ fig }: { fig: Figure }) {
 
   /** Body of a partner after step k: position and facing. */
   const bodyAt = (p: { start: { x: number; y: number; face: number }; feet: Foot[] }) =>
-    k === 0 ? { x: p.start.x, y: p.start.y, face: p.start.face } : { x: p.feet[k - 1].bx, y: p.feet[k - 1].by, face: p.feet[k - 1].face };
+    k === 0 ? { x: p.start.x, y: p.start.y, face: p.start.face } : { x: p.feet[k - 1].bx, y: p.feet[k - 1].by, face: p.feet[k - 1].bodyFace };
 
   const renderFeet = (p: { feet: Foot[] }, who: "man" | "lady") =>
     p.feet.map((f) => {

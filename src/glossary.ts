@@ -249,6 +249,21 @@ const HOLD_CS: [RegExp, string][] = [
 // Step descriptions from the dancecentral.info charts ("LF to side and slightly back").
 const STEP_CS: [RegExp, string][] = [
   [/\bcloses? to\b/gi, "přisouvá k"],
+  [/\bbrushes? to\b/gi, "přitahuje k"],
+  [/\boutside partner\b/gi, "mimo partnera"],
+  [/\bHeel Turn\b/g, "otáčka na patě"],
+  [/\bHeel Pull\b/g, "přitažení na patě"],
+  [/\bToe Pivot\b/g, "pivot na špičce"],
+  [/\bSlip Pivot\b/g, "skluzný pivot"],
+  [/\bPivot\b/g, "pivot"],
+  [/\bSwivel\b/g, "švih"],
+  [/\bloosely\b/gi, "volně"],
+  [/\band across\b/gi, "a napříč"],
+  [/\bL side leading\b/g, "vedení levým bokem"],
+  [/\bR side leading\b/g, "vedení pravým bokem"],
+  [/\bpart weight\b/gi, "s částečnou váhou"],
+  [/\bfeet close\b/gi, "chodidla k sobě"],
+  [/\bfeet uncross\b/gi, "chodidla se rozkříží"],
   [/\bcrosses? behind\b/gi, "kříží za"],
   [/\bcrosses? in front of\b/gi, "kříží před"],
   [/\bto side\b/gi, "stranou"],
@@ -274,6 +289,7 @@ const STEP_CS: [RegExp, string][] = [
 // Amount-of-turn column of the charts ("1/4 between 1 and 2", "starts to turn R").
 const TURN_CS: [RegExp, string][] = [
   [/\bstarts? to turn\b/gi, "začíná točit"],
+  [/\bthen\b/gi, "pak"],
   [/\bcontinue(?:s)? to turn\b/gi, "pokračuje v otáčení"],
   [/\bbody turns less\b/gi, "tělo točí méně"],
   [/\bbody completes (?:the )?turn\b/gi, "tělo dokončí otočení"],

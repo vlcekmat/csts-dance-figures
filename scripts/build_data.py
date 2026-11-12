@@ -442,142 +442,241 @@ ALIGN_BASE = {"LOD": 0, "DW": -45, "W": -90, "DC": 45, "C": 90}
 ALIGN_NAME = {0: "LOD", 45: "DC", 90: "C", 135: "DC against LOD", 180: "LOD", -135: "DW against LOD", -90: "W", -45: "DW"}
 
 
-def align_angle(text, new_lod=False, desc=""):
-    """Facing (degrees, 0 = LOD, + = centre) at the END of a chart step, in the frame
-    of the figure's first LOD; None if the cell gives no alignment.
+ALMOST = 15  # degrees short of the named alignment for "almost" / "nearly" / "just under"
 
-    Handles "Backing LOD, toe turned in, end Facing LOD" (pivots: the end counts),
-    "Facing DW of new LOD" (after a corner: new LOD = old LOD turned 90° left),
-    "Facing against LOD", "Toe turned in to DC. End Facing LOD or DW" (first option)."""
-    t = re.sub(r"\(next step.*?(\)|$)", " ", text.replace("\u201d", '"'), flags=re.I)
-    new = new_lod or bool(re.search(r"\bnew\s*LO[DO0]", t, flags=re.I))
-    # the alignment at the end of the step wins
-    m = re.search(r"\b(?:end|finish|then|to end)\b(.*)", t, flags=re.I)
-    if m and re.search(r"\b(LOD|DW|DC|W|C|centre|wall)\b", m.group(1), flags=re.I):
-        t = m.group(1)
-    t = re.split(r"\bbody\b|\bmoving\b|\(next|\bor\b", t, flags=re.I)[0]
-    t = re.sub(r"\b(almost|nearly|slightly|just|of|the|new)\b", " ", t, flags=re.I)
-    # "Pointing between W and DW": half-way between the two
-    mb = re.search(r"\bbetween\s+(LOD|DW|DC|W|C)\s+and\s+(LOD|DW|DC|W|C)\b", t.upper().replace("PW", "DW"))
-    if mb:
-        a = (ALIGN_BASE[mb.group(1)] + ALIGN_BASE[mb.group(2)]) / 2
-        if re.search(r"\bbacking\b", t, flags=re.I) or (re.search(r"\b(bwd|back)\b", desc, flags=re.I) and not re.search(r"facing|pointing", t, flags=re.I)):
-            a += 180
-        return ((a + 180) % 360) - 180
-    u = t.upper().replace("CENTRE", "C").replace("CENTER", "C").replace("WALL", "W").replace("DIAG.", "D").replace("LOO", "LOD")
-    m = re.search(r"\b(FACING|BACKING|BAKING|POINTING|DOWN)?\W*\s*(?:TO\s+)?(?:(LOD|DW|DC|W|C)\b(\s+AGAINST\s+LOD)?|(AGAINST\s+LOD))", u)
-    if not m:
-        return None
-    if m.group(4):
-        a = 180
-    else:
-        a = ALIGN_BASE[m.group(2)]
-        if m.group(3):
-            a = 180 if m.group(2) == "LOD" else (180 - a if a > 0 else -180 - a)
-    if m.group(1) in ("BACKING", "BAKING"):
-        a += 180
-    elif not m.group(1) and re.search(r"\b(bwd|back)\b", desc, flags=re.I):
-        a += 180  # bare "DW" on a backward step = backing DW
-    if new:
-        a += 90
+
+def _norm(a):
     return ((a + 180) % 360) - 180
 
 
+def _avg(a, b):
+    """Mean of two directions (handles the wrap around ±180°)."""
+    return _norm(a + _norm(b - a) / 2)
+
+
+def phrase_angle(phrase, bwd=False):
+    """Direction of an alignment phrase ("Backing DC against LOD", "Pointing between W and DW",
+    "almost Facing C", "L Toe Pointing to W") in degrees (0 = LOD, + = centre).
+    Returns (angle, almost) or None. `bwd`: a bare code on a backward step means backing."""
+    u = phrase.upper().replace("”", " ").replace("CENTRE", "C").replace("CENTER", "C")
+    u = u.replace("WALL", "W").replace("LOO", "LOD").replace("PW", "DW").replace("DIAG.", "D")
+    u = re.sub(r"\b(FACING|BACKING|POINTING)(?=[A-Z])", r"\1 ", u)  # OCR: "BackingDC"
+    almost = bool(re.search(r"\b(ALMOST|AIMOST|NEARLY|JUST UNDER)\b", u))
+    u = re.sub(r"\b(ALMOST|AIMOST|NEARLY|JUST|UNDER|OVER|SLIGHTLY|OF|THE|NEW|A)\b", " ", u)
+    kind = re.search(r"\b(FACING|BACKING|BAKING|POINTING|DOWN)\b", u)
+    rest = u[kind.end():] if kind else u
+    mb = re.search(r"\bBETWEEN\s+(LOD|DW|DC|W|C)\s+AND\s+(LOD|DW|DC|W|C)\b", rest)
+    if mb:
+        a = _avg(ALIGN_BASE[mb.group(1)], ALIGN_BASE[mb.group(2)])
+    else:
+        m = re.search(r"\b(LOD|DW|DC|W|C)\b(\s+AGAINST\s+LOD)?|\bAGAINST\s+LOD\b", rest)
+        if not m:
+            return None
+        if not m.group(1):
+            a = 180
+        else:
+            a = ALIGN_BASE[m.group(1)]
+            if m.group(2):
+                a = 180 if m.group(1) == "LOD" else (180 - a if a > 0 else -180 - a)
+    k = kind.group(1) if kind else None
+    # "Toe pointing to W" / "toe turned in to DC" name the foot's direction itself
+    # "toe turned in to DC", "Toe pointing to W", "To C, R toe turned in": the foot's own direction
+    toe_code = re.search(r"\bTOE\b[^,.]*?\b(LOD|DW|DC|W|C)\b", u) or re.search(r"\bTO\s+(LOD|DW|DC|W|C)\b", u)
+    if k in ("BACKING", "BAKING") or (k in (None, "DOWN") and bwd and not toe_code):
+        a += 180
+    return _norm(a), almost
+
+
+def parse_alignment(text, desc, new_lod, prev):
+    """Precise alignment facts of one chart step.
+
+    Returns {face, end, body, moving} in degrees in the frame of the figure's
+    first LOD (None when not given) and whether the step mentions a new LOD.
+    face = alignment of the step (direction of the foot), end = facing after
+    a pivot / "then …", body = body facing when stated, moving = direction of travel."""
+    out = {"face": None, "end": None, "body": None, "moving": None}
+    if not text or DEPENDS.search(text):
+        return out, False
+    t = re.sub(r"\(next step.*?(\)|$)", " ", text, flags=re.I)
+    t = re.sub(r"\(\d\)|\"", " ", t)
+    new_here = bool(re.search(r"\bnew\s*LO[DO0]", t, flags=re.I))
+    bwd = bool(re.search(r"\b(bwd|back)\b", desc, flags=re.I))
+    em = re.search(r"\b(?:then|end|to end|finish(?:ing)?)\b", t, flags=re.I)
+    main, endp = (t[:em.start()], t[em.end():]) if em else (t, "")
+
+    def pick(part, key_new):
+        body = re.search(r"\bbody\s+(.*?)(?=,|\bmoving\b|$)", part, flags=re.I)
+        mov = re.search(r"\bmoving\s+(?:along\s+|sideways\s+(?:to\s+)?|to\s+|towards?\s+)?(.*?)(?=,|$)", part, flags=re.I)
+        core = re.split(r"\bbody\b|\bmoving\b|\bor\b", part, flags=re.I)[0]
+        shift = 90 if key_new or re.search(r"\bnew\b", part, flags=re.I) else 0
+        res = {}
+        for key, ph, back in (("face", core, bwd), ("body", body.group(1) if body else "", False),
+                              ("moving", "Facing " + mov.group(1) if mov else "", False)):
+            r = phrase_angle(ph, back) if ph else None
+            if r is not None:
+                res[key] = (_norm(r[0] + shift), r[1])
+        return res
+
+    m = pick(main, new_lod)
+    e = pick(endp, new_lod or new_here) if endp else {}
+    ref = prev
+    for key in ("face", "body", "moving"):
+        if key in m:
+            a, almost = m[key]
+            if almost and ref is not None and abs(_norm(a - ref)) > 1:
+                a = _norm(a - (1 if _norm(a - ref) > 0 else -1) * ALMOST)
+            out[key] = round(a, 1)
+    if "face" in e:
+        a, almost = e["face"]
+        if almost and out["face"] is not None and abs(_norm(a - out["face"])) > 1:
+            a = _norm(a - (1 if _norm(a - out["face"]) > 0 else -1) * ALMOST)
+        out["end"] = round(a, 1)
+        if "body" in e:
+            out["body"] = round(e["body"][0], 1)
+    if out["face"] is None and out["end"] is not None:
+        out["face"] = out["end"]
+    return out, new_here
+
+
 def align_code(angle):
-    """Canonical alignment text the app parses ("Facing DC", "Backing DW against LOD")."""
+    """Readable alignment code ("Facing DC", "Backing DW against LOD") of an angle."""
     if angle is None:
         return ""
     a = int(round(angle / 45.0)) * 45
-    a = ((a + 180) % 360) - 180
+    a = _norm(a)
     if abs(a) > 90:  # against LOD: dancers say "backing ..."
-        b = ((a + 360) % 360) - 180
+        b = _norm(a + 180)
         return "Backing " + ALIGN_NAME[b]
     return "Facing " + ALIGN_NAME[a]
 
 
 def chart_rows(chart):
     """Chart steps without a leading "preceding step" row ("Weight on LF")."""
-    steps = list(chart["steps"])
-    while steps and re.match(r"(weight|recover|part weight)\b", steps[0]["desc"], flags=re.I):
+    steps = [dict(st) for st in chart["steps"]]
+    # a leading row without an alignment is the "preceding step" of the chart
+    while steps and re.match(r"(weight|recover|part weight)\b", steps[0]["desc"], flags=re.I) and not steps[0].get("align"):
         steps = steps[1:]
+    # OCR lost the main line of a step ("RF fwd" / "Recover LF" -> only "Recover LF"):
+    # rebuild it from the alternating feet and the alignment
+    for i, st in enumerate(steps):
+        if re.match(r"(weight|recover|part weight)\b", st["desc"], flags=re.I):
+            nxt = next((re.search(r"\b(RF|LF)\b", x["desc"]) for x in steps[i + 1:i + 2]), None)
+            foot = ("LF" if nxt.group(1) == "RF" else "RF") if nxt else None
+            if foot:
+                back = re.search(r"backing", st.get("align", ""), flags=re.I)
+                st["desc"] = f"{foot} {'bwd' if back else 'fwd'}"
     return steps
 
 
 def fact_desc(desc):
-    """Bare facts of a step (foot + basic direction), not the book's wording."""
+    """Precise step description composed from technical terms (foot, directions,
+    CBMP, positions, pivots …) rather than the book's sentences."""
     foot = re.search(r"\b(RF|LF)\b", desc)
+    d = desc.lower()
     if not foot:
+        if re.search(r"feet|both", d):
+            return "feet " + ("close" if "clos" in d else "uncross" if "uncross" in d else "together")
         return ""
     f = foot.group(1)
-    other = "LF" if f == "RF" else "RF"
-    d = desc.lower()
+    o = "LF" if f == "RF" else "RF"
+    extras = []
     if re.search(r"\bcloses?\b", d):
-        return f"{f} closes to {other}"
-    if re.search(r"\bcross", d):
-        return f"{f} crosses " + ("behind" if "behind" in d else "in front of") + f" {other}"
-    found = sorted(
-        (m.start(), w) for w, rx in (("fwd", r"\bfwd\b|forward"), ("bwd", r"\bbwd\b|\bback\b"), ("to side", r"\bside\b"))
-        for m in [re.search(rx, d)] if m
-    )
-    if not found:
-        return f"{f} in place" if re.search(r"in place|replace|transfer", d) else f
-    main = found[0][1]
-    pp = " in PP" if re.search(r"\bpp\b|promenade", d) and main == "fwd" else ""
-    return f"{f} {main}{pp}"
+        base = f"{f} closes to {o}"
+    elif re.search(r"\bcross", d):
+        base = f"{f} crosses " + ("behind" if "behind" in d else "in front of") + f" {o}"
+        if "loosely" in d:
+            extras.append("loosely")
+    elif re.search(r"\bbrush", d):
+        base = f"{f} brushes to {o}"
+    else:
+        dirs = []
+        for w, rx in (("diag fwd", r"\bdiag\.?\s*(?:fwd|forward)\b"), ("diag bwd", r"\bdiag\.?\s*(?:bwd|back)\b"),
+                      ("fwd", r"\bfwd\b|\bforward\b"), ("bwd", r"\bbwd\b|\bback(?:ward)?\b"), ("to side", r"\bside\b")):
+            for m in re.finditer(rx, d):
+                if not any(abs(m.start() - x[0]) < 6 for x in dirs):
+                    dirs.append((m.start(), w))
+        dirs.sort()
+        if not dirs:
+            base = f"{f} in place" if re.search(r"in place|replace|transfer|weight", d) else f
+        else:
+            base = f"{f} {dirs[0][1]}"
+            if len(dirs) > 1 and dirs[1][1] != dirs[0][1]:
+                base += (" and slightly " if "slightly" in d else " and ") + dirs[1][1].replace("to side", "to side")
+        if re.search(r"\bacross\b", d):
+            base += " and across"
+    for rx, word in ((r"\bcbmp\b", "in CBMP"), (r"outside partner|\bop\b", "outside partner"),
+                     (r"\bpp\b|promenade", "in PP"), (r"w/o weight|without weight", "w/o weight"),
+                     (r"part weight", "part weight"), (r"small step", "small step"),
+                     (r"heel turn", "Heel Turn"), (r"heel pull", "Heel Pull"), (r"toe pivot", "Toe Pivot"),
+                     (r"slip pivot", "Slip Pivot"), (r"\bpivot\b(?!ing)", "Pivot"), (r"swivel", "Swivel"),
+                     (r"\b(l|r) side leading", None), (r"toe turned (in|out)", None)):
+        m = re.search(rx, d)
+        if not m:
+            continue
+        if word is None:
+            word = m.group(0).replace("l side", "L side").replace("r side", "R side")
+        if word == "Pivot" and any(w.endswith("Pivot") for w in extras):
+            continue
+        if word not in extras:
+            extras.append(word)
+    return " ".join([base] + extras)
 
 
-def fact_align(chart_step, new_lod):
-    """Normalised alignment (+ travel direction) of a book step, e.g. "Facing DW, moving LOD"."""
-    text = chart_step.get("align", "")
-    if not text or DEPENDS.search(text):
+def fact_turn(turn):
+    """Amount of turn as bare facts: "3/8 R, then 1/2 R" (no wording)."""
+    if not turn or DEPENDS.search(turn):
         return ""
-    code = align_code(align_angle(text, new_lod, chart_step["desc"]))
-    mv = re.search(r"\bmoving\s+(?:along\s+|sideways\s+to\s+|to\s+)?(.*)", re.sub(r"\(next step.*?(\)|$)", "", text, flags=re.I), flags=re.I)
-    if code and mv:
-        a = align_angle("Facing " + mv.group(1), new_lod or bool(re.search(r"new\s*LOD", mv.group(1), flags=re.I)))
-        if a is not None:
-            m = align_code(a)
-            # "moving X": the direction of travel, written as a facing-free code
-            r = int(round(a / 45.0)) * 45
-            r = ((r + 180) % 360) - 180
-            code += ", moving " + ("against LOD" if r == 180 else ALIGN_NAME[r])
-    return code
+    side = "R" if re.search(r"\bto\s*R\b|\bR\b|right", turn) else "L" if re.search(r"\bto\s*L\b|\bL\b|left", turn) else ""
+    fr = re.findall(r"(\d/\d)\s*(?:to\s*)?([LR])?", turn)
+    parts = [f"{a} {b or side}".strip() for a, b in fr]
+    if not parts:
+        return ("starts to turn " + side).strip() if re.search(r"com|start", turn, flags=re.I) else ""
+    return ", then ".join(parts)
 
 
-def public_steps(chart):
-    """Facts only (foot, direction, alignment) for the public site."""
-    out = []
-    new_lod = False
-    for st in chart_rows(chart):
-        here_new = bool(re.search(r"\bnew\s*LO[DO0]", re.sub(r"\(next step.*?(\)|$)", "", st.get("align", ""), flags=re.I), flags=re.I))
-        out.append({"desc": fact_desc(st["desc"]), "align": fact_align(st, new_lod), "turn": ""})
-        new_lod = new_lod or here_new
-    return out
+POS_WORDS = set("""close closed promenade counter outside partner fallaway wing position pos pos. opp opp. opposing
+open ex ex. extended same side diag diag. prom prom. cnt cnt. r l right left angle fan shadow tandem contra double
+hold to then at very e/o of and man lady passes behind front in relaxed hand hammerlock no cpp pp op""".split())
 
 
-def book_steps(chart):
-    """Steps of a WDSF book chart in the app's FloorStep format."""
+def is_position_terms(pos):
+    """Only couple-position names (no sentences) go to the public site."""
+    words = re.findall(r"[A-Za-z/.]+", pos)
+    return bool(words) and len(pos) <= 70 and all(w.lower() in POS_WORDS for w in words)
+
+
+def build_steps(chart, public):
+    """Steps of a WDSF chart in the app's FloorStep format with precise alignment facts.
+    public=True: facts only (no book wording, positions, timing)."""
     out = []
     new_lod = False  # after "... new LOD" the following steps refer to the new LOD too
+    prev = None
     for st in chart_rows(chart):
         align = st.get("align", "")
-        here_new = bool(re.search(r"\bnew\s*LO[DO0]", re.sub(r"\(next step.*?(\)|$)", "", align, flags=re.I), flags=re.I))
-        if DEPENDS.search(align):
-            align = ""
-        turn = st.get("turn", "")
-        if DEPENDS.search(turn):
-            turn = ""
-        # "align" = normalised end-of-step facing (used for the floor plan),
-        # "alignText" = the book's wording (shown in the chart table).
-        item = {"desc": st["desc"], "align": align_code(align_angle(align, new_lod, st["desc"])) if align else "", "turn": turn}
-        if align:
-            item["alignText"] = align
-        new_lod = new_lod or here_new
-        if st.get("pos") and not DEPENDS.search(st["pos"]):
-            item["pos"] = st["pos"]
-        if st.get("timing"):
-            item["timing"] = st["timing"]
+        al, here_new = parse_alignment(align, st["desc"], new_lod, prev)
+        facing = al["end"] if al["end"] is not None else al["face"]
+        item = {
+            "desc": fact_desc(st["desc"]) if public else st["desc"],
+            # "align" = readable code of the facing after the step (also parsed by older code)
+            "align": align_code(facing) if facing is not None else "",
+            "turn": fact_turn(st.get("turn", "")) if public else ("" if DEPENDS.search(st.get("turn", "")) else st.get("turn", "")),
+        }
+        for k in ("face", "end", "body", "moving"):
+            if al[k] is not None:
+                item[k] = al[k]
+        if re.fullmatch(r"[0-9&a.SQ ]{1,6}", st.get("timing") or ""):
+            item["timing"] = st["timing"].strip()  # the count of the step
+        pos = st.get("pos") or ""
+        if pos and not DEPENDS.search(pos) and (not public or is_position_terms(pos)):
+            item["pos"] = pos  # couple position names only (no sentences)
+        if not public:
+            if align and not DEPENDS.search(align):
+                item["alignText"] = align
+
         out.append(item)
+        if facing is not None:
+            prev = facing
+        new_lod = new_lod or here_new
     return out
 
 
@@ -756,7 +855,7 @@ def main():
             man, lady = match_book(technique, dance, titles, fig_id) if row["en"] else (None, None)
             if man and man["steps"]:
                 fl = entry.get("floor", {"preceding": [], "following": []})
-                steps = book_steps(man)
+                steps = build_steps(man, public=False)
                 # Copyrighted book content: only into the local, git-ignored file.
                 book_floor[fig_id] = {
                     "title": man["name"].title(),
@@ -767,23 +866,24 @@ def main():
                     "preceding": fl.get("preceding", []),
                     "following": fl.get("following", []),
                 }
-                # Public site: only the facts (foot, direction, alignment) – checked against
-                # the WDSF technique, no wording, lady's steps or notes from the books.
+                # Public site: precise steps as facts (foot, direction, alignment, turn,
+                # technical terms) for man and lady – no wording or notes from the books.
                 pub = {
                     "title": fl.get("title") or man["name"].title(),
                     "url": fl.get("url", ""),
                     "source": "checked",
-                    "steps": public_steps(man),
+                    "steps": build_steps(man, public=True),
                     "preceding": fl.get("preceding", []),
                     "following": fl.get("following", []),
                 }
                 if not any(st["align"] for st in pub["steps"]):
                     pub["follows"] = True
-                if dance in STANDARD_BOOKS:
-                    entry["floor"] = pub
+                if lady and lady["steps"]:
+                    pub["ladySteps"] = build_steps(lady, public=True)
+                entry["floor"] = pub
                 bf = book_floor[fig_id]
                 if lady and lady["steps"]:
-                    bf["ladySteps"] = book_steps(lady)
+                    bf["ladySteps"] = build_steps(lady, public=False)
                 if not any(st["align"] for st in steps):
                     bf["follows"] = True
                 notes = [n for n in man.get("notes", []) + (lady or {}).get("notes", [])]
