@@ -82,6 +82,7 @@ const STRINGS = {
   playerPlay: { cs: "Přehrát", en: "Play" },
   playerPause: { cs: "Pauza", en: "Pause" },
   playerSpeed: { cs: "Rychlost přehrávání", en: "Playback speed" },
+  playerSmooth: { cs: "plynule", en: "smooth" },
   playerTempo: { cs: "soutěžní tempo", en: "competition tempo" },
   playerStep: { cs: "Krok", en: "Step" },
   playerStartPos: { cs: "Výchozí postavení", en: "Starting position" },

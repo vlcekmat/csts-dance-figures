@@ -109,6 +109,9 @@ export function FigurePlayer({ fig }: { fig: Figure }) {
   const [k, setK] = useState(0); // 0 = starting position, n = after step n
   const [playing, setPlaying] = useState(false);
   const [speed, setSpeed] = useState(0.5);
+  // Smooth playback: the partners glide between the steps instead of jumping.
+  const [smooth, setSmooth] = useState(true);
+  const [frac, setFrac] = useState(0); // progress from step k towards step k + 1 (0–1)
   const n = man.length;
 
   // Reset when the figure changes.
@@ -164,8 +167,43 @@ export function FigurePlayer({ fig }: { fig: Figure }) {
     const parsed = timing && dance ? parseTiming(timing, dance) : [];
     return man.map((_, i) => parsed[i]?.beats ?? 1);
   }, [fig, dance, man]);
+  const stepMs = (i: number) => {
+    const bpm = (dance && tempoBpm(dance)) || 30;
+    const beatsPerMin = bpm * (dance?.beatsPerBar ?? 4);
+    return Math.max(250, ((beats[i] ?? 1) * 60000) / beatsPerMin / speed);
+  };
   useEffect(() => {
-    if (!playing) return;
+    if (!playing) setFrac(0);
+  }, [playing]);
+  useEffect(() => {
+    if (!playing || !smooth) return;
+    let raf = 0;
+    let last = performance.now();
+    let kk = k >= n ? 0 : k;
+    let ff = 0;
+    const tick = (now: number) => {
+      ff += (now - last) / stepMs(kk);
+      last = now;
+      while (ff >= 1 && kk < n) {
+        ff -= 1;
+        kk += 1;
+      }
+      if (kk >= n) {
+        setK(n);
+        setFrac(0);
+        setPlaying(false);
+        return;
+      }
+      setK(kk);
+      setFrac(ff);
+      raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [playing, smooth, speed]);
+  useEffect(() => {
+    if (!playing || smooth) return;
     if (k >= n) {
       setPlaying(false);
       return;
@@ -175,7 +213,7 @@ export function FigurePlayer({ fig }: { fig: Figure }) {
     const ms = ((beats[k] ?? 1) * 60000) / beatsPerMin / speed;
     const id = window.setTimeout(() => setK((v) => v + 1), Math.max(250, ms));
     return () => window.clearTimeout(id);
-  }, [playing, k, n, beats, dance, speed]);
+  }, [playing, smooth, k, n, beats, dance, speed]);
 
   if (!n) return null;
 
@@ -205,12 +243,19 @@ export function FigurePlayer({ fig }: { fig: Figure }) {
   for (let g = Math.ceil(minY * 2) / 2; g <= maxY; g += 0.5) gridY.push(g);
 
   /** Body of a partner after step k: position and facing. */
-  const bodyAt = (p: { start: { x: number; y: number; face: number }; feet: Foot[] }) =>
-    k === 0 ? { x: p.start.x, y: p.start.y, face: p.start.face } : { x: p.feet[k - 1].bx, y: p.feet[k - 1].by, face: p.feet[k - 1].bodyFace };
+  const bodyAfter = (p: { start: { x: number; y: number; face: number }; feet: Foot[] }, i: number) =>
+    i === 0 ? { x: p.start.x, y: p.start.y, face: p.start.face } : { x: p.feet[i - 1].bx, y: p.feet[i - 1].by, face: p.feet[i - 1].bodyFace };
+  /** Body after step k, during smooth playback part of the way to step k + 1. */
+  const bodyAt = (p: { start: { x: number; y: number; face: number }; feet: Foot[] }) => {
+    const a = bodyAfter(p, k);
+    if (!frac || k >= p.feet.length) return a;
+    const b = bodyAfter(p, k + 1);
+    return { x: a.x + (b.x - a.x) * frac, y: a.y + (b.y - a.y) * frac, face: a.face + norm180(b.face - a.face) * frac };
+  };
 
   const renderFeet = (p: { feet: Foot[] }, who: "man" | "lady") =>
     p.feet.map((f) => {
-      const state = f.n === k ? "current" : f.n < k ? "done" : "future";
+      const state = f.n === k || (frac > 0 && f.n === k + 1) ? "current" : f.n < k ? "done" : "future";
       return (
         <g key={`${who}${f.n}`} transform={`translate(${X(f.x)} ${Y(f.y)}) rotate(${-f.face})`} className={`fp-step ${state}`}>
           <path
@@ -271,6 +316,10 @@ export function FigurePlayer({ fig }: { fig: Figure }) {
             <option value={0.5}>0,5×</option>
             <option value={1}>1× ({t("playerTempo")})</option>
           </select>
+          <label className="check small player-smooth">
+            <input type="checkbox" checked={smooth} onChange={(e) => setSmooth(e.target.checked)} />
+            {t("playerSmooth")}
+          </label>
         </div>
         <input
           type="range"
