@@ -707,6 +707,12 @@ def build_steps(chart, public):
         for k in ("face", "end", "body", "moving"):
             if al[k] is not None:
                 item[k] = al[k]
+        # "Pointing X … body turns less": the foot points X, the body is about 1/8 behind it
+        if ("body" not in item and al["face"] is not None and prev is not None
+                and re.search(r"\bpointing\b", align, re.I) and re.search(r"body turns less", st.get("turn", ""), re.I)):
+            d = _norm(al["face"] - prev)
+            if abs(d) > 45:
+                item["body"] = round(_norm(al["face"] - (45 if d > 0 else -45)), 1)
         if re.fullmatch(r"[0-9&a.SQ ]{1,6}", st.get("timing") or ""):
             item["timing"] = st["timing"].strip()  # the count of the step
         pos = st.get("pos") or ""

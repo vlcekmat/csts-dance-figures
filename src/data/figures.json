@@ -692,6 +692,7 @@
       "align": "Facing DC",
       "turn": "3/8 R (between steps)",
       "face": 45,
+      "body": 90,
       "timing": "2",
       "pos": "Closed Position"
      },
@@ -808,6 +809,7 @@
       "align": "Facing LOD",
       "turn": "3/8 R (between steps)",
       "face": 0,
+      "body": 45,
       "timing": "2",
       "pos": "Closed Position"
      },
@@ -973,6 +975,7 @@
       "align": "Facing DW",
       "turn": "3/8 L (between steps)",
       "face": -45,
+      "body": -90,
       "timing": "2",
       "pos": "Closed Position"
      },
@@ -1076,6 +1079,7 @@
       "align": "Facing LOD",
       "turn": "3/8 L (between steps)",
       "face": 0,
+      "body": -45,
       "timing": "2",
       "pos": "Closed Position"
      },
@@ -1311,6 +1315,7 @@
       "align": "Facing DW",
       "turn": "1/4 L (between steps)",
       "face": -45,
+      "body": -90,
       "timing": "2",
       "pos": "Closed Position"
      },
@@ -1810,6 +1815,7 @@
       "align": "Facing DW",
       "turn": "1/4 L (between steps)",
       "face": -45,
+      "body": -90,
       "timing": "3",
       "pos": "Closed Position"
      }
@@ -2035,6 +2041,7 @@
       "align": "Facing DW",
       "turn": "1/4 L (between steps)",
       "face": -45,
+      "body": -90,
       "timing": "3",
       "pos": "Closed Position"
      }
@@ -2113,6 +2120,7 @@
       "align": "Facing DC",
       "turn": "1/4 L (between steps)",
       "face": 45,
+      "body": 0,
       "timing": "3",
       "pos": "Closed Position"
      },
@@ -2991,6 +2999,7 @@
       "align": "Facing LOD",
       "turn": "3/8 R (between steps)",
       "face": 0,
+      "body": 45,
       "timing": "2",
       "pos": "Closed Position"
      },
@@ -3512,6 +3521,7 @@
       "turn": "1/2 L (between steps)",
       "face": -45,
       "moving": 0,
+      "body": 0,
       "timing": "3",
       "pos": "Promenade Position"
      }
@@ -3682,6 +3692,7 @@
       "align": "Facing DW",
       "turn": "3/8 L (between steps)",
       "face": -45,
+      "body": -90,
       "timing": "3",
       "pos": "Closed Position"
      }
@@ -3776,6 +3787,7 @@
       "align": "Facing LOD",
       "turn": "3/8 L (between steps)",
       "face": 0,
+      "body": -45,
       "timing": "3",
       "pos": "Closed Position"
      },
@@ -4733,6 +4745,7 @@
       "align": "Facing DW",
       "turn": "1/4 L (between steps)",
       "face": -45,
+      "body": -90,
       "timing": "3",
       "pos": "Closed Position"
      }
@@ -5565,6 +5578,7 @@
       "align": "Facing LOD",
       "turn": "3/8 L (between steps)",
       "face": 0,
+      "body": -45,
       "timing": "2",
       "pos": "Closed Position"
      },
@@ -5784,6 +5798,7 @@
       "align": "Facing LOD",
       "turn": "3/8 R (between steps)",
       "face": 0,
+      "body": 45,
       "timing": "2",
       "pos": "Closed Position"
      },
@@ -5954,6 +5969,7 @@
       "align": "Facing DC",
       "turn": "3/8 R (between steps)",
       "face": 45,
+      "body": 90,
       "timing": "3"
      },
      {
@@ -6008,6 +6024,7 @@
       "align": "Facing LOD",
       "turn": "3/8 R (between steps)",
       "face": 0,
+      "body": 45,
       "timing": "2",
       "pos": "Closed Position"
      },
@@ -6804,6 +6821,7 @@
       "align": "Facing LOD",
       "turn": "3/8 R (between steps)",
       "face": 0,
+      "body": 45,
       "pos": "Closed Position"
      },
      {
@@ -7000,6 +7018,7 @@
       "align": "Facing DW",
       "turn": "1/4 L (between steps)",
       "face": -45,
+      "body": -90,
       "pos": "Closed Position"
      },
      {
@@ -7175,6 +7194,7 @@
       "align": "Facing DW",
       "turn": "3/8 L (between steps)",
       "face": -45,
+      "body": -90,
       "pos": "Closed Position"
      },
      {
@@ -7216,6 +7236,7 @@
       "align": "Facing LOD",
       "turn": "3/8 L (between steps)",
       "face": 0,
+      "body": -45,
       "pos": "Closed Position"
      },
      {
@@ -7362,6 +7383,7 @@
       "align": "Facing DW",
       "turn": "3/8 L (between steps)",
       "face": -45,
+      "body": -90,
       "pos": "Closed Position"
      },
      {
@@ -7394,6 +7416,7 @@
       "align": "Facing LOD",
       "turn": "3/8 L (between steps)",
       "face": 0,
+      "body": -45,
       "pos": "Closed Position"
      },
      {
@@ -9099,6 +9122,7 @@
       "align": "Facing DW",
       "turn": "3/8 L (between steps)",
       "face": -45,
+      "body": -90,
       "pos": "Closed Position"
      },
      {
@@ -9213,6 +9237,7 @@
       "align": "Facing LOD",
       "turn": "3/8 L (between steps)",
       "face": 0,
+      "body": -45,
       "pos": "Closed Position"
      },
      {
@@ -9358,6 +9383,7 @@
       "align": "Facing DW",
       "turn": "3/8 L (between steps)",
       "face": -45,
+      "body": -90,
       "pos": "Closed Position"
      },
      {
@@ -9475,6 +9501,7 @@
       "align": "Facing LOD",
       "turn": "3/8 L (between steps)",
       "face": 0,
+      "body": -45,
       "pos": "Closed Position"
      },
      {
@@ -9867,6 +9894,7 @@
       "align": "Facing DW",
       "turn": "1/4 L (between steps)",
       "face": -45,
+      "body": -90,
       "pos": "Closed Position"
      },
      {
@@ -12787,6 +12815,7 @@
       "align": "Backing DC",
       "turn": "1/4 L (between steps)",
       "face": -135,
+      "body": -180,
       "pos": "Closed Position"
      },
      {
@@ -12922,6 +12951,7 @@
       "align": "Facing DW",
       "turn": "3/8 L (between steps)",
       "face": -45,
+      "body": -90,
       "pos": "Closed Position"
      },
      {
@@ -12947,6 +12977,7 @@
       "align": "Facing LOD",
       "turn": "3/8 L (between steps)",
       "face": 0,
+      "body": -45,
       "pos": "Closed Position"
      },
      {
@@ -14755,6 +14786,7 @@
       "align": "Facing DC",
       "turn": "3/8 R (between steps)",
       "face": 45,
+      "body": 90,
       "timing": "2"
      },
      {
@@ -14815,6 +14847,7 @@
       "align": "Facing DC",
       "turn": "3/8 R (between steps)",
       "face": 45,
+      "body": 90,
       "timing": "2",
       "pos": "Closed Position"
      },
@@ -14970,6 +15003,7 @@
       "align": "Facing DW",
       "turn": "3/8 L (between steps)",
       "face": -45,
+      "body": -90,
       "timing": "2",
       "pos": "Closed Position"
      },
@@ -15031,6 +15065,7 @@
       "align": "Facing DW",
       "turn": "3/8 (between steps)",
       "face": -45,
+      "body": -90,
       "pos": "Closed Position"
      },
      {
@@ -15869,6 +15904,7 @@
       "align": "Facing DW",
       "turn": "3/8 L (between steps)",
       "face": -45,
+      "body": -90,
       "pos": "Closed Position"
      },
      {
@@ -16496,6 +16532,7 @@
       "align": "Facing DW",
       "turn": "1/4 L (between steps)",
       "face": -45,
+      "body": -90,
       "pos": "Closed Position"
      },
      {
@@ -16581,6 +16618,7 @@
       "align": "Facing DC",
       "turn": "1/4 (between steps)",
       "face": 45,
+      "body": 0,
       "pos": "Closed Position"
      },
      {
@@ -16714,6 +16752,7 @@
       "align": "Facing DW",
       "turn": "1/4 L (between steps)",
       "face": -45,
+      "body": -90,
       "pos": "Closed Position"
      },
      {
@@ -18915,6 +18954,7 @@
       "align": "Facing DW",
       "turn": "3/8 L (between steps)",
       "face": -45,
+      "body": -90,
       "pos": "Closed Position"
      },
      {
@@ -18986,6 +19026,7 @@
       "align": "Facing LOD",
       "turn": "3/8 L (between steps)",
       "face": 0,
+      "body": -45,
       "pos": "Closed Position"
      },
      {
@@ -19094,6 +19135,7 @@
       "align": "Facing DC",
       "turn": "1/2 R (between steps)",
       "face": 45,
+      "body": 90,
       "pos": "Closed Position"
      },
      {
@@ -19283,6 +19325,7 @@
       "align": "Backing DW",
       "turn": "1/4 L (between steps)",
       "face": 135,
+      "body": 90,
       "pos": "Closed Position"
      },
      {
@@ -20802,6 +20845,7 @@
       "align": "Facing DW",
       "turn": "1/4 L (between steps)",
       "face": -45,
+      "body": -90,
       "pos": "Closed Position"
      },
      {
@@ -21701,6 +21745,7 @@
       "align": "Facing DW",
       "turn": "3/8 L (between steps)",
       "face": -45,
+      "body": -90,
       "pos": "Closed Position"
      },
      {
@@ -21811,6 +21856,7 @@
       "align": "Facing LOD",
       "turn": "3/8 L (between steps)",
       "face": 0,
+      "body": -45,
       "pos": "Closed Position"
      },
      {
@@ -21958,6 +22004,7 @@
       "align": "Facing DW",
       "turn": "1/4 L (between steps)",
       "face": -45,
+      "body": -90,
       "pos": "Closed Position"
      },
      {
@@ -22132,6 +22179,7 @@
       "align": "Facing DW",
       "turn": "3/8 L (between steps)",
       "face": -45,
+      "body": -90,
       "pos": "Closed Position"
      },
      {
@@ -22164,6 +22212,7 @@
       "align": "Facing LOD",
       "turn": "3/8 L (between steps)",
       "face": 0,
+      "body": -45,
       "pos": "Closed Position"
      },
      {
@@ -22807,6 +22856,7 @@
       "align": "Facing DW",
       "turn": "1/4 L (between steps)",
       "face": -45,
+      "body": -90,
       "timing": "2",
       "pos": "Closed Position"
      },
@@ -23044,6 +23094,7 @@
       "align": "Facing LOD",
       "turn": "3/8 R (between steps)",
       "face": 0,
+      "body": 45,
       "pos": "Closed Position"
      },
      {
@@ -23195,6 +23246,7 @@
       "align": "Facing LOD",
       "turn": "3/8 L (between steps)",
       "face": 0,
+      "body": -45,
       "pos": "Closed Position"
      },
      {
@@ -23364,6 +23416,7 @@
       "align": "Facing DW",
       "turn": "1/4 L (between steps)",
       "face": -45,
+      "body": -90,
       "pos": "Closed Position"
      },
      {
@@ -23464,6 +23517,7 @@
       "align": "Facing DW",
       "turn": "1/4 L (between steps)",
       "face": -45,
+      "body": -90,
       "pos": "Closed Position"
      },
      {
@@ -23903,6 +23957,7 @@
       "align": "Facing DC",
       "turn": "1/4 R (between steps)",
       "face": 45,
+      "body": 90,
       "pos": "Closed Position"
      },
      {
@@ -24123,6 +24178,7 @@
       "align": "Facing DW",
       "turn": "1/4 L (between steps)",
       "face": -45,
+      "body": -90,
       "pos": "Closed Position"
      }
     ],
@@ -24402,6 +24458,7 @@
       "align": "Facing LOD",
       "turn": "3/8 R (between steps)",
       "face": 0,
+      "body": 45,
       "pos": "Closed Position"
      },
      {
@@ -26397,6 +26454,7 @@
       "align": "Facing LOD",
       "turn": "3/8 L (between steps)",
       "face": 0,
+      "body": -45,
       "pos": "Closed Position"
      },
      {
@@ -26639,6 +26697,7 @@
       "align": "Facing LOD",
       "turn": "3/8 R (between steps)",
       "face": 0,
+      "body": 45,
       "pos": "Closed Position"
      },
      {
@@ -26819,6 +26878,7 @@
       "align": "Facing LOD",
       "turn": "3/8 R (between steps)",
       "face": 0,
+      "body": 45,
       "pos": "Closed Position"
      },
      {
@@ -26910,6 +26970,7 @@
       "align": "Facing DW",
       "turn": "3/8 L (between steps)",
       "face": -45,
+      "body": -90,
       "pos": "Closed Position"
      },
      {
@@ -27371,6 +27432,7 @@
       "align": "Facing DW",
       "turn": "1/4 L (between steps)",
       "face": -45,
+      "body": -90,
       "pos": "Closed Position"
      }
     ],
@@ -28472,6 +28534,7 @@
       "align": "Facing DC",
       "turn": "3/8 (between steps)",
       "face": 45,
+      "body": 90,
       "pos": "Closed Position"
      },
      {
@@ -28753,6 +28816,7 @@
       "align": "Facing DW",
       "turn": "1/4 L (between steps)",
       "face": -45,
+      "body": -90,
       "pos": "Closed Position"
      },
      {
@@ -29764,6 +29828,7 @@
       "align": "Facing DW",
       "turn": "3/8 L (between steps)",
       "face": -45,
+      "body": -90,
       "timing": "3",
       "pos": "Closed Position"
      }
@@ -29794,6 +29859,7 @@
       "align": "Facing LOD",
       "turn": "3/8 L (between steps)",
       "face": 0,
+      "body": -45,
       "timing": "3",
       "pos": "Closed Position"
      },
@@ -30470,6 +30536,7 @@
       "align": "Facing LOD",
       "turn": "3/8 R (between steps)",
       "face": 0,
+      "body": 45,
       "timing": "2",
       "pos": "Closed Position"
      },

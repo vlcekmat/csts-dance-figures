@@ -200,7 +200,8 @@ export function stepVector(desc: string, facing: number): { angle: number; len: 
   const main = dirs[0]?.[1];
   const second = dirs.find((x) => x[1] !== main)?.[1];
   const off = /slightly/.test(d) ? 20 : 45; // how much the second direction bends the step
-  const diag = /\bdiag/.test(d) ? 45 : 0;
+  // "LF diag fwd" (closed change): the foot goes slightly to the side, the body keeps going straight.
+  const diag = /\bdiag/.test(d) ? 20 : 0;
   if (main === "fwd") {
     let a = facing + sideSign * (second === "side" ? off : diag);
     if (/across/.test(d)) a -= sideSign * 15; // across the body, in CBMP
@@ -283,10 +284,13 @@ export function tracePath(
     // Latin "Facing LOD turn to Facing W" with the turn on this very step (no pivot,
     // not "between" steps): the partner turns while stepping, the step goes the new way.
     if (s.end !== undefined && /\d\s*\/\s*\d/.test(s.turn) && !/between|\bon\b|pivot|then/i.test(s.turn)) f = s.end;
-    // Side steps happen while turning: use the orientation half-way through.
+    // The step goes relative to the alignment the chart gives for it: a side step
+    // after a turn ("LF to side, Backing DC" in a Natural Turn) continues the line
+    // of the previous step instead of bending half-way.
     const d = s.desc.toLowerCase();
-    const mid = prev !== null && /\bside\b/.test(d) ? norm180(prev + norm180(f - prev) / 2) : f;
-    let v = stepVector(s.desc, mid);
+    // A side step goes relative to the body ("Pointing DC, body turns less": the foot
+    // points further than the body faces).
+    let v = stepVector(s.desc, /\bside\b/.test(d) && s.body !== undefined ? s.body : f);
     if (al?.moving !== null && al?.moving !== undefined && v.len > 0) {
       // Chart gives the travel direction explicitly ("moving LOD").
       v = { angle: al.moving, len: v.len };
