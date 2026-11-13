@@ -26,6 +26,8 @@ export interface Foot {
   /** Body position (on the line of weight). */
   bx: number;
   by: number;
+  /** How far the couple's placement moved this partner from their own chart (metres). */
+  shift?: { x: number; y: number };
   /** The foot crosses behind / in front of the other one. */
   cross?: "behind" | "front";
 }
@@ -235,6 +237,10 @@ export function coupleGeometry(
 ): { m: Partner; l: Partner | null } {
   const { stepM, hint, latin, startPos } = cfg;
   lady = fixLadyFacing(man, lady);
+  // Her alignments are only usable together with his: without his (latin charts give
+  // only turn amounts) she is placed relative to him.
+  const manHasFaces = man.some((st) => st.face !== undefined || parseAlign(st.align) !== null);
+  if (!manHasFaces) lady = lady.map((st) => ({ ...st, align: "", face: undefined, end: undefined, body: undefined, moving: undefined }));
   const hasLady = lady.length > 0;
   const charted = man.some((s) => s.face !== undefined || parseAlign(s.align) !== null);
   const m = footprints(man, stepM, 0, 0, hint, tr.initialFacing !== undefined ? tr.initialFacing : charted ? null : 0, tr);
@@ -263,7 +269,8 @@ export function coupleGeometry(
     const prom = promenadeSide(pos);
     if (prom && ladyFace !== undefined) {
       // beside the man (his right in PP, left in CPP), measured from where his feet point
-      const dir = feetFace ?? face;
+      // (his feet's direction when it is close to his body's – latin turn amounts may differ)
+      const dir = feetFace !== undefined && Math.abs(norm180(feetFace - face)) <= 60 ? feetFace : face;
       const side = (latin ? 0.6 : 0.45) * prom;
       return {
         x: Math.cos(rad(dir - 90)) * side + Math.cos(rad(dir)) * 0.08,
@@ -276,7 +283,14 @@ export function coupleGeometry(
       y: Math.sin(rad(face)) * o.fwd + Math.sin(rad(face - 90)) * o.right,
     };
   };
-  const moveTo = (f: Foot, bx: number, by: number): Foot => ({ ...f, bx, by, x: bx + (f.x - f.bx), y: by + (f.y - f.by) });
+  const moveTo = (f: Foot, bx: number, by: number): Foot => ({
+    ...f,
+    bx,
+    by,
+    x: bx + (f.x - f.bx),
+    y: by + (f.y - f.by),
+    shift: { x: bx - f.bx, y: by - f.by },
+  });
   let dm = { x: 0, y: 0 };
   let dl = { x: 0, y: 0 };
   let lastPos = startPos;
@@ -439,8 +453,16 @@ export function liveFeet(p: Partner, steps: FloorStep[]): FeetState[] {
   let bodyFace = s.face;
   let bx = s.x;
   let by = s.y;
+  let shift = { x: 0, y: 0 };
   p.feet.forEach((f, i) => {
     const turn = norm180(f.bodyFace - bodyFace);
+    // The couple's placement moved the dancer by a different amount than on the previous
+    // step: the foot that stays moves with them (keeps its place relative to the step).
+    const sh = f.shift ?? { x: 0, y: 0 };
+    const ds = { x: sh.x - shift.x, y: sh.y - shift.y };
+    shift = sh;
+    const moveBy = (q: FootState): FootState => ({ ...q, x: q.x + ds.x, y: q.y + ds.y });
+    cur = { ...cur, L: moveBy(cur.L), R: moveBy(cur.R) };
     const next: FeetState = { L: { ...cur.L }, R: { ...cur.R }, moved: f.foot };
     if (f.foot) {
       const other = f.foot === "L" ? "R" : "L";

@@ -179,8 +179,14 @@ def main():
                 i_turn = col(header, "quantity", "turn")
                 i_time = col(header, "timing")
                 prev_cell = None
-                for row in t["rows"]:
+                turn_owner = None
+                conts = t.get("cont") or []
+                for ri, row in enumerate(t["rows"]):
                     cell = (row[i_step] or "").strip()
+                    # a turn written once over several steps (merged cell) belongs to the
+                    # first of them only – the OCR repeats it in every row it spans
+                    turn_cont = bool(i_turn is not None and ri < len(conts) and i_turn < len(conts[ri]) and conts[ri][i_turn])
+                    align_cont = bool(i_align is not None and ri < len(conts) and i_align < len(conts[ri]) and conts[ri][i_align])
                     if re.search(r"\bprec", cell, re.I):
                         prev_cell = cell
                         # "Prec. Step": the step before the figure, not part of it – kept
@@ -215,24 +221,34 @@ def main():
                     first = cur["steps"][-1]["n"] + 1 if cur["steps"] else 1
                     nums = list(range(first, first + k))
                     desc, after = split_placement(row[i_foot]) if i_foot is not None else ("", "")
+                    if not turn_cont:
+                        turn_owner = None
                     for n in nums:
+                        if turn_cont and turn_owner is not None:
+                            turn_owner["span"] = turn_owner.get("span", 1) + 1
                         cur["steps"].append({
                             "n": n,
                             "desc": desc,
                             "after": after,
                             "align": fix_ocr(row[i_align]) if i_align is not None else "",
-                            "turn": fix_ocr(row[i_turn]) if i_turn is not None else "",
+                            "turn": fix_ocr(row[i_turn]) if i_turn is not None and not turn_cont else "",
                             "timing": clean(row[i_time]) if i_time is not None else "",
                         })
+                        if align_cont:
+                            cur["steps"][-1]["align_cont"] = True
+                        if not turn_cont and turn_owner is None:
+                            turn_owner = cur["steps"][-1]
             elif cur is not None:
                 i_pos = col(header, "couple")
                 i_align = col(header, "alignment")
                 i_hold = col(header, "lead", "hold")
                 by_n = {s["n"]: s for s in cur["steps"]}
                 expected = 1
-                for row in t["rows"]:
+                conts2 = t.get("cont") or []
+                for ri, row in enumerate(t["rows"]):
                     if re.search(r"\bprec", row[0] or "", re.I):
                         continue
+                    a_cont = bool(i_align is not None and ri < len(conts2) and i_align < len(conts2[ri]) and conts2[ri][i_align])
                     ns = [n for n in step_numbers(row[0]) if n < 40] or [expected]
                     expected = ns[-1] + 1
                     for n in ns:
@@ -241,8 +257,10 @@ def main():
                             continue
                         if i_pos is not None:
                             s["pos"] = clean_pos(fix_ocr(row[i_pos]))
-                        if i_align is not None and not s.get("align"):
+                        if i_align is not None and not s.get("align") and not s.get("align_cont"):
                             s["align"] = fix_ocr(row[i_align])
+                            if a_cont:
+                                s["align_cont"] = True
                         if i_hold is not None:
                             s["hold"] = fix_ocr(row[i_hold])
         out[dance] = figures
@@ -250,6 +268,17 @@ def main():
     for figs in out.values():
         for f in figs:
             f.pop("paired", None)
+            # An alignment written once over several steps (merged cell) is where the
+            # block starts; when the couple turns during the block it isn't the
+            # alignment of the following steps.
+            block_turns = False
+            for st in f["steps"]:
+                if not st.pop("align_cont", False):
+                    block_turns = bool(st.get("turn")) or st.get("span", 1) > 1
+                    continue
+                if block_turns or st.get("turn"):
+                    st["align"] = ""
+                    block_turns = True
     # Hand transcriptions of charts the OCR could not read replace the OCR'd ones.
     manual = ROOT / "data" / "technique_manual.json"
     if manual.exists():

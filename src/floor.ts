@@ -25,6 +25,8 @@ export interface FloorStep {
   turn: string;
   /** Couple position on this step (WDSF book), e.g. "Closed Position", "PP". */
   pos?: string;
+  /** The turn is spread evenly over this many steps (written once for several). */
+  span?: number;
   /** Count of the step ("1", "&", "S"), WDSF book. */
   timing?: string;
 }
@@ -168,7 +170,9 @@ export function norm180(a: number): number {
 /** Amount of turn written in a chart cell ("1/4 between 1-2", "3/8 to L") in degrees, signed if direction given. */
 export function parseTurn(text: string): { deg: number; sign: -1 | 0 | 1 } {
   const m = text.match(/(\d)\s*\/\s*(\d)/);
-  const deg = m ? (parseInt(m[1], 10) / parseInt(m[2], 10)) * 360 : 0;
+  // whole turns ("3 turns R", "1 turn") – possibly plus a fraction ("1 1/4")
+  const whole = text.match(/\b(\d)\s*(?:full\s*)?turns?\b|\b(\d)\s+(?=\d\s*\/\s*\d)/i);
+  const deg = (m ? (parseInt(m[1], 10) / parseInt(m[2], 10)) * 360 : 0) + (whole ? parseInt(whole[1] ?? whole[2], 10) * 360 : 0);
   const sign = /\bto (?:the )?R\b|\bR\b(?! side)|\bright\b/i.test(text)
     ? -1
     : /\bto (?:the )?L\b|\bL\b(?! side)|\bleft\b/i.test(text)
@@ -268,10 +272,21 @@ export function tracePath(
   // Chasse (side – close – side with the same foot): the second side step continues
   // the line of the first one, even while the body keeps turning.
   let lastSide: { foot: string; angle: number } | null = null;
+  let spread: { deg: number; sign: -1 | 0 | 1; left: number } | null = null;
   let closedSince = false;
   steps.forEach((s, i) => {
-    const turn = parseTurn(s.turn);
+    let turn = parseTurn(s.turn);
     if (turn.sign) sign = turn.sign;
+    // a turn written once over several steps is shared by them
+    // "starts to turn R" written over a whole top / spiral (no amount): about 1/8 per step
+    if (s.span && s.span >= 3 && !turn.deg && turn.sign && /\bturn/i.test(s.turn)) turn = { deg: 45 * s.span, sign: turn.sign };
+    if (s.span && s.span > 1 && turn.deg) {
+      spread = { deg: turn.deg / s.span, sign: turn.sign, left: s.span - 1 };
+      turn = { deg: spread.deg, sign: turn.sign };
+    } else if (!turn.deg && spread && spread.left > 0 && !s.turn) {
+      turn = { deg: spread.deg, sign: spread.sign };
+      spread.left--;
+    }
     const al =
       s.face !== undefined
         ? { angle: s.face, explicit: true, moving: s.moving ?? null }

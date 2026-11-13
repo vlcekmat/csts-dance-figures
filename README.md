@@ -56,7 +56,12 @@ npm run videos   # stáhne/aktualizuje videa (pokračuje, kde skončilo) a přeg
   (výsledky se ukládají po stránkách, opakované spuštění pokračuje)
 - `scripts/parse_technique.py` – z OCR tabulek grafy pána a dámy → `data/build/technique.json`; `npm run data` z nich
   vytvoří `src/data/technique.local.json`, který aplikace použije, jen když existuje (veřejný web je nemá)
+- `scripts/ocr_merges.py` – najde ve skenech sloučené buňky tabulek (otočení / směrování zapsané jednou pro více kroků);
+  spusť po OCR a před `parse_technique.py`
 - `scripts/check_alignment.py` – kontrola, že směrování začátku a konce sedí s otočením (odhalí chyby OCR)
+- kontroly schémat přehrávače: `npm run audit` (postavení a vzdálenost partnerů, otáčení), `npm run audit:steps`
+  (směr a střídání nohou, váha, počet kroků, začátek; `-v` vypíše nálezy), `npm run audit:teeth` (zuby v dráze)
+- `scripts/check_videos.py` – přísná kontrola ukázkových videí (`--fix` vyřadí špatná a hledá znovu)
 
 Při nové verzi katalogu stačí nahradit PDF v `data/raw/`, upravit cestu ve
 skriptu `data` v `package.json` a spustit `npm run data`.

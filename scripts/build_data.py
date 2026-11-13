@@ -649,6 +649,9 @@ def fact_turn(turn):
     side = "R" if re.search(r"\bto\s*R\b|\bR\b|right", turn) else "L" if re.search(r"\bto\s*L\b|\bL\b|left", turn) else ""
     fr = re.findall(r"(\d/\d)\s*(?:to\s*)?([LR])?", turn)
     parts = [f"{a} {b or side}".strip() for a, b in fr]
+    whole = re.search(r"\b(\d)\s*(?:full\s*)?turns?\b", turn, re.I)
+    if whole:
+        parts = [f"{whole.group(1)} turn{'s' if whole.group(1) != '1' else ''} {side}".strip()] + parts
     if not parts:
         return ("starts to turn " + side).strip() if re.search(r"com|start", turn, flags=re.I) else ""
     out = ", then ".join(parts)
@@ -691,8 +694,8 @@ def prep_from_book(man):
     """Facts about the step before the figure ("Prec. Step" row): foot, direction and
     the alignment relative to the figure's first LOD. None when the book gives nothing."""
     pr = man.get("prec")
-    if not pr:
-        return None
+    if not pr or man.get("_prec_added"):
+        return None  # (the step is already the figure's first step)
     desc = (pr.get("desc") or "").strip()
     out = {}
     fm = re.search(r"\b(RF|LF)\b", desc)
@@ -718,6 +721,62 @@ def prep_from_book(man):
     if al["face"] is not None:
         out["face"] = al["face"]
     return out or None
+
+
+NO_WEIGHT_RE = re.compile(r"w/o weight|without weight|\btap\b|\bpoint|\bbrush|\bflick|\bkick", re.I)
+SAME_FOOT_OK = re.compile(r"in place|recover|replace|weight|swivel|pivot|spin|hop|jump|chug|ball|bounce|feet|both|heel|toe|twist", re.I)
+
+
+def fix_alternation(steps, name):
+    """OCR slips give two weight steps in a row on the same foot ("LF fwd", "LF to side")
+    or steps without any foot. Weight steps alternate the feet: a step is repaired only
+    when the following step confirms it (L L L -> L R L); "L L R" is left alone (the error
+    may be elsewhere, e.g. a tap read as a step). Not in figures changing feet on purpose."""
+    if re.search(r"foot change|changing feet|same foot|chang\w* of feet|swivel|toe heel|flick|chug|kick", name or "", re.I):
+        return steps
+
+    def foot_of(st):
+        m = re.search(r"\b(RF|LF)\b", st.get("desc") or "")
+        return m.group(1) if m else None
+
+    def weight(st):
+        return not NO_WEIGHT_RE.search(st.get("desc") or "")
+
+    last = None
+    prev_desc = ""
+    for i, st in enumerate(steps):
+        d = st.get("desc") or ""
+        foot = foot_of(st)
+        if not weight(st):
+            prev_desc = d
+            continue
+        nxt = next((foot_of(x) for x in steps[i + 1:] if weight(x) and foot_of(x)), None)
+        repeated = last and (foot == last or (foot is None and not d.strip()))
+        if repeated and not NO_WEIGHT_RE.search(prev_desc) and not SAME_FOOT_OK.search(d) and (nxt is None or nxt == last):
+            other = "RF" if last == "LF" else "LF"
+            # swap both feet ("LF closes to RF" -> "RF closes to LF")
+            st["desc"] = re.sub(r"\b(RF|LF)\b", lambda mm: "RF" if mm.group(1) == "LF" else "LF", d) if foot else other
+            foot = other
+        if foot:
+            last = foot
+        prev_desc = d
+    return steps
+
+
+def with_prec(chart, syl_foot, force=False):
+    """Chart with its preceding step as step 1 when the syllabus starts with it."""
+    pr = chart.get("prec")
+    first = re.search(r"\b(RF|LF)\b", chart["steps"][0].get("desc") or "") if chart.get("steps") else None
+    pf = re.search(r"\b(RF|LF)\b", (pr or {}).get("desc") or "")
+    if not pr or not pf or not first:
+        return chart
+    if not force and not (syl_foot and syl_foot != first.group(1) and pf.group(1) == syl_foot):
+        return chart
+    if pf.group(1) == first.group(1):
+        return chart
+    step = {"n": 0, "desc": pr["desc"], "after": "", "align": pr.get("align", ""), "turn": pr.get("turn", ""),
+            "timing": pr.get("timing", ""), "pos": chart["steps"][0].get("pos", "")}
+    return dict(chart, steps=[step] + chart["steps"], _prec_added=True)
 
 
 def build_steps(chart, public):
@@ -760,6 +819,8 @@ def build_steps(chart, public):
         for k in ("face", "end", "body", "moving"):
             if al[k] is not None:
                 item[k] = al[k]
+        if st.get("span", 1) > 1 and item["turn"]:
+            item["span"] = st["span"]  # the turn is spread over this many steps
         # "Pointing X … body turns less": the foot points X, the body is about 1/8 behind it
         if ("body" not in item and al["face"] is not None and prev is not None
                 and re.search(r"\bpointing\b", align, re.I) and re.search(r"body turns less", st.get("turn", ""), re.I)):
@@ -780,7 +841,7 @@ def build_steps(chart, public):
             prev = facing
         new_lod = new_lod or here_new
     spread_constant_rotation(chart_rows(chart), out)
-    return out
+    return fix_alternation(out, chart.get("name", ""))
 
 
 def block_turn(text):
@@ -1036,6 +1097,12 @@ def main():
             titles = [row["en"], match["title"] if match else None]
             man, lady = match_book(technique, dance, titles, fig_id) if row["en"] else (None, None)
             if man and man["steps"]:
+                # The syllabus counts the chart's "Prec. Step" as step 1 (Open Natural Turn in
+                # tango starts "LF to side"): put it in front when the feet say so.
+                syl_foot = re.search(r"\b(RF|LF)\b", (entry.get("syllabus") or {}).get("start") or "")
+                man, lady = with_prec(man, syl_foot.group(1) if syl_foot else None), lady
+                if lady and man.get("_prec_added"):
+                    lady = with_prec(lady, None, force=True)
                 fl = entry.get("floor", {"preceding": [], "following": []})
                 steps = build_steps(man, public=False)
                 # Copyrighted book content: only into the local, git-ignored file.
