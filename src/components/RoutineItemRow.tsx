@@ -11,6 +11,7 @@ import { getHold, localizePositions } from "../glossary";
 import { alignLabel, eighths, figureAlignment, norm180, turnHintOf, turnOptions } from "../floor";
 import { ClassBadges } from "./ClassBadges";
 import { HoldPicker } from "./HoldPicker";
+import { PositionChoice, TimingChoice } from "./FigureChoices";
 
 interface Props {
   /** Wall the figure is danced on (floor plan), 0–3. */
@@ -60,9 +61,6 @@ export function RoutineItemRow(props: Props) {
     onChange({ variant: Object.keys(next).length ? next : undefined });
   };
 
-  // --- timing options (basic + alternatives from notes) ---
-  const timingOptions = syl ? [syl.timing, ...syl.altTimings].filter((v, i, a) => v && a.indexOf(v) === i) : [];
-  const timingIsCustom = item.timing !== undefined && !timingOptions.includes(item.timing);
 
   // --- part options ---
   const parts = variants.parts ?? [];
@@ -79,6 +77,8 @@ export function RoutineItemRow(props: Props) {
     );
   if (variant.finish !== undefined && variants.finishes?.[variant.finish])
     chips.push(`${t("finish")}: ${localizePositions(variants.finishes[variant.finish].position, lang)}`);
+  if (variant.startPosition) chips.push(`${t("start")}: ${localizePositions(variant.startPosition, lang)} (${t("positionOwnChip")})`);
+  if (variant.finishPosition) chips.push(`${t("finish")}: ${localizePositions(variant.finishPosition, lang)} (${t("positionOwnChip")})`);
 
   const holds = syl?.holds;
   if (variant.startHold || variant.finishHold) {
@@ -137,7 +137,7 @@ export function RoutineItemRow(props: Props) {
     !!(holds && (holds.alts.length || holds.any)) ||
     !!alignBase ||
     follows;
-  const illegal = !classLegal || !resolved.partAllowed;
+  const illegal = !classLegal || !resolved.partAllowed || (!resolved.positionsAllowed && cls !== "B");
 
   return (
     <div className={`item ${illegal ? "illegal" : ""}`}>
@@ -172,6 +172,7 @@ export function RoutineItemRow(props: Props) {
             </div>
           ))}
         {!resolved.partAllowed && <div className="illegal-msg">✗ {t("partNotAllowed")}</div>}
+        {!resolved.positionsAllowed && cls !== "B" && <div className="illegal-msg">✗ {t("positionNotAllowed")}</div>}
 
         {chips.length > 0 && (
           <div className="variant-chips">
@@ -184,32 +185,7 @@ export function RoutineItemRow(props: Props) {
         )}
 
         <div className="item-timing">
-          <select
-            value={timingIsCustom ? "__custom" : (item.timing ?? syl?.timing ?? "")}
-            onChange={(e) => {
-              const v = e.target.value;
-              onChange({
-                timing: v === "__custom" ? resolved.timingText || syl?.timing || "" : v === syl?.timing ? undefined : v,
-              });
-            }}
-            aria-label={t("timing")}
-          >
-            {timingOptions.map((o, i) => (
-              <option key={o} value={o}>
-                {o}
-                {i === 0 ? ` (${t("primaryTiming")})` : ""}
-              </option>
-            ))}
-            <option value="__custom">{t("customTiming")}</option>
-          </select>
-          {timingIsCustom && (
-            <input
-              className="timing-input"
-              value={item.timing}
-              onChange={(e) => onChange({ timing: e.target.value })}
-              aria-label={t("customTiming")}
-            />
-          )}
+          <TimingChoice item={item} fig={fig} resolved={resolved} onChange={onChange} />
           {resolved.isPart && <code className="timing">{resolved.timingText}</code>}
           <span className="muted small">
             {formatBars(beats, dance.beatsPerBar)} {barsWord(beats, dance.beatsPerBar)}
@@ -299,38 +275,12 @@ export function RoutineItemRow(props: Props) {
 
             <label className="field">
               <span>{t("start")}</span>
-              <select
-                value={variant.start ?? ""}
-                onChange={(e) => setVariant({ start: e.target.value === "" ? undefined : +e.target.value })}
-              >
-                <option value="">
-                  {localizePositions((lang === "cs" ? syl?.startCs : syl?.start) ?? "", lang)} ({t("primaryTiming")})
-                </option>
-                {(variants.starts ?? []).map((s, i) => (
-                  <option key={i} value={i}>
-                    {localizePositions(lang === "cs" ? s.descCs : s.desc, lang)}
-                  </option>
-                ))}
-              </select>
+              <PositionChoice which="start" discipline={dance.discipline === "latin" ? "latin" : "standard"} item={item} fig={fig} resolved={resolved} onChange={onChange} />
             </label>
 
             <label className="field">
               <span>{t("finish")}</span>
-              <select
-                value={variant.finish ?? ""}
-                onChange={(e) => setVariant({ finish: e.target.value === "" ? undefined : +e.target.value })}
-              >
-                <option value="">
-                  {resolved.isPart && resolved.to < resolved.totalSteps
-                    ? t("finishOfPart", { step: String(resolved.to), pos: localizePositions(resolved.finishPos ?? "?", lang) })
-                    : `${localizePositions((lang === "cs" ? syl?.finishCs : syl?.finish) ?? "", lang)} (${t("primaryTiming")})`}
-                </option>
-                {(variants.finishes ?? []).map((f, i) => (
-                  <option key={i} value={i}>
-                    {localizePositions(f.position, lang)}
-                  </option>
-                ))}
-              </select>
+              <PositionChoice which="finish" discipline={dance.discipline === "latin" ? "latin" : "standard"} item={item} fig={fig} resolved={resolved} onChange={onChange} />
             </label>
 
             {(alignBase || follows) && (

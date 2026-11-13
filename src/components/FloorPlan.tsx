@@ -71,6 +71,7 @@ export function FloorPlan({
   onSelect,
   firstChartFace,
   turnControl,
+  figureOptions,
 }: {
   dance: Dance;
   /** Simulation computed by the routine editor (see plan.ts). */
@@ -81,6 +82,8 @@ export function FloorPlan({
   /** Charted start facing of the first figure (relative to LOD), for the start direction default. */
   firstChartFace?: number | null;
   /** Amount of turn of the selected figure, adjustable right in the plan. */
+  /** Timing and start / finish position of the selected figure (shown in its panel). */
+  figureOptions?: React.ReactNode;
   turnControl?: {
     /** WDSF range (degrees, + = left); null = only the charted amount. */
     range: { min: number; max: number } | null;
@@ -336,6 +339,7 @@ export function FloorPlan({
               )}
               <button className="btn small" onClick={() => onSelect?.(null)}>{t("planSelClose")}</button>
             </div>
+            {figureOptions}
             {turnControl && <TurnDial control={turnControl} />}
             <p className="small muted">{t("planRotateHint")}</p>
           </div>

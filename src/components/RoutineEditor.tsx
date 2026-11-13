@@ -23,6 +23,7 @@ import { RoutineItemRow } from "./RoutineItemRow";
 import { buildPlan } from "../plan";
 import { routineTrack } from "../routineTrack";
 import { StepPlayer } from "./FigurePlayer";
+import { PositionChoice, TimingChoice } from "./FigureChoices";
 import { useCustom } from "./CustomFigureHost";
 import { Glossed } from "./Glossary";
 import { FloorPlan } from "./FloorPlan";
@@ -75,7 +76,7 @@ export function RoutineEditor({ routine, api, onBack, onOpenFigure }: Props) {
         beats: totalBeats(resolved.steps),
         classLegal,
         // Cutting a figure freely is not allowed in syllabus-restricted classes.
-        legal: classLegal && (routine.cls === "B" || resolved.partAllowed),
+        legal: classLegal && (routine.cls === "B" || (resolved.partAllowed && resolved.positionsAllowed)),
       };
     })
     .filter((r): r is NonNullable<typeof r> => r !== null);
@@ -711,6 +712,29 @@ export function RoutineEditor({ routine, api, onBack, onOpenFigure }: Props) {
           firstChartFace={rows[0] ? (figureAlignment(rows[0].fig, { from: rows[0].resolved.from, to: rows[0].resolved.isPart ? rows[0].resolved.to : undefined })?.start ?? null) : null}
           selectedKey={selectedUid}
           onSelect={setSelectedUid}
+          figureOptions={(() => {
+            const row = rows.find((r) => r.item.uid === selectedUid);
+            if (!row) return undefined;
+            const onChange = (p: Partial<RoutineItem>) => updateItem(row.item.uid, p);
+            return (
+              <div className="plan-fig-options">
+                <label className="field plan-timing">
+                  <span>{t("timing")}</span>
+                  <span className="plan-timing-row">
+                    <TimingChoice item={row.item} fig={row.fig} resolved={row.resolved} onChange={onChange} showSteps />
+                  </span>
+                </label>
+                <label className="field">
+                  <span>{t("start")}</span>
+                  <PositionChoice which="start" discipline={dance.discipline === "latin" ? "latin" : "standard"} item={row.item} fig={row.fig} resolved={row.resolved} onChange={onChange} />
+                </label>
+                <label className="field">
+                  <span>{t("finish")}</span>
+                  <PositionChoice which="finish" discipline={dance.discipline === "latin" ? "latin" : "standard"} item={row.item} fig={row.fig} resolved={row.resolved} onChange={onChange} />
+                </label>
+              </div>
+            );
+          })()}
           turnControl={(() => {
             const row = rows.find((r) => r.item.uid === selectedUid);
             if (!row || !(hasFloor(row.fig) || row.fig.floor?.follows)) return undefined;

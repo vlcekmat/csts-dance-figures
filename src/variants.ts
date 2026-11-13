@@ -19,6 +19,9 @@ export interface VariantChoice {
   start?: number;
   /** Index into syllabus.variants.finishes; omitted = basic finish. */
   finish?: number;
+  /** Own couple position at the start / end (not from the syllabus; English name). */
+  startPosition?: string;
+  finishPosition?: string;
   /** Under-/overturn within the range the technique allows (degrees, + = more to the left). */
   extraTurn?: number;
   /** extraTurn chosen by the choreography, outside the WDSF range (ČSTS catalog point 2). */
@@ -43,6 +46,8 @@ export interface ResolvedItem {
   isPart: boolean;
   /** Part matches one allowed in the syllabus notes (always true for the whole figure). */
   partAllowed: boolean;
+  /** No own start / finish position outside the syllabus. */
+  positionsAllowed: boolean;
   startFoot: Foot | null;
   /** Direction of the first danced step (from the chart). */
   startDir: "fwd" | "bwd" | "side" | "place" | null;
@@ -177,6 +182,10 @@ export function resolveItem(fig: Figure, dance: Dance, timing: string, choice: V
   }
   const finishAlt = choice.finish !== undefined ? variants.finishes?.[choice.finish] : undefined;
   if (finishAlt) fPos = finishAlt.position;
+  // Own positions chosen by the user (outside the syllabus).
+  if (choice.startPosition) sPos = choice.startPosition;
+  if (choice.finishPosition) fPos = choice.finishPosition;
+  const positionsAllowed = !choice.startPosition && !choice.finishPosition;
 
   // --- holds ---
   const h = syl?.holds;
@@ -199,6 +208,7 @@ export function resolveItem(fig: Figure, dance: Dance, timing: string, choice: V
     to,
     isPart,
     partAllowed,
+    positionsAllowed,
     startFoot: sFoot,
     startDir: startAlt ? null : stepDir(fig, from),
     startPos: sPos,

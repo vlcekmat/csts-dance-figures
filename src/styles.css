@@ -1044,3 +1044,16 @@ p { max-width: 75ch; line-height: 1.6; }
 .player-timeline.figures button { min-width: 0; max-width: 11rem; }
 .player-timeline.figures .tl-c { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 10rem; }
 .player-fig { color: var(--standard); }
+/* Selected figure in the plan: timing and start / finish position */
+.plan-fig-options { display: grid; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); gap: .5rem .9rem; margin: .4rem 0 .6rem; }
+.plan-fig-options .plan-timing { grid-column: 1 / -1; }
+.plan-timing-row { display: flex; flex-wrap: wrap; align-items: center; gap: .4rem .6rem; }
+.plan-timing-row select { width: auto; }
+.timing-steps { display: inline-flex; flex-wrap: wrap; gap: .2rem; }
+.timing-step { display: inline-flex; flex-direction: column; align-items: center; min-width: 1.8rem; padding: .1rem .3rem; border: 1px solid var(--line); border-radius: var(--r-sm); background: var(--surface); line-height: 1.1; }
+.timing-step .ts-n { font-size: .68rem; color: var(--muted); }
+.timing-step .ts-c { font-weight: 800; }
+.timing-step.held { opacity: .6; border-style: dashed; }
+select.warn { border-color: var(--warn); }
+.plan-fig-options .field select { width: 100%; }
+.plan-fig-options .plan-timing select { width: auto; }
