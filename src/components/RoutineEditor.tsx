@@ -21,6 +21,8 @@ import { ROUND_RANGE, formatBars, formatSeconds, tempoRange, totalBeats } from "
 import { connect, partLabel, resolveItem } from "../variants";
 import { RoutineItemRow } from "./RoutineItemRow";
 import { buildPlan } from "../plan";
+import { routineTrack } from "../routineTrack";
+import { StepPlayer } from "./FigurePlayer";
 import { useCustom } from "./CustomFigureHost";
 import { Glossed } from "./Glossary";
 import { FloorPlan } from "./FloorPlan";
@@ -122,41 +124,51 @@ export function RoutineEditor({ routine, api, onBack, onOpenFigure }: Props) {
   }, [showLoop]);
   const room = routine.room ?? { preset: "medium" as const, ...ROOM_PRESETS.medium };
   const stepCm = routine.stepCm ?? Math.round((STEP_BY_DANCE[routine.dance] ?? 0.85) * 100);
+  // Inputs of the plan (shared by the floor plan and the routine animation).
+  const planInput = (reps: number | "round", loop: boolean) => ({
+    dance,
+    lang,
+    items: rows.map((r) => ({
+      key: r.item.uid,
+      fig: r.fig,
+      resolved: r.resolved,
+      corner: !!r.item.corner,
+      extraTurn: allowedExtra(r.fig, r.item.variant?.extraTurn, r.item.variant?.choreo),
+      startTurn: r.item.variant?.startTurn,
+      stepScales: r.item.variant?.stepScales,
+      wall: r.item.wall,
+    })),
+    room,
+    start: routine.start ?? DEFAULT_START,
+    stepCm,
+    reps,
+    loopTo,
+    loop,
+    prep: prep.length
+      ? {
+          steps: prep,
+          label: t("prepStep"),
+          // the man faces where the routine starts: chosen start direction, else the first figure's
+          face: routine.start?.face ?? firstAlign?.start ?? 0,
+        }
+      : undefined,
+  });
   const plan = useMemo(
-    () =>
-      progressive && rows.length
-        ? buildPlan({
-            dance,
-            lang,
-            items: rows.map((r) => ({
-              key: r.item.uid,
-              fig: r.fig,
-              resolved: r.resolved,
-              corner: !!r.item.corner,
-              extraTurn: allowedExtra(r.fig, r.item.variant?.extraTurn, r.item.variant?.choreo),
-              startTurn: r.item.variant?.startTurn,
-              stepScales: r.item.variant?.stepScales,
-              wall: r.item.wall,
-            })),
-            room,
-            start: routine.start ?? DEFAULT_START,
-            stepCm,
-            reps: showLoop ? repeat : 1,
-            loopTo,
-            loop: !!routine.loop,
-            prep: prep.length
-              ? {
-                  steps: prep,
-                  label: t("prepStep"),
-                  // the man faces where the routine starts: chosen start direction, else the first figure's
-                  face: routine.start?.face ?? firstAlign?.start ?? 0,
-                }
-              : undefined,
-          })
-        : null,
+    () => (progressive && rows.length ? buildPlan(planInput(showLoop ? repeat : 1, !!routine.loop)) : null),
     // rows are rebuilt every render; the routine object is the real dependency
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [routine, dance, lang, repeat, showLoop, loopTo, progressive],
+  );
+  // Routine animation: one pass of the routine, placed like in the plan (all dances).
+  const [showAnim, setShowAnim] = useState(false);
+  const animTrack = useMemo(
+    () => {
+      if (!showAnim || !rows.length) return null;
+      const p = buildPlan(planInput(1, !!routine.loop));
+      return routineTrack(p.segments.slice(0, p.baseLen), p.nums);
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [showAnim, routine, dance, lang, loopTo],
   );
   /** First-pass plan segment of a routine row (wall, resolved rotation). */
   const planSeg = (row: { item: RoutineItem }) => plan?.segments.find((sg) => sg.key === `${row.item.uid}#0`);
@@ -663,6 +675,21 @@ export function RoutineEditor({ routine, api, onBack, onOpenFigure }: Props) {
           <h3>{t("rhythmStrip")}</h3>
           <TimingStrip dance={dance} segments={segments} beatWidth={26} loop={showLoop} loopTo={loopTo} />
           <p className="small muted">{t("timingLegend")}</p>
+        </section>
+      )}
+
+      {rows.length > 0 && (
+        <section className="card routine-anim">
+          <div className="routine-anim-head">
+            <h3>{t("routinePlayer")}</h3>
+            <button className={`btn small ${showAnim ? "" : "primary"}`} onClick={() => setShowAnim((v) => !v)} aria-expanded={showAnim}>
+              {showAnim ? t("routinePlayerHide") : `▶ ${t("routinePlayerShow")}`}
+            </button>
+          </div>
+          <p className="small muted">{t("routinePlayerHint")}</p>
+          {showAnim && animTrack && (
+            <StepPlayer track={animTrack} dance={dance} resetKey={routine.id} room={room} />
+          )}
         </section>
       )}
 

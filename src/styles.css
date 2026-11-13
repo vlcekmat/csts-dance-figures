@@ -1038,3 +1038,9 @@ p { max-width: 75ch; line-height: 1.6; }
 .fp-path { opacity: .18; }
 .plan-move { display: flex; align-items: center; gap: .3rem; justify-content: flex-end; margin-bottom: .3rem; }
 .plan-move .icon-btn { min-width: 2rem; font-weight: 800; }
+.routine-anim-head { display: flex; align-items: center; justify-content: space-between; gap: .75rem; flex-wrap: wrap; }
+.routine-anim-head h3 { margin: 0; }
+.fp-room-walls { fill: none; stroke: var(--ink); stroke-width: 3; opacity: .7; }
+.player-timeline.figures button { min-width: 0; max-width: 11rem; }
+.player-timeline.figures .tl-c { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 10rem; }
+.player-fig { color: var(--standard); }

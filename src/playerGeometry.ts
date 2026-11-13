@@ -38,8 +38,9 @@ function footprints(
   oy: number,
   hint: -1 | 0 | 1,
   initialFacing: number | null,
+  tr: TraceOpts = {},
 ): { start: { x: number; y: number; face: number }; feet: Foot[] } {
-  const body = tracePath(steps, 0, 0, 0, hint, 0, initialFacing);
+  const body = tracePath(steps, 0, 0, tr.rotate ?? 0, hint, tr.extraTurn ?? 0, initialFacing, tr.scales ?? []);
   const first = body.find((b) => b.facing !== null);
   let face = first?.stepFacing ?? first?.facing ?? initialFacing ?? 0;
   const startFace = face;
@@ -138,6 +139,15 @@ export interface Partner {
   feet: Foot[];
 }
 
+/** How a chart is placed: the plan's rotation, under-/overturn and step lengths. */
+export interface TraceOpts {
+  rotate?: number;
+  extraTurn?: number;
+  scales?: number[];
+  /** Facing before the first step when the chart has no alignment. */
+  initialFacing?: number | null;
+}
+
 /** Footprints and body positions of both partners for a figure's chart. */
 export function figureGeometry(
   fig: Figure,
@@ -145,24 +155,55 @@ export function figureGeometry(
   man: FloorStep[],
   lady: FloorStep[],
 ): { m: Partner; l: Partner | null } {
-  const hasLady = lady.length > 0;
+  return coupleGeometry(
+    {
+      stepM: STEP_BY_DANCE[fig.dance] ?? STEP_METRES,
+      hint: turnHintOf(fig.en),
+      latin: dance?.discipline === "latin",
+      // Position before the first step: the figure's start in the syllabus (the chart
+      // gives the position after each step), else the first step's.
+      startPos: positionOf(fig.syllabus?.start) ?? man[0]?.pos ?? "",
+    },
+    man,
+    lady,
+  );
+}
 
-  const stepM = STEP_BY_DANCE[fig.dance] ?? STEP_METRES;
-  const hint = turnHintOf(fig.en);
-  const latin = dance?.discipline === "latin";
-  const charted = man.some((s) => parseAlign(s.align) !== null);
-  const m = footprints(man, stepM, 0, 0, hint, charted ? null : 0);
+/** The lady's steps when her chart is missing: the man's mirrored (other foot,
+ * forward <-> backward), which holds for figures danced facing each other. */
+export function mirrorSteps(man: FloorStep[]): FloorStep[] {
+  const swap = (d: string) =>
+    d
+      .replace(/\b(LF|RF)\b/g, (m) => (m === "LF" ? "RF" : "LF"))
+      .replace(/\b(fwd|bwd|back)\b/g, (m) => (m === "fwd" ? "bwd" : "fwd"));
+  return man.map((s) => ({ ...s, desc: swap(s.desc), align: "", face: undefined, end: undefined, body: undefined, moving: undefined }));
+}
+
+/** Footprints and body positions of both partners (figure frame, or placed by `tr`). */
+export function coupleGeometry(
+  cfg: { stepM: number; hint: -1 | 0 | 1; latin: boolean; startPos: string },
+  man: FloorStep[],
+  lady: FloorStep[],
+  tr: TraceOpts = {},
+): { m: Partner; l: Partner | null } {
+  const hasLady = lady.length > 0;
+  const { stepM, hint, latin, startPos } = cfg;
+  const charted = man.some((s) => s.face !== undefined || parseAlign(s.align) !== null);
+  const m = footprints(man, stepM, 0, 0, hint, tr.initialFacing !== undefined ? tr.initialFacing : charted ? null : 0, tr);
   // The lady starts where the couple position puts her, facing the way her chart says
   // (or facing the man when the chart gives no alignment).
-  // Position before the first step: the figure's start in the syllabus (the chart
-  // gives the position after each step), else the first step's.
-  const startPos = positionOf(fig.syllabus?.start) ?? man[0]?.pos ?? "";
   const off = ladyOffset(startPos, latin);
   const f = m.start.face;
   const lx = Math.cos(rad(f)) * off.fwd + Math.cos(rad(f - 90)) * off.right;
   const ly = Math.sin(rad(f)) * off.fwd + Math.sin(rad(f - 90)) * off.right;
-  const ladyCharted = lady.some((s) => parseAlign(s.align) !== null);
-  const traced = hasLady ? footprints(lady, stepM, lx, ly, (-hint || 0) as -1 | 0 | 1, ladyCharted ? null : norm180(f + 180)) : null;
+  const ladyCharted = lady.some((s) => s.face !== undefined || parseAlign(s.align) !== null);
+  // her chart is in the same frame: the same rotation and turn; step lengths are the man's
+  const traced = hasLady
+    ? footprints(lady, stepM, lx, ly, (-hint || 0) as -1 | 0 | 1, ladyCharted ? null : norm180(f + 180), {
+        ...tr,
+        rotate: ladyCharted ? tr.rotate : 0,
+      })
+    : null;
   if (!traced) return { m, l: null };
   // Where the partners stand. In a closed hold (closed, PP, outside partner, close
   // opposing …) they keep the couple position and turn around their common centre;

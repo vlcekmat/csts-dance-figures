@@ -14,7 +14,7 @@ import {
   type SimResult,
   type StartSpot,
 } from "./floor";
-import { tempoBpm, totalBeats } from "./timing";
+import { positionOf, tempoBpm, totalBeats } from "./timing";
 import type { ResolvedItem } from "./variants";
 import type { PrepDir, PrepStep } from "./routines";
 
@@ -62,9 +62,9 @@ export function buildPlan(opts: {
     // Only charts with alignments (standard) are precise enough to trace;
     // latin charts give no alignment, so those figures use the travel class.
     // Charts that "follow the previous figure" have no alignments but are traced too.
-    const steps = hasFloor(it.fig) || it.fig.floor?.follows
-      ? chartSteps(it.fig).slice(it.resolved.from - 1, it.resolved.isPart ? it.resolved.to : undefined)
-      : null;
+    const cut = <T,>(a: T[]) => a.slice(it.resolved.from - 1, it.resolved.isPart ? it.resolved.to : undefined);
+    const all = cut(chartSteps(it.fig));
+    const steps = hasFloor(it.fig) || it.fig.floor?.follows ? all : null;
     return {
       key: it.key,
       label: figureNames(it.fig, lang).main,
@@ -87,6 +87,11 @@ export function buildPlan(opts: {
         ? it.fig.floor.ladySteps.slice(it.resolved.from - 1, it.resolved.isPart ? it.resolved.to : undefined)
         : null,
       wall: it.wall,
+      startPos: it.resolved.from <= 1 ? (positionOf(it.fig.syllabus?.start) ?? undefined) : undefined,
+      counts: it.resolved.steps.map((st) => ({ label: st.label, beats: st.beats })),
+      animSteps: all.length ? all : undefined,
+      animLady: it.fig.floor?.ladySteps?.length ? cut(it.fig.floor.ladySteps) : null,
+      latin: dance.discipline === "latin",
     };
   });
 
@@ -124,6 +129,8 @@ export function buildPlan(opts: {
       dance: dance.id,
       steps: prep.steps.map((s) => ({ desc: `${s.foot} ${DESC[s.dir]}`, align: "", turn: "", face: prep.face + (s.turn ?? 0) })),
       stepScales: prep.steps.map((s) => s.size ?? 1),
+      counts: prep.steps.map((_, i) => ({ label: String(i + 1), beats: 1 })),
+      latin: dance.discipline === "latin",
       bars: n / dance.beatsPerBar,
       seconds: (60 / bpm / dance.beatsPerBar) * n,
       cornerAfter: false,

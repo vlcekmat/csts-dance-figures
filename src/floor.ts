@@ -444,6 +444,15 @@ export interface SimItem {
   cornerAfter: boolean;
   /** Turn direction hint from the figure name. */
   turnHint?: -1 | 0 | 1;
+  /** Couple position before the first step (syllabus start), for the animation. */
+  startPos?: string;
+  /** Timing labels and beats of the steps, for the animation. */
+  counts?: { label: string; beats: number }[];
+  /** Steps for the animation also where the plan doesn't trace the chart (latin). */
+  animSteps?: FloorStep[];
+  animLady?: FloorStep[] | null;
+  /** Figure name in English (turn direction hint) and discipline, for the animation. */
+  latin?: boolean;
   /** For figures without a chart: 0 on the spot … 1 progressive. */
   travel?: number;
   /** Length of a full step in metres (default STEP_METRES). */
@@ -501,6 +510,9 @@ export interface SimSegment {
   side: number;
   t0: number;
   t1: number;
+  /** How the figure was placed (for the routine animation): the item as danced
+   * (incl. the automatic turn), where it starts and the chart's rotation. */
+  placed: { item: SimItem; x: number; y: number; rotate: number; init: number | null };
 }
 
 export interface SimResult {
@@ -733,6 +745,7 @@ export function simulateRoutine(
     const sin = Math.sin(a);
     const steps = local.length - 1 || 1;
     const t0 = t;
+    const placed = { item, x, y, rotate, init };
     const pts: SimPoint[] = local.map((p, k) => {
       const px = x + p.x * cos - p.y * sin;
       const py = y + p.x * sin + p.y * cos;
@@ -773,6 +786,7 @@ export function simulateRoutine(
       side,
       t0,
       t1: t,
+      placed,
     });
     turnedJustNow = autoCorner || manualWall;
     if (item.cornerAfter) {

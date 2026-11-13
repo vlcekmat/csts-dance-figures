@@ -2,7 +2,7 @@
 // (WDSF technique charts), where each partner stands and faces on every step
 // and the couple position. Top view, LOD to the right, wall at the bottom.
 import { useEffect, useMemo, useState } from "react";
-import { getDance, type Figure } from "../data";
+import { getDance, type Dance, type Figure } from "../data";
 import { useI18n, type StringKey } from "../i18n";
 import { Glossed } from "./Glossary";
 import { localizePositions, localizeStep, localizeTurn } from "../glossary";
@@ -13,16 +13,64 @@ import {
   type FloorStep,
 } from "../floor";
 import { parseTiming, tempoBpm } from "../timing";
-import { closeHold, feetBetween, figureGeometry, liveFeet, partnerRelation, signedTurn, type FeetState, type Foot } from "../playerGeometry";
+import { closeHold, feetBetween, figureGeometry, liveFeet, partnerRelation, signedTurn, type FeetState, type Foot, type Partner } from "../playerGeometry";
 
 type Role = "man" | "lady" | "both";
 
+/** What the player plays: both partners' geometry and steps (one figure or a whole routine). */
+export interface Track {
+  m: Partner;
+  l: Partner | null;
+  man: FloorStep[];
+  lady: FloorStep[];
+  beats: number[];
+  /** Count of each step ("S", "Q", "1", "&" …). */
+  labels: string[];
+  /** Couple position before the first step. */
+  startPos: string;
+  /** Per step: the lady's step is estimated (her chart is missing). */
+  ladyEstimated?: boolean[];
+  /** Routine: the figures (step ranges [from, to) ) and the wall per state (0 = start). */
+  groups?: { no: string; label: string; from: number; to: number }[];
+  side?: number[];
+}
+
 export function FigurePlayer({ fig }: { fig: Figure }) {
-  const { t, lang } = useI18n();
   const dance = getDance(fig.dance);
-  const man = useMemo(() => chartSteps(fig), [fig]);
-  const lady = useMemo(() => (fig.floor?.ladySteps ?? []).slice(0, Math.max(man.length, 1)), [fig, man.length]);
-  const hasLady = lady.length > 0;
+  const track = useMemo<Track>(() => {
+    const man = chartSteps(fig);
+    const lady = (fig.floor?.ladySteps ?? []).slice(0, Math.max(man.length, 1));
+    const geo = figureGeometry(fig, dance, man, lady);
+    const timing = fig.syllabus?.timing;
+    const parsed = timing && dance ? parseTiming(timing, dance) : [];
+    return {
+      m: geo.m,
+      l: geo.l,
+      man,
+      lady,
+      beats: man.map((_, i) => parsed[i]?.beats ?? 1),
+      labels: man.map((st, i) => st.timing || parsed[i]?.label || "·"),
+      startPos: fig.syllabus?.start ?? man[0]?.pos ?? "",
+    };
+  }, [fig, dance]);
+  return <StepPlayer track={track} dance={dance} resetKey={fig.id} />;
+}
+
+/** Step-by-step / smooth playback of a track. `room` = the track is placed in a room (routine). */
+export function StepPlayer({
+  track,
+  dance,
+  resetKey,
+  room,
+}: {
+  track: Track;
+  dance: Dance | undefined;
+  resetKey: string;
+  room?: { length: number; width: number };
+}) {
+  const { t, lang } = useI18n();
+  const { man, lady } = track;
+  const hasLady = !!track.l && lady.length > 0;
   const [role, setRole] = useState<Role>(hasLady ? "both" : "man");
   const [k, setK] = useState(0); // 0 = starting position, n = after step n
   const [playing, setPlaying] = useState(false);
@@ -35,23 +83,19 @@ export function FigurePlayer({ fig }: { fig: Figure }) {
   const [follow, setFollow] = useState(true);
   const n = man.length;
 
-  // Reset when the figure changes.
+  // Reset when the figure / routine changes.
   useEffect(() => {
     setK(0);
     setPlaying(false);
     setRole(hasLady ? "both" : "man");
-  }, [fig.id, hasLady]);
+  }, [resetKey, hasLady]);
 
-  const geo = useMemo(() => figureGeometry(fig, dance, man, lady), [fig, man, lady, dance]);
-  const mFeet = useMemo(() => liveFeet(geo.m, man), [geo, man]);
-  const lFeet = useMemo(() => (geo.l ? liveFeet(geo.l, lady) : null), [geo, lady]);
+  const geo = track;
+  const mFeet = useMemo(() => liveFeet(track.m, man), [track, man]);
+  const lFeet = useMemo(() => (track.l ? liveFeet(track.l, lady) : null), [track, lady]);
 
   // Playback: wait the step's duration at the competition tempo (scaled by speed).
-  const parsedTiming = useMemo(() => {
-    const timing = fig.syllabus?.timing;
-    return timing && dance ? parseTiming(timing, dance) : [];
-  }, [fig, dance]);
-  const beats = useMemo(() => man.map((_, i) => parsedTiming[i]?.beats ?? 1), [man, parsedTiming]);
+  const beats = track.beats;
   const stepMs = (i: number) => {
     const bpm = (dance && tempoBpm(dance)) || 30;
     const beatsPerMin = bpm * (dance?.beatsPerBar ?? 4);
@@ -104,17 +148,16 @@ export function FigurePlayer({ fig }: { fig: Figure }) {
 
   const showMan = role !== "lady";
   const showLady = role !== "man" && !!geo.l;
-  const all = [
-    geo.m.start,
-    ...geo.m.feet,
-    ...(geo.l ? [geo.l.start, ...geo.l.feet] : []),
-  ];
-  const minX = Math.min(...all.map((p) => p.x)) - 0.45;
-  const maxX = Math.max(...all.map((p) => p.x)) + 0.45;
-  const minY = Math.min(...all.map((p) => p.y)) - 0.45;
-  const maxY = Math.max(...all.map((p) => p.y)) + 0.45;
+  const all = room
+    ? [{ x: 0, y: 0 }, { x: room.length, y: room.width }]
+    : [geo.m.start, ...geo.m.feet, ...(geo.l ? [geo.l.start, ...geo.l.feet] : [])];
+  const margin = room ? 0.6 : 0.45;
+  const minX = Math.min(...all.map((p) => p.x)) - margin;
+  const maxX = Math.max(...all.map((p) => p.x)) + margin;
+  const minY = Math.min(...all.map((p) => p.y)) - margin;
+  const maxY = Math.max(...all.map((p) => p.y)) + margin;
   // Follow mode: a close-up that moves with the couple; else the whole figure.
-  const S = follow ? 170 : Math.min(120, 560 / (maxX - minX));
+  const S = follow ? 170 : Math.min(120, (room ? 640 : 560) / (maxX - minX));
   const VW = Math.max(320, (maxX - minX) * S + 60);
   const VH = Math.max(200, (maxY - minY) * S + 60);
   const ox = (VW - (maxX - minX) * S) / 2;
@@ -124,7 +167,7 @@ export function FigurePlayer({ fig }: { fig: Figure }) {
   const footLen = 0.23 * S;
   const footW = 0.095 * S;
   const gridX: number[] = [];
-  const gm = follow ? 2.5 : 0; // the close-up may show the floor around the figure
+  const gm = follow && !room ? 2.5 : 0; // the close-up may show the floor around the figure
   for (let g = Math.ceil((minX - gm) * 2) / 2; g <= maxX + gm; g += 0.5) gridX.push(g);
   const gridY: number[] = [];
   for (let g = Math.ceil((minY - gm) * 2) / 2; g <= maxY + gm; g += 0.5) gridY.push(g);
@@ -157,6 +200,11 @@ export function FigurePlayer({ fig }: { fig: Figure }) {
       </g>
     ));
 
+  /** Step number as shown (within the figure in a routine). */
+  const stepNo = (i: number) => {
+    const g = track.groups?.find((gr) => i - 1 >= gr.from && i - 1 < gr.to);
+    return g ? i - g.from : i;
+  };
   /** Where the stepping foot lands on the next step (dashed outline). */
   const renderNext = (st: FeetState[] | null, who: "man" | "lady") => {
     if (!st || k >= n || frac > 0) return null;
@@ -166,7 +214,7 @@ export function FigurePlayer({ fig }: { fig: Figure }) {
     return (
       <g transform={`translate(${X(f.x)} ${Y(f.y)}) rotate(${-f.face})`} className={`fp-next ${who}`}>
         <path d={footPath} />
-        <text transform={`rotate(${f.face})`} y={4} textAnchor="middle" className="fp-next-num">{k + 1}</text>
+        <text transform={`rotate(${f.face})`} y={4} textAnchor="middle" className="fp-next-num">{stepNo(k + 1)}</text>
       </g>
     );
   };
@@ -235,6 +283,12 @@ export function FigurePlayer({ fig }: { fig: Figure }) {
     lBody = { ...lBody, x: cx + (Math.cos(a) * len) / 2, y: cy + (Math.sin(a) * len) / 2 };
   }
 
+  // Routine: the figure being danced (while moving, the step in progress counts).
+  const groupIdx = track.groups ? Math.max(0, track.groups.findIndex((g) => shown - 1 >= g.from && shown - 1 < g.to)) : -1;
+  const group = track.groups ? track.groups[shown === 0 ? 0 : groupIdx] : undefined;
+  /** Facing in words: in a room relative to the LOD of the current wall. */
+  const alignText = (face: number) => alignLabel(norm180(face - 90 * (track.side?.[Math.min(shown, track.side.length - 1)] ?? 0)), lang);
+
   // Camera: centred on the couple (follow) or the whole figure.
   const cam = (() => {
     const pts = [showMan ? mBody : null, showLady ? lBody : null].filter((q): q is NonNullable<typeof q> => !!q);
@@ -299,10 +353,11 @@ export function FigurePlayer({ fig }: { fig: Figure }) {
           <line key={`gy${g}`} x1={X(minX - gm)} y1={Y(g)} x2={X(maxX + gm)} y2={Y(g)} className={`fp-grid ${Number.isInteger(g) ? "major" : ""}`} />
         ))}
 
+        {room && <rect x={X(0)} y={Y(room.width)} width={room.length * S} height={room.width * S} className="fp-room-walls" />}
         {(() => {
           const mLine = bodyLine(geo.m, mBody);
           const lLine = geo.l && lBody ? bodyLine(geo.l, lBody) : null;
-          const hold = closeHold((k > 0 ? man[k - 1]?.pos : null) || man[0]?.pos || fig.syllabus?.start || "");
+          const hold = closeHold((k > 0 ? man[k - 1]?.pos : null) || man[0]?.pos || track.startPos || "");
           return (
             <>
               {showMan && <polyline points={mLine.all} className="fp-path man" />}
@@ -322,39 +377,73 @@ export function FigurePlayer({ fig }: { fig: Figure }) {
           );
         })()}
         <g transform={`translate(${view.x} ${view.y})`}>
-          <text x={12} y={20} className="fp-label strong">LOD →</text>
-          <text x={view.w - 10} y={20} textAnchor="end" className="fp-label">↑ {t("floorCentre")}</text>
-          {!follow && <line x1={6} y1={view.h - 4} x2={view.w - 6} y2={view.h - 4} className="fp-wall" />}
-          <text x={view.w - 10} y={view.h - 10} textAnchor="end" className="fp-label">{t("floorWall")} ↓</text>
+          {!room && (
+            <>
+              <text x={12} y={20} className="fp-label strong">LOD →</text>
+              <text x={view.w - 10} y={20} textAnchor="end" className="fp-label">↑ {t("floorCentre")}</text>
+              {!follow && <line x1={6} y1={view.h - 4} x2={view.w - 6} y2={view.h - 4} className="fp-wall" />}
+              <text x={view.w - 10} y={view.h - 10} textAnchor="end" className="fp-label">{t("floorWall")} ↓</text>
+            </>
+          )}
           <line x1={12} y1={view.h - 16} x2={12 + S} y2={view.h - 16} className="fp-scale" />
           <text x={16 + S} y={view.h - 12} className="fp-label">1 m</text>
         </g>
       </svg>
 
+      {group && track.groups && (
+        <ol className="player-timeline figures" aria-label={t("playerFigures")}>
+          {track.groups.map((g, gi) => (
+            <li key={gi}>
+              <button
+                className={g === group ? "active" : gi < groupIdx ? "done" : ""}
+                onClick={() => { setPlaying(false); setK(g.from); }}
+                title={g.label}
+              >
+                <span className="tl-n">{g.no}</span>
+                <span className="tl-c">{g.label}</span>
+              </button>
+            </li>
+          ))}
+        </ol>
+      )}
       <ol className="player-timeline" aria-label={t("playerStep")}>
-        <li>
-          <button className={k === 0 && !frac ? "active" : k > 0 ? "done" : ""} onClick={() => { setPlaying(false); setK(0); }} title={t("playerStartPos")}>
-            <span className="tl-n">0</span>
-            <span className="tl-c">{t("playerStartShort")}</span>
-          </button>
-        </li>
-        {man.map((st, i) => (
-          <li key={i}>
-            <button
-              className={(k === i + 1 && !frac) || (frac > 0 && k === i) ? "active" : i + 1 < k + (frac > 0 ? 1 : 0) ? "done" : ""}
-              onClick={() => { setPlaying(false); setK(i + 1); }}
-            >
-              <span className="tl-n">{i + 1}</span>
-              <span className="tl-c">{st.timing || parsedTiming[i]?.label || "·"}</span>
+        {!group && (
+          <li>
+            <button className={k === 0 && !frac ? "active" : k > 0 ? "done" : ""} onClick={() => { setPlaying(false); setK(0); }} title={t("playerStartPos")}>
+              <span className="tl-n">0</span>
+              <span className="tl-c">{t("playerStartShort")}</span>
             </button>
           </li>
-        ))}
+        )}
+        {man.map((_, i) =>
+          group && (i < group.from || i >= group.to) ? null : (
+            <li key={i}>
+              <button
+                className={(k === i + 1 && !frac) || (frac > 0 && k === i) ? "active" : i + 1 < k + (frac > 0 ? 1 : 0) ? "done" : ""}
+                onClick={() => { setPlaying(false); setK(i + 1); }}
+              >
+                <span className="tl-n">{group ? i + 1 - group.from : i + 1}</span>
+                <span className="tl-c">{track.labels[i] || "·"}</span>
+              </button>
+            </li>
+          ),
+        )}
       </ol>
 
       <div className="player-info" aria-live="polite">
         <div className="player-step">
+          {group && (
+            <strong className="player-fig">
+              {group.no}. {group.label} ·{" "}
+            </strong>
+          )}
           {shown === 0 ? (
             <strong>{t("playerStartPos")}</strong>
+          ) : group ? (
+            <strong>
+              {t("playerStepN", { n: String(shown - group.from), of: String(group.to - group.from) })}
+              {track.labels[shown - 1] ? ` · ${t("playerCount")} ${track.labels[shown - 1]}` : ""}
+            </strong>
           ) : (
             <strong>
               {t("playerStepN", { n: String(shown), of: String(n) })}
@@ -373,16 +462,16 @@ export function FigurePlayer({ fig }: { fig: Figure }) {
               <tr>
                 <th scope="row">{t("roleMan")}</th>
                 <td><Glossed text={ms ? localizeStep(ms.desc, lang) : "–"} /></td>
-                <td>{alignLabel(mBody.face, lang)}</td>
+                <td>{alignText(mBody.face)}</td>
                 <td>{ms?.turn ? <Glossed text={localizeTurn(ms.turn, lang)} /> : ""}</td>
                 <td className="muted">{relText(ms ? partnerRelation(ms.desc, ms.pos ?? pos ?? "") : null)}</td>
               </tr>
             )}
             {showLady && lBody && (
               <tr>
-                <th scope="row">{t("roleLady")}</th>
+                <th scope="row">{t("roleLady")}{track.ladyEstimated?.[shown - 1] ? " *" : ""}</th>
                 <td><Glossed text={ls ? localizeStep(ls.desc, lang) : "–"} /></td>
-                <td>{alignLabel(lBody.face, lang)}</td>
+                <td>{alignText(lBody.face)}</td>
                 <td>{ls?.turn ? <Glossed text={localizeTurn(ls.turn, lang)} /> : ""}</td>
                 <td className="muted">{relText(ls ? partnerRelation(ls.desc, ms?.pos ?? pos ?? "") : null)}</td>
               </tr>
@@ -390,7 +479,10 @@ export function FigurePlayer({ fig }: { fig: Figure }) {
           </tbody>
         </table>
       </div>
-      <figcaption className="small muted">{t(hasLady ? "playerHint" : "playerHintManOnly")}</figcaption>
+      <figcaption className="small muted">
+        {t(hasLady ? "playerHint" : "playerHintManOnly")}
+        {track.ladyEstimated?.some(Boolean) ? ` ${t("playerLadyEstimated")}` : ""}
+      </figcaption>
     </figure>
   );
 }
