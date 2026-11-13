@@ -213,9 +213,17 @@ export function fixLadyFacing(man: FloorStep[], lady: FloorStep[]): FloorStep[] 
     compared++;
     if (Math.abs(norm180(l.face - m.face)) < 60) same++;
   });
-  if (compared < 2 || same * 2 < compared) return lady;
   const flip = (v: number | undefined) => (v === undefined ? undefined : norm180(v + 180));
-  return lady.map((l) => ({ ...l, face: flip(l.face), end: flip(l.end), body: flip(l.body) }));
+  const flipStep = (l: FloorStep) => ({ ...l, face: flip(l.face), end: flip(l.end), body: flip(l.body) });
+  if (compared >= 2 && same * 2 >= compared) return lady.map(flipStep);
+  // single steps in a closed hold where she would face the same way as the man
+  return lady.map((l, i) => {
+    const m = man[i];
+    const pos = (m?.pos ?? "").split(/\s+then\s+/).pop() ?? "";
+    if (!m || m.face === undefined || l.face === undefined) return l;
+    if (!/^(closed|close opp)/i.test(pos.trim())) return l;
+    return Math.abs(norm180(l.face - m.face)) < 60 ? flipStep(l) : l;
+  });
 }
 
 /** Footprints and body positions of both partners (figure frame, or placed by `tr`). */
@@ -249,14 +257,18 @@ export function coupleGeometry(
   // opposing …) they keep the couple position and turn around their common centre;
   // apart / without hold (open, side by side, fan, spot turns) each dances on their
   // own path and turns around their own axis. Corrections carry over to later steps.
-  const offsetVec = (pos: string, face: number, ladyFace?: number) => {
+  const offsetVec = (pos: string, face: number, ladyFace?: number, feetFace?: number) => {
     // Promenade: the couple forms a "V" opening to where they travel – the lady stands
     // beside the man (his right, CPP his left), measured from the middle of their facings.
     const prom = promenadeSide(pos);
     if (prom && ladyFace !== undefined) {
-      const mid = face + norm180(ladyFace - face) / 2;
+      // beside the man (his right in PP, left in CPP), measured from where his feet point
+      const dir = feetFace ?? face;
       const side = (latin ? 0.6 : 0.45) * prom;
-      return { x: Math.cos(rad(mid - 90)) * side, y: Math.sin(rad(mid - 90)) * side };
+      return {
+        x: Math.cos(rad(dir - 90)) * side + Math.cos(rad(dir)) * 0.08,
+        y: Math.sin(rad(dir - 90)) * side + Math.sin(rad(dir)) * 0.08,
+      };
     }
     const o = ladyOffset(pos, latin);
     return {
@@ -286,14 +298,26 @@ export function coupleGeometry(
   };
   for (let i = 0; i < count; i++) {
     const mf = m.feet[i];
-    const lf = traced.feet[i];
+    let lf = traced.feet[i];
     lastPos = man[i]?.pos || lastPos;
     const mx = mf ? mf.bx + dm.x : mFeet[mFeet.length - 1]?.bx ?? 0;
     const my = mf ? mf.by + dm.y : mFeet[mFeet.length - 1]?.by ?? 0;
     const lx2 = lf ? lf.bx + dl.x : lFeet[lFeet.length - 1]?.bx ?? 0;
     const ly2 = lf ? lf.by + dl.y : lFeet[lFeet.length - 1]?.by ?? 0;
-    if (closeHold(lastPos) && mf && lf) {
-      const o = offsetVec(lastPos, mf.bodyFace, lf.bodyFace);
+    // Positions that say where the lady stands (in front, beside, behind …): she is put
+    // there; otherwise (unknown position) the partners keep their own directions.
+    const placed = closeHold(lastPos) || /opp|open|fan|side|shadow|tandem|diag|prom|fallaway|wing|outside|angle/i.test(lastPos);
+    // Facing each other (closed / opposing positions): she faces him at the end of the
+    // step – her own turn amounts (latin charts) would drift apart from his.
+    const endPos = (lastPos.split(/\s+(?:to|then)\s+(?=[A-Za-z])/).pop() ?? "").trim().toLowerCase();
+    if (mf && lf && /^(closed|close opp|open opp|ex(?:tended)?\.? open opp|opp)\b/.test(endPos) && !/same|fallaway|prom/.test(endPos)) {
+      const delta = norm180(mf.bodyFace + 180 - lf.bodyFace);
+      if (Math.abs(delta) > 20) {
+        lf = { ...lf, bodyFace: norm180(mf.bodyFace + 180), face: norm180(lf.face + delta) };
+      }
+    }
+    if (placed && mf && lf) {
+      const o = offsetVec(lastPos, mf.bodyFace, lf.bodyFace, mf.face);
       const cx = (mx + lx2) / 2;
       const cy = (my + ly2) / 2;
       // The couple turns around the partner who stays in place (heel turns, closing
@@ -306,9 +330,10 @@ export function coupleGeometry(
       let nl = { x: cx + o.x / 2, y: cy + o.y / 2 };
       const prevFace = i === 0 ? m.start.face : m.feet[i - 1].bodyFace;
       if (ms && lst && Math.abs(norm180(mf.bodyFace - prevFace)) < 100) {
-        // both close: they stay; only their facings turn (simplified)
-        nm = prevM;
-        nl = prevL;
+        // both close: the couple turns around its centre (no travel)
+        const c0 = { x: (prevM.x + prevL.x) / 2, y: (prevM.y + prevL.y) / 2 };
+        nm = { x: c0.x - o.x / 2, y: c0.y - o.y / 2 };
+        nl = { x: c0.x + o.x / 2, y: c0.y + o.y / 2 };
       } else if (ms) {
         nm = prevM;
         nl = { x: nm.x + o.x, y: nm.y + o.y };

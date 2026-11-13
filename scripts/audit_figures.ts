@@ -23,6 +23,27 @@ for (const fig of FIGURES) {
     pos = man[i]?.pos || pos;
     const lf = l?.feet[i];
     if (lf) {
+      // Where the lady stands relative to the man for the position at the end of the step.
+      const endPos = (pos.split(/\s+(?:to|then)\s+(?=[A-Za-z])/).pop() ?? "").toLowerCase();
+      const rel = norm180((Math.atan2(lf.by - mf.by, lf.bx - mf.bx) * 180) / Math.PI - mf.bodyFace);
+      const facing = Math.abs(norm180(lf.bodyFace - mf.bodyFace));
+      const want: [number, number] | null = /counter prom|cnt prom|\bcpp\b/.test(endPos)
+        ? [15, 150]
+        : /fallaway/.test(endPos)
+          ? [-150, -15]
+          : /counter prom|cnt prom|\bcpp\b/.test(endPos)
+        ? [15, 150]
+        : /prom|\bpp\b/.test(endPos)
+          ? [-150, -15]
+          : /\bl(?:eft)? side\b/.test(endPos)
+            ? [20, 160]
+            : /\br(?:ight)? side\b/.test(endPos)
+              ? [-160, -20]
+              : /\bopp|closed|close\b/.test(endPos) && !/same|shadow|tandem|fan|side|diag|angle|fallaway|outside/.test(endPos)
+                ? [-45, 45]
+                : null;
+      if (want && (rel < want[0] || rel > want[1])) add(`step ${i + 1}: lady at ${rel.toFixed(0)}° from the man's facing in "${endPos}"`);
+      if (want && want[0] === -45 && facing < 110) add(`step ${i + 1}: partners don't face each other (${facing.toFixed(0)}°) in "${endPos}"`);
       const d = Math.hypot(lf.bx - mf.bx, lf.by - mf.by);
       const close = closeHold(pos);
       if (close && (d < 0.15 || d > 0.75)) add(`step ${i + 1}: partners ${d.toFixed(2)} m apart in "${pos}"`);

@@ -11,7 +11,7 @@ const ang = (a: P, b: P) => Math.atan2(b.y - a.y, b.x - a.x);
 const len = (a: P, b: P) => Math.hypot(b.x - a.x, b.y - a.y);
 
 /** Indices i where the path goes a -> b -> c with a sharp reversal (both legs long enough). */
-function teeth(pts: P[], minLeg = 0.12, minAngle = 125): number[] {
+function teeth(pts: P[], minLeg = Number(process.env.MINLEG ?? 0.12), minAngle = 125): number[] {
   const out: number[] = [];
   for (let i = 1; i + 1 < pts.length; i++) {
     const l1 = len(pts[i - 1], pts[i]);
