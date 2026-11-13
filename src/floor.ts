@@ -314,8 +314,9 @@ export function tracePath(
     if (isSide && closedSince && lastSide && footM && lastSide.foot === footM[1]) {
       v = { angle: lastSide.angle - extraTravel, len: v.len };
     }
-    if (al?.moving !== null && al?.moving !== undefined && v.len > 0) {
-      // Chart gives the travel direction explicitly ("moving LOD").
+    if (al?.moving !== null && al?.moving !== undefined && v.len > 0 && Math.abs(norm180(v.angle - al.moving)) < 90) {
+      // Chart gives the travel direction explicitly ("moving LOD"). A step going the
+      // other way (the forward step of a rock "moving sideways down LOD") keeps its own.
       v = { angle: al.moving, len: v.len };
     } else if (/\b(?:in )?pp\b|promenade/.test(d) && /\bfwd\b|forward|across/.test(d)) {
       // Forward steps in promenade travel towards the man's open (left) side:
@@ -342,6 +343,24 @@ export function tracePath(
     // the body returns to where it was before the previous step.
     const prevFoot = i > 0 ? steps[i - 1].desc.match(/\b(RF|LF)\b/i)?.[1]?.toUpperCase() : undefined;
     const thisFoot = footM?.[1]?.toUpperCase();
+    // Rock / check: a step with the other foot straight back against the previous one
+    // ("LF bwd", "RF fwd") puts the weight back onto the foot that stayed.
+    if (i > 0 && v.len > 0 && pts.length >= 2) {
+      const a0 = pts[pts.length - 2];
+      const a1 = pts[pts.length - 1];
+      const pdx = a1.x - a0.x;
+      const pdy = a1.y - a0.y;
+      const plen = Math.hypot(pdx, pdy);
+      const cdx = x - a1.x;
+      const cdy = y - a1.y;
+      const clen = Math.hypot(cdx, cdy);
+      const pf = steps[i - 1].desc.match(/\b(RF|LF)\b/i)?.[1]?.toUpperCase();
+      const tf = footM?.[1]?.toUpperCase();
+      if (plen > 0.05 && clen > 0.05 && pf && tf && pf !== tf && (pdx * cdx + pdy * cdy) / (plen * clen) < -0.7) {
+        x = a0.x;
+        y = a0.y;
+      }
+    }
     if (
       v.len === 0 &&
       i > 0 &&

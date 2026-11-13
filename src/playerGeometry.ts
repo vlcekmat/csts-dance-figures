@@ -456,7 +456,7 @@ export function liveFeet(p: Partner, steps: FloorStep[]): FeetState[] {
       next[other] = { ...next[other], face: next[other].face + turn, weight: noWeight ? true : false };
       // The couple's placement (promenade, hold) may move a dancer more than their own
       // step: the foot left behind can't be further away than a stride.
-      const MAX = 0.65;
+      const MAX = 0.95;
       const o = next[other];
       const nf = next[f.foot];
       const dist = Math.hypot(o.x - nf.x, o.y - nf.y);
