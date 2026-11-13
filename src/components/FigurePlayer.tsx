@@ -1,7 +1,7 @@
 // Step-by-step playback of one figure: the man's and the lady's footprints
 // (WDSF technique charts), where each partner stands and faces on every step
 // and the couple position. Top view, LOD to the right, wall at the bottom.
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { getDance, type Dance, type Figure } from "../data";
 import { useI18n, type StringKey } from "../i18n";
 import { Glossed } from "./Glossary";
@@ -75,6 +75,8 @@ export function StepPlayer({
   const [k, setK] = useState(0); // 0 = starting position, n = after step n
   const [playing, setPlaying] = useState(false);
   const [speed, setSpeed] = useState(0.5);
+  // Smooth playback of a single step (the "next step" button): stop after this step.
+  const until = useRef<number | null>(null);
   // Smooth playback: the partners glide between the steps instead of jumping.
   const [smooth, setSmooth] = useState(true);
   const [frac, setFrac] = useState(0); // progress from step k towards step k + 1 (0–1)
@@ -113,14 +115,16 @@ export function StepPlayer({
     const tick = (now: number) => {
       ff += (now - last) / stepMs(kk);
       last = now;
-      while (ff >= 1 && kk < n) {
+      const limit = Math.min(n, until.current ?? n);
+      while (ff >= 1 && kk < limit) {
         ff -= 1;
         kk += 1;
       }
-      if (kk >= n) {
-        setK(n);
+      if (kk >= limit) {
+        setK(limit);
         setFrac(0);
         setPlaying(false);
+        until.current = null;
         return;
       }
       setK(kk);
@@ -143,6 +147,20 @@ export function StepPlayer({
     const id = window.setTimeout(() => setK((v) => v + 1), Math.max(250, ms));
     return () => window.clearTimeout(id);
   }, [playing, smooth, k, n, beats, dance, speed]);
+
+  /** One step forward: danced smoothly (and stopped) when smooth playback is on. */
+  const nextStep = () => {
+    if (k >= n) return;
+    if (smooth) {
+      setPlaying(false);
+      until.current = k + 1;
+      // restart the playback effect for exactly one step
+      requestAnimationFrame(() => setPlaying(true));
+    } else {
+      setPlaying(false);
+      setK((v) => Math.min(n, v + 1));
+    }
+  };
 
   if (!n) return null;
 
@@ -360,14 +378,17 @@ export function StepPlayer({
           <button
             className="btn small primary"
             onClick={() => {
+              until.current = null;
               if (!playing && k >= n) setK(0);
               setPlaying((p) => !p);
             }}
           >
             {playing ? `⏸ ${t("playerPause")}` : `▶ ${t("playerPlay")}`}
           </button>
-          <button className="icon-btn" disabled={k >= n} onClick={() => { setPlaying(false); setK((v) => Math.min(n, v + 1)); }} aria-label={t("playerNext")} title={t("playerNext")}>▶</button>
+          <button className="icon-btn" disabled={k >= n} onClick={nextStep} aria-label={t("playerNext")} title={t(smooth ? "playerNextSmooth" : "playerNext")}>▶</button>
           <select value={speed} onChange={(e) => setSpeed(+e.target.value)} aria-label={t("playerSpeed")} title={t("playerSpeed")}>
+            <option value={0.1}>0,1×</option>
+            <option value={0.15}>0,15×</option>
             <option value={0.25}>0,25×</option>
             <option value={0.5}>0,5×</option>
             <option value={1}>1× ({t("playerTempo")})</option>
@@ -462,7 +483,7 @@ export function StepPlayer({
             <li key={i}>
               <button
                 className={(k === i + 1 && !frac) || (frac > 0 && k === i) ? "active" : i + 1 < k + (frac > 0 ? 1 : 0) ? "done" : ""}
-                onClick={() => { setPlaying(false); setK(i + 1); }}
+                onClick={() => (i + 1 === k + 1 && smooth && !playing ? nextStep() : (setPlaying(false), setK(i + 1)))}
               >
                 <span className="tl-n">{group ? i + 1 - group.from : i + 1}</span>
                 <span className="tl-c">{track.labels[i] || "·"}</span>

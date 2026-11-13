@@ -115,6 +115,7 @@ const STRINGS = {
   bodyTurnShort: { cs: "tělo", en: "body" },
   crossBehind: { cs: "za", en: "behind" },
   crossFront: { cs: "před", en: "in front" },
+  playerNextSmooth: { cs: "Další krok (plynule dotančit)", en: "Next step (danced smoothly)" },
   playerFollow: { cs: "sledovat pár zblízka", en: "follow the couple" },
   playerTrail: { cs: "všechny stopy", en: "all footprints" },
   playerStartShort: { cs: "start", en: "start" },
