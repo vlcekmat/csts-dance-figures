@@ -95,8 +95,8 @@ const STRINGS = {
   playerCount: { cs: "doba", en: "count" },
   playerPosition: { cs: "postavení", en: "position" },
   playerHint: {
-    cs: "Pohled shora. Každý tanečník má obě nohy tam, kde právě stojí: plná noha = nese váhu, obrys = volná noha (L/P = levá/pravá). Přerušovaný obrys s číslem = kam půjde další krok. Plná čára = už ušlá dráha, slabá = zbývající. Čára mezi partnery = držení v uzavřeném postavení. Vzájemná vzdálenost partnerů je schematická.",
-    en: "Top view. Each dancer's feet are where they stand now: filled foot = carries the weight, outline = free foot (L/R = left/right). Dashed outline with a number = where the next step goes. Solid line = path danced so far, faint = still to go. Line between partners = closed hold. The distance between partners is schematic.",
+    cs: "Pohled shora. Každý tanečník má obě nohy tam, kde právě stojí: plná noha = nese váhu, obrys = volná noha (L/P = levá/pravá). Přerušovaný obrys s číslem = kam půjde další krok. Čárkovaná noha se značkou ✕ = překřížená za / před druhou nohu. Oblouček „tělo ↺/↻“ = tělo je natočené víc doleva / doprava než chodidla. Plná čára = už ušlá dráha, slabá = zbývající. Čára mezi partnery = držení v uzavřeném postavení. Vzájemná vzdálenost partnerů je schematická.",
+    en: "Top view. Each dancer's feet are where they stand now: filled foot = carries the weight, outline = free foot (L/R = left/right). Dashed outline with a number = where the next step goes. Dashed foot marked ✕ = crossed behind / in front of the other foot. Arc “body ↺/↻” = the body is turned more to the left / right than the feet. Solid line = path danced so far, faint = still to go. Line between partners = closed hold. The distance between partners is schematic.",
   },
   playerHintManOnly: {
     cs: "Pohled shora na kroky pána (dámské kroky pro tuto figuru nejsou k dispozici): plná noha = nese váhu, obrys = volná noha (L/P = levá/pravá), přerušovaný obrys = kam půjde další krok.",
@@ -112,6 +112,9 @@ const STRINGS = {
   routinePlayerShow: { cs: "Zobrazit animaci", en: "Show the animation" },
   routinePlayerHide: { cs: "Skrýt animaci", en: "Hide the animation" },
   routinePlayerHint: { cs: "Pár tančí celou sestavu po krocích tak, jak je rozmístěná v plánku (směrování, posuny, přípravné kroky).", en: "The couple dances the whole routine step by step as placed in the plan (alignment, moves, preparatory steps)." },
+  bodyTurnShort: { cs: "tělo", en: "body" },
+  crossBehind: { cs: "za", en: "behind" },
+  crossFront: { cs: "před", en: "in front" },
   playerFollow: { cs: "sledovat pár zblízka", en: "follow the couple" },
   playerTrail: { cs: "všechny stopy", en: "all footprints" },
   playerStartShort: { cs: "start", en: "start" },

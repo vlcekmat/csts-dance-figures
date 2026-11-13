@@ -241,13 +241,6 @@
      "query": "slow waltz Closed Change on RF"
     },
     {
-     "id": "DoEuEbCVWE0",
-     "title": "Waltz LF Closed Change Foot Pattern",
-     "channel": "DIY BALLROOM",
-     "length": "2:10",
-     "query": "slow waltz Closed Change on RF"
-    },
-    {
      "id": "WWpOlYmtyzU",
      "title": "Waltz Basic Steps | Natural and Reverse Turns, Closed Change",
      "channel": "Egils Smagris",
@@ -421,13 +414,6 @@
      "title": "Waltz LF Closed Change Foot Pattern",
      "channel": "DIY BALLROOM",
      "length": "2:10",
-     "query": "slow waltz Closed Change on LF"
-    },
-    {
-     "id": "EvwZRrnkI3g",
-     "title": "16 of 16. Slow Waltz Routine - short side: Weave from PP open, Cross Hesitation + LF Closed Change",
-     "channel": "danceway",
-     "length": "0:27",
      "query": "slow waltz Closed Change on LF"
     },
     {
@@ -1177,13 +1163,6 @@
      "title": "Waltz Progressive Chasse to Right",
      "channel": "iDanceTW",
      "length": "0:45",
-     "query": "slow waltz Progressive Chasse to R"
-    },
-    {
-     "id": "ROZ1XBffG3k",
-     "title": "Progressive Chasse & Outside Change to Promenade | Waltz",
-     "channel": "jtballroom",
-     "length": "1:34",
      "query": "slow waltz Progressive Chasse to R"
     }
    ],
@@ -2386,13 +2365,6 @@
    },
    "videos": [
     {
-     "id": "WiKjEL1yMqY",
-     "title": "How to Dance Waltz - Backward Lock | Intermediate Dance Routine",
-     "channel": "Egils Smagris",
-     "length": "10:00",
-     "query": "slow waltz Backward Lock"
-    },
-    {
      "id": "vTuYpfE6h8A",
      "title": "Backward and Forward Lock step. Slow Waltz",
      "channel": "FollowWAYcom",
@@ -2400,10 +2372,17 @@
      "query": "slow waltz Backward Lock"
     },
     {
-     "id": "3oUazZYOW0E",
-     "title": "Forward and Backward Lockstep",
-     "channel": "BallroomDanceUK",
-     "length": "1:02",
+     "id": "deXKXWEj1XY",
+     "title": "Waltz Back Lock",
+     "channel": "iDanceTW",
+     "length": "0:55",
+     "query": "slow waltz Backward Lock"
+    },
+    {
+     "id": "o81jNfU0iLg",
+     "title": "Waltz Back Lock | Tip#87 | Ballroom Dance | Dallas Texas",
+     "channel": "Image Ballroom Dance Academy",
+     "length": "7:38",
      "query": "slow waltz Backward Lock"
     }
    ],
@@ -2844,13 +2823,6 @@
    },
    "videos": [
     {
-     "id": "EVH2sVV3abw",
-     "title": "The Natural Spin Turn | Ferruggia - Koehler | The WDSF Academy",
-     "channel": "TheWDSFAcademy",
-     "length": "6:54",
-     "query": "slow waltz Natural Spin Turn"
-    },
-    {
      "id": "7dSYVEA9gMs",
      "title": "How To Dance Waltz Basic? | Natural Spin Turn",
      "channel": "Egils Smagris",
@@ -2858,11 +2830,18 @@
      "query": "slow waltz Natural Spin Turn"
     },
     {
-     "id": "wd4bvyG2D70",
-     "title": "The Natural Spin Turn in 3 Levels 🥉🥈🥇 Slow Waltz - Ballroom Lesson",
-     "channel": "Matteo Del Gaone",
-     "length": "19:46",
-     "query": "slow waltz Natural Spin Turn"
+     "id": "lATiYxXO4fk",
+     "title": "Waltz   Natural Spin Turn",
+     "channel": "Sway Ballroom Dance",
+     "length": "0:15",
+     "query": "slow waltz Spin Turn"
+    },
+    {
+     "id": "ssdbLOWqj3w",
+     "title": "Natural Spin turn waltz",
+     "channel": "liptonx",
+     "length": "0:25",
+     "query": "slow waltz Spin Turn"
     }
    ],
    "floor": {
@@ -3309,17 +3288,17 @@
      "query": "slow waltz Telemark"
     },
     {
-     "id": "Zy5trys-LOw",
-     "title": "Open Telemark and Wing, Slow Waltz",
-     "channel": "FollowWAYcom",
-     "length": "0:41",
+     "id": "dYcATs-rOSs",
+     "title": "Waltz Closed Telemark",
+     "channel": "iDanceTW",
+     "length": "0:45",
      "query": "slow waltz Telemark"
     },
     {
-     "id": "Zo52hHcMSwA",
-     "title": "Waltz Basic Lesson | Wing, Open Telemark, Cross Hesitation, Outside Spin",
-     "channel": "Egils Smagris",
-     "length": "9:37",
+     "id": "dClhBi_W4wY",
+     "title": "Slow Waltz Telemark with Right Weave",
+     "channel": "Tanzschule Künkler",
+     "length": "0:25",
      "query": "slow waltz Telemark"
     }
    ],
@@ -3483,13 +3462,6 @@
      "query": "slow waltz Telemark to PP"
     },
     {
-     "id": "eliAOmliWNA",
-     "title": "Quick Closed Natural Telemark from PP",
-     "channel": "SYLLABUS Dance-Sport",
-     "length": "0:28",
-     "query": "slow waltz Telemark to PP"
-    },
-    {
      "id": "KfnMd92FeE4",
      "title": "Telespin, Telemark, Throwaway Oversway to Promenade - Slow Waltz",
      "channel": "jtballroom",
@@ -3629,17 +3601,17 @@
      "query": "slow waltz Weave from PP"
     },
     {
-     "id": "W22sjPNkbTY",
-     "title": "Running Weave from PP - Slow Waltz",
-     "channel": "SYLLABUS Dance-Sport",
-     "length": "0:35",
+     "id": "bQSbu2UCPkE",
+     "title": "Weave from Promenade & Outside Change to Promenade - Slow Waltz",
+     "channel": "jtballroom",
+     "length": "2:22",
      "query": "slow waltz Weave from PP"
     },
     {
-     "id": "m9-dBXQB0C8",
-     "title": "Running Natural Weave from PP - Slow Waltz",
-     "channel": "SYLLABUS Dance-Sport",
-     "length": "0:30",
+     "id": "xThLZ2yvNKM",
+     "title": "Bronze Waltz - Weave from Promenade Position Ballroom Dance Lesson",
+     "channel": "Andy Wong",
+     "length": "3:57",
      "query": "slow waltz Weave from PP"
     }
    ],
@@ -3872,17 +3844,17 @@
      "query": "slow waltz Impetus"
     },
     {
-     "id": "hLWmJ_NyzJw",
-     "title": "Slow Waltz Open Impetus with Weave",
-     "channel": "Tanzschule Künkler",
-     "length": "0:15",
+     "id": "gkKHjO9BypE",
+     "title": "Waltz - Right Turn - Impetus turn details",
+     "channel": "Michael Popovich",
+     "length": "0:34",
      "query": "slow waltz Impetus"
     },
     {
-     "id": "wGnC4QzwAKE",
-     "title": "Slow Waltz: Open Impetus and Wing",
-     "channel": "DSHBallroomLatin",
-     "length": "0:16",
+     "id": "Ah2bLA692JY",
+     "title": "Waltz Closed Impetus",
+     "channel": "iDanceTW",
+     "length": "0:59",
      "query": "slow waltz Impetus"
     }
    ],
@@ -4047,13 +4019,6 @@
     }
    },
    "videos": [
-    {
-     "id": "3RuK2kpTsP0",
-     "title": "Waltz   Closed Impetus",
-     "channel": "Sway Ballroom Dance",
-     "length": "0:14",
-     "query": "slow waltz Impetus to PP"
-    },
     {
      "id": "HfV_4OIBVwY",
      "title": "Silver Waltz - Open Impetus to Weave from p.p. Ballroom Dance Lesson",
@@ -4347,13 +4312,6 @@
      "title": "How to Dance Waltz Outside Spin / Ballroom Dance",
      "channel": "Egils Smagris",
      "length": "2:40",
-     "query": "slow waltz Outside Spin"
-    },
-    {
-     "id": "XVAi9P6vwUA",
-     "title": "Open Natural & Outside Spin - Slow Waltz",
-     "channel": "jtballroom",
-     "length": "2:31",
      "query": "slow waltz Outside Spin"
     },
     {
@@ -4691,29 +4649,7 @@
      ]
     }
    },
-   "videos": [
-    {
-     "id": "T6J_Fklhy-E",
-     "title": "Natural Turn, Spin Turn Turning Lock to Promenade - Slow Waltz",
-     "channel": "jtballroom",
-     "length": "2:10",
-     "query": "slow waltz Reverse Turning Lock"
-    },
-    {
-     "id": "psXoXWqbUf8",
-     "title": "Turning Lock to Right Slow Waltz",
-     "channel": "FollowWAYcom",
-     "length": "0:43",
-     "query": "slow waltz Reverse Turning Lock"
-    },
-    {
-     "id": "8G-yzh9kuL8",
-     "title": "Turning Lock Slow Waltz",
-     "channel": "FollowWAYcom",
-     "length": "0:43",
-     "query": "slow waltz Reverse Turning Lock"
-    }
-   ],
+   "videos": [],
    "floor": {
     "title": "Reverse Turning Lock",
     "url": "",
@@ -4930,13 +4866,6 @@
    },
    "videos": [
     {
-     "id": "tMOVw8ZWcA0",
-     "title": "Waltz Silver Level Choreography | Weave from PP, Wing",
-     "channel": "Egils Smagris",
-     "length": "4:57",
-     "query": "slow waltz Wing from PP"
-    },
-    {
      "id": "Zo52hHcMSwA",
      "title": "Waltz Basic Lesson | Wing, Open Telemark, Cross Hesitation, Outside Spin",
      "channel": "Egils Smagris",
@@ -5051,29 +4980,7 @@
     ],
     "variants": {}
    },
-   "videos": [
-    {
-     "id": "EvwZRrnkI3g",
-     "title": "16 of 16. Slow Waltz Routine - short side: Weave from PP open, Cross Hesitation + LF Closed Change",
-     "channel": "danceway",
-     "length": "0:27",
-     "query": "slow waltz Cross Hesitation from PP"
-    },
-    {
-     "id": "O73whC-Fchs",
-     "title": "How to Dance Waltz Open Impetus, Cross Hesitation and Outside Spin",
-     "channel": "Egils Smagris",
-     "length": "10:00",
-     "query": "slow waltz Cross Hesitation from PP"
-    },
-    {
-     "id": "yM7Iiz0kDQg",
-     "title": "Waltz Open Impetus and Cross Hesitation",
-     "channel": "iDanceTW",
-     "length": "0:57",
-     "query": "slow waltz Cross Hesitation from PP"
-    }
-   ],
+   "videos": [],
    "floor": {
     "title": "Cross Hesitation From Pp",
     "url": "",
@@ -5180,13 +5087,6 @@
      "title": "Waltz Reverse Pivot",
      "channel": "iDanceTW",
      "length": "0:47",
-     "query": "slow waltz Reverse Pivot"
-    },
-    {
-     "id": "ThTAAZ4_OQk",
-     "title": "Inverted Reverse Pivot-Slow Waltz",
-     "channel": "SYLLABUS Dance-Sport",
-     "length": "0:30",
      "query": "slow waltz Reverse Pivot"
     }
    ],
@@ -5312,20 +5212,6 @@
     }
    },
    "videos": [
-    {
-     "id": "LITpDCpJ5Tc",
-     "title": "Waltz Gold Level Choreography | Bounce Fallaway, Fallaway Natural Turn",
-     "channel": "Egils Smagris",
-     "length": "4:52",
-     "query": "slow waltz Fallaway Natural Turn"
-    },
-    {
-     "id": "0tyX_UTfxRU",
-     "title": "Waltz Gold Level Choreography | Fallaway Natural Turn, Turning Lock to Right",
-     "channel": "Egils Smagris",
-     "length": "4:45",
-     "query": "slow waltz Fallaway Natural Turn"
-    },
     {
      "id": "nhB9Y1gpu6k",
      "title": "Open Natural, Chasse Roll, Running Spin Turn, Back Check, Rudulph Fallaway & Contra Check - Waltz",
@@ -5705,13 +5591,6 @@
    },
    "videos": [
     {
-     "id": "9bnwxgVWQf0",
-     "title": "Waltz Basic Routine with Running Spin Turn | Dance Lesson",
-     "channel": "Egils Smagris",
-     "length": "6:49",
-     "query": "slow waltz Running Spin Turn"
-    },
-    {
      "id": "I9Zd-s4OUQY",
      "title": "Waltz  - Running Spin Turn, Running Finish",
      "channel": "Egils Smagris",
@@ -5719,10 +5598,17 @@
      "query": "slow waltz Running Spin Turn"
     },
     {
-     "id": "74IbIU1sxog",
-     "title": "Waltz - Overturned Running Spin, Checked Natural Turn",
-     "channel": "Egils Smagris",
-     "length": "8:45",
+     "id": "Q1F-GJkRsvo",
+     "title": "Running Spin Turn & Chasse Roll to Right | Waltz",
+     "channel": "jtballroom",
+     "length": "2:30",
+     "query": "slow waltz Running Spin Turn"
+    },
+    {
+     "id": "FGAgC2moY_w",
+     "title": "Running Spin Turn & Syncopated Side Cross | Waltz",
+     "channel": "jtballroom",
+     "length": "2:43",
      "query": "slow waltz Running Spin Turn"
     }
    ],
@@ -5912,13 +5798,6 @@
      "title": "How to Dance Waltz Overturned Running Spin Turn with Whisk and Quick Wing Ending",
      "channel": "Egils Smagris",
      "length": "7:44",
-     "query": "slow waltz Overturned Running Spin Turn"
-    },
-    {
-     "id": "LGxnWHGA2SU",
-     "title": "Overturned Spin Turn Casey and Artem International Slow Waltz",
-     "channel": "Imperial Ballroom Dance Company",
-     "length": "0:11",
      "query": "slow waltz Overturned Running Spin Turn"
     }
    ],
@@ -6174,13 +6053,6 @@
      "title": "Running Cross Chasse in Waltz | Бегущее кросс шассе в Медленном вальсе",
      "channel": "LOTOS Dance Club | Танцевальный клуб \"Лотос\" в Новогиреево",
      "length": "0:18",
-     "query": "slow waltz Running Cross Chasse"
-    },
-    {
-     "id": "vIX1SFupnjc",
-     "title": "Waltz Gold Star Level Choreography | Running Cross Chasse, Tumble Turn, Travelling Contra Check",
-     "channel": "Egils Smagris",
-     "length": "5:51",
      "query": "slow waltz Running Cross Chasse"
     }
    ],
@@ -6519,13 +6391,6 @@
      "query": "slow waltz Hover Corte"
     },
     {
-     "id": "M6fA0ksDDoc",
-     "title": "Waltz - Hover Corte and Back Whisk | Dance Routine",
-     "channel": "Egils Smagris",
-     "length": "10:52",
-     "query": "slow waltz Hover Corte"
-    },
-    {
      "id": "9h6gURN_tzE",
      "title": "Waltz Hover Corte (6 counts)",
      "channel": "iDanceTW",
@@ -6686,13 +6551,6 @@
      "title": "Waltz or Foxtrot, Curved Feather,  We Help Each Other, Dance Lesson Notes",
      "channel": "bonita brockert",
      "length": "3:32",
-     "query": "slow waltz Curved Feather"
-    },
-    {
-     "id": "tGjvQwHNo0w",
-     "title": "Curved Feather",
-     "channel": "SYLLABUS Dance-Sport",
-     "length": "0:27",
      "query": "slow waltz Curved Feather"
     }
    ],
@@ -6902,13 +6760,6 @@
      "query": "slow waltz Outside Swivel"
     },
     {
-     "id": "HyoIvpT2SF4",
-     "title": "Open Natural, Outside Swivel & Contra Check | Waltz",
-     "channel": "jtballroom",
-     "length": "3:26",
-     "query": "slow waltz Outside Swivel"
-    },
-    {
      "id": "dUyBwWy19nI",
      "title": "How to Dance Waltz - Outside Swivel and Reverse Pivot",
      "channel": "Egils Smagris",
@@ -6986,25 +6837,25 @@
    },
    "videos": [
     {
-     "id": "3eDc0iWnMx0",
-     "title": "Waltz Basic Lesson | Progressive Chasse to Right | after Hesitation Change; after Wing",
-     "channel": "Egils Smagris",
-     "length": "9:09",
-     "query": "slow waltz Progressive Chasse to L"
+     "id": "zU7Is0W4HcQ",
+     "title": "12  Chasse Roll to Left in Waltz",
+     "channel": "DIY BALLROOM",
+     "length": "2:31",
+     "query": "slow waltz Chasse to Left"
     },
     {
-     "id": "IYx3w2nlCyI",
-     "title": "Waltz Progressive Chasse to Right",
-     "channel": "iDanceTW",
-     "length": "0:45",
-     "query": "slow waltz Progressive Chasse to L"
+     "id": "PFs18Y-wBPc",
+     "title": "Running Spin Turn & Chasse Roll to Left | Waltz",
+     "channel": "jtballroom",
+     "length": "2:06",
+     "query": "slow waltz Chasse to Left"
     },
     {
-     "id": "9YIwrpFYwPU",
-     "title": "Marcus & Karen Hilton- Progressive Chasse to Right (Slow Waltz)",
-     "channel": "Ballroomdancer Maryland",
-     "length": "4:24",
-     "query": "slow waltz Progressive Chasse to L"
+     "id": "QYuiNSaTzzI",
+     "title": "Waltz Tutorial | Chasse To The Left | Tip #82 | Image Ballroom Dance Academy | Dallas Texas",
+     "channel": "Image Ballroom Dance Academy",
+     "length": "7:24",
+     "query": "slow waltz Chasse to Left"
     }
    ],
    "floor": {
@@ -7123,29 +6974,7 @@
     ],
     "variants": {}
    },
-   "videos": [
-    {
-     "id": "yEG8RIYQxBM",
-     "title": "Bounce Fallaway with Weave Ending",
-     "channel": "SYLLABUS Dance-Sport",
-     "length": "0:40",
-     "query": "slow waltz Bounce Fallaway and Weave Ending"
-    },
-    {
-     "id": "H_XLEOjFkoQ",
-     "title": "Bounce Fallaway with Weave Ending",
-     "channel": "SYLLABUS Dance-Sport",
-     "length": "0:42",
-     "query": "slow waltz Bounce Fallaway and Weave Ending"
-    },
-    {
-     "id": "hwDggOR8sXI",
-     "title": "Slow Foxtrot Gold Level Choreography | Bounce Fallaway with Weave Ending",
-     "channel": "Egils Smagris",
-     "length": "4:58",
-     "query": "slow waltz Bounce Fallaway and Weave Ending"
-    }
-   ],
+   "videos": [],
    "floor": {
     "title": "Bounce Fallaway With Weave Ending",
     "url": "",
@@ -7330,13 +7159,6 @@
      "query": "slow waltz Quick Open Reverse"
     },
     {
-     "id": "xrMDsUxXIqs",
-     "title": "Evolution of the Reverse Turn in Waltz | Open Reverse ~ Quick Open Reverse & Slip Pivot",
-     "channel": "jtballroom",
-     "length": "13:21",
-     "query": "slow waltz Quick Open Reverse"
-    },
-    {
      "id": "gPuC3NRqm3A",
      "title": "WALTZ | Promenade, Chasse, Quick Open Reverse, Double Reverse Spin & Throwaway",
      "channel": "jtballroom",
@@ -7493,13 +7315,6 @@
    },
    "videos": [
     {
-     "id": "Uyik9a-nvkI",
-     "title": "Ballroom Tango Walk Technique | Balance and Staccato",
-     "channel": "Beyond Ballroom",
-     "length": "15:26",
-     "query": "ballroom tango Tango Walk"
-    },
-    {
      "id": "5H4NjZ53Osw",
      "title": "Tango Walk Made Easy: 3 Key Elements Of The Tango Walk",
      "channel": "Tango Space - Argentine Tango School",
@@ -7557,29 +7372,7 @@
     ],
     "variants": {}
    },
-   "videos": [
-    {
-     "id": "Ty83Lwd49AU",
-     "title": "Alternative Entry in PP - Tango",
-     "channel": "SYLLABUS Dance-Sport",
-     "length": "0:23",
-     "query": "ballroom tango Tap - Alternative Entries to PP"
-    },
-    {
-     "id": "1_TcHuwH0uo",
-     "title": "Tango - Chase with Chasse, Whisk, Step & Tap in PP",
-     "channel": "Egils Smagris",
-     "length": "8:55",
-     "query": "ballroom tango Tap - Alternative Entries to PP"
-    },
-    {
-     "id": "cKfRsIMJLK8",
-     "title": "How to Dance Tango Basic / Tap to Promenade Position",
-     "channel": "Egils Smagris",
-     "length": "2:45",
-     "query": "ballroom tango Tap - Alternative Entries to PP"
-    }
-   ],
+   "videos": [],
    "floor": {
     "title": "Tap - Alternative Entries To Pp",
     "url": "",
@@ -7884,13 +7677,6 @@
      "title": "Tango dance steps 27. Brush tap",
      "channel": "DancePartner2000",
      "length": "0:11",
-     "query": "ballroom tango Brush Tap"
-    },
-    {
-     "id": "e4zJvwx6ng0",
-     "title": "Tango Basic (Silver) Choreography - Natural Promenade Turn to Rock Turn, Brush Tap",
-     "channel": "Egils Smagris",
-     "length": "4:18",
      "query": "ballroom tango Brush Tap"
     }
    ],
@@ -8331,13 +8117,6 @@
      "channel": "BallroomDancers.com",
      "length": "7:04",
      "query": "ballroom tango Closed Promenade"
-    },
-    {
-     "id": "sN5mh6MbEEY",
-     "title": "Ballroom Technique - The Tango Closed Promenade - Day 17",
-     "channel": "Natural Dance Method",
-     "length": "16:44",
-     "query": "ballroom tango Closed Promenade"
     }
    ],
    "floor": {
@@ -8580,13 +8359,6 @@
    },
    "videos": [
     {
-     "id": "6T9zkTBqBg4",
-     "title": "How to Dance Tango Closed Promenade, Back Open Promenade, Open Promenade / Tango Routine",
-     "channel": "Egils Smagris",
-     "length": "19:39",
-     "query": "ballroom tango Open Promenade"
-    },
-    {
      "id": "SXTK5h8NK2g",
      "title": "Tango Open Promenade",
      "channel": "iDanceTW",
@@ -8594,10 +8366,17 @@
      "query": "ballroom tango Open Promenade"
     },
     {
-     "id": "sq4gsmAnnvg",
-     "title": "Tango Dance Lesson | Back Open Promenade",
-     "channel": "Egils Smagris",
-     "length": "8:05",
+     "id": "7rLxaf-lsKg",
+     "title": "Open promenade in Tango | Открытый променад в Танго",
+     "channel": "LOTOS Dance Club | Танцевальный клуб \"Лотос\" в Новогиреево",
+     "length": "0:25",
+     "query": "ballroom tango Open Promenade"
+    },
+    {
+     "id": "cDxTc_pjyC0",
+     "title": "Tango dance steps 13. Open promenade",
+     "channel": "DancePartner2000",
+     "length": "0:16",
      "query": "ballroom tango Open Promenade"
     }
    ],
@@ -10036,17 +9815,17 @@
      "query": "ballroom tango Natural Twist Turn from PP"
     },
     {
-     "id": "96xfn1-aF64",
-     "title": "Tango Natural Twist Turn | Intermediate Dance Routine",
+     "id": "VfxpS2F_SaA",
+     "title": "How to Dance Tango - Natural Promenade Turn to Natural Twist Turn",
      "channel": "Egils Smagris",
-     "length": "7:38",
+     "length": "9:27",
      "query": "ballroom tango Natural Twist Turn from PP"
     },
     {
-     "id": "IMV7NllcWfY",
-     "title": "Tango dance steps 17. Natural twist turn",
-     "channel": "DancePartner2000",
-     "length": "0:06",
+     "id": "qo1fnM_j1z0",
+     "title": "Tango - Big Top to PP,  Natural Twist Turn",
+     "channel": "Egils Smagris",
+     "length": "9:06",
      "query": "ballroom tango Natural Twist Turn from PP"
     }
    ],
@@ -10208,13 +9987,6 @@
      "query": "ballroom tango Natural Turn from PP"
     },
     {
-     "id": "VfxpS2F_SaA",
-     "title": "How to Dance Tango - Natural Promenade Turn to Natural Twist Turn",
-     "channel": "Egils Smagris",
-     "length": "9:27",
-     "query": "ballroom tango Natural Turn from PP"
-    },
-    {
      "id": "dwEDvBTYljk",
      "title": "Tango Am Promenade with Natural Turn",
      "channel": "Jim Keenan",
@@ -10331,29 +10103,7 @@
      ]
     }
    },
-   "videos": [
-    {
-     "id": "1AwO5pq33Do",
-     "title": "Tango for Beginners Lesson 1 | Walks, Progressive Link, Closed Promenade",
-     "channel": "Egils Smagris",
-     "length": "7:11",
-     "query": "ballroom tango Promenade Link turned to R"
-    },
-    {
-     "id": "2GYzBoEg9BM",
-     "title": "International Tango: Basic Walk , Link , Closed Promenade ( Perfect way done )",
-     "channel": "Imperial Ballroom Dance Company",
-     "length": "0:17",
-     "query": "ballroom tango Promenade Link turned to R"
-    },
-    {
-     "id": "QM9jG6HtZUU",
-     "title": "Tango dance steps 19. Promenade link",
-     "channel": "DancePartner2000",
-     "length": "0:14",
-     "query": "ballroom tango Promenade Link turned to R"
-    }
-   ],
+   "videos": [],
    "floor": {
     "title": "Promenade Link Turned To Right",
     "url": "",
@@ -10459,29 +10209,7 @@
      ]
     }
    },
-   "videos": [
-    {
-     "id": "1AwO5pq33Do",
-     "title": "Tango for Beginners Lesson 1 | Walks, Progressive Link, Closed Promenade",
-     "channel": "Egils Smagris",
-     "length": "7:11",
-     "query": "ballroom tango Promenade Link turned to L"
-    },
-    {
-     "id": "QM9jG6HtZUU",
-     "title": "Tango dance steps 19. Promenade link",
-     "channel": "DancePartner2000",
-     "length": "0:14",
-     "query": "ballroom tango Promenade Link turned to L"
-    },
-    {
-     "id": "MYTa3lq5KPs",
-     "title": "Tango Promenade Link",
-     "channel": "iDanceTW",
-     "length": "0:46",
-     "query": "ballroom tango Promenade Link turned to L"
-    }
-   ],
+   "videos": [],
    "floor": {
     "title": "Promenade Link Turned To Left",
     "url": "",
@@ -10803,13 +10531,6 @@
      "query": "ballroom tango Fallaway in Promenade"
     },
     {
-     "id": "6AEWykpVG7s",
-     "title": "Fallaway Promenade Tango  in 3 Levels 🥉🥈🥇 Ballroom Lesson",
-     "channel": "Matteo Del Gaone",
-     "length": "14:07",
-     "query": "ballroom tango Fallaway in Promenade"
-    },
-    {
      "id": "4j-bAY1Rn1g",
      "title": "Tango dance steps 25. Fallaway promenade",
      "channel": "DancePartner2000",
@@ -11035,13 +10756,6 @@
    },
    "videos": [
     {
-     "id": "RUO1v28t7aY",
-     "title": "Tango Fallaway Whisk | Dance Routine",
-     "channel": "Egils Smagris",
-     "length": "7:52",
-     "query": "ballroom tango Whisk"
-    },
-    {
      "id": "nJE-fX6E5bM",
      "title": "Chasse, Whisk, Quarter Beat and Promenade Link - Tango",
      "channel": "jtballroom",
@@ -11049,10 +10763,17 @@
      "query": "ballroom tango Whisk"
     },
     {
-     "id": "1tGEKrAj6MU",
-     "title": "Fallaway Whisk - Tango",
-     "channel": "jtballroom",
-     "length": "2:06",
+     "id": "LDoAJNo02i4",
+     "title": "Whisk in Tango | Виск в Танго",
+     "channel": "LOTOS Dance Club | Танцевальный клуб \"Лотос\" в Новогиреево",
+     "length": "0:22",
+     "query": "ballroom tango Whisk"
+    },
+    {
+     "id": "1_TcHuwH0uo",
+     "title": "Tango - Chase with Chasse, Whisk, Step & Tap in PP",
+     "channel": "Egils Smagris",
+     "length": "8:55",
      "query": "ballroom tango Whisk"
     }
    ],
@@ -11139,13 +10860,6 @@
    },
    "videos": [
     {
-     "id": "1UPUFwWsD6g",
-     "title": "Tango Gold Level Choreography | Passing Natural Turn, Back Whisk",
-     "channel": "Egils Smagris",
-     "length": "4:23",
-     "query": "ballroom tango Back Whisk"
-    },
-    {
      "id": "AvaW6zCG2rA",
      "title": "Back whisk in Tango | Виск назад в Танго",
      "channel": "LOTOS Dance Club | Танцевальный клуб \"Лотос\" в Новогиреево",
@@ -11153,10 +10867,10 @@
      "query": "ballroom tango Back Whisk"
     },
     {
-     "id": "n4NN7V9Vz5E",
-     "title": "Back Whisk",
-     "channel": "BallroomDanceUK",
-     "length": "0:31",
+     "id": "-qBen607Ink",
+     "title": "Tango: Chasse to the right with back whisk",
+     "channel": "MobileTanzschule Berlin",
+     "length": "2:11",
      "query": "ballroom tango Back Whisk"
     }
    ],
@@ -11271,13 +10985,6 @@
      "title": "How to dance Progressive Side Step Reverse turn with Rocks and Back Corte ending in Tango",
      "channel": "Flow Dance Studios",
      "length": "1:52",
-     "query": "ballroom tango Progressive Side Step Reverse Turn"
-    },
-    {
-     "id": "zNnUSRg96Mc",
-     "title": "How to Dance Progressive Side Step Reverse Turn in Tango",
-     "channel": "Sunnie Page",
-     "length": "15:28",
      "query": "ballroom tango Progressive Side Step Reverse Turn"
     }
    ],
@@ -11898,29 +11605,7 @@
      ]
     }
    },
-   "videos": [
-    {
-     "id": "XyOPhvh0L5Q",
-     "title": "How to Dance Tango? | Outside Swivel 1 | Silver Routine",
-     "channel": "Egils Smagris",
-     "length": "2:46",
-     "query": "ballroom tango Outside Swivel - method 1: after Open Finish and Turning to R"
-    },
-    {
-     "id": "gYJ4LZlkGKY",
-     "title": "Outside Swivel & Closed Finish | Dance Lesson | Easy Follow Along - Tango - Intermediate",
-     "channel": "Flow Dance Studios",
-     "length": "0:35",
-     "query": "ballroom tango Outside Swivel - method 1: after Open Finish and Turning to R"
-    },
-    {
-     "id": "2Ok-JdYpDng",
-     "title": "How to Dance Tango? | Outside Swivel 2 | Gold Routine",
-     "channel": "Egils Smagris",
-     "length": "3:03",
-     "query": "ballroom tango Outside Swivel - method 1: after Open Finish and Turning to R"
-    }
-   ],
+   "videos": [],
    "floor": {
     "title": "Outside Swivel Method 1 - After Open Finish And Turning To R",
     "url": "",
@@ -12020,29 +11705,7 @@
      ]
     }
    },
-   "videos": [
-    {
-     "id": "2Ok-JdYpDng",
-     "title": "How to Dance Tango? | Outside Swivel 2 | Gold Routine",
-     "channel": "Egils Smagris",
-     "length": "3:03",
-     "query": "ballroom tango Outside Swivel - method 2: Turning to L"
-    },
-    {
-     "id": "OlfZ_74qed8",
-     "title": "Tango dance steps 23. Outside swivel to L",
-     "channel": "DancePartner2000",
-     "length": "0:15",
-     "query": "ballroom tango Outside Swivel - method 2: Turning to L"
-    },
-    {
-     "id": "E-oSwZXE5r8",
-     "title": "Tango dance steps 22. Outside swivel",
-     "channel": "DancePartner2000",
-     "length": "0:12",
-     "query": "ballroom tango Outside Swivel - method 2: Turning to L"
-    }
-   ],
+   "videos": [],
    "floor": {
     "title": "Outside Swivel Method 2 - After Open Finish And Turning To Left",
     "url": "",
@@ -12531,13 +12194,6 @@
      "query": "ballroom tango Five Step"
     },
     {
-     "id": "5Du-pzWwLHM",
-     "title": "Tango Five Step to Oversway | Dance Routine",
-     "channel": "Egils Smagris",
-     "length": "11:36",
-     "query": "ballroom tango Five Step"
-    },
-    {
      "id": "GkSt5iATGEw",
      "title": "Tango dance steps 32. Five step",
      "channel": "DancePartner2000",
@@ -12759,20 +12415,6 @@
      "channel": "LOTOS Dance Club | Танцевальный клуб \"Лотос\" в Новогиреево",
      "length": "0:25",
      "query": "ballroom tango Mini Five Step"
-    },
-    {
-     "id": "GkSt5iATGEw",
-     "title": "Tango dance steps 32. Five step",
-     "channel": "DancePartner2000",
-     "length": "0:14",
-     "query": "ballroom tango Mini Five Step"
-    },
-    {
-     "id": "qmYQ5TVHycg",
-     "title": "Tango Five Step",
-     "channel": "iDanceTW",
-     "length": "0:45",
-     "query": "ballroom tango Mini Five Step"
     }
    ],
    "floor": {
@@ -12916,17 +12558,10 @@
      "query": "ballroom tango Quick Reverse Turn"
     },
     {
-     "id": "ryot0Ma5aeo",
-     "title": "Tango Dance Lesson | Basic Reverse Turn, Open Reverse Turn, Syncopated Basic Reverse Turn",
-     "channel": "Egils Smagris",
-     "length": "9:04",
-     "query": "ballroom tango Quick Reverse Turn"
-    },
-    {
-     "id": "WiYt6aHz23Q",
-     "title": "Tango   Reverse Turn with Outside Swivel",
-     "channel": "Sway Ballroom Dance",
-     "length": "0:19",
+     "id": "9bfSEktUcz0",
+     "title": "Tango Reverse Quick Turn",
+     "channel": "ARCBallroom2010",
+     "length": "0:28",
      "query": "ballroom tango Quick Reverse Turn"
     }
    ],
@@ -13284,24 +12919,10 @@
    },
    "videos": [
     {
-     "id": "kRVw6d8xrR8",
-     "title": "Quick Open Telemark form PP SW",
-     "channel": "Stanley Chan",
-     "length": "1:28",
-     "query": "ballroom tango Telemark to PP"
-    },
-    {
-     "id": "5E6GI8_qt3o",
-     "title": "Quick Open Telemark from PP-Slow Waltz",
-     "channel": "SYLLABUS Dance-Sport",
-     "length": "0:29",
-     "query": "ballroom tango Telemark to PP"
-    },
-    {
-     "id": "jWiMcs4leS4",
-     "title": "Tango - Telemark to Same Foot Lunge",
-     "channel": "Egils Smagris",
-     "length": "11:15",
+     "id": "KQkG1C0vSjg",
+     "title": "Telemark from shadow to promenade. Tango. ",
+     "channel": "Lisa and Israel Ballroom and Latin Dance",
+     "length": "0:19",
      "query": "ballroom tango Telemark to PP"
     }
    ],
@@ -13415,13 +13036,6 @@
      "channel": "Long-Steps Dancing",
      "length": "6:57",
      "query": "ballroom tango Open Natural Turn"
-    },
-    {
-     "id": "iS5dH0LDpuw",
-     "title": "Open Natural From Promenade & Outside Spin - Tango",
-     "channel": "jtballroom",
-     "length": "2:11",
-     "query": "ballroom tango Open Natural Turn"
     }
    ],
    "floor": {
@@ -13523,13 +13137,6 @@
      "title": "How to Dance Tango - Outside Spin",
      "channel": "Egils Smagris",
      "length": "2:05",
-     "query": "ballroom tango Outside Spin"
-    },
-    {
-     "id": "E-TVBbcCzGk",
-     "title": "How to Dance Tango - Outside Spin to Rock Turn | Intermediate Dance Routine",
-     "channel": "Egils Smagris",
-     "length": "11:32",
      "query": "ballroom tango Outside Spin"
     },
     {
@@ -13638,13 +13245,6 @@
     }
    },
    "videos": [
-    {
-     "id": "96xfn1-aF64",
-     "title": "Tango Natural Twist Turn | Intermediate Dance Routine",
-     "channel": "Egils Smagris",
-     "length": "7:38",
-     "query": "ballroom tango Natural Twist Turn"
-    },
     {
      "id": "VfxpS2F_SaA",
      "title": "How to Dance Tango - Natural Promenade Turn to Natural Twist Turn",
@@ -13831,24 +13431,24 @@
    },
    "videos": [
     {
-     "id": "Fc4Fkrspn_M",
-     "title": "Chase in Tango and Practice Routine | Ballroom dance",
-     "channel": "Egils Smagris",
-     "length": "5:57",
+     "id": "PYUCy-2EAXc",
+     "title": "Tango The Chase",
+     "channel": "iDanceTW",
+     "length": "0:48",
      "query": "ballroom tango Chase"
     },
     {
-     "id": "XbFBWJFzb8o",
-     "title": "Learn basic Tango - the Chase - for fun at home",
-     "channel": "vivaladance",
-     "length": "13:38",
+     "id": "Gaf_f7IVirQ",
+     "title": "TANGO: CHASE | OUTSIDE SWIVEL | BIGTOP | BASIC REVERSE TURN (SYNCOPATED)",
+     "channel": "Roma & Marta ",
+     "length": "1:30",
      "query": "ballroom tango Chase"
     },
     {
-     "id": "5DF_m86rnQY",
-     "title": "Tango Double Chase, Stalking Walks, Big Top, Chasse close",
-     "channel": "Charlie Hu",
-     "length": "0:23",
+     "id": "uvSuyLQ4POM",
+     "title": "Marcus & Karen Hilton-Chase (step 1-5) in Tango",
+     "channel": "Ballroomdancer Maryland",
+     "length": "3:51",
      "query": "ballroom tango Chase"
     }
    ],
@@ -14035,17 +13635,17 @@
      "query": "ballroom tango Chase Alternative Ending: Chase, Chasse"
     },
     {
-     "id": "5DF_m86rnQY",
-     "title": "Tango Double Chase, Stalking Walks, Big Top, Chasse close",
-     "channel": "Charlie Hu",
-     "length": "0:23",
+     "id": "9oeL61SfzZs",
+     "title": "TANGO - Chase, Chasse & Fallaway Foot Change",
+     "channel": "BallroomDanceUK",
+     "length": "0:44",
      "query": "ballroom tango Chase Alternative Ending: Chase, Chasse"
     },
     {
-     "id": "Mq0rlAxg7BA",
-     "title": "Tango Gold Level Choreography | Chase with Chasse and Whisk, Natural Twist Turn",
+     "id": "1_TcHuwH0uo",
+     "title": "Tango - Chase with Chasse, Whisk, Step & Tap in PP",
      "channel": "Egils Smagris",
-     "length": "4:28",
+     "length": "8:55",
      "query": "ballroom tango Chase Alternative Ending: Chase, Chasse"
     }
    ],
@@ -14212,20 +13812,6 @@
      "channel": "Egils Smagris",
      "length": "8:55",
      "query": "ballroom tango Chase Alternative Ending - method 1: Whisk, fwd step to PP"
-    },
-    {
-     "id": "yQL7A219SGY",
-     "title": "Tango, Changing Levels, Chase to Chasse and Whisk",
-     "channel": "bonita brockert",
-     "length": "15:28",
-     "query": "ballroom tango Chase Alternative Ending - method 1: Whisk, fwd step to PP"
-    },
-    {
-     "id": "jnXRU3BFSIk",
-     "title": "Marcus & Karen Hilton- Chasse to Right & Whisk to PP in Tango",
-     "channel": "Ballroomdancer Maryland",
-     "length": "2:39",
-     "query": "ballroom tango Chase Alternative Ending - method 1: Whisk, fwd step to PP"
     }
    ],
    "floor": {
@@ -14309,29 +13895,7 @@
     ],
     "variants": {}
    },
-   "videos": [
-    {
-     "id": "nJE-fX6E5bM",
-     "title": "Chasse, Whisk, Quarter Beat and Promenade Link - Tango",
-     "channel": "jtballroom",
-     "length": "1:53",
-     "query": "ballroom tango Chase Alternative Ending - method 2: Whisk, Promenade Link"
-    },
-    {
-     "id": "6o0voFOmE04",
-     "title": "Tango Gold Level Choreography | Oversway, Chasse, Whisk, Promenade Link",
-     "channel": "Egils Smagris",
-     "length": "4:27",
-     "query": "ballroom tango Chase Alternative Ending - method 2: Whisk, Promenade Link"
-    },
-    {
-     "id": "epkWfX9L5A4",
-     "title": "Natural Promenade Turn (Finishing Closed) to Chase & Reverse Turn - Tango",
-     "channel": "jtballroom",
-     "length": "2:13",
-     "query": "ballroom tango Chase Alternative Ending - method 2: Whisk, Promenade Link"
-    }
-   ],
+   "videos": [],
    "floor": {
     "title": "Chase Alternative Endings - Method 2 Whisk Promenade Link",
     "url": "",
@@ -14413,29 +13977,7 @@
     ],
     "variants": {}
    },
-   "videos": [
-    {
-     "id": "1_TcHuwH0uo",
-     "title": "Tango - Chase with Chasse, Whisk, Step & Tap in PP",
-     "channel": "Egils Smagris",
-     "length": "8:55",
-     "query": "ballroom tango Chase Alternative Ending - method 3: Whisk, close step to PP"
-    },
-    {
-     "id": "epkWfX9L5A4",
-     "title": "Natural Promenade Turn (Finishing Closed) to Chase & Reverse Turn - Tango",
-     "channel": "jtballroom",
-     "length": "2:13",
-     "query": "ballroom tango Chase Alternative Ending - method 3: Whisk, close step to PP"
-    },
-    {
-     "id": "5DF_m86rnQY",
-     "title": "Tango Double Chase, Stalking Walks, Big Top, Chasse close",
-     "channel": "Charlie Hu",
-     "length": "0:23",
-     "query": "ballroom tango Chase Alternative Ending - method 3: Whisk, close step to PP"
-    }
-   ],
+   "videos": [],
    "floor": {
     "title": "Chase Alternative Endings - Method 3 Whisk Close Step To Pp",
     "url": "",
@@ -14511,20 +14053,6 @@
      "title": "Tango - Chase with Chasse and Progressive Link",
      "channel": "Egils Smagris",
      "length": "6:24",
-     "query": "ballroom tango Chase Alternative Ending - method 4: Progressive Link"
-    },
-    {
-     "id": "qfrLARLhbUs",
-     "title": "Tango dance steps 04. Progressive link",
-     "channel": "DancePartner2000",
-     "length": "0:13",
-     "query": "ballroom tango Chase Alternative Ending - method 4: Progressive Link"
-    },
-    {
-     "id": "BdQgDhlq9kg",
-     "title": "Progressive Tango (4/4)",
-     "channel": "Sway Ballroom Dance",
-     "length": "0:21",
      "query": "ballroom tango Chase Alternative Ending - method 4: Progressive Link"
     }
    ],
@@ -14616,13 +14144,6 @@
      "channel": "jtballroom",
      "length": "3:33",
      "query": "ballroom tango Reverse Pivot"
-    },
-    {
-     "id": "E5PN-Kex-ac",
-     "title": "Tango dance steps 31. Fallaway reverse and slip pivot",
-     "channel": "DancePartner2000",
-     "length": "0:14",
-     "query": "ballroom tango Reverse Pivot"
     }
    ],
    "floor": {
@@ -14686,25 +14207,11 @@
    },
    "videos": [
     {
-     "id": "Uyik9a-nvkI",
-     "title": "Ballroom Tango Walk Technique | Balance and Staccato",
-     "channel": "Beyond Ballroom",
-     "length": "15:26",
-     "query": "ballroom tango In – Out (type of Sudden Movement without Pressure, see TSP)"
-    },
-    {
-     "id": "ptutFU4wk2k",
-     "title": "International Ballroom TANGO - Can You Handle This Energy?",
-     "channel": "Panache Tango and 2 more",
-     "length": "1:54",
-     "query": "ballroom tango In – Out (type of Sudden Movement without Pressure, see TSP)"
-    },
-    {
-     "id": "VRCOxfkvyeI",
-     "title": "Tango Dance with Danger",
-     "channel": "Ballroom Beats by EVO",
-     "length": "4:17",
-     "query": "ballroom tango In – Out (type of Sudden Movement without Pressure, see TSP)"
+     "id": "BZKZ6cOl-aQ",
+     "title": "TANGO music | Love Runs Out",
+     "channel": "Ballroom Nation",
+     "length": "1:36",
+     "query": "ballroom tango In – Out"
     }
    ]
   },
@@ -15352,24 +14859,10 @@
    },
    "videos": [
     {
-     "id": "tSXAyPksWPc",
-     "title": "Viennese Waltz Change Step Natural to Reverse",
-     "channel": "Brett Long",
-     "length": "1:15",
-     "query": "viennese waltz LF Backward Change Step - Natural to Reverse"
-    },
-    {
-     "id": "EDaKXkqtLWo",
-     "title": "Chasse Change Natural to Reverse - Viennese Waltz",
-     "channel": "SYLLABUS Dance-Sport",
-     "length": "0:20",
-     "query": "viennese waltz LF Backward Change Step - Natural to Reverse"
-    },
-    {
-     "id": "T_G5dPMMF2I",
-     "title": "Directions and Smooth Rotation in Viennese Waltz | Natural Turn, Closed Change, Reverse Turn",
-     "channel": "Egils Smagris",
-     "length": "11:32",
+     "id": "OFy_eyprVIM",
+     "title": "Viennese Waltz   Back Progressive Changes",
+     "channel": "Sway Ballroom Dance",
+     "length": "0:13",
      "query": "viennese waltz LF Backward Change Step - Natural to Reverse"
     }
    ],
@@ -15449,24 +14942,10 @@
    },
    "videos": [
     {
-     "id": "tSXAyPksWPc",
-     "title": "Viennese Waltz Change Step Natural to Reverse",
-     "channel": "Brett Long",
-     "length": "1:15",
-     "query": "viennese waltz RF Backward Change Step - Reverse to Natural"
-    },
-    {
-     "id": "EDaKXkqtLWo",
-     "title": "Chasse Change Natural to Reverse - Viennese Waltz",
-     "channel": "SYLLABUS Dance-Sport",
-     "length": "0:20",
-     "query": "viennese waltz RF Backward Change Step - Reverse to Natural"
-    },
-    {
-     "id": "T_G5dPMMF2I",
-     "title": "Directions and Smooth Rotation in Viennese Waltz | Natural Turn, Closed Change, Reverse Turn",
-     "channel": "Egils Smagris",
-     "length": "11:32",
+     "id": "OFy_eyprVIM",
+     "title": "Viennese Waltz   Back Progressive Changes",
+     "channel": "Sway Ballroom Dance",
+     "length": "0:13",
      "query": "viennese waltz RF Backward Change Step - Reverse to Natural"
     }
    ],
@@ -15549,13 +15028,6 @@
      "title": "Slow Foxtrot for Beginners Lesson 1 | Feather Step, Three Step",
      "channel": "Egils Smagris",
      "length": "8:16",
-     "query": "slow foxtrot Feather Step"
-    },
-    {
-     "id": "GsXbluBb4A8",
-     "title": "The Feather Step in 3 Levels 🥉🥈🥇 Slow Foxtrot - Ballroom Lesson",
-     "channel": "Matteo Del Gaone",
-     "length": "16:35",
      "query": "slow foxtrot Feather Step"
     },
     {
@@ -15921,13 +15393,6 @@
      "channel": "Dovgan Dance",
      "length": "0:21",
      "query": "slow foxtrot Feather Finish"
-    },
-    {
-     "id": "dPmXb5l76kY",
-     "title": "Slow Foxtrot Basic Routine 1 | Feather Finish, Three Step, Natural Turn, Weave",
-     "channel": "Egils Smagris",
-     "length": "6:27",
-     "query": "slow foxtrot Feather Finish"
     }
    ],
    "floor": {
@@ -16014,13 +15479,6 @@
      "title": "Foxtrot Open Telemark and Feather Ending",
      "channel": "iDanceTW",
      "length": "0:47",
-     "query": "slow foxtrot Feather Ending"
-    },
-    {
-     "id": "2TmwcKkvD88",
-     "title": "Slow Foxtrot Gold Level Choreography | Feather Ending, Fallaway Reverse Slip Pivot",
-     "channel": "Egils Smagris",
-     "length": "4:36",
      "query": "slow foxtrot Feather Ending"
     },
     {
@@ -16121,13 +15579,6 @@
      "title": "Foxtrot Hover Feather",
      "channel": "iDanceTW",
      "length": "0:44",
-     "query": "slow foxtrot Hover Feather"
-    },
-    {
-     "id": "c6mm9qFHXWQ",
-     "title": "Slow Foxtrot Gold Level Choreography | Extended Reverse Wave, Hover Feather",
-     "channel": "Egils Smagris",
-     "length": "4:57",
      "query": "slow foxtrot Hover Feather"
     },
     {
@@ -16408,13 +15859,6 @@
    },
    "videos": [
     {
-     "id": "jZHYxguPomU",
-     "title": "Reverse Turn Slow Foxtrot in 3 levels 🥉🥈🥇 Ballroom Lesson #ballroomdance #dancesport",
-     "channel": "Matteo Del Gaone",
-     "length": "13:56",
-     "query": "slow foxtrot Reverse Turn"
-    },
-    {
      "id": "50WB86Izugw",
      "title": "Slow Foxtrot Reverse Turn | Maintaining Centre & Body Position",
      "channel": "jtballroom",
@@ -16532,13 +15976,6 @@
      "title": "Foxtrot Basic Weave",
      "channel": "iDanceTW",
      "length": "0:47",
-     "query": "slow foxtrot Basic Weave"
-    },
-    {
-     "id": "dPmXb5l76kY",
-     "title": "Slow Foxtrot Basic Routine 1 | Feather Finish, Three Step, Natural Turn, Weave",
-     "channel": "Egils Smagris",
-     "length": "6:27",
      "query": "slow foxtrot Basic Weave"
     }
    ],
@@ -17166,20 +16603,6 @@
      "channel": "Egils Smagris",
      "length": "6:38",
      "query": "slow foxtrot Heel Pull Finish"
-    },
-    {
-     "id": "3OYCYJ4h4IE",
-     "title": "Heel Pull and Curved Feather - Slow Fox / Slow Foxtrot",
-     "channel": "SYLLABUS Dance-Sport",
-     "length": "0:34",
-     "query": "slow foxtrot Heel Pull Finish"
-    },
-    {
-     "id": "TpPw13eC4K4",
-     "title": "Slow Foxtrot - Heel Pull, Rumba Cross, Drop Fallaway Ronde",
-     "channel": "Egils Smagris",
-     "length": "8:06",
-     "query": "slow foxtrot Heel Pull Finish"
     }
    ],
    "floor": {
@@ -17265,13 +16688,6 @@
     "variants": {}
    },
    "videos": [
-    {
-     "id": "3SKC2MDXt68",
-     "title": "Slow Foxtrot Basic Routine 7 | Fallaway Reverse, Whisk and Weave",
-     "channel": "Egils Smagris",
-     "length": "6:21",
-     "query": "slow foxtrot Whisk"
-    },
     {
      "id": "t1N16vhGPfo",
      "title": "Slowfox  whisk and natural wave",
@@ -17383,20 +16799,6 @@
      "title": "Back Whisk in Slow Fox | Виск назад в Медленном фокстроте",
      "channel": "LOTOS Dance Club | Танцевальный клуб \"Лотос\" в Новогиреево",
      "length": "0:24",
-     "query": "slow foxtrot Back Whisk"
-    },
-    {
-     "id": "n4NN7V9Vz5E",
-     "title": "Back Whisk",
-     "channel": "BallroomDanceUK",
-     "length": "0:31",
-     "query": "slow foxtrot Back Whisk"
-    },
-    {
-     "id": "4JhQT_tb3l0",
-     "title": "Waltz Basic Lesson - Whisk, Back Whisk, Chasse",
-     "channel": "Egils Smagris",
-     "length": "10:44",
      "query": "slow foxtrot Back Whisk"
     }
    ],
@@ -17608,17 +17010,17 @@
      "query": "slow foxtrot Double Reverse Spin"
     },
     {
-     "id": "aMrLj99k_Ns",
-     "title": "Slow Foxtrot: Feather Step, Double Reverse Overspin, Reverse Wave, Open Impetus",
-     "channel": "Roma & Marta ",
-     "length": "1:29",
+     "id": "MM05PtH8zgI",
+     "title": "2014 03 24 Fox Trot Level 3 Week 4   Double Reverse Spin",
+     "channel": "Ron Henning",
+     "length": "0:29",
      "query": "slow foxtrot Double Reverse Spin"
     },
     {
-     "id": "vbqd_CV2VXs",
-     "title": "Learn Foxtrot: Feather Step | Reverse Wave | Open Impetus | Double Reverse Turn Over Spin",
-     "channel": "Roma & Marta ",
-     "length": "1:58",
+     "id": "sKK2CuEmwzM",
+     "title": "Double Reverse Spin in Slow Fox | Двойной левый спин в Медленном фокстроте",
+     "channel": "LOTOS Dance Club | Танцевальный клуб \"Лотос\" в Новогиреево",
+     "length": "0:25",
      "query": "slow foxtrot Double Reverse Spin"
     }
    ],
@@ -17708,24 +17110,17 @@
    },
    "videos": [
     {
-     "id": "xmLIMSAAXOs",
-     "title": "How to dance Open Telemark, Hover Telemark, Basic Weave in Foxtrot",
-     "channel": "Flow Dance Studios",
-     "length": "1:53",
-     "query": "slow foxtrot Telemark"
-    },
-    {
-     "id": "6sqkUrEN7V8",
-     "title": "SLOW FOXTROT - Open Telemark, Fallaway, Weave",
-     "channel": "BallroomDanceUK",
-     "length": "0:43",
-     "query": "slow foxtrot Telemark"
-    },
-    {
-     "id": "8BzYE4FQQIY",
-     "title": "Natural Telemark in Slow Fox | Правый телемарк в Медленном фокстроте",
-     "channel": "LOTOS Dance Club | Танцевальный клуб \"Лотос\" в Новогиреево",
+     "id": "LkjZ29kgPtU",
+     "title": "Slowfox Telemark",
+     "channel": "Tanzschule Künkler",
      "length": "0:28",
+     "query": "slow foxtrot Telemark"
+    },
+    {
+     "id": "x2-9MqIwabs",
+     "title": "Foxtrot Closed Telemark",
+     "channel": "iDanceTW",
+     "length": "0:45",
      "query": "slow foxtrot Telemark"
     }
    ],
@@ -17892,17 +17287,17 @@
      "query": "slow foxtrot Telemark to PP"
     },
     {
-     "id": "eliAOmliWNA",
-     "title": "Quick Closed Natural Telemark from PP",
-     "channel": "SYLLABUS Dance-Sport",
-     "length": "0:28",
+     "id": "ozVTkZgXEIo",
+     "title": "Foxtrot Open Telemark and Feather Ending",
+     "channel": "iDanceTW",
+     "length": "0:47",
      "query": "slow foxtrot Telemark to PP"
     },
     {
-     "id": "5E6GI8_qt3o",
-     "title": "Quick Open Telemark from PP-Slow Waltz",
-     "channel": "SYLLABUS Dance-Sport",
-     "length": "0:29",
+     "id": "LTL7ssh07EI",
+     "title": "Open TELEMARK vs  IMPETUS in Foxtrot in less than 1 minute",
+     "channel": "Dance Spirit Club",
+     "length": "0:50",
      "query": "slow foxtrot Telemark to PP"
     }
    ],
@@ -18191,29 +17586,7 @@
     "notes": [],
     "variants": {}
    },
-   "videos": [
-    {
-     "id": "IWe_3GSaaMs",
-     "title": "Slowfox Hover Telemark",
-     "channel": "Tanzschule Künkler",
-     "length": "0:16",
-     "query": "slow foxtrot Hover Telemark to PP"
-    },
-    {
-     "id": "nB5yjKeKF3Q",
-     "title": "Open telemark (Telemark to PP) in Slow Fox | Открытый телемарк (Телемарк в ПП) в Медленном фокстроте",
-     "channel": "LOTOS Dance Club | Танцевальный клуб \"Лотос\" в Новогиреево",
-     "length": "0:26",
-     "query": "slow foxtrot Hover Telemark to PP"
-    },
-    {
-     "id": "HyQ_Qc8YHuE",
-     "title": "Hover Telemark in Slow Fox | Ховер телемарк в Медленном фокстроте",
-     "channel": "LOTOS Dance Club | Танцевальный клуб \"Лотос\" в Новогиреево",
-     "length": "0:24",
-     "query": "slow foxtrot Hover Telemark to PP"
-    }
-   ],
+   "videos": [],
    "floor": {
     "title": "Hover Telemark to PP",
     "url": "https://www.dancecentral.info/ballroom/international-style/slow-foxtrot/hover-telemark-to-pp",
@@ -18522,17 +17895,10 @@
      "query": "slow foxtrot Natural Hover Telemark"
     },
     {
-     "id": "4k8ewKqXnWQ",
-     "title": "Slow Foxtrot Gold Level Choreography | Natural Hover Telemark, Fallaway Reverse Slip Pivot",
-     "channel": "Egils Smagris",
-     "length": "5:21",
-     "query": "slow foxtrot Natural Hover Telemark"
-    },
-    {
-     "id": "s-JvhDkYEB0",
-     "title": "Slow Foxtrot Gold Level Choreography | Natural Hover Telemark, Natural Twist Turn",
-     "channel": "Egils Smagris",
-     "length": "4:56",
+     "id": "YFO_RV7xPVQ",
+     "title": "Foxtrot Leader, Hover Telemark into Natural Telemark",
+     "channel": "The Music Dancing Feet Partnership",
+     "length": "2:24",
      "query": "slow foxtrot Natural Hover Telemark"
     }
    ],
@@ -18710,13 +18076,6 @@
    },
    "videos": [
     {
-     "id": "HiKZC_q0ASo",
-     "title": "Silver Slow Foxtrot - Natural Turn-Open Impetus-Weave Ballroom Dance Lesson",
-     "channel": "Andy Wong",
-     "length": "5:00",
-     "query": "slow foxtrot Impetus"
-    },
-    {
      "id": "NhTOY3yEK3A",
      "title": "Foxtrot Closed Impetus and Feather Finish",
      "channel": "iDanceTW",
@@ -18815,25 +18174,25 @@
    },
    "videos": [
     {
-     "id": "nB5yjKeKF3Q",
-     "title": "Open telemark (Telemark to PP) in Slow Fox | Открытый телемарк (Телемарк в ПП) в Медленном фокстроте",
-     "channel": "LOTOS Dance Club | Танцевальный клуб \"Лотос\" в Новогиреево",
-     "length": "0:26",
+     "id": "Y-Ppp-POTFc",
+     "title": "Foxtrot Impetus to Promenade/Impetus to Semi",
+     "channel": "All Things Dancing",
+     "length": "0:05",
      "query": "slow foxtrot Impets to PP"
     },
     {
-     "id": "hSA_mMvtFMQ",
-     "title": "Slow Foxtrot Gold Star Level Choreography | Double Natural Spin, Outside Change to PP",
-     "channel": "Egils Smagris",
-     "length": "4:38",
-     "query": "slow foxtrot Impets to PP"
+     "id": "HiKZC_q0ASo",
+     "title": "Silver Slow Foxtrot - Natural Turn-Open Impetus-Weave Ballroom Dance Lesson",
+     "channel": "Andy Wong",
+     "length": "5:00",
+     "query": "slow foxtrot Open Impetus"
     },
     {
-     "id": "teSTBIAYKuY",
-     "title": "Slow Foxtrot Gold Level Choreography |  Curved Feather, Outside Change to PP, Weave from PP",
-     "channel": "Egils Smagris",
-     "length": "5:15",
-     "query": "slow foxtrot Impets to PP"
+     "id": "rCg8kP5gD64",
+     "title": "Foxtrot Open Impetus",
+     "channel": "iDanceTW",
+     "length": "0:44",
+     "query": "slow foxtrot Open Impetus"
     }
    ],
    "floor": {
@@ -18935,13 +18294,6 @@
    },
    "videos": [
     {
-     "id": "ynhZl_wytpw",
-     "title": "Slow Foxtrot Intermediate Routine with Running Weave from PP",
-     "channel": "Egils Smagris",
-     "length": "8:38",
-     "query": "slow foxtrot Weave from PP"
-    },
-    {
      "id": "H7wMaF7MdjQ",
      "title": "Foxtrot Weave from PP",
      "channel": "iDanceTW",
@@ -18949,10 +18301,17 @@
      "query": "slow foxtrot Weave from PP"
     },
     {
-     "id": "EJvUjx_urIM",
-     "title": "Slow Foxtrot Gold Level Choreography | Running Weave from PP, Natural Zig Zag from PP",
+     "id": "Rj18M82AuO8",
+     "title": "Extended Weave From Promenade - Slow Foxtrot",
+     "channel": "jtballroom",
+     "length": "2:37",
+     "query": "slow foxtrot Weave from PP"
+    },
+    {
+     "id": "ZSgc4U7TKL8",
+     "title": "Slow Foxtrot Basic Lesson - Basic Weave, Weave from Promenade Position, Natural Weave",
      "channel": "Egils Smagris",
-     "length": "4:38",
+     "length": "7:46",
      "query": "slow foxtrot Weave from PP"
     }
    ],
@@ -19150,13 +18509,6 @@
      "channel": "Egils Smagris",
      "length": "5:47",
      "query": "slow foxtrot Hover Cross"
-    },
-    {
-     "id": "tMu-w2j7nBY",
-     "title": "Slowfox Hovercross",
-     "channel": "Tanzschule Künkler",
-     "length": "0:18",
-     "query": "slow foxtrot Hover Cross"
     }
    ],
    "floor": {
@@ -19327,13 +18679,6 @@
     "variants": {}
    },
    "videos": [
-    {
-     "id": "lZxAdHAQ5CI",
-     "title": "Top Spin in Foxtrot | Slowfox Routine",
-     "channel": "Egils Smagris",
-     "length": "10:43",
-     "query": "slow foxtrot Top Spin"
-    },
     {
      "id": "H3Iq2xdKE8c",
      "title": "Slowfox Top Spin",
@@ -19772,13 +19117,6 @@
      "title": "Slow Foxtrot..Reverse wave",
      "channel": "unclejed คนหน้าตาดี",
      "length": "0:18",
-     "query": "slow foxtrot Reverse Wave"
-    },
-    {
-     "id": "9Dt0voN5AuM",
-     "title": "Slow Foxtrot Bronze Level Choreography | Reverse Wave, Basic Weave",
-     "channel": "Egils Smagris",
-     "length": "4:57",
      "query": "slow foxtrot Reverse Wave"
     }
    ],
@@ -20277,29 +19615,7 @@
      ]
     }
    },
-   "videos": [
-    {
-     "id": "7RNWmlPNI74",
-     "title": "Slow Foxtrot Gold Level Choreography | Natural Weave, Natural Twist Turn",
-     "channel": "Egils Smagris",
-     "length": "4:54",
-     "query": "slow foxtrot Natural Twist Turn with Natural Weave"
-    },
-    {
-     "id": "jzlMig26UL4",
-     "title": "Natural Twist Turn in Slow Fox | Правый твист поворот в Медленном фокстроте",
-     "channel": "LOTOS Dance Club | Танцевальный клуб \"Лотос\" в Новогиреево",
-     "length": "0:30",
-     "query": "slow foxtrot Natural Twist Turn with Natural Weave"
-    },
-    {
-     "id": "c4Kjafc7D9k",
-     "title": "Foxtrot Natural Twist Turn",
-     "channel": "iDanceTW",
-     "length": "0:50",
-     "query": "slow foxtrot Natural Twist Turn with Natural Weave"
-    }
-   ],
+   "videos": [],
    "floor": {
     "title": "Natural Twist Turn With Natural Weave",
     "url": "",
@@ -20505,29 +19821,7 @@
      ]
     }
    },
-   "videos": [
-    {
-     "id": "I6fw8dczbrg",
-     "title": "Foxtrot Three Step, Natural Turn, Closed Impetus, Feather Finish",
-     "channel": "Caltech Ballroom Dance Team",
-     "length": "1:23",
-     "query": "slow foxtrot Natural Twist Turn with Impetus and Feather Finish"
-    },
-    {
-     "id": "xHS6gHi8XGA",
-     "title": "Slow Foxtrot Basic Routine 3 | Curved Feather, Running Finish, Natural Twist Turn",
-     "channel": "Egils Smagris",
-     "length": "6:30",
-     "query": "slow foxtrot Natural Twist Turn with Impetus and Feather Finish"
-    },
-    {
-     "id": "dPmXb5l76kY",
-     "title": "Slow Foxtrot Basic Routine 1 | Feather Finish, Three Step, Natural Turn, Weave",
-     "channel": "Egils Smagris",
-     "length": "6:27",
-     "query": "slow foxtrot Natural Twist Turn with Impetus and Feather Finish"
-    }
-   ],
+   "videos": [],
    "floor": {
     "title": "Natural Twist Turn With Closed Impetus And Feather Finish",
     "url": "",
@@ -20711,29 +20005,7 @@
      ]
     }
    },
-   "videos": [
-    {
-     "id": "ggCtVzDwlPw",
-     "title": "Foxtrot Basics: How to Dance the Natural Twist Turn EASY",
-     "channel": "Dance Spirit Club",
-     "length": "2:04",
-     "query": "slow foxtrot Natural Twist turn with Impetus to PP"
-    },
-    {
-     "id": "jzlMig26UL4",
-     "title": "Natural Twist Turn in Slow Fox | Правый твист поворот в Медленном фокстроте",
-     "channel": "LOTOS Dance Club | Танцевальный клуб \"Лотос\" в Новогиреево",
-     "length": "0:30",
-     "query": "slow foxtrot Natural Twist turn with Impetus to PP"
-    },
-    {
-     "id": "c4Kjafc7D9k",
-     "title": "Foxtrot Natural Twist Turn",
-     "channel": "iDanceTW",
-     "length": "0:50",
-     "query": "slow foxtrot Natural Twist turn with Impetus to PP"
-    }
-   ],
+   "videos": [],
    "floor": {
     "title": "Natural Twist Turn With Impetus To Pp",
     "url": "",
@@ -20872,13 +20144,6 @@
      "title": "Natural Zig-Zag from PP in Slow Fox | Правый зигзаг из ПП в Медленном фокстроте",
      "channel": "LOTOS Dance Club | Танцевальный клуб \"Лотос\" в Новогиреево",
      "length": "0:28",
-     "query": "slow foxtrot Natural Zig Zag from PP"
-    },
-    {
-     "id": "EJvUjx_urIM",
-     "title": "Slow Foxtrot Gold Level Choreography | Running Weave from PP, Natural Zig Zag from PP",
-     "channel": "Egils Smagris",
-     "length": "4:38",
      "query": "slow foxtrot Natural Zig Zag from PP"
     }
    ],
@@ -21167,13 +20432,6 @@
      "channel": "Andy Wong",
      "length": "5:01",
      "query": "slow foxtrot Curved Feather"
-    },
-    {
-     "id": "xHS6gHi8XGA",
-     "title": "Slow Foxtrot Basic Routine 3 | Curved Feather, Running Finish, Natural Twist Turn",
-     "channel": "Egils Smagris",
-     "length": "6:30",
-     "query": "slow foxtrot Curved Feather"
     }
    ],
    "floor": {
@@ -21310,20 +20568,6 @@
      "title": "Curved Feather from PP -  Slow Foxtrot",
      "channel": "SYLLABUS Dance-Sport",
      "length": "0:32",
-     "query": "slow foxtrot Curved Feather from PP"
-    },
-    {
-     "id": "teSTBIAYKuY",
-     "title": "Slow Foxtrot Gold Level Choreography |  Curved Feather, Outside Change to PP, Weave from PP",
-     "channel": "Egils Smagris",
-     "length": "5:15",
-     "query": "slow foxtrot Curved Feather from PP"
-    },
-    {
-     "id": "erU6WJOYQ2k",
-     "title": "Gold Slow Foxtrot - Curved Feather-Back Feather-Feather Finish Ballroom Dance Lesson",
-     "channel": "Andy Wong",
-     "length": "5:01",
      "query": "slow foxtrot Curved Feather from PP"
     }
    ],
@@ -21537,13 +20781,6 @@
      "channel": "LOTOS Dance Club | Танцевальный клуб \"Лотос\" в Новогиреево",
      "length": "0:26",
      "query": "slow foxtrot Fallaway Reverse and Slip Pivot"
-    },
-    {
-     "id": "4k8ewKqXnWQ",
-     "title": "Slow Foxtrot Gold Level Choreography | Natural Hover Telemark, Fallaway Reverse Slip Pivot",
-     "channel": "Egils Smagris",
-     "length": "5:21",
-     "query": "slow foxtrot Fallaway Reverse and Slip Pivot"
     }
    ],
    "floor": {
@@ -21744,13 +20981,6 @@
    },
    "videos": [
     {
-     "id": "hwDggOR8sXI",
-     "title": "Slow Foxtrot Gold Level Choreography | Bounce Fallaway with Weave Ending",
-     "channel": "Egils Smagris",
-     "length": "4:58",
-     "query": "slow foxtrot Bounce Fallaway and Weave Ending"
-    },
-    {
      "id": "OZ1QfhmL5TU",
      "title": "Gold Slow Foxtrot - Bounce Fallaway and Weave Ending Ballroom Dance Lesson",
      "channel": "Andy Wong",
@@ -21758,10 +20988,17 @@
      "query": "slow foxtrot Bounce Fallaway and Weave Ending"
     },
     {
-     "id": "4cs6FvzWoTQ",
-     "title": "Slow Foxtrot Basic Routine 5 | Feather Step, Bounce Fallaway with Weave Ending",
-     "channel": "Egils Smagris",
-     "length": "5:07",
+     "id": "mQK7LVUhNRM",
+     "title": "Foxtrot Bounce Fallaway with Weave Ending",
+     "channel": "iDanceTW",
+     "length": "0:41",
+     "query": "slow foxtrot Bounce Fallaway and Weave Ending"
+    },
+    {
+     "id": "MsCQ-AtkaaI",
+     "title": "Bounce Fallaway with Weave Ending in Slow Fox | Баунс фоллевэй с плетение-окончанием в Фокстроте",
+     "channel": "LOTOS Dance Club | Танцевальный клуб \"Лотос\" в Новогиреево",
+     "length": "0:31",
      "query": "slow foxtrot Bounce Fallaway and Weave Ending"
     }
    ],
@@ -22009,29 +21246,7 @@
      ]
     }
    },
-   "videos": [
-    {
-     "id": "ynhZl_wytpw",
-     "title": "Slow Foxtrot Intermediate Routine with Running Weave from PP",
-     "channel": "Egils Smagris",
-     "length": "8:38",
-     "query": "slow foxtrot Running Weave from PP"
-    },
-    {
-     "id": "EJvUjx_urIM",
-     "title": "Slow Foxtrot Gold Level Choreography | Running Weave from PP, Natural Zig Zag from PP",
-     "channel": "Egils Smagris",
-     "length": "4:38",
-     "query": "slow foxtrot Running Weave from PP"
-    },
-    {
-     "id": "CFDKQjX4dj4",
-     "title": "Slow Foxtrot Silver Level Choreography | Running Weave from Promenade Position",
-     "channel": "Egils Smagris",
-     "length": "4:34",
-     "query": "slow foxtrot Running Weave from PP"
-    }
-   ],
+   "videos": [],
    "floor": {
     "title": "Running Weave From Pp",
     "url": "",
@@ -22191,20 +21406,6 @@
      "title": "Quick Open Reverse Turn in Slow Fox | Быстрый обратный левый поворот в Медленном фокстроте",
      "channel": "LOTOS Dance Club | Танцевальный клуб \"Лотос\" в Новогиреево",
      "length": "0:51",
-     "query": "slow foxtrot Quick Open Reverse Turn"
-    },
-    {
-     "id": "K4kvdSjD0u0",
-     "title": "Foxtrot quick open reverse",
-     "channel": "HolleighBerri",
-     "length": "0:29",
-     "query": "slow foxtrot Quick Open Reverse Turn"
-    },
-    {
-     "id": "a_HN08tdYz8",
-     "title": "Quick Open Reverse Turn",
-     "channel": "SYLLABUS Dance-Sport",
-     "length": "0:39",
      "query": "slow foxtrot Quick Open Reverse Turn"
     }
    ],
@@ -22371,29 +21572,7 @@
      ]
     }
    },
-   "videos": [
-    {
-     "id": "c6mm9qFHXWQ",
-     "title": "Slow Foxtrot Gold Level Choreography | Extended Reverse Wave, Hover Feather",
-     "channel": "Egils Smagris",
-     "length": "4:57",
-     "query": "slow foxtrot Extended Reverse Wave"
-    },
-    {
-     "id": "efSpVZkh5j4",
-     "title": "Slow Foxtrot..Reverse wave",
-     "channel": "unclejed คนหน้าตาดี",
-     "length": "0:18",
-     "query": "slow foxtrot Extended Reverse Wave"
-    },
-    {
-     "id": "nzLKq8ulf5M",
-     "title": "Gold Slow Foxtrot - Continuous Reverse Wave Ballroom Dance Lesson",
-     "channel": "Andy Wong",
-     "length": "13:38",
-     "query": "slow foxtrot Extended Reverse Wave"
-    }
-   ],
+   "videos": [],
    "floor": {
     "title": "Extended Reverse Wave",
     "url": "",
@@ -22652,13 +21831,6 @@
      "query": "slow foxtrot Reverse Pivot"
     },
     {
-     "id": "xylh3g8kPGo",
-     "title": "Foxtrot  Fallaway Reverse and Slip Pivot",
-     "channel": "iDanceTW",
-     "length": "0:44",
-     "query": "slow foxtrot Reverse Pivot"
-    },
-    {
      "id": "0alIRXQLHUc",
      "title": "Foxtrot - Reverse Pivot Turn",
      "channel": "Conrad Grebel",
@@ -22744,13 +21916,6 @@
     }
    },
    "videos": [
-    {
-     "id": "mb6L-D-uzO0",
-     "title": "Foxtrot 25 Hover Cross",
-     "channel": "mania wdsf",
-     "length": "1:48",
-     "query": "slow foxtrot Hover Corte"
-    },
     {
      "id": "7_Y2HHbrL6Y",
      "title": "Viennese Cross To Hover Corte | Slow Foxtrot",
@@ -22869,13 +22034,6 @@
      "title": "Same Foot Lunge, Reverse Pivots & Progressive Chasse | Slow Foxtrot",
      "channel": "jtballroom",
      "length": "1:33",
-     "query": "slow foxtrot Progressive Chasse to R"
-    },
-    {
-     "id": "nHtpVFSD3II",
-     "title": "Foxtrot 1 min routine - Continuous Hover Cross, Progressive Chasse Right, Natural Check, 201609",
-     "channel": "活樂養生 Sure Continuous Dance",
-     "length": "4:18",
      "query": "slow foxtrot Progressive Chasse to R"
     }
    ],
@@ -23013,13 +22171,6 @@
      "title": "Quickstep Natural Turn and Natural Turn with Hesitation | Dance at Home",
      "channel": "Egils Smagris",
      "length": "10:23",
-     "query": "quickstep Natural Turn"
-    },
-    {
-     "id": "iHAdTYyLV0A",
-     "title": "Quickstep for Beginners Lesson 3 | Natural Spin Turn",
-     "channel": "Egils Smagris",
-     "length": "5:38",
      "query": "quickstep Natural Turn"
     }
    ],
@@ -23226,13 +22377,6 @@
      "query": "quickstep Reverse Turn"
     },
     {
-     "id": "vlr5nMa8Ols",
-     "title": "Quickstep Double Reverse Turn",
-     "channel": "Mike Carrington",
-     "length": "0:58",
-     "query": "quickstep Reverse Turn"
-    },
-    {
      "id": "sdhK0rXa60Y",
      "title": "Quickstep: Spin Turn to Reverse Pivot",
      "channel": "Dinara Azimova",
@@ -23378,18 +22522,18 @@
      "query": "quickstep Progressive Chasse to R"
     },
     {
-     "id": "NUW4Cs2py0w",
-     "title": "Quickstep Progressive Chasse",
-     "channel": "iDanceTW",
-     "length": "0:49",
-     "query": "quickstep Progressive Chasse to R"
+     "id": "PZrpmXc87k4",
+     "title": "Quickstep BASIC Quarter Turn to Right and Progressive Chasse to Lock Step",
+     "channel": "Cheek2Cheek Dance",
+     "length": "0:20",
+     "query": "quickstep Chasse to Right"
     },
     {
-     "id": "tYIf5-NU-O4",
-     "title": "Progressive Chasse Quickstep",
-     "channel": "BallroomDanceUK",
-     "length": "0:59",
-     "query": "quickstep Progressive Chasse to R"
+     "id": "k8RHPJ_1avM",
+     "title": "Quarter Turn To Right and Progressive Chasse - Basic Quickstep | Quickstep For BEGINNERS",
+     "channel": "jtballroom",
+     "length": "2:23",
+     "query": "quickstep Chasse to Right"
     }
    ],
    "floor": {
@@ -23554,29 +22698,7 @@
     "notes": [],
     "variants": {}
    },
-   "videos": [
-    {
-     "id": "S9bO4i9az2c",
-     "title": "Quickstep for Beginners Lesson 1 | Quarter Turn to Right, Progressive Chasse",
-     "channel": "Egils Smagris",
-     "length": "6:50",
-     "query": "quickstep Progressive Chasse to L"
-    },
-    {
-     "id": "3C13nxpyhng",
-     "title": "Quickstep Progressive Chasse to Right",
-     "channel": "iDanceTW",
-     "length": "0:33",
-     "query": "quickstep Progressive Chasse to L"
-    },
-    {
-     "id": "NUW4Cs2py0w",
-     "title": "Quickstep Progressive Chasse",
-     "channel": "iDanceTW",
-     "length": "0:49",
-     "query": "quickstep Progressive Chasse to L"
-    }
-   ],
+   "videos": [],
    "floor": {
     "title": "Progressive Chasse",
     "url": "https://www.dancecentral.info/ballroom/international-style/quickstep/progressive-chasse",
@@ -23748,13 +22870,6 @@
     "variants": {}
    },
    "videos": [
-    {
-     "id": "8yq8yHEi8yk",
-     "title": "How to Dance Quickstep Cross Chasse | Routine and Figures",
-     "channel": "Egils Smagris",
-     "length": "7:59",
-     "query": "quickstep Cross Chasse"
-    },
     {
      "id": "1PL1kXDH0UA",
      "title": "Quickstep Cross Chasse",
@@ -24090,24 +23205,17 @@
    },
    "videos": [
     {
-     "id": "S9bO4i9az2c",
-     "title": "Quickstep for Beginners Lesson 1 | Quarter Turn to Right, Progressive Chasse",
-     "channel": "Egils Smagris",
-     "length": "6:50",
+     "id": "UaKw4KBEKbs",
+     "title": "Blitzing the Quarter Turn to Left (Heel Pivot) in Quickstep... AGAIN!",
+     "channel": "Long-Steps Dancing",
+     "length": "5:32",
      "query": "quickstep Quarter Turn to L"
     },
     {
-     "id": "HmhobImcwCI",
-     "title": "Quickstep Quarter Turn to Right",
-     "channel": "BallroomDancers.com",
-     "length": "3:35",
-     "query": "quickstep Quarter Turn to L"
-    },
-    {
-     "id": "PZrpmXc87k4",
-     "title": "Quickstep BASIC Quarter Turn to Right and Progressive Chasse to Lock Step",
-     "channel": "Cheek2Cheek Dance",
-     "length": "0:20",
+     "id": "TzEheBdaihw",
+     "title": "Blitzing the Quarter Turn to Left (Heel Pivot) in Quickstep!",
+     "channel": "Long-Steps Dancing",
+     "length": "6:52",
      "query": "quickstep Quarter Turn to L"
     }
    ],
@@ -25037,13 +24145,6 @@
      "query": "quickstep Open Natural Turn"
     },
     {
-     "id": "93PBmX78900",
-     "title": "How to Dance Quickstep - Open Telemark & Open Natural Turn | Intermediate Dance Routine",
-     "channel": "Egils Smagris",
-     "length": "8:01",
-     "query": "quickstep Open Natural Turn"
-    },
-    {
      "id": "HC1oTZ6ZPXk",
      "title": "Blitzing Open Natural Turn (taken from Promenade Position) in Quickstep!",
      "channel": "Long-Steps Dancing",
@@ -25417,20 +24518,6 @@
      "channel": "Flow Dance Studios",
      "length": "0:40",
      "query": "quickstep Hesitation Change"
-    },
-    {
-     "id": "x5jrvDBjTv8",
-     "title": "Hesitation Change SW",
-     "channel": "Stanley Chan",
-     "length": "1:29",
-     "query": "quickstep Hesitation Change"
-    },
-    {
-     "id": "FcM8dlJ1y9I",
-     "title": "Hesitation change",
-     "channel": "SYLLABUS Dance-Sport",
-     "length": "0:33",
-     "query": "quickstep Hesitation Change"
     }
    ],
    "floor": {
@@ -25694,13 +24781,6 @@
    },
    "videos": [
     {
-     "id": "f2VkrXdl7E0",
-     "title": "Intermediate Quickstep - Open Impetus, Weave from Promenade, Forward Lock",
-     "channel": "Flow Dance Studios",
-     "length": "0:39",
-     "query": "quickstep Impetus"
-    },
-    {
      "id": "4xxhSrb1rE8",
      "title": "Quickstep Closed Impetus",
      "channel": "iDanceTW",
@@ -25708,10 +24788,17 @@
      "query": "quickstep Impetus"
     },
     {
-     "id": "TU1NgriZti8",
-     "title": "Planet Ballroom® - Bronze 4 - QUICKSTEP - Figure 2 - Open Impetus",
-     "channel": "Planet Ballroom®",
-     "length": "0:42",
+     "id": "n7yBERq8ZDw",
+     "title": "Quickstep - closed impetus",
+     "channel": "KP Danceworks",
+     "length": "4:14",
+     "query": "quickstep Impetus"
+    },
+    {
+     "id": "AZyiE4aen50",
+     "title": "Quickstep - Closed Impetus, Reverse Pivot, Double Reverse Spin, Progressive Chasse to R, Back Lock",
+     "channel": "Flow Dance Studios",
+     "length": "0:54",
      "query": "quickstep Impetus"
     }
    ],
@@ -25854,29 +24941,7 @@
     ],
     "variants": {}
    },
-   "videos": [
-    {
-     "id": "f2VkrXdl7E0",
-     "title": "Intermediate Quickstep - Open Impetus, Weave from Promenade, Forward Lock",
-     "channel": "Flow Dance Studios",
-     "length": "0:39",
-     "query": "quickstep Impetus to PP"
-    },
-    {
-     "id": "4xxhSrb1rE8",
-     "title": "Quickstep Closed Impetus",
-     "channel": "iDanceTW",
-     "length": "0:39",
-     "query": "quickstep Impetus to PP"
-    },
-    {
-     "id": "TU1NgriZti8",
-     "title": "Planet Ballroom® - Bronze 4 - QUICKSTEP - Figure 2 - Open Impetus",
-     "channel": "Planet Ballroom®",
-     "length": "0:42",
-     "query": "quickstep Impetus to PP"
-    }
-   ],
+   "videos": [],
    "floor": {
     "title": "Impetus To Pp",
     "url": "",
@@ -25977,13 +25042,6 @@
      "title": "Quickstep Telemark with pendulums and Woodpecker",
      "channel": "Tanzschule Künkler",
      "length": "0:20",
-     "query": "quickstep Telemark"
-    },
-    {
-     "id": "93PBmX78900",
-     "title": "How to Dance Quickstep - Open Telemark & Open Natural Turn | Intermediate Dance Routine",
-     "channel": "Egils Smagris",
-     "length": "8:01",
      "query": "quickstep Telemark"
     }
    ],
@@ -26127,29 +25185,7 @@
     ],
     "variants": {}
    },
-   "videos": [
-    {
-     "id": "kRVw6d8xrR8",
-     "title": "Quick Open Telemark form PP SW",
-     "channel": "Stanley Chan",
-     "length": "1:28",
-     "query": "quickstep Telemark to PP"
-    },
-    {
-     "id": "5E6GI8_qt3o",
-     "title": "Quick Open Telemark from PP-Slow Waltz",
-     "channel": "SYLLABUS Dance-Sport",
-     "length": "0:29",
-     "query": "quickstep Telemark to PP"
-    },
-    {
-     "id": "x2Gs_WI5Wzg",
-     "title": "Telemark to PP",
-     "channel": "SYLLABUS Dance-Sport",
-     "length": "0:31",
-     "query": "quickstep Telemark to PP"
-    }
-   ],
+   "videos": [],
    "floor": {
     "title": "Telemark To Pp",
     "url": "",
@@ -26237,29 +25273,7 @@
     ],
     "variants": {}
    },
-   "videos": [
-    {
-     "id": "eHOgrhxFW_o",
-     "title": "Waltz whisk",
-     "channel": "liptonx",
-     "length": "0:22",
-     "query": "quickstep Whisk"
-    },
-    {
-     "id": "tG_41CUL-Ps",
-     "title": "6 Quickstep Routines you should try | Basic Figures",
-     "channel": "Egils Smagris",
-     "length": "7:28",
-     "query": "quickstep Whisk"
-    },
-    {
-     "id": "4ZwcuNbYBRc",
-     "title": "The Only Quickstep Routine You'll Ever Need | Quickstep Basics for Beginners",
-     "channel": "jtballroom",
-     "length": "0:42",
-     "query": "quickstep Whisk"
-    }
-   ],
+   "videos": [],
    "floor": {
     "title": "Whisk",
     "url": "",
@@ -26357,29 +25371,7 @@
     ],
     "variants": {}
    },
-   "videos": [
-    {
-     "id": "n4NN7V9Vz5E",
-     "title": "Back Whisk",
-     "channel": "BallroomDanceUK",
-     "length": "0:31",
-     "query": "quickstep Back Whisk"
-    },
-    {
-     "id": "zHwIy258KHQ",
-     "title": "Quickstep - Back Lock, Running Finish",
-     "channel": "BadgerBallroom",
-     "length": "0:41",
-     "query": "quickstep Back Whisk"
-    },
-    {
-     "id": "zP2gcjSuCcw",
-     "title": "Quickstep. Backward Lock Step",
-     "channel": "FollowWAYcom",
-     "length": "0:38",
-     "query": "quickstep Back Whisk"
-    }
-   ],
+   "videos": [],
    "floor": {
     "title": "Back Whisk",
     "url": "",
@@ -26885,13 +25877,6 @@
    },
    "videos": [
     {
-     "id": "ifl57hXbz6A",
-     "title": "Quickstep Tipple Chasse to Right side",
-     "channel": "iDanceTW",
-     "length": "0:44",
-     "query": "quickstep Tipple Chasse to L"
-    },
-    {
      "id": "M8XeDXM1V1M",
      "title": "Quickstep Tipple Chasse",
      "channel": "All Things Dancing",
@@ -27020,13 +26005,6 @@
      "title": "Intermediate Quickstep - Natural Spin Turn, Four Quick Run",
      "channel": "Flow Dance Studios",
      "length": "0:28",
-     "query": "quickstep Four Quick Run"
-    },
-    {
-     "id": "-JBOAHxTnLM",
-     "title": "Quickstep Basic (Gold Level) Choreography | Wing, Open Reverse Turn, Four Quick Run",
-     "channel": "Egils Smagris",
-     "length": "3:52",
      "query": "quickstep Four Quick Run"
     }
    ],
@@ -27280,13 +26258,6 @@
    },
    "videos": [
     {
-     "id": "GTWvA64V2Sc",
-     "title": "How to Dance Quickstep Zig Zag | Routine and Figures",
-     "channel": "Egils Smagris",
-     "length": "8:01",
-     "query": "quickstep Zig Zag"
-    },
-    {
      "id": "3_Q2Cqhau7U",
      "title": "Quickstep Zig Zag Back Lock and Running Finish",
      "channel": "iDanceTW",
@@ -27447,13 +26418,6 @@
      "title": "Quickstep V6",
      "channel": "iDanceTW",
      "length": "0:30",
-     "query": "quickstep V6"
-    },
-    {
-     "id": "K7kFQdqAm3A",
-     "title": "Learn basic Quickstep - the V6 - for fun at home.",
-     "channel": "vivaladance",
-     "length": "14:27",
      "query": "quickstep V6"
     }
    ],
@@ -27698,29 +26662,7 @@
     ],
     "variants": {}
    },
-   "videos": [
-    {
-     "id": "4yQb4sT8KkE",
-     "title": "How to Dance Waltz Outside Spin / Ballroom Dance",
-     "channel": "Egils Smagris",
-     "length": "2:40",
-     "query": "quickstep Outside Spin"
-    },
-    {
-     "id": "EzF4Da9dAkA",
-     "title": "Quick Open Natural Trun & Outside Spin SW",
-     "channel": "Stanley Chan",
-     "length": "1:35",
-     "query": "quickstep Outside Spin"
-    },
-    {
-     "id": "SknTNRQaIxI",
-     "title": "How to Dance Slow Foxtrot Outside Spin, Curved Feather, Open Impetus",
-     "channel": "Egils Smagris",
-     "length": "10:59",
-     "query": "quickstep Outside Spin"
-    }
-   ],
+   "videos": [],
    "floor": {
     "title": "Outside Spin",
     "url": "",
@@ -27820,13 +26762,6 @@
      "channel": "Dinara Azimova",
      "length": "0:14",
      "query": "quickstep Reverse Pivot"
-    },
-    {
-     "id": "AZyiE4aen50",
-     "title": "Quickstep - Closed Impetus, Reverse Pivot, Double Reverse Spin, Progressive Chasse to R, Back Lock",
-     "channel": "Flow Dance Studios",
-     "length": "0:54",
-     "query": "quickstep Reverse Pivot"
     }
    ],
    "floor": {
@@ -27905,29 +26840,7 @@
      ]
     }
    },
-   "videos": [
-    {
-     "id": "shhLczYBeWw",
-     "title": "How to Dance Turning Lock in Quickstep?",
-     "channel": "Egils Smagris",
-     "length": "3:00",
-     "query": "quickstep Natural Turning Lock"
-    },
-    {
-     "id": "CqMN4S-wfO4",
-     "title": "Silver Quickstep - Natural Turn, Back Lock, Running Finish Ballroom Dance Lesson",
-     "channel": "Andy Wong",
-     "length": "9:23",
-     "query": "quickstep Natural Turning Lock"
-    },
-    {
-     "id": "RHwGeWD-kiQ",
-     "title": "How to dance Natural Turn, Back Lock, Outside Change in Quickstep - Novice",
-     "channel": "Flow Dance Studios",
-     "length": "0:28",
-     "query": "quickstep Natural Turning Lock"
-    }
-   ],
+   "videos": [],
    "floor": {
     "title": "Natural Turning Lock",
     "url": "",
@@ -28030,29 +26943,7 @@
     "notes": [],
     "variants": {}
    },
-   "videos": [
-    {
-     "id": "wrloUcNvpiM",
-     "title": "Drag Hesitation",
-     "channel": "SYLLABUS Dance-Sport",
-     "length": "0:33",
-     "query": "quickstep Drag Hesitation"
-    },
-    {
-     "id": "5Cmwrsb0Sho",
-     "title": "Waltz Dance Lesson | Drag Hesitation and Hesitation Change",
-     "channel": "Egils Smagris",
-     "length": "8:24",
-     "query": "quickstep Drag Hesitation"
-    },
-    {
-     "id": "k2Nb5KipIBE",
-     "title": "Drag Hesitation 躊躇拉步",
-     "channel": "Stanley Chan",
-     "length": "0:19",
-     "query": "quickstep Drag Hesitation"
-    }
-   ],
+   "videos": [],
    "floor": {
     "title": "Drag Hesitation",
     "url": "",
@@ -28537,17 +27428,10 @@
      "query": "quickstep Running Natural Turn"
     },
     {
-     "id": "wOWsfONLiHY",
-     "title": "Quickstep Basic (Gold Level) Choreography | Running Right Turn, Zig Zag, Natural Fallaway",
-     "channel": "Egils Smagris",
-     "length": "3:57",
-     "query": "quickstep Running Natural Turn"
-    },
-    {
-     "id": "TAJ8aBh82p0",
-     "title": "Quickstep Running Right Turn Explained in 3 minutes — direction, footwork, timing.",
-     "channel": "Roma & Marta ",
-     "length": "3:09",
+     "id": "CqMN4S-wfO4",
+     "title": "Silver Quickstep - Natural Turn, Back Lock, Running Finish Ballroom Dance Lesson",
+     "channel": "Andy Wong",
+     "length": "9:23",
      "query": "quickstep Running Natural Turn"
     }
    ],
@@ -28747,20 +27631,6 @@
      "channel": "jtballroom",
      "length": "1:37",
      "query": "quickstep Running Cross Chasse"
-    },
-    {
-     "id": "8yq8yHEi8yk",
-     "title": "How to Dance Quickstep Cross Chasse | Routine and Figures",
-     "channel": "Egils Smagris",
-     "length": "7:59",
-     "query": "quickstep Running Cross Chasse"
-    },
-    {
-     "id": "1PL1kXDH0UA",
-     "title": "Quickstep Cross Chasse",
-     "channel": "iDanceTW",
-     "length": "0:49",
-     "query": "quickstep Running Cross Chasse"
     }
    ],
    "floor": {
@@ -28872,13 +27742,6 @@
      "title": "Quickstep Six Quick Run Basic Intro",
      "channel": "bonita brockert",
      "length": "1:48",
-     "query": "quickstep Six Quick Run"
-    },
-    {
-     "id": "uJCraNxI8Qg",
-     "title": "Advanced Quickstep - Back Lock, Hover Corte, Six Quick Runs",
-     "channel": "Flow Dance Studios",
-     "length": "0:41",
      "query": "quickstep Six Quick Run"
     }
    ],
@@ -29091,20 +27954,6 @@
      "channel": "iDanceTW",
      "length": "0:30",
      "query": "quickstep Tipsy to R"
-    },
-    {
-     "id": "a4D6W5Zt9n8",
-     "title": "Tipple Chasses and Tipsy to Left & Right - Quickstep",
-     "channel": "jtballroom",
-     "length": "2:08",
-     "query": "quickstep Tipsy to R"
-    },
-    {
-     "id": "pOXhuMnQssw",
-     "title": "Quickstep Tipsy Chasse' no music",
-     "channel": "Brett Long",
-     "length": "0:27",
-     "query": "quickstep Tipsy to R"
     }
    ],
    "floor": {
@@ -29311,25 +28160,18 @@
    },
    "videos": [
     {
-     "id": "LQuI3oS36RM",
-     "title": "Quickstep Tipsy to right and left",
-     "channel": "iDanceTW",
-     "length": "0:30",
-     "query": "quickstep Tipsy to L"
-    },
-    {
-     "id": "pOXhuMnQssw",
-     "title": "Quickstep Tipsy Chasse' no music",
-     "channel": "Brett Long",
-     "length": "0:27",
-     "query": "quickstep Tipsy to L"
-    },
-    {
      "id": "a4D6W5Zt9n8",
      "title": "Tipple Chasses and Tipsy to Left & Right - Quickstep",
      "channel": "jtballroom",
      "length": "2:08",
      "query": "quickstep Tipsy to L"
+    },
+    {
+     "id": "OuP4qvrV5o0",
+     "title": "Khadzhiev Denis  /  Carol Wong, QuickStep, Tipsy To Left - Back Check - Oversway",
+     "channel": "Denis Khadzhiev",
+     "length": "0:05",
+     "query": "quickstep Tipsy to Right and Left"
     }
    ],
    "floor": {
@@ -29535,13 +28377,6 @@
     "variants": {}
    },
    "videos": [
-    {
-     "id": "tvkE1tBb1eI",
-     "title": "Quickstep - Rumba Cross & Routine | Ballroom Dance",
-     "channel": "Egils Smagris",
-     "length": "4:37",
-     "query": "quickstep Rumba Cross"
-    },
     {
      "id": "9NQEVdLByP8",
      "title": "Quickstep Rumba Cross - Gold Level",
@@ -29836,29 +28671,7 @@
      ]
     }
    },
-   "videos": [
-    {
-     "id": "HdamgAzAjfQ",
-     "title": "2 16 Quick Weave from PP",
-     "channel": "Opd2013",
-     "length": "1:23",
-     "query": "quickstep Weave from PP"
-    },
-    {
-     "id": "GzmSkIl4GEA",
-     "title": "Quick Weave from PP",
-     "channel": "SYLLABUS Dance-Sport",
-     "length": "0:26",
-     "query": "quickstep Weave from PP"
-    },
-    {
-     "id": "V1s8lzwJODo",
-     "title": "Weave from PP",
-     "channel": "SYLLABUS Dance-Sport",
-     "length": "0:40",
-     "query": "quickstep Weave from PP"
-    }
-   ],
+   "videos": [],
    "floor": {
     "title": "Weave From Pp",
     "url": "",
@@ -30015,29 +28828,7 @@
      ]
     }
    },
-   "videos": [
-    {
-     "id": "wOWsfONLiHY",
-     "title": "Quickstep Basic (Gold Level) Choreography | Running Right Turn, Zig Zag, Natural Fallaway",
-     "channel": "Egils Smagris",
-     "length": "3:57",
-     "query": "quickstep Natural Fallaway Turn"
-    },
-    {
-     "id": "2bLG2d4TDbQ",
-     "title": "Intermediate Quickstep - Natural Spin Turn, Four Quick Run",
-     "channel": "Flow Dance Studios",
-     "length": "0:28",
-     "query": "quickstep Natural Fallaway Turn"
-    },
-    {
-     "id": "iHAdTYyLV0A",
-     "title": "Quickstep for Beginners Lesson 3 | Natural Spin Turn",
-     "channel": "Egils Smagris",
-     "length": "5:38",
-     "query": "quickstep Natural Fallaway Turn"
-    }
-   ],
+   "videos": [],
    "floor": {
     "title": "Fallaway Natural Turn",
     "url": "",
@@ -30193,13 +28984,6 @@
      "query": "quickstep Wing"
     },
     {
-     "id": "-JBOAHxTnLM",
-     "title": "Quickstep Basic (Gold Level) Choreography | Wing, Open Reverse Turn, Four Quick Run",
-     "channel": "Egils Smagris",
-     "length": "3:52",
-     "query": "quickstep Wing"
-    },
-    {
      "id": "rvFa1u9NPDQ",
      "title": "Quickstep - open twin Wing",
      "channel": "Tanzschule Künkler",
@@ -30290,29 +29074,7 @@
     "notes": [],
     "variants": {}
    },
-   "videos": [
-    {
-     "id": "-JBOAHxTnLM",
-     "title": "Quickstep Basic (Gold Level) Choreography | Wing, Open Reverse Turn, Four Quick Run",
-     "channel": "Egils Smagris",
-     "length": "3:52",
-     "query": "quickstep Wing from PP"
-    },
-    {
-     "id": "E7a_Us8ZyxI",
-     "title": "How to dance Advanced Quickstep - Wing, Cross Swivel, Fishtail",
-     "channel": "Flow Dance Studios",
-     "length": "0:38",
-     "query": "quickstep Wing from PP"
-    },
-    {
-     "id": "rvFa1u9NPDQ",
-     "title": "Quickstep - open twin Wing",
-     "channel": "Tanzschule Künkler",
-     "length": "0:12",
-     "query": "quickstep Wing from PP"
-    }
-   ],
+   "videos": [],
    "floor": {
     "title": "Wing From Pp",
     "url": "",
@@ -30427,13 +29189,6 @@
      "channel": "Premoi Moi",
      "length": "1:37",
      "query": "quickstep Curved Feather"
-    },
-    {
-     "id": "tGjvQwHNo0w",
-     "title": "Curved Feather",
-     "channel": "SYLLABUS Dance-Sport",
-     "length": "0:27",
-     "query": "quickstep Curved Feather"
     }
    ],
    "floor": {
@@ -30520,24 +29275,17 @@
    },
    "videos": [
     {
-     "id": "0XMvutp5Q3E",
-     "title": "How to Dance Quickstep | Running Spin Turn | Routines",
-     "channel": "Egils Smagris",
-     "length": "2:29",
-     "query": "quickstep Running Spin Turn"
-    },
-    {
-     "id": "-Rwa7PMXhzE",
-     "title": "Quickstep Basic (Gold Level) Choreography | Running Spin Turn, Tipsy, Fishtail",
-     "channel": "Egils Smagris",
-     "length": "3:29",
-     "query": "quickstep Running Spin Turn"
-    },
-    {
      "id": "Cs8sTbJe9-s",
      "title": "Quickstep Leader, Spin Turn developed into the Running Spin Turn",
      "channel": "The Music Dancing Feet Partnership",
      "length": "2:11",
+     "query": "quickstep Running Spin Turn"
+    },
+    {
+     "id": "H-1xlaY0p2Y",
+     "title": "Quickstep (Lady) Spin Turn developed to Running Spin Turn",
+     "channel": "The Music Dancing Feet Partnership",
+     "length": "2:02",
      "query": "quickstep Running Spin Turn"
     }
    ],
@@ -30895,13 +29643,6 @@
    },
    "videos": [
     {
-     "id": "_aOQ8r2v11Y",
-     "title": "Natural & Reverse Basic Movement. Samba",
-     "channel": "FollowWAYcom",
-     "length": "1:23",
-     "query": "samba Reverse Basic Movement"
-    },
-    {
      "id": "KuvRqUcS8iQ",
      "title": "How to dance Natural Basic Movement, Reverse Basic Movement, Side Basic Movement in Samba #1",
      "channel": "EasyBallroom",
@@ -31067,13 +29808,6 @@
      "query": "samba Progressive Basic Movement"
     },
     {
-     "id": "OFeFlG8MTIw",
-     "title": "Continuous Progressive Basic Movement - Samba",
-     "channel": "SYLLABUS Dance-Sport",
-     "length": "0:27",
-     "query": "samba Progressive Basic Movement"
-    },
-    {
      "id": "TMOlttD9DKk",
      "title": "Samba, Progressive Basic Movement",
      "channel": "FollowWAYcom",
@@ -31211,24 +29945,10 @@
    },
    "videos": [
     {
-     "id": "KuvRqUcS8iQ",
-     "title": "How to dance Natural Basic Movement, Reverse Basic Movement, Side Basic Movement in Samba #1",
-     "channel": "EasyBallroom",
-     "length": "4:48",
-     "query": "samba Side Basic Movement to L"
-    },
-    {
      "id": "S0V2tI-_v28",
      "title": "Pogressive Side Basic Movement to Left - Samba",
      "channel": "SYLLABUS Dance-Sport",
      "length": "0:21",
-     "query": "samba Side Basic Movement to L"
-    },
-    {
-     "id": "xXxBfVZJQpo",
-     "title": "Samba dance steps 03. Side basic movement",
-     "channel": "DancePartner2000",
-     "length": "0:14",
      "query": "samba Side Basic Movement to L"
     }
    ],
@@ -31316,29 +30036,7 @@
      "finish": "normal"
     }
    },
-   "videos": [
-    {
-     "id": "KuvRqUcS8iQ",
-     "title": "How to dance Natural Basic Movement, Reverse Basic Movement, Side Basic Movement in Samba #1",
-     "channel": "EasyBallroom",
-     "length": "4:48",
-     "query": "samba Side Basic Movement To R"
-    },
-    {
-     "id": "S0V2tI-_v28",
-     "title": "Pogressive Side Basic Movement to Left - Samba",
-     "channel": "SYLLABUS Dance-Sport",
-     "length": "0:21",
-     "query": "samba Side Basic Movement To R"
-    },
-    {
-     "id": "xXxBfVZJQpo",
-     "title": "Samba dance steps 03. Side basic movement",
-     "channel": "DancePartner2000",
-     "length": "0:14",
-     "query": "samba Side Basic Movement To R"
-    }
-   ],
+   "videos": [],
    "floor": {
     "title": "Side Basic Movement To Right",
     "url": "",
@@ -31652,13 +30350,6 @@
      "channel": "FollowWAYcom",
      "length": "0:58",
      "query": "samba Samba Whisk to L"
-    },
-    {
-     "id": "Ku2t4mtRl0M",
-     "title": "Samba Whisk - Basic step in 4 steps - PLUS Arm Styling - Dance Insanity",
-     "channel": "Dance Insanity",
-     "length": "8:49",
-     "query": "samba Samba Whisk to L"
     }
    ],
    "floor": {
@@ -31767,25 +30458,25 @@
    },
    "videos": [
     {
-     "id": "5e8prmn5zLI",
-     "title": "Gabriele Goffredo and Anna Matus | Samba Whisk",
-     "channel": "TheWDSFAcademy",
-     "length": "16:36",
+     "id": "BcUzi1gL0nw",
+     "title": "Whisks (Samba Whisks) to Left or to Right",
+     "channel": "FollowWAYcom",
+     "length": "0:58",
      "query": "samba Samba Whisk to R"
     },
     {
-     "id": "wOOyKQh_Qd8",
-     "title": "Samba - Whisk",
-     "channel": "Lotus Dance",
-     "length": "0:16",
-     "query": "samba Samba Whisk to R"
+     "id": "7o7lnPDvtoY",
+     "title": "Whisk to Left & to Right |Samba| Syllabus",
+     "channel": "Starseed School of Dance",
+     "length": "3:33",
+     "query": "samba Whisk to Right"
     },
     {
-     "id": "Wgxvjb7jWLk",
-     "title": "Samba dance steps 06. Whisk to L and R",
-     "channel": "DancePartner2000",
-     "length": "0:12",
-     "query": "samba Samba Whisk to R"
+     "id": "F92fC9LEhbs",
+     "title": "Samba Beginners - Basic Step, Whisk, Lady Underarm Turn to Right",
+     "channel": "Flow Dance Studios",
+     "length": "0:39",
+     "query": "samba Whisk to Right"
     }
    ],
    "floor": {
@@ -32656,29 +31347,7 @@
      "finish": "promenade"
     }
    },
-   "videos": [
-    {
-     "id": "LbCdyrgq8Rc",
-     "title": "Samba Bota Fogos Promenade & Counter Promenade",
-     "channel": "Sway Ballroom Dance",
-     "length": "0:16",
-     "query": "samba Promenade to Counter Promenade Botafogos"
-    },
-    {
-     "id": "-VfO6sjNm8A",
-     "title": "International Samba | Bota Fogos to Promenade and Counter Promenade",
-     "channel": "Columbus Dance Centre",
-     "length": "4:17",
-     "query": "samba Promenade to Counter Promenade Botafogos"
-    },
-    {
-     "id": "mRKBKG3KuF4",
-     "title": "Samba dance steps 12. Promenade botafogos",
-     "channel": "DancePartner2000",
-     "length": "0:17",
-     "query": "samba Promenade to Counter Promenade Botafogos"
-    }
-   ],
+   "videos": [],
    "floor": {
     "title": "Promenade To Counter Promenade Botafogos",
     "url": "",
@@ -33057,24 +31726,24 @@
    },
    "videos": [
     {
-     "id": "0ulQcyWVHCQ",
-     "title": "Samba Travelling Bota Fogos Forward",
-     "channel": "Sway Ballroom Dance",
-     "length": "0:14",
-     "query": "samba Travelling Botafogo Forward"
-    },
-    {
-     "id": "-AKrdnRTB7U",
-     "title": "Travelling Botafogos in Samba & Practice Routine | Latin Dance",
-     "channel": "Egils Smagris",
-     "length": "5:48",
-     "query": "samba Travelling Botafogo Forward"
-    },
-    {
      "id": "r3JMHQuK7jI",
      "title": "Samba Basic Lesson - Shadow Botafogos, Travelling Voltas, Continuous Volta Spot Turn",
      "channel": "Egils Smagris",
      "length": "10:11",
+     "query": "samba Travelling Botafogo Forward"
+    },
+    {
+     "id": "xiNGXQHiv2A",
+     "title": "Travelling Botafogos Backward - Samba",
+     "channel": "SYLLABUS Dance-Sport",
+     "length": "0:30",
+     "query": "samba Travelling Botafogo Forward"
+    },
+    {
+     "id": "RMsrKjQtXwg",
+     "title": "Samba dance steps 11. Travelling botafogos",
+     "channel": "DancePartner2000",
+     "length": "0:18",
      "query": "samba Travelling Botafogo Forward"
     }
    ],
@@ -33272,29 +31941,7 @@
      "finish": "promenade"
     }
    },
-   "videos": [
-    {
-     "id": "xiNGXQHiv2A",
-     "title": "Travelling Botafogos Backward - Samba",
-     "channel": "SYLLABUS Dance-Sport",
-     "length": "0:30",
-     "query": "samba Travelling Botafogo Backward to Promenade Position"
-    },
-    {
-     "id": "mRKBKG3KuF4",
-     "title": "Samba dance steps 12. Promenade botafogos",
-     "channel": "DancePartner2000",
-     "length": "0:17",
-     "query": "samba Travelling Botafogo Backward to Promenade Position"
-    },
-    {
-     "id": "r3JMHQuK7jI",
-     "title": "Samba Basic Lesson - Shadow Botafogos, Travelling Voltas, Continuous Volta Spot Turn",
-     "channel": "Egils Smagris",
-     "length": "10:11",
-     "query": "samba Travelling Botafogo Backward to Promenade Position"
-    }
-   ],
+   "videos": [],
    "floor": {
     "title": "Travelling Botafogos Backward To Pp",
     "url": "",
@@ -33551,13 +32198,6 @@
      "channel": "QuickSteps Dance Club Studio",
      "length": "0:14",
      "query": "samba Criss Cross Botafogos"
-    },
-    {
-     "id": "mHL0U0by-HQ",
-     "title": "Samba Criss Cross Bota Fogos - Bronze Level (For Beginners)",
-     "channel": "Passion4dancing",
-     "length": "7:26",
-     "query": "samba Criss Cross Botafogos"
     }
    ],
    "floor": {
@@ -33744,29 +32384,7 @@
      "finish": "lh-rh"
     }
    },
-   "videos": [
-    {
-     "id": "3-WIPou66hE",
-     "title": "Samba Criss Cross Voltas Slow & Fast",
-     "channel": "Sway Ballroom Dance",
-     "length": "0:20",
-     "query": "samba Criss Cross Volta to R"
-    },
-    {
-     "id": "6iZLaO4cJPo",
-     "title": "Planet Ballroom® - Bronze 3 - SAMBA - Figure 5 - Criss Cross Volta",
-     "channel": "Planet Ballroom®",
-     "length": "1:02",
-     "query": "samba Criss Cross Volta to R"
-    },
-    {
-     "id": "JkSPMyaDJ30",
-     "title": "Traveling Voltas, Criss Cross in Samba #8 | Вольта с Продвижением, Крисс Кросс. Самба | EasyBallroom",
-     "channel": "EasyBallroom",
-     "length": "0:50",
-     "query": "samba Criss Cross Volta to R"
-    }
-   ],
+   "videos": [],
    "floor": {
     "title": "Criss Cross Voltas To Right",
     "url": "",
@@ -33945,29 +32563,7 @@
      "finish": "lh-rh"
     }
    },
-   "videos": [
-    {
-     "id": "3-WIPou66hE",
-     "title": "Samba Criss Cross Voltas Slow & Fast",
-     "channel": "Sway Ballroom Dance",
-     "length": "0:20",
-     "query": "samba Criss Cross Volta to L"
-    },
-    {
-     "id": "6iZLaO4cJPo",
-     "title": "Planet Ballroom® - Bronze 3 - SAMBA - Figure 5 - Criss Cross Volta",
-     "channel": "Planet Ballroom®",
-     "length": "1:02",
-     "query": "samba Criss Cross Volta to L"
-    },
-    {
-     "id": "JkSPMyaDJ30",
-     "title": "Traveling Voltas, Criss Cross in Samba #8 | Вольта с Продвижением, Крисс Кросс. Самба | EasyBallroom",
-     "channel": "EasyBallroom",
-     "length": "0:50",
-     "query": "samba Criss Cross Volta to L"
-    }
-   ],
+   "videos": [],
    "floor": {
     "title": "Criss Cross Voltas To Left",
     "url": "",
@@ -34141,13 +32737,6 @@
    },
    "videos": [
     {
-     "id": "Br8tskT8sL8",
-     "title": "Samba dance steps 22. Travelling voltas to L",
-     "channel": "DancePartner2000",
-     "length": "0:16",
-     "query": "samba Travelling Volta to R"
-    },
-    {
      "id": "SkIbz00PEFU",
      "title": "Samba dance steps 21. Travelling voltas to R",
      "channel": "DancePartner2000",
@@ -34155,10 +32744,10 @@
      "query": "samba Travelling Volta to R"
     },
     {
-     "id": "a71aTouVIAU",
-     "title": "Samba Shadow Travelling Voltas",
-     "channel": "Sway Ballroom Dance",
-     "length": "0:14",
+     "id": "ipPtGIbkxS8",
+     "title": "Samba dance steps 21  Travelling voltas to R",
+     "channel": "Dance",
+     "length": "0:16",
      "query": "samba Travelling Volta to R"
     }
    ],
@@ -34279,13 +32868,6 @@
      "channel": "SYLLABUS Dance-Sport",
      "length": "0:30",
      "query": "samba Travelling Volta to L"
-    },
-    {
-     "id": "a71aTouVIAU",
-     "title": "Samba Shadow Travelling Voltas",
-     "channel": "Sway Ballroom Dance",
-     "length": "0:14",
-     "query": "samba Travelling Volta to L"
     }
    ],
    "floor": {
@@ -34391,25 +32973,25 @@
    },
    "videos": [
     {
-     "id": "xfAx0x1S38U",
-     "title": "Samba Underarm Turn",
-     "channel": "Sway Ballroom Dance",
+     "id": "MtQX9Pl0V5U",
+     "title": "Samba dance steps 24. Volta spot turn to R for lady",
+     "channel": "DancePartner2000",
+     "length": "0:10",
+     "query": "samba Underarm Turn Turning R"
+    },
+    {
+     "id": "XcJDvsBBsaI",
+     "title": "Samba dance steps 26. Continuous volta spot to R",
+     "channel": "DancePartner2000",
      "length": "0:14",
-     "query": "samba Underarm Turn Turning R"
+     "query": "samba Volta Spot Turn to R for Lady"
     },
     {
-     "id": "OTBdbmt3BlU",
-     "title": "Samba Underarm Turn to Promenade",
-     "channel": "Sway Ballroom Dance",
-     "length": "0:15",
-     "query": "samba Underarm Turn Turning R"
-    },
-    {
-     "id": "F92fC9LEhbs",
-     "title": "Samba Beginners - Basic Step, Whisk, Lady Underarm Turn to Right",
-     "channel": "Flow Dance Studios",
-     "length": "0:39",
-     "query": "samba Underarm Turn Turning R"
+     "id": "ZnyTbeivoQ0",
+     "title": "Samba dance steps 24  Volta spot turn to R for lady",
+     "channel": "Dance",
+     "length": "0:10",
+     "query": "samba Volta Spot Turn to R for Lady"
     }
    ],
    "floor": {
@@ -34526,25 +33108,25 @@
    },
    "videos": [
     {
-     "id": "xfAx0x1S38U",
-     "title": "Samba Underarm Turn",
-     "channel": "Sway Ballroom Dance",
-     "length": "0:14",
-     "query": "samba Underarm Turn Turning L"
+     "id": "oRfy12imK8c",
+     "title": "Samba dance steps 25. Volta spot turn to L for lady",
+     "channel": "DancePartner2000",
+     "length": "0:10",
+     "query": "samba Volta Spot Turn to L for Lady"
     },
     {
-     "id": "OTBdbmt3BlU",
-     "title": "Samba Underarm Turn to Promenade",
-     "channel": "Sway Ballroom Dance",
+     "id": "8hlEcmh1Q3M",
+     "title": "Samba dance steps 27. Continuous volta spot turn to L",
+     "channel": "DancePartner2000",
      "length": "0:15",
-     "query": "samba Underarm Turn Turning L"
+     "query": "samba Volta Spot Turn to L for Lady"
     },
     {
-     "id": "F92fC9LEhbs",
-     "title": "Samba Beginners - Basic Step, Whisk, Lady Underarm Turn to Right",
-     "channel": "Flow Dance Studios",
-     "length": "0:39",
-     "query": "samba Underarm Turn Turning L"
+     "id": "JlA0l9uccak",
+     "title": "Samba dance steps 25  Volta spot turn to L for lady",
+     "channel": "Dance",
+     "length": "0:10",
+     "query": "samba Volta Spot Turn to L for Lady"
     }
    ],
    "floor": {
@@ -34661,29 +33243,7 @@
     },
     "seeAlso": "UNDERARM TURN TURNING RIGHT (VOLTA SPOT TURN TO R FOR LADY)"
    },
-   "videos": [
-    {
-     "id": "GNnT7LJejUo",
-     "title": "Samba Solo Spot Voltas",
-     "channel": "Sway Ballroom Dance",
-     "length": "0:11",
-     "query": "samba Solo Spot Volta Turning L"
-    },
-    {
-     "id": "2Lhe4Qxquvk",
-     "title": "Samba Solo Spot Volta | Tip#95 | Ballroom Dancing | Dallas Texas",
-     "channel": "Image Ballroom Dance Academy",
-     "length": "6:11",
-     "query": "samba Solo Spot Volta Turning L"
-    },
-    {
-     "id": "LPnw2BESN5A",
-     "title": "Samba Solo Spot Volta",
-     "channel": "iDanceTW",
-     "length": "0:50",
-     "query": "samba Solo Spot Volta Turning L"
-    }
-   ]
+   "videos": []
   },
   {
    "id": "samba-25",
@@ -34732,29 +33292,7 @@
     },
     "seeAlso": "UNDERARM TURN TURNING LEFT (VOLTA SPOT TURN TO L FOR LADY)"
    },
-   "videos": [
-    {
-     "id": "2Lhe4Qxquvk",
-     "title": "Samba Solo Spot Volta | Tip#95 | Ballroom Dancing | Dallas Texas",
-     "channel": "Image Ballroom Dance Academy",
-     "length": "6:11",
-     "query": "samba Solo Spot Volta Turning R"
-    },
-    {
-     "id": "GNnT7LJejUo",
-     "title": "Samba Solo Spot Voltas",
-     "channel": "Sway Ballroom Dance",
-     "length": "0:11",
-     "query": "samba Solo Spot Volta Turning R"
-    },
-    {
-     "id": "LPnw2BESN5A",
-     "title": "Samba Solo Spot Volta",
-     "channel": "iDanceTW",
-     "length": "0:50",
-     "query": "samba Solo Spot Volta Turning R"
-    }
-   ]
+   "videos": []
   },
   {
    "id": "samba-26",
@@ -34804,29 +33342,7 @@
     },
     "seeAlso": "UNDERARM TURN TURNING RIGHT (VOLTA SPOT TURN TO R FOR LADY)"
    },
-   "videos": [
-    {
-     "id": "2Lhe4Qxquvk",
-     "title": "Samba Solo Spot Volta | Tip#95 | Ballroom Dancing | Dallas Texas",
-     "channel": "Image Ballroom Dance Academy",
-     "length": "6:11",
-     "query": "samba Continuous Solo Spot Volta Turning L"
-    },
-    {
-     "id": "GNnT7LJejUo",
-     "title": "Samba Solo Spot Voltas",
-     "channel": "Sway Ballroom Dance",
-     "length": "0:11",
-     "query": "samba Continuous Solo Spot Volta Turning L"
-    },
-    {
-     "id": "8hlEcmh1Q3M",
-     "title": "Samba dance steps 27. Continuous volta spot turn to L",
-     "channel": "DancePartner2000",
-     "length": "0:15",
-     "query": "samba Continuous Solo Spot Volta Turning L"
-    }
-   ]
+   "videos": []
   },
   {
    "id": "samba-27",
@@ -34875,29 +33391,7 @@
     },
     "seeAlso": "UNDERARM TURN TURNING LEFT (VOLTA SPOT TURN TO L FOR LADY)"
    },
-   "videos": [
-    {
-     "id": "2Lhe4Qxquvk",
-     "title": "Samba Solo Spot Volta | Tip#95 | Ballroom Dancing | Dallas Texas",
-     "channel": "Image Ballroom Dance Academy",
-     "length": "6:11",
-     "query": "samba Continuous Solo Spot Volta Turning R"
-    },
-    {
-     "id": "XcJDvsBBsaI",
-     "title": "Samba dance steps 26. Continuous volta spot to R",
-     "channel": "DancePartner2000",
-     "length": "0:14",
-     "query": "samba Continuous Solo Spot Volta Turning R"
-    },
-    {
-     "id": "GNnT7LJejUo",
-     "title": "Samba Solo Spot Voltas",
-     "channel": "Sway Ballroom Dance",
-     "length": "0:11",
-     "query": "samba Continuous Solo Spot Volta Turning R"
-    }
-   ]
+   "videos": []
   },
   {
    "id": "samba-28",
@@ -34944,29 +33438,7 @@
      "finish": "lh-rh"
     }
    },
-   "videos": [
-    {
-     "id": "P-JNtoJ4UhY",
-     "title": "Maypole   Lady turning Right",
-     "channel": "SYLLABUS Dance-Sport",
-     "length": "0:28",
-     "query": "samba Maypole - Lady turning R"
-    },
-    {
-     "id": "Jd_2rl9GkwY",
-     "title": "Maypole   Lady turning  Left",
-     "channel": "SYLLABUS Dance-Sport",
-     "length": "0:28",
-     "query": "samba Maypole - Lady turning R"
-    },
-    {
-     "id": "78cgbttiaUI",
-     "title": "Samba Maypole",
-     "channel": "Sway Ballroom Dance",
-     "length": "0:13",
-     "query": "samba Maypole - Lady turning R"
-    }
-   ],
+   "videos": [],
    "floor": {
     "title": "Maypole Lady Turning Right",
     "url": "",
@@ -35142,29 +33614,7 @@
      "finish": "lh-rh"
     }
    },
-   "videos": [
-    {
-     "id": "P-JNtoJ4UhY",
-     "title": "Maypole   Lady turning Right",
-     "channel": "SYLLABUS Dance-Sport",
-     "length": "0:28",
-     "query": "samba Maypole - Lady Turning L"
-    },
-    {
-     "id": "Jd_2rl9GkwY",
-     "title": "Maypole   Lady turning  Left",
-     "channel": "SYLLABUS Dance-Sport",
-     "length": "0:28",
-     "query": "samba Maypole - Lady Turning L"
-    },
-    {
-     "id": "78cgbttiaUI",
-     "title": "Samba Maypole",
-     "channel": "Sway Ballroom Dance",
-     "length": "0:13",
-     "query": "samba Maypole - Lady Turning L"
-    }
-   ],
+   "videos": [],
    "floor": {
     "title": "Maypole Lady Turning Left",
     "url": "",
@@ -35620,29 +34070,7 @@
     },
     "seeAlso": "CRUZADOS LOCKS"
    },
-   "videos": [
-    {
-     "id": "d-kM0_vUfek",
-     "title": "Samba Cruzados Walks & Locks",
-     "channel": "Sway Ballroom Dance",
-     "length": "0:15",
-     "query": "samba Continuous Cruzados Lock"
-    },
-    {
-     "id": "DRycJLmYDQo",
-     "title": "Samba dance steps 43. Cruzados locks (in SH position on same foot)",
-     "channel": "DancePartner2000",
-     "length": "0:18",
-     "query": "samba Continuous Cruzados Lock"
-    },
-    {
-     "id": "CxfdJv3k1TQ",
-     "title": "Samba Cruzados Walks and Locks",
-     "channel": "iDanceTW",
-     "length": "0:45",
-     "query": "samba Continuous Cruzados Lock"
-    }
-   ]
+   "videos": []
   },
   {
    "id": "samba-33",
@@ -35690,13 +34118,6 @@
      "title": "Dropped Volta - Samba - WDSF, Walter Laird, ISTD",
      "channel": "Техника Бальных Танцев",
      "length": "3:00",
-     "query": "samba Dropped Volta"
-    },
-    {
-     "id": "A40kPUnrA0I",
-     "title": "Samba Gold Level Choreography | Promenade to Counter Promenade Runs, Dropped Volta",
-     "channel": "Egils Smagris",
-     "length": "4:30",
      "query": "samba Dropped Volta"
     },
     {
@@ -35789,29 +34210,7 @@
      "finish": "normal"
     }
    },
-   "videos": [
-    {
-     "id": "bl_7d4zQ3K0",
-     "title": "Samba Circular Voltas",
-     "channel": "Sway Ballroom Dance",
-     "length": "0:13",
-     "query": "samba Circular Voltas Turning R"
-    },
-    {
-     "id": "z6_Ewb4vbgo",
-     "title": "Samba dance steps 30. Circular voltas to R",
-     "channel": "DancePartner2000",
-     "length": "0:14",
-     "query": "samba Circular Voltas Turning R"
-    },
-    {
-     "id": "o-hIB2f9FzY",
-     "title": "Samba dance steps 29. Circular voltas to L",
-     "channel": "DancePartner2000",
-     "length": "0:16",
-     "query": "samba Circular Voltas Turning R"
-    }
-   ],
+   "videos": [],
    "floor": {
     "title": "Circular Voltas Turning Right",
     "url": "",
@@ -35989,29 +34388,7 @@
      "finish": "normal"
     }
    },
-   "videos": [
-    {
-     "id": "bl_7d4zQ3K0",
-     "title": "Samba Circular Voltas",
-     "channel": "Sway Ballroom Dance",
-     "length": "0:13",
-     "query": "samba Circular Voltas Turning L"
-    },
-    {
-     "id": "o-hIB2f9FzY",
-     "title": "Samba dance steps 29. Circular voltas to L",
-     "channel": "DancePartner2000",
-     "length": "0:16",
-     "query": "samba Circular Voltas Turning L"
-    },
-    {
-     "id": "HoIH6wTfEAw",
-     "title": "Samba dance steps 29  Circular voltas to L",
-     "channel": "Dance",
-     "length": "0:16",
-     "query": "samba Circular Voltas Turning L"
-    }
-   ],
+   "videos": [],
    "floor": {
     "title": "Circular Voltas Turning Left",
     "url": "",
@@ -36185,29 +34562,7 @@
     },
     "seeAlso": "CIRCULAR VOLTAS TURNING RIGHT (ROUNDABOUT TO RIGHT)"
    },
-   "videos": [
-    {
-     "id": "bl_7d4zQ3K0",
-     "title": "Samba Circular Voltas",
-     "channel": "Sway Ballroom Dance",
-     "length": "0:13",
-     "query": "samba Solo Circular Voltas Turning R"
-    },
-    {
-     "id": "GNnT7LJejUo",
-     "title": "Samba Solo Spot Voltas",
-     "channel": "Sway Ballroom Dance",
-     "length": "0:11",
-     "query": "samba Solo Circular Voltas Turning R"
-    },
-    {
-     "id": "z6_Ewb4vbgo",
-     "title": "Samba dance steps 30. Circular voltas to R",
-     "channel": "DancePartner2000",
-     "length": "0:14",
-     "query": "samba Solo Circular Voltas Turning R"
-    }
-   ]
+   "videos": []
   },
   {
    "id": "samba-37",
@@ -36244,29 +34599,7 @@
     },
     "seeAlso": "CIRCULAR VOLTAS TURNING LEFT (ROUNDABOUT TO LEFT)"
    },
-   "videos": [
-    {
-     "id": "bl_7d4zQ3K0",
-     "title": "Samba Circular Voltas",
-     "channel": "Sway Ballroom Dance",
-     "length": "0:13",
-     "query": "samba Solo Circular Voltas Turning L"
-    },
-    {
-     "id": "GNnT7LJejUo",
-     "title": "Samba Solo Spot Voltas",
-     "channel": "Sway Ballroom Dance",
-     "length": "0:11",
-     "query": "samba Solo Circular Voltas Turning L"
-    },
-    {
-     "id": "o-hIB2f9FzY",
-     "title": "Samba dance steps 29. Circular voltas to L",
-     "channel": "DancePartner2000",
-     "length": "0:16",
-     "query": "samba Solo Circular Voltas Turning L"
-    }
-   ]
+   "videos": []
   },
   {
    "id": "samba-38",
@@ -36332,18 +34665,18 @@
      "query": "samba Same Foot Botafogos"
     },
     {
-     "id": "T2Cw5QNKU14",
-     "title": "same foot botafogos",
-     "channel": "SYLLABUS Dance-Sport",
-     "length": "0:22",
+     "id": "NDNd8Ysrj9c",
+     "title": "Samba dance steps 14. Contra botafogos",
+     "channel": "DancePartner2000",
+     "length": "0:13",
      "query": "samba Same Foot Botafogos"
     },
     {
-     "id": "RMsrKjQtXwg",
-     "title": "Samba dance steps 11. Travelling botafogos",
-     "channel": "DancePartner2000",
-     "length": "0:18",
-     "query": "samba Same Foot Botafogos"
+     "id": "frnRaFRyzLk",
+     "title": "Samba Contra Botafogos",
+     "channel": "QuickSteps Dance Club Studio",
+     "length": "0:16",
+     "query": "samba Contra Botafogos"
     }
    ],
    "floor": {
@@ -36517,20 +34850,6 @@
      "title": "Samba Locks on Left Side",
      "channel": "SYLLABUS Dance-Sport",
      "length": "0:31",
-     "query": "samba Samba Locks Lady on L Side"
-    },
-    {
-     "id": "x-WNH3rm9aA",
-     "title": "Samba Locks on Right Side",
-     "channel": "SYLLABUS Dance-Sport",
-     "length": "0:31",
-     "query": "samba Samba Locks Lady on L Side"
-    },
-    {
-     "id": "d-kM0_vUfek",
-     "title": "Samba Cruzados Walks & Locks",
-     "channel": "Sway Ballroom Dance",
-     "length": "0:15",
      "query": "samba Samba Locks Lady on L Side"
     }
    ],
@@ -36722,24 +35041,10 @@
    },
    "videos": [
     {
-     "id": "MIxVUX0muPo",
-     "title": "Samba Locks on Left Side",
-     "channel": "SYLLABUS Dance-Sport",
-     "length": "0:31",
-     "query": "samba Samba Locks Lady on R Side"
-    },
-    {
      "id": "x-WNH3rm9aA",
      "title": "Samba Locks on Right Side",
      "channel": "SYLLABUS Dance-Sport",
      "length": "0:31",
-     "query": "samba Samba Locks Lady on R Side"
-    },
-    {
-     "id": "d-kM0_vUfek",
-     "title": "Samba Cruzados Walks & Locks",
-     "channel": "Sway Ballroom Dance",
-     "length": "0:15",
      "query": "samba Samba Locks Lady on R Side"
     }
    ],
@@ -36943,13 +35248,6 @@
      "title": "Samba dance steps 34. Natural roll",
      "channel": "DancePartner2000",
      "length": "0:16",
-     "query": "samba Natural Roll"
-    },
-    {
-     "id": "7Z-kKxUyQsA",
-     "title": "Samba Gold Level Choreography | Shadow Botafogos, Natural Roll, Open Rocks",
-     "channel": "Egils Smagris",
-     "length": "3:40",
      "query": "samba Natural Roll"
     }
    ],
@@ -37184,13 +35482,6 @@
     }
    },
    "videos": [
-    {
-     "id": "Fu0CxWZSzv8",
-     "title": "Samba Shadow Reverse Roll",
-     "channel": "Sway Ballroom Dance",
-     "length": "0:19",
-     "query": "samba Reverse Roll"
-    },
     {
      "id": "ZiO1eP2JZRU",
      "title": "Samba Reverse roll",
@@ -38466,20 +36757,6 @@
      "channel": "SYLLABUS Dance-Sport",
      "length": "0:21",
      "query": "samba Same Position Corta Jaca"
-    },
-    {
-     "id": "FhoXW9EW9ds",
-     "title": "Corta Jaca with Rocks - Samba",
-     "channel": "SYLLABUS Dance-Sport",
-     "length": "0:25",
-     "query": "samba Same Position Corta Jaca"
-    },
-    {
-     "id": "S_m3-pYChDc",
-     "title": "Corta Jaca  - Samba",
-     "channel": "SYLLABUS Dance-Sport",
-     "length": "0:33",
-     "query": "samba Same Position Corta Jaca"
     }
    ]
   },
@@ -38524,13 +36801,6 @@
      "title": "How to Dance Samba / Double Spiral Turn",
      "channel": "Egils Smagris",
      "length": "3:04",
-     "query": "samba Double Spiral Turn (Three Step Turn)"
-    },
-    {
-     "id": "7fTJyuKF3Rc",
-     "title": "Double Spiral Turn",
-     "channel": "SYLLABUS Dance-Sport",
-     "length": "0:18",
      "query": "samba Double Spiral Turn (Three Step Turn)"
     }
    ],
@@ -39014,24 +37284,24 @@
    },
    "videos": [
     {
-     "id": "W36vYyKxX4o",
-     "title": "Samba Rolling off the Arms",
-     "channel": "Sway Ballroom Dance",
-     "length": "0:17",
-     "query": "samba Rolling off the Arm"
-    },
-    {
-     "id": "scNaYV_TWqA",
-     "title": "Samba rolling off the arms",
-     "channel": "Tanzschule Künkler",
-     "length": "0:24",
-     "query": "samba Rolling off the Arm"
-    },
-    {
      "id": "FUSGfwRYl90",
      "title": "SAMBA - Rolling Off The Arm - (Timing QQQQ) - (WDSF competitive Basic Syllabus)",
      "channel": "Dance Learning",
      "length": "0:59",
+     "query": "samba Rolling off the Arm"
+    },
+    {
+     "id": "p1-zGgkCLsE",
+     "title": "Samba Improvers - Rolling Off The Arm -  Dance Lesson | Easy Follow Along",
+     "channel": "Flow Dance Studios",
+     "length": "3:07",
+     "query": "samba Rolling off the Arm"
+    },
+    {
+     "id": "k1CrsXv_0D4",
+     "title": "Samba Rolling off the Arm",
+     "channel": "iDanceTW",
+     "length": "1:06",
      "query": "samba Rolling off the Arm"
     }
    ],
@@ -39988,13 +38258,6 @@
    },
    "videos": [
     {
-     "id": "Aw14lVfJCWs",
-     "title": "Samba II class 3: Same foot change, Shadow Voltas, and stationary samba walks",
-     "channel": "Lisa and Israel Ballroom and Latin Dance",
-     "length": "3:39",
-     "query": "samba Foot Change Method 3"
-    },
-    {
      "id": "zAMkRvN173I",
      "title": "Blitzing Foot Changes in Samba!",
      "channel": "Long-Steps Dancing",
@@ -40870,17 +39133,17 @@
      "query": "cha cha New York to P"
     },
     {
-     "id": "1RFketDOIbg",
-     "title": "The New York in Cha Cha | 3 Different Ways (with an Open Combo included!)",
-     "channel": "SK Dancesport",
-     "length": "16:21",
+     "id": "j3H1GPTXKYo",
+     "title": "Cha Cha - New York | Dancebuddies Online taneční",
+     "channel": "DANCEBUDDIES",
+     "length": "3:02",
      "query": "cha cha New York to P"
     },
     {
-     "id": "Gik_WAPLMEY",
-     "title": "New Yorker - 🫶🏻Cha Cha basic steps by Oleg Astakhov 📲 “Dance With Oleg” APP & DanceWithOleg.com",
-     "channel": "Oleg Astakhov",
-     "length": "2:04",
+     "id": "0CeervYNUIg",
+     "title": "New York with Spiral Action - Cha Cha Cha",
+     "channel": "SYLLABUS Dance-Sport",
+     "length": "0:25",
      "query": "cha cha New York to P"
     }
    ],
@@ -41389,20 +39652,6 @@
      "channel": "SYLLABUS Dance-Sport",
      "length": "0:37",
      "query": "cha cha Hand to Hand to R"
-    },
-    {
-     "id": "QNdomOc8u0w",
-     "title": "Cha-cha dance steps 07. Hand to hand with three cha-cha",
-     "channel": "DancePartner2000",
-     "length": "0:24",
-     "query": "cha cha Hand to Hand to R"
-    },
-    {
-     "id": "bDmwOLlpAJ4",
-     "title": "Cha-cha dance steps 06. Hand to hand",
-     "channel": "DancePartner2000",
-     "length": "0:24",
-     "query": "cha cha Hand to Hand to R"
     }
    ],
    "floor": {
@@ -41532,29 +39781,7 @@
      "finish": "rh-lh"
     }
    },
-   "videos": [
-    {
-     "id": "fEG6JYCt3O8",
-     "title": "Hand to Hand to Right and Left - Cha Cha Cha  + variants",
-     "channel": "SYLLABUS Dance-Sport",
-     "length": "0:37",
-     "query": "cha cha Hand to Hand to L"
-    },
-    {
-     "id": "750KiwjZSZw",
-     "title": "Cha Cha Cha Hand to Hand",
-     "channel": "Tanzschule Künkler",
-     "length": "0:23",
-     "query": "cha cha Hand to Hand to L"
-    },
-    {
-     "id": "7PBZWxcw-sY",
-     "title": "Cha Cha Cha Beginner Step - Hand to Hand",
-     "channel": "iDanceTW",
-     "length": "1:02",
-     "query": "cha cha Hand to Hand to L"
-    }
-   ],
+   "videos": [],
    "floor": {
     "title": "Hand to Hand",
     "url": "https://www.dancecentral.info/ballroom/international-style/cha-cha-cha/hand-to-hand",
@@ -41687,20 +39914,6 @@
      "title": "Spot Turn to Right and Left - Cha Cha Cha  + variants",
      "channel": "SYLLABUS Dance-Sport",
      "length": "0:25",
-     "query": "cha cha Spot Turn to R"
-    },
-    {
-     "id": "zwKNxioWDYg",
-     "title": "Cha Cha - Double Spot Turn",
-     "channel": "Library of Dance",
-     "length": "0:12",
-     "query": "cha cha Spot Turn to R"
-    },
-    {
-     "id": "qtgDXQVTiSI",
-     "title": "Cha Cha - Spot Turn (Closed Position)",
-     "channel": "Library of Dance",
-     "length": "0:14",
      "query": "cha cha Spot Turn to R"
     }
    ],
@@ -41843,24 +40056,10 @@
    },
    "videos": [
     {
-     "id": "ciQFMCLSP5o",
-     "title": "Spot Turn to Right and Left - Cha Cha Cha  + variants",
-     "channel": "SYLLABUS Dance-Sport",
-     "length": "0:25",
-     "query": "cha cha Spot Turn to L"
-    },
-    {
-     "id": "qtgDXQVTiSI",
-     "title": "Cha Cha - Spot Turn (Closed Position)",
-     "channel": "Library of Dance",
-     "length": "0:14",
-     "query": "cha cha Spot Turn to L"
-    },
-    {
-     "id": "lBlnwDuv9lY",
-     "title": "How to do a Spot Turn in Cha Cha",
-     "channel": "Ballroom Feed",
-     "length": "5:32",
+     "id": "e5roxWsCqEo",
+     "title": "Robyn Alexander  Spot Turn to L  Cha Cha Cha",
+     "channel": "Robyn Alexander",
+     "length": "0:46",
      "query": "cha cha Spot Turn to L"
     }
    ],
@@ -42002,25 +40201,18 @@
    },
    "videos": [
     {
-     "id": "x0QyWGvedeE",
-     "title": "Cha Cha   Underarm Turn",
-     "channel": "Sway Ballroom Dance",
-     "length": "0:18",
-     "query": "cha cha Underarm Turn Turning R"
+     "id": "9lWdmWR1So8",
+     "title": "Improver: Cha Cha Cha: Lady's Underarm Turn to Right (Leader)",
+     "channel": "The Music Dancing Feet Partnership",
+     "length": "0:41",
+     "query": "cha cha Underarm Turn to Right"
     },
     {
-     "id": "55xMEAwvXI4",
-     "title": "How to Do a Cha-Cha Underarm Turn (Ladies) | Cha-Cha Dance",
-     "channel": "HowcastArtsRec",
-     "length": "2:44",
-     "query": "cha cha Underarm Turn Turning R"
-    },
-    {
-     "id": "5JMa_8wll5Y",
-     "title": "Cha Cha   Alternating Underarm Turns",
-     "channel": "Sway Ballroom Dance",
-     "length": "0:24",
-     "query": "cha cha Underarm Turn Turning R"
+     "id": "wp0Ql7J_7Zg",
+     "title": "Cha Cha Cha Underarm Turn To Right - EN",
+     "channel": "inbaroo",
+     "length": "5:25",
+     "query": "cha cha Underarm Turn to Right"
     }
    ],
    "floor": {
@@ -42155,25 +40347,11 @@
    },
    "videos": [
     {
-     "id": "x0QyWGvedeE",
-     "title": "Cha Cha   Underarm Turn",
-     "channel": "Sway Ballroom Dance",
-     "length": "0:18",
-     "query": "cha cha Underarm Turn Turning L"
-    },
-    {
-     "id": "55xMEAwvXI4",
-     "title": "How to Do a Cha-Cha Underarm Turn (Ladies) | Cha-Cha Dance",
-     "channel": "HowcastArtsRec",
-     "length": "2:44",
-     "query": "cha cha Underarm Turn Turning L"
-    },
-    {
-     "id": "5JMa_8wll5Y",
-     "title": "Cha Cha   Alternating Underarm Turns",
-     "channel": "Sway Ballroom Dance",
-     "length": "0:24",
-     "query": "cha cha Underarm Turn Turning L"
+     "id": "8s83c1cxEp8",
+     "title": "How to dance Under Arm Turn To Left in Cha-Cha #8 | Поворот под рукой ВЛ. Ча-ча-ча | EasyBallroom",
+     "channel": "EasyBallroom",
+     "length": "2:43",
+     "query": "cha cha Underarm Turn to Left"
     }
    ],
    "floor": {
@@ -42321,7 +40499,29 @@
      "finish": "lh-rh"
     }
    },
-   "videos": [],
+   "videos": [
+    {
+     "id": "UhZ4fXt7d14",
+     "title": "Three Cha Cha Chas to Right and Left + variants",
+     "channel": "SYLLABUS Dance-Sport",
+     "length": "0:44",
+     "query": "cha cha Three Cha Cha Chas to R"
+    },
+    {
+     "id": "hLQ67zUGalk",
+     "title": "Beginner bronze American Rhythm Cha cha: Sweetheart, three cha chas, right side pass",
+     "channel": "Lisa and Israel Ballroom and Latin Dance",
+     "length": "2:09",
+     "query": "cha cha Three Chas To Right"
+    },
+    {
+     "id": "HfD8q3HDBmc",
+     "title": "Bronze Beginner Cha cha, three cha chas, right side pass, basic locks",
+     "channel": "Lisa and Israel Ballroom and Latin Dance",
+     "length": "0:49",
+     "query": "cha cha Three Cha Cha Chas to R"
+    }
+   ],
    "floor": {
     "title": "Three Cha Cha Chas To Right",
     "url": "",
@@ -42509,29 +40709,7 @@
      "finish": "rh-lh"
     }
    },
-   "videos": [
-    {
-     "id": "SHbBn7uRUrk",
-     "title": "Cha Cha   Three Cha Chas",
-     "channel": "Sway Ballroom Dance",
-     "length": "0:26",
-     "query": "cha cha Three Cha Cha Chas to L"
-    },
-    {
-     "id": "UhZ4fXt7d14",
-     "title": "Three Cha Cha Chas to Right and Left + variants",
-     "channel": "SYLLABUS Dance-Sport",
-     "length": "0:44",
-     "query": "cha cha Three Cha Cha Chas to L"
-    },
-    {
-     "id": "70M23aC97TM",
-     "title": "Three Cha Cha Chas in Same and Open Opposite Position",
-     "channel": "SYLLABUS Dance-Sport",
-     "length": "0:37",
-     "query": "cha cha Three Cha Cha Chas to L"
-    }
-   ],
+   "videos": [],
    "floor": {
     "title": "Three Cha Cha Chas To Left",
     "url": "",
@@ -42971,13 +41149,6 @@
      "title": "How to dance Aida in Cha Cha - Novice Variation",
      "channel": "Flow Dance Studios",
      "length": "0:35",
-     "query": "cha cha Aida"
-    },
-    {
-     "id": "EKaBg7UxFUk",
-     "title": "Cha Cha Aida (Fallaway) Development | Latin Dance",
-     "channel": "Egils Smagris",
-     "length": "12:45",
      "query": "cha cha Aida"
     }
    ],
@@ -43657,13 +41828,6 @@
      "channel": "iDanceTW",
      "length": "0:45",
      "query": "cha cha Open Hip Twist"
-    },
-    {
-     "id": "RJCUNHt5pwM",
-     "title": "Open Hip Twist to Chasse - Cha Cha Cha",
-     "channel": "SYLLABUS Dance-Sport",
-     "length": "0:31",
-     "query": "cha cha Open Hip Twist"
     }
    ],
    "floor": {
@@ -44025,13 +42189,6 @@
      "query": "cha cha Open Hip Twist to Chasse"
     },
     {
-     "id": "7ueY00u-iVI",
-     "title": "Cha Cha Routine with Open Hip Twist to Chasse | Cha Figures",
-     "channel": "Egils Smagris",
-     "length": "10:22",
-     "query": "cha cha Open Hip Twist to Chasse"
-    },
-    {
      "id": "DDP4NflrMpY",
      "title": "ChaCha open basic to open hip twist with leader slip chasse and twist chasse",
      "channel": "Dinara Azimova",
@@ -44291,13 +42448,6 @@
      "channel": "DancePartner2000",
      "length": "0:20",
      "query": "cha cha Close Hip twist"
-    },
-    {
-     "id": "E5kwus-mdL0",
-     "title": "Closed Hip Twist to Chasse - Cha Cha Cha",
-     "channel": "SYLLABUS Dance-Sport",
-     "length": "0:32",
-     "query": "cha cha Close Hip twist"
     }
    ],
    "floor": {
@@ -44542,20 +42692,6 @@
      "title": "Closed Hip Twist to Chasse - Cha Cha Cha",
      "channel": "SYLLABUS Dance-Sport",
      "length": "0:32",
-     "query": "cha cha Close Hip Twist to Chasse"
-    },
-    {
-     "id": "RJCUNHt5pwM",
-     "title": "Open Hip Twist to Chasse - Cha Cha Cha",
-     "channel": "SYLLABUS Dance-Sport",
-     "length": "0:31",
-     "query": "cha cha Close Hip Twist to Chasse"
-    },
-    {
-     "id": "XYS0ihCiie4",
-     "title": "closed hip twist spiral - Cha Cha Cha",
-     "channel": "SYLLABUS Dance-Sport",
-     "length": "0:36",
      "query": "cha cha Close Hip Twist to Chasse"
     }
    ],
@@ -45092,29 +43228,7 @@
      "finish": "lh-rh"
     }
    },
-   "videos": [
-    {
-     "id": "SAhmdSkVFB8",
-     "title": "Cha-cha dance steps 22. HockeyStick",
-     "channel": "DancePartner2000",
-     "length": "0:07",
-     "query": "cha cha Hockey Stick to Chasse"
-    },
-    {
-     "id": "oSzilUDI-W4",
-     "title": "How to dance Basic to Fan, Hockey Stick in Cha Cha - Intermediate",
-     "channel": "Flow Dance Studios",
-     "length": "0:50",
-     "query": "cha cha Hockey Stick to Chasse"
-    },
-    {
-     "id": "hG_dHAjhksE",
-     "title": "Hockey Stick Overturned - Cha Cha Cha",
-     "channel": "SYLLABUS Dance-Sport",
-     "length": "0:22",
-     "query": "cha cha Hockey Stick to Chasse"
-    }
-   ],
+   "videos": [],
    "floor": {
     "title": "Hockey Stick To Chasse",
     "url": "",
@@ -45706,20 +43820,6 @@
      "channel": "SYLLABUS Dance-Sport",
      "length": "0:26",
      "query": "cha cha Alemana from Open Opposing Position"
-    },
-    {
-     "id": "kz-e-JzTKp8",
-     "title": "Cha-cha dance steps 10. Alemana from open position, finish A",
-     "channel": "DancePartner2000",
-     "length": "0:18",
-     "query": "cha cha Alemana from Open Opposing Position"
-    },
-    {
-     "id": "4ed9hB6Qnvs",
-     "title": "Link from Open Opposing Position to Right side same  - Cha Cha Cha",
-     "channel": "SYLLABUS Dance-Sport",
-     "length": "0:19",
-     "query": "cha cha Alemana from Open Opposing Position"
     }
    ],
    "floor": {
@@ -45935,13 +44035,6 @@
      "title": "Cha Cha Natural Top - Lead & Follow & Tips",
      "channel": "Passion4dancing",
      "length": "3:23",
-     "query": "cha cha Natural Top"
-    },
-    {
-     "id": "O1mUodNNNRA",
-     "title": "Cha-cha dance steps 33. NaturalTopFinishA",
-     "channel": "DancePartner2000",
-     "length": "0:10",
      "query": "cha cha Natural Top"
     }
    ],
@@ -46304,16 +44397,16 @@
      "query": "cha cha Cross Basic"
     },
     {
-     "id": "XKirfXcXkz0",
-     "title": "Cross Basic to Open Opposing Position - Cha Cha Cha",
-     "channel": "SYLLABUS Dance-Sport",
-     "length": "0:23",
+     "id": "B3PtoCHteDo",
+     "title": "Cha Cha Cha Silver Step- Cross Basic",
+     "channel": "iDanceTW",
+     "length": "1:02",
      "query": "cha cha Cross Basic"
     },
     {
-     "id": "gBESLNO7A8I",
-     "title": "Cross basic with turn - Cha Cha Cha",
-     "channel": "SYLLABUS Dance-Sport",
+     "id": "VS83VliqXGk",
+     "title": "Cha-cha dance steps 04. Cross basic",
+     "channel": "DancePartner2000",
      "length": "0:19",
      "query": "cha cha Cross Basic"
     }
@@ -46680,13 +44773,6 @@
      "channel": "DancePartner2000",
      "length": "0:19",
      "query": "cha cha Cross Basic with Turn"
-    },
-    {
-     "id": "XKirfXcXkz0",
-     "title": "Cross Basic to Open Opposing Position - Cha Cha Cha",
-     "channel": "SYLLABUS Dance-Sport",
-     "length": "0:23",
-     "query": "cha cha Cross Basic with Turn"
     }
    ],
    "floor": {
@@ -46853,20 +44939,6 @@
      "title": "Cross Basic to Open Opposing Position - Cha Cha Cha",
      "channel": "SYLLABUS Dance-Sport",
      "length": "0:23",
-     "query": "cha cha Cross basic to Open Opposing Position"
-    },
-    {
-     "id": "7msPnRLPyXA",
-     "title": "Cross Basic To Open  Opposing Position - Rumba",
-     "channel": "SYLLABUS Dance-Sport",
-     "length": "0:29",
-     "query": "cha cha Cross basic to Open Opposing Position"
-    },
-    {
-     "id": "4ed9hB6Qnvs",
-     "title": "Link from Open Opposing Position to Right side same  - Cha Cha Cha",
-     "channel": "SYLLABUS Dance-Sport",
-     "length": "0:19",
      "query": "cha cha Cross basic to Open Opposing Position"
     }
    ],
@@ -47204,24 +45276,24 @@
    },
    "videos": [
     {
-     "id": "j6WxQLiVhKM",
-     "title": "Split Cuban Breaks to Left - Cha Cha Cha  + variants",
-     "channel": "SYLLABUS Dance-Sport",
-     "length": "0:29",
-     "query": "cha cha Split Cuban Break to R"
-    },
-    {
-     "id": "WXstfJjvTy0",
-     "title": "Cha Cha Cuban Breaks & Split Cuban Breaks",
-     "channel": "Passion4dancing",
-     "length": "9:07",
-     "query": "cha cha Split Cuban Break to R"
-    },
-    {
      "id": "UKeEASIaTTc",
      "title": "Split Cuban Break to Left + Split Close Cuban Break to Right- Cha Cha Cha",
      "channel": "SYLLABUS Dance-Sport",
      "length": "0:21",
+     "query": "cha cha Split Cuban Break to R"
+    },
+    {
+     "id": "84RuJDoZh3g",
+     "title": "Split Cuban Break to Right - Cha Cha Cha",
+     "channel": "SYLLABUS Dance-Sport",
+     "length": "0:24",
+     "query": "cha cha Split Cuban Break to R"
+    },
+    {
+     "id": "G0apEntjWIo",
+     "title": "Split Cuban Breaks to Right - Cha Cha Cha  + variants",
+     "channel": "SYLLABUS Dance-Sport",
+     "length": "0:28",
      "query": "cha cha Split Cuban Break to R"
     }
    ],
@@ -47336,13 +45408,6 @@
      "query": "cha cha Split Cuban Break to L"
     },
     {
-     "id": "Xi2MVgASn5s",
-     "title": "Cha Cha | Tip#45 | Split Cuban Breaks | Footwork | Timing | Basic Mechanics",
-     "channel": "Image Ballroom Dance Academy",
-     "length": "6:37",
-     "query": "cha cha Split Cuban Break to L"
-    },
-    {
      "id": "UKeEASIaTTc",
      "title": "Split Cuban Break to Left + Split Close Cuban Break to Right- Cha Cha Cha",
      "channel": "SYLLABUS Dance-Sport",
@@ -47446,24 +45511,17 @@
    },
    "videos": [
     {
-     "id": "WXstfJjvTy0",
-     "title": "Cha Cha Cuban Breaks & Split Cuban Breaks",
-     "channel": "Passion4dancing",
-     "length": "9:07",
+     "id": "eAr7syVFWD0",
+     "title": "Cuban Breaks to Right - Cha Cha Cha  + variants",
+     "channel": "SYLLABUS Dance-Sport",
+     "length": "0:40",
      "query": "cha cha Cuban Breaks to R"
     },
     {
-     "id": "M-eAXpEsyE4",
-     "title": "Cuban Breaks to Left - Cha Cha Cha  + variants",
+     "id": "IlFRNAQq43I",
+     "title": "Cuban Breaks to Right and Left in Close Position- Cha Cha Cha",
      "channel": "SYLLABUS Dance-Sport",
-     "length": "0:42",
-     "query": "cha cha Cuban Breaks to R"
-    },
-    {
-     "id": "j6WxQLiVhKM",
-     "title": "Split Cuban Breaks to Left - Cha Cha Cha  + variants",
-     "channel": "SYLLABUS Dance-Sport",
-     "length": "0:29",
+     "length": "0:23",
      "query": "cha cha Cuban Breaks to R"
     }
    ],
@@ -47639,24 +45697,10 @@
    },
    "videos": [
     {
-     "id": "WXstfJjvTy0",
-     "title": "Cha Cha Cuban Breaks & Split Cuban Breaks",
-     "channel": "Passion4dancing",
-     "length": "9:07",
-     "query": "cha cha Cuban Breaks to L"
-    },
-    {
      "id": "M-eAXpEsyE4",
      "title": "Cuban Breaks to Left - Cha Cha Cha  + variants",
      "channel": "SYLLABUS Dance-Sport",
      "length": "0:42",
-     "query": "cha cha Cuban Breaks to L"
-    },
-    {
-     "id": "sjovMLm5Uco",
-     "title": "💥Cuban Breaks 💥 in Cha Cha 😝 - correct technique - secrets to get better by Oleg Astakhov",
-     "channel": "Oleg Astakhov",
-     "length": "2:27",
      "query": "cha cha Cuban Breaks to L"
     }
    ],
@@ -47837,20 +45881,6 @@
      "title": "closed hip twist spiral - Cha Cha Cha",
      "channel": "SYLLABUS Dance-Sport",
      "length": "0:36",
-     "query": "cha cha Close Hip Twist spiral"
-    },
-    {
-     "id": "2T48W5Zr8J0",
-     "title": "Cha-cha dance steps 16. CloseHipTwist spiral",
-     "channel": "DancePartner2000",
-     "length": "0:08",
-     "query": "cha cha Close Hip Twist spiral"
-    },
-    {
-     "id": "YHsPfwh3-8w",
-     "title": "Cha Cha Gold Level Choreography | Close Hip Twist Spiral, Walks and Whisks",
-     "channel": "Egils Smagris",
-     "length": "5:17",
      "query": "cha cha Close Hip Twist spiral"
     }
    ],
@@ -48082,20 +46112,6 @@
      "channel": "iDanceTW",
      "length": "0:56",
      "query": "cha cha Open Hip Twist Spiral"
-    },
-    {
-     "id": "gpTBJ08KJrA",
-     "title": "Cha Cha Basic + Routine 4 | Open Hip Twist Spiral, Alemana, Open Basic",
-     "channel": "Egils Smagris",
-     "length": "10:55",
-     "query": "cha cha Open Hip Twist Spiral"
-    },
-    {
-     "id": "5_Ma9j-rXNw",
-     "title": "Cha-cha dance steps 18. OpenHipTwistSpiral",
-     "channel": "DancePartner2000",
-     "length": "0:08",
-     "query": "cha cha Open Hip Twist Spiral"
     }
    ],
    "floor": {
@@ -48322,13 +46338,6 @@
      "title": "CHA CHA CHA - with Turkish Towel",
      "channel": "Ballroom With Anna",
      "length": "3:47",
-     "query": "cha cha Turkish Towel"
-    },
-    {
-     "id": "tQYlILEkPS4",
-     "title": "Cha Cha Intermediate Routine with Turkish Towel | Latin Dance",
-     "channel": "Egils Smagris",
-     "length": "12:32",
      "query": "cha cha Turkish Towel"
     }
    ],
@@ -49893,29 +47902,7 @@
      "finish": "lh-rh"
     }
    },
-   "videos": [
-    {
-     "id": "dF6r4AoY91M",
-     "title": "Syncopated Open Hip Twist - Cha - WDSF, W.Laird, ISTD",
-     "channel": "Техника Бальных Танцев",
-     "length": "5:38",
-     "query": "cha cha Syncopated Open Hip Twist"
-    },
-    {
-     "id": "abhD6JoADoA",
-     "title": "Syncopated Hip Twist - Cha Cha Cha",
-     "channel": "SYLLABUS Dance-Sport",
-     "length": "0:31",
-     "query": "cha cha Syncopated Open Hip Twist"
-    },
-    {
-     "id": "5LE42-ql2pU",
-     "title": "Open Hip Twist with Foot Change - Cha Cha Cha",
-     "channel": "SYLLABUS Dance-Sport",
-     "length": "0:22",
-     "query": "cha cha Syncopated Open Hip Twist"
-    }
-   ],
+   "videos": [],
    "floor": {
     "title": "Syncopated Open Hip Twist",
     "url": "",
@@ -50745,29 +48732,7 @@
      "finish": "lh-rh"
     }
    },
-   "videos": [
-    {
-     "id": "ixloRDglJ-M",
-     "title": "How to Dance Cha? / Three Cha and Overturned Lock",
-     "channel": "Egils Smagris",
-     "length": "4:36",
-     "query": "cha cha Overturned Lock Ending"
-    },
-    {
-     "id": "EXhs-5hiv24",
-     "title": "Overturned Lock Ending  + Swivel From Overturned Lock",
-     "channel": "SYLLABUS Dance-Sport",
-     "length": "0:21",
-     "query": "cha cha Overturned Lock Ending"
-    },
-    {
-     "id": "d85Pl9TTAqI",
-     "title": "Lock Ending| Overturned Lock| Swivel from Lock",
-     "channel": "Техника Бальных Танцев",
-     "length": "6:43",
-     "query": "cha cha Overturned Lock Ending"
-    }
-   ],
+   "videos": [],
    "floor": {
     "title": "Overturned Lock Ending",
     "url": "",
@@ -50856,29 +48821,7 @@
      "finish": "lh-rh"
     }
    },
-   "videos": [
-    {
-     "id": "LH259dN9BbE",
-     "title": "Cha Cha silver continuous locks with overturn",
-     "channel": "Lisa and Israel Ballroom and Latin Dance",
-     "length": "0:51",
-     "query": "cha cha Continuous Overturned Lock"
-    },
-    {
-     "id": "ixloRDglJ-M",
-     "title": "How to Dance Cha? / Three Cha and Overturned Lock",
-     "channel": "Egils Smagris",
-     "length": "4:36",
-     "query": "cha cha Continuous Overturned Lock"
-    },
-    {
-     "id": "4b8YXocPNVM",
-     "title": "Cha Cha choreography group class- continuous locks",
-     "channel": "Lisa and Israel Ballroom and Latin Dance",
-     "length": "0:22",
-     "query": "cha cha Continuous Overturned Lock"
-    }
-   ],
+   "videos": [],
    "floor": {
     "title": "Continuous Overturned Lock",
     "url": "",
@@ -51030,29 +48973,7 @@
      "finish": "lh-rh"
     }
    },
-   "videos": [
-    {
-     "id": "ixloRDglJ-M",
-     "title": "How to Dance Cha? / Three Cha and Overturned Lock",
-     "channel": "Egils Smagris",
-     "length": "4:36",
-     "query": "cha cha Swivel from Overturned Lock"
-    },
-    {
-     "id": "EXhs-5hiv24",
-     "title": "Overturned Lock Ending  + Swivel From Overturned Lock",
-     "channel": "SYLLABUS Dance-Sport",
-     "length": "0:21",
-     "query": "cha cha Swivel from Overturned Lock"
-    },
-    {
-     "id": "5-X6WA5JyEo",
-     "title": "Continuous Overturned  Locks + Swivel from Overturned Lock",
-     "channel": "SYLLABUS Dance-Sport",
-     "length": "0:22",
-     "query": "cha cha Swivel from Overturned Lock"
-    }
-   ],
+   "videos": [],
    "floor": {
     "title": "Swivel From Overturned Lock",
     "url": "",
@@ -51191,17 +49112,10 @@
      "query": "cha cha Swivel Hip twist"
     },
     {
-     "id": "HufdEOKtWLM",
-     "title": "How to dance CHA? / Swivel Hip Twist",
-     "channel": "Egils Smagris",
-     "length": "3:19",
-     "query": "cha cha Swivel Hip twist"
-    },
-    {
-     "id": "E_YaqJ5X3U4",
-     "title": "Cha Cha Basic + Routine 1 | Turkish Towel, Continuous Lock Step, Swivel Hip Twist",
-     "channel": "Egils Smagris",
-     "length": "9:28",
+     "id": "pAC0Z_IJMx4",
+     "title": "(2) Tutorial How to swivel or hip twist in cha cha",
+     "channel": "RS Dance",
+     "length": "1:14",
      "query": "cha cha Swivel Hip twist"
     }
    ],
@@ -51493,20 +49407,6 @@
      "channel": "SYLLABUS Dance-Sport",
      "length": "0:23",
      "query": "cha cha 4 Walks and Whisks"
-    },
-    {
-     "id": "YHsPfwh3-8w",
-     "title": "Cha Cha Gold Level Choreography | Close Hip Twist Spiral, Walks and Whisks",
-     "channel": "Egils Smagris",
-     "length": "5:17",
-     "query": "cha cha 4 Walks and Whisks"
-    },
-    {
-     "id": "hpEnv6v58A8",
-     "title": "Basic Cha Cha Routine with Walks and Whisks",
-     "channel": "Egils Smagris",
-     "length": "4:11",
-     "query": "cha cha 4 Walks and Whisks"
     }
    ],
    "floor": {
@@ -51754,29 +49654,7 @@
      "finish": "none"
     }
    },
-   "videos": [
-    {
-     "id": "dQbTlsPPM3Q",
-     "title": "Cha-cha dance steps 47. Changing feet - method 1",
-     "channel": "DancePartner2000",
-     "length": "0:21",
-     "query": "cha cha Advanced Method of Changing Feets"
-    },
-    {
-     "id": "BHYPOusZ1tw",
-     "title": "Cha-cha dance steps 48. Changing feet - method 2",
-     "channel": "DancePartner2000",
-     "length": "0:20",
-     "query": "cha cha Advanced Method of Changing Feets"
-    },
-    {
-     "id": "xqEJqmDC8-s",
-     "title": "Cha-cha dance steps 49. Changing feet - method 3",
-     "channel": "DancePartner2000",
-     "length": "0:16",
-     "query": "cha cha Advanced Method of Changing Feets"
-    }
-   ]
+   "videos": []
   },
   {
    "id": "rumba-1",
@@ -52201,13 +50079,6 @@
      "channel": "Flow Dance Studios",
      "length": "1:31",
      "query": "rumba New York to Right"
-    },
-    {
-     "id": "T5Fwih53rOU",
-     "title": "Rumba Beginner Step-  New York",
-     "channel": "iDanceTW",
-     "length": "1:12",
-     "query": "rumba New York to Right"
     }
    ],
    "floor": {
@@ -52313,29 +50184,7 @@
      "finish": "rh-lh"
     }
    },
-   "videos": [
-    {
-     "id": "MqsO1opifSk",
-     "title": "New York to Right and Left RUMBA",
-     "channel": "SYLLABUS Dance-Sport",
-     "length": "0:37",
-     "query": "rumba New York to Left"
-    },
-    {
-     "id": "gn0fg4E_MBI",
-     "title": "017 Rumba Bài 6: Bước 3 - Mở tiến (New York Left or Right Side position )",
-     "channel": "Tự học Khiêu vũ 2025",
-     "length": "2:37",
-     "query": "rumba New York to Left"
-    },
-    {
-     "id": "YF4T2xrSaZg",
-     "title": "How to dance NEW YORK in Rumba |TECHNIQUE | Latin Dance Tutorial",
-     "channel": "Ballroom with Alexey",
-     "length": "6:19",
-     "query": "rumba New York to Left"
-    }
-   ],
+   "videos": [],
    "floor": {
     "title": "New York",
     "url": "https://www.dancecentral.info/ballroom/international-style/rumba/new-york",
@@ -52454,13 +50303,6 @@
      "channel": "Flow Dance Studios",
      "length": "1:31",
      "query": "rumba Hand to Hand to Right"
-    },
-    {
-     "id": "e-Vbt-jY-Gk",
-     "title": "Rumba Hand to Hand",
-     "channel": "Tanzschule Künkler",
-     "length": "0:24",
-     "query": "rumba Hand to Hand to Right"
     }
    ],
    "floor": {
@@ -52559,29 +50401,7 @@
      "finish": "rh-lh"
     }
    },
-   "videos": [
-    {
-     "id": "wi0O9NA5rfg",
-     "title": "Hand to Hand to Right and Left RUMBA",
-     "channel": "SYLLABUS Dance-Sport",
-     "length": "0:39",
-     "query": "rumba Hand to Hand to Left"
-    },
-    {
-     "id": "QrKyDD39Clc",
-     "title": "Hand to Hand - Rumba",
-     "channel": "SYLLABUS Dance-Sport",
-     "length": "0:28",
-     "query": "rumba Hand to Hand to Left"
-    },
-    {
-     "id": "e-Vbt-jY-Gk",
-     "title": "Rumba Hand to Hand",
-     "channel": "Tanzschule Künkler",
-     "length": "0:24",
-     "query": "rumba Hand to Hand to Left"
-    }
-   ],
+   "videos": [],
    "floor": {
     "title": "Hand to Hand",
     "url": "https://www.dancecentral.info/ballroom/international-style/rumba/hand-to-hand",
@@ -52810,13 +50630,6 @@
      "channel": "SYLLABUS Dance-Sport",
      "length": "0:38",
      "query": "rumba Spot Turn to Left"
-    },
-    {
-     "id": "zSmBQZ7UPGc",
-     "title": "How to dance Rumba (1.Curl 2.Aida( Fallaway) 3.Left Cucaracha 4.Fencing Line 5. Spot Turn to Right",
-     "channel": "Ballroom dancing Figures",
-     "length": "0:13",
-     "query": "rumba Spot Turn to Left"
     }
    ],
    "floor": {
@@ -52926,20 +50739,6 @@
      "channel": "SYLLABUS Dance-Sport",
      "length": "0:44",
      "query": "rumba Underarm Turn Turning Right"
-    },
-    {
-     "id": "ro21O_R14NE",
-     "title": "Silver Rhythm Rumba Quick Underarm Turns Right & Left",
-     "channel": "Esther Don",
-     "length": "4:54",
-     "query": "rumba Underarm Turn Turning Right"
-    },
-    {
-     "id": "LKhCyH78iew",
-     "title": "Cucaracha with Under Arm Turning Left and Right - Rumba",
-     "channel": "SYLLABUS Dance-Sport",
-     "length": "0:25",
-     "query": "rumba Underarm Turn Turning Right"
     }
    ],
    "floor": {
@@ -53045,13 +50844,6 @@
      "title": "Cucaracha with Under Arm Turning Left and Right - Rumba",
      "channel": "SYLLABUS Dance-Sport",
      "length": "0:25",
-     "query": "rumba Underarm Turn Turning Left"
-    },
-    {
-     "id": "vFxOPVPtVRQ",
-     "title": "Rumba    Box with Underarm Turn",
-     "channel": "Sway Ballroom Dance",
-     "length": "0:16",
      "query": "rumba Underarm Turn Turning Left"
     }
    ],
@@ -53672,13 +51464,6 @@
      "query": "rumba Open Hip Twist"
     },
     {
-     "id": "3Dt2AeE4804",
-     "title": "Rumba Basic to Open Hip Twist | Latin Dance Routine and Figures",
-     "channel": "Egils Smagris",
-     "length": "8:37",
-     "query": "rumba Open Hip Twist"
-    },
-    {
      "id": "41fdH0W_A9g",
      "title": "Open Hip Twist RUMBA",
      "channel": "SYLLABUS Dance-Sport",
@@ -53901,29 +51686,7 @@
      "finish": "lh-rh"
     }
    },
-   "videos": [
-    {
-     "id": "4dcj9cKhPMc",
-     "title": "Open Hip Twist To Side Steps RUMBA",
-     "channel": "SYLLABUS Dance-Sport",
-     "length": "0:35",
-     "query": "rumba Open Hip Twist Finished to Side"
-    },
-    {
-     "id": "u5vYdajRRP4",
-     "title": "How to dance Open Hip Twist in Rumba?",
-     "channel": "Egils Smagris",
-     "length": "2:10",
-     "query": "rumba Open Hip Twist Finished to Side"
-    },
-    {
-     "id": "3Dt2AeE4804",
-     "title": "Rumba Basic to Open Hip Twist | Latin Dance Routine and Figures",
-     "channel": "Egils Smagris",
-     "length": "8:37",
-     "query": "rumba Open Hip Twist Finished to Side"
-    }
-   ],
+   "videos": [],
    "floor": {
     "title": "Open Hip Twist Finished To Side",
     "url": "",
@@ -54292,29 +52055,7 @@
      "finish": "lh-rh"
     }
    },
-   "videos": [
-    {
-     "id": "1splSl4kNcI",
-     "title": "How to dance Open Hip Twist, Fan, Hockey Stick in Rumba - Intermediate",
-     "channel": "Flow Dance Studios",
-     "length": "0:48",
-     "query": "rumba Hockey Stick Finished to Side"
-    },
-    {
-     "id": "WHBjDG0znNQ",
-     "title": "Rumba dance steps 16. Hockey stick turned to OCCP",
-     "channel": "DancePartner2000",
-     "length": "0:21",
-     "query": "rumba Hockey Stick Finished to Side"
-    },
-    {
-     "id": "-kaZZefqZG0",
-     "title": "Rumba - Fan and Hockey Stick",
-     "channel": "Margaret in Sicily",
-     "length": "0:31",
-     "query": "rumba Hockey Stick Finished to Side"
-    }
-   ],
+   "videos": [],
    "floor": {
     "title": "Hockey Stick Finished To Side",
     "url": "",
@@ -54959,13 +52700,6 @@
      "query": "rumba Close Hip Twist"
     },
     {
-     "id": "6scbvYwF9s0",
-     "title": "How to dance Basic Rumba | Closed Hip Twist | Routine",
-     "channel": "Egils Smagris",
-     "length": "3:11",
-     "query": "rumba Close Hip Twist"
-    },
-    {
      "id": "SMIhLemPOHs",
      "title": "Rumba dance steps 24. Close hip twist turned to OCCPwmv",
      "channel": "DancePartner2000",
@@ -55108,29 +52842,7 @@
      "finish": "lh-rh"
     }
    },
-   "videos": [
-    {
-     "id": "o24gr-8RXTE",
-     "title": "Closed Hip twist - Rumba",
-     "channel": "SYLLABUS Dance-Sport",
-     "length": "0:27",
-     "query": "rumba Close Hip Twist Finished to Side"
-    },
-    {
-     "id": "kj5hCMpf1SU",
-     "title": "Blitzing Closed Hip Twist with Alternate Finishing Positions in Rumba!",
-     "channel": "Long-Steps Dancing",
-     "length": "7:30",
-     "query": "rumba Close Hip Twist Finished to Side"
-    },
-    {
-     "id": "SMIhLemPOHs",
-     "title": "Rumba dance steps 24. Close hip twist turned to OCCPwmv",
-     "channel": "DancePartner2000",
-     "length": "0:21",
-     "query": "rumba Close Hip Twist Finished to Side"
-    }
-   ],
+   "videos": [],
    "floor": {
     "title": "Close Hip Twist Finished To Side",
     "url": "",
@@ -55308,13 +53020,6 @@
      "title": "NDCA International Gold Rumba   30 Three Alemanas",
      "channel": "Hien Quang Aus",
      "length": "0:21",
-     "query": "rumba Alemana"
-    },
-    {
-     "id": "U1g4STYsfTE",
-     "title": "Rumba dance steps 14. ThreeAlemanas",
-     "channel": "DancePartner2000",
-     "length": "0:14",
      "query": "rumba Alemana"
     }
    ],
@@ -55611,20 +53316,6 @@
      "channel": "StarDance明星舞池",
      "length": "1:19",
      "query": "rumba Alemana Finished to Side"
-    },
-    {
-     "id": "CH0x6T3BeCA",
-     "title": "Rumba dance steps 10. Alemana from fan position",
-     "channel": "DancePartner2000",
-     "length": "0:21",
-     "query": "rumba Alemana Finished to Side"
-    },
-    {
-     "id": "ZfAzX9cahF4",
-     "title": "Rumba Basic Choreography 4 | Alemana, Closed Hip Twist and Swivels",
-     "channel": "Egils Smagris",
-     "length": "5:01",
-     "query": "rumba Alemana Finished to Side"
     }
    ],
    "floor": {
@@ -55792,13 +53483,6 @@
      "title": "Progressive Forward Walks - Rumba",
      "channel": "SYLLABUS Dance-Sport",
      "length": "0:32",
-     "query": "rumba Progressive Forward Walks"
-    },
-    {
-     "id": "o4q8ZT7DeDQ",
-     "title": "Progressive Forward Walks to Fan RUMBA",
-     "channel": "SYLLABUS Dance-Sport",
-     "length": "0:37",
      "query": "rumba Progressive Forward Walks"
     },
     {
@@ -56039,20 +53723,6 @@
      "title": "Progressive Forward Walks to Fan RUMBA",
      "channel": "SYLLABUS Dance-Sport",
      "length": "0:37",
-     "query": "rumba Progressive Forward Walks to Fan"
-    },
-    {
-     "id": "7WpqKILzovE",
-     "title": "Rumba Basic Choreography 3 | Spiral, Progressive Walks to Fan Position",
-     "channel": "Egils Smagris",
-     "length": "3:44",
-     "query": "rumba Progressive Forward Walks to Fan"
-    },
-    {
-     "id": "iJxDvTjkcN8",
-     "title": "Progressive Forward Walks - Rumba",
-     "channel": "SYLLABUS Dance-Sport",
-     "length": "0:32",
      "query": "rumba Progressive Forward Walks to Fan"
     }
    ],
@@ -56709,13 +54379,6 @@
      "channel": "Passion4dancing",
      "length": "0:26",
      "query": "rumba Cuban Rocks"
-    },
-    {
-     "id": "ZsO6AJXpJ00",
-     "title": "Rumba Basic Routine with Cuban Rocks | Latin Dance",
-     "channel": "Egils Smagris",
-     "length": "9:42",
-     "query": "rumba Cuban Rocks"
     }
    ]
   },
@@ -56778,13 +54441,6 @@
      "title": "Fencing to Spin - Rumba",
      "channel": "SYLLABUS Dance-Sport",
      "length": "0:28",
-     "query": "rumba Fencing to Spin"
-    },
-    {
-     "id": "JduRuBFob6E",
-     "title": "Rumba - Practice Routine with Fencing and Spin",
-     "channel": "Ballroom With Anna",
-     "length": "2:18",
      "query": "rumba Fencing to Spin"
     },
     {
@@ -56983,24 +54639,10 @@
    },
    "videos": [
     {
-     "id": "rrdjfXbohTg",
-     "title": "Rumba Basic + Choreography (3) | Open Hip Twist, Alemana, Continuous Circular Hip Twist",
-     "channel": "Egils Smagris",
-     "length": "10:42",
-     "query": "rumba Continuous Circular Hip Twist"
-    },
-    {
-     "id": "5t3kFwTFFBA",
-     "title": "Rumba Basic Choreography 1 | Basic, Hip Twist: Closed, Open, Continuous Circular",
-     "channel": "Egils Smagris",
-     "length": "6:46",
-     "query": "rumba Continuous Circular Hip Twist"
-    },
-    {
-     "id": "Z8gswCnxOIQ",
-     "title": "How to dance Circular Hip Twist in Rumba - Advanced",
-     "channel": "Flow Dance Studios",
-     "length": "0:43",
+     "id": "PR_wqSHrMas",
+     "title": "Rumba silver/gold - circular hip twist, continuous hip twist (variation), spiral",
+     "channel": "Lisa and Israel Ballroom and Latin Dance",
+     "length": "1:58",
      "query": "rumba Continuous Circular Hip Twist"
     }
    ],
@@ -57264,20 +54906,6 @@
      "title": "Синкопированный открытый Хип твист - Румба (Syncopated Open Hip Twist - Rumba) - WDSF, W.Laird, ISTD",
      "channel": "Техника Бальных Танцев",
      "length": "6:56",
-     "query": "rumba Syncopated Open Hip Twist"
-    },
-    {
-     "id": "u5vYdajRRP4",
-     "title": "How to dance Open Hip Twist in Rumba?",
-     "channel": "Egils Smagris",
-     "length": "2:10",
-     "query": "rumba Syncopated Open Hip Twist"
-    },
-    {
-     "id": "3Dt2AeE4804",
-     "title": "Rumba Basic to Open Hip Twist | Latin Dance Routine and Figures",
-     "channel": "Egils Smagris",
-     "length": "8:37",
      "query": "rumba Syncopated Open Hip Twist"
     }
    ],
@@ -57753,13 +55381,6 @@
      "channel": "SYLLABUS Dance-Sport",
      "length": "0:39",
      "query": "rumba Reverse Top"
-    },
-    {
-     "id": "eSD9yzLJkHk",
-     "title": "Rumba dance steps 26. ReverseTop",
-     "channel": "DancePartner2000",
-     "length": "0:09",
-     "query": "rumba Reverse Top"
     }
    ],
    "floor": {
@@ -58185,29 +55806,7 @@
      "finish": "lh-rh"
     }
    },
-   "videos": [
-    {
-     "id": "qXrqgoWp7sA",
-     "title": "Curl from Fan Position - Rumba",
-     "channel": "SYLLABUS Dance-Sport",
-     "length": "0:24",
-     "query": "rumba Curl Finished to Side"
-    },
-    {
-     "id": "zSmBQZ7UPGc",
-     "title": "How to dance Rumba (1.Curl 2.Aida( Fallaway) 3.Left Cucaracha 4.Fencing Line 5. Spot Turn to Right",
-     "channel": "Ballroom dancing Figures",
-     "length": "0:13",
-     "query": "rumba Curl Finished to Side"
-    },
-    {
-     "id": "uEJLi8Sc8us",
-     "title": "Curl - Rumba",
-     "channel": "SYLLABUS Dance-Sport",
-     "length": "0:29",
-     "query": "rumba Curl Finished to Side"
-    }
-   ],
+   "videos": [],
    "floor": {
     "title": "Curl Finished To Side",
     "url": "",
@@ -58594,29 +56193,7 @@
      "finish": "lh-rh"
     }
    },
-   "videos": [
-    {
-     "id": "0r5yZ-t44QM",
-     "title": "Rumba Intermediate Routine with Spiral to Fallaway | Routine and Figures",
-     "channel": "Egils Smagris",
-     "length": "11:14",
-     "query": "rumba Spiral Finished to Side"
-    },
-    {
-     "id": "5A2y2V1_r4s",
-     "title": "Spiral Overturned - Rumba",
-     "channel": "SYLLABUS Dance-Sport",
-     "length": "0:46",
-     "query": "rumba Spiral Finished to Side"
-    },
-    {
-     "id": "4FWYmcx4iDs",
-     "title": "How to dance Syncopated Spiral in Rumba - Advanced",
-     "channel": "Flow Dance Studios",
-     "length": "0:35",
-     "query": "rumba Spiral Finished to Side"
-    }
-   ],
+   "videos": [],
    "floor": {
     "title": "Spiral Finished To Side",
     "url": "",
@@ -58941,13 +56518,6 @@
     }
    },
    "videos": [
-    {
-     "id": "syXqn9yx0nw",
-     "title": "Rumba Three Alemanas | Dance Routine and Figures",
-     "channel": "Egils Smagris",
-     "length": "11:07",
-     "query": "rumba Three Alemanas"
-    },
     {
      "id": "-GKChvuaDC0",
      "title": "NDCA International Gold Rumba   30 Three Alemanas",
@@ -59626,13 +57196,6 @@
      "channel": "SYLLABUS Dance-Sport",
      "length": "0:29",
      "query": "rumba Advanced Sliding Doors"
-    },
-    {
-     "id": "eiNLuY9S8tw",
-     "title": "Rumba Sliding Doors |세계선수들의 슬라이딩 도어즈 모음",
-     "channel": "Viol Dance TV",
-     "length": "3:28",
-     "query": "rumba Advanced Sliding Doors"
     }
    ],
    "floor": {
@@ -60251,24 +57814,24 @@
    },
    "videos": [
     {
-     "id": "ZHADm-wkRgs",
-     "title": "Rumba Intermediate Routine with Rope Spinning | Routine and Figures",
-     "channel": "Egils Smagris",
-     "length": "10:13",
-     "query": "rumba Rope Spinning"
-    },
-    {
-     "id": "72Kh2FJGBFc",
-     "title": "Rumba Gold Level Choreography | Rope Spinning, Hand to Hand",
-     "channel": "Egils Smagris",
-     "length": "5:18",
-     "query": "rumba Rope Spinning"
-    },
-    {
      "id": "h0DLafiAp4Y",
      "title": "Rumba Rope Spinning",
      "channel": "Tanzschule Künkler",
      "length": "0:50",
+     "query": "rumba Rope Spinning"
+    },
+    {
+     "id": "zV-z-7CSDNM",
+     "title": "Rope Spinning - Rumba",
+     "channel": "SYLLABUS Dance-Sport",
+     "length": "0:37",
+     "query": "rumba Rope Spinning"
+    },
+    {
+     "id": "sWI_HiNabzE",
+     "title": "RUMBA |Open Basic| Alemana|Rope Spinning",
+     "channel": "Habanera Dance Academy",
+     "length": "0:41",
      "query": "rumba Rope Spinning"
     }
    ],
@@ -60504,13 +58067,6 @@
      "channel": "Oleg Astakhov",
      "length": "3:09",
      "query": "rumba Swivels"
-    },
-    {
-     "id": "Si_K6R7fnBs",
-     "title": "How to Dance Rumba? Swivels & Routine",
-     "channel": "Egils Smagris",
-     "length": "4:18",
-     "query": "rumba Swivels"
     }
    ],
    "floor": {
@@ -60714,20 +58270,6 @@
      "channel": "SYLLABUS Dance-Sport",
      "length": "0:30",
      "query": "rumba Overturned Basic"
-    },
-    {
-     "id": "5A2y2V1_r4s",
-     "title": "Spiral Overturned - Rumba",
-     "channel": "SYLLABUS Dance-Sport",
-     "length": "0:46",
-     "query": "rumba Overturned Basic"
-    },
-    {
-     "id": "HEd9HxB1wKo",
-     "title": "Alemana Overturned to Right - Rumba",
-     "channel": "SYLLABUS Dance-Sport",
-     "length": "0:36",
-     "query": "rumba Overturned Basic"
     }
    ],
    "floor": {
@@ -60880,29 +58422,7 @@
     ],
     "variants": {}
    },
-   "videos": [
-    {
-     "id": "WLHvySe6e14",
-     "title": "International Rumba for Beginners.  Progressive Walks Forward and Backward combination w/ a partner",
-     "channel": "Columbus Dance Centre",
-     "length": "2:02",
-     "query": "rumba Forward and backward Walks Amalgations"
-    },
-    {
-     "id": "MWgU1LX25Ck",
-     "title": "Rumba dance steps 04. Backward walks",
-     "channel": "DancePartner2000",
-     "length": "0:19",
-     "query": "rumba Forward and backward Walks Amalgations"
-    },
-    {
-     "id": "1xcS4uuLe94",
-     "title": "Rumba Forward and Backward Progress Rocks week1",
-     "channel": "Matthew Ames Television",
-     "length": "1:07",
-     "query": "rumba Forward and backward Walks Amalgations"
-    }
-   ]
+   "videos": []
   },
   {
    "id": "paso-1",
@@ -61174,13 +58694,6 @@
      "channel": "EasyBallroom",
      "length": "1:02",
      "query": "paso doble Sur Place"
-    },
-    {
-     "id": "2IDrWMrSX-Y",
-     "title": "Paso Doble - Surplace",
-     "channel": "Kay-Lee Brinkhuys",
-     "length": "0:48",
-     "query": "paso doble Sur Place"
     }
    ],
    "floor": {
@@ -61310,15 +58823,15 @@
      "query": "paso doble Chasses to R"
     },
     {
-     "id": "sUawlQJjEkc",
-     "title": "Chasses to left - Paso Doble",
-     "channel": "SYLLABUS Dance-Sport",
-     "length": "0:33",
+     "id": "eHXzWseCyjE",
+     "title": "Paso Doble Chasses to Right",
+     "channel": "BallroomDancers.com",
+     "length": "2:41",
      "query": "paso doble Chasses to R"
     },
     {
-     "id": "7ZmwojxZWtQ",
-     "title": "How to dance Chasses to Left in Paso Doble #5 | Шассе влево. Пасодобль | EasyBallroom",
+     "id": "HphHoymCpPk",
+     "title": "How to dance Chasses to Right in Paso Doble #4 | Шассе вправо. Пасодобль | EasyBallroom",
      "channel": "EasyBallroom",
      "length": "1:22",
      "query": "paso doble Chasses to R"
@@ -61556,13 +59069,6 @@
    },
    "videos": [
     {
-     "id": "VafKkNTS0iE",
-     "title": "Chasses to right - Paso Doble",
-     "channel": "SYLLABUS Dance-Sport",
-     "length": "0:33",
-     "query": "paso doble Chasses to L"
-    },
-    {
      "id": "2G4sWK3tOhw",
      "title": "Paso Doble Chasses to Left",
      "channel": "BallroomDancers.com",
@@ -61689,18 +59195,18 @@
      "query": "paso doble Attack"
     },
     {
-     "id": "IK33ys4KqfM",
-     "title": "Closed Gold Paso Doble Variation",
-     "channel": "Andrii Voloshko & Kateryna Kyrylenko",
-     "length": "1:06",
-     "query": "paso doble Attack"
+     "id": "yQfYP3-GXoc",
+     "title": "Appel in Paso Doble | Vulic - Bussoletti | The WDSF Academy",
+     "channel": "TheWDSFAcademy",
+     "length": "4:04",
+     "query": "paso doble Appel"
     },
     {
-     "id": "nDFihjVBSYs",
-     "title": "Paso Doble Basic Steps for Beginners",
-     "channel": "Egils Smagris",
-     "length": "9:03",
-     "query": "paso doble Attack"
+     "id": "KIVvACs8yn4",
+     "title": "How to dance Appel in the Paso Doble",
+     "channel": "Dance Spirit Club",
+     "length": "0:58",
+     "query": "paso doble Appel"
     }
    ],
    "floor": {
@@ -62030,13 +59536,6 @@
      "channel": "Dance Insanity",
      "length": "3:02",
      "query": "paso doble Separation"
-    },
-    {
-     "id": "g-r7nDVEM7c",
-     "title": "Syncopated Separation - Paso Doble",
-     "channel": "SYLLABUS Dance-Sport",
-     "length": "0:47",
-     "query": "paso doble Separation"
     }
    ],
    "floor": {
@@ -62204,20 +59703,6 @@
      "title": "Natural Twist Turn - Paso Doble",
      "channel": "SYLLABUS Dance-Sport",
      "length": "0:34",
-     "query": "paso doble Natural Twist Turn"
-    },
-    {
-     "id": "6AZZtCGQDs8",
-     "title": "PASO DOBLE Lesson – Chasse Cape, Twist Turns, Promenade Counter Promenade, Grand Circle | Tutorial",
-     "channel": "Flow Dance Studios",
-     "length": "14:53",
-     "query": "paso doble Natural Twist Turn"
-    },
-    {
-     "id": "3Osu3n2uwu4",
-     "title": "Show Team - Paso Twist Turns - Guys",
-     "channel": "hannahthebanana1",
-     "length": "0:21",
      "query": "paso doble Natural Twist Turn"
     }
    ],
@@ -62608,24 +60093,24 @@
    },
    "videos": [
     {
-     "id": "LRz5mEf3tCM",
-     "title": "Promenade (facing wall) - Paso Doble",
-     "channel": "SYLLABUS Dance-Sport",
-     "length": "0:11",
+     "id": "iMXaFzu-7IE",
+     "title": "Paso   Promenade Close 2",
+     "channel": "Thandisizwe Matyumza",
+     "length": "0:45",
      "query": "paso doble Closed promenade"
     },
     {
-     "id": "cNLO7zRphQI",
-     "title": "Promenade Link - Paso Doble",
-     "channel": "SYLLABUS Dance-Sport",
-     "length": "0:24",
+     "id": "DcSNnESwPQA",
+     "title": "Paso Doble Man Promenade close",
+     "channel": "Bonginkosi DLAMINI",
+     "length": "1:04",
      "query": "paso doble Closed promenade"
     },
     {
-     "id": "Dd10NttiKME",
-     "title": "Promenade to Counter Promenade (along L.O.D.) - Paso Doble",
-     "channel": "SYLLABUS Dance-Sport",
-     "length": "0:11",
+     "id": "j36vKz8NWkM",
+     "title": "Paso Doble: Separation with Lady's Caping Walk & Closed Promenade mini Tutorial",
+     "channel": "Starseed School of Dance",
+     "length": "1:06",
      "query": "paso doble Closed promenade"
     }
    ],
@@ -63912,29 +61397,7 @@
      "finish": "promenade"
     }
    },
-   "videos": [
-    {
-     "id": "FkQiSUVksB0",
-     "title": "Paso Doble Gold Level Choreography | Fallaway Reverse, Spanish Line",
-     "channel": "Egils Smagris",
-     "length": "5:51",
-     "query": "paso doble Fallaway Reverse"
-    },
-    {
-     "id": "ydC257wAjlE",
-     "title": "Fallaway Reverse-Slow Waltz",
-     "channel": "SYLLABUS Dance-Sport",
-     "length": "0:27",
-     "query": "paso doble Fallaway Reverse"
-    },
-    {
-     "id": "L0Nu3lXrIXY",
-     "title": "Fallaway Reverse Slip Pivot, Syncopated Reverse Turn (Viennese Cross)   Spanish Drag - Tango",
-     "channel": "Karen833",
-     "length": "0:32",
-     "query": "paso doble Fallaway Reverse"
-    }
-   ],
+   "videos": [],
    "floor": {
     "title": "Fallaway Reverse",
     "url": "",
@@ -64243,13 +61706,6 @@
      "title": "Paso doble class 3 Spanish lines with flamenco taps.",
      "channel": "Lisa and Israel Ballroom and Latin Dance",
      "length": "1:50",
-     "query": "paso doble Spanish Lines"
-    },
-    {
-     "id": "eMhkFacePo4",
-     "title": "Spanish Line in RCP and LCP - Paso Doble",
-     "channel": "SYLLABUS Dance-Sport",
-     "length": "0:13",
      "query": "paso doble Spanish Lines"
     }
    ],
@@ -64756,13 +62212,6 @@
      "query": "paso doble Syncopated Separation"
     },
     {
-     "id": "pWtwdCLuaeY",
-     "title": "Paso Doble Gold Level Choreography | Drag, Syncopated Separation",
-     "channel": "Egils Smagris",
-     "length": "4:45",
-     "query": "paso doble Syncopated Separation"
-    },
-    {
      "id": "sG5ZpBg0L-g",
      "title": "Gold paso Doble  Syncopated Separation",
      "channel": "The Music Dancing Feet Partnership",
@@ -64967,13 +62416,6 @@
    },
    "videos": [
     {
-     "id": "T5LEJq_4Z2A",
-     "title": "Paso Doble Gold Level Choreography | Spanish Line with Flamenco Taps, Coupe de Pique",
-     "channel": "Egils Smagris",
-     "length": "4:43",
-     "query": "paso doble Flamenco Taps"
-    },
-    {
      "id": "JPDbAG4pZeo",
      "title": "Goud les 16: Flamenco taps in Paso Doble",
      "channel": "Dansen bij Versteegh Dansschool",
@@ -65162,20 +62604,6 @@
      "title": "Twists - Paso Doble",
      "channel": "SYLLABUS Dance-Sport",
      "length": "0:44",
-     "query": "paso doble Twists"
-    },
-    {
-     "id": "EJ6neHTxPS0",
-     "title": "WDSF Technique Books | The Paso Doble",
-     "channel": "TheWDSFAcademy",
-     "length": "7:23",
-     "query": "paso doble Twists"
-    },
-    {
-     "id": "7GOFgqNOBpg",
-     "title": "Paso Doble Pointers: Sandro Cavallini",
-     "channel": "TheWDSFAcademy",
-     "length": "7:23",
      "query": "paso doble Twists"
     }
    ],
@@ -66113,17 +63541,17 @@
      "query": "paso doble Travelling Spins from PP"
     },
     {
-     "id": "XikcSnEkZus",
-     "title": "Travelling Spins to left from CPP - Paso Doble",
+     "id": "IRgukRKNKD4",
+     "title": "Travelling Spins from Promenade Position - Paso Doble",
      "channel": "SYLLABUS Dance-Sport",
-     "length": "0:15",
+     "length": "0:37",
      "query": "paso doble Travelling Spins from PP"
     },
     {
-     "id": "mrtDHARh7yA",
-     "title": "Paso Doble Gold Level Choreography | Grand Circle, Travelling Spins from CPP",
-     "channel": "Egils Smagris",
-     "length": "4:46",
+     "id": "dwcX6PbfrcM",
+     "title": "Travelling Spins from Counter Promenade Position - Paso Doble",
+     "channel": "SYLLABUS Dance-Sport",
+     "length": "0:46",
      "query": "paso doble Travelling Spins from PP"
     }
    ],
@@ -66321,20 +63749,6 @@
      "channel": "SYLLABUS Dance-Sport",
      "length": "0:15",
      "query": "paso doble Travelling Spins from CPP"
-    },
-    {
-     "id": "mrtDHARh7yA",
-     "title": "Paso Doble Gold Level Choreography | Grand Circle, Travelling Spins from CPP",
-     "channel": "Egils Smagris",
-     "length": "4:46",
-     "query": "paso doble Travelling Spins from CPP"
-    },
-    {
-     "id": "dwcX6PbfrcM",
-     "title": "Travelling Spins from Counter Promenade Position - Paso Doble",
-     "channel": "SYLLABUS Dance-Sport",
-     "length": "0:46",
-     "query": "paso doble Travelling Spins from CPP"
     }
    ],
    "floor": {
@@ -66521,17 +63935,10 @@
      "query": "paso doble Syncopated Coup de Pique"
     },
     {
-     "id": "oWKOoSoh-c4",
-     "title": "Coup de Pique changing RF to LF - Paso Doble",
-     "channel": "SYLLABUS Dance-Sport",
-     "length": "0:33",
-     "query": "paso doble Syncopated Coup de Pique"
-    },
-    {
-     "id": "6LNQUFeKWvA",
-     "title": "Coup de Pique changing LF to RF - Paso Doble",
-     "channel": "SYLLABUS Dance-Sport",
-     "length": "0:34",
+     "id": "4Ffwo-tLAHY",
+     "title": "Double and Syncopated Coup de Pique - Paso Doble (Coup de Pique Couplet and Syncopation - Paso) -...",
+     "channel": "Техника Бальных Танцев",
+     "length": "3:50",
      "query": "paso doble Syncopated Coup de Pique"
     }
    ],
@@ -66725,13 +64132,6 @@
      "title": "Separation with Lady`s Caping Walks - Paso Doble",
      "channel": "SYLLABUS Dance-Sport",
      "length": "0:25",
-     "query": "paso doble Separation with Lady’s Caping Walks"
-    },
-    {
-     "id": "V6f7K5Gu8mk",
-     "title": "Paso Doble | Separation | Lady's Caping Walks",
-     "channel": "Columbus Dance Centre",
-     "length": "13:00",
      "query": "paso doble Separation with Lady’s Caping Walks"
     },
     {
@@ -67002,17 +64402,10 @@
      "query": "paso doble Farol"
     },
     {
-     "id": "BWXG1BimRfM",
-     "title": "Fregolina (incorporating Farol) / Фреголина (включая Фарол)",
-     "channel": "DanceShop",
-     "length": "0:34",
-     "query": "paso doble Farol"
-    },
-    {
-     "id": "IK33ys4KqfM",
-     "title": "Closed Gold Paso Doble Variation",
-     "channel": "Andrii Voloshko & Kateryna Kyrylenko",
-     "length": "1:06",
+     "id": "anO2m5TttX0",
+     "title": "Farol (facing wall) - Paso Doble",
+     "channel": "SYLLABUS Dance-Sport",
+     "length": "0:17",
      "query": "paso doble Farol"
     }
    ],
@@ -67573,29 +64966,7 @@
      "finish": "normal"
     }
    },
-   "videos": [
-    {
-     "id": "9aHnpkfvZx4",
-     "title": "Syncopated Coup de Pique - Paso Doble",
-     "channel": "SYLLABUS Dance-Sport",
-     "length": "0:33",
-     "query": "paso doble Syncopated Chasse"
-    },
-    {
-     "id": "VafKkNTS0iE",
-     "title": "Chasses to right - Paso Doble",
-     "channel": "SYLLABUS Dance-Sport",
-     "length": "0:33",
-     "query": "paso doble Syncopated Chasse"
-    },
-    {
-     "id": "rDmsdV6wKeA",
-     "title": "Chasse Cape - Paso Doble",
-     "channel": "SYLLABUS Dance-Sport",
-     "length": "0:54",
-     "query": "paso doble Syncopated Chasse"
-    }
-   ],
+   "videos": [],
    "floor": {
     "title": "3 Syncopated Chasse",
     "url": "",
@@ -67740,13 +65111,6 @@
      "title": "Paso Doble Left Foot Variation",
      "channel": "спортивный Танец",
      "length": "0:47",
-     "query": "paso doble Left Foot Variation"
-    },
-    {
-     "id": "EFpdvG-Vs5c",
-     "title": "015 Left foot variation",
-     "channel": "dance",
-     "length": "1:31",
      "query": "paso doble Left Foot Variation"
     }
    ],
@@ -67925,13 +65289,6 @@
      "channel": "SYLLABUS Dance-Sport",
      "length": "0:34",
      "query": "paso doble Coup de Pique (changing from LF to RF)"
-    },
-    {
-     "id": "9aHnpkfvZx4",
-     "title": "Syncopated Coup de Pique - Paso Doble",
-     "channel": "SYLLABUS Dance-Sport",
-     "length": "0:33",
-     "query": "paso doble Coup de Pique (changing from LF to RF)"
     }
    ],
    "floor": {
@@ -68096,13 +65453,6 @@
      "title": "Coup de Pique changing LF to RF - Paso Doble",
      "channel": "SYLLABUS Dance-Sport",
      "length": "0:34",
-     "query": "paso doble Coup de Pique (changing from RF to LF)"
-    },
-    {
-     "id": "9aHnpkfvZx4",
-     "title": "Syncopated Coup de Pique - Paso Doble",
-     "channel": "SYLLABUS Dance-Sport",
-     "length": "0:33",
      "query": "paso doble Coup de Pique (changing from RF to LF)"
     }
    ],
@@ -68692,17 +66042,17 @@
      "query": "jive Change of Place from R to L"
     },
     {
-     "id": "NcE5hNdDKDU",
-     "title": "Change of places from R to L with Double Spin  - Jive + alternative holds",
-     "channel": "SYLLABUS Dance-Sport",
-     "length": "0:38",
+     "id": "ldc_X0CBqso",
+     "title": "Want to learn Jive? Change of Place Right to Left",
+     "channel": "Egils Smagris",
+     "length": "2:58",
      "query": "jive Change of Place from R to L"
     },
     {
-     "id": "EDcuc8p8pxI",
-     "title": "Jive dance steps: 04. Change of place L to R",
-     "channel": "DancePartner2000",
-     "length": "0:15",
+     "id": "uCiFCITmfYU",
+     "title": "Jive   2  Change of Place R to L  +  L to R",
+     "channel": "Louie Park Argentine Tango",
+     "length": "0:34",
      "query": "jive Change of Place from R to L"
     }
    ],
@@ -68919,13 +66269,6 @@
    },
    "videos": [
     {
-     "id": "8tcVSLGmsfo",
-     "title": "Jive dance steps: 02. Change of place R to L",
-     "channel": "DancePartner2000",
-     "length": "0:18",
-     "query": "jive Change of Place from L to R"
-    },
-    {
      "id": "EDcuc8p8pxI",
      "title": "Jive dance steps: 04. Change of place L to R",
      "channel": "DancePartner2000",
@@ -68933,9 +66276,16 @@
      "query": "jive Change of Place from L to R"
     },
     {
-     "id": "NcE5hNdDKDU",
-     "title": "Change of places from R to L with Double Spin  - Jive + alternative holds",
-     "channel": "SYLLABUS Dance-Sport",
+     "id": "uCiFCITmfYU",
+     "title": "Jive   2  Change of Place R to L  +  L to R",
+     "channel": "Louie Park Argentine Tango",
+     "length": "0:34",
+     "query": "jive Change of Place from L to R"
+    },
+    {
+     "id": "bzGqfeP3Zak",
+     "title": "Jive figure : change of places from L to R with overturn",
+     "channel": "danceaddict168",
      "length": "0:38",
      "query": "jive Change of Place from L to R"
     }
@@ -70545,13 +67895,6 @@
      "title": "Jive dance steps: 16. Fallaway throwaway",
      "channel": "DancePartner2000",
      "length": "0:15",
-     "query": "jive Fallaway Throwaway"
-    },
-    {
-     "id": "qCLhzhelAXM",
-     "title": "Overturned Fallaway Throwaway - Jive + alternative holds",
-     "channel": "SYLLABUS Dance-Sport",
-     "length": "0:40",
      "query": "jive Fallaway Throwaway"
     }
    ],
@@ -73685,13 +71028,6 @@
      "query": "jive Chicken Walks"
     },
     {
-     "id": "aIQnwpJslHs",
-     "title": "Jive Intermediate Dance Routine with Chicken Walks",
-     "channel": "Egils Smagris",
-     "length": "8:41",
-     "query": "jive Chicken Walks"
-    },
-    {
      "id": "FrXyeclEdj0",
      "title": "Jive Chicken Walks",
      "channel": "iDanceTW",
@@ -74230,20 +71566,6 @@
      "title": "Rock to Simple Spin - Jive + alternative holds",
      "channel": "SYLLABUS Dance-Sport",
      "length": "0:29",
-     "query": "jive Rock to Simple Spin"
-    },
-    {
-     "id": "6RHaYDSL_as",
-     "title": "Jive Simple Spin",
-     "channel": "iDanceTW",
-     "length": "0:45",
-     "query": "jive Rock to Simple Spin"
-    },
-    {
-     "id": "QzV1a6Ei8lM",
-     "title": "Jive dance steps: 27. Simple spin",
-     "channel": "DancePartner2000",
-     "length": "0:10",
      "query": "jive Rock to Simple Spin"
     }
    ],
@@ -74819,13 +72141,6 @@
     }
    },
    "videos": [
-    {
-     "id": "Gm7QkgHAyro",
-     "title": "Jive - Sugar Push and Practice Routine",
-     "channel": "Egils Smagris",
-     "length": "4:24",
-     "query": "jive Sugar Push"
-    },
     {
      "id": "zcAFzyur99Q",
      "title": "Sugar push - Jive",
@@ -75602,13 +72917,6 @@
      "title": "How to dance Chugging in Jive - Improvers",
      "channel": "Flow Dance Studios",
      "length": "0:35",
-     "query": "jive Chugging"
-    },
-    {
-     "id": "Ua5sIoOWP0o",
-     "title": "Jive Routine with Chugging | Latin Dance Figures",
-     "channel": "Egils Smagris",
-     "length": "7:20",
      "query": "jive Chugging"
     }
    ],
@@ -76758,13 +74066,6 @@
    },
    "videos": [
     {
-     "id": "jOcns4yR8Ew",
-     "title": "Kick Ball Change in Jive | Exercises | Practice Routine",
-     "channel": "Egils Smagris",
-     "length": "4:19",
-     "query": "jive Ball Change"
-    },
-    {
      "id": "eZ09saBdS9k",
      "title": "Jive basics  - “kick ball changes\"",
      "channel": "Lisa and Israel Ballroom and Latin Dance",
@@ -76821,13 +74122,6 @@
      "title": "Stalking walks, flicks and breaks - Jive",
      "channel": "SYLLABUS Dance-Sport",
      "length": "0:41",
-     "query": "jive Stalking Walks, Flicks into Break"
-    },
-    {
-     "id": "pVKgPk39dEg",
-     "title": "Jive Advanced Basic Choreography 2 of 4 - Stalking Walks, Flicks and Break",
-     "channel": "Egils Smagris",
-     "length": "7:26",
      "query": "jive Stalking Walks, Flicks into Break"
     }
    ],

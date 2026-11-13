@@ -26,6 +26,8 @@ export interface Foot {
   /** Body position (on the line of weight). */
   bx: number;
   by: number;
+  /** The foot crosses behind / in front of the other one. */
+  cross?: "behind" | "front";
 }
 
 const rad = (d: number) => (d * Math.PI) / 180;
@@ -52,16 +54,30 @@ function footprints(
     const m = steps[i].desc.match(/\b(RF|LF)\b/i);
     const foot = m ? (m[1].toUpperCase() === "LF" ? "L" : "R") : null;
     const side = foot === "L" ? 90 : foot === "R" ? -90 : 0;
-    const a = rad(face + side);
     const bx = ox + b.x * stepM;
     const by = oy + b.y * stepM;
+    const d = steps[i].desc.toLowerCase();
+    // A crossed foot ("LF crosses behind RF", "RF crosses in front of LF") lands on the
+    // other foot's side, a little behind / in front of it.
+    const crossed = /\bcross/.test(d) && !/across/.test(d);
+    let ox2 = 0;
+    let oy2 = 0;
+    if (side) {
+      const sideOff = crossed ? -0.05 : FOOT_OFFSET;
+      const fwdOff = crossed ? (/behind|back/.test(d) ? -0.1 : /front/.test(d) ? 0.08 : 0) : 0;
+      // relative to the body (a crossed foot follows the body, not the foot's own direction)
+      const ref = crossed ? bodyFace : face;
+      ox2 = Math.cos(rad(ref + side)) * sideOff + Math.cos(rad(ref)) * fwdOff;
+      oy2 = Math.sin(rad(ref + side)) * sideOff + Math.sin(rad(ref)) * fwdOff;
+    }
     return {
       n: b.n,
       foot,
       face,
       bodyFace,
-      x: bx + (side ? Math.cos(a) * FOOT_OFFSET : 0),
-      y: by + (side ? Math.sin(a) * FOOT_OFFSET : 0),
+      cross: crossed ? (/behind|back/.test(d) ? "behind" : "front") : undefined,
+      x: bx + ox2,
+      y: by + oy2,
       bx,
       by,
     } as Foot;
@@ -357,6 +373,8 @@ export interface FootState {
   y: number;
   face: number;
   weight: boolean;
+  /** Crossed behind / in front of the other foot (until it moves again). */
+  cross?: "behind" | "front";
 }
 /** Both feet of a dancer after a step (index 0 = starting position). */
 export interface FeetState {
@@ -398,9 +416,18 @@ export function liveFeet(p: Partner, steps: FloorStep[]): FeetState[] {
     if (f.foot) {
       const other = f.foot === "L" ? "R" : "L";
       const noWeight = NO_WEIGHT.test(steps[i]?.desc ?? "");
-      next[f.foot] = { x: f.x, y: f.y, face: f.face, weight: !noWeight };
+      next[f.foot] = { x: f.x, y: f.y, face: f.face, weight: !noWeight, cross: f.cross };
       // the supporting foot swivels with the body
       next[other] = { ...next[other], face: next[other].face + turn, weight: noWeight ? true : false };
+      // The couple's placement (promenade, hold) may move a dancer more than their own
+      // step: the foot left behind can't be further away than a stride.
+      const MAX = 0.65;
+      const o = next[other];
+      const nf = next[f.foot];
+      const dist = Math.hypot(o.x - nf.x, o.y - nf.y);
+      if (dist > MAX) {
+        next[other] = { ...o, x: nf.x + ((o.x - nf.x) / dist) * MAX, y: nf.y + ((o.y - nf.y) / dist) * MAX };
+      }
     } else {
       // both feet / unknown: the whole dancer moves with the body
       const dx = f.bx - bx;
@@ -438,6 +465,7 @@ export function feetBetween(a: FeetState, b: FeetState, t: number): FeetState {
         face: lerpA(fa.face, fb.face),
         // the weight arrives when the foot lands
         weight: t > 0.6 ? fb.weight : false,
+        cross: t > 0.6 ? fb.cross : undefined,
       };
     } else {
       res[k] = {
@@ -445,6 +473,7 @@ export function feetBetween(a: FeetState, b: FeetState, t: number): FeetState {
         y: fa.y + (fb.y - fa.y) * t,
         face: fa.face + (fb.face - fa.face) * t,
         weight: b.moved ? (t > 0.6 ? fb.weight : true) : fb.weight,
+        cross: fa.cross,
       };
     }
   }

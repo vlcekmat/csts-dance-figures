@@ -1057,3 +1057,15 @@ p { max-width: 75ch; line-height: 1.6; }
 select.warn { border-color: var(--warn); }
 .plan-fig-options .field select { width: 100%; }
 .plan-fig-options .plan-timing select { width: auto; }
+.fp-live path.crossed, .fp-print path.crossed { stroke-dasharray: 3 2; stroke-width: 2.5; }
+.fp-cross-tag { font: 800 10px var(--font); paint-order: stroke; stroke: var(--surface); stroke-width: 3px; pointer-events: none; }
+.fp-cross-tag.man { fill: var(--standard); }
+.fp-cross-tag.lady { fill: var(--latin); }
+.fp-bodyturn polyline { fill: none; stroke-width: 2; stroke-dasharray: 4 2; }
+.fp-bodyturn.man polyline { stroke: var(--standard); }
+.fp-bodyturn.lady polyline { stroke: var(--latin); }
+.fp-bodyturn.man polygon { fill: var(--standard); }
+.fp-bodyturn.lady polygon { fill: var(--latin); }
+.fp-bodyturn text { font: 700 9px var(--font); paint-order: stroke; stroke: var(--surface); stroke-width: 3px; }
+.fp-bodyturn.man text { fill: var(--standard); }
+.fp-bodyturn.lady text { fill: var(--latin); }

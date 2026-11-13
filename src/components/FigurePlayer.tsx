@@ -195,8 +195,8 @@ export function StepPlayer({
   const renderTrail = (p: { feet: Foot[] }, who: "man" | "lady") =>
     p.feet.map((f) => (
       <g key={`${who}${f.n}`} transform={`translate(${X(f.x)} ${Y(f.y)}) rotate(${-f.face})`} className={`fp-print ${who} ${f.n <= k ? "done" : "future"}`}>
-        <path d={footPath} />
-        <text transform={`rotate(${f.face})`} y={4} textAnchor="middle" className="fp-print-num">{f.n}</text>
+        <path d={footPath} className={f.cross ? "crossed" : ""} />
+        <text transform={`rotate(${f.face})`} y={4} textAnchor="middle" className="fp-print-num">{f.cross ? `${f.n}✕` : f.n}</text>
       </g>
     ));
 
@@ -219,9 +219,44 @@ export function StepPlayer({
     );
   };
 
+  /** Body turned against the feet: an arc from the feet's direction to the body's. */
+  const renderBodyTurn = (b: { x: number; y: number; face: number }, feet: FeetState, who: "man" | "lady") => {
+    const sup = feet.L.weight && !feet.R.weight ? feet.L : feet.R.weight && !feet.L.weight ? feet.R : null;
+    const feetDir = sup ? sup.face : feet.L.face + norm180(feet.R.face - feet.L.face) / 2;
+    const diff = norm180(b.face - feetDir);
+    if (Math.abs(diff) < 15) return null;
+    const r = 0.36;
+    const pts: string[] = [];
+    const nSeg = 12;
+    for (let i = 0; i <= nSeg; i++) {
+      const a = ((feetDir + (diff * i) / nSeg) * Math.PI) / 180;
+      pts.push(`${X(b.x + Math.cos(a) * r)},${Y(b.y + Math.sin(a) * r)}`);
+    }
+    const end = ((feetDir + diff) * Math.PI) / 180;
+    const ex = X(b.x + Math.cos(end) * r);
+    const ey = Y(b.y + Math.sin(end) * r);
+    // arrowhead along the arc's tangent (screen coordinates: y flipped)
+    const tan = end + (Math.sign(diff) * Math.PI) / 2;
+    const tx = Math.cos(tan);
+    const ty = -Math.sin(tan);
+    const h = 7;
+    const head = `${ex},${ey} ${ex - tx * h - ty * h * 0.6},${ey - ty * h + tx * h * 0.6} ${ex - tx * h + ty * h * 0.6},${ey - ty * h - tx * h * 0.6}`;
+    const mid = ((feetDir + diff / 2) * Math.PI) / 180;
+    return (
+      <g className={`fp-bodyturn ${who}`}>
+        <polyline points={pts.join(" ")} />
+        <polygon points={head} />
+        <text x={X(b.x + Math.cos(mid) * (r + 0.13))} y={Y(b.y + Math.sin(mid) * (r + 0.13)) + 4} textAnchor="middle">
+          {t("bodyTurnShort")} {diff > 0 ? "↺" : "↻"}
+        </text>
+      </g>
+    );
+  };
+
   /** A dancer from above: both feet where they are now (filled = weight on it), shoulders, head. */
   const renderDancer = (b: { x: number; y: number; face: number }, feet: FeetState, who: "man" | "lady") => (
     <g className={`fp-dancer ${who}`}>
+      {renderBodyTurn(b, feet, who)}
       <g transform={`translate(${X(b.x)} ${Y(b.y)}) rotate(${-b.face})`} className="fp-torso">
         <ellipse rx={0.1 * S} ry={0.23 * S} />
         <circle cx={0.02 * S} r={0.075 * S} className="fp-head" />
@@ -232,8 +267,15 @@ export function StepPlayer({
         const moving = frac > 0 && feet.moved === k2;
         return (
           <g key={k2} transform={`translate(${X(f.x)} ${Y(f.y)}) rotate(${-f.face})`} className={`fp-live ${f.weight ? "weight" : "free"} ${moving ? "moving" : ""}`}>
-            <path d={footPath} />
+            <path d={footPath} className={f.cross ? "crossed" : ""} />
             <text transform={`rotate(${f.face})`} y={4} textAnchor="middle" className="fp-live-letter">{footLetter(k2)}</text>
+            {f.cross && (
+              <g transform={`rotate(${f.face})`}>
+                <text y={-footW - 3} textAnchor="middle" className={`fp-cross-tag ${who}`}>
+                  ✕ {t(f.cross === "behind" ? "crossBehind" : "crossFront")}
+                </text>
+              </g>
+            )}
           </g>
         );
       })}
