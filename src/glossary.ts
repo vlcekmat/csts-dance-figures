@@ -272,6 +272,7 @@ const STEP_CS: [RegExp, string][] = [
   [/\b(?:bwd|back|backward)\b/gi, "vzad"],
   [/\bdiag(?:onally)?\.?\b/gi, "diagonálně"],
   [/\bin place\b/gi, "na místě"],
+  [/\brecover\b/gi, "váha zpět na"],
   [/\b(?:transfer|replace) weight to\b/gi, "přenést váhu na"],
   [/\bwithout weight\b|\bw\/o weight\b/gi, "bez váhy"],
   [/\bOP\b/g, "mimo partnera"],
@@ -338,6 +339,6 @@ export function localizePositions(text: string, lang: Lang): string {
     // "X to Y" between translated phrases means a change during the step.
     .replace(/(postavení|promenáda|držení) to (?=[a-zěščřžýáíéůúó])/g, "$1 → ")
     .replace(/\bwith (?=[a-zěščřžýáíéůúó])/g, "s ")
-    .replace(/\bin (?=[a-zěščřžýáíéůúó])/g, "v ")
+    .replace(/\bin (?!place\b)(?=[a-zěščřžýáíéůúó])/g, "v ")
     .replace(/\.;/g, ";");
 }

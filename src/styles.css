@@ -1069,3 +1069,19 @@ select.warn { border-color: var(--warn); }
 .fp-bodyturn text { font: 700 9px var(--font); paint-order: stroke; stroke: var(--surface); stroke-width: 3px; }
 .fp-bodyturn.man text { fill: var(--standard); }
 .fp-bodyturn.lady text { fill: var(--latin); }
+/* weight: foot colour = share of the weight; transfers vs real steps */
+.fp-dancer .fp-live path.fp-sole { fill: var(--surface); }
+.fp-dancer .fp-live path.fp-load { stroke: none; }
+.fp-dancer.man .fp-live path.fp-load { fill: var(--standard); }
+.fp-dancer.lady .fp-live path.fp-load { fill: var(--latin); }
+.fp-next-travel { stroke-width: 1.5; stroke-dasharray: 2 4; opacity: .8; }
+.fp-next.man .fp-next-travel { stroke: var(--standard); }
+.fp-next.lady .fp-next-travel { stroke: var(--latin); }
+.fp-weight-arrow line { stroke-width: 2.5; }
+.fp-weight-arrow.man line { stroke: var(--standard); }
+.fp-weight-arrow.lady line { stroke: var(--latin); }
+.fp-weight-arrow.man polygon { fill: var(--standard); }
+.fp-weight-arrow.lady polygon { fill: var(--latin); }
+.fp-weight-arrow text { font: 800 10px var(--font); paint-order: stroke; stroke: var(--surface); stroke-width: 3px; }
+.fp-weight-arrow.man text { fill: var(--standard); }
+.fp-weight-arrow.lady text { fill: var(--latin); }

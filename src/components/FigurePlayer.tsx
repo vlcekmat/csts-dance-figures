@@ -229,10 +229,40 @@ export function StepPlayer({
     const nx = st[k + 1];
     if (!nx?.moved) return null;
     const f = nx[nx.moved];
+    const from = st[k][nx.moved];
+    if (nx.transfer) return renderWeightArrow(st[k], nx.moved, who, `${stepNo(k + 1)}`);
     return (
-      <g transform={`translate(${X(f.x)} ${Y(f.y)}) rotate(${-f.face})`} className={`fp-next ${who}`}>
-        <path d={footPath} />
-        <text transform={`rotate(${f.face})`} y={4} textAnchor="middle" className="fp-next-num">{stepNo(k + 1)}</text>
+      <g className={`fp-next ${who}`}>
+        <line x1={X(from.x)} y1={Y(from.y)} x2={X(f.x)} y2={Y(f.y)} className="fp-next-travel" />
+        <g transform={`translate(${X(f.x)} ${Y(f.y)}) rotate(${-f.face})`}>
+          <path d={footPath} />
+          <text transform={`rotate(${f.face})`} y={4} textAnchor="middle" className="fp-next-num">{stepNo(k + 1)}</text>
+        </g>
+      </g>
+    );
+  };
+
+  /** Weight transfer (no step): an arrow from the foot carrying the weight to the one receiving it. */
+  const renderWeightArrow = (st: FeetState, to: "L" | "R", who: "man" | "lady", label: string) => {
+    const a = st[to === "L" ? "R" : "L"];
+    const b = st[to];
+    const x1 = X(a.x);
+    const y1 = Y(a.y);
+    const x2 = X(b.x);
+    const y2 = Y(b.y);
+    const len = Math.hypot(x2 - x1, y2 - y1) || 1;
+    const ux = (x2 - x1) / len;
+    const uy = (y2 - y1) / len;
+    const h = 8;
+    const ex = x2 - ux * 6;
+    const ey = y2 - uy * 6;
+    return (
+      <g className={`fp-weight-arrow ${who}`}>
+        <line x1={x1 + ux * 6} y1={y1 + uy * 6} x2={ex} y2={ey} />
+        <polygon points={`${ex},${ey} ${ex - ux * h - uy * h * 0.6},${ey - uy * h + ux * h * 0.6} ${ex - ux * h + uy * h * 0.6},${ey - uy * h - ux * h * 0.6}`} />
+        <text x={(x1 + x2) / 2 - uy * 14} y={(y1 + y2) / 2 + ux * 14 + 4} textAnchor="middle">
+          {label} ⇄ {t("weightShort")}
+        </text>
       </g>
     );
   };
@@ -284,8 +314,9 @@ export function StepPlayer({
         const f = feet[k2];
         const moving = frac > 0 && feet.moved === k2;
         return (
-          <g key={k2} transform={`translate(${X(f.x)} ${Y(f.y)}) rotate(${-f.face})`} className={`fp-live ${f.weight ? "weight" : "free"} ${moving ? "moving" : ""}`}>
-            <path d={footPath} className={f.cross ? "crossed" : ""} />
+          <g key={k2} transform={`translate(${X(f.x)} ${Y(f.y)}) rotate(${-f.face})`} className={`fp-live ${(f.load ?? (f.weight ? 1 : 0)) > 0.5 ? "weight" : "free"} ${moving ? "moving" : ""}`}>
+            <path d={footPath} className={`fp-sole ${f.cross ? "crossed" : ""}`} />
+            <path d={footPath} className="fp-load" style={{ fillOpacity: f.load ?? (f.weight ? 1 : 0) }} />
             <text transform={`rotate(${f.face})`} y={4} textAnchor="middle" className="fp-live-letter">{footLetter(k2)}</text>
             {f.cross && (
               <g transform={`rotate(${f.face})`}>
@@ -431,6 +462,8 @@ export function StepPlayer({
               {trail && showLady && geo.l && renderTrail(geo.l, "lady")}
               {showMan && renderNext(mFeet, "man")}
               {showLady && renderNext(lFeet, "lady")}
+              {frac > 0 && k < n && showMan && mFeet[k + 1]?.transfer && mFeet[k + 1].moved && renderWeightArrow(mFeet[k], mFeet[k + 1].moved!, "man", "")}
+              {frac > 0 && k < n && showLady && lFeet?.[k + 1]?.transfer && lFeet[k + 1].moved && renderWeightArrow(lFeet[k], lFeet[k + 1].moved!, "lady", "")}
               {showMan && showLady && lBody && hold && (
                 <line x1={X(mBody.x)} y1={Y(mBody.y)} x2={X(lBody.x)} y2={Y(lBody.y)} className="fp-hold" />
               )}
@@ -486,7 +519,10 @@ export function StepPlayer({
                 onClick={() => (i + 1 === k + 1 && smooth && !playing ? nextStep() : (setPlaying(false), setK(i + 1)))}
               >
                 <span className="tl-n">{group ? i + 1 - group.from : i + 1}</span>
-                <span className="tl-c">{track.labels[i] || "·"}</span>
+                <span className="tl-c">
+                  {track.labels[i] || "·"}
+                  {mFeet[i + 1]?.transfer ? " ⇄" : ""}
+                </span>
               </button>
             </li>
           ),
@@ -524,7 +560,10 @@ export function StepPlayer({
             {showMan && (
               <tr>
                 <th scope="row">{t("roleMan")}</th>
-                <td><Glossed text={ms ? localizeStep(ms.desc, lang) : "–"} /></td>
+                <td>
+                  <Glossed text={ms ? localizeStep(ms.desc, lang) : "–"} />
+                  {ms && mFeet[shown]?.transfer && <span className="muted small"> · ⇄ {t("weightTransfer")}</span>}
+                </td>
                 <td>{alignText(mBody.face)}</td>
                 <td>{ms?.turn ? <Glossed text={localizeTurn(ms.turn, lang)} /> : ""}</td>
                 <td className="muted">{relText(ms ? partnerRelation(ms.desc, ms.pos ?? pos ?? "") : null)}</td>
@@ -533,7 +572,10 @@ export function StepPlayer({
             {showLady && lBody && (
               <tr>
                 <th scope="row">{t("roleLady")}{track.ladyEstimated?.[shown - 1] ? " *" : ""}</th>
-                <td><Glossed text={ls ? localizeStep(ls.desc, lang) : "–"} /></td>
+                <td>
+                  <Glossed text={ls ? localizeStep(ls.desc, lang) : "–"} />
+                  {ls && lFeet?.[shown]?.transfer && <span className="muted small"> · ⇄ {t("weightTransfer")}</span>}
+                </td>
                 <td>{alignText(lBody.face)}</td>
                 <td>{ls?.turn ? <Glossed text={localizeTurn(ls.turn, lang)} /> : ""}</td>
                 <td className="muted">{relText(ls ? partnerRelation(ls.desc, ms?.pos ?? pos ?? "") : null)}</td>

@@ -95,8 +95,8 @@ const STRINGS = {
   playerCount: { cs: "doba", en: "count" },
   playerPosition: { cs: "postavení", en: "position" },
   playerHint: {
-    cs: "Pohled shora. Každý tanečník má obě nohy tam, kde právě stojí: plná noha = nese váhu, obrys = volná noha (L/P = levá/pravá). Přerušovaný obrys s číslem = kam půjde další krok. Čárkovaná noha se značkou ✕ = překřížená za / před druhou nohu. Oblouček „tělo ↺/↻“ = tělo je natočené víc doleva / doprava než chodidla. Plná čára = už ušlá dráha, slabá = zbývající. Čára mezi partnery = držení v uzavřeném postavení. Vzájemná vzdálenost partnerů je schematická.",
-    en: "Top view. Each dancer's feet are where they stand now: filled foot = carries the weight, outline = free foot (L/R = left/right). Dashed outline with a number = where the next step goes. Dashed foot marked ✕ = crossed behind / in front of the other foot. Arc “body ↺/↻” = the body is turned more to the left / right than the feet. Solid line = path danced so far, faint = still to go. Line between partners = closed hold. The distance between partners is schematic.",
+    cs: "Pohled shora. Každý tanečník má obě nohy tam, kde právě stojí: plná noha = nese váhu, obrys = volná noha (L/P = levá/pravá). Přerušovaný obrys s číslem = kam půjde další krok. Čárkovaná noha se značkou ✕ = překřížená za / před druhou nohu. Šipka „⇄ váha“ = jen přenesení váhy na nohu, která zůstává na místě (v liště ⇄); u opravdového kroku ukazuje čára, kam noha půjde. Barva nohy = kolik váhy nese. Oblouček „tělo ↺/↻“ = tělo je natočené víc doleva / doprava než chodidla. Plná čára = už ušlá dráha, slabá = zbývající. Čára mezi partnery = držení v uzavřeném postavení. Vzájemná vzdálenost partnerů je schematická.",
+    en: "Top view. Each dancer's feet are where they stand now: filled foot = carries the weight, outline = free foot (L/R = left/right). Dashed outline with a number = where the next step goes. Dashed foot marked ✕ = crossed behind / in front of the other foot. Arrow “⇄ weight” = only a weight transfer onto a foot that stays in place (⇄ in the strip); for a real step a line shows where the foot goes. Foot colour = how much weight it carries. Arc “body ↺/↻” = the body is turned more to the left / right than the feet. Solid line = path danced so far, faint = still to go. Line between partners = closed hold. The distance between partners is schematic.",
   },
   playerHintManOnly: {
     cs: "Pohled shora na kroky pána (dámské kroky pro tuto figuru nejsou k dispozici): plná noha = nese váhu, obrys = volná noha (L/P = levá/pravá), přerušovaný obrys = kam půjde další krok.",
@@ -113,6 +113,8 @@ const STRINGS = {
   routinePlayerHide: { cs: "Skrýt animaci", en: "Hide the animation" },
   routinePlayerHint: { cs: "Pár tančí celou sestavu po krocích tak, jak je rozmístěná v plánku (směrování, posuny, přípravné kroky).", en: "The couple dances the whole routine step by step as placed in the plan (alignment, moves, preparatory steps)." },
   bodyTurnShort: { cs: "tělo", en: "body" },
+  weightShort: { cs: "váha", en: "weight" },
+  weightTransfer: { cs: "přenesení váhy (noha zůstává na místě)", en: "weight transfer (the foot stays in place)" },
   crossBehind: { cs: "za", en: "behind" },
   crossFront: { cs: "před", en: "in front" },
   playerNextSmooth: { cs: "Další krok (plynule dotančit)", en: "Next step (danced smoothly)" },

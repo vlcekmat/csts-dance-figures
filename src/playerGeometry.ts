@@ -400,6 +400,8 @@ export interface FootState {
   weight: boolean;
   /** Crossed behind / in front of the other foot (until it moves again). */
   cross?: "behind" | "front";
+  /** Share of the weight on this foot (0–1), for smooth weight transfers. */
+  load?: number;
 }
 /** Both feet of a dancer after a step (index 0 = starting position). */
 export interface FeetState {
@@ -407,6 +409,8 @@ export interface FeetState {
   R: FootState;
   /** The foot that moved on this step (null at the start or when unknown). */
   moved: "L" | "R" | null;
+  /** The step only transfers the weight (the foot doesn't travel). */
+  transfer?: boolean;
 }
 
 /** Steps that put the foot down without taking the weight. */
@@ -441,7 +445,13 @@ export function liveFeet(p: Partner, steps: FloorStep[]): FeetState[] {
     if (f.foot) {
       const other = f.foot === "L" ? "R" : "L";
       const noWeight = NO_WEIGHT.test(steps[i]?.desc ?? "");
-      next[f.foot] = { x: f.x, y: f.y, face: f.face, weight: !noWeight, cross: f.cross };
+      const was = cur[f.foot];
+      // Weight transfer: "RF in place", "Recover LF" … – the foot stays where it is.
+      const desc = steps[i]?.desc ?? "";
+      next.transfer = !noWeight && (/\bin place|\brecover|replace weight|weight (?:to|on)\b/i.test(desc) || Math.hypot(f.x - was.x, f.y - was.y) < 0.06);
+      next[f.foot] = next.transfer
+        ? { ...was, weight: true, cross: undefined }
+        : { x: f.x, y: f.y, face: f.face, weight: !noWeight, cross: f.cross };
       // the supporting foot swivels with the body
       next[other] = { ...next[other], face: next[other].face + turn, weight: noWeight ? true : false };
       // The couple's placement (promenade, hold) may move a dancer more than their own
@@ -452,6 +462,17 @@ export function liveFeet(p: Partner, steps: FloorStep[]): FeetState[] {
       const dist = Math.hypot(o.x - nf.x, o.y - nf.y);
       if (dist > MAX) {
         next[other] = { ...o, x: nf.x + ((o.x - nf.x) / dist) * MAX, y: nf.y + ((o.y - nf.y) / dist) * MAX };
+      }
+      // Both feet stay under the body (the couple's placement may move the dancer).
+      const cxF = (next.L.x + next.R.x) / 2;
+      const cyF = (next.L.y + next.R.y) / 2;
+      const off = Math.hypot(f.bx - cxF, f.by - cyF);
+      if (off > 0.5) {
+        const k = 1 - 0.5 / off;
+        const dx = (f.bx - cxF) * k;
+        const dy = (f.by - cyF) * k;
+        next.L = { ...next.L, x: next.L.x + dx, y: next.L.y + dy };
+        next.R = { ...next.R, x: next.R.x + dx, y: next.R.y + dy };
       }
     } else {
       // both feet / unknown: the whole dancer moves with the body
@@ -472,7 +493,11 @@ export function liveFeet(p: Partner, steps: FloorStep[]): FeetState[] {
  * travels past the supporting foot (as in a real step), the other one swivels. */
 export function feetBetween(a: FeetState, b: FeetState, t: number): FeetState {
   const lerpA = (x: number, y: number) => x + norm180(y - x) * t;
-  const res: FeetState = { L: { ...a.L }, R: { ...a.R }, moved: b.moved };
+  const res: FeetState = { L: { ...a.L }, R: { ...a.R }, moved: b.moved, transfer: b.transfer };
+  // The weight flows over during the step: gradually for a weight transfer, mostly
+  // when the foot lands for a real step.
+  const flow = b.transfer ? t : Math.max(0, Math.min(1, (t - 0.45) / 0.45));
+  const load = (f: FootState) => (f.load ?? (f.weight ? 1 : 0));
   for (const k of ["L", "R"] as const) {
     const fa = a[k];
     const fb = b[k];
@@ -491,6 +516,7 @@ export function feetBetween(a: FeetState, b: FeetState, t: number): FeetState {
         // the weight arrives when the foot lands
         weight: t > 0.6 ? fb.weight : false,
         cross: t > 0.6 ? fb.cross : undefined,
+        load: load(fa) + (load(fb) - load(fa)) * flow,
       };
     } else {
       res[k] = {
@@ -499,6 +525,7 @@ export function feetBetween(a: FeetState, b: FeetState, t: number): FeetState {
         face: fa.face + (fb.face - fa.face) * t,
         weight: b.moved ? (t > 0.6 ? fb.weight : true) : fb.weight,
         cross: fa.cross,
+        load: load(fa) + (load(fb) - load(fa)) * flow,
       };
     }
   }
