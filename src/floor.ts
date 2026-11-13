@@ -216,7 +216,9 @@ export function stepVector(desc: string, facing: number): { angle: number; len: 
     const bend = second === "fwd" ? -off : second === "bwd" ? off : 0;
     return { angle: facing + sideSign * (90 + bend), len: 0.9 * small };
   }
-  if (/across|cross/.test(d)) return { angle: facing, len: 0.4 * small };
+  // "LF crosses behind / in front of RF": the foot goes under the body, which moves
+  // only a little towards the side where the foot goes.
+  if (/across|cross/.test(d)) return { angle: facing - sideSign * 90, len: 0.2 * small };
   // No direction given (e.g. the chart's "LF closes to RF" read only as "LF"): in place.
   return { angle: facing, len: 0 };
 }
@@ -336,6 +338,22 @@ export function tracePath(
     v = { angle: v.angle, len: v.len * byCount * (scales[i] ?? 1) };
     x += Math.cos(rad(v.angle + rotation + extraTravel)) * v.len;
     y += Math.sin(rad(v.angle + rotation + extraTravel)) * v.len;
+    // Weight back onto the foot that stayed (rock / check: "LF fwd", "RF in place"):
+    // the body returns to where it was before the previous step.
+    const prevFoot = i > 0 ? steps[i - 1].desc.match(/\b(RF|LF)\b/i)?.[1]?.toUpperCase() : undefined;
+    const thisFoot = footM?.[1]?.toUpperCase();
+    if (
+      v.len === 0 &&
+      i > 0 &&
+      /\bin place|\brecover|replace weight|weight (?:to|on)/.test(d) &&
+      !/w\/o weight|without weight/.test(d) &&
+      thisFoot && prevFoot && thisFoot !== prevFoot &&
+      pts.length >= 2 &&
+      Math.hypot(pts[pts.length - 1].x - pts[pts.length - 2].x, pts[pts.length - 1].y - pts[pts.length - 2].y) > 0.05
+    ) {
+      x = pts[pts.length - 2].x;
+      y = pts[pts.length - 2].y;
+    }
     const known = !!al || facing !== null;
     // After a pivot ("… end Facing LOD") the man faces the end alignment.
     if (s.end !== undefined) facing = s.end;

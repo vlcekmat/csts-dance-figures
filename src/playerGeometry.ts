@@ -179,6 +179,29 @@ export function mirrorSteps(man: FloorStep[]): FloorStep[] {
   return man.map((s) => ({ ...s, desc: swap(s.desc), align: "", face: undefined, end: undefined, body: undefined, moving: undefined }));
 }
 
+/**
+ * Some lady's charts carry the man's alignment (she "faces wall" like him although
+ * they stand facing each other). Traced as given, she walks the opposite way and the
+ * couple's averaged path gets teeth. When most steps in a facing position show it,
+ * turn her alignments round.
+ */
+export function fixLadyFacing(man: FloorStep[], lady: FloorStep[]): FloorStep[] {
+  const FACING = /clos|opp|open|outside|wing/i;
+  const NOT = /prom|shadow|tandem|side|fan|fallaway/i;
+  let same = 0;
+  let compared = 0;
+  man.forEach((m, i) => {
+    const l = lady[i];
+    const pos = (m.pos ?? "").split(/\s+then\s+/).pop() ?? "";
+    if (!l || m.face === undefined || l.face === undefined || !FACING.test(pos) || NOT.test(pos)) return;
+    compared++;
+    if (Math.abs(norm180(l.face - m.face)) < 60) same++;
+  });
+  if (compared < 2 || same * 2 < compared) return lady;
+  const flip = (v: number | undefined) => (v === undefined ? undefined : norm180(v + 180));
+  return lady.map((l) => ({ ...l, face: flip(l.face), end: flip(l.end), body: flip(l.body) }));
+}
+
 /** Footprints and body positions of both partners (figure frame, or placed by `tr`). */
 export function coupleGeometry(
   cfg: { stepM: number; hint: -1 | 0 | 1; latin: boolean; startPos: string },
@@ -186,8 +209,9 @@ export function coupleGeometry(
   lady: FloorStep[],
   tr: TraceOpts = {},
 ): { m: Partner; l: Partner | null } {
-  const hasLady = lady.length > 0;
   const { stepM, hint, latin, startPos } = cfg;
+  lady = fixLadyFacing(man, lady);
+  const hasLady = lady.length > 0;
   const charted = man.some((s) => s.face !== undefined || parseAlign(s.align) !== null);
   const m = footprints(man, stepM, 0, 0, hint, tr.initialFacing !== undefined ? tr.initialFacing : charted ? null : 0, tr);
   // The lady starts where the couple position puts her, facing the way her chart says
@@ -231,6 +255,19 @@ export function coupleGeometry(
   const mFeet: Foot[] = [];
   const lFeet: Foot[] = [];
   const count = Math.max(m.feet.length, traced.feet.length);
+  /** The partner's own chart doesn't move the body on this step (close, in place). */
+  const still = (p: { start: { x: number; y: number }; feet: Foot[] }, i: number) => {
+    const a = i === 0 ? p.start : { x: p.feet[i - 1].bx, y: p.feet[i - 1].by };
+    const b = p.feet[i];
+    return !!b && Math.hypot(b.bx - a.x, b.by - a.y) < 0.03;
+  };
+  /** Simplification: a partner who closes / steps in place stays where they are; the
+   * couple's turn on that step would otherwise swing them a little back and forth. */
+  const hold = (arr: Foot[], start: { x: number; y: number }, n: { x: number; y: number }, isStill: boolean) => {
+    if (!isStill) return n;
+    const prev = arr.length ? { x: arr[arr.length - 1].bx, y: arr[arr.length - 1].by } : start;
+    return Math.hypot(n.x - prev.x, n.y - prev.y) < 0.25 ? prev : n;
+  };
   for (let i = 0; i < count; i++) {
     const mf = m.feet[i];
     const lf = traced.feet[i];
@@ -243,8 +280,26 @@ export function coupleGeometry(
       const o = offsetVec(lastPos, mf.bodyFace, lf.bodyFace);
       const cx = (mx + lx2) / 2;
       const cy = (my + ly2) / 2;
-      const nm = { x: cx - o.x / 2, y: cy - o.y / 2 };
-      const nl = { x: cx + o.x / 2, y: cy + o.y / 2 };
+      // The couple turns around the partner who stays in place (heel turns, closing
+      // steps); otherwise around their common centre.
+      const ms = still(m, i);
+      const lst = still(traced, i);
+      const prevM = mFeet.length ? { x: mFeet[mFeet.length - 1].bx, y: mFeet[mFeet.length - 1].by } : m.start;
+      const prevL = lFeet.length ? { x: lFeet[lFeet.length - 1].bx, y: lFeet[lFeet.length - 1].by } : traced.start;
+      let nm = { x: cx - o.x / 2, y: cy - o.y / 2 };
+      let nl = { x: cx + o.x / 2, y: cy + o.y / 2 };
+      const prevFace = i === 0 ? m.start.face : m.feet[i - 1].bodyFace;
+      if (ms && lst && Math.abs(norm180(mf.bodyFace - prevFace)) < 100) {
+        // both close: they stay; only their facings turn (simplified)
+        nm = prevM;
+        nl = prevL;
+      } else if (ms) {
+        nm = prevM;
+        nl = { x: nm.x + o.x, y: nm.y + o.y };
+      } else if (lst) {
+        nl = prevL;
+        nm = { x: nl.x - o.x, y: nl.y - o.y };
+      }
       dm = { x: nm.x - mf.bx, y: nm.y - mf.by };
       dl = { x: nl.x - lf.bx, y: nl.y - lf.by };
       mFeet.push(moveTo(mf, nm.x, nm.y));
@@ -260,8 +315,8 @@ export function coupleGeometry(
       const dist = Math.hypot(dx, dy) || 1;
       const cx = (mx + lx2) / 2;
       const cy = (my + ly2) / 2;
-      const nm = { x: cx - (dx / dist) * (want / 2), y: cy - (dy / dist) * (want / 2) };
-      const nl = { x: cx + (dx / dist) * (want / 2), y: cy + (dy / dist) * (want / 2) };
+      const nm = hold(mFeet, m.start, { x: cx - (dx / dist) * (want / 2), y: cy - (dy / dist) * (want / 2) }, still(m, i));
+      const nl = hold(lFeet, traced.start, { x: cx + (dx / dist) * (want / 2), y: cy + (dy / dist) * (want / 2) }, still(traced, i));
       dm = { x: nm.x - mf.bx, y: nm.y - mf.by };
       dl = { x: nl.x - lf.bx, y: nl.y - lf.by };
       mFeet.push(moveTo(mf, nm.x, nm.y));
