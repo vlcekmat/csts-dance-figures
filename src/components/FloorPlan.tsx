@@ -8,6 +8,7 @@ import { useI18n, type StringKey } from "../i18n";
 import { Glossed } from "./Glossary";
 import { localizeStep } from "../glossary";
 import {
+  CORNER_ZONE,
   ROOM_PRESETS,
   STEP_BY_DANCE,
   STEP_METRES,
@@ -72,6 +73,7 @@ export function FloorPlan({
   firstChartFace,
   turnControl,
   figureOptions,
+  cornerControl,
 }: {
   dance: Dance;
   /** Simulation computed by the routine editor (see plan.ts). */
@@ -84,6 +86,8 @@ export function FloorPlan({
   /** Amount of turn of the selected figure, adjustable right in the plan. */
   /** Timing and start / finish position of the selected figure (shown in its panel). */
   figureOptions?: React.ReactNode;
+  /** Corner right before the selected figure: let the plan decide, or the user's yes / no. */
+  cornerControl?: { mode: "auto" | boolean; active: boolean; onChange: (m: "auto" | boolean) => void };
   turnControl?: {
     /** WDSF range (degrees, + = left); null = only the charted amount. */
     range: { min: number; max: number } | null;
@@ -151,6 +155,20 @@ export function FloorPlan({
     onRoomChange({ ...room, preset: "custom", [key]: val });
   };
 
+  // Corners (the line of dance turned before a figure) of the first pass, each tied
+  // to the room corner at the end of the wall the couple left.
+  const roomCorner = (side: number) =>
+    [
+      { x: room.length, y: 0 },
+      { x: room.length, y: room.width },
+      { x: 0, y: room.width },
+      { x: 0, y: 0 },
+    ][((side % 4) + 4) % 4];
+  const corners = sim.segments
+    .slice(0, baseLen)
+    .filter((sg) => sg.cornerBefore)
+    .map((seg) => ({ seg, at: roomCorner(seg.cornerFrom), far: seg.cornerDist > 4 }));
+
   // LOD arrows in the middle of each wall (anticlockwise).
   const lodArrows = [
     { x1: room.length * 0.42, y1: 0.6, x2: room.length * 0.58, y2: 0.6 },
@@ -163,6 +181,35 @@ export function FloorPlan({
     <section className="card" id="floor-plan">
       <h3>{t("floorPlan")}</h3>
 
+      {loopEnabled && (
+        <div className="loop-visual">
+          {loop && (
+        <label className="field repeat-field">
+          <span>{t("repeatLabel")}</span>
+          <select value={String(repeat)} onChange={(e) => onRepeatChange(e.target.value === "round" ? "round" : +e.target.value)}>
+            {[1, 2, 3, 4].map((n) => (
+              <option key={n} value={n}>
+                {n}×
+              </option>
+            ))}
+            <option value="round">{t("repeatRound")}</option>
+          </select>
+        </label>
+          )}
+          <button type="button" className="btn small" onClick={onToggleLoopVisual} aria-pressed={loop}>
+            {loop ? t("loopHide") : t("loopShow")}
+          </button>
+        </div>
+      )}
+
+      <details className="plan-settings">
+        <summary>
+          <span>⚙ {t("planSettings")}</span>
+          <span className="small muted">
+            {" "}
+            {room.width} × {room.length} m · {t(`wall${start.side % 4}` as StringKey)}, {start.along.toFixed(1)} m · {t("stepLength").toLowerCase()} {stepCm} cm
+          </span>
+        </summary>
       <div className="room-controls">
         <div className="chips" role="group" aria-label={t("roomSize")}>
           {PRESETS.map((pr) => (
@@ -209,27 +256,6 @@ export function FloorPlan({
           </div>
         )}
       </div>
-
-      {loopEnabled && (
-        <div className="loop-visual">
-          {loop && (
-        <label className="field repeat-field">
-          <span>{t("repeatLabel")}</span>
-          <select value={String(repeat)} onChange={(e) => onRepeatChange(e.target.value === "round" ? "round" : +e.target.value)}>
-            {[1, 2, 3, 4].map((n) => (
-              <option key={n} value={n}>
-                {n}×
-              </option>
-            ))}
-            <option value="round">{t("repeatRound")}</option>
-          </select>
-        </label>
-          )}
-          <button type="button" className="btn small" onClick={onToggleLoopVisual} aria-pressed={loop}>
-            {loop ? t("loopHide") : t("loopShow")}
-          </button>
-        </div>
-      )}
 
       <fieldset className="start-fields">
         <legend>{t("startTitle")}</legend>
@@ -317,6 +343,8 @@ export function FloorPlan({
         <p className="small muted">{t("stepLengthHint")}</p>
       </div>
 
+      </details>
+
       {sim.overflow.length > 0 ? (
         <p className="callout bad">
           ✗ {t("roomOverflow", { list: [...new Set(sim.overflow.map(figNo))].join(", ") })}
@@ -324,6 +352,16 @@ export function FloorPlan({
       ) : (
         <p className="callout good">✓ {t("roomFits", { w: String(room.width), l: String(room.length) })}</p>
       )}
+      {corners
+        .filter((c) => c.far)
+        .map((c) => (
+          <p key={c.seg.key} className="callout warn small">
+            ↰ {t("cornerFarPlan", { a: String(figNo(c.seg.n - 1)), b: String(figNo(c.seg.n)), m: c.seg.cornerDist.toFixed(1).replace(".", lang === "cs" ? "," : ".") })}{" "}
+            <button type="button" className="link-btn" onClick={() => onSelect?.(c.seg.key.replace(/#\d+$/, ""))}>
+              {t("cornerShowFigure")}
+            </button>
+          </p>
+        ))}
 
       <figure className="floor">
         {selSeg && selectedKey && (
@@ -339,6 +377,27 @@ export function FloorPlan({
               )}
               <button className="btn small" onClick={() => onSelect?.(null)}>{t("planSelClose")}</button>
             </div>
+            {cornerControl && (
+              <div className="plan-corner">
+                <span className="small">
+                  <strong>↰ {t("cornerBeforeFig")}:</strong>{" "}
+                  {cornerControl.active ? t("cornerYes") : t("cornerNo")}
+                </span>
+                <div className="chips" role="group" aria-label={t("cornerBeforeFig")}>
+                  {(["auto", true, false] as const).map((m) => (
+                    <button
+                      key={String(m)}
+                      type="button"
+                      className={`chip ${cornerControl.mode === m ? "active" : ""}`}
+                      aria-pressed={cornerControl.mode === m}
+                      onClick={() => cornerControl.onChange(m)}
+                    >
+                      {m === "auto" ? t("cornerModeAuto") : m ? t("cornerModeYes") : t("cornerModeNo")}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
             {figureOptions}
             {turnControl && <TurnDial control={turnControl} />}
             <p className="small muted">{t("planRotateHint")}</p>
@@ -385,6 +444,26 @@ export function FloorPlan({
           {Array.from({ length: Math.floor(room.width) - 1 }, (_, i) => (
             <line key={`gy${i}`} x1={sx(0)} y1={sy(i + 1)} x2={sx(room.length)} y2={sy(i + 1)} className="fp-grid" />
           ))}
+          {/* corner zones: here the line of dance turns to the next wall */}
+          {[0, 1, 2, 3].map((k) => {
+            const c = roomCorner(k);
+            const z = Math.min(CORNER_ZONE, room.width / 3, room.length / 3);
+            return (
+              <rect
+                key={`cz${k}`}
+                x={sx(c.x === 0 ? 0 : c.x - z)}
+                y={sy(c.y === 0 ? z : c.y)}
+                width={z * scale}
+                height={z * scale}
+                className="fp-corner-zone"
+              />
+            );
+          })}
+          {/* wall names (as in the figure list) */}
+          <text x={sx(room.length / 2)} y={sy(0) + 17} textAnchor="middle" className="fp-wall-name">{t("wallShort0")} →</text>
+          <text x={sx(room.length / 2)} y={sy(room.width) - 7} textAnchor="middle" className="fp-wall-name">← {t("wallShort2")}</text>
+          <text transform={`translate(${sx(room.length) + 17} ${sy(room.width / 2)}) rotate(-90)`} textAnchor="middle" className="fp-wall-name">{t("wallShort1")} →</text>
+          <text transform={`translate(${sx(0) - 8} ${sy(room.width / 2)}) rotate(-90)`} textAnchor="middle" className="fp-wall-name">← {t("wallShort3")}</text>
           {lodArrows.map((a, i) => (
             <line key={i} x1={sx(a.x1)} y1={sy(a.y1)} x2={sx(a.x2)} y2={sy(a.y2)} className="fp-lod" markerEnd="url(#fp-arrow)" />
           ))}
@@ -454,12 +533,6 @@ export function FloorPlan({
                       </g>
                     );
                   })}
-                {s.autoCorner && s.n <= baseLen && (
-                  // Corner marker right above the figure it belongs to.
-                  <text x={sx(st.x)} y={sy(st.y) - 16} textAnchor="middle" className="fp-label strong fp-corner">
-                    ↰ {t("floorCorner")}
-                  </text>
-                )}
                 <title>{`${s.n}. ${s.label}`}</title>
               </g>
             );
@@ -502,6 +575,37 @@ export function FloorPlan({
               </g>
             );
           })}
+          {/* corners: a badge in the room corner, linked to where the line of dance turned */}
+          {corners.map(({ seg, at, far }, i) => {
+            const inset = Math.min(CORNER_ZONE, room.width / 3, room.length / 3) / 2;
+            const bx = sx(at.x + (at.x === 0 ? inset : -inset));
+            // two corners in the same room corner (a long routine) stack
+            const dup = corners.slice(0, i).filter((c) => c.seg.cornerFrom % 4 === seg.cornerFrom % 4).length;
+            const by = sy(at.y + (at.y === 0 ? inset : -inset)) + dup * (at.y === 0 ? -24 : 24);
+            const p = seg.pts[0];
+            const label = `↰ ${figNo(seg.n - 1)}→${figNo(seg.n)}`;
+            const w = 12 + label.length * 6.4;
+            return (
+              <g
+                key={`corner-${seg.key}`}
+                className={`fp-corner-mark ${seg.cornerBefore} ${far ? "far" : ""} ${selSeg?.key === seg.key ? "selected" : ""}`}
+                onClick={() => onSelect?.(seg.key.replace(/#\d+$/, ""))}
+              >
+                <line x1={sx(p.x)} y1={sy(p.y)} x2={bx} y2={by} className="fp-corner-link" />
+                <circle cx={sx(p.x)} cy={sy(p.y)} r={13} className="fp-corner-ring" />
+                <rect x={bx - w / 2} y={by - 11} width={w} height={22} rx={6} className="fp-corner-badge" />
+                <text x={bx} y={by + 4} textAnchor="middle" className="fp-corner-text">{label}</text>
+                <title>
+                  {t("cornerTip", {
+                    a: String(figNo(seg.n - 1)),
+                    b: String(figNo(seg.n)),
+                    wall: t(`wall${seg.side % 4}` as StringKey),
+                    kind: seg.cornerBefore === "auto" ? t("cornerKindAuto") : seg.cornerBefore === "user" ? t("cornerKindUser") : t("cornerKindWall"),
+                  })}
+                </title>
+              </g>
+            );
+          })}
           {/* scale bar: 2 m */}
           <line x1={sx(0.3)} y1={VH - 8} x2={sx(2.3)} y2={VH - 8} className="fp-scale" />
           <text x={sx(2.5)} y={VH - 4} className="fp-label">2 m</text>
@@ -509,15 +613,22 @@ export function FloorPlan({
       </figure>
 
       <ol className="floor-legend small">
-        {sim.segments.slice(0, baseLen).map((s, i) => (
+        {sim.segments.slice(0, baseLen).flatMap((s, i) => [
+          ...(i === 0 || s.cornerBefore
+            ? [
+                <li key={`w-${s.key}`} className={`legend-wall ${s.cornerBefore ? "corner" : ""}`}>
+                  {s.cornerBefore ? "↰ " : "▭ "}
+                  {t(`wall${s.side % 4}` as StringKey)}
+                </li>,
+              ]
+            : []),
           <li key={s.key} className={`${s.estimated ? "muted" : ""}${figNo(i + 1) === "P" ? " prep-li" : ""}`} value={figNo(i + 1) === "P" ? undefined : Number(figNo(i + 1))}>
             {figNo(i + 1) === "P" ? <b>P </b> : null}
             {s.label.replace(/ \(\d+\.×\)$/, "")}
             {s.estimated ? " *" : ""}
             {s.onSpot ? ` (${t("onSpot")})` : ""}
-            {s.autoCorner ? ` (${t("floorAutoCorner")})` : ""}
-          </li>
-        ))}
+          </li>,
+        ])}
       </ol>
 
       <details className="plan-help small">

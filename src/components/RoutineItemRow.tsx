@@ -3,7 +3,7 @@
 // WDSF Syllabus notes plus a custom step range (flagged when not allowed).
 import { useState } from "react";
 import { figureNames, getFigure, isLegal, type ClassId, type Dance, type Figure } from "../data";
-import { useI18n, type StringKey } from "../i18n";
+import { useI18n } from "../i18n";
 import type { RoutineItem } from "../routines";
 import { formatBars, totalBeats } from "../timing";
 import { partLabel, type ResolvedItem, type VariantChoice } from "../variants";
@@ -14,12 +14,6 @@ import { HoldPicker } from "./HoldPicker";
 import { PositionChoice, TimingChoice } from "./FigureChoices";
 
 interface Props {
-  /** Wall the figure is danced on (floor plan), 0–3. */
-  wallSide?: number;
-  /** The wall was set by the user at this figure. */
-  wallManual?: boolean;
-  /** An automatic corner was inserted before this figure. */
-  wallAuto?: boolean;
   /** Facing of the man at the start / end in the floor plan (degrees relative to the LOD of wallSide). */
   planFace?: { start: number | null; end: number | null; offChart: number; autoTurn?: number };
   /** Jump to the figure in the floor plan. */
@@ -45,7 +39,7 @@ interface Props {
 }
 
 export function RoutineItemRow(props: Props) {
-  const { wallSide, wallManual, wallAuto, planFace, onEditInPlan, progressive, index, count, item, fig, dance, cls, resolved, classLegal, onChange, onMove, onDragStart, onRemove, onOpen, onInsertAfter } = props;
+  const { planFace, onEditInPlan, progressive, index, count, item, fig, dance, cls, resolved, classLegal, onChange, onMove, onDragStart, onRemove, onOpen, onInsertAfter } = props;
   const { t, lang, barsWord } = useI18n();
   const [open, setOpen] = useState(false);
   const { main, sub } = figureNames(fig, lang);
@@ -149,13 +143,6 @@ export function RoutineItemRow(props: Props) {
           {main}
         </button>
         {sub && <div className="fig-sub">{sub}</div>}
-        {progressive && wallSide !== undefined && (
-          <span className={`wall-chip ${wallManual || item.wall !== undefined ? "manual" : ""}`} title={t("wallLabel")}>
-            ▭ {t(`wall${(((wallSide % 4) + 4) % 4)}` as StringKey)}
-            {wallAuto ? ` · ${t("wallCornerBefore")}` : ""}
-            {item.wall !== undefined ? ` · ${t("wallManualShort")}` : ""}
-          </span>
-        )}
         {onEditInPlan && (
           <button type="button" className="link-btn small plan-edit-link" onClick={onEditInPlan}>
             ⌖ {t("planShowFigure")}
@@ -203,22 +190,6 @@ export function RoutineItemRow(props: Props) {
 
         {open && (
           <div className="variant-panel">
-            {progressive && wallSide !== undefined && (
-              <label className="field">
-                <span>{t("wallLabel")}</span>
-                <select
-                  value={item.wall ?? ""}
-                  onChange={(e) => onChange({ wall: e.target.value === "" ? undefined : +e.target.value })}
-                >
-                  <option value="">{t("wallAuto", { wall: t(`wall${(((wallSide % 4) + 4) % 4)}` as StringKey) })}</option>
-                  {[0, 1, 2, 3].map((w) => (
-                    <option key={w} value={w}>
-                      {t(`wall${w}` as StringKey)}
-                    </option>
-                  ))}
-                </select>
-              </label>
-            )}
             <label className="field">
               <span>{t("partOfFigure")}</span>
               <select
@@ -424,12 +395,6 @@ export function RoutineItemRow(props: Props) {
               ))}
             </div>
           </details>
-        )}
-        {progressive && index < count - 1 && (
-          <label className="check small corner-check">
-            <input type="checkbox" checked={!!item.corner} onChange={(e) => onChange({ corner: e.target.checked || undefined })} />
-            {t("cornerAfter")}
-          </label>
         )}
       </div>
       <div className="item-actions">

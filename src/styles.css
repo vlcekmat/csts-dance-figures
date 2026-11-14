@@ -564,7 +564,6 @@ p { max-width: 75ch; line-height: 1.6; }
 .breakdown code { font-size: .95em; }
 .breakdown.chart tr.next-step td { color: var(--muted); font-style: italic; }
 .breakdown.chart tr.next-step td:first-child::after { content: " →"; }
-.fp-corner { paint-order: stroke; stroke: var(--surface); stroke-width: 4px; }
 .breakdown.chart td:first-child { color: var(--muted); font-variant-numeric: tabular-nums; }
 
 /* ---- Holds -------------------------------------------------------------- */
@@ -627,11 +626,29 @@ p { max-width: 75ch; line-height: 1.6; }
   padding: .75rem 1rem; border: 1px solid var(--line); border-radius: var(--r-md); background: var(--surface);
 }
 .align-reset { justify-self: start; }
-.wall-chip {
-  align-self: flex-start; font-size: .76rem; font-weight: 650; padding: .05rem .5rem; border-radius: 4px;
-  border: 1px solid var(--line); color: var(--muted); background: var(--surface);
+/* Walls and corners in the figure list: the list reads like the floor –
+   "Start: long wall 1", figures, "↰ Corner → short wall 1", figures… */
+.wall-head {
+  font-size: .8rem; font-weight: 750; color: var(--standard); letter-spacing: .02em;
+  padding: .15rem .6rem; margin: 0 0 .5rem; border-left: 3px solid var(--standard);
 }
-.wall-chip.manual { border-color: var(--standard); color: var(--standard); }
+.corner-bar { margin: .2rem 0 .35rem 3.4rem; font-size: .82rem; }
+.corner-bar.none { opacity: .75; }
+.corner-bar.none:hover, .corner-bar.none:focus-within { opacity: 1; }
+.corner-bar.on {
+  display: flex; flex-direction: column; gap: .3rem; margin-left: 0;
+  padding: .5rem .75rem; border-radius: var(--r-md);
+  border: 1px solid var(--standard); border-left-width: 4px; background: var(--standard-tint); color: var(--ink);
+}
+.corner-bar.on.far { border-color: var(--warn); background: var(--warn-tint); }
+.corner-bar .corner-line { display: flex; flex-wrap: wrap; align-items: baseline; gap: .35rem .5rem; }
+.corner-bar .corner-icon { font-size: 1.15rem; line-height: 1; color: var(--standard); font-weight: 800; }
+.corner-bar.far .corner-icon { color: var(--warn); }
+.corner-bar .corner-kind { color: var(--muted); }
+.corner-bar .warn { color: var(--warn); font-weight: 650; }
+.corner-actions { display: flex; flex-wrap: wrap; gap: .4rem; }
+.corner-add { color: var(--muted); }
+.plan-corner { display: flex; flex-wrap: wrap; align-items: center; gap: .4rem .8rem; margin: .2rem 0 .5rem; }
 /* Looped routine: a rail on the left from the last figure back to the loop target.
    It is anchored on the figure cards (and the transitions between them inside
    the loop), so it starts exactly at the target figure. */
@@ -674,7 +691,6 @@ p { max-width: 75ch; line-height: 1.6; }
   position: absolute; top: -26px; transform: translateX(-50%); z-index: 3; font-size: .8rem; line-height: 1;
   padding: 2px 4px; border-radius: 4px; background: var(--warn-tint); border: 1px solid var(--warn);
 }
-.corner-check { color: var(--muted); }
 
 /* ---- Floor diagrams ----------------------------------------------------- */
 .floor { margin: .6rem 0 0; }
@@ -698,6 +714,26 @@ p { max-width: 75ch; line-height: 1.6; }
 .fp-seg.seg1 .fp-route { stroke: var(--latin); }
 .fp-route-arrow { fill: var(--standard); }
 .fp-seg.rep-later { opacity: .35; }
+/* Corner zones (the LOD turns there) and corner badges tied to the path */
+.fp-corner-zone { fill: var(--standard); opacity: .09; }
+.fp-wall-name { font: 650 10.5px var(--font); fill: var(--muted); letter-spacing: .03em; }
+.fp-corner-mark { cursor: pointer; }
+.fp-corner-link { stroke: var(--standard); stroke-width: 1.5; stroke-dasharray: 2 4; stroke-linecap: round; }
+.fp-corner-ring { fill: none; stroke: var(--standard); stroke-width: 2; }
+.fp-corner-badge { fill: var(--standard); }
+.fp-corner-text { font: 800 11px var(--font); fill: #fff; pointer-events: none; }
+.fp-corner-mark.user .fp-corner-badge { fill: var(--ink); }
+.fp-corner-mark.user .fp-corner-text { fill: var(--surface); }
+.fp-corner-mark.far .fp-corner-link { stroke: var(--warn); stroke-width: 2; stroke-dasharray: 6 4; }
+.fp-corner-mark.far .fp-corner-ring { stroke: var(--warn); }
+.fp-corner-mark.far .fp-corner-badge { fill: var(--warn); }
+.fp-corner-mark.selected .fp-corner-badge, .fp-corner-mark:hover .fp-corner-badge { stroke: var(--ink); stroke-width: 2; }
+.floor-legend .legend-wall { list-style: none; font-weight: 750; color: var(--standard); margin: .3rem 0 .1rem -1.2rem; }
+.floor-legend .legend-wall:first-child { margin-top: 0; }
+/* Room / start / step settings fold away so the plan is visible at once */
+.plan-settings { border: 1px solid var(--line); border-radius: var(--r-md); padding: .5rem .9rem; margin: 0 0 .8rem; }
+.plan-settings > summary { cursor: pointer; font-weight: 700; }
+.plan-settings[open] > summary { margin-bottom: .8rem; }
 .fp-seg.rep-later .fp-route { stroke-width: 2; }
 .fp-seg.rep-later.active { opacity: 1; }
 .fp-seg.seg1 .fp-route-arrow { fill: var(--latin); }

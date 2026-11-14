@@ -27,6 +27,8 @@ export interface PlanInput {
   startTurn?: number;
   stepScales?: number[];
   wall?: number;
+  /** No automatic corner before this figure. */
+  noCorner?: boolean;
 }
 
 export interface Plan extends SimResult {
@@ -87,6 +89,7 @@ export function buildPlan(opts: {
         ? it.fig.floor.ladySteps.slice(it.resolved.from - 1, it.resolved.isPart ? it.resolved.to : undefined)
         : null,
       wall: it.wall,
+      noCorner: it.noCorner,
       startPos: it.resolved.from <= 1 ? (positionOf(it.fig.syllabus?.start) ?? undefined) : undefined,
       counts: it.resolved.steps.map((st) => ({ label: st.label, beats: st.beats })),
       animSteps: all.length ? all : undefined,
@@ -111,7 +114,7 @@ export function buildPlan(opts: {
   for (let r = 1; r < count; r++)
     loopPart.forEach((it, i) => {
       // Manual walls only apply to the first pass; repetitions follow the floor.
-      all.push({ ...it, wall: undefined, key: `${it.key}#${r}`, label: `${it.label} (${r + 1}.×)` });
+      all.push({ ...it, wall: undefined, noCorner: undefined, key: `${it.key}#${r}`, label: `${it.label} (${r + 1}.×)` });
       nums.push(from + i + 1);
     });
   // Preparatory step: danced once before the first figure (number 0 = "P" in the plan).

@@ -17,6 +17,8 @@ export interface RoutineItem {
   corner?: boolean;
   /** From this figure on the couple is on this wall (0–3); overrides automatic corners. */
   wall?: number;
+  /** No automatic corner right before this figure (the user said "no corner here"). */
+  noCorner?: boolean;
 }
 
 /** Ballroom used for the floor plan. Length runs along the first long side. */

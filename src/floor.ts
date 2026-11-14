@@ -526,6 +526,8 @@ export interface SimItem {
   autoTurnOptions?: number[];
   /** From this figure on, the couple dances along this wall (0–3). */
   wall?: number;
+  /** The user doesn't want an automatic corner before this figure. */
+  noCorner?: boolean;
 }
 
 export interface SimPoint {
@@ -559,6 +561,16 @@ export interface SimSegment {
   /** A corner was inserted automatically before this figure. */
   autoCorner: boolean;
   cornerAfter: boolean;
+  /**
+   * The line of dance turned right before this figure (a corner between the
+   * previous figure and this one): "auto" by the plan, "user" marked by the user
+   * ("corner after" the previous figure), "wall" by a manually chosen wall.
+   */
+  cornerBefore: "auto" | "user" | "wall" | null;
+  /** At such a corner: how far (metres) the couple still was from the end wall of the previous side. */
+  cornerDist: number;
+  /** The previous side (the wall the couple left at this corner). */
+  cornerFrom: number;
   side: number;
   t0: number;
   t1: number;
@@ -575,7 +587,7 @@ export interface SimResult {
 }
 
 /** Closer than this (metres) to the end wall = the couple is in the corner: the LOD turns. */
-const CORNER_ZONE = 2.5;
+export const CORNER_ZONE = 2.5;
 
 /**
  * Where the routine starts: on which wall (0 = first long side, then
@@ -682,9 +694,13 @@ export function simulateRoutine(
   const segments: SimSegment[] = [];
   const overflow: number[] = [];
 
+  let prevSide = side;
+  let userCorner = false;
   items.forEach((item, i) => {
     let autoCorner = false;
     let manualWall = false;
+    const x0 = x;
+    const y0 = y;
     if (item.wall !== undefined && (((item.wall - side) % 4) + 4) % 4 !== 0) {
       // The user says: from this figure on we are on wall `item.wall`.
       side += (((item.wall - side) % 4) + 4) % 4;
@@ -692,7 +708,7 @@ export function simulateRoutine(
     }
     // Near the end wall the line of dance turns at the corner (decided below,
     // together with the figure's alignment).
-    const nearEnd = item.wall === undefined && !manualWall && !turnedJustNow && remaining(side, x, y, room) < CORNER_ZONE;
+    const nearEnd = item.wall === undefined && !item.noCorner && !manualWall && !turnedJustNow && remaining(side, x, y, room) < CORNER_ZONE;
     // A turn made at the start of this figure (set on the figure itself).
     if (item.startTurn && face !== null) face = norm180(face + item.startTurn);
     // Charted facing of the figure in its own (LOD) frame.
@@ -729,6 +745,7 @@ export function simulateRoutine(
     // 3/8 R after Natural Turn 1-3 ends facing DW of the new LOD).
     if (
       item.wall === undefined &&
+      !item.noCorner &&
       !autoCorner &&
       !manualWall &&
       !turnedJustNow &&
@@ -835,12 +852,17 @@ export function simulateRoutine(
       estimated: !item.steps,
       autoCorner,
       cornerAfter: item.cornerAfter,
+      cornerBefore: i === 0 || side === prevSide ? null : autoCorner ? "auto" : manualWall ? "wall" : userCorner ? "user" : "auto",
+      cornerDist: i === 0 || side === prevSide ? 0 : remaining(prevSide, x0, y0, room),
+      cornerFrom: prevSide,
       side,
       t0,
       t1: t,
       placed,
     });
     turnedJustNow = autoCorner || manualWall;
+    prevSide = side;
+    userCorner = item.cornerAfter;
     if (item.cornerAfter) {
       side += 1;
       turnedJustNow = true;

@@ -138,6 +138,7 @@ export function RoutineEditor({ routine, api, onBack, onOpenFigure }: Props) {
       startTurn: r.item.variant?.startTurn,
       stepScales: r.item.variant?.stepScales,
       wall: r.item.wall,
+      noCorner: r.item.noCorner,
     })),
     room,
     start: routine.start ?? DEFAULT_START,
@@ -328,6 +329,77 @@ export function RoutineEditor({ routine, api, onBack, onOpenFigure }: Props) {
     setItems((items) => items.map((it) => (it.uid === uid ? { ...it, ...patchItem } : it)));
 
   type Row = (typeof rows)[number];
+
+  /**
+   * Corner between figure `idx - 1` and `idx`: "auto" = let the plan decide,
+   * true = a corner here, false = no corner here. (Stored as "corner after" on
+   * the previous figure and "no automatic corner" on this one; a manually
+   * chosen wall from older versions is dropped.)
+   */
+  const setCorner = (idx: number, mode: "auto" | boolean) =>
+    setItems((items) =>
+      items.map((it, k) => {
+        if (k === idx - 1) return { ...it, corner: mode === true ? true : undefined };
+        if (k === idx) return { ...it, noCorner: mode === false ? true : undefined, wall: undefined };
+        return it;
+      }),
+    );
+  const wallName = (side: number) => t(`wall${((side % 4) + 4) % 4}` as StringKey);
+  /** A corner taken this far (metres) before the end wall looks like the middle of the floor. */
+  const FAR_CORNER = 4;
+
+  /** The corner between two figures in the list (progressive dances). */
+  const renderCorner = (idx: number) => {
+    const r = rows[idx];
+    const seg = planSeg(r);
+    if (!seg) return null;
+    const kind = seg.cornerBefore;
+    if (!kind)
+      return (
+        <div className="corner-bar none">
+          {r.item.noCorner ? (
+            <>
+              <span className="small muted">⊘ {t("cornerNoneHere")}</span>
+              <button type="button" className="link-btn small" onClick={() => setCorner(idx, "auto")}>
+                {t("cornerAutoAgain")}
+              </button>
+            </>
+          ) : (
+            <button type="button" className="link-btn small corner-add" onClick={() => setCorner(idx, true)} title={t("cornerAddHint")}>
+              + {t("cornerAdd")}
+            </button>
+          )}
+        </div>
+      );
+    const far = seg.cornerDist > FAR_CORNER;
+    return (
+      <div className={`corner-bar on ${far ? "far" : ""}`}>
+        <div className="corner-line">
+          <span className="corner-icon" aria-hidden>↰</span>
+          <strong>{t("cornerTitle")}</strong>
+          <span>→ {wallName(seg.side)}</span>
+          <span className="corner-kind small">
+            {kind === "auto" ? t("cornerKindAuto") : kind === "user" ? t("cornerKindUser") : t("cornerKindWall")}
+          </span>
+        </div>
+        {far && (
+          <div className="small warn">
+            ⚠ {t("cornerFar", { m: seg.cornerDist.toFixed(1).replace(".", lang === "cs" ? "," : ".") })}
+          </div>
+        )}
+        <div className="corner-actions">
+          {kind === "auto" ? (
+            <>
+              <button type="button" className="btn small" onClick={() => setCorner(idx, true)}>✓ {t("cornerConfirm")}</button>
+              <button type="button" className="btn small" onClick={() => setCorner(idx, false)}>⊘ {t("cornerRemove")}</button>
+            </>
+          ) : (
+            <button type="button" className="btn small" onClick={() => setCorner(idx, "auto")}>✕ {t("cornerCancel")}</button>
+          )}
+        </div>
+      </div>
+    );
+  };
 
   /** Facing at the start / end in the floor plan, relative to the LOD of the figure's wall. */
   const planFace = (row: Row) => {
@@ -735,6 +807,13 @@ export function RoutineEditor({ routine, api, onBack, onOpenFigure }: Props) {
               </div>
             );
           })()}
+          cornerControl={(() => {
+            const idx = rows.findIndex((r) => r.item.uid === selectedUid);
+            if (idx < 1) return undefined;
+            const it = rows[idx].item;
+            const mode: "auto" | boolean = rows[idx - 1].item.corner ? true : it.noCorner ? false : "auto";
+            return { mode, active: !!planSeg(rows[idx])?.cornerBefore, onChange: (m: "auto" | boolean) => setCorner(idx, m) };
+          })()}
           turnControl={(() => {
             const row = rows.find((r) => r.item.uid === selectedUid);
             if (!row || !(hasFloor(row.fig) || row.fig.floor?.follows)) return undefined;
@@ -802,6 +881,10 @@ export function RoutineEditor({ routine, api, onBack, onOpenFigure }: Props) {
                     .join(" ")
                     .trim() || undefined}
                 >
+                  {progressive && plan && idx === 0 && planSeg(r) && (
+                    <div className="wall-head">▭ {t("wallStartHead", { wall: wallName(planSeg(r)!.side) })}</div>
+                  )}
+                  {prev && progressive && plan && renderCorner(idx)}
                   {prev && renderTransition(prev, r)}
                   <RoutineItemRow
                     progressive={progressive}
@@ -812,9 +895,6 @@ export function RoutineEditor({ routine, api, onBack, onOpenFigure }: Props) {
                     dance={dance}
                     cls={routine.cls}
                     resolved={r.resolved}
-                    wallSide={planSeg(r)?.side}
-                    wallManual={planSeg(r)?.manualWall}
-                    wallAuto={!!planSeg(r)?.autoCorner}
                     planFace={planFace(r)}
                     onEditInPlan={progressive && (hasFloor(r.fig) || !!r.fig.floor?.follows) ? () => editInPlan(r.item.uid) : undefined}
                     classLegal={r.classLegal || routine.cls === "B"}
