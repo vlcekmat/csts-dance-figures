@@ -23,7 +23,7 @@ arrow buttons to move the routine (no click-to-move) → routine animation → t
 position (incl. own positions outside the syllabus, flagged in E–C) in the plan panel → teeth
 smoothing → stricter videos → crossed feet, trailing foot, body-turn arc → lady placement by
 position → smooth single step, slower speeds → weight transfer vs step → rocks → full audit
-(merged table cells, foot alternation repair, prec as step 1, placement keeps feet together).
+(merged table cells, foot alternation repair, prec as step 1, placement keeps feet together) → corners unified: one control between figures (`corner` on prev = yes, `noCorner` on next = no, legacy `wall` still honoured), wall headers in the list, corner badges in room corners linked to the path, warning when the LOD turns > 4 m before the end wall (`SimSegment.cornerBefore/cornerDist/cornerFrom`); plan settings folded in a details.
 
 ## Deliberate simplifications
 - Both partners closing with a turn: couple rotates around its centre (teeth < 0.2 m accepted).
