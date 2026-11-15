@@ -31,6 +31,8 @@ for (const fig of FIGURES) {
         ? [15, 150]
         : /fallaway/.test(endPos)
           ? [-150, -15]
+          : /outside partner|(?:^|\s)op(?:\s|$)/.test(endPos) && !/prom/.test(endPos)
+            ? [-90, -5]
           : /counter prom|cnt prom|\bcpp\b/.test(endPos)
         ? [15, 150]
         : /prom|\bpp\b/.test(endPos)
@@ -43,6 +45,10 @@ for (const fig of FIGURES) {
                 ? [-45, 45]
                 : null;
       if (want && (rel < want[0] || rel > want[1])) add(`step ${i + 1}: lady at ${rel.toFixed(0)}° from the man's facing in "${endPos}"`);
+      // promenade: a V – she faces about a quarter turn left of him (counter promenade right)
+      const relFace = norm180(lf.bodyFace - mf.bodyFace);
+      if (/prom|\bpp\b|fallaway/.test(endPos) && !/counter prom|cnt prom|\bcpp\b/.test(endPos) && (relFace < 20 || relFace > 160))
+        add(`step ${i + 1}: lady faces ${relFace.toFixed(0)}° from the man in "${endPos}" (promenade: about 90°)`);
       if (want && want[0] === -45 && facing < 110) add(`step ${i + 1}: partners don't face each other (${facing.toFixed(0)}°) in "${endPos}"`);
       const d = Math.hypot(lf.bx - mf.bx, lf.by - mf.by);
       const close = closeHold(pos);

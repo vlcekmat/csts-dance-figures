@@ -148,7 +148,9 @@ export function ladyOffset(pos: string, latin: boolean): { fwd: number; right: n
   if (/counter prom|\bcpp\b|cnt prom/.test(p)) return latin ? { fwd: 0.3, right: -0.6 } : { fwd: 0.2, right: -0.45 };
   if (/promenade|\bpp\b|prom\b/.test(p)) return latin ? { fwd: 0.3, right: 0.6 } : { fwd: 0.2, right: 0.45 };
   if (/fallaway/.test(p)) return { fwd: 0.05, right: 0.45 };
-  if (/outside partner|\bop\b/.test(p)) return { fwd: 0.32, right: -0.15 };
+  // Outside partner is always on the partner's right side: the lady stands further to
+  // the man's right than in closed position (his right foot passes outside her right).
+  if (/outside partner|(?:^|\s)op(?:\s|$)/.test(p)) return { fwd: 0.3, right: 0.27 };
   if (/wing/.test(p)) return { fwd: 0.2, right: -0.45 };
   if (/shadow/.test(p)) return { fwd: 0.35, right: 0.25 };
   if (/tandem/.test(p)) return { fwd: 0.4, right: 0 };
@@ -246,7 +248,11 @@ export function fixLadyFacing(man: FloorStep[], lady: FloorStep[]): FloorStep[] 
  */
 export function relativeFacing(pos: string): number | null {
   const p = (pos.toLowerCase().split(/\s+(?:to|then)\s+(?=[a-z])/).pop() ?? "").trim();
-  if (!p || /prom|\bpp\b|fallaway|\bcpp\b|cnt/.test(p)) return null;
+  if (!p) return null;
+  // Promenade / fallaway: a V opening to where they travel – the lady faces a quarter
+  // turn further left than the man (man DW, lady DC); counter promenade the other way.
+  if (/counter prom|\bcpp\b|cnt prom/.test(p)) return -90;
+  if (/prom|\bpp\b|fallaway/.test(p)) return 90;
   // at a right angle: on his left facing across him (Fan L Angle), or on his right
   if (/\bl(?:eft)? angle\b/.test(p)) return -90;
   if (/\br(?:ight)? angle\b/.test(p)) return 90;

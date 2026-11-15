@@ -25,11 +25,12 @@ Each segment stores `placed` {item, x, y, rotate, init} for the routine animatio
 Latin (chacha/rumba/jive) has no plan; `animSteps` still feed the animation.
 
 ## Player (playerGeometry.ts + FigurePlayer.tsx)
+- Couple offsets (`ladyOffset`): closed = in front slightly to his right; OUTSIDE PARTNER = further to his RIGHT (OP is always on the partner's right side; was wrongly left before 2026-11); PP beside him on his right; wing / CPP on his left. `op` only as a separate word (OCR "Open Op¢" ≠ OP). audit_figures checks OP angle and PP V-facing.
 - `coupleGeometry`: footprints for man and lady (TraceOpts rotate/extraTurn/scales/initialFacing).
   Lady fixes: `fixLadyFacing` (her chart carries his alignment → flip all when majority in facing
   positions; single closed-position steps flipped); without man's alignments her alignments are
   dropped (relative placement only). Missing lady chart in routines ⇒ `mirrorSteps` (estimated, "*").
-- Lady's facing set by the couple position BEFORE her steps are traced (`relativeFacing`: opp/closed 180, same/shadow 0, L Angle −90, R Angle +90; prom = no rule): where her traced facing differs > 60° her chart faces are shifted (carried on) and she is retraced – so her "fwd" goes where she really goes.
+- Lady's facing set by the couple position BEFORE her steps are traced (`relativeFacing`: opp/closed 180, same/shadow 0, L Angle −90, R Angle +90, PP/fallaway +90 (man DW, lady DC), CPP −90): where her traced facing differs > 60° her chart faces are shifted (carried on) and she is retraced – so her "fwd" goes where she really goes.
 - Placement per step: the partners' own chart positions (+ previous corrections) are moved so the lady is exactly at the position's offset; the needed change is split by weights 1/(own step length + 0.05)² (`share`), a weight transfer counts as length 0 (pinned). The target is the nearest spot of a tolerance region around the position offset (±15°, ±15 % distance, `nearestRel`). Outside a closed hold each step stays its own (`keepStep`: ≤ 45° off its own direction, ≥ 40 % of its length, a still partner moves ≤ 0.25 m) and may lag behind the position by ≤ 0.15 m (caught up on later steps); closed hold = exact. CBMP / outside partner / across steps put the foot on the body line. So whoever stands / transfers stays, the stepping partner absorbs it (no partner is carried). Apart positions: same split towards the position's distance.
 - (older notes) Placement per step (positions that say where she stands: closed/opp/open/fan/side/shadow/tandem/
   diag/prom/fallaway/wing/outside/angle): offset by `ladyOffset` around the couple centre;
