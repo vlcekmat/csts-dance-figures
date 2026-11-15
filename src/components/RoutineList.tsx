@@ -16,8 +16,10 @@ export function RoutineList({ api, onOpen }: Props) {
   const { t, lang, barsWord } = useI18n();
   const custom = useCustom();
   const [name, setName] = useState("");
-  const [dance, setDance] = useState(DANCES[0].id);
-  const [cls, setCls] = useState<ClassId>("C");
+  // A new routine starts like the last one edited (same class, usually the same dancer); else E.
+  const last = [...api.routines].sort((a, b) => b.updatedAt - a.updatedAt)[0];
+  const [dance, setDance] = useState(last?.dance ?? DANCES[0].id);
+  const [cls, setCls] = useState<ClassId>(last?.cls ?? "E");
   const [confirmId, setConfirmId] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const fileRef = useRef<HTMLInputElement>(null);

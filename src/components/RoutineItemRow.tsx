@@ -43,6 +43,8 @@ export function RoutineItemRow(props: Props) {
   const { planFace, onEditInPlan, progressive, index, count, item, fig, dance, cls, resolved, classLegal, onChange, onMove, onDragStart, onRemove, onOpen, onInsertAfter } = props;
   const { t, lang, barsWord } = useI18n();
   const [open, setOpen] = useState(false);
+  const [noteOpen, setNoteOpen] = useState(false);
+  const [nextOpen, setNextOpen] = useState(false);
   const { main, sub } = figureNames(fig, lang);
   const syl = fig.syllabus;
   const variants = syl?.variants ?? {};
@@ -150,11 +152,6 @@ export function RoutineItemRow(props: Props) {
           {main}
         </button>
         {sub && <div className="fig-sub">{sub}</div>}
-        {onEditInPlan && (
-          <button type="button" className="link-btn small plan-edit-link" onClick={onEditInPlan}>
-            ⌖ {t("planShowFigure")}
-          </button>
-        )}
         {fig.custom && <span className="custom-badge">★ {t("customBadge")}</span>}
 
         {!classLegal &&
@@ -186,14 +183,32 @@ export function RoutineItemRow(props: Props) {
           </span>
         </div>
 
-        <button
-          className={`variant-toggle ${hasOptions ? "has" : ""}`}
-          onClick={() => setOpen((o) => !o)}
-          aria-expanded={open}
-        >
-          {open ? "▾" : "▸"} {t("editVariant")}
-          {hasOptions && !open && <span className="muted small"> ({t("variantsAvailable")})</span>}
-        </button>
+        <div className="item-links">
+          <button
+            className={`variant-toggle ${hasOptions ? "has" : ""}`}
+            onClick={() => setOpen((o) => !o)}
+            aria-expanded={open}
+            title={hasOptions ? t("variantsAvailable") : undefined}
+          >
+            {open ? "▾" : "▸"} {t("editVariant")}
+            {(fig.alternatives?.length ?? 0) > 0 && !open && <span className="muted small"> · {t("altTitle").toLowerCase()} {fig.alternatives!.length}</span>}
+          </button>
+          {onEditInPlan && (
+            <button type="button" className="link-btn small" onClick={onEditInPlan}>
+              ⌖ {t("planShowFigure")}
+            </button>
+          )}
+          {!item.note && !noteOpen && (
+            <button type="button" className="link-btn small" onClick={() => setNoteOpen(true)}>
+              + {t("noteAdd")}
+            </button>
+          )}
+          {onInsertAfter && followers.length > 0 && (
+            <button type="button" className="link-btn small" onClick={() => setNextOpen((o) => !o)} aria-expanded={nextOpen}>
+              {nextOpen ? "▾" : "▸"} {t("nextOptions")} ({followers.length})
+            </button>
+          )}
+        </div>
 
         {open && (
           <div className="variant-panel">
@@ -381,18 +396,18 @@ export function RoutineItemRow(props: Props) {
           </div>
         )}
 
+        {(item.note || noteOpen) && (
         <input
+          autoFocus={noteOpen && !item.note}
           className="note-input"
           placeholder={t("myNote")}
           value={item.note ?? ""}
           onChange={(e) => onChange({ note: e.target.value })}
           aria-label={t("noteLabel")}
         />
-        {onInsertAfter && followers.length > 0 && (
-          <details className="next-options">
-            <summary className="small">
-              {t("nextOptions")} ({followers.length})
-            </summary>
+        )}
+        {onInsertAfter && followers.length > 0 && nextOpen && (
+          <div className="next-options">
             <div className="chips">
               {followers.map(({ fig: nf, note }) => (
                 <button
@@ -407,7 +422,7 @@ export function RoutineItemRow(props: Props) {
                 </button>
               ))}
             </div>
-          </details>
+          </div>
         )}
       </div>
       <div className="item-actions">

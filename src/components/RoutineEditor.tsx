@@ -18,7 +18,7 @@ import {
 import { useI18n, type StringKey } from "../i18n";
 import { PREP_DIRS, downloadJson, newId, prepSteps, type PrepStep, type Routine, type RoutineItem, type RoutinesApi } from "../routines";
 import { ROUND_RANGE, formatBars, formatSeconds, tempoRange, totalBeats } from "../timing";
-import { connect, partLabel, resolveItem } from "../variants";
+import { connect, normPosition, partLabel, resolveItem } from "../variants";
 import { RoutineItemRow } from "./RoutineItemRow";
 import { applyAlternatives } from "../alternatives";
 import { buildPlan } from "../plan";
@@ -45,6 +45,9 @@ interface Props {
   onBack: () => void;
   onOpenFigure: (fig: Figure) => void;
 }
+
+type EditorTab = "figures" | "plan" | "anim";
+const TAB_KEY = "csts-editor-tab";
 
 const PREP_SIZES = [0.25, 0.5, 0.75, 1, 1.25, 1.5];
 const PREP_TURNS = [0, 45, -45, 90, -90, 135, -135, 180];
@@ -117,9 +120,31 @@ export function RoutineEditor({ routine, api, onBack, onOpenFigure }: Props) {
   const [repeat, setRepeat] = useState<number | "round">(showLoop ? "round" : 1);
   // Figure selected for manual rotation in the floor plan.
   const [selectedUid, setSelectedUid] = useState<string | null>(null);
+  // The editor is split into tabs: building the list, the floor plan, the animation.
+  const [tab, setTabState] = useState<EditorTab>(() => {
+    try {
+      const v = localStorage.getItem(TAB_KEY);
+      return v === "plan" || v === "anim" ? v : "figures";
+    } catch {
+      return "figures";
+    }
+  });
+  const setTab = (v: EditorTab) => {
+    setTabState(v);
+    try {
+      localStorage.setItem(TAB_KEY, v);
+    } catch {
+      /* private mode */
+    }
+  };
+  // Latin dances have no floor plan.
+  useEffect(() => {
+    if (!progressive && tab === "plan") setTabState("figures");
+  }, [progressive, tab]);
   const editInPlan = (uid: string) => {
     setSelectedUid(uid);
-    requestAnimationFrame(() => document.getElementById("floor-plan")?.scrollIntoView({ behavior: "smooth", block: "start" }));
+    setTab("plan");
+    requestAnimationFrame(() => document.getElementById("editor-tabs")?.scrollIntoView({ behavior: "smooth", block: "start" }));
   };
   useEffect(() => {
     // Turning the loop visualisation on shows a whole competition round.
@@ -164,7 +189,7 @@ export function RoutineEditor({ routine, api, onBack, onOpenFigure }: Props) {
     [routine, dance, lang, repeat, showLoop, loopTo, progressive],
   );
   // Routine animation: one pass of the routine, placed like in the plan (all dances).
-  const [showAnim, setShowAnim] = useState(false);
+  const showAnim = tab === "anim";
   const animTrack = useMemo(
     () => {
       if (!showAnim || !rows.length) return null;
@@ -351,11 +376,13 @@ export function RoutineEditor({ routine, api, onBack, onOpenFigure }: Props) {
   const FAR_CORNER = 4;
 
   /** The corner between two figures in the list (progressive dances). */
-  const renderCorner = (idx: number) => {
+  const renderCorner = (idx: number, inline: boolean) => {
     const r = rows[idx];
     const seg = planSeg(r);
     if (!seg) return null;
     const kind = seg.cornerBefore;
+    // inline = the small "+ corner here" inside the transition line; otherwise the corner bar
+    if (inline !== !kind) return null;
     if (!kind)
       return (
         <div className="corner-bar none">
@@ -416,7 +443,7 @@ export function RoutineEditor({ routine, api, onBack, onOpenFigure }: Props) {
    * the routine is repeated): foot, position, hold and alignment, with
    * one-click fixes where the syllabus offers a variant.
    */
-  const renderTransition = (prev: Row, r: Row, loop = false) => {
+  const renderTransition = (prev: Row, r: Row, loop = false, extra: React.ReactNode = null) => {
     const c = connect(prev.fig, prev.resolved, r.fig, r.resolved);
     // Alignment: the next figure starts facing where the previous one ended. If
     // that is not the alignment its chart gives, the couple dances it off the
@@ -431,6 +458,22 @@ export function RoutineEditor({ routine, api, onBack, onOpenFigure }: Props) {
     const fixExtra = Math.round((prevExtra - off) / 45) * 45;
     const canFix = alignOk === false && !!prevRange && fixExtra !== prevExtra && turnOptions(prevRange).includes(fixExtra);
     const hasChange = c.posOk === false || c.holdOk === false || alignOk === false;
+    // Everything connects: one quiet line (details in the tooltip).
+    if (!loop && !hasChange && c.footOk !== false) {
+      const same = normPosition(c.prevPos) === normPosition(c.nextPos);
+      const pos = c.nextPos ? localizePositions(same ? c.nextPos : `${c.prevPos ?? "?"} → ${c.nextPos}`, lang) : "";
+      return (
+        <div className="transition compact">
+          <span className={c.footOk ? "ok" : "muted"} title={t("footHint")}>
+            {c.footOk
+              ? `✓ ${t("footOk")} (${c.prevFoot} → ${c.nextFoot}${c.nextDir ? ` ${t(`dir_${c.nextDir}` as StringKey)}` : ""})`
+              : `↓ ${t("footUnknown")}`}
+          </span>
+          {pos && <span className="muted">· {pos}</span>}
+          {extra}
+        </div>
+      );
+    }
     return (
                     <div className={`transition ${hasChange ? "has-change" : ""} ${loop ? "loop" : ""}`}>
                       {loop && <div className="loop-title">↺ {t("loopTitleTo", { n: String(loopTo + 1), name: figureNames(r.fig, lang).main })}</div>}
@@ -537,9 +580,57 @@ export function RoutineEditor({ routine, api, onBack, onOpenFigure }: Props) {
                           })}
                         </button>
                       )}
+                      {extra}
                     </div>
                   );
   };
+
+  /** One figure in the picker (click adds it, the handle drags it to a place). */
+  const renderPickerItem = (f: Figure, keyPrefix = "") => {
+              const { main } = figureNames(f, lang);
+              const legal = isLegal(f, routine.cls);
+              return (
+                <li key={keyPrefix + f.id} className={legal ? "" : "illegal"}>
+                  <button
+                    type="button"
+                    className="icon-btn drag-handle"
+                    onPointerDown={startPickerDrag(f, true)}
+                    aria-label={t("dragToRoutine")}
+                    title={t("dragToRoutine")}
+                  >
+                    ⠿
+                  </button>
+                  <button
+                    className="picker-add"
+                    onPointerDown={startPickerDrag(f, false)}
+                    onClick={() => {
+                      if (suppressClick.current) {
+                        suppressClick.current = false;
+                        return;
+                      }
+                      api.addFigure(routine.id, f.id);
+                    }}
+                    title={t("addToRoutine")}
+                  >
+                    <span className="plus">{f.custom ? "★" : "+"}</span>
+                    <span className="picker-name">{main}</span>
+                    {f.syllabus?.timing && <code className="timing small">{f.syllabus.timing}</code>}
+                  </button>
+                  <button className="icon-btn" onClick={() => onOpenFigure(f)} aria-label={t("details")}>
+                    ⓘ
+                  </button>
+                </li>
+              );
+  };
+
+  // Figures that follow the last one (from the step charts): offered first.
+  const lastRow = rows[rows.length - 1];
+  const followUps = lastRow
+    ? (lastRow.fig.floor?.following ?? [])
+        .map((l) => (l.id ? getFigure(l.id) : undefined))
+        .filter((f): f is Figure => !!f && f.dance === routine.dance && (showIllegal || routine.cls === "B" || isLegal(f, routine.cls)))
+        .filter((f, i, arr) => arr.findIndex((x) => x.id === f.id) === i)
+    : [];
 
   return (
     <div className="editor">
@@ -603,6 +694,86 @@ export function RoutineEditor({ routine, api, onBack, onOpenFigure }: Props) {
           </button>
         </div>
       </div>
+
+      {!danceInClass(routine.dance, routine.cls) && (
+        <p className="callout warn">{t("notDancedInClass")}</p>
+      )}
+
+      <div className="summary">
+        <div className="stat">
+          <div className="stat-value">{rows.length}</div>
+          <div className="stat-label">{t("figures")}</div>
+        </div>
+        <div className="stat">
+          <div className="stat-value">{formatBars(beats, dance.beatsPerBar)}</div>
+          <div className="stat-label">
+            {barsWord(beats, dance.beatsPerBar)} ({dance.meter})
+          </div>
+        </div>
+        {tempo && beats > 0 && (
+          <>
+            <div className="stat">
+              {/* Faster music = shorter routine: [fastest tempo, slowest tempo]. */}
+              <div className="stat-value">{secondsRange(((beats / dance.beatsPerBar) * 60) / tempo[1], ((beats / dance.beatsPerBar) * 60) / tempo[0])}</div>
+              <div className="stat-label">{t("durationAt", { tempo: dance.tempo })}</div>
+            </div>
+            <div className="stat">
+              <div className="stat-value">
+                {fmtTimes(ROUND_RANGE[0] / (((beats / dance.beatsPerBar) * 60) / tempo[1]))}–
+                {fmtTimes(ROUND_RANGE[1] / (((beats / dance.beatsPerBar) * 60) / tempo[0]))}×
+              </div>
+              <div className="stat-label">{t("perRound")}</div>
+            </div>
+          </>
+        )}
+        <div className={`stat ${illegalCount ? "bad" : "good"}`}>
+          <div className="stat-value">{illegalCount ? `✗ ${illegalCount}` : "✓"}</div>
+          <div className="stat-label">
+            {illegalCount
+              ? `${t("illegalCount")} ${routine.cls === "B" ? t("classB") : routine.cls}`
+              : `${t("legalAll")} ${routine.cls === "B" ? t("classB") : routine.cls}`}
+          </div>
+        </div>
+      </div>
+
+      {changeCount > 0 && (
+        <p className="callout warn small">
+          ⇄ {changeCount} {t("changesTitle")}
+        </p>
+      )}
+
+      {rows.length > 0 && (
+        <nav className="editor-tabs" id="editor-tabs" role="tablist" aria-label={t("editorTabs")}>
+          {(
+            [
+              ["figures", `${t("tabRoutineFigures")} (${rows.length})`],
+              ...(progressive ? [["plan", t("floorPlan")] as const] : []),
+              ["anim", t("routinePlayer")],
+            ] as const
+          ).map(([k, label]) => (
+            <button
+              key={k}
+              type="button"
+              role="tab"
+              aria-selected={tab === k}
+              className={`editor-tab ${tab === k ? "active" : ""}`}
+              onClick={() => setTab(k)}
+            >
+              {label}
+            </button>
+          ))}
+        </nav>
+      )}
+
+      {(tab === "figures" || rows.length === 0 || (tab === "plan" && !progressive)) && (
+        <>
+      {rows.length > 0 && (
+        <section className="card rhythm-card">
+          <h3>{t("rhythmStrip")}</h3>
+          <TimingStrip dance={dance} segments={segments} beatWidth={26} loop={showLoop} loopTo={loopTo} />
+          <p className="small muted">{t("timingLegend")}</p>
+        </section>
+      )}
 
       <div className="loop-row prep-row">
         <div className="prep-head">
@@ -698,77 +869,113 @@ export function RoutineEditor({ routine, api, onBack, onOpenFigure }: Props) {
           )}
         </div>
       )}
-      {!danceInClass(routine.dance, routine.cls) && (
-        <p className="callout warn">{t("notDancedInClass")}</p>
-      )}
+      <div className="editor-cols">
+        <section className="card items">
+          {rows.length === 0 && <p className="empty">{t("emptyRoutine")}</p>}
+          <ol ref={listRef} className={`item-list ${showLoop ? "looped" : ""} ${drag?.from === null && drag.over !== null ? "drop-target" : ""}`}>
+            {rows.map((r, idx) => {
+              const prev = idx > 0 ? rows[idx - 1] : null;
 
-      <div className="summary">
-        <div className="stat">
-          <div className="stat-value">{rows.length}</div>
-          <div className="stat-label">{t("figures")}</div>
-        </div>
-        <div className="stat">
-          <div className="stat-value">{formatBars(beats, dance.beatsPerBar)}</div>
-          <div className="stat-label">
-            {barsWord(beats, dance.beatsPerBar)} ({dance.meter})
-          </div>
-        </div>
-        {tempo && beats > 0 && (
-          <>
-            <div className="stat">
-              {/* Faster music = shorter routine: [fastest tempo, slowest tempo]. */}
-              <div className="stat-value">{secondsRange(((beats / dance.beatsPerBar) * 60) / tempo[1], ((beats / dance.beatsPerBar) * 60) / tempo[0])}</div>
-              <div className="stat-label">{t("durationAt", { tempo: dance.tempo })}</div>
-            </div>
-            <div className="stat">
-              <div className="stat-value">
-                {fmtTimes(ROUND_RANGE[0] / (((beats / dance.beatsPerBar) * 60) / tempo[1]))}–
-                {fmtTimes(ROUND_RANGE[1] / (((beats / dance.beatsPerBar) * 60) / tempo[0]))}×
-              </div>
-              <div className="stat-label">{t("perRound")}</div>
-            </div>
-          </>
-        )}
-        <div className={`stat ${illegalCount ? "bad" : "good"}`}>
-          <div className="stat-value">{illegalCount ? `✗ ${illegalCount}` : "✓"}</div>
-          <div className="stat-label">
-            {illegalCount
-              ? `${t("illegalCount")} ${routine.cls === "B" ? t("classB") : routine.cls}`
-              : `${t("legalAll")} ${routine.cls === "B" ? t("classB") : routine.cls}`}
-          </div>
-        </div>
-      </div>
-
-      {changeCount > 0 && (
-        <p className="callout warn small">
-          ⇄ {changeCount} {t("changesTitle")}
-        </p>
-      )}
-
-      {rows.length > 0 && (
-        <section className="card">
-          <h3>{t("rhythmStrip")}</h3>
-          <TimingStrip dance={dance} segments={segments} beatWidth={26} loop={showLoop} loopTo={loopTo} />
-          <p className="small muted">{t("timingLegend")}</p>
+              return (
+                <li
+                  key={r.item.uid}
+                  className={[
+                    showLoop && idx >= loopTo
+                      ? `in-loop ${idx === loopTo ? "loop-start" : ""} ${idx === rows.length - 1 ? "loop-end" : ""}`
+                      : "",
+                    drag?.from === idx ? "dragging" : "",
+                    drag && drag.over !== null && drag.from !== null && drag.over === idx && drag.from !== idx
+                      ? drag.over < drag.from ? "drop-before" : "drop-after"
+                      : "",
+                    // a new figure from the picker goes before item `over` (or after the last one)
+                    drag && drag.from === null && drag.over !== null
+                      ? drag.over === idx ? "drop-before" : drag.over === rows.length && idx === rows.length - 1 ? "drop-after" : ""
+                      : "",
+                  ]
+                    .join(" ")
+                    .trim() || undefined}
+                >
+                  {progressive && plan && idx === 0 && planSeg(r) && (
+                    <div className="wall-head">▭ {t("wallStartHead", { wall: wallName(planSeg(r)!.side) })}</div>
+                  )}
+                  {prev && progressive && plan && renderCorner(idx, false)}
+                  {prev && renderTransition(prev, r, false, progressive && plan ? renderCorner(idx, true) : null)}
+                  <RoutineItemRow
+                    progressive={progressive}
+                    index={idx}
+                    count={rows.length}
+                    item={r.item}
+                    fig={r.fig}
+                    dance={dance}
+                    cls={routine.cls}
+                    resolved={r.resolved}
+                    planFace={planFace(r)}
+                    onEditInPlan={progressive && (hasFloor(r.fig) || !!r.fig.floor?.follows) ? () => editInPlan(r.item.uid) : undefined}
+                    classLegal={r.classLegal || routine.cls === "B"}
+                    onChange={(patchItem) => updateItem(r.item.uid, patchItem)}
+                    onMove={(delta) => move(idx, delta)}
+                    onDragStart={startDrag(idx)}
+                    onRemove={() => setItems((items) => items.filter((it) => it.uid !== r.item.uid))}
+                    onInsertAfter={(figureId) =>
+                      setItems((items) => {
+                        const next = [...items];
+                        next.splice(idx + 1, 0, { uid: newId(), figureId });
+                        return next;
+                      })
+                    }
+                    onOpen={() => onOpenFigure(getFigure(r.item.figureId) ?? r.fig)}
+                  />
+                </li>
+              );
+            })}
+          </ol>
+          {routine.loop && rows.length > 1 && renderTransition(rows[rows.length - 1], rows[loopTo] ?? rows[0], true)}
         </section>
-      )}
 
-      {rows.length > 0 && (
-        <section className="card routine-anim">
-          <div className="routine-anim-head">
-            <h3>{t("routinePlayer")}</h3>
-            <button className={`btn small ${showAnim ? "" : "primary"}`} onClick={() => setShowAnim((v) => !v)} aria-expanded={showAnim}>
-              {showAnim ? t("routinePlayerHide") : `▶ ${t("routinePlayerShow")}`}
+        <aside className="card picker">
+          <div className="row-between">
+            <h3>{t("addFigure")}</h3>
+            <button
+              className="btn small"
+              onClick={() =>
+                custom.create(routine.dance, { lockDance: true, onSaved: (c) => api.addFigure(routine.id, c.id) })
+              }
+            >
+              + {t("addCustom")}
             </button>
           </div>
-          <p className="small muted">{t("routinePlayerHint")}</p>
-          {showAnim && animTrack && (
-            <StepPlayer track={animTrack} dance={dance} resetKey={routine.id} room={room} />
+          <input
+            className="search"
+            type="search"
+            placeholder={t("searchShort")}
+            aria-label={t("search")}
+            value={pickerQ}
+            onChange={(e) => setPickerQ(e.target.value)}
+          />
+          {routine.cls !== "B" && (
+            <label className="check">
+              <input type="checkbox" checked={showIllegal} onChange={(e) => setShowIllegal(e.target.checked)} />
+              {t("showAll")}
+            </label>
           )}
-        </section>
+          {!pickerQ && followUps.length > 0 && (
+            <div className="picker-suggest">
+              <div className="small picker-suggest-title">
+                {t("pickerSuggest", { name: figureNames(lastRow!.fig, lang).main })}
+              </div>
+              <ul className="picker-list">{followUps.map((f) => renderPickerItem(f, "s-"))}</ul>
+            </div>
+          )}
+          {!pickerQ && followUps.length > 0 && <div className="small muted picker-all-title">{t("pickerAll")}</div>}
+          <ul className="picker-list">
+            {pickerFigures.map((f) => renderPickerItem(f))}
+          </ul>
+        </aside>
+      </div>
+        </>
       )}
 
-      {progressive && rows.length > 0 && (
+      {tab === "plan" && progressive && rows.length > 0 && (
         <FloorPlan
           dance={dance}
           plan={plan!}
@@ -863,135 +1070,18 @@ export function RoutineEditor({ routine, api, onBack, onOpenFigure }: Props) {
         />
       )}
 
-      <div className="editor-cols">
-        <section className="card items">
-          {rows.length === 0 && <p className="empty">{t("emptyRoutine")}</p>}
-          <ol ref={listRef} className={`item-list ${showLoop ? "looped" : ""} ${drag?.from === null && drag.over !== null ? "drop-target" : ""}`}>
-            {rows.map((r, idx) => {
-              const prev = idx > 0 ? rows[idx - 1] : null;
-
-              return (
-                <li
-                  key={r.item.uid}
-                  className={[
-                    showLoop && idx >= loopTo
-                      ? `in-loop ${idx === loopTo ? "loop-start" : ""} ${idx === rows.length - 1 ? "loop-end" : ""}`
-                      : "",
-                    drag?.from === idx ? "dragging" : "",
-                    drag && drag.over !== null && drag.from !== null && drag.over === idx && drag.from !== idx
-                      ? drag.over < drag.from ? "drop-before" : "drop-after"
-                      : "",
-                    // a new figure from the picker goes before item `over` (or after the last one)
-                    drag && drag.from === null && drag.over !== null
-                      ? drag.over === idx ? "drop-before" : drag.over === rows.length && idx === rows.length - 1 ? "drop-after" : ""
-                      : "",
-                  ]
-                    .join(" ")
-                    .trim() || undefined}
-                >
-                  {progressive && plan && idx === 0 && planSeg(r) && (
-                    <div className="wall-head">▭ {t("wallStartHead", { wall: wallName(planSeg(r)!.side) })}</div>
-                  )}
-                  {prev && progressive && plan && renderCorner(idx)}
-                  {prev && renderTransition(prev, r)}
-                  <RoutineItemRow
-                    progressive={progressive}
-                    index={idx}
-                    count={rows.length}
-                    item={r.item}
-                    fig={r.fig}
-                    dance={dance}
-                    cls={routine.cls}
-                    resolved={r.resolved}
-                    planFace={planFace(r)}
-                    onEditInPlan={progressive && (hasFloor(r.fig) || !!r.fig.floor?.follows) ? () => editInPlan(r.item.uid) : undefined}
-                    classLegal={r.classLegal || routine.cls === "B"}
-                    onChange={(patchItem) => updateItem(r.item.uid, patchItem)}
-                    onMove={(delta) => move(idx, delta)}
-                    onDragStart={startDrag(idx)}
-                    onRemove={() => setItems((items) => items.filter((it) => it.uid !== r.item.uid))}
-                    onInsertAfter={(figureId) =>
-                      setItems((items) => {
-                        const next = [...items];
-                        next.splice(idx + 1, 0, { uid: newId(), figureId });
-                        return next;
-                      })
-                    }
-                    onOpen={() => onOpenFigure(getFigure(r.item.figureId) ?? r.fig)}
-                  />
-                </li>
-              );
-            })}
-          </ol>
-          {routine.loop && rows.length > 1 && renderTransition(rows[rows.length - 1], rows[loopTo] ?? rows[0], true)}
-        </section>
-
-        <aside className="card picker">
-          <div className="row-between">
-            <h3>{t("addFigure")}</h3>
-            <button
-              className="btn small"
-              onClick={() =>
-                custom.create(routine.dance, { lockDance: true, onSaved: (c) => api.addFigure(routine.id, c.id) })
-              }
-            >
-              + {t("addCustom")}
-            </button>
+      {tab === "anim" && rows.length > 0 && (
+        <section className="card routine-anim">
+          <div className="routine-anim-head">
+            <h3>{t("routinePlayer")}</h3>
           </div>
-          <input
-            className="search"
-            type="search"
-            placeholder={t("searchShort")}
-            aria-label={t("search")}
-            value={pickerQ}
-            onChange={(e) => setPickerQ(e.target.value)}
-          />
-          {routine.cls !== "B" && (
-            <label className="check">
-              <input type="checkbox" checked={showIllegal} onChange={(e) => setShowIllegal(e.target.checked)} />
-              {t("showAll")}
-            </label>
+          <p className="small muted">{t("routinePlayerHint")}</p>
+          {showAnim && animTrack && (
+            <StepPlayer track={animTrack} dance={dance} resetKey={routine.id} room={room} />
           )}
-          <ul className="picker-list">
-            {pickerFigures.map((f) => {
-              const { main } = figureNames(f, lang);
-              const legal = isLegal(f, routine.cls);
-              return (
-                <li key={f.id} className={legal ? "" : "illegal"}>
-                  <button
-                    type="button"
-                    className="icon-btn drag-handle"
-                    onPointerDown={startPickerDrag(f, true)}
-                    aria-label={t("dragToRoutine")}
-                    title={t("dragToRoutine")}
-                  >
-                    ⠿
-                  </button>
-                  <button
-                    className="picker-add"
-                    onPointerDown={startPickerDrag(f, false)}
-                    onClick={() => {
-                      if (suppressClick.current) {
-                        suppressClick.current = false;
-                        return;
-                      }
-                      api.addFigure(routine.id, f.id);
-                    }}
-                    title={t("addToRoutine")}
-                  >
-                    <span className="plus">{f.custom ? "★" : "+"}</span>
-                    <span className="picker-name">{main}</span>
-                    {f.syllabus?.timing && <code className="timing small">{f.syllabus.timing}</code>}
-                  </button>
-                  <button className="icon-btn" onClick={() => onOpenFigure(f)} aria-label={t("details")}>
-                    ⓘ
-                  </button>
-                </li>
-              );
-            })}
-          </ul>
-        </aside>
-      </div>
+        </section>
+      )}
+
       {drag && drag.from === null && drag.label && (
         <div className={`drag-ghost ${drag.over === null ? "outside" : ""}`} style={{ left: drag.x + 12, top: drag.y + 12 }} aria-hidden>
           + {drag.label}

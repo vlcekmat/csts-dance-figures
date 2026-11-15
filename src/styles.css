@@ -1145,3 +1145,33 @@ select.warn { border-color: var(--warn); }
 .alt-name { display: flex; flex-wrap: wrap; align-items: baseline; gap: .2rem .45rem; }
 .alt-choice.compact { gap: .2rem; }
 .plan-alts { grid-column: 1 / -1; }
+
+/* ---- Routine editor tabs ------------------------------------------------- */
+.editor-tabs {
+  display: flex; gap: .25rem; border-bottom: 2px solid var(--line); margin: .4rem 0 0; overflow-x: auto;
+}
+.editor-tab {
+  font: inherit; font-weight: 700; font-size: .98rem; color: var(--muted); background: none; border: 0;
+  padding: .6rem 1rem; border-bottom: 3px solid transparent; margin-bottom: -2px; cursor: pointer; white-space: nowrap;
+}
+.editor-tab:hover { color: var(--ink); }
+.editor-tab.active { color: var(--ink); border-bottom-color: var(--standard); }
+.rhythm-card h3 { margin-top: 0; }
+.item-links { display: flex; flex-wrap: wrap; align-items: center; gap: .2rem 1rem; }
+.item-links .variant-toggle { padding: 0; }
+.transition.compact { flex-direction: row; flex-wrap: wrap; align-items: baseline; gap: .1rem .5rem; padding-top: .15rem; padding-bottom: .35rem; }
+.transition.compact .corner-bar { margin: 0 0 0 auto; }
+.transition .corner-bar.none { margin: .1rem 0 0; }
+.picker-suggest { border: 1px solid var(--standard); border-radius: var(--r-md); background: var(--standard-tint); padding: .4rem .5rem .2rem; flex-shrink: 0; max-height: 40%; overflow-y: auto; }
+.picker-suggest-title { font-weight: 750; color: var(--standard); padding: 0 .2rem .2rem; }
+.picker-suggest .picker-list li:last-child { border-bottom: 0; }
+.picker-all-title { font-weight: 700; margin-bottom: -.4rem; }
+.drawer-jumps { display: flex; flex-wrap: wrap; gap: .4rem; padding: .7rem 1.5rem; border-bottom: 1px solid var(--line); }
+.drawer-jumps .chip { padding: .3rem .75rem; font-size: .85rem; }
+.drawer-section { scroll-margin-top: 9rem; }
+.editor-tabs { scroll-margin-top: 5rem; }
+/* the player's speed menu looks like the other menus */
+.player select, .prep-step select, .loop-to select {
+  border: 1px solid var(--line); background-color: var(--surface); color: var(--ink);
+  border-radius: var(--r-md); padding: .35rem .5rem; font: inherit; font-size: .9rem;
+}

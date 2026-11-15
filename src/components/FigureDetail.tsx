@@ -121,6 +121,29 @@ export function FigureDetail({ fig: baseFig, onClose, onOpenFigure, routinesApi,
           </button>
         </header>
 
+        {/* Quick jumps: the drawer is long, the steps and videos are far down. */}
+        <nav className="drawer-jumps" aria-label={t("drawerJumps")}>
+          {(
+            [
+              [fig.floor && fig.floor.steps.length > 0, "fig-chart", t("stepChart")],
+              [alts.length > 0, "fig-alternatives", `${t("altTitle")} (${alts.length})`],
+              [!!syl, "fig-syllabus", t("jumpSyllabus")],
+              [true, "fig-videos", t("videos")],
+            ] as [boolean, string, string][]
+          )
+            .filter(([on]) => on)
+            .map(([, id, label]) => (
+              <button
+                key={id}
+                type="button"
+                className="chip small"
+                onClick={() => document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" })}
+              >
+                {label}
+              </button>
+            ))}
+        </nav>
+
         <section className="drawer-section description">
           <h3>{t("description")}</h3>
           {describeFigure(fig, lang).map((para, i) => (
@@ -153,7 +176,7 @@ export function FigureDetail({ fig: baseFig, onClose, onOpenFigure, routinesApi,
         )}
 
         {syl ? (
-          <section className="drawer-section">
+          <section className="drawer-section" id="fig-syllabus">
             <dl className="facts">
               <dt>{t("start")}</dt>
               <dd>
@@ -497,7 +520,7 @@ export function FigureDetail({ fig: baseFig, onClose, onOpenFigure, routinesApi,
           </section>
         )}
 
-        <section className="drawer-section">
+        <section className="drawer-section" id="fig-videos">
           <h3>{t("videos")}</h3>
           {fig.customVideo &&
             (youtubeId(fig.customVideo) ? (
