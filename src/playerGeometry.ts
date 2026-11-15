@@ -65,7 +65,8 @@ function footprints(
     let ox2 = 0;
     let oy2 = 0;
     if (side) {
-      const sideOff = crossed ? -0.05 : FOOT_OFFSET;
+      // In CBMP / outside partner / "across" the foot is placed across, onto the body's line.
+      const sideOff = crossed ? -0.05 : /cbmp|across|outside partner/.test(d) ? 0 : FOOT_OFFSET;
       const fwdOff = crossed ? (/behind|back/.test(d) ? -0.1 : /front/.test(d) ? 0.08 : 0) : 0;
       // relative to the body (a crossed foot follows the body, not the foot's own direction)
       const ref = crossed ? bodyFace : face;
@@ -228,6 +229,21 @@ export function fixLadyFacing(man: FloorStep[], lady: FloorStep[]): FloorStep[] 
   });
 }
 
+/**
+ * Lady's facing relative to the man's for a couple position (degrees, + = to his left),
+ * or null when the position doesn't say (promenade: the V shape varies).
+ */
+export function relativeFacing(pos: string): number | null {
+  const p = (pos.toLowerCase().split(/\s+(?:to|then)\s+(?=[a-z])/).pop() ?? "").trim();
+  if (!p || /prom|\bpp\b|fallaway|\bcpp\b|cnt/.test(p)) return null;
+  // at a right angle: on his left facing across him (Fan L Angle), or on his right
+  if (/\bl(?:eft)? angle\b/.test(p)) return -90;
+  if (/\br(?:ight)? angle\b/.test(p)) return 90;
+  if (/same|shadow|tandem|side by side/.test(p)) return 0;
+  if (/opp|closed|close\b|outside|wing|open/.test(p)) return 180;
+  return null;
+}
+
 /** Footprints and body positions of both partners (figure frame, or placed by `tr`). */
 export function coupleGeometry(
   cfg: { stepM: number; hint: -1 | 0 | 1; latin: boolean; startPos: string },
@@ -252,12 +268,45 @@ export function coupleGeometry(
   const ly = Math.sin(rad(f)) * off.fwd + Math.sin(rad(f - 90)) * off.right;
   const ladyCharted = lady.some((s) => s.face !== undefined || parseAlign(s.align) !== null);
   // her chart is in the same frame: the same rotation and turn; step lengths are the man's
-  const traced = hasLady
-    ? footprints(lady, stepM, lx, ly, (-hint || 0) as -1 | 0 | 1, ladyCharted ? null : norm180(f + 180), {
-        ...tr,
-        rotate: ladyCharted ? tr.rotate : 0,
-      })
-    : null;
+  const traceLady = (steps: FloorStep[]) =>
+    footprints(steps, stepM, lx, ly, (-hint || 0) as -1 | 0 | 1, ladyCharted ? null : norm180(f + 180), {
+      ...tr,
+      rotate: ladyCharted ? tr.rotate : 0,
+    });
+  let traced = hasLady ? traceLady(lady) : null;
+  // The couple position says which way she faces relative to him (facing him, the same
+  // way, at a right angle). Where her chart clearly disagrees (her alignment written
+  // from his side, latin turn amounts adding up differently) her facing is set by the
+  // position BEFORE her steps are traced – so "fwd" goes where she really goes and the
+  // placement doesn't have to drag her steps sideways.
+  if (traced) {
+    const rot = ladyCharted ? (tr.rotate ?? 0) : 0;
+    const n = lady.length;
+    let carry = 0;
+    let pos = startPos;
+    let changed = false;
+    const fixed = lady.map((st, i) => {
+      pos = man[i]?.pos || pos;
+      const mf = m.feet[i];
+      const lf = traced!.feet[i];
+      if (!mf || !lf) return st;
+      const rel = relativeFacing(pos);
+      let corr = carry;
+      if (rel !== null) {
+        const d = norm180(mf.bodyFace + rel - (lf.bodyFace + carry));
+        corr = Math.abs(d) > 60 ? norm180(carry + d) : carry;
+      }
+      carry = corr;
+      if (Math.abs(corr) < 1) return st;
+      changed = true;
+      const sh = (v: number | undefined) => (v === undefined ? undefined : norm180(v + corr));
+      if (st.face !== undefined) return { ...st, face: sh(st.face), end: sh(st.end), body: sh(st.body), moving: sh(st.moving) };
+      // no alignment of her own: give the step the corrected facing (chart frame)
+      const extra = n > 1 ? ((tr.extraTurn ?? 0) * i) / (n - 1) : (tr.extraTurn ?? 0);
+      return { ...st, align: "", face: norm180(lf.face - rot - extra + corr), end: undefined, body: undefined };
+    });
+    if (changed) traced = traceLady(fixed);
+  }
   if (!traced) return { m, l: null };
   // Where the partners stand. In a closed hold (closed, PP, outside partner, close
   // opposing …) they keep the couple position and turn around their common centre;
@@ -308,17 +357,71 @@ export function coupleGeometry(
     return b ? Math.hypot(b.bx - a.x, b.by - a.y) : 0;
   };
   /**
+   * A couple position is a small region, not a point: the lady may stand a few degrees
+   * further round and a little nearer or further. The nearest spot of that region to
+   * where the partners' own steps take them is used (smaller corrections).
+   */
+  const TOL_ANG = 15;
+  const TOL_LEN = 0.15;
+  const nearestRel = (o: { x: number; y: number }, r: { x: number; y: number }) => {
+    const lo = Math.hypot(o.x, o.y);
+    const lr = Math.hypot(r.x, r.y);
+    if (lo < 0.1 || lr < 0.01) return o;
+    const ao = Math.atan2(o.y, o.x);
+    const ar = Math.atan2(r.y, r.x);
+    const d = norm180(((ar - ao) * 180) / Math.PI);
+    const th = ao + (Math.max(-TOL_ANG, Math.min(TOL_ANG, d)) * Math.PI) / 180;
+    const len = Math.max(lo * (1 - TOL_LEN), Math.min(lo * (1 + TOL_LEN), lr));
+    return { x: Math.cos(th) * len, y: Math.sin(th) * len };
+  };
+  /**
    * Put the lady at `rel` from the man, starting from where their own steps take them
    * (`pm`, `pl`). The difference is split by weights 1/(step length)²: the partner who
    * hardly moves keeps their place, the one taking a step absorbs the correction.
    */
-  const share = (pm: { x: number; y: number }, pl: { x: number; y: number }, rel: { x: number; y: number }, lm: number, ll: number) => {
+  const share = (pm: { x: number; y: number }, pl: { x: number; y: number }, rel0: { x: number; y: number }, lm: number, ll: number) => {
+    const rel = nearestRel(rel0, { x: pl.x - pm.x, y: pl.y - pm.y });
     const D = { x: rel.x - (pl.x - pm.x), y: rel.y - (pl.y - pm.y) };
     const wm = 1 / (lm + 0.05) ** 2;
     const wl = 1 / (ll + 0.05) ** 2;
     const km = wl / (wm + wl);
     const kl = wm / (wm + wl);
     return { nm: { x: pm.x - km * D.x, y: pm.y - km * D.y }, nl: { x: pl.x + kl * D.x, y: pl.y + kl * D.y } };
+  };
+  /**
+   * Keep a step its own: the placement may lengthen or shorten a step and bend it a
+   * little, but not turn it more than CONE degrees or shrink it below a part of its
+   * length (a still partner may be moved only a little). What doesn't fit is reached
+   * on the following steps (the next correction starts from where the dancer is).
+   */
+  const prevBody = (arr: Foot[], start: { x: number; y: number }) =>
+    arr.length ? { x: arr[arr.length - 1].bx, y: arr[arr.length - 1].by } : { x: start.x, y: start.y };
+  const CONE = 45;
+  const LAG_TIGHT = 0;
+  const LAG = 0.15;
+  const keepStep = (prev: { x: number; y: number }, own: { x: number; y: number }, want: { x: number; y: number }, lag = LAG) => {
+    const v = { x: own.x - prev.x, y: own.y - prev.y };
+    const c = { x: want.x - own.x, y: want.y - own.y };
+    const lv = Math.hypot(v.x, v.y);
+    const ok = (t: number) => {
+      const w = { x: v.x + c.x * t, y: v.y + c.y * t };
+      const lw = Math.hypot(w.x, w.y);
+      if (lv < 0.1) return lw <= Math.max(0.25, lv + 0.05);
+      if (lw < 0.4 * lv) return false;
+      return (v.x * w.x + v.y * w.y) / (lv * lw) >= Math.cos((CONE * Math.PI) / 180);
+    };
+    if (ok(1)) return want;
+    let lo = 0;
+    let hi = 1;
+    for (let k = 0; k < 12; k++) {
+      const mid = (lo + hi) / 2;
+      if (ok(mid)) lo = mid;
+      else hi = mid;
+    }
+    // ... but the partner may lag behind the position only a little
+    const lc = Math.hypot(c.x, c.y);
+    const t = lc > 0 ? Math.max(lo, 1 - lag / lc) : lo;
+    return { x: own.x + c.x * t, y: own.y + c.y * t };
   };
   for (let i = 0; i < count; i++) {
     const mf = m.feet[i];
@@ -346,7 +449,13 @@ export function coupleGeometry(
       // partners by how much each of them steps: the one who stays in place (heel turn,
       // closing step) stays put and the other one takes the correction into the step –
       // nobody is carried, so the supporting feet stay on the floor.
-      const { nm, nl } = share({ x: mx, y: my }, { x: lx2, y: ly2 }, o, ownLen(m, i), ownLen(traced, i));
+      const sh = share({ x: mx, y: my }, { x: lx2, y: ly2 }, o, ownLen(m, i), ownLen(traced, i));
+      // In a closed hold the partners can't be apart even for a moment (they turn as
+      // one): exact placement. Otherwise each keeps their step and catches up later.
+      const tight = closeHold(lastPos);
+      const lag = tight ? LAG_TIGHT : LAG;
+      const nm = keepStep(prevBody(mFeet, m.start), { x: mx, y: my }, sh.nm, lag);
+      const nl = keepStep(prevBody(lFeet, traced.start), { x: lx2, y: ly2 }, sh.nl, lag);
       dm = { x: nm.x - mf.bx, y: nm.y - mf.by };
       dl = { x: nl.x - lf.bx, y: nl.y - lf.by };
       mFeet.push(moveTo(mf, nm.x, nm.y));
@@ -360,7 +469,9 @@ export function coupleGeometry(
       const dx = lx2 - mx;
       const dy = ly2 - my;
       const dist = Math.hypot(dx, dy) || 1;
-      const { nm, nl } = share({ x: mx, y: my }, { x: lx2, y: ly2 }, { x: (dx / dist) * want, y: (dy / dist) * want }, ownLen(m, i), ownLen(traced, i));
+      const sh = share({ x: mx, y: my }, { x: lx2, y: ly2 }, { x: (dx / dist) * want, y: (dy / dist) * want }, ownLen(m, i), ownLen(traced, i));
+      const nm = keepStep(prevBody(mFeet, m.start), { x: mx, y: my }, sh.nm);
+      const nl = keepStep(prevBody(lFeet, traced.start), { x: lx2, y: ly2 }, sh.nl);
       dm = { x: nm.x - mf.bx, y: nm.y - mf.by };
       dl = { x: nl.x - lf.bx, y: nl.y - lf.by };
       mFeet.push(moveTo(mf, nm.x, nm.y));
