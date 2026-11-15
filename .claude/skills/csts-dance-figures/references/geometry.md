@@ -36,8 +36,8 @@ Latin (chacha/rumba/jive) has no plan; `animSteps` still feed the animation.
   centre (small "teeth" accepted). Feet keep the placement `shift`, so the supporting foot moves
   with the dancer.
 - `liveFeet`: only the stepping foot travels (lands on the placed footprint, so the couple placement goes into the step); the supporting foot stays and swivels. Exceptions: placement change since the previous step (`shift` delta) would turn the step > 80° off its chart direction ⇒ both feet carried; feet > 1.3 m apart ⇒ supporting foot drawn up; weight transfer keeps both feet unless the body is > 0.5 m off them. `npm run audit:feet` counts sliding feet (last: 337 of 4596 steps, was 3644). Both feet per state, weight booleans + `load`, `transfer` (desc in place/recover… or
-  foot didn't move), crossed feet (`cross` behind/front placed on the other side), feet ≤ 0.95 m
-  apart, feet kept under the body (>0.5 m off ⇒ shifted). `feetBetween` animates the stepping foot
+  foot didn't move), crossed feet (`cross` behind/front placed on the other side).
+  `feetBetween` animates the stepping foot
   past the supporting one; weight flows (gradually for transfers).
 - UI semantics: filled foot = weight share; dashed outline + number = next step; dotted line = foot
   travel; "⇄ váha" arrow = weight transfer; "✕ za/před" = crossed foot; "tělo ↺/↻" arc = body vs
