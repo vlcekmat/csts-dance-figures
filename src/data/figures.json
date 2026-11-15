@@ -3240,7 +3240,15 @@
      "note": "may turn between ¾ and 1 full turn to L",
      "noteCs": "otočení mezi 3/4 a celou otáčkou vlevo"
     }
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n1s0",
+     "text": "alternative timing of 123& may be used for the Lady",
+     "kind": "timing",
+     "topic": "Timing"
+    }
+   ]
   },
   {
    "id": "waltz-16",
@@ -6339,7 +6347,15 @@
      "note": "may be danced with less or no turn (when danced into a corner).",
      "noteCs": "v rohu se může tančit s menším nebo žádným otočením"
     }
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n1s0",
+     "text": "may be danced with less or no turn (when danced into a corner).",
+     "kind": "other",
+     "topic": "Quantity of Turn"
+    }
+   ]
   },
   {
    "id": "waltz-35",
@@ -6495,6 +6511,14 @@
      }
     ]
    },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "alternative timing using 2 bars of music may be used (123 123).",
+     "kind": "timing",
+     "topic": "Timing"
+    }
+   ],
    "aliases": {
     "cs": [
      "vznosné korté"
@@ -6605,7 +6629,15 @@
       "pos": "Outside Partner Position"
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "step 1 may be danced RF fwd in CBMP in Outside Partner Position.",
+     "kind": "other",
+     "topic": "Foot Placement/ Couple Position"
+    }
+   ]
   },
   {
    "id": "waltz-37",
@@ -7328,6 +7360,14 @@
      "query": "ballroom tango Tango Walk"
     }
    ],
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "LF or RF walk only may be used.",
+     "kind": "other",
+     "topic": "General"
+    }
+   ],
    "aliases": {
     "en": [
      "Walk"
@@ -7412,7 +7452,21 @@
       "pos": "Promenade Position"
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "Tap can be danced after any Closed or Open Finish.",
+     "kind": "other",
+     "topic": "General"
+    },
+    {
+     "id": "n1s0",
+     "text": "Alternative timing, including also the preceding step could be SS.",
+     "kind": "timing",
+     "topic": "Timing"
+    }
+   ]
   },
   {
    "id": "tango-3",
@@ -7877,7 +7931,15 @@
      "note": "more turn may be made between steps 1 and 2, up to ¼ to L. Figure may be danced without turn.",
      "noteCs": "mezi 1. a 2. krokem se lze otočit víc, až o 1/4 vlevo; figuru lze tančit i bez otočení"
     }
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n0s1",
+     "text": "Figure may be danced without turn.",
+     "kind": "other",
+     "topic": "Quantity of turn"
+    }
+   ]
   },
   {
    "id": "tango-5",
@@ -8318,6 +8380,15 @@
      }
     ]
    },
+   "alternatives": [
+    {
+     "id": "n1s0",
+     "text": "Man may turn square to Lady on step 3.",
+     "kind": "other",
+     "who": "man",
+     "topic": "Couple position"
+    }
+   ],
    "aliases": {
     "en": [
      "Promenade Close"
@@ -8811,6 +8882,20 @@
      }
     ]
    },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "Open Finish may be used instead of the Closed Finish.",
+     "kind": "other",
+     "topic": "General"
+    },
+    {
+     "id": "n0s2",
+     "text": "Step 1 only may be used as a preceding figure to Rock on RF.",
+     "kind": "other",
+     "topic": "General"
+    }
+   ],
    "aliases": {
     "cs": [
      "korté"
@@ -9069,6 +9154,16 @@
      }
     ]
    },
+   "alternatives": [
+    {
+     "id": "n0s1",
+     "text": "Closed Finish may be replaced with Open Finish.",
+     "kind": "swap",
+     "what": "Closed Finish",
+     "by": "Open Finish",
+     "topic": "General"
+    }
+   ],
    "aliases": {
     "en": [
      "Reverse Turn"
@@ -9333,6 +9428,16 @@
      }
     ]
    },
+   "alternatives": [
+    {
+     "id": "n0s1",
+     "text": "Closed Finish may be replaced with Open Finish.",
+     "kind": "swap",
+     "what": "Closed Finish",
+     "by": "Open Finish",
+     "topic": "General"
+    }
+   ],
    "aliases": {
     "en": [
      "Open Reverse Turn, Lady Inline"
@@ -9455,6 +9560,31 @@
      }
     ]
    },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "figure may be danced with steps 1 and 3 in CBMP following any Open Finish.",
+     "kind": "other",
+     "topic": "General"
+    },
+    {
+     "id": "n0s1",
+     "text": "If danced in this manner step 3 may be replaced with Outside Swivel (Method 1 or 2)",
+     "kind": "replace",
+     "steps": [
+      3,
+      3
+     ],
+     "by": "Outside Swivel (Method 1 or 2)",
+     "topic": "General"
+    },
+    {
+     "id": "n1s0",
+     "text": "up to ¼ to R may be made.",
+     "kind": "other",
+     "topic": "Quantity of turn"
+    }
+   ],
    "aliases": {
     "en": [
      "Left Foot Rock"
@@ -9759,7 +9889,15 @@
       "pos": "Closed Position"
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n0s4",
+     "text": "Figure may be danced with an Open Finish.",
+     "kind": "other",
+     "topic": "General"
+    }
+   ]
   },
   {
    "id": "tango-14",
@@ -10073,7 +10211,15 @@
       "body": -180
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n1s0",
+     "text": "alternative timing may be used- SQQS&.",
+     "kind": "timing",
+     "topic": "Timing"
+    }
+   ]
   },
   {
    "id": "tango-16",
@@ -10492,7 +10638,15 @@
       "pos": "Closed Position"
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "steps 3 and 4 may be repeated.",
+     "kind": "other",
+     "topic": "General/Timing"
+    }
+   ]
   },
   {
    "id": "tango-19",
@@ -11235,7 +11389,15 @@
       "pos": "Closed Position"
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n0s1",
+     "text": "Figure may be danced with an Open Finish.",
+     "kind": "other",
+     "topic": "General"
+    }
+   ]
   },
   {
    "id": "tango-23",
@@ -11444,6 +11606,14 @@
      }
     ]
    },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "after steps 1-2 Outside Swivel may be danced.",
+     "kind": "other",
+     "topic": "General"
+    }
+   ],
    "aliases": {
     "en": [
      "Fourstep"
@@ -11678,7 +11848,20 @@
     "prep": {
      "face": -45
     }
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "step 3 may be replaced by a Closed or Open Finish.",
+     "kind": "replace",
+     "steps": [
+      3,
+      3
+     ],
+     "by": "a Closed or Open Finish",
+     "topic": "General"
+    }
+   ]
   },
   {
    "id": "tango-26",
@@ -11779,6 +11962,19 @@
      "face": -45
     }
    },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "steps 3 may be replaced by a Closed or Open Finish.",
+     "kind": "replace",
+     "steps": [
+      3,
+      3
+     ],
+     "by": "a Closed or Open Finish",
+     "topic": "General"
+    }
+   ],
    "aliases": {
     "en": [
      "Outside Swivel Method 2 - After Open Finish And Turning To Left"
@@ -11936,7 +12132,20 @@
      "note": "may be underturned when danced into a corner.",
      "noteCs": "do rohu může být podtočená"
     }
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "steps 3 may be replaced by a Closed or Open Finish.",
+     "kind": "replace",
+     "steps": [
+      3,
+      3
+     ],
+     "by": "a Closed or Open Finish",
+     "topic": "General"
+    }
+   ]
   },
   {
    "id": "tango-28",
@@ -12517,7 +12726,15 @@
      "note": "figure can be danced also without turn starting DC and continuing with the same alignments described in the chart.",
      "noteCs": "lze tančit i bez otočení (začátek DC, dál stejná směrování jako v grafu)"
     }
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "figure can be danced also without turn starting DC and continuing with the same alignments described in the chart.",
+     "kind": "other",
+     "topic": "Quantity of Turn"
+    }
+   ]
   },
   {
    "id": "tango-31",
@@ -12672,7 +12889,17 @@
       "pos": "Closed Position"
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n0s1",
+     "text": "Closed Finish may be replaced by Open Finish.",
+     "kind": "swap",
+     "what": "Closed Finish",
+     "by": "Open Finish",
+     "topic": "General"
+    }
+   ]
   },
   {
    "id": "tango-32",
@@ -12902,7 +13129,15 @@
      "note": "when danced into a corner there will be no turn on step 4 (Pivot). The Lady’s quantity of turn will change accordingly.",
      "noteCs": "do rohu bez otočení na 4. kroku (pivot)"
     }
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n1s0",
+     "text": "alternative timings may be used: QQS&, S&QQ, SQ&Q, SQQ&, SQQS.",
+     "kind": "timing",
+     "topic": "Timing"
+    }
+   ]
   },
   {
    "id": "tango-33",
@@ -13119,7 +13354,15 @@
       "pos": "Closed Position"
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "alternative timing including the Preceding Step S&QQ may be used",
+     "kind": "timing",
+     "topic": "Timing"
+    }
+   ]
   },
   {
    "id": "tango-35",
@@ -13229,7 +13472,15 @@
      "note": "when the figure is underturned (no pivot on step 3) the following step will be taken with RF Bwd (Man) and LF Fwd (Lady).",
      "noteCs": "může být podtočená (bez pivotu na 3. kroku), další krok pak Pn vzad"
     }
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n1s0",
+     "text": "alternative timing could be used: &QQ.",
+     "kind": "timing",
+     "topic": "Timing"
+    }
+   ]
   },
   {
    "id": "tango-36",
@@ -13615,6 +13866,14 @@
      }
     ]
    },
+   "alternatives": [
+    {
+     "id": "n1s0",
+     "text": "alternative timing could be used: SQQQQS&.",
+     "kind": "timing",
+     "topic": "Timing"
+    }
+   ],
    "aliases": {
     "en": [
      "The Chase"
@@ -13888,7 +14147,15 @@
       "face": -45
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "alternative timing could be used: QQS.",
+     "kind": "timing",
+     "topic": "Timing"
+    }
+   ]
   },
   {
    "id": "tango-40",
@@ -13970,7 +14237,15 @@
       "body": 60
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "alternative timing could be used: QQS.",
+     "kind": "timing",
+     "topic": "Timing"
+    }
+   ]
   },
   {
    "id": "tango-41",
@@ -14045,7 +14320,15 @@
       "body": -165
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "alternative timing could be used: S&S.",
+     "kind": "timing",
+     "topic": "Timing"
+    }
+   ]
   },
   {
    "id": "tango-42",
@@ -14198,7 +14481,15 @@
     "prep": {
      "face": -180
     }
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "alternative timing of S or Q may be used",
+     "kind": "timing",
+     "topic": "Timing"
+    }
+   ]
   },
   {
    "id": "tango-44",
@@ -15008,6 +15299,14 @@
      "face": 135
     }
    },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "a series of forward or backward changes may be danced in the Viennese Waltz, alternating between a RF and LF Change.",
+     "kind": "other",
+     "topic": "FOOT ACTION/GENERAL"
+    }
+   ],
    "aliases": {
     "en": [
      "Backward Change"
@@ -15184,6 +15483,19 @@
      }
     ]
    },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "Step 1 may be taken fwd in CBMP in Outside Partner Position.",
+     "kind": "replace",
+     "steps": [
+      1,
+      1
+     ],
+     "by": "fwd in CBMP in Outside Partner Position",
+     "topic": "Foot Placement/Couple position"
+    }
+   ],
    "aliases": {
     "en": [
      "Feather"
@@ -15848,6 +16160,15 @@
      }
     ]
    },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "Step 1 may be danced in CBMP in Outside Partner Position.",
+     "kind": "position",
+     "position": "CBMP in Outside Partner Position",
+     "topic": "Foot Placement/Couple position"
+    }
+   ],
    "aliases": {
     "en": [
      "Right Turn"
@@ -16158,7 +16479,19 @@
       "pos": "Outside Partner Position"
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "Steps 2-3 may be repeated (Extended Basic Weave)",
+     "kind": "repeat",
+     "steps": [
+      2,
+      3
+     ],
+     "topic": "General"
+    }
+   ]
   },
   {
    "id": "slowfox-9",
@@ -16385,7 +16718,26 @@
       "pos": "Outside Partner Position"
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "Steps 3-4 may be repeated (Extended Natural Weave).",
+     "kind": "repeat",
+     "steps": [
+      3,
+      4
+     ],
+     "topic": "General"
+    },
+    {
+     "id": "n1s0",
+     "text": "It may start from Prom Pos. Step 1 may be danced in CBMP in Outside Partner Position.",
+     "kind": "position",
+     "position": "CBMP in Outside Partner Position",
+     "topic": "Foot Placement/Couple position"
+    }
+   ]
   },
   {
    "id": "slowfox-10",
@@ -16989,7 +17341,16 @@
       "pos": "Closed Position"
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "Step 1 may be danced in CBMP in Outside Partner Position.",
+     "kind": "position",
+     "position": "CBMP in Outside Partner Position",
+     "topic": "Couple position"
+    }
+   ]
   },
   {
    "id": "slowfox-15",
@@ -17862,7 +18223,15 @@
       "pos": "Outside Partner Position"
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "Step 1 may be danced fwd in CBMP in Outside Partner Position.",
+     "kind": "other",
+     "topic": "Couple position"
+    }
+   ]
   },
   {
    "id": "slowfox-21",
@@ -18063,7 +18432,15 @@
       "pos": "Outside Partner Position"
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "Step 1 may be danced fwd in CBMP in Outside Partner Position.",
+     "kind": "other",
+     "topic": "Couple position"
+    }
+   ]
   },
   {
    "id": "slowfox-22",
@@ -18479,7 +18856,25 @@
       "pos": "Outside Partner Position"
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "Steps 3-4 may be repeated (Extended Weave from PP)",
+     "kind": "repeat",
+     "steps": [
+      3,
+      4
+     ],
+     "topic": "General"
+    },
+    {
+     "id": "n1s0",
+     "text": "Step 1 may be danced fwd in CBMP in Outside Partner Position.",
+     "kind": "other",
+     "topic": "Foot Placement/Couple position"
+    }
+   ]
   },
   {
    "id": "slowfox-25",
@@ -18667,7 +19062,21 @@
       "pos": "Outside Partner Position"
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "It may start from Promenade Position.",
+     "kind": "other",
+     "topic": "Foot Placement/Couple position"
+    },
+    {
+     "id": "n0s1",
+     "text": "Step 1 may be danced fwd in CBMP in Outside Partner Position.",
+     "kind": "other",
+     "topic": "Foot Placement/Couple position"
+    }
+   ]
   },
   {
    "id": "slowfox-26",
@@ -18947,7 +19356,15 @@
      "note": "Swivel may be turned up to 3/8 to R.",
      "noteCs": "švih (swivel) se může otočit až o 3/8 vpravo"
     }
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "Additional S may be used.",
+     "kind": "other",
+     "topic": "Timing"
+    }
+   ]
   },
   {
    "id": "slowfox-28",
@@ -20528,6 +20945,19 @@
      }
     ]
    },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "Step 1 may be taken fwd in CBMP in Outside Partner Position.",
+     "kind": "replace",
+     "steps": [
+      1,
+      1
+     ],
+     "by": "fwd in CBMP in Outside Partner Position",
+     "topic": "Foot Placement/Couple position"
+    }
+   ],
    "aliases": {
     "en": [
      "Curved Feather to Back Feather"
@@ -20944,7 +21374,15 @@
      "note": "The figure may be danced without turn on step 4, when danced into a corner.",
      "noteCs": "do rohu lze tančit bez otočení na 4. kroku"
     }
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n1s0",
+     "text": "The figure may be danced without turn on step 4, when danced into a corner.",
+     "kind": "other",
+     "topic": "Quantity of turn"
+    }
+   ]
   },
   {
    "id": "slowfox-40",
@@ -21195,6 +21633,14 @@
      }
     ]
    },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "Figure may be extended by repeating steps 4-5.",
+     "kind": "other",
+     "topic": "General"
+    }
+   ],
    "aliases": {
     "en": [
      "Bounce Fallaway with Weave Ending"
@@ -21353,7 +21799,15 @@
       "pos": "Outside Partner Position"
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n1s0",
+     "text": "Step 1 may be danced FWD in CBMP (Man) in Outside Partner Position.",
+     "kind": "other",
+     "topic": "Couple position"
+    }
+   ]
   },
   {
    "id": "slowfox-42",
@@ -21514,7 +21968,15 @@
       "pos": "Outside Partner Position"
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n1s0",
+     "text": "The figure may start from Promenade Position.",
+     "kind": "other",
+     "topic": "Couple position"
+    }
+   ]
   },
   {
    "id": "slowfox-43",
@@ -21861,7 +22323,15 @@
     "prep": {
      "face": -180
     }
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "Alternative timing Q or & may be used.",
+     "kind": "timing",
+     "topic": "Timing"
+    }
+   ]
   },
   {
    "id": "slowfox-45",
@@ -23860,6 +24330,14 @@
      }
     ]
    },
+   "alternatives": [
+    {
+     "id": "n1s0",
+     "text": "Step 1 may be LF bwd in Closed Position",
+     "kind": "other",
+     "topic": "Couple Position"
+    }
+   ],
    "aliases": {
     "en": [
      "Back Lock"
@@ -24082,6 +24560,14 @@
      }
     ]
    },
+   "alternatives": [
+    {
+     "id": "n1s0",
+     "text": "Step 1 may be RF fwd in Closed Position",
+     "kind": "other",
+     "topic": "Couple Position"
+    }
+   ],
    "aliases": {
     "en": [
      "Lock Step"
@@ -24566,7 +25052,20 @@
       "pos": "Closed Position"
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "Step 1 may be taken in CBMP in Outside Partner Position.",
+     "kind": "replace",
+     "steps": [
+      1,
+      1
+     ],
+     "by": "in CBMP in Outside Partner Position",
+     "topic": "Couple Position"
+    }
+   ]
   },
   {
    "id": "quickstep-16",
@@ -24894,6 +25393,19 @@
      }
     ]
    },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "Step 1 may be taken bwd in CBMP in Outside Partner Position",
+     "kind": "replace",
+     "steps": [
+      1,
+      1
+     ],
+     "by": "bwd in CBMP in Outside Partner Position",
+     "topic": "Couple Position"
+    }
+   ],
    "aliases": {
     "en": [
      "Closed Impetus"
@@ -24990,7 +25502,20 @@
       "pos": "Promenade Position"
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "Step 1 may be taken bwd in CBMP in Outside Partner Position",
+     "kind": "replace",
+     "steps": [
+      1,
+      1
+     ],
+     "by": "bwd in CBMP in Outside Partner Position",
+     "topic": "Couple Position"
+    }
+   ]
   },
   {
    "id": "quickstep-19",
@@ -25669,6 +26194,19 @@
      }
     ]
    },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "Step 1 may be taken bwd in CBMP in Outside Partner Position",
+     "kind": "replace",
+     "steps": [
+      1,
+      1
+     ],
+     "by": "bwd in CBMP in Outside Partner Position",
+     "topic": "Foot Placement/Couple Position"
+    }
+   ],
    "aliases": {
     "en": [
      "Tipple Chasse",
@@ -25811,6 +26349,19 @@
      }
     ]
    },
+   "alternatives": [
+    {
+     "id": "n1s0",
+     "text": "Step 1 may be taken bwd in CBMP in Outside Partner Position",
+     "kind": "replace",
+     "steps": [
+      1,
+      1
+     ],
+     "by": "bwd in CBMP in Outside Partner Position",
+     "topic": "Foot Placement/Couple Position"
+    }
+   ],
    "aliases": {
     "en": [
      "Tipple Chasse",
@@ -27347,7 +27898,15 @@
      "note": "it may be danced without turn.",
      "noteCs": "lze tančit i bez otočení"
     }
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "it may be danced without turn.",
+     "kind": "other",
+     "topic": "Quantity of turn"
+    }
+   ]
   },
   {
    "id": "quickstep-36",
@@ -27909,6 +28468,14 @@
      "noteCs": "může se otočit o 3/8 vlevo, když začíná zády k LOD"
     }
    },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "due to the fast timing a slight jumping action may be used.",
+     "kind": "timing",
+     "topic": "General"
+    }
+   ],
    "aliases": {
     "en": [
      "Quick Run"
@@ -29236,7 +29803,20 @@
       "pos": "Outside Partner Position"
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "Step 1 may be taken fwd in CBMP in Outside Partner Position.",
+     "kind": "replace",
+     "steps": [
+      1,
+      1
+     ],
+     "by": "fwd in CBMP in Outside Partner Position",
+     "topic": "Foot Placement/Couple position"
+    }
+   ]
   },
   {
    "id": "quickstep-48",
@@ -30305,7 +30885,15 @@
       "pos": "R Diag Opp Close Opp"
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "Parts of the figure may be used on their own depending on the preceding or following figure.",
+     "kind": "other",
+     "topic": "General"
+    }
+   ]
   },
   {
    "id": "samba-7",
@@ -30702,6 +31290,14 @@
      }
     ]
    },
+   "alternatives": [
+    {
+     "id": "n0s1",
+     "text": "When dancing a Stationary Samba Walk Man may lead Lady to turn (Spot Volta making a complete turn) under raised arm.",
+     "kind": "other",
+     "topic": "General"
+    }
+   ],
    "aliases": {
     "en": [
      "Samba Walks in Place",
@@ -30994,6 +31590,15 @@
      }
     ]
    },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "Man can start with LF and dance the Lady’s steps and the Lady starts with RF and dances the Man’s steps when starting from L Side Same Pos.",
+     "kind": "other",
+     "who": "man",
+     "topic": "General"
+    }
+   ],
    "aliases": {
     "en": [
      "Side Walk"
@@ -31256,7 +31861,16 @@
       "pos": "Close Opp"
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n2s0",
+     "text": "The Lady may straighten her knees with pelvis tilted bwd at the end of step 3.",
+     "kind": "other",
+     "who": "lady",
+     "topic": "Hip Design"
+    }
+   ]
   },
   {
    "id": "samba-13",
@@ -31624,6 +32238,21 @@
      }
     ]
    },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "Man may dance Lady’s steps and vice versa.",
+     "kind": "other",
+     "who": "man",
+     "topic": "General"
+    },
+    {
+     "id": "n1s0",
+     "text": "May turn up to ¼ to L or R.",
+     "kind": "other",
+     "topic": "Quantity of turn"
+    }
+   ],
    "aliases": {
     "en": [
      "Side Chasse"
@@ -32379,7 +33008,15 @@
       "pos": "Open Opp"
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "The last 2 steps of the Criss Cross Volta may be danced as the last 2 steps of a Botafogo (Botafogo ending) when followed by Travelling Volta to L.",
+     "kind": "other",
+     "topic": "General"
+    }
+   ]
   },
   {
    "id": "samba-19",
@@ -32546,7 +33183,15 @@
       "pos": "Open Opp"
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "The last 2 steps of the Criss Cross Volta may be danced as the last 2 steps of a Botafogo (Botafogo ending) when followed by Travelling Volta to R.",
+     "kind": "other",
+     "topic": "General"
+    }
+   ]
   },
   {
    "id": "samba-20",
@@ -32665,7 +33310,25 @@
       "pos": "Open Opp"
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "Steps 2-3 can be repeated.",
+     "kind": "repeat",
+     "steps": [
+      2,
+      3
+     ],
+     "topic": "General"
+    },
+    {
+     "id": "n0s2",
+     "text": "The last 2 steps of the Travelling Volta may be danced as the last 2 steps of a Botafogo (Botafogo Ending) when followed by Travelling Volta to L.",
+     "kind": "other",
+     "topic": "General"
+    }
+   ]
   },
   {
    "id": "samba-21",
@@ -32784,7 +33447,25 @@
       "pos": "Open Opp"
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "Steps 2-3 can be repeated.",
+     "kind": "repeat",
+     "steps": [
+      2,
+      3
+     ],
+     "topic": "General"
+    },
+    {
+     "id": "n0s2",
+     "text": "The last 2 steps of the Travelling Volta may be danced as the last 2 steps of a Botafogo (Botafogo ending) when followed by Travelling Volta to R.",
+     "kind": "other",
+     "topic": "General"
+    }
+   ]
   },
   {
    "id": "samba-22",
@@ -32904,6 +33585,15 @@
      }
     ]
    },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "Man may at the same time dance the Lady’s steps of Underarm Turn turning L, in which case the figure will be named SOLO SPOT VOLTA TURNING LEFT (3.4.24)",
+     "kind": "other",
+     "who": "man",
+     "topic": "General"
+    }
+   ],
    "aliases": {
     "en": [
      "Volta Spot Turn to R for Lady",
@@ -33032,6 +33722,15 @@
      }
     ]
    },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "Man may at the same time dance the Lady’s steps of Underarm Turn turning L, in which case the figure will be named SOLO SPOT VOLTA TURNING RIGHT (3.4.25)",
+     "kind": "other",
+     "who": "man",
+     "topic": "General"
+    }
+   ],
    "aliases": {
     "en": [
      "Volta Spot Turn to L for Lady",
@@ -33091,7 +33790,16 @@
     },
     "seeAlso": "UNDERARM TURN TURNING RIGHT (VOLTA SPOT TURN TO R FOR LADY)"
    },
-   "videos": []
+   "videos": [],
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "Man may at the same time dance the Lady’s steps of Underarm Turn turning L, in which case the figure will be named SOLO SPOT VOLTA TURNING LEFT (3.4.24)",
+     "kind": "other",
+     "who": "man",
+     "topic": "General"
+    }
+   ]
   },
   {
    "id": "samba-25",
@@ -33140,7 +33848,16 @@
     },
     "seeAlso": "UNDERARM TURN TURNING LEFT (VOLTA SPOT TURN TO L FOR LADY)"
    },
-   "videos": []
+   "videos": [],
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "Man may at the same time dance the Lady’s steps of Underarm Turn turning L, in which case the figure will be named SOLO SPOT VOLTA TURNING RIGHT (3.4.25)",
+     "kind": "other",
+     "who": "man",
+     "topic": "General"
+    }
+   ]
   },
   {
    "id": "samba-26",
@@ -33190,7 +33907,16 @@
     },
     "seeAlso": "UNDERARM TURN TURNING RIGHT (VOLTA SPOT TURN TO R FOR LADY)"
    },
-   "videos": []
+   "videos": [],
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "Man may at the same time dance the Lady’s steps of Underarm Turn turning L, in which case the figure will be named SOLO SPOT VOLTA TURNING LEFT (3.4.24)",
+     "kind": "other",
+     "who": "man",
+     "topic": "General"
+    }
+   ]
   },
   {
    "id": "samba-27",
@@ -33239,7 +33965,16 @@
     },
     "seeAlso": "UNDERARM TURN TURNING LEFT (VOLTA SPOT TURN TO L FOR LADY)"
    },
-   "videos": []
+   "videos": [],
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "Man may at the same time dance the Lady’s steps of Underarm Turn turning L, in which case the figure will be named SOLO SPOT VOLTA TURNING RIGHT (3.4.25)",
+     "kind": "other",
+     "who": "man",
+     "topic": "General"
+    }
+   ]
   },
   {
    "id": "samba-28",
@@ -33376,6 +34111,14 @@
      }
     ]
    },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "The last 2 steps of the Maypole Lady Turning R may be danced as the last 2 steps of a Botafogo (Botafogo Ending) when followed by Travelling Volta to L or Maypole - Lady turning L",
+     "kind": "other",
+     "topic": "General"
+    }
+   ],
    "aliases": {
     "en": [
      "Continuous Volta Spot Turn To R"
@@ -33523,6 +34266,14 @@
      }
     ]
    },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "The last 2 steps of the Maypole Lady Turning L may be danced as the last 2 steps of a Botafogo (Botafogo Ending) when followed by Travelling Volta to R or Maypole- Lady turning R",
+     "kind": "other",
+     "topic": "General"
+    }
+   ],
    "aliases": {
     "en": [
      "Contiuous Volta Spot Turn To L"
@@ -33632,7 +34383,15 @@
       "face": 0
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n1s0",
+     "text": "Cruzado Walk on RF may be followed by steps 3-7 of Continuous Cruzados Lock starting with LF, Cruzado Walk on LF may be followed by steps 3-7 of Continuous Cruzados Lock starting with RF Timing: SQQQQS",
+     "kind": "timing",
+     "topic": "General/ Timing"
+    }
+   ]
   },
   {
    "id": "samba-31",
@@ -33798,7 +34557,15 @@
       "face": 0
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n1s0",
+     "text": "1-3 of Cruzados Locks may be danced in R Side Same Position (Promenade Hold) on opposite foot.",
+     "kind": "other",
+     "topic": "Couple Position"
+    }
+   ]
   },
   {
    "id": "samba-32",
@@ -33860,7 +34627,15 @@
     },
     "seeAlso": "CRUZADOS LOCKS"
    },
-   "videos": []
+   "videos": [],
+   "alternatives": [
+    {
+     "id": "n1s0",
+     "text": "1-3 of Cruzados Locks may be danced in R Side Same Position (Promenade Hold) on opposite foot.",
+     "kind": "other",
+     "topic": "Couple Position"
+    }
+   ]
   },
   {
    "id": "samba-33",
@@ -33958,7 +34733,15 @@
       "pos": "R Side Same then Close Opp"
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "It may be danced starting with RF (Man) and LF (Lady).",
+     "kind": "other",
+     "topic": "General"
+    }
+   ]
   },
   {
    "id": "samba-34",
@@ -34097,6 +34880,21 @@
      }
     ]
    },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "During steps 1-5 Sway to L (Lady R) may be used.",
+     "kind": "other",
+     "topic": "General"
+    },
+    {
+     "id": "n0s1",
+     "text": "The Man may dance a Circular Volta Turning R and the Lady a Circular volta Turning L starting in Close Opp.Position making 1 full turn, in that case the figure is called SOLO CIRCULAR VOLTAS TURNING RIGHT (3.4.36)",
+     "kind": "other",
+     "who": "man",
+     "topic": "General"
+    }
+   ],
    "aliases": {
     "en": [
      "Roundabout to Right",
@@ -34244,6 +35042,21 @@
      }
     ]
    },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "During steps 1-5 Sway to R (Lady L) may be used.",
+     "kind": "other",
+     "topic": "General"
+    },
+    {
+     "id": "n0s1",
+     "text": "The Man may dance a Circular Volta Turning L and the Lady a Circular Volta Turning R starting in Close Opp.Position, making 1 full turn, in that case the figure is called SOLO CIRCULAR VOLTAS TURNING L (3.4.37)",
+     "kind": "other",
+     "who": "man",
+     "topic": "General"
+    }
+   ],
    "aliases": {
     "en": [
      "Roundabout to Left",
@@ -34289,7 +35102,22 @@
     },
     "seeAlso": "CIRCULAR VOLTAS TURNING RIGHT (ROUNDABOUT TO RIGHT)"
    },
-   "videos": []
+   "videos": [],
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "During steps 1-5 Sway to L (Lady R) may be used.",
+     "kind": "other",
+     "topic": "General"
+    },
+    {
+     "id": "n0s1",
+     "text": "The Man may dance a Circular Volta Turning R and the Lady a Circular volta Turning L starting in Close Opp.Position making 1 full turn, in that case the figure is called SOLO CIRCULAR VOLTAS TURNING RIGHT (3.4.36)",
+     "kind": "other",
+     "who": "man",
+     "topic": "General"
+    }
+   ]
   },
   {
    "id": "samba-37",
@@ -34326,7 +35154,22 @@
     },
     "seeAlso": "CIRCULAR VOLTAS TURNING LEFT (ROUNDABOUT TO LEFT)"
    },
-   "videos": []
+   "videos": [],
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "During steps 1-5 Sway to R (Lady L) may be used.",
+     "kind": "other",
+     "topic": "General"
+    },
+    {
+     "id": "n0s1",
+     "text": "The Man may dance a Circular Volta Turning L and the Lady a Circular Volta Turning R starting in Close Opp.Position, making 1 full turn, in that case the figure is called SOLO CIRCULAR VOLTAS TURNING L (3.4.37)",
+     "kind": "other",
+     "who": "man",
+     "topic": "General"
+    }
+   ]
   },
   {
    "id": "samba-38",
@@ -35119,7 +35962,15 @@
       "face": -180
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n1s0",
+     "text": "Less turn can be made on steps 1-3 and 4-6.",
+     "kind": "other",
+     "topic": "Quantity of turn"
+    }
+   ]
   },
   {
    "id": "samba-42",
@@ -36357,6 +37208,19 @@
      }
     ]
    },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "After step 7, Man may dance Lady’s steps 1-7 (Lady dances Man’s steps 1-7).",
+     "kind": "other",
+     "topic": "General"
+    },
+    {
+     "id": "n1s0",
+     "text": "Lead-Hold-Shaping: LH for Man and RH for Lady may be lowered",
+     "kind": "other"
+    }
+   ],
    "aliases": {
     "cs": [
      "korta žaka"
@@ -36761,6 +37625,31 @@
      }
     ]
    },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "Alternative Timing may be used (QQS QQS QQS or SaS SaS SaS)",
+     "kind": "timing",
+     "topic": "Timing"
+    },
+    {
+     "id": "n1s0",
+     "text": "Step 1 can be taken FWD between Lady’s feet.",
+     "kind": "replace",
+     "steps": [
+      1,
+      1
+     ],
+     "by": "FWD between Lady’s feet",
+     "topic": "Foot Placement"
+    },
+    {
+     "id": "n2s0",
+     "text": "On steps 1 and 7 the Lady may finish in a Spiral Cross Position.",
+     "kind": "other",
+     "topic": "General Action"
+    }
+   ],
    "aliases": {
     "en": [
      "Promenade and Counter Promenade Runs"
@@ -37071,7 +37960,22 @@
       "face": 0
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "Man’s steps 4-6 and Lady’s 5-8 may be substituted with a foot change to end in R Diagonal Same Pos on LF.",
+     "kind": "footChange",
+     "who": "man",
+     "topic": "General"
+    },
+    {
+     "id": "n1s0",
+     "text": "After step 4, Lady can dance steps 5-6-7 diag.",
+     "kind": "other",
+     "topic": "Foot Placement"
+    }
+   ]
   },
   {
    "id": "samba-53",
@@ -37265,7 +38169,16 @@
       "pos": "Open Opp"
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "Man may dance the Lady’s steps and vice versa.",
+     "kind": "other",
+     "who": "man",
+     "topic": "General"
+    }
+   ]
   },
   {
    "id": "samba-54",
@@ -37605,6 +38518,14 @@
      "query": "samba Rhytm Bounce"
     }
    ],
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "Kick Ball Change may be used in place of Rhytm Bounce by both Man and Lady",
+     "kind": "other",
+     "topic": "General"
+    }
+   ],
    "aliases": {
     "en": [
      "Rhythm Bounce",
@@ -37692,6 +38613,14 @@
     "following": [],
     "follows": true
    },
+   "alternatives": [
+    {
+     "id": "n1s0",
+     "text": "The Quantity of Turn may vary depending on the preceding and following figure.",
+     "kind": "other",
+     "topic": "Quantity of turn"
+    }
+   ],
    "aliases": {
     "en": [
      "Foot Change Method 1 - Lf Forward"
@@ -37774,6 +38703,14 @@
     "following": [],
     "follows": true
    },
+   "alternatives": [
+    {
+     "id": "n1s0",
+     "text": "The Quantity of Turn may vary depending on the preceding and following figure.",
+     "kind": "other",
+     "topic": "Quantity of turn"
+    }
+   ],
    "aliases": {
     "en": [
      "Foot Change Method 2 - Rf Forward"
@@ -37872,6 +38809,21 @@
      }
     ]
    },
+   "alternatives": [
+    {
+     "id": "n0s1",
+     "text": "Man may replace Kick Ball Change action with a RF point fwd and point bwd.",
+     "kind": "other",
+     "who": "man",
+     "topic": "General"
+    },
+    {
+     "id": "n1s0",
+     "text": "The Quantity of Turn may vary depending on the preceding and following figure.",
+     "kind": "other",
+     "topic": "Quantity of turn"
+    }
+   ],
    "aliases": {
     "en": [
      "Foot Change Method 3 - Kick Ball Change"
@@ -38120,6 +39072,20 @@
      }
     ]
    },
+   "alternatives": [
+    {
+     "id": "n0s2",
+     "text": "When steps 3 -5 are replaced with a Merengue Chasse bwd an steps 8 -10 with a Merengue Chasse fwd for both partners it is known as THERE AND BACK",
+     "kind": "other",
+     "topic": "General"
+    },
+    {
+     "id": "n1s0",
+     "text": "May be danced in Open Opposing Position or Extended Open Opp. Pos.",
+     "kind": "other",
+     "topic": "Couple Position"
+    }
+   ],
    "aliases": {
     "en": [
      "Basic in Place"
@@ -38378,6 +39344,21 @@
      }
     ]
    },
+   "alternatives": [
+    {
+     "id": "n1s0",
+     "text": "May be danced in Open Opposing position with any appropriate hold.",
+     "kind": "position",
+     "position": "Open Opposing position",
+     "topic": "Couple Position"
+    },
+    {
+     "id": "n2s0",
+     "text": "Up to ½ turn to L can be made",
+     "kind": "other",
+     "topic": "Quantity of turn"
+    }
+   ],
    "aliases": {
     "en": [
      "Closed Basic",
@@ -38641,6 +39622,32 @@
      }
     ]
    },
+   "alternatives": [
+    {
+     "id": "n1s0",
+     "text": "May be danced in Close Opposing Position",
+     "kind": "position",
+     "position": "Close Opposing Position",
+     "topic": "Couple Position"
+    },
+    {
+     "id": "n2s0",
+     "text": "Steps 3-5 may be replaced with 3 Cha Cha Locksteps bwd( 4&1 2&3 4&1) and steps 8 - 10 may be replaced by 3 Cha Cha Locksteps fwd (4&1 2&3 4&1).",
+     "kind": "replace",
+     "steps": [
+      3,
+      5
+     ],
+     "by": "3 Cha Cha Locksteps bwd( 4&1 2&3 4&1) and steps 8 - 10 may be replaced by 3 Cha Cha Locksteps fwd (4&1 2&3 4&1)",
+     "topic": "General Action/ Timing/Hold"
+    },
+    {
+     "id": "n2s1",
+     "text": "The hold may change from RH to RH on the first Lockstep to LH to LH on the second Lockstep and back to RH to RH or any other appropriate hold depending on the following figure.",
+     "kind": "other",
+     "topic": "General Action/ Timing/Hold"
+    }
+   ],
    "aliases": {
     "en": [
      "Open Basic"
@@ -38906,6 +39913,28 @@
      }
     ]
    },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "Guapacha Timing may be used.",
+     "kind": "guapacha",
+     "topic": "Timing"
+    },
+    {
+     "id": "n1s0",
+     "text": "Cha Cha Chasse to side may be replaced by a Three Step Turn for Man and Lady, or Lady only.",
+     "kind": "swap",
+     "what": "Cha Cha Chasse to side",
+     "by": "Three Step Turn for Man and Lady, or Lady only",
+     "topic": "General Action"
+    },
+    {
+     "id": "n1s1",
+     "text": "It may also be replaced by a Ronde Chasse.",
+     "kind": "other",
+     "topic": "General Action"
+    }
+   ],
    "aliases": {
     "en": [
      "New York",
@@ -39170,6 +40199,28 @@
      }
     ]
    },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "Guapacha Timing may be used",
+     "kind": "guapacha",
+     "topic": "Timing"
+    },
+    {
+     "id": "n1s0",
+     "text": "Cha Cha Chasse to side may be replaced by a Three Step Turn for Man and Lady, or Lady only.",
+     "kind": "swap",
+     "what": "Cha Cha Chasse to side",
+     "by": "Three Step Turn for Man and Lady, or Lady only",
+     "topic": "General Action"
+    },
+    {
+     "id": "n1s1",
+     "text": "It may also be replaced by a Ronde Chasse.",
+     "kind": "other",
+     "topic": "General Action"
+    }
+   ],
    "aliases": {
     "en": [
      "New York",
@@ -39720,6 +40771,19 @@
      }
     ]
    },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "Steps 3-5 may be replaced by a Cha Cha Lockstep fwd (Man) and Cha Cha Lockstep bwd (Lady).",
+     "kind": "replace",
+     "steps": [
+      3,
+      5
+     ],
+     "by": "a Cha Cha Lockstep fwd (Man) and Cha Cha Lockstep bwd (Lady)",
+     "topic": "General Action"
+    }
+   ],
    "aliases": {
     "en": [
      "Switch Turn",
@@ -39872,6 +40936,19 @@
      }
     ]
    },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "Steps 3-5 may be replaced by a Cha Cha Lockstep fwd (Man) and Cha Cha Lockstep bwd (Lady)",
+     "kind": "replace",
+     "steps": [
+      3,
+      5
+     ],
+     "by": "a Cha Cha Lockstep fwd (Man) and Cha Cha Lockstep bwd (Lady)",
+     "topic": "General Action"
+    }
+   ],
    "aliases": {
     "en": [
      "Underarm Turn to Right"
@@ -40217,6 +41294,14 @@
      }
     ]
    },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "Three Cha Cha Chas to R may replace steps 3-5 of Hand to Hand to R, New York to L, Spot Turn to L, Underarm Turn to R, Time Step.",
+     "kind": "other",
+     "topic": "General"
+    }
+   ],
    "aliases": {
     "en": [
      "Three Cha Chas",
@@ -40404,6 +41489,14 @@
      }
     ]
    },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "Three Cha Cha Chas to L may replace steps 3-5 of Hand to Hand to L, New York to R, Spot Turn to R, Underarm Turn to L and steps 8-10 of Time Step.",
+     "kind": "other",
+     "topic": "General"
+    }
+   ],
    "aliases": {
     "en": [
      "Three Cha Chas",
@@ -40663,7 +41756,22 @@
      "foot": "RF",
      "dir": "place"
     }
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n0s1",
+     "text": "Man may dance Lady’s steps and vice versa.",
+     "kind": "other",
+     "who": "man",
+     "topic": "General"
+    },
+    {
+     "id": "n1s0",
+     "text": "Guapacha Timing may be used.",
+     "kind": "guapacha",
+     "topic": "Timing"
+    }
+   ]
   },
   {
    "id": "chacha-15",
@@ -41065,7 +42173,22 @@
       "pos": "Open Opp"
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "Alternative Ending- after step 5 Man turns ¼ to L (Lady ¼ to R) to end in Open Opp. Pos. and they both dance a Rock Action and Compact Chasse timed 2 3 4&1.",
+     "kind": "other",
+     "topic": "General Action/ Timing"
+    },
+    {
+     "id": "n0s1",
+     "text": "The Lady may replace the last step of the preceding Chasse with a Spiral Cross and then follow with steps 6-10 of Open Hip Twist and then continue as chart.",
+     "kind": "other",
+     "who": "lady",
+     "topic": "General Action/ Timing"
+    }
+   ]
   },
   {
    "id": "chacha-16",
@@ -41309,7 +42432,356 @@
       "pos": "Fan L Angle"
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "oo-lock",
+     "cs": "Konec v otevřeném protipostavení – cha-cha lock vpřed",
+     "en": "End in Open Opposing Position – Cha Cha Lock forward",
+     "noteCs": "Pán se na konci 2. kroku otočí o 1/4 vlevo a tančí lock vpřed; partnerka tančí jako obvykle (lock vzad).",
+     "noteEn": "At the end of step 2 the man turns 1/4 to L and dances a forward lock; the lady dances as usual (backward lock).",
+     "who": "man",
+     "finish": "Open Opp",
+     "man": [
+      {
+       "set": 2,
+       "turn": "1/4 L",
+       "align": "Facing LOD",
+       "end": 0,
+       "pos": "L Side R Angle then Open Opp"
+      },
+      {
+       "replace": [
+        3,
+        5
+       ],
+       "steps": [
+        {
+         "desc": "RF fwd",
+         "align": "Facing LOD",
+         "face": 0,
+         "turn": "",
+         "timing": "4",
+         "pos": "Open Opp"
+        },
+        {
+         "desc": "LF crosses behind RF",
+         "align": "",
+         "face": 0,
+         "turn": "",
+         "timing": "&",
+         "pos": "Open Opp"
+        },
+        {
+         "desc": "RF fwd",
+         "align": "",
+         "face": 0,
+         "turn": "",
+         "timing": "1",
+         "pos": "Open Opp"
+        }
+       ]
+      }
+     ],
+     "lady": [
+      {
+       "set": 3,
+       "pos": "Open Opp"
+      },
+      {
+       "set": 4,
+       "pos": "Open Opp"
+      },
+      {
+       "set": 5,
+       "pos": "Open Opp"
+      }
+     ],
+     "kind": "exact",
+     "text": "May end in Open Opp. Pos. Man turns ¼ to L at the end of step 2 and dances a Cha Cha Lock fwd or three Cha Cha Locks fwd ( lady as chart or 3 Cha Cha Locks bwd) or a Cha Cha Chasse to side( Lady Cha Cha Chasse to side)."
+    },
+    {
+     "id": "oo-3locks",
+     "cs": "Konec v otevřeném protipostavení – tři cha-cha locky",
+     "en": "End in Open Opposing Position – three Cha Cha Locks",
+     "noteCs": "Pán se na konci 2. kroku otočí o 1/4 vlevo a tančí tři locky vpřed, partnerka tři locky vzad. Figura se prodlouží o takt.",
+     "noteEn": "At the end of step 2 the man turns 1/4 to L and dances three forward locks, the lady three backward locks. The figure gets one bar longer.",
+     "who": "both",
+     "finish": "Open Opp",
+     "timing": "2 3 4&1 2&3 4&1",
+     "man": [
+      {
+       "set": 2,
+       "turn": "1/4 L",
+       "align": "Facing LOD",
+       "end": 0,
+       "pos": "L Side R Angle then Open Opp"
+      },
+      {
+       "replace": [
+        3,
+        5
+       ],
+       "steps": [
+        {
+         "desc": "RF fwd",
+         "align": "Facing LOD",
+         "face": 0,
+         "turn": "",
+         "timing": "4",
+         "pos": "Open Opp"
+        },
+        {
+         "desc": "LF crosses behind RF",
+         "align": "",
+         "face": 0,
+         "turn": "",
+         "timing": "&",
+         "pos": "Open Opp"
+        },
+        {
+         "desc": "RF fwd",
+         "align": "",
+         "face": 0,
+         "turn": "",
+         "timing": "1",
+         "pos": "Open Opp"
+        },
+        {
+         "desc": "LF fwd",
+         "align": "",
+         "face": 0,
+         "turn": "",
+         "timing": "2",
+         "pos": "Open Opp"
+        },
+        {
+         "desc": "RF crosses behind LF",
+         "align": "",
+         "face": 0,
+         "turn": "",
+         "timing": "&",
+         "pos": "Open Opp"
+        },
+        {
+         "desc": "LF fwd",
+         "align": "",
+         "face": 0,
+         "turn": "",
+         "timing": "3",
+         "pos": "Open Opp"
+        },
+        {
+         "desc": "RF fwd",
+         "align": "",
+         "face": 0,
+         "turn": "",
+         "timing": "4",
+         "pos": "Open Opp"
+        },
+        {
+         "desc": "LF crosses behind RF",
+         "align": "",
+         "face": 0,
+         "turn": "",
+         "timing": "&",
+         "pos": "Open Opp"
+        },
+        {
+         "desc": "RF fwd",
+         "align": "",
+         "face": 0,
+         "turn": "",
+         "timing": "1",
+         "pos": "Open Opp"
+        }
+       ]
+      }
+     ],
+     "lady": [
+      {
+       "replace": [
+        3,
+        5
+       ],
+       "steps": [
+        {
+         "desc": "LF bwd",
+         "align": "Backing LOD",
+         "face": 135,
+         "end": -180,
+         "turn": "1/8 L",
+         "timing": "4",
+         "pos": "Open Opp"
+        },
+        {
+         "desc": "RF crosses in front of LF",
+         "align": "",
+         "face": -180,
+         "turn": "",
+         "timing": "&",
+         "pos": "Open Opp"
+        },
+        {
+         "desc": "LF bwd",
+         "align": "",
+         "face": -180,
+         "turn": "",
+         "timing": "1",
+         "pos": "Open Opp"
+        },
+        {
+         "desc": "RF bwd",
+         "align": "",
+         "face": -180,
+         "turn": "",
+         "timing": "2",
+         "pos": "Open Opp"
+        },
+        {
+         "desc": "LF crosses in front of RF",
+         "align": "",
+         "face": -180,
+         "turn": "",
+         "timing": "&",
+         "pos": "Open Opp"
+        },
+        {
+         "desc": "RF bwd",
+         "align": "",
+         "face": -180,
+         "turn": "",
+         "timing": "3",
+         "pos": "Open Opp"
+        },
+        {
+         "desc": "LF bwd",
+         "align": "",
+         "face": -180,
+         "turn": "",
+         "timing": "4",
+         "pos": "Open Opp"
+        },
+        {
+         "desc": "RF crosses in front of LF",
+         "align": "",
+         "face": -180,
+         "turn": "",
+         "timing": "&",
+         "pos": "Open Opp"
+        },
+        {
+         "desc": "LF bwd",
+         "align": "",
+         "face": -180,
+         "turn": "",
+         "timing": "1",
+         "pos": "Open Opp"
+        }
+       ]
+      }
+     ],
+     "kind": "exact"
+    },
+    {
+     "id": "oo-chasse",
+     "cs": "Konec v otevřeném protipostavení – cha-cha šasé stranou",
+     "en": "End in Open Opposing Position – Cha Cha Chasse to side",
+     "noteCs": "Pán se na konci 2. kroku otočí o 1/4 vlevo a tančí šasé stranou; partnerka místo locku vzad také šasé stranou.",
+     "noteEn": "At the end of step 2 the man turns 1/4 to L and dances a chasse to side; the lady replaces the backward lock with a chasse to side too.",
+     "who": "both",
+     "finish": "Open Opp",
+     "man": [
+      {
+       "set": 2,
+       "turn": "1/4 L",
+       "align": "Facing LOD",
+       "end": 0,
+       "pos": "L Side R Angle then Open Opp"
+      },
+      {
+       "replace": [
+        3,
+        5
+       ],
+       "steps": [
+        {
+         "desc": "RF to side",
+         "align": "Facing LOD",
+         "face": 0,
+         "turn": "",
+         "timing": "4",
+         "pos": "Open Opp"
+        },
+        {
+         "desc": "LF closes to RF",
+         "align": "",
+         "face": 0,
+         "turn": "",
+         "timing": "&",
+         "pos": "Open Opp"
+        },
+        {
+         "desc": "RF to side",
+         "align": "",
+         "face": 0,
+         "turn": "",
+         "timing": "1",
+         "pos": "Open Opp"
+        }
+       ]
+      }
+     ],
+     "lady": [
+      {
+       "replace": [
+        3,
+        5
+       ],
+       "steps": [
+        {
+         "desc": "LF to side",
+         "align": "Backing LOD",
+         "face": 135,
+         "end": -180,
+         "turn": "1/8 L",
+         "timing": "4",
+         "pos": "Open Opp"
+        },
+        {
+         "desc": "RF closes to LF",
+         "align": "",
+         "face": -180,
+         "turn": "",
+         "timing": "&",
+         "pos": "Open Opp"
+        },
+        {
+         "desc": "LF to side",
+         "align": "",
+         "face": -180,
+         "turn": "",
+         "timing": "1",
+         "pos": "Open Opp"
+        }
+       ]
+      }
+     ],
+     "kind": "exact"
+    },
+    {
+     "id": "n0s0",
+     "text": "Guapacha Timing may be used.",
+     "kind": "guapacha",
+     "topic": "Timing"
+    },
+    {
+     "id": "n1s1",
+     "text": "The figure may be used as a Foot Change- in this case Lady will dance a Spiral Cross on step 7 and follow with Cha Cha Chasse to side to end in L Side Same Position. Man will replace steps 8-10 with side Rock (RF, LF) timed 4 1 and release hold at the end",
+     "kind": "footChange",
+     "topic": "General Action/Couple Position"
+    }
+   ]
   },
   {
    "id": "chacha-17",
@@ -41672,7 +43144,28 @@
       "pos": "Fan L Angle"
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n1s0",
+     "text": "May be danced in Open Opposing position",
+     "kind": "position",
+     "position": "Open Opposing position",
+     "topic": "Couple Position"
+    },
+    {
+     "id": "n2s0",
+     "text": "Guapacha Timing may be used.",
+     "kind": "guapacha",
+     "topic": "Timing"
+    },
+    {
+     "id": "n3s0",
+     "text": "The figure may be used as a Foot Change- in this case Lady will dance a Spiral Cross on step 7 and follow with Cha Cha Chasse to side to end in L Side Same Position. Man will replace steps 8-10 with a side Rock (RF, LF) timed 4 1 and release hold at the end.",
+     "kind": "footChange",
+     "topic": "General Action/ Couple Position"
+    }
+   ]
   },
   {
    "id": "chacha-18",
@@ -41916,7 +43409,26 @@
       "pos": "Open Opp"
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n1s0",
+     "text": "Steps 8-10 may be replaced by a Cha Cha Lock fwd or three Cha Cha Locks fwd (Man) and a Cha Cha Lock bwd or three Cha Cha Locks bwd (Lady)",
+     "kind": "replace",
+     "steps": [
+      8,
+      10
+     ],
+     "by": "a Cha Cha Lock fwd or three Cha Cha Locks fwd (Man) and a Cha Cha Lock bwd or three Cha Cha Locks bwd (Lady)",
+     "topic": "General Action"
+    },
+    {
+     "id": "n2s0",
+     "text": "Guapacha Timing may be used.",
+     "kind": "guapacha",
+     "topic": "Timing"
+    }
+   ]
   },
   {
    "id": "chacha-19",
@@ -42162,7 +43674,38 @@
       "pos": "Fan L Angle"
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n1s0",
+     "text": "Steps 8-10 may be replaced by a Cha Cha Lock fwd or three Cha Cha Locks fwd (Man) and a Cha Cha Lock bwd or three Cha Cha Locks bwd (Lady).",
+     "kind": "replace",
+     "steps": [
+      8,
+      10
+     ],
+     "by": "a Cha Cha Lock fwd or three Cha Cha Locks fwd (Man) and a Cha Cha Lock bwd or three Cha Cha Locks bwd (Lady)",
+     "topic": "General Action"
+    },
+    {
+     "id": "n1s1",
+     "text": "When steps 1-5 only are used Lady may dance a Cha Cha Chasse on steps 3-5 turning L to end in Close Opp. Pos.",
+     "kind": "replace",
+     "steps": [
+      3,
+      5
+     ],
+     "by": "Cha Cha Chasse",
+     "who": "lady",
+     "topic": "General Action"
+    },
+    {
+     "id": "n3s0",
+     "text": "The figure may be used as a Foot Change- in this case Lady will dance a Spiral Cross on step 7 and follow with Cha Cha Chasse to side to end in L Side Same Position. Man will replace steps 8-10 with Rock to side (RF, LF) timed 4 1 and release hold at the end.",
+     "kind": "footChange",
+     "topic": "General Action/ Couple Position"
+    }
+   ]
   },
   {
    "id": "chacha-20",
@@ -42395,7 +43938,32 @@
       "pos": "Open Opp"
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n1s0",
+     "text": "Steps 8-10 may be replaced by a Cha Cha Lock fwd or three Cha Cha Locks fwd (Man) and a Cha Cha Lock bwd or three Cha Cha Locks bwd (Lady).",
+     "kind": "replace",
+     "steps": [
+      8,
+      10
+     ],
+     "by": "a Cha Cha Lock fwd or three Cha Cha Locks fwd (Man) and a Cha Cha Lock bwd or three Cha Cha Locks bwd (Lady)",
+     "topic": "General Action"
+    },
+    {
+     "id": "n1s1",
+     "text": "When steps 1-5 only are used Lady may dance a Cha Cha Chasse on steps 3-5 turning L to end in Close Opp. Pos.",
+     "kind": "replace",
+     "steps": [
+      3,
+      5
+     ],
+     "by": "Cha Cha Chasse",
+     "who": "lady",
+     "topic": "General Action"
+    }
+   ]
   },
   {
    "id": "chacha-21",
@@ -42709,7 +44277,28 @@
       "pos": "Open Opp"
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "Ronde Chasse may be replaced by Slip Close Chasse.",
+     "kind": "swap",
+     "what": "Ronde Chasse",
+     "by": "Slip Close Chasse",
+     "topic": "General Action"
+    },
+    {
+     "id": "n0s1",
+     "text": "Steps 8-10 may be replaced by 3 Cha Cha Locks fwd for Man, bwd for Lady",
+     "kind": "replace",
+     "steps": [
+      8,
+      10
+     ],
+     "by": "3 Cha Cha Locks fwd for Man, bwd for Lady",
+     "topic": "General Action"
+    }
+   ]
   },
   {
    "id": "chacha-22",
@@ -42917,7 +44506,29 @@
       "pos": "Open Opp"
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "Ronde Chasse may be replaced by Slip Close Chasse.",
+     "kind": "swap",
+     "what": "Ronde Chasse",
+     "by": "Slip Close Chasse",
+     "topic": "General Action"
+    },
+    {
+     "id": "n1s0",
+     "text": "Lady may dance a Spiral Cross on step 7 and continue with a Cha Cha Lock fwd. In this case Man will also dance a fwd Lock on steps 8-10.",
+     "kind": "replace",
+     "steps": [
+      7,
+      7
+     ],
+     "by": "Spiral Cross",
+     "who": "lady",
+     "topic": "Quantity of Turn/ General Action"
+    }
+   ]
   },
   {
    "id": "chacha-23",
@@ -43273,7 +44884,32 @@
       "pos": "R Side Opp"
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n1s0",
+     "text": "Man’s step 6 may be danced as a Bwd Walk and step 7 as a Side Walk.",
+     "kind": "replace",
+     "steps": [
+      6,
+      6
+     ],
+     "by": "a Bwd Walk and step 7 as a Side Walk",
+     "who": "man",
+     "topic": "General Action"
+    },
+    {
+     "id": "n2s0",
+     "text": "Steps 8 -10 may be replaced by a side Chasse for Man and Lady danced in Close Opp. or Open Opp. Position.",
+     "kind": "replace",
+     "steps": [
+      8,
+      10
+     ],
+     "by": "a side Chasse for Man and Lady danced in Close Opp. or Open Opp. Position",
+     "topic": "General Action/Couple Position"
+    }
+   ]
   },
   {
    "id": "chacha-24",
@@ -43481,7 +45117,27 @@
       "pos": "R Side Opp"
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n1s0",
+     "text": "Man’s step 6 may be danced a s a bwd Walk and step 7 as a side Walk.",
+     "kind": "other",
+     "who": "man",
+     "topic": "General Action"
+    },
+    {
+     "id": "n2s0",
+     "text": "Steps 8 -10 may be replaced by a side Chasse for Man and Lady danced in Close Opp. or Open Opp. Position.",
+     "kind": "replace",
+     "steps": [
+      8,
+      10
+     ],
+     "by": "a side Chasse for Man and Lady danced in Close Opp. or Open Opp. Position",
+     "topic": "General Action/Couple Position"
+    }
+   ]
   },
   {
    "id": "chacha-25",
@@ -43794,7 +45450,20 @@
      "foot": "LF",
      "dir": "side"
     }
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n1s0",
+     "text": "Steps 13-15 may be replaced by a side Chasse for Man and Lady danced in Close Opp. or Open Opp. Position.",
+     "kind": "replace",
+     "steps": [
+      13,
+      15
+     ],
+     "by": "a side Chasse for Man and Lady danced in Close Opp. or Open Opp. Position",
+     "topic": "General Action/Couple Position"
+    }
+   ]
   },
   {
    "id": "chacha-26",
@@ -44154,7 +45823,27 @@
       "pos": "Open Opp then Close Opp"
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n1s0",
+     "text": "Steps 3-5 for Man may be replaced by a bwd Lockstep.",
+     "kind": "replace",
+     "steps": [
+      3,
+      5
+     ],
+     "by": "a bwd Lockstep",
+     "who": "man",
+     "topic": "General Action"
+    },
+    {
+     "id": "n2s0",
+     "text": "Guapacha timing may be used.",
+     "kind": "guapacha",
+     "topic": "Timing"
+    }
+   ]
   },
   {
    "id": "chacha-27",
@@ -44308,7 +45997,51 @@
     ],
     "preceding": [],
     "following": []
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "Steps 3-5 for Man may be replaced by a bwd Lockstep.",
+     "kind": "replace",
+     "steps": [
+      3,
+      5
+     ],
+     "by": "a bwd Lockstep",
+     "who": "man",
+     "topic": "General Action"
+    },
+    {
+     "id": "n1s0",
+     "text": "Steps 8-10 for the Man may be replaced by a fwd Lockstep ending in Open Opp. Position or three Cha Cha Locksteps fwd (Lady will dance a bwd Lockstep or three Cha Cha Locksteps bwd).",
+     "kind": "replace",
+     "steps": [
+      8,
+      10
+     ],
+     "by": "a fwd Lockstep ending in Open Opp. Position or three Cha Cha Locksteps fwd (Lady will dance a bwd Lockstep or three Cha ",
+     "who": "man",
+     "topic": "General Action/Couple Position"
+    },
+    {
+     "id": "n1s1",
+     "text": "Man may replace steps 8-10 with a Hip Twist Chasse (Lady bwd Lockstep to end in Fan L Angle position).",
+     "kind": "replace",
+     "steps": [
+      8,
+      10
+     ],
+     "by": "a Hip Twist Chasse (Lady bwd Lockstep to end in Fan L Angle position)",
+     "who": "man",
+     "topic": "General Action/Couple Position"
+    },
+    {
+     "id": "n2s0",
+     "text": "Guapacha timing may be used.",
+     "kind": "guapacha",
+     "topic": "Timing"
+    }
+   ]
   },
   {
    "id": "chacha-28",
@@ -44528,7 +46261,50 @@
       "pos": "Open Opp"
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n1s0",
+     "text": "Steps 3-5 for Man may be replaced by a bwd Lockstep.",
+     "kind": "replace",
+     "steps": [
+      3,
+      5
+     ],
+     "by": "a bwd Lockstep",
+     "who": "man",
+     "topic": "General Action"
+    },
+    {
+     "id": "n1s1",
+     "text": "Steps 8-10 may be replaced by 3 Cha Cha Locksteps fwd (Man) and three Cha Cha Locksteps bwd (Lady).",
+     "kind": "replace",
+     "steps": [
+      8,
+      10
+     ],
+     "by": "3 Cha Cha Locksteps fwd (Man) and three Cha Cha Locksteps bwd (Lady)",
+     "topic": "General Action"
+    },
+    {
+     "id": "n2s0",
+     "text": "Guapacha timing may be used.",
+     "kind": "guapacha",
+     "topic": "Timing"
+    },
+    {
+     "id": "n3s0",
+     "text": "Man may replace steps 8-10 with a Hip Twist Chasse (Lady bwd Lockstep to end in Fan L Angle position).",
+     "kind": "replace",
+     "steps": [
+      8,
+      10
+     ],
+     "by": "a Hip Twist Chasse (Lady bwd Lockstep to end in Fan L Angle position)",
+     "who": "man",
+     "topic": "General Action/Couple Position"
+    }
+   ]
   },
   {
    "id": "chacha-29",
@@ -44645,6 +46421,14 @@
     "preceding": [],
     "following": []
    },
+   "alternatives": [
+    {
+     "id": "n4s0",
+     "text": "Step 2 may be directly followed by step 8, in that case the end position will be L Side same.",
+     "kind": "other",
+     "topic": "General/ Couple Position"
+    }
+   ],
    "aliases": {
     "en": [
      "Methods of Changing Feet",
@@ -45059,7 +46843,16 @@
       "pos": "Open Opp"
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n0s1",
+     "text": "Lady dances steps 1-5 of Open Basic followed by Cuban Breaks to L in Open Opp. Pos. Lady may also dance man’s steps on the opposite foot.",
+     "kind": "other",
+     "who": "lady",
+     "topic": "Couple Position"
+    }
+   ]
   },
   {
    "id": "chacha-33",
@@ -45434,7 +47227,21 @@
       "timing": "1"
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "Steps -6-10 only may be used.",
+     "kind": "other",
+     "topic": "General"
+    },
+    {
+     "id": "n1s2",
+     "text": "The figure may be used as a Foot Change-in this case Lady will overturn the Spiral Cross on step 6 and follow with three step turn to end in L Side Same Position. Man will not turn on step 5 and replace steps 8-10 with Rock to side (RF, LF) timed 4 1 releasing the hold at the end.",
+     "kind": "footChange",
+     "topic": "General Action/ Couple Position"
+    }
+   ]
   },
   {
    "id": "chacha-35",
@@ -45656,7 +47463,15 @@
       "timing": "1"
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n1s2",
+     "text": "The figure may be used as a Foot Change- in this case Lady will overturn the Spiral Cross on step 6 and follow with three step turn to end in L Side Same Position. Man will not turn on step 5 and replace steps 8-10 with Rock to side (RF LF) timed 4 1 releasing the hold at the end.",
+     "kind": "footChange",
+     "topic": "General Action/ Couple Position"
+    }
+   ]
   },
   {
    "id": "chacha-36",
@@ -46166,7 +47981,36 @@
       "pos": "Open Same"
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "Guapacha timing may be used",
+     "kind": "guapacha",
+     "topic": "Timing"
+    },
+    {
+     "id": "n1s0",
+     "text": "Steps 11- 20 may be omitted.",
+     "kind": "omit",
+     "steps": [
+      11,
+      20
+     ],
+     "topic": "General"
+    },
+    {
+     "id": "n2s0",
+     "text": "Steps 28-30 may be replaced by 3 fwd Locksteps (Man), 3 bwd Locksteps (Lady)",
+     "kind": "replace",
+     "steps": [
+      28,
+      30
+     ],
+     "by": "3 fwd Locksteps (Man), 3 bwd Locksteps (Lady)",
+     "topic": "General Action"
+    }
+   ]
   },
   {
    "id": "chacha-37",
@@ -46594,7 +48438,31 @@
       "timing": "1"
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "Guapacha timing may be used",
+     "kind": "guapacha",
+     "topic": "Timing"
+    },
+    {
+     "id": "n1s0",
+     "text": "Steps 6 - 15 may be omitted.",
+     "kind": "omit",
+     "steps": [
+      6,
+      15
+     ],
+     "topic": "General"
+    },
+    {
+     "id": "n2s0",
+     "text": "At the end of step 15 as the Lady ends in R Diag. Same Position the Man may take a Shadow Hold and continue with an alternative ending as follows: Both dance a Checked Bwd Walk (Man RF, Lady LF), Wt Transfer in Place, Running Chasse Fwd, Checked Fwd Walk, Wt Transfer in Place, Running Chasse Bwd.",
+     "kind": "other",
+     "topic": "General Action/ Timing/ Couple Position"
+    }
+   ]
   },
   {
    "id": "chacha-38",
@@ -47171,7 +49039,39 @@
       "timing": "1"
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "Man may replace steps 1-2 with steps 16-17.",
+     "kind": "replace",
+     "steps": [
+      1,
+      2
+     ],
+     "by": "steps 16-17",
+     "who": "man",
+     "topic": "General"
+    },
+    {
+     "id": "n1s0",
+     "text": "Lady’s steps 18-26 may be replaced by Three Cha Cha Locks Bwd.",
+     "kind": "replace",
+     "steps": [
+      18,
+      26
+     ],
+     "by": "Three Cha Cha Locks Bwd",
+     "who": "lady",
+     "topic": "General Action"
+    },
+    {
+     "id": "n2s2",
+     "text": "Steps 16-20 may also be used as a Foot Change from L Side Same to open Opposing Position, preceded by a Spot Turn to L that ends with a Fwd Lockstep in Back Open Same Position.",
+     "kind": "footChange",
+     "topic": "General/Couple Position"
+    }
+   ]
   },
   {
    "id": "chacha-39",
@@ -47378,7 +49278,22 @@
       "pos": "Fan L Angle"
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n1s0",
+     "text": "Man may turn ¼ to L on steps 7-9 to end in Open Opposing Position. The Lady will replace step 9 with a Side walk.",
+     "kind": "other",
+     "who": "man",
+     "topic": "General Action/Quantity of Turn/Couple Position"
+    },
+    {
+     "id": "n2s0",
+     "text": "The figure may be used as a Foot Change- in this case Lady will dance a Spiral Cross on step 6 and follow with Cha Cha Chasse to side to end in L Side Same Position. Man will replace steps 8-10 with Rock to side (RF LF) timed 4 1 and release hold at the end.",
+     "kind": "footChange",
+     "topic": "General Action/ Couple Position"
+    }
+   ]
   },
   {
    "id": "chacha-40",
@@ -47727,7 +49642,22 @@
       "pos": "Fan L Angle"
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n1s0",
+     "text": "Man may turn ¼ to L on steps 7 and dance a Fwd Cha Cha Lockstep or 3 Cha Cha Locksteps fwd ( Lady as chart or 3 Cha Cha Locksteps bwd.) or a Cha Cha Chasse to side ( Lady replaces a bwd Lock with a Side Chasse)",
+     "kind": "other",
+     "who": "man",
+     "topic": "General Action/Quantity of Turn/Couple Position"
+    },
+    {
+     "id": "n2s0",
+     "text": "The figure may be used as a Foot Change- in this case Lady will dance a Spiral Cross on step 6 and follow with Cha Cha Chasse to side to end in L Side Same Position. Man will replace steps 8-10 with Rock to side (RF LF) timed 4 1 and release hold at the end.",
+     "kind": "footChange",
+     "topic": "General Action/ Couple Position"
+    }
+   ]
   },
   {
    "id": "chacha-41",
@@ -47982,7 +49912,20 @@
       "timing": "1"
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "Steps 8-10 may be replaced with a Cha Cha Chasse to side for Man and Lady danced in Open Opp. or Close Opp. Position.",
+     "kind": "replace",
+     "steps": [
+      8,
+      10
+     ],
+     "by": "a Cha Cha Chasse to side for Man and Lady danced in Open Opp. or Close Opp. Position",
+     "topic": "General Action/Couple Position"
+    }
+   ]
   },
   {
    "id": "chacha-42",
@@ -48072,7 +50015,27 @@
       "pos": "Open Same"
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "Lady may replace step 3 with a Forward Walk Turning to end in Open Opp. Position.",
+     "kind": "replace",
+     "steps": [
+      3,
+      3
+     ],
+     "by": "a Forward Walk Turning to end in Open Opp. Position",
+     "who": "lady",
+     "topic": "General Action/Couple Position"
+    },
+    {
+     "id": "n0s1",
+     "text": "Overturned Lock Ending may be used to replace the last three steps of any figure that usually ends with a Cha Cha Bwd Lock for the Lady and Fwd Lock for the Man in Open Opp.Position.",
+     "kind": "other",
+     "topic": "General Action/Couple Position"
+    }
+   ]
   },
   {
    "id": "chacha-43",
@@ -48212,7 +50175,21 @@
       "pos": "Open Same then Close Same"
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "Lady may replace step 3 with a Forward Walk Turning to end in Open Opp. Position.",
+     "kind": "replace",
+     "steps": [
+      3,
+      3
+     ],
+     "by": "a Forward Walk Turning to end in Open Opp. Position",
+     "who": "lady",
+     "topic": "General Action/Couple Position"
+    }
+   ]
   },
   {
    "id": "chacha-44",
@@ -48338,7 +50315,20 @@
       "pos": "Open Opp"
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "steps 3-5 may be replaced with an appropriate form of Cha Cha Chasse according to the following figure.",
+     "kind": "replace",
+     "steps": [
+      3,
+      5
+     ],
+     "by": "an appropriate form of Cha Cha Chasse according to the following figure",
+     "topic": "General Action"
+    }
+   ]
   },
   {
    "id": "chacha-45",
@@ -48466,7 +50456,15 @@
       "pos": "Close Opp"
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n1s0",
+     "text": "May end in Right Diagonal R Angle Position (Lady will turn ¼ to R on the Hip Twist Chasse)",
+     "kind": "other",
+     "topic": "Couple Position/ Quantity of Turn"
+    }
+   ]
   },
   {
    "id": "chacha-46",
@@ -48626,7 +50624,16 @@
       "pos": "Fan L Angle"
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n1s1",
+     "text": "Man turns ¼ to L on steps 3-5, Lady replaces step 5 with a side Walk.",
+     "kind": "other",
+     "who": "man",
+     "topic": "Couple Position/ Quantity of Turn/General Action"
+    }
+   ]
   },
   {
    "id": "chacha-47",
@@ -48852,6 +50859,26 @@
      }
     ]
    },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "Man may dance Lady’s steps and vice versa.",
+     "kind": "other",
+     "who": "man",
+     "topic": "General"
+    },
+    {
+     "id": "n1s0",
+     "text": "Steps 3-5 may be replaced by a Cha Cha Lock Fwd, steps 6-11 may be replaced by Time Step Chasses.",
+     "kind": "replace",
+     "steps": [
+      3,
+      5
+     ],
+     "by": "a Cha Cha Lock Fwd, steps 6-11 may be replaced by Time Step Chasses",
+     "topic": "General Action"
+    }
+   ],
    "aliases": {
     "en": [
      "Walks And Whisks"
@@ -48903,7 +50930,26 @@
      "finish": "none"
     }
    },
-   "videos": []
+   "videos": [],
+   "alternatives": [
+    {
+     "id": "n1s0",
+     "text": "When in R or L Side Same Pos. the following figures may be used.",
+     "kind": "other",
+     "topic": "General"
+    },
+    {
+     "id": "n2s0",
+     "text": "Steps 6-10 may be replaced by steps 6-10 of Close Hip Twist Spiral, ending in Fan L Angle Position",
+     "kind": "replace",
+     "steps": [
+      6,
+      10
+     ],
+     "by": "steps 6-10 of Close Hip Twist Spiral, ending in Fan L Angle Position",
+     "topic": "General"
+    }
+   ]
   },
   {
    "id": "rumba-1",
@@ -49084,6 +51130,15 @@
      }
     ]
    },
+   "alternatives": [
+    {
+     "id": "n1s0",
+     "text": "May be danced in Open Opposing position with appropriate hold",
+     "kind": "position",
+     "position": "Open Opposing position",
+     "topic": "Couple Position"
+    }
+   ],
    "aliases": {
     "en": [
      "Closed Basic",
@@ -50426,6 +52481,15 @@
      }
     ]
    },
+   "alternatives": [
+    {
+     "id": "n0s1",
+     "text": "Man may dance Lady’s steps and vice versa",
+     "kind": "other",
+     "who": "man",
+     "topic": "General"
+    }
+   ],
    "aliases": {
     "en": [
      "Cucarachas",
@@ -50650,7 +52714,115 @@
       "pos": "Fan L Angle"
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "oo-fwd",
+     "cs": "Konec v otevřeném protipostavení – pán krokem vpřed",
+     "en": "End in Open Opposing Position – man steps forward",
+     "noteCs": "Pán se na konci 2. kroku otočí o 1/4 vlevo a místo kroku stranou udělá Pn vpřed. Partnerka tančí jako obvykle.",
+     "noteEn": "At the end of step 2 the man turns 1/4 to L and replaces the side step with RF forward. The lady dances as usual.",
+     "who": "man",
+     "finish": "Open Opp",
+     "man": [
+      {
+       "set": 2,
+       "turn": "1/4 L",
+       "end": 0,
+       "pos": "L Side Opp then Open Opp"
+      },
+      {
+       "set": 3,
+       "desc": "RF fwd",
+       "align": "Facing LOD",
+       "face": 0,
+       "pos": "Open Opp"
+      }
+     ],
+     "lady": [
+      {
+       "set": 3,
+       "pos": "Open Opp"
+      }
+     ],
+     "kind": "exact"
+    },
+    {
+     "id": "oo-side",
+     "cs": "Konec v otevřeném protipostavení – oba stranou",
+     "en": "End in Open Opposing Position – both to side",
+     "noteCs": "Pán se na konci 2. kroku otočí o 1/4 vlevo a jde Pn stranou; partnerka místo kroku vzad udělá Ln stranou.",
+     "noteEn": "At the end of step 2 the man turns 1/4 to L and steps RF to side; the lady replaces her backward step with LF to side.",
+     "who": "both",
+     "finish": "Open Opp",
+     "man": [
+      {
+       "set": 2,
+       "turn": "1/4 L",
+       "end": 0,
+       "pos": "L Side Opp then Open Opp"
+      },
+      {
+       "set": 3,
+       "desc": "RF to side",
+       "align": "Facing LOD",
+       "face": 0,
+       "pos": "Open Opp"
+      }
+     ],
+     "lady": [
+      {
+       "set": 3,
+       "desc": "LF to side",
+       "pos": "Open Opp"
+      }
+     ],
+     "kind": "exact"
+    },
+    {
+     "id": "oo-last",
+     "cs": "Konec v otevřeném protipostavení – pán se otočí na posledním kroku",
+     "en": "End in Open Opposing Position – man turns on the last step",
+     "noteCs": "Pán jde Pn stranou a na tomto posledním kroku se otočí o 1/4 vlevo. Partnerka tančí jako obvykle.",
+     "noteEn": "The man steps RF to side and turns 1/4 to L on this last step. The lady dances as usual.",
+     "who": "man",
+     "finish": "Open Opp",
+     "man": [
+      {
+       "set": 3,
+       "turn": "1/4 L",
+       "align": "Facing LOD",
+       "end": 0,
+       "pos": "Fan L Angle then Open Opp"
+      }
+     ],
+     "lady": [
+      {
+       "set": 3,
+       "pos": "Open Opp"
+      }
+     ],
+     "kind": "exact"
+    },
+    {
+     "id": "lady-delayed",
+     "cs": "Partnerka: zpožděná chůze vpřed s otáčkou",
+     "en": "Lady: delayed forward walk turning",
+     "noteCs": "Partnerka může vějíř tančit se zpožděnou chůzí vpřed s otáčkou. Kroky a směrování zůstávají, mění se provedení.",
+     "noteEn": "The lady may dance the Fan with a delayed forward walk turning. Steps and alignment stay, the action changes.",
+     "who": "lady",
+     "kind": "exact"
+    },
+    {
+     "id": "lady-in-line",
+     "cs": "Partnerka: Ln v linii s pánem",
+     "en": "Lady: LF in line with the man",
+     "noteCs": "Partnerka může levou nohu položit v linii s pánem (místo mimo něj).",
+     "noteEn": "The lady may place her LF in line with the man.",
+     "who": "lady",
+     "kind": "exact"
+    }
+   ]
   },
   {
    "id": "rumba-13",
@@ -51786,7 +53958,16 @@
       "timing": "4.1"
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n0s1",
+     "text": "Man may dance Lady’s steps and vice versa.",
+     "kind": "other",
+     "who": "man",
+     "topic": "General"
+    }
+   ]
   },
   {
    "id": "rumba-19",
@@ -52484,7 +54665,33 @@
       "pos": "Ex Open Opp then R Diag Opp"
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n2s0",
+     "text": "Steps 1-2 for Man may be danced as a Cuban Rock Action.",
+     "kind": "replace",
+     "steps": [
+      1,
+      2
+     ],
+     "by": "a Cuban Rock Action",
+     "who": "man",
+     "topic": "General Action"
+    },
+    {
+     "id": "n2s1",
+     "text": "Man may dance step 9 as a Side Walk or a Walk in Place depending on the following figure.",
+     "kind": "replace",
+     "steps": [
+      9,
+      9
+     ],
+     "by": "a Side Walk or a Walk in Place depending on the following figure",
+     "who": "man",
+     "topic": "General Action"
+    }
+   ]
   },
   {
    "id": "rumba-23",
@@ -52662,6 +54869,20 @@
      }
     ]
    },
+   "alternatives": [
+    {
+     "id": "n2s0",
+     "text": "Steps 1-2 for Man may be danced as a Cuban Rock Action.",
+     "kind": "replace",
+     "steps": [
+      1,
+      2
+     ],
+     "by": "a Cuban Rock Action",
+     "who": "man",
+     "topic": "General Action"
+    }
+   ],
    "aliases": {
     "en": [
      "Allmiana Finished To Side"
@@ -52876,6 +55097,20 @@
      }
     ]
    },
+   "alternatives": [
+    {
+     "id": "n1s0",
+     "text": "Lady may dance a Spiral Turn on step 6 and then continue as chart.",
+     "kind": "replace",
+     "steps": [
+      6,
+      6
+     ],
+     "by": "Spiral Turn",
+     "who": "lady",
+     "topic": "General Action"
+    }
+   ],
    "aliases": {
     "en": [
      "Progressive Walks"
@@ -53091,7 +55326,21 @@
       "pos": "Fan L Angle"
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n1s0",
+     "text": "Lady may dance a Spiral Turn on step 6 and then continue as chart.",
+     "kind": "replace",
+     "steps": [
+      6,
+      6
+     ],
+     "by": "Spiral Turn",
+     "who": "lady",
+     "topic": "General Action"
+    }
+   ]
   },
   {
    "id": "rumba-26",
@@ -53358,7 +55607,40 @@
       "pos": "Open Opp"
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "Lady may dance a Spiral Cross or Spiral Turn at the end of the preceding step and follow as chart.",
+     "kind": "other",
+     "who": "lady",
+     "topic": "General Action"
+    },
+    {
+     "id": "n0s1",
+     "text": "Man may replace steps 1-3 with 3 bwd Walks, having turned 1/4 to R on the preceding Step.",
+     "kind": "replace",
+     "steps": [
+      1,
+      3
+     ],
+     "by": "3 bwd Walks, having turned 1/4 to R on the preceding Step",
+     "who": "man",
+     "topic": "General Action"
+    },
+    {
+     "id": "n0s2",
+     "text": "Both Man and Lady may dance steps 1-3 as 3 BWD walks after a back Swivel on the preceding step (¼ to R Man, ¼ to L Lady)",
+     "kind": "replace",
+     "steps": [
+      1,
+      3
+     ],
+     "by": "3 BWD walks after a back Swivel on the preceding step (¼ to R Man, ¼ to L Lady)",
+     "who": "lady",
+     "topic": "General Action"
+    }
+   ]
   },
   {
    "id": "rumba-27",
@@ -53528,7 +55810,31 @@
       "pos": "R Diag Opp"
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "Steps 1-3 may be danced as a Cucaracha to L.",
+     "kind": "replace",
+     "steps": [
+      1,
+      3
+     ],
+     "by": "a Cucaracha to L",
+     "topic": "General Action"
+    },
+    {
+     "id": "n0s1",
+     "text": "Step 6 may be danced as RF closed to LF, in that case steps 4-6 will be a Cucaracha to R",
+     "kind": "replace",
+     "steps": [
+      6,
+      6
+     ],
+     "by": "RF closed to LF, in that case steps 4-6 will be a Cucaracha to R",
+     "topic": "General Action"
+    }
+   ]
   },
   {
    "id": "rumba-28",
@@ -53577,6 +55883,20 @@
      "channel": "Passion4dancing",
      "length": "0:26",
      "query": "rumba Cuban Rocks"
+    }
+   ],
+   "alternatives": [
+    {
+     "id": "n1s0",
+     "text": "Cuban Rocks and Syncopated Cuban Rocks may be danced sideways in Close Opp. or Open Opp. Position, or fwd or bwd in Open Opp. Position.",
+     "kind": "other",
+     "topic": "Couple Position/ General Action"
+    },
+    {
+     "id": "n1s1",
+     "text": "Syncopated Cuban Rocks may also be danced following any figure that ends in Fan L Angle position. The Lady will dance a fwd and the Man a sideways Cuban rock action.",
+     "kind": "other",
+     "topic": "Couple Position/ General Action"
     }
    ]
   },
@@ -53793,6 +56113,21 @@
      }
     ]
    },
+   "alternatives": [
+    {
+     "id": "n1s0",
+     "text": "Steps 7-8 may be danced by one partner only, the other partner will dance a Syncopated Cuban Rock When dancing only steps 1-6 Man and Lady may both turn and the end of step 6 Man 1 full turn to R, Lady to L) to end in Open or Close Opp. Position with free foot closed w/o weight.",
+     "kind": "other",
+     "topic": "General Action/"
+    },
+    {
+     "id": "n1s1",
+     "text": "Man may also lead the Lady to turn a full turn to L under his LH on step 6.",
+     "kind": "other",
+     "who": "man",
+     "topic": "General Action/"
+    }
+   ],
    "aliases": {
     "en": [
      "Fencing"
@@ -54040,7 +56375,20 @@
       "pos": "Fan L Angle"
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "Steps 10 - 12 may be replaced by steps 4 -6 of Close Hip twist finished to side.",
+     "kind": "replace",
+     "steps": [
+      10,
+      12
+     ],
+     "by": "steps 4 -6 of Close Hip twist finished to side",
+     "topic": "General"
+    }
+   ]
   },
   {
    "id": "rumba-31",
@@ -54500,7 +56848,28 @@
      "foot": "LF",
      "dir": "side"
     }
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n1s0",
+     "text": "Man may lead the Lady to dance a Spiral Action turning to L on step 4 turning under the Man’s arm, or a Spiral Cross turning to R on step 3.",
+     "kind": "other",
+     "who": "man",
+     "topic": "General Action"
+    },
+    {
+     "id": "n1s1",
+     "text": "Man may dance step 9 as a Side Walk or a Walk in Place depending on the following figure.",
+     "kind": "replace",
+     "steps": [
+      9,
+      9
+     ],
+     "by": "a Side Walk or a Walk in Place depending on the following figure",
+     "who": "man",
+     "topic": "General Action"
+    }
+   ]
   },
   {
    "id": "rumba-33",
@@ -56007,7 +58376,21 @@
       "pos": "R Diag Opp"
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n0s1",
+     "text": "May end in Open Opposing Pos. NOTE - General Action: Steps 1-2 for Man may be danced as a Cuban Rock Action.",
+     "kind": "replace",
+     "steps": [
+      1,
+      2
+     ],
+     "by": "a Cuban Rock Action",
+     "who": "man",
+     "topic": "Couple position"
+    }
+   ]
   },
   {
    "id": "rumba-40",
@@ -56318,7 +58701,26 @@
       "pos": "R Side Same"
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n0s1",
+     "text": "Steps 7 - 12 may be repeated.",
+     "kind": "repeat",
+     "steps": [
+      7,
+      12
+     ],
+     "topic": "General"
+    },
+    {
+     "id": "n1s1",
+     "text": "Man may replace steps 4-6 of the Spiral with 3 Fwd walks.",
+     "kind": "other",
+     "who": "man",
+     "topic": "General Action/ Hold"
+    }
+   ]
   },
   {
    "id": "rumba-41",
@@ -56790,7 +59192,21 @@
       "pos": "Open Opp"
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "Alternative endings • Lady may dance a Fwd Walk on step 9, turning ½ to R (Swivel) at the end of step 9 , followed by a Fwd Walk Turning, Wt Transfer in Place and Fwd Walk Turning to end in Open Opp. Position w/o Hold • Lady may dance a Fwd Walk on step 9 followed by a Fwd Walk Turning ,Weight Transfer in Place and Fwd Walk to end in R Diag. Opp. Position w/o Hold or in Normal Hold",
+     "kind": "replace",
+     "steps": [
+      9,
+      9
+     ],
+     "by": "Fwd Walk",
+     "who": "lady",
+     "topic": "General Action / Couple Position"
+    }
+   ]
   },
   {
    "id": "rumba-43",
@@ -57567,7 +59983,28 @@
     ],
     "variants": {}
    },
-   "videos": []
+   "videos": [],
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "After any figure or part of figure that ends in Open Opp. Position a series of Fwd or Bwd walks may be danced for a maximum of 2 bars of music (6 walks).",
+     "kind": "other",
+     "topic": "General"
+    },
+    {
+     "id": "n0s2",
+     "text": "The walks may curve to R or L.",
+     "kind": "other",
+     "topic": "General"
+    },
+    {
+     "id": "n0s3",
+     "text": "Man and Lady may dance a series of Fwd Walks for a maximum of 2 bars (6 walks) in R Side or L Side Same Position (e.g. following a Hand to Hand).",
+     "kind": "other",
+     "who": "man",
+     "topic": "General"
+    }
+   ]
   },
   {
    "id": "paso-1",
@@ -57903,7 +60340,15 @@
       "pos": "Close Opp"
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "Only 2 steps may be danced.",
+     "kind": "other",
+     "topic": "General"
+    }
+   ]
   },
   {
    "id": "paso-3",
@@ -58282,7 +60727,15 @@
       "pos": "Close Opp"
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n2s0",
+     "text": "Appel may be used on step 1",
+     "kind": "other",
+     "topic": "general Action"
+    }
+   ]
   },
   {
    "id": "paso-6",
@@ -58412,6 +60865,19 @@
      }
     ]
    },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "Step 1 may be replaced by a step taken Fwd (DEPLACEMENT)",
+     "kind": "replace",
+     "steps": [
+      1,
+      1
+     ],
+     "by": "a step taken Fwd (DEPLACEMENT)",
+     "topic": "General"
+    }
+   ],
    "aliases": {
     "en": [
      "Appel"
@@ -58601,6 +61067,14 @@
      }
     ]
    },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "Position held may be used instead of Sur Place during Man’s steps 3-8.",
+     "kind": "other",
+     "topic": "General Action"
+    }
+   ],
    "aliases": {
     "en": [
      "Cape"
@@ -58775,7 +61249,19 @@
       "pos": "Close Opp"
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "Steps 5-6 may be repeated",
+     "kind": "repeat",
+     "steps": [
+      5,
+      6
+     ],
+     "topic": "General"
+    }
+   ]
   },
   {
    "id": "paso-9",
@@ -59437,7 +61923,15 @@
       "pos": "Close Opp"
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "Steps only may be used.",
+     "kind": "other",
+     "topic": "General"
+    }
+   ]
   },
   {
    "id": "paso-13",
@@ -59752,7 +62246,15 @@
       "pos": "Close Opp"
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n1s0",
+     "text": "Position held may be used instead of Sur Place during Man’s steps 8- 16",
+     "kind": "other",
+     "topic": "General Action"
+    }
+   ]
   },
   {
    "id": "paso-14",
@@ -60140,7 +62642,19 @@
       "pos": "Close Opp"
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n0s1",
+     "text": "Steps 3-4 may be repeated or taken out.",
+     "kind": "repeat",
+     "steps": [
+      3,
+      4
+     ],
+     "topic": "General"
+    }
+   ]
   },
   {
    "id": "paso-16",
@@ -60595,6 +63109,14 @@
      }
     ]
    },
+   "alternatives": [
+    {
+     "id": "n1s0",
+     "text": "Instead of the Appel on step 1 RF can be slipped bwd (Man) or LF fwd (Lady) and up to ½ of turn to L may be made on the step (SLIP APPEL)",
+     "kind": "other",
+     "topic": "General Action"
+    }
+   ],
    "aliases": {
     "en": [
      "Fallaway Reverse Turn"
@@ -60903,7 +63425,15 @@
       "pos": "R Side Same"
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "Steps or only may be danced. +",
+     "kind": "other",
+     "topic": "General"
+    }
+   ]
   },
   {
    "id": "paso-20",
@@ -61404,7 +63934,19 @@
     ],
     "preceding": [],
     "following": []
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "Steps 7-8 may be omitted, or repeated",
+     "kind": "omit",
+     "steps": [
+      7,
+      8
+     ],
+     "topic": "General"
+    }
+   ]
   },
   {
    "id": "paso-22",
@@ -62120,7 +64662,27 @@
       "turn": "1/8 R"
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "Steps 1-3 may be be used as an alternative entry to PP.",
+     "kind": "other",
+     "topic": "General"
+    },
+    {
+     "id": "n0s1",
+     "text": "Chasse Cape started from step 4 may be preceded by steps 1-7 of Promenade.",
+     "kind": "other",
+     "topic": "General"
+    },
+    {
+     "id": "n0s2",
+     "text": "Alternative endings may be used after step 23 which may be held for one or three beats.",
+     "kind": "other",
+     "topic": "General"
+    }
+   ]
   },
   {
    "id": "paso-25",
@@ -62248,7 +64810,15 @@
       "pos": "Close Opp"
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "Step (Man and Lady) may be replaced by steps of Sur Place - alternative timing 12&34",
+     "kind": "timing",
+     "topic": "General Action / Timing"
+    }
+   ]
   },
   {
    "id": "paso-26",
@@ -62525,7 +65095,20 @@
       "pos": "Close Opp"
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "Step 1 may be danced as a Weight Transfer in place.",
+     "kind": "replace",
+     "steps": [
+      1,
+      1
+     ],
+     "by": "a Weight Transfer in place",
+     "topic": "General Action"
+    }
+   ]
   },
   {
    "id": "paso-28",
@@ -62735,7 +65318,21 @@
       "pos": "Close Prom"
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n1s0",
+     "text": "Lady may replace steps 4-5 with Continuous Spins Action, adding two more steps- timing 1234&5&678",
+     "kind": "replace",
+     "steps": [
+      4,
+      5
+     ],
+     "by": "Continuous Spins Action, adding two more steps- timing 1234&5&678",
+     "who": "lady",
+     "topic": "General Action / Timing"
+    }
+   ]
   },
   {
    "id": "paso-29",
@@ -62931,7 +65528,21 @@
       "pos": "Close Prom"
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n1s0",
+     "text": "Lady may replace steps 8 -9 with Continuous Spins Action, adding two more steps- timing 12345678&1&234",
+     "kind": "replace",
+     "steps": [
+      8,
+      9
+     ],
+     "by": "Continuous Spins Action, adding two more steps- timing 12345678&1&234",
+     "who": "lady",
+     "topic": "General Action / Timing"
+    }
+   ]
   },
   {
    "id": "paso-30",
@@ -63382,7 +65993,32 @@
       "end": 135
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "Lady’s steps 5-6 may be replaced by 4 steps of basic movement (5678).",
+     "kind": "replace",
+     "steps": [
+      5,
+      6
+     ],
+     "by": "4 steps of basic movement (5678)",
+     "who": "lady",
+     "topic": "General"
+    },
+    {
+     "id": "n0s1",
+     "text": "Steps 11-14 may be replaced by chasse to R.",
+     "kind": "replace",
+     "steps": [
+      11,
+      14
+     ],
+     "by": "chasse to R",
+     "topic": "General"
+    }
+   ]
   },
   {
    "id": "paso-32",
@@ -63724,7 +66360,16 @@
       "pos": "Close Opp"
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n1s0",
+     "text": "Man may use Sur Place during Steps 9 - 18",
+     "kind": "other",
+     "who": "man",
+     "topic": "General Action"
+    }
+   ]
   },
   {
    "id": "paso-33",
@@ -63954,7 +66599,16 @@
       "turn": ""
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n1s0",
+     "text": "Man may use Sur Place during Steps 9 - 26.",
+     "kind": "other",
+     "who": "man",
+     "topic": "General Action"
+    }
+   ]
   },
   {
    "id": "paso-34",
@@ -64065,6 +66719,19 @@
      }
     ]
    },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "Step 1 may be taken in L Diag. Opp. Position OP.",
+     "kind": "replace",
+     "steps": [
+      1,
+      1
+     ],
+     "by": "in L Diag. Opp. Position OP",
+     "topic": "Couple Position"
+    }
+   ],
    "aliases": {
     "en": [
      "3 Syncopated Chasse"
@@ -64508,6 +67175,14 @@
     "preceding": [],
     "following": []
    },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "Coup de Pique changing from RF to LF may be followed by Coup de Pique changing from LF to RF (COUP DE PIQUE COUPLET)",
+     "kind": "other",
+     "topic": "General"
+    }
+   ],
    "aliases": {
     "en": [
      "Changing From Rf To Lf",
@@ -64968,6 +67643,14 @@
      }
     ]
    },
+   "alternatives": [
+    {
+     "id": "n1s0",
+     "text": "Couple position/Lead-Hold-Shaping: This figure may be danced in Open Opp with LH to RH Hold, double hold or without hold.",
+     "kind": "position",
+     "position": "Open Opp"
+    }
+   ],
    "aliases": {
     "en": [
      "Fallaway Rock"
@@ -65380,6 +68063,24 @@
      }
     ]
    },
+   "alternatives": [
+    {
+     "id": "n1s2",
+     "text": "The hold may also be released at the end of step 2 and regained on step 6.",
+     "kind": "other"
+    },
+    {
+     "id": "n2s0",
+     "text": "Steps 6-8 may be replaced by a Jive Ronde Chasse (both Man and Lady) to end in L Side Same Pos as a precede to Simple Spin.",
+     "kind": "replace",
+     "steps": [
+      6,
+      8
+     ],
+     "by": "a Jive Ronde Chasse (both Man and Lady) to end in L Side Same Pos as a precede to Simple Spin",
+     "topic": "Couple position/ General Action"
+    }
+   ],
    "aliases": {
     "en": [
      "Change of Places Left to Right"
@@ -65675,7 +68376,15 @@
       "pos": "Close L Angle then Open Opp"
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n1s1",
+     "text": "Lady may turn under Man’s LH or RH on step 5.",
+     "kind": "other",
+     "who": "lady"
+    }
+   ]
   },
   {
    "id": "jive-6",
@@ -66361,7 +69070,15 @@
      "foot": "LF",
      "dir": "side"
     }
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "More or less turn may be made.",
+     "kind": "other",
+     "topic": "General"
+    }
+   ]
   },
   {
    "id": "jive-9",
@@ -66560,6 +69277,14 @@
      }
     ]
    },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "Steps 3-5 or 3-8 may be repeated.",
+     "kind": "other",
+     "topic": "General"
+    }
+   ],
    "aliases": {
     "en": [
      "Promenade Walks"
@@ -66732,6 +69457,20 @@
      }
     ]
    },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "Steps 3-4 or 3-6 may be repeated.",
+     "kind": "other",
+     "topic": "General"
+    },
+    {
+     "id": "n1s0",
+     "text": "It may turn up to ¼ to L",
+     "kind": "other",
+     "topic": "Quantity of turn"
+    }
+   ],
    "aliases": {
     "en": [
      "Promenade Walks"
@@ -67010,6 +69749,20 @@
      }
     ]
    },
+   "alternatives": [
+    {
+     "id": "n2s0",
+     "text": "Man may replace the Rock Action (steps 1-2) with a Side Rock",
+     "kind": "replace",
+     "steps": [
+      1,
+      2
+     ],
+     "by": "a Side Rock",
+     "who": "man",
+     "topic": "General Action"
+    }
+   ],
    "aliases": {
     "en": [
      "Throwaway"
@@ -67708,6 +70461,18 @@
      "dir": "side"
     }
    },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "Steps 1-2 may be repeated.",
+     "kind": "repeat",
+     "steps": [
+      1,
+      2
+     ],
+     "topic": "General"
+    }
+   ],
    "aliases": {
     "en": [
      "Whip Throwaway"
@@ -67976,7 +70741,31 @@
       "turn": ""
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n1s0",
+     "text": "Steps 6-7 may be repeated",
+     "kind": "repeat",
+     "steps": [
+      6,
+      7
+     ],
+     "topic": "General"
+    },
+    {
+     "id": "n2s0",
+     "text": "Man may replace the Rock Action (steps 1-2) with a Side Rock",
+     "kind": "replace",
+     "steps": [
+      1,
+      2
+     ],
+     "by": "a Side Rock",
+     "who": "man",
+     "topic": "General Action"
+    }
+   ]
   },
   {
    "id": "jive-17",
@@ -68134,7 +70923,20 @@
       "pos": "Close Opp"
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "May be followed by a Jive Chasse to side as a choreographic link.",
+     "kind": "other",
+     "topic": "General"
+    },
+    {
+     "id": "n1s0",
+     "text": "Couple position/Lead-Hold-Shaping: Steps 1-2 may also be danced in Normal Hold in Close Opp. Pos, in which case Man will dance a Checked Fwd Step on step 1.",
+     "kind": "other"
+    }
+   ]
   },
   {
    "id": "jive-18",
@@ -68335,7 +71137,33 @@
       "pos": "Open Same then Open Opp"
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n2s0",
+     "text": "Lady may replace steps 3-5 with a Running Chasse or Chasse Fwd.",
+     "kind": "replace",
+     "steps": [
+      3,
+      5
+     ],
+     "by": "a Running Chasse or Chasse Fwd",
+     "who": "lady",
+     "topic": "General Action"
+    },
+    {
+     "id": "n2s1",
+     "text": "Man may replace the Rock Action (steps 1-2) with a Side Rock",
+     "kind": "replace",
+     "steps": [
+      1,
+      2
+     ],
+     "by": "a Side Rock",
+     "who": "man",
+     "topic": "General Action"
+    }
+   ]
   },
   {
    "id": "jive-19",
@@ -68620,7 +71448,14 @@
       "turn": ""
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n1s0",
+     "text": "Lead-Hold-Shaping: Man may release hold on step 2.",
+     "kind": "other"
+    }
+   ]
   },
   {
    "id": "jive-20",
@@ -68870,7 +71705,20 @@
       "turn": ""
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n0s1",
+     "text": "Steps 3-4 may be replaced by a Jive Chasse.",
+     "kind": "replace",
+     "steps": [
+      3,
+      4
+     ],
+     "by": "a Jive Chasse",
+     "topic": "General"
+    }
+   ]
   },
   {
    "id": "jive-21",
@@ -69116,7 +71964,21 @@
       "pos": "Open Opp"
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n1s0",
+     "text": "Lady may dance a Running Chasse action on steps 3-5.",
+     "kind": "replace",
+     "steps": [
+      3,
+      5
+     ],
+     "by": "Running Chasse action",
+     "who": "lady",
+     "topic": "General Action"
+    }
+   ]
   },
   {
    "id": "jive-22",
@@ -69378,7 +72240,17 @@
       "turn": ""
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n1s0",
+     "text": "Flicks may be replaced by a Kicking action.",
+     "kind": "swap",
+     "what": "Flicks",
+     "by": "Kicking action",
+     "topic": "General Action"
+    }
+   ]
   },
   {
    "id": "jive-23",
@@ -69834,7 +72706,31 @@
       "turn": ""
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "Steps 1-2 may be repeated",
+     "kind": "repeat",
+     "steps": [
+      1,
+      2
+     ],
+     "topic": "General"
+    },
+    {
+     "id": "n1s0",
+     "text": "This figure may be danced QQQQ or SSQQQQ repeating steps 3 and 4.",
+     "kind": "other",
+     "topic": "Timing"
+    },
+    {
+     "id": "n1s1",
+     "text": "Any other suitable combination of Q and S may be used.",
+     "kind": "other",
+     "topic": "Timing"
+    }
+   ]
   },
   {
    "id": "jive-25",
@@ -70115,7 +73011,16 @@
       "turn": ""
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n1s0",
+     "text": "The Lady may be lead to increase the Quantity of Turn over steps 7-10 by 1 whole turn, replacing a Jive chased with Volta Cross Chasse (Double Spin)",
+     "kind": "other",
+     "who": "lady",
+     "topic": "General Action/Quantity of turn"
+    }
+   ]
   },
   {
    "id": "jive-26",
@@ -70227,7 +73132,15 @@
       "id": "jive-19"
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n0s1",
+     "text": "When starting in L Side Same position Man may dance Lady’s steps starting with RF and turning to L.",
+     "kind": "other",
+     "topic": "Couple Position/ General Action"
+    }
+   ]
   },
   {
    "id": "jive-27",
@@ -70777,7 +73690,31 @@
       "end": 45
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "Steps 3-8 may be repeated",
+     "kind": "repeat",
+     "steps": [
+      3,
+      8
+     ],
+     "topic": "General"
+    },
+    {
+     "id": "n1s0",
+     "text": "Last step may be followed by a Break Action timed (1)a2",
+     "kind": "other",
+     "topic": "General Action/ Timing"
+    },
+    {
+     "id": "n2s0",
+     "text": "The following alternative timing may be used: QQ QQQ QQQ.",
+     "kind": "timing",
+     "topic": "Timing"
+    }
+   ]
   },
   {
    "id": "jive-30",
@@ -70967,7 +73904,20 @@
       "end": 135
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n1s0",
+     "text": "Steps 1-3 may be replaced by Rock Action or/and by 2 steps taken slightly Fwd.",
+     "kind": "replace",
+     "steps": [
+      1,
+      3
+     ],
+     "by": "Rock Action or/and by 2 steps taken slightly Fwd",
+     "topic": "General Action"
+    }
+   ]
   },
   {
    "id": "jive-31",
@@ -71187,7 +74137,21 @@
       "pos": "L Side Same then Open Opp"
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "Man and lady may dance a Ronde Chasse on Steps 6-8.",
+     "kind": "replace",
+     "steps": [
+      6,
+      8
+     ],
+     "by": "Ronde Chasse",
+     "who": "lady",
+     "topic": "General Action"
+    }
+   ]
   },
   {
    "id": "jive-32",
@@ -71905,7 +74869,37 @@
       "pos": "Open Opp"
      }
     ]
-   }
+   },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "Steps 9-14 may be repeated.",
+     "kind": "repeat",
+     "steps": [
+      9,
+      14
+     ],
+     "topic": "General"
+    },
+    {
+     "id": "n0s2",
+     "text": "Steps 15-20 may be replaced by steps 3-8 of Overturned Fallaway Throwaway.",
+     "kind": "replace",
+     "steps": [
+      15,
+      20
+     ],
+     "by": "steps 3-8 of Overturned Fallaway Throwaway",
+     "topic": "General"
+    },
+    {
+     "id": "n1s0",
+     "text": "Lady may substitute steps 9-14 with a series of Flick Ball Change steps with the RF.",
+     "kind": "other",
+     "who": "lady",
+     "topic": "General Action"
+    }
+   ]
   },
   {
    "id": "jive-34",
@@ -72252,6 +75246,18 @@
      }
     ]
    },
+   "alternatives": [
+    {
+     "id": "n0s0",
+     "text": "Steps 9-14 may be repeated.",
+     "kind": "repeat",
+     "steps": [
+      9,
+      14
+     ],
+     "topic": "General"
+    }
+   ],
    "aliases": {
     "en": [
      "Istd",

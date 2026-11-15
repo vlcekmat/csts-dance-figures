@@ -53,7 +53,9 @@ export function FigurePlayer({ fig }: { fig: Figure }) {
       startPos: fig.syllabus?.start ?? man[0]?.pos ?? "",
     };
   }, [fig, dance]);
-  return <StepPlayer track={track} dance={dance} resetKey={fig.id} />;
+  // A changed chart (an alternative of the figure) starts the player again.
+  const key = `${fig.id}|${track.man.map((s) => `${s.desc}${s.end ?? ""}`).join(",")}|${track.lady.map((s) => s.desc).join(",")}`;
+  return <StepPlayer track={track} dance={dance} resetKey={key} />;
 }
 
 /** Step-by-step / smooth playback of a track. `room` = the track is placed in a room (routine). */

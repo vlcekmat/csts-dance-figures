@@ -40,6 +40,7 @@ Paso, Jive. PrincipySTT/LAT contain principles, no figure charts. Page image `p-
 - Public vs local: public has `"source": "checked"` and no wording; local has `"source": "wdsf"`,
   `bookNotes`, `alignText`. Holds from book only when text says may/or/any/alternative.
 - Videos merged from `data/videos.json`.
+- Alternatives: `extract_alternatives` (syllabus notes → selectable options, skipping parts/start/finish/hold/turn/alt-timing ones that have own controls) + `data/alternatives.json` (hand-checked step patches, committed, own wording only).
 
 ## Videos
 - `scrape_videos.py` (YouTube results page `ytInitialData`, no API key; resumable).

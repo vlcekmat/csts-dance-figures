@@ -317,7 +317,8 @@ export function localizeTurn(text: string, lang: Lang): string {
 /** Czech rendering of a chart step description (feet, directions, positions, holds). */
 export function localizeStep(text: string, lang: Lang): string {
   if (lang !== "cs" || !text) return text;
-  let out = localizePositions(text, lang);
+  // "in front of" must be read before the positions turn "in" into "v".
+  let out = localizePositions(text.replace(/\b(crosse[sd]?|cross) in front of\b/gi, "kříží před"), lang);
   for (const [re, rep] of STEP_CS) out = out.replace(re, rep);
   return out;
 }

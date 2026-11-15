@@ -1,0 +1,145 @@
+{
+  "_comment": "Curated alternatives with exact steps (own wording, facts only: foot, direction, turn, alignment, couple position). Each entry may supersede automatic alternatives from the syllabus notes whose sentence contains one of `matches`. Patches: {\"set\": n, ...fields} changes chart step n; {\"replace\": [a, b], \"steps\": [...]} replaces steps a..b. Faces in degrees in the figure's frame (0 = LOD, + = left).",
+  "rumba-12": [
+    {
+      "id": "oo-fwd",
+      "cs": "Konec v otevřeném protipostavení – pán krokem vpřed",
+      "en": "End in Open Opposing Position – man steps forward",
+      "noteCs": "Pán se na konci 2. kroku otočí o 1/4 vlevo a místo kroku stranou udělá Pn vpřed. Partnerka tančí jako obvykle.",
+      "noteEn": "At the end of step 2 the man turns 1/4 to L and replaces the side step with RF forward. The lady dances as usual.",
+      "who": "man",
+      "finish": "Open Opp",
+      "matches": ["May end in Open Opp"],
+      "man": [
+        { "set": 2, "turn": "1/4 L", "end": 0, "pos": "L Side Opp then Open Opp" },
+        { "set": 3, "desc": "RF fwd", "align": "Facing LOD", "face": 0, "pos": "Open Opp" }
+      ],
+      "lady": [{ "set": 3, "pos": "Open Opp" }]
+    },
+    {
+      "id": "oo-side",
+      "cs": "Konec v otevřeném protipostavení – oba stranou",
+      "en": "End in Open Opposing Position – both to side",
+      "noteCs": "Pán se na konci 2. kroku otočí o 1/4 vlevo a jde Pn stranou; partnerka místo kroku vzad udělá Ln stranou.",
+      "noteEn": "At the end of step 2 the man turns 1/4 to L and steps RF to side; the lady replaces her backward step with LF to side.",
+      "who": "both",
+      "finish": "Open Opp",
+      "man": [
+        { "set": 2, "turn": "1/4 L", "end": 0, "pos": "L Side Opp then Open Opp" },
+        { "set": 3, "desc": "RF to side", "align": "Facing LOD", "face": 0, "pos": "Open Opp" }
+      ],
+      "lady": [{ "set": 3, "desc": "LF to side", "pos": "Open Opp" }]
+    },
+    {
+      "id": "oo-last",
+      "cs": "Konec v otevřeném protipostavení – pán se otočí na posledním kroku",
+      "en": "End in Open Opposing Position – man turns on the last step",
+      "noteCs": "Pán jde Pn stranou a na tomto posledním kroku se otočí o 1/4 vlevo. Partnerka tančí jako obvykle.",
+      "noteEn": "The man steps RF to side and turns 1/4 to L on this last step. The lady dances as usual.",
+      "who": "man",
+      "finish": "Open Opp",
+      "man": [{ "set": 3, "turn": "1/4 L", "align": "Facing LOD", "end": 0, "pos": "Fan L Angle then Open Opp" }],
+      "lady": [{ "set": 3, "pos": "Open Opp" }]
+    },
+    {
+      "id": "lady-delayed",
+      "cs": "Partnerka: zpožděná chůze vpřed s otáčkou",
+      "en": "Lady: delayed forward walk turning",
+      "noteCs": "Partnerka může vějíř tančit se zpožděnou chůzí vpřed s otáčkou. Kroky a směrování zůstávají, mění se provedení.",
+      "noteEn": "The lady may dance the Fan with a delayed forward walk turning. Steps and alignment stay, the action changes.",
+      "who": "lady"
+    },
+    {
+      "id": "lady-in-line",
+      "cs": "Partnerka: Ln v linii s pánem",
+      "en": "Lady: LF in line with the man",
+      "noteCs": "Partnerka může levou nohu položit v linii s pánem (místo mimo něj).",
+      "noteEn": "The lady may place her LF in line with the man.",
+      "who": "lady"
+    }
+  ],
+  "chacha-16": [
+    {
+      "id": "oo-lock",
+      "cs": "Konec v otevřeném protipostavení – cha-cha lock vpřed",
+      "en": "End in Open Opposing Position – Cha Cha Lock forward",
+      "noteCs": "Pán se na konci 2. kroku otočí o 1/4 vlevo a tančí lock vpřed; partnerka tančí jako obvykle (lock vzad).",
+      "noteEn": "At the end of step 2 the man turns 1/4 to L and dances a forward lock; the lady dances as usual (backward lock).",
+      "who": "man",
+      "finish": "Open Opp",
+      "matches": ["May end in Open Opp. Pos. Man turns"],
+      "man": [
+        { "set": 2, "turn": "1/4 L", "align": "Facing LOD", "end": 0, "pos": "L Side R Angle then Open Opp" },
+        { "replace": [3, 5], "steps": [
+          { "desc": "RF fwd", "align": "Facing LOD", "face": 0, "turn": "", "timing": "4", "pos": "Open Opp" },
+          { "desc": "LF crosses behind RF", "align": "", "face": 0, "turn": "", "timing": "&", "pos": "Open Opp" },
+          { "desc": "RF fwd", "align": "", "face": 0, "turn": "", "timing": "1", "pos": "Open Opp" }
+        ] }
+      ],
+      "lady": [
+        { "set": 3, "pos": "Open Opp" }, { "set": 4, "pos": "Open Opp" }, { "set": 5, "pos": "Open Opp" }
+      ]
+    },
+    {
+      "id": "oo-3locks",
+      "cs": "Konec v otevřeném protipostavení – tři cha-cha locky",
+      "en": "End in Open Opposing Position – three Cha Cha Locks",
+      "noteCs": "Pán se na konci 2. kroku otočí o 1/4 vlevo a tančí tři locky vpřed, partnerka tři locky vzad. Figura se prodlouží o takt.",
+      "noteEn": "At the end of step 2 the man turns 1/4 to L and dances three forward locks, the lady three backward locks. The figure gets one bar longer.",
+      "who": "both",
+      "finish": "Open Opp",
+      "timing": "2 3 4&1 2&3 4&1",
+      "man": [
+        { "set": 2, "turn": "1/4 L", "align": "Facing LOD", "end": 0, "pos": "L Side R Angle then Open Opp" },
+        { "replace": [3, 5], "steps": [
+          { "desc": "RF fwd", "align": "Facing LOD", "face": 0, "turn": "", "timing": "4", "pos": "Open Opp" },
+          { "desc": "LF crosses behind RF", "align": "", "face": 0, "turn": "", "timing": "&", "pos": "Open Opp" },
+          { "desc": "RF fwd", "align": "", "face": 0, "turn": "", "timing": "1", "pos": "Open Opp" },
+          { "desc": "LF fwd", "align": "", "face": 0, "turn": "", "timing": "2", "pos": "Open Opp" },
+          { "desc": "RF crosses behind LF", "align": "", "face": 0, "turn": "", "timing": "&", "pos": "Open Opp" },
+          { "desc": "LF fwd", "align": "", "face": 0, "turn": "", "timing": "3", "pos": "Open Opp" },
+          { "desc": "RF fwd", "align": "", "face": 0, "turn": "", "timing": "4", "pos": "Open Opp" },
+          { "desc": "LF crosses behind RF", "align": "", "face": 0, "turn": "", "timing": "&", "pos": "Open Opp" },
+          { "desc": "RF fwd", "align": "", "face": 0, "turn": "", "timing": "1", "pos": "Open Opp" }
+        ] }
+      ],
+      "lady": [
+        { "replace": [3, 5], "steps": [
+          { "desc": "LF bwd", "align": "Backing LOD", "face": 135, "end": -180, "turn": "1/8 L", "timing": "4", "pos": "Open Opp" },
+          { "desc": "RF crosses in front of LF", "align": "", "face": -180, "turn": "", "timing": "&", "pos": "Open Opp" },
+          { "desc": "LF bwd", "align": "", "face": -180, "turn": "", "timing": "1", "pos": "Open Opp" },
+          { "desc": "RF bwd", "align": "", "face": -180, "turn": "", "timing": "2", "pos": "Open Opp" },
+          { "desc": "LF crosses in front of RF", "align": "", "face": -180, "turn": "", "timing": "&", "pos": "Open Opp" },
+          { "desc": "RF bwd", "align": "", "face": -180, "turn": "", "timing": "3", "pos": "Open Opp" },
+          { "desc": "LF bwd", "align": "", "face": -180, "turn": "", "timing": "4", "pos": "Open Opp" },
+          { "desc": "RF crosses in front of LF", "align": "", "face": -180, "turn": "", "timing": "&", "pos": "Open Opp" },
+          { "desc": "LF bwd", "align": "", "face": -180, "turn": "", "timing": "1", "pos": "Open Opp" }
+        ] }
+      ]
+    },
+    {
+      "id": "oo-chasse",
+      "cs": "Konec v otevřeném protipostavení – cha-cha šasé stranou",
+      "en": "End in Open Opposing Position – Cha Cha Chasse to side",
+      "noteCs": "Pán se na konci 2. kroku otočí o 1/4 vlevo a tančí šasé stranou; partnerka místo locku vzad také šasé stranou.",
+      "noteEn": "At the end of step 2 the man turns 1/4 to L and dances a chasse to side; the lady replaces the backward lock with a chasse to side too.",
+      "who": "both",
+      "finish": "Open Opp",
+      "man": [
+        { "set": 2, "turn": "1/4 L", "align": "Facing LOD", "end": 0, "pos": "L Side R Angle then Open Opp" },
+        { "replace": [3, 5], "steps": [
+          { "desc": "RF to side", "align": "Facing LOD", "face": 0, "turn": "", "timing": "4", "pos": "Open Opp" },
+          { "desc": "LF closes to RF", "align": "", "face": 0, "turn": "", "timing": "&", "pos": "Open Opp" },
+          { "desc": "RF to side", "align": "", "face": 0, "turn": "", "timing": "1", "pos": "Open Opp" }
+        ] }
+      ],
+      "lady": [
+        { "replace": [3, 5], "steps": [
+          { "desc": "LF to side", "align": "Backing LOD", "face": 135, "end": -180, "turn": "1/8 L", "timing": "4", "pos": "Open Opp" },
+          { "desc": "RF closes to LF", "align": "", "face": -180, "turn": "", "timing": "&", "pos": "Open Opp" },
+          { "desc": "LF to side", "align": "", "face": -180, "turn": "", "timing": "1", "pos": "Open Opp" }
+        ] }
+      ]
+    }
+  ]
+}

@@ -219,6 +219,136 @@ def extract_variants(notes):
     return out
 
 
+# --- Alternatives (other ways of dancing the figure) ---------------------------
+# Every sentence of the syllabus notes that offers another way of dancing the
+# figure becomes a selectable alternative. Parts, start/finish positions and
+# holds already have their own controls; rules ("is always followed by") are no
+# options. Recognised patterns get structured fields (the app builds the labels);
+# exact step changes come only from the hand-checked data/alternatives.json.
+
+STEPS = r"steps?\s*\(?(\d+)(?:\s*[-–]\s*(\d+))?\)?"
+WHO = r"(?:(?:the\s+)?(Man|Lady)(?:'s|’s)?\s+)?"
+FOR_WHO = r"(?:\s*for\s+(?:the\s+)?(Man|Lady))?"
+ALT_PATTERNS = [
+    # "Steps 3-5 may be replaced by a Cha Cha Lockstep fwd", "Man's step 6 may be danced as a Bwd Walk"
+    ("replace", re.compile(WHO + STEPS + FOR_WHO + r"\s+(?:may|can)\s+(?:also\s+)?be\s+(?:replaced\s+(?:by|with)|danced\s+as|taken)\s+(.+?)\s*\.?$", re.I), "steps-by"),
+    # "Man may replace steps 1-3 with 3 bwd Walks", "Lady may replace step 3 with a Forward Walk Turning"
+    ("replace", re.compile(r"\b(Man|Lady)\s+(?:may|can)\s+replace\s+(?:the\s+[^(]*\()?" + STEPS + r"\)?\s+(?:with|by)\s+(.+?)\s*\.?$", re.I), "who-steps-by"),
+    # "Man may dance step 9 as a Side Walk"
+    ("replace", re.compile(r"\b(Man|Lady)\s+(?:may|can)\s+dance\s+" + STEPS + r"\s+as\s+(.+?)\s*\.?$", re.I), "who-steps-by"),
+    # "Lady may dance a Spiral Turn on step 6"
+    ("replace", re.compile(r"\b(Man|Lady)\s+(?:may|can)\s+dance\s+(?:an?\s+)?(.+?)\s+on\s+" + STEPS + r"\b", re.I), "who-by-steps"),
+    # "Closed Finish may be replaced with Open Finish", "Ronde Chasse may be replaced by Slip Close Chasse"
+    ("swap", re.compile(r"^(?:the\s+)?([A-Z][\w’' -]{2,50}?)\s+(?:may|can)\s+(?:also\s+)?be\s+replaced\s+(?:by|with)\s+(?:an?\s+)?(.+?)\s*\.?$", re.I), "what-by"),
+    ("omit", re.compile(STEPS + r"\s*(?:may|can)\s+be\s+omitted", re.I), "steps"),
+    ("repeat", re.compile(STEPS + r"\s*(?:may|can)\s+be\s+repeated", re.I), "steps"),
+]
+DANCED_IN_RE = re.compile(r"\b(?:may|can)\s+(?:also\s+)?be\s+danced\s+in\s+(?:an?\s+|the\s+)?([A-Z][^.,;(]*?)(?:\s+(?:with|or)\b[^.]*)?\s*\.?$", re.I)
+ABBREV = "".join(rf"(?<!\b{a}\.)" for a in ("Pos", "Opp", "Diag", "Prom", "fwd", "bwd", "Ex", "approx", "No"))
+
+
+def alt_sentences(text):
+    """Sentences of a note; abbreviations like "Opp. Pos." don't end a sentence."""
+    text = re.sub(r"\)\s+(?=(?:The figure|Man will|Lady will|It may)\b)", "). ", text)
+    return [x.strip() for x in re.split(r"(?<=[.!?])" + ABBREV + r"\s+(?=[A-Z])", text) if x.strip()]
+
+
+def extract_alternatives(notes, has_turn_range, alt_timings):
+    out = []
+    for ni, note in enumerate(notes):
+        for si, s in enumerate(alt_sentences(note["text"])):
+            low = s.lower()
+            # "Man will replace …" / "In this case …" continue the previous option.
+            if out and out[-1]["id"].startswith(f"n{ni}s") and re.match(r"\s*(?:the\s+)?(?:man|lady)\s+will\b|\s*in\s+(?:this|that)\s+case\b", low):
+                out[-1]["text"] += " " + s
+                continue
+            if not re.search(r"\b(may|can|alternativ\w*|replace\w*|instead)\b", low):
+                continue
+            if PART_SENTENCE_RE.search(s) and not re.search(r"replac|omit|danc\w*\s+(?:a|as|the)\b", low):
+                continue
+            if FROM_STEP_RE.search(s) or re.search(r"(?:start|commence)s?\s+from\s+step|always\s+(?:be\s+)?(?:followed|danced|preceded)", low):
+                continue
+            positional = END_RE.search(s) or START_RE.search(s)
+            action = re.search(r"replac|omit|repeat|danc\w*\s+(?:a|an|as|the|three|3)\b|turns?\s+[¼½¾\d]|spiral|lock|chass|foot change|guapacha|instead", low)
+            if positional and not action:
+                continue  # start / finish position: own control
+            if holds_in(s) and not action and not DANCED_IN_RE.search(s):
+                continue  # hold only: hold picker
+            if has_turn_range and re.search(r"\bturn|\b(?:under|over)turn", low) and re.search(r"up to|under|over|may turn|can turn", low) and not re.search(r"replac|lock|chass|spiral", low):
+                continue  # amount of turn: turn control
+            if "timing" in low and "guapacha" not in low and alt_timings and not re.search(r"\b(?:man|lady)\b", low):
+                continue  # alternative timing: timing control
+            alt = {"id": f"n{ni}s{si}", "text": s}
+            who = re.match(r"\s*(?:the\s+)?(Man|Lady)(?:'s|’s)?\b", s, re.I)
+            if re.search(r"guapacha", low):
+                alt["kind"] = "guapacha"
+            elif re.search(r"foot change", low):
+                alt["kind"] = "footChange"
+            else:
+                for kind, rx, shape in ALT_PATTERNS:
+                    m = rx.search(s)
+                    if not m:
+                        continue
+                    g = m.groups()
+                    if shape == "steps-by":
+                        w, a1, b1, w2, by = g
+                    elif shape == "who-steps-by":
+                        w, a1, b1, by = g
+                        w2 = None
+                    elif shape == "what-by":
+                        alt["kind"] = kind
+                        alt["what"] = g[0]
+                        alt["by"] = g[1][:120]
+                        break
+                    elif shape == "who-by-steps":
+                        w, by, a1, b1 = g
+                        w2 = None
+                    else:
+                        a1, b1 = g
+                        w = w2 = by = None
+                    alt["kind"] = kind
+                    alt["steps"] = [int(a1), int(b1 or a1)]
+                    if by:
+                        alt["by"] = by[:120]
+                    if w or w2:
+                        alt["who"] = (w or w2).lower()
+                    break
+                else:
+                    d = DANCED_IN_RE.search(s)
+                    if d and len(d.group(1)) < 50:
+                        alt["kind"] = "position"
+                        alt["position"] = tidy_position(d.group(1))
+                    elif re.search(r"timing", low):
+                        alt["kind"] = "timing"
+                    elif re.search(r"without hold|w/o hold|no hold", low):
+                        alt["kind"] = "noHold"
+                    else:
+                        alt["kind"] = "other"
+            if who and "who" not in alt:
+                alt["who"] = who.group(1).lower()
+            if note.get("topic"):
+                alt["topic"] = note["topic"]
+            out.append(alt)
+    return out
+
+
+def merge_alternatives(auto, curated):
+    """Hand-checked alternatives first; they replace automatic ones they cover."""
+    out = []
+    for c in curated:
+        alt = {k: v for k, v in c.items() if k != "matches"}
+        alt["kind"] = "exact"
+        texts = [a["text"] for a in auto if any(m.lower() in a["text"].lower() for m in c.get("matches", []))]
+        if texts:
+            alt["text"] = " ".join(texts)
+        out.append(alt)
+    for a in auto:
+        if any(any(m.lower() in a["text"].lower() for m in c.get("matches", [])) for c in curated):
+            continue
+        out.append(a)
+    return out
+
+
 # --- Holds -----------------------------------------------------------------------
 # Latin start/finish descriptions carry the hold after the position:
 #   "LF fwd (Open Opp.; LH to RH Hold)". Notes mention alternative holds
@@ -1005,6 +1135,7 @@ def main():
     technique_path = BUILD / "technique.json"
     technique = json.loads(technique_path.read_text(encoding="utf-8")) if technique_path.exists() else {}
     turn_ranges = json.loads((ROOT / "data" / "turn_ranges.json").read_text(encoding="utf-8"))
+    curated_alts = json.loads((ROOT / "data" / "alternatives.json").read_text(encoding="utf-8"))
 
     # Resolve "See 3.4.22 ..." entries (Samba) by copying the referenced figure.
     for dance, data in syllabus.items():
@@ -1170,6 +1301,11 @@ def main():
                 for fl in (entry.get("floor"), book_floor.get(fig_id)):
                     if fl is not None:
                         fl["turnRange"] = {k: v for k, v in turn_ranges[fig_id].items()}
+            # Alternatives: other ways of dancing the figure (syllabus notes + hand-checked steps).
+            auto_alts = extract_alternatives((entry.get("syllabus") or {}).get("notes", []), fig_id in turn_ranges, (entry.get("syllabus") or {}).get("altTimings"))
+            alts = merge_alternatives(auto_alts, curated_alts.get(fig_id, []))
+            if alts:
+                entry["alternatives"] = alts
             al = collect_aliases(entry, aliases_by_dance)
             if al:
                 entry["aliases"] = al

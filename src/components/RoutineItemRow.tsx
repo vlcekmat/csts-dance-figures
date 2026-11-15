@@ -3,7 +3,7 @@
 // WDSF Syllabus notes plus a custom step range (flagged when not allowed).
 import { useState } from "react";
 import { figureNames, getFigure, isLegal, type ClassId, type Dance, type Figure } from "../data";
-import { useI18n } from "../i18n";
+import { useI18n, type StringKey } from "../i18n";
 import type { RoutineItem } from "../routines";
 import { formatBars, totalBeats } from "../timing";
 import { partLabel, type ResolvedItem, type VariantChoice } from "../variants";
@@ -11,7 +11,8 @@ import { getHold, localizePositions } from "../glossary";
 import { alignLabel, eighths, figureAlignment, norm180, turnHintOf, turnOptions } from "../floor";
 import { ClassBadges } from "./ClassBadges";
 import { HoldPicker } from "./HoldPicker";
-import { PositionChoice, TimingChoice } from "./FigureChoices";
+import { AltChoice, PositionChoice, TimingChoice } from "./FigureChoices";
+import { altLabel } from "../alternatives";
 
 interface Props {
   /** Facing of the man at the start / end in the floor plan (degrees relative to the LOD of wallSide). */
@@ -74,6 +75,11 @@ export function RoutineItemRow(props: Props) {
   if (variant.startPosition) chips.push(`${t("start")}: ${localizePositions(variant.startPosition, lang)} (${t("positionOwnChip")})`);
   if (variant.finishPosition) chips.push(`${t("finish")}: ${localizePositions(variant.finishPosition, lang)} (${t("positionOwnChip")})`);
 
+  // Chosen alternatives (other ways of dancing the figure).
+  for (const id of variant.alts ?? []) {
+    const a = fig.alternatives?.find((x) => x.id === id);
+    if (a) chips.push(`${t("altChip")}: ${altLabel(a, lang, (k, v) => t(k as StringKey, v))}`);
+  }
   const holds = syl?.holds;
   if (variant.startHold || variant.finishHold) {
     const sh = getHold(resolved.startHold);
@@ -125,6 +131,7 @@ export function RoutineItemRow(props: Props) {
     .filter((x, i, a) => a.findIndex((y) => y.fig.id === x.fig.id && y.note === x.note) === i);
 
   const hasOptions =
+    (fig.alternatives?.length ?? 0) > 0 ||
     parts.length > 0 ||
     (variants.starts?.length ?? 0) > 0 ||
     (variants.finishes?.length ?? 0) > 0 ||
@@ -190,6 +197,12 @@ export function RoutineItemRow(props: Props) {
 
         {open && (
           <div className="variant-panel">
+            {(fig.alternatives?.length ?? 0) > 0 && (
+              <fieldset className="alt-fields">
+                <legend>{t("altTitle")}</legend>
+                <AltChoice item={item} fig={fig} onChange={onChange} />
+              </fieldset>
+            )}
             <label className="field">
               <span>{t("partOfFigure")}</span>
               <select

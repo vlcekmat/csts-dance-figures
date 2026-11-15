@@ -14,6 +14,8 @@ import { HoldIcon } from "./HoldPicker";
 import { TimingBreakdown, TimingExplain } from "./TimingBreakdown";
 import { TimingStrip } from "./TimingStrip";
 import { FigurePlayer } from "./FigurePlayer";
+import { altChangesSteps, altConflicts, altLabel, applyAlternatives, type FigureAlt } from "../alternatives";
+import type { StringKey } from "../i18n";
 
 interface Props {
   fig: Figure;
@@ -30,18 +32,29 @@ function youtubeId(url: string): string | null {
   return m ? m[1] : null;
 }
 
-export function FigureDetail({ fig, onClose, onOpenFigure, routinesApi, cls }: Props) {
+export function FigureDetail({ fig: baseFig, onClose, onOpenFigure, routinesApi, cls }: Props) {
   const custom = useCustom();
   const { t, lang, barsWord } = useI18n();
-  const dance = getDance(fig.dance);
-  const syl = fig.syllabus;
+  const dance = getDance(baseFig.dance);
   const [videoIdx, setVideoIdx] = useState(0);
   const [added, setAdded] = useState<string | null>(null);
+  // Alternatives shown in the chart and the player (hand-checked ones change the steps).
+  const [altIds, setAltIds] = useState<string[]>([]);
+  const alts = baseFig.alternatives ?? [];
+  const fig = applyAlternatives(baseFig, altIds);
+  const syl = fig.syllabus;
+  const tr = (k: string, v?: Record<string, string>) => t(k as StringKey, v);
+  const toggleAlt = (a: FigureAlt) =>
+    setAltIds((ids) =>
+      ids.includes(a.id) ? ids.filter((x) => x !== a.id) : [...ids.filter((id) => !altConflicts(a, alts.find((b) => b.id === id) ?? a)), a.id],
+    );
+  const shownAlts = alts.filter((a) => altIds.includes(a.id));
 
   useEffect(() => {
     setVideoIdx(0);
     setAdded(null);
-  }, [fig.id]);
+    setAltIds([]);
+  }, [baseFig.id]);
 
   // Close on Escape.
   useEffect(() => {
@@ -64,7 +77,7 @@ export function FigureDetail({ fig, onClose, onOpenFigure, routinesApi, cls }: P
     .filter((x) => /\bhold\b|\b[LR]H to [LR]H\b/i.test(x));
 
   const addTo = (routineId: string, name: string) => {
-    routinesApi.addFigure(routineId, fig.id);
+    routinesApi.addFigure(routineId, fig.id, altIds);
     setAdded(name);
   };
 
@@ -307,9 +320,53 @@ export function FigureDetail({ fig, onClose, onOpenFigure, routinesApi, cls }: P
           </section>
         )}
 
+        {alts.length > 0 && (
+          <section className="drawer-section" id="fig-alternatives">
+            <h3>
+              {t("altTitle")} <span className="muted small">({alts.length})</span>
+            </h3>
+            <p className="small muted">{t("altIntro")}</p>
+            <ul className="alt-list">
+              {alts.map((a) => {
+                const on = altIds.includes(a.id);
+                const steps = altChangesSteps(a);
+                const note = a.kind === "exact" ? (lang === "cs" ? a.noteCs : a.noteEn) : undefined;
+                return (
+                  <li key={a.id} className={`alt-card ${on ? "on" : ""}`}>
+                    <div className="alt-head">
+                      <strong>{altLabel(a, lang, tr)}</strong>
+                      {steps && <span className="alt-badge">{t("altChangesSteps")}</span>}
+                      {a.who && a.who !== "both" && <span className="muted small">· {t(a.who === "man" ? "altWhoMan" : "altWhoLady")}</span>}
+                    </div>
+                    {note && <p className="small">{note}</p>}
+                    {a.text && (
+                      <p className="small muted alt-text" lang="en">
+                        <Glossed text={a.text} />
+                      </p>
+                    )}
+                    {steps && fig.floor && (
+                      <button type="button" className={`btn small ${on ? "primary" : ""}`} aria-pressed={on} onClick={() => toggleAlt(a)}>
+                        {on ? `✓ ${t("altShownBtn")}` : `▶ ${t("altShowBtn")}`}
+                      </button>
+                    )}
+                  </li>
+                );
+              })}
+            </ul>
+          </section>
+        )}
+
         {fig.floor && fig.floor.steps.length > 0 && (
-          <section className="drawer-section">
+          <section className="drawer-section" id="fig-chart">
             <h3>{t("stepChart")}</h3>
+            {shownAlts.length > 0 && (
+              <p className="callout small alt-showing">
+                {t("altShowing", { list: shownAlts.map((a) => altLabel(a, lang, tr)).join(", ") })}{" "}
+                <button type="button" className="link-btn" onClick={() => setAltIds([])}>
+                  {t("altBackToBasic")}
+                </button>
+              </p>
+            )}
             <FigurePlayer fig={fig} />
             {(
               [
@@ -536,7 +593,9 @@ export function FigureDetail({ fig, onClose, onOpenFigure, routinesApi, cls }: P
         )}
 
         <footer className="drawer-foot">
-          <div className="small muted">{t("addToRoutine")}:</div>
+          <div className="small muted">
+            {t("addToRoutine")}:{shownAlts.length > 0 && <> {t("altAddWith")}</>}
+          </div>
           <div className="chips">
             {sameDanceRoutines.map((r) => (
               <button key={r.id} className="chip" onClick={() => addTo(r.id, r.name)}>

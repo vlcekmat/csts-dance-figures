@@ -1,6 +1,7 @@
 // Typed access to the generated figure database (src/data/figures.json).
 import raw from "./data/figures.json";
 import type { FloorData } from "./floor";
+import type { FigureAlt } from "./alternatives";
 
 export type Lang = "cs" | "en";
 export type ClassId = "E" | "D" | "C" | "B";
@@ -106,6 +107,8 @@ export interface Figure {
   videos?: Video[];
   /** Step chart: WDSF technique book (local only) or dancecentral.info (ISTD based). */
   floor?: FloorData;
+  /** Other ways of dancing the figure (syllabus notes; hand-checked ones with steps). */
+  alternatives?: FigureAlt[];
   /** Other common names (WDSF brackets, ISTD names, Czech training slang). */
   aliases?: { en?: string[]; cs?: string[] };
   /** User-defined figure (not in the ČSTS catalog). */

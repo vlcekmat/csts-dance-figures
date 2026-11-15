@@ -30,6 +30,8 @@ export interface VariantChoice {
   startTurn?: number;
   /** Length of each danced step relative to the computed one (1 = as computed). */
   stepScales?: number[];
+  /** Chosen alternatives of the figure (ids from figure.alternatives). */
+  alts?: string[];
   /** Hold keys (glossary.ts); omitted = hold from the syllabus. */
   startHold?: string;
   finishHold?: string;

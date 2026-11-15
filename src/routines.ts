@@ -151,8 +151,11 @@ export function useRoutines() {
   }, []);
 
   const addFigure = useCallback(
-    (routineId: string, figureId: string) =>
-      update(routineId, (r) => ({ ...r, items: [...r.items, { uid: newId(), figureId }] })),
+    (routineId: string, figureId: string, alts?: string[]) =>
+      update(routineId, (r) => ({
+        ...r,
+        items: [...r.items, { uid: newId(), figureId, ...(alts?.length ? { variant: { alts } } : {}) }],
+      })),
     [update],
   );
 

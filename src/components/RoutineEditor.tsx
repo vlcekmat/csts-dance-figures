@@ -20,10 +20,11 @@ import { PREP_DIRS, downloadJson, newId, prepSteps, type PrepStep, type Routine,
 import { ROUND_RANGE, formatBars, formatSeconds, tempoRange, totalBeats } from "../timing";
 import { connect, partLabel, resolveItem } from "../variants";
 import { RoutineItemRow } from "./RoutineItemRow";
+import { applyAlternatives } from "../alternatives";
 import { buildPlan } from "../plan";
 import { routineTrack } from "../routineTrack";
 import { StepPlayer } from "./FigurePlayer";
-import { PositionChoice, TimingChoice } from "./FigureChoices";
+import { AltChoice, PositionChoice, TimingChoice } from "./FigureChoices";
 import { useCustom } from "./CustomFigureHost";
 import { Glossed } from "./Glossary";
 import { FloorPlan } from "./FloorPlan";
@@ -62,9 +63,10 @@ export function RoutineEditor({ routine, api, onBack, onOpenFigure }: Props) {
   // Resolve figures and timing once per render.
   const rows = routine.items
     .map((item) => {
-      const fig = getFigure(item.figureId);
-
-      if (!fig) return null;
+      const base = getFigure(item.figureId);
+      if (!base) return null;
+      // The figure as danced with the chosen alternatives (changed steps / timing / finish).
+      const fig = applyAlternatives(base, item.variant?.alts);
       const timing = item.timing ?? fig.syllabus?.timing ?? "";
       const resolved = resolveItem(fig, dance, timing, item.variant);
       const classLegal = isLegal(fig, routine.cls);
@@ -790,6 +792,12 @@ export function RoutineEditor({ routine, api, onBack, onOpenFigure }: Props) {
             const onChange = (p: Partial<RoutineItem>) => updateItem(row.item.uid, p);
             return (
               <div className="plan-fig-options">
+                {(row.fig.alternatives?.length ?? 0) > 0 && (
+                  <div className="field plan-alts">
+                    <span>{t("altTitle")}</span>
+                    <AltChoice item={row.item} fig={row.fig} onChange={onChange} compact />
+                  </div>
+                )}
                 <label className="field plan-timing">
                   <span>{t("timing")}</span>
                   <span className="plan-timing-row">
@@ -909,7 +917,7 @@ export function RoutineEditor({ routine, api, onBack, onOpenFigure }: Props) {
                         return next;
                       })
                     }
-                    onOpen={() => onOpenFigure(r.fig)}
+                    onOpen={() => onOpenFigure(getFigure(r.item.figureId) ?? r.fig)}
                   />
                 </li>
               );

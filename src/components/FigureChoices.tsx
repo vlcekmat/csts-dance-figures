@@ -1,7 +1,8 @@
 // Choices of one routine figure shared by the routine list and the floor plan:
 // timing (basic, alternatives, own) and the couple position at the start / end.
 import type { Figure } from "../data";
-import { useI18n } from "../i18n";
+import { useI18n, type StringKey } from "../i18n";
+import { altChangesSteps, altConflicts, altLabel, type FigureAlt } from "../alternatives";
 import type { RoutineItem } from "../routines";
 import type { ResolvedItem, VariantChoice } from "../variants";
 import { localizePositions } from "../glossary";
@@ -38,7 +39,9 @@ export function TimingChoice({ item, fig, resolved, onChange, showSteps }: Props
         {options.map((o, i) => (
           <option key={o} value={o}>
             {o}
-            {i === 0 ? ` (${t("primaryTiming")})` : ""}
+            {i === 0
+              ? ` (${fig.alternatives?.some((a) => a.timing && item.variant?.alts?.includes(a.id)) ? t("altTimingFrom") : t("primaryTiming")})`
+              : ""}
           </option>
         ))}
         <option value="__custom">{t("customTiming")}</option>
@@ -130,5 +133,57 @@ export function PositionChoice({ item, fig, resolved, onChange, which, disciplin
         ))}
       </optgroup>
     </select>
+  );
+}
+
+/**
+ * Alternatives of the figure (other ways of dancing it): checkboxes. Picking one
+ * that can't be combined with another drops the other one; an alternative with
+ * its own timing resets the chosen timing.
+ */
+export function AltChoice({ item, fig, onChange, compact }: { item: RoutineItem; fig: Figure; onChange: (patch: Partial<RoutineItem>) => void; compact?: boolean }) {
+  const { t, lang } = useI18n();
+  const alts = fig.alternatives ?? [];
+  if (!alts.length) return null;
+  const chosen = item.variant?.alts ?? [];
+  const tr = (k: string, v?: Record<string, string>) => t(k as StringKey, v);
+  const toggle = (a: FigureAlt) => {
+    const on = chosen.includes(a.id);
+    const next = on
+      ? chosen.filter((x) => x !== a.id)
+      : [...chosen.filter((id) => !altConflicts(a, alts.find((b) => b.id === id) ?? a)), a.id];
+    const p: Partial<RoutineItem> = patchVariant(item, {
+      alts: next.length ? next : undefined,
+      // the alternative gives its own finish position
+      ...(!on && a.finish ? { finish: undefined, finishPosition: undefined } : {}),
+    });
+    if (a.timing) p.timing = undefined;
+    onChange(p);
+  };
+  return (
+    <div className={`alt-choice ${compact ? "compact" : ""}`}>
+      {alts.map((a) => {
+        const on = chosen.includes(a.id);
+        const note = a.kind === "exact" ? (lang === "cs" ? a.noteCs : a.noteEn) : undefined;
+        return (
+          <label key={a.id} className={`alt-option ${on ? "on" : ""}`} title={compact ? (note ?? a.text) : undefined}>
+            <input type="checkbox" checked={on} onChange={() => toggle(a)} />
+            <span className="alt-body">
+              <span className="alt-name">
+                {altLabel(a, lang, tr)}
+                {altChangesSteps(a) && <span className="alt-badge">{t("altChangesSteps")}</span>}
+              </span>
+              {!compact && note && <span className="small muted">{note}</span>}
+              {!compact && !note && a.text && (
+                <span className="small muted alt-text" lang="en">
+                  {a.text}
+                </span>
+              )}
+            </span>
+          </label>
+        );
+      })}
+      {!compact && alts.some((a) => !altChangesSteps(a)) && <p className="small muted">{t("altTextOnlyHint")}</p>}
+    </div>
   );
 }
