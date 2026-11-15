@@ -17,6 +17,28 @@ import { useI18n } from "../i18n";
 import { ClassBadges } from "./ClassBadges";
 import { useCustom } from "./CustomFigureHost";
 
+const CLASS_KEY = "csts-my-class";
+
+/** Remember the class filter: the catalog opens with it next time. */
+function rememberClass(cls: ClassId | "", onlyLegal: boolean) {
+  try {
+    localStorage.setItem(CLASS_KEY, JSON.stringify({ cls, onlyLegal }));
+  } catch {
+    /* private mode */
+  }
+}
+
+/** The remembered class filter (none = all classes). */
+export function rememberedClass(): { cls: ClassId | ""; onlyLegal: boolean } {
+  try {
+    const v = JSON.parse(localStorage.getItem(CLASS_KEY) ?? "null");
+    if (v && ["", ...CLASSES].includes(v.cls)) return { cls: v.cls, onlyLegal: !!v.onlyLegal };
+  } catch {
+    /* ignore */
+  }
+  return { cls: "", onlyLegal: false };
+}
+
 export interface Filters {
   q: string;
   dance: string; // "" = all
@@ -99,29 +121,38 @@ export function FigureBrowser({ filters, setFilters, onOpen }: Props) {
           )}
         </div>
         <div className="filter-row">
-          <label className="field">
-            <span>{t("classLabel")}</span>
-            <select
-              value={filters.cls}
-              onChange={(e) => set({ cls: e.target.value as ClassId | "" })}
-            >
-              <option value="">{t("anyClass")}</option>
-              {CLASSES.map((c) => (
-                <option key={c} value={c}>
-                  {c === "B" ? t("classB") : c}
-                </option>
-              ))}
-            </select>
-          </label>
-          <label className={`check ${filters.cls ? "" : "disabled"}`}>
-            <input
-              type="checkbox"
-              checked={filters.onlyLegal}
-              disabled={!filters.cls}
-              onChange={(e) => set({ onlyLegal: e.target.checked })}
-            />
-            {t("onlyLegal")}
-          </label>
+          <div className="class-filter" role="group" aria-label={t("classLabel")}>
+            <span className="class-filter-label">{t("classLabel")}:</span>
+            {(["", ...CLASSES] as (ClassId | "")[]).map((c) => (
+              <button
+                key={c || "all"}
+                type="button"
+                className={`chip ${filters.cls === c ? "active" : ""}`}
+                aria-pressed={filters.cls === c}
+                onClick={() => {
+                  // picking a class shows what may be danced in it
+                  const next = { cls: c, onlyLegal: !!c };
+                  rememberClass(next.cls, next.onlyLegal);
+                  set(next);
+                }}
+              >
+                {c === "" ? t("anyClass") : c === "B" ? t("classB") : c}
+              </button>
+            ))}
+            {filters.cls && (
+              <label className="check small">
+                <input
+                  type="checkbox"
+                  checked={!filters.onlyLegal}
+                  onChange={(e) => {
+                    rememberClass(filters.cls, !e.target.checked);
+                    set({ onlyLegal: !e.target.checked });
+                  }}
+                />
+                {t("showIllegalToo")}
+              </label>
+            )}
+          </div>
           <button className="btn small" onClick={() => custom.create(filters.dance || "waltz", { onSaved: (c) => onOpen(getFigure(c.id)!) })}>
             + {t("addCustom")}
           </button>

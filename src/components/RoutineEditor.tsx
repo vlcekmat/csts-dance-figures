@@ -137,6 +137,16 @@ export function RoutineEditor({ routine, api, onBack, onOpenFigure }: Props) {
       /* private mode */
     }
   };
+  // Wide screens: the selected figure's panel sits beside the plan (under the figure list),
+  // so it doesn't cover the plan.
+  const [panelHost, setPanelHost] = useState<HTMLElement | null>(null);
+  const [wide, setWide] = useState(() => typeof window !== "undefined" && window.matchMedia("(min-width: 1101px)").matches);
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 1101px)");
+    const on = () => setWide(mq.matches);
+    mq.addEventListener("change", on);
+    return () => mq.removeEventListener("change", on);
+  }, []);
   // Latin dances have no floor plan.
   useEffect(() => {
     if (!progressive && tab === "plan") setTabState("figures");
@@ -976,7 +986,9 @@ export function RoutineEditor({ routine, api, onBack, onOpenFigure }: Props) {
       )}
 
       {tab === "plan" && progressive && rows.length > 0 && (
+        <div className="plan-layout">
         <FloorPlan
+          panelHost={wide ? panelHost : null}
           dance={dance}
           plan={plan!}
           loop={showLoop}
@@ -1068,6 +1080,47 @@ export function RoutineEditor({ routine, api, onBack, onOpenFigure }: Props) {
             };
           })()}
         />
+        {/* The routine next to the plan: click a figure to work on it in the plan. */}
+        <aside className="card plan-figlist" aria-label={t("tabRoutineFigures")}>
+          <h3>{t("tabRoutineFigures")}</h3>
+          <ol>
+            {rows.map((r, i) => {
+              const sg = planSeg(r);
+              const ch = changes[i];
+              const c = i > 0 ? connect(rows[i - 1].fig, rows[i - 1].resolved, r.fig, r.resolved) : null;
+              const warn = [
+                !r.legal && `✗ ${t("planListIllegal")}`,
+                c?.footOk === false && `⚠ ${t("planListFoot")}`,
+                ch?.pos && `⇄ ${t("changePosition")}`,
+                ch?.hold && `✋ ${t("changeHold")}`,
+                sg && Math.abs(sg.offChart) >= 22.5 && `↻ ${t("changeAlign")}`,
+              ].filter(Boolean) as string[];
+              return (
+                <li key={r.item.uid}>
+                  {sg?.cornerBefore && (
+                    <div className={`plan-figlist-corner ${sg.cornerDist > 4 ? "far" : ""}`}>↰ {wallName(sg.side)}</div>
+                  )}
+                  <button
+                    type="button"
+                    className={`plan-figlist-row ${selectedUid === r.item.uid ? "active" : ""} ${warn.length ? "has-warn" : ""}`}
+                    aria-pressed={selectedUid === r.item.uid}
+                    onClick={() => setSelectedUid(selectedUid === r.item.uid ? null : r.item.uid)}
+                  >
+                    <span className={`bib small ${dance.discipline}`}>{i + 1}</span>
+                    <span className="plan-figlist-name">
+                      {figureNames(r.fig, lang).main}
+                      {warn.length > 0 && <span className="plan-figlist-warn">{warn.join(" · ")}</span>}
+                    </span>
+                    <code className="timing small">{r.resolved.timingText}</code>
+                  </button>
+                </li>
+              );
+            })}
+          </ol>
+          {!selectedUid && <p className="small muted">{t("planListHint")}</p>}
+          <div ref={setPanelHost} className="plan-side-panel" />
+        </aside>
+        </div>
       )}
 
       {tab === "anim" && rows.length > 0 && (

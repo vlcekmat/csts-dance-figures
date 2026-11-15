@@ -3,6 +3,7 @@
 //                 travelling anticlockwise along the line of dance. The
 //                 simulation itself is computed in plan.ts.
 
+import { createPortal } from "react-dom";
 import type { Dance } from "../data";
 import { useI18n, type StringKey } from "../i18n";
 import { Glossed } from "./Glossary";
@@ -74,7 +75,10 @@ export function FloorPlan({
   turnControl,
   figureOptions,
   cornerControl,
+  panelHost,
 }: {
+  /** Where to render the selected figure's panel (beside the plan on wide screens); default above the plan. */
+  panelHost?: HTMLElement | null;
   dance: Dance;
   /** Simulation computed by the routine editor (see plan.ts). */
   plan: Plan;
@@ -176,6 +180,48 @@ export function FloorPlan({
     { x1: room.length * 0.58, y1: room.width - 0.6, x2: room.length * 0.42, y2: room.width - 0.6 },
     { x1: 0.6, y1: room.width * 0.6, x2: 0.6, y2: room.width * 0.4 },
   ];
+
+  /** Panel of the selected figure: above the plan, or beside it (`side`). */
+  const selPanel = (side: boolean) =>
+    selSeg && (
+          <div className={`plan-rotate ${side ? "side" : "above"}`} role="group">
+            <div className="plan-rotate-head">
+              <span className={`bib small ${dance.discipline}`}>{figNo(selSeg.n)}</span>
+              <strong>{selSeg.label.replace(/ \(\d+\.×\)$/, "")}</strong>
+              {selSeg.startFace !== null && (
+                <span className="muted small">
+                  {alignLabel(selSeg.startFace - selSeg.side * 90, lang)}
+                  {selSeg.endFace !== null ? ` → ${alignLabel(selSeg.endFace - selSeg.side * 90, lang)}` : ""}
+                </span>
+              )}
+              <button className="btn small" onClick={() => onSelect?.(null)}>{t("planSelClose")}</button>
+            </div>
+            {cornerControl && (
+              <div className="plan-corner">
+                <span className="small">
+                  <strong>↰ {t("cornerBeforeFig")}:</strong>{" "}
+                  {cornerControl.active ? t("cornerYes") : t("cornerNo")}
+                </span>
+                <div className="chips" role="group" aria-label={t("cornerBeforeFig")}>
+                  {(["auto", true, false] as const).map((m) => (
+                    <button
+                      key={String(m)}
+                      type="button"
+                      className={`chip ${cornerControl.mode === m ? "active" : ""}`}
+                      aria-pressed={cornerControl.mode === m}
+                      onClick={() => cornerControl.onChange(m)}
+                    >
+                      {m === "auto" ? t("cornerModeAuto") : m ? t("cornerModeYes") : t("cornerModeNo")}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+            {figureOptions}
+            {turnControl && <TurnDial control={turnControl} />}
+            <p className="small muted">{t("planRotateHint")}</p>
+          </div>
+    );
 
   return (
     <section className="card" id="floor-plan">
@@ -364,45 +410,7 @@ export function FloorPlan({
         ))}
 
       <figure className="floor">
-        {selSeg && selectedKey && (
-          <div className="plan-rotate above" role="group">
-            <div className="plan-rotate-head">
-              <span className={`bib small ${dance.discipline}`}>{figNo(selSeg.n)}</span>
-              <strong>{selSeg.label.replace(/ \(\d+\.×\)$/, "")}</strong>
-              {selSeg.startFace !== null && (
-                <span className="muted small">
-                  {alignLabel(selSeg.startFace - selSeg.side * 90, lang)}
-                  {selSeg.endFace !== null ? ` → ${alignLabel(selSeg.endFace - selSeg.side * 90, lang)}` : ""}
-                </span>
-              )}
-              <button className="btn small" onClick={() => onSelect?.(null)}>{t("planSelClose")}</button>
-            </div>
-            {cornerControl && (
-              <div className="plan-corner">
-                <span className="small">
-                  <strong>↰ {t("cornerBeforeFig")}:</strong>{" "}
-                  {cornerControl.active ? t("cornerYes") : t("cornerNo")}
-                </span>
-                <div className="chips" role="group" aria-label={t("cornerBeforeFig")}>
-                  {(["auto", true, false] as const).map((m) => (
-                    <button
-                      key={String(m)}
-                      type="button"
-                      className={`chip ${cornerControl.mode === m ? "active" : ""}`}
-                      aria-pressed={cornerControl.mode === m}
-                      onClick={() => cornerControl.onChange(m)}
-                    >
-                      {m === "auto" ? t("cornerModeAuto") : m ? t("cornerModeYes") : t("cornerModeNo")}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            )}
-            {figureOptions}
-            {turnControl && <TurnDial control={turnControl} />}
-            <p className="small muted">{t("planRotateHint")}</p>
-          </div>
-        )}
+        {selSeg && selectedKey && (panelHost ? createPortal(selPanel(true), panelHost) : selPanel(false))}
         <div className="plan-move" role="group" aria-label={t("planMove")}>
           <span className="small muted">{t("planMove")}</span>
           {([

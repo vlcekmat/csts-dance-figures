@@ -9,7 +9,7 @@ import { getFigure, type ClassId, type Figure } from "./data";
 import { useI18n } from "./i18n";
 import { useRoutines } from "./routines";
 import { useTheme, type ThemeChoice } from "./theme";
-import { FigureBrowser, type Filters } from "./components/FigureBrowser";
+import { FigureBrowser, rememberedClass, type Filters } from "./components/FigureBrowser";
 import { FigureDetail } from "./components/FigureDetail";
 import { RoutineList } from "./components/RoutineList";
 import { RoutineEditor } from "./components/RoutineEditor";
@@ -26,11 +26,14 @@ function parseHash(): Route {
   const [path, query = ""] = window.location.hash.replace(/^#\/?/, "").split("?");
   const [page, id] = path.split("/");
   const p = new URLSearchParams(query);
+  // Without a class in the address the catalog uses the remembered one.
+  const mine = rememberedClass();
+  const hasCls = p.has("cls");
   const filters: Filters = {
     q: p.get("q") ?? "",
     dance: p.get("dance") ?? "",
-    cls: (["E", "D", "C", "B"].includes(p.get("cls") ?? "") ? p.get("cls") : "") as ClassId | "",
-    onlyLegal: p.get("legal") === "1",
+    cls: hasCls ? ((["E", "D", "C", "B"].includes(p.get("cls") ?? "") ? p.get("cls") : "") as ClassId | "") : mine.cls,
+    onlyLegal: hasCls ? p.get("legal") === "1" : mine.onlyLegal,
   };
   const known = page === "routines" || page === "about" || page === "finder" ? page : "figures";
   return { page: known, id: id ? decodeURIComponent(id) : undefined, filters };
