@@ -15,7 +15,7 @@ type Finding = { id: string; name: string; kind: string; what: string };
 const out: Finding[] = [];
 const verbose = process.argv.includes("-v");
 const only = process.argv.find((a) => a.startsWith("--kind="))?.slice(7);
-const NO_WEIGHT = /w\/o weight|without weight|\btap\b|\bpoint|\bbrush|\bflick|\bkick/i;
+const NO_WEIGHT = /w\/o weight|without weight|\btap\b|\bpoint|\bbrush|\bflick|\bkick|\bheld\b/i;
 const deg = (x: number, y: number) => (Math.atan2(y, x) * 180) / Math.PI;
 
 function checkPartner(fig: (typeof FIGURES)[number], who: string, p: Partner, st: FeetState[], steps: FloorStep[]) {

@@ -248,6 +248,13 @@ const HOLD_CS: [RegExp, string][] = [
 
 // Step descriptions from the dancecentral.info charts ("LF to side and slightly back").
 const STEP_CS: [RegExp, string][] = [
+  [/\bposition held\b/gi, "drží pozici"],
+  [/\bheld\b/gi, "drží pozici"],
+  [/\bdrawn up\b/gi, "přitažená ke koleni"],
+  [/\bpointed\b/gi, "špičkou"],
+  [/\btapped\b/gi, "ťuknutí"],
+  [/\bkick\b/gi, "kop"],
+  [/\bflick\b/gi, "švih"],
   [/\bcloses? to\b/gi, "přisouvá k"],
   [/\bbrushes? to\b/gi, "přitahuje k"],
   [/\boutside partner\b/gi, "mimo partnera"],

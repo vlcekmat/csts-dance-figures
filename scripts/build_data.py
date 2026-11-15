@@ -721,18 +721,38 @@ def chart_rows(chart):
 def fact_desc(desc):
     """Precise step description composed from technical terms (foot, directions,
     CBMP, positions, pivots …) rather than the book's sentences."""
+    # common OCR slips and run-together words
+    desc = re.sub(r"(?i)cl[o0]s[@e]d", "closed", desc)
+    desc = re.sub(r"(?i)\bciosed\b", "closed", desc)
+    desc = re.sub(r"(?i)closedto", "closed to ", desc)
+    desc = re.sub(r"(?i)\btoside\b", "to side", desc)
+    desc = re.sub(r"(?i)\btO\b", "to", desc)
+    desc = re.sub(r"(?i)w/o\s*wt\b|without\s*wt\b", "w/o weight", desc)
     foot = re.search(r"\b(RF|LF)\b", desc)
     d = desc.lower()
+    if re.search(r"hold position|position held|placement held", d):
+        # the dancer holds the position: no step, no change of weight
+        return f"{foot.group(1)} held" if foot else "position held"
     if not foot:
         if re.search(r"feet|both", d):
             return "feet " + ("close" if "clos" in d else "uncross" if "uncross" in d else "together")
         return ""
     f = foot.group(1)
     o = "LF" if f == "RF" else "RF"
+    # "LF to side, RF brushes to LF w/o weight": a second clause about the other foot.
+    # The step is the first one (where the weight goes); the rest describes the free foot.
+    m2 = re.search(r"(?<!\bto )(?<!\bof )(?<!\bbehind )(?<!\bfrom )(?<!\bwith )(?<!\bon )\b" + o + r"\b(?=\s*(?:brush|clos|cross|swivel|point|tap|flick|kick|drawn|held|swings|slips?|placed))", desc)
+    if m2 and m2.start() > foot.end() and re.search(r"fwd|bwd|back|side|diag|in place", desc[: m2.start()], re.I):
+        desc = desc[: m2.start()].rstrip(" ,/;")
+        d = desc.lower()
     extras = []
-    if re.search(r"\bcloses?\b", d):
+    if re.search(r"\bclose[sd]?\b", d):
         base = f"{f} closes to {o}"
-    elif re.search(r"\bcross", d):
+    elif re.search(r"\bdrawn\b", d):
+        # foot drawn up to the other knee: no weight
+        base = f"{f} drawn up"
+        extras.append("w/o weight")
+    elif re.search(r"\bcross", d) or re.search(r"\bbehind\b", d.split(o.lower())[0] + " " + o.lower()) and not re.search(r"fwd|bwd|side", d):
         base = f"{f} crosses " + ("behind" if "behind" in d else "in front of") + f" {o}"
         if "loosely" in d:
             extras.append("loosely")
@@ -746,8 +766,12 @@ def fact_desc(desc):
                 if not any(abs(m.start() - x[0]) < 6 for x in dirs):
                     dirs.append((m.start(), w))
         dirs.sort()
+        if not dirs and re.search(r"rightwards|leftwards", d):
+            # "RF slipped rightwards": a small step to the side
+            dirs.append((0, "to side"))
+            extras.append("small step")
         if not dirs:
-            base = f"{f} in place" if re.search(r"in place|replace|transfer|weight", d) else f
+            base = f"{f} in place" if re.search(r"in place|replace|transfer|weight|recover", d) else f
         else:
             base = f"{f} {dirs[0][1]}"
             if len(dirs) > 1 and dirs[1][1] != dirs[0][1]:
@@ -757,6 +781,8 @@ def fact_desc(desc):
     for rx, word in ((r"\bcbmp\b", "in CBMP"), (r"outside partner|\bop\b", "outside partner"),
                      (r"\bpp\b|promenade", "in PP"), (r"w/o weight|without weight", "w/o weight"),
                      (r"part weight", "part weight"), (r"small step", "small step"),
+                     (r"\bpoint(?:ed|s)?\b", "pointed"), (r"\btap(?:ped|s)?\b", "tapped"),
+                     (r"\bkick", "kick"), (r"\bflick", "flick"),
                      (r"heel turn", "Heel Turn"), (r"heel pull", "Heel Pull"), (r"toe pivot", "Toe Pivot"),
                      (r"slip pivot", "Slip Pivot"), (r"\bpivot\b(?!ing)", "Pivot"), (r"swivel", "Swivel"),
                      (r"\b(l|r) side leading", None), (r"toe turned (in|out)", None)):
@@ -769,6 +795,9 @@ def fact_desc(desc):
             continue
         if word not in extras:
             extras.append(word)
+    # a pointed / tapped foot doesn't take the weight
+    if any(w in extras for w in ("pointed", "tapped", "kick", "flick")) and "w/o weight" not in extras:
+        extras.append("w/o weight")
     return " ".join([base] + extras)
 
 
@@ -853,7 +882,7 @@ def prep_from_book(man):
     return out or None
 
 
-NO_WEIGHT_RE = re.compile(r"w/o weight|without weight|\btap\b|\bpoint|\bbrush|\bflick|\bkick", re.I)
+NO_WEIGHT_RE = re.compile(r"\bheld\b|hold position|w/o weight|without weight|\btap\b|\bpoint|\bbrush|\bflick|\bkick", re.I)
 SAME_FOOT_OK = re.compile(r"in place|recover|replace|weight|swivel|pivot|spin|hop|jump|chug|ball|bounce|feet|both|heel|toe|twist", re.I)
 
 
@@ -1077,11 +1106,38 @@ BOOK_TITLE = {
     "quickstep-44": ("waltz", "FALLAWAY NATURAL TURN"),
     "jive-34": ("jive", "CHUGGING"),
     "paso-35": ("paso", "4 LEFT FOOT VARIATION"),
+    "paso-29": ("paso", "TRAVELLING SPINS FROM COUNTER PROMENADE POSITION"),
     "paso-36": ("paso", "5A COUP DE PIQUE CHANGING LF TO RF"),
     "paso-37": ("paso", "5B COUP DE PIQUE CHANGING RF TO LF"),
     "waltz-40": ("slowfox", "BOUNCE FALLAWAY WITH WEAVE ENDING"),
     "waltz-41": ("slowfox", "QUICK OPEN REVERSE TURN"),
 }
+
+
+def apply_step_fixes(chart, ops):
+    """Chart with hand corrections: {"set": n, field: value…} changes step n,
+    {"insert": n, field: value…} puts a new step at n (later ones move down),
+    {"delete": n} drops step n, {"steps": [...]} replaces the whole list.
+    Numbers refer to the chart as read (before the corrections)."""
+    if not chart or not ops:
+        return chart
+    steps = [dict(st) for st in chart["steps"]]
+    for op in ops:
+        if "steps" in op:
+            steps = [dict(st) for st in op["steps"]]
+    for op in ops:
+        if "set" in op and 0 < op["set"] <= len(steps):
+            steps[op["set"] - 1].update({k: v for k, v in op.items() if k != "set"})
+    for op in sorted([o for o in ops if "delete" in o or "insert" in o], key=lambda o: -(o.get("delete") or o.get("insert"))):
+        if "delete" in op:
+            del steps[op["delete"] - 1]
+        else:
+            new = {"desc": "", "align": "", "turn": "", "timing": ""}
+            new.update({k: v for k, v in op.items() if k != "insert"})
+            steps.insert(op["insert"] - 1, new)
+    for i, st in enumerate(steps):
+        st["n"] = i + 1
+    return {**chart, "steps": steps}
 
 
 def match_book(technique, dance, titles, fig_id=None):
@@ -1135,6 +1191,8 @@ def main():
     technique_path = BUILD / "technique.json"
     technique = json.loads(technique_path.read_text(encoding="utf-8")) if technique_path.exists() else {}
     turn_ranges = json.loads((ROOT / "data" / "turn_ranges.json").read_text(encoding="utf-8"))
+    fixes_path = ROOT / "data" / "technique_fixes.json"
+    step_fixes = json.loads(fixes_path.read_text(encoding="utf-8")) if fixes_path.exists() else {}
     curated_alts = json.loads((ROOT / "data" / "alternatives.json").read_text(encoding="utf-8"))
 
     # Resolve "See 3.4.22 ..." entries (Samba) by copying the referenced figure.
@@ -1227,6 +1285,10 @@ def main():
             # WDSF technique book (primary source): replaces the ISTD chart steps.
             titles = [row["en"], match["title"] if match else None]
             man, lady = match_book(technique, dance, titles, fig_id) if row["en"] else (None, None)
+            # Hand corrections of single chart steps (OCR misreadings, rows lost in the scans).
+            if fig_id in step_fixes:
+                man = apply_step_fixes(man, step_fixes[fig_id].get("man"))
+                lady = apply_step_fixes(lady, step_fixes[fig_id].get("lady"))
             if man and man["steps"]:
                 # The syllabus counts the chart's "Prec. Step" as step 1 (Open Natural Turn in
                 # tango starts "LF to side"): put it in front when the feet say so.

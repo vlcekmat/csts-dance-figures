@@ -24,9 +24,11 @@ Paso, Jive. PrincipySTT/LAT contain principles, no figure charts. Page image `p-
 - Merged cells (`cont`): a turn written once over several rows → kept on the first step with
   `span` = number of steps; an alignment merged over a block that turns → dropped on the
   continuation steps (`align_cont` handling, also in the side-2 table refill).
-- Manual overrides: `data/technique_manual.json`. NAME_FIXES for titles.
+- Manual overrides: `data/technique_manual.json` (whole charts). NAME_FIXES for titles; `PAGE_TITLES` {(book, page): (name, role)} for charts whose title OCR lost (e.g. Paso p.76 = Syncopated Separation lady).
 
 ## build_data.py essentials
+- `data/technique_fixes.json` (git-ignored, read from the scans): per figure id `man`/`lady` ops `{set: n, field…}`, `{insert: n …}`, `{delete: n}`, `{steps: [...]}` (whole chart), applied by `apply_step_fixes` right after `match_book`. Done 2026-11: chacha-24/36/38/39/41, jive-2/33/34, paso-4/19/20/21/24/32/33, rumba-15/31/43, samba-52, slowfox-21. Remaining audit differences are syllabus-vs-book (count/start), not data.
+- `fact_desc` (public step text): normalises OCR slips (ClOS@d, toside, w/o wt), keeps the first clause when a second one is about the free foot, `closed`→closes, `behind`→crosses behind, `rightwards`→small side step, `drawn` / pointed / tapped / kick / flick ⇒ w/o weight, `hold position` ⇒ `position held` (no weight). Audits run on the PUBLIC data (Vite-only glob for the local file).
 - Matches catalog rows to syllabus and to book charts (`match_book`, canon names, MANUAL_MATCH).
 - `with_prec`: when the syllabus start foot ≠ chart's first foot and the chart's prec step has it,
   the prec step becomes step 1 (tango Open Natural Turn, Tap…). Then no `prep` suggestion.

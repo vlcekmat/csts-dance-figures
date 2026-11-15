@@ -69,6 +69,11 @@ NAME_FIXES = [
     (r"\s+", " "),
 ]
 
+# Charts whose title the OCR lost or misread, by book and page: (name, role).
+PAGE_TITLES = {
+    ("Paso", 76): ("SYNCOPATED SEPARATION", "lady"),
+}
+
 CONT_RE = re.compile(r"(Recover|Weight on|Part weight|Wt on)\b", re.I)
 
 POS_RE = re.compile(
@@ -153,6 +158,8 @@ def main():
                 continue
             for bad, good in NAME_FIXES:
                 name = re.sub(bad, good, name)
+            if (book, t["page"]) in PAGE_TITLES:
+                name, role = PAGE_TITLES[(book, t["page"])]
             last_title = (name, role)
             if side == 1:
                 # Charts come in pairs: man, then lady. A chart right after the man's
@@ -168,6 +175,8 @@ def main():
                 # Two man's charts with the same title in a row: the second is the lady's.
                 if role == "man" and follows_man and prev["name"] == name:
                     role = "lady"
+                if (book, t["page"]) in PAGE_TITLES:
+                    same = False
                 if same and role == "lady":
                     name = prev["name"]  # keep the (better) man's title
                     prev["paired"] = True

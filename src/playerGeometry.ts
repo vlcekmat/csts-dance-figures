@@ -6,6 +6,7 @@ import {
   STEP_METRES,
   norm180,
   parseAlign,
+  stepVector,
   tracePath,
   turnHintOf,
   type FloorStep,
@@ -72,6 +73,16 @@ function footprints(
       const ref = crossed ? bodyFace : face;
       ox2 = Math.cos(rad(ref + side)) * sideOff + Math.cos(rad(ref)) * fwdOff;
       oy2 = Math.sin(rad(ref + side)) * sideOff + Math.sin(rad(ref)) * fwdOff;
+    }
+    // A foot placed without weight (pointed, tapped, kicked …) reaches out the way the
+    // step goes while the body stays: it isn't drawn under the body.
+    if (/w\/o weight|without weight|pointed|\btap|\bkick|\bflick/.test(d) && !/clos|cross|brush|in place/.test(d)) {
+      const v = stepVector(steps[i].desc.replace(/w\/o weight|without weight/gi, ""), b.stepFacing ?? face);
+      if (v.len > 0) {
+        const reach = Math.min(0.45, v.len * stepM * 0.6);
+        ox2 += Math.cos(rad(v.angle)) * reach;
+        oy2 += Math.sin(rad(v.angle)) * reach;
+      }
     }
     return {
       n: b.n,
@@ -528,7 +539,7 @@ export interface FeetState {
 }
 
 /** Steps that put the foot down without taking the weight. */
-const NO_WEIGHT = /w\/o weight|without weight|\btap\b|\bpoint|\bbrush|\bflick|\bkick/i;
+const NO_WEIGHT = /w\/o weight|without weight|\btap\b|\bpoint|\bbrush|\bflick|\bkick|\bheld\b/i;
 
 /**
  * Live feet of a dancer through the figure: on every step only the stepping foot
