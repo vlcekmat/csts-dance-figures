@@ -456,13 +456,10 @@ export function liveFeet(p: Partner, steps: FloorStep[]): FeetState[] {
   let shift = { x: 0, y: 0 };
   p.feet.forEach((f, i) => {
     const turn = norm180(f.bodyFace - bodyFace);
-    // The couple's placement moved the dancer by a different amount than on the previous
-    // step: the foot that stays moves with them (keeps its place relative to the step).
+    // How much the couple's placement moved the dancer since the previous step.
     const sh = f.shift ?? { x: 0, y: 0 };
     const ds = { x: sh.x - shift.x, y: sh.y - shift.y };
     shift = sh;
-    const moveBy = (q: FootState): FootState => ({ ...q, x: q.x + ds.x, y: q.y + ds.y });
-    cur = { ...cur, L: moveBy(cur.L), R: moveBy(cur.R) };
     const next: FeetState = { L: { ...cur.L }, R: { ...cur.R }, moved: f.foot };
     if (f.foot) {
       const other = f.foot === "L" ? "R" : "L";
@@ -471,30 +468,49 @@ export function liveFeet(p: Partner, steps: FloorStep[]): FeetState[] {
       // Weight transfer: "RF in place", "Recover LF" … – the foot stays where it is.
       const desc = steps[i]?.desc ?? "";
       next.transfer = !noWeight && (/\bin place|\brecover|replace weight|weight (?:to|on)\b/i.test(desc) || Math.hypot(f.x - was.x, f.y - was.y) < 0.06);
+      // Only the stepping foot travels: it lands where the step (and the couple's
+      // placement) puts it. The supporting foot stays on the floor and only swivels
+      // with the body's turn.
       next[f.foot] = next.transfer
         ? { ...was, weight: true, cross: undefined }
         : { x: f.x, y: f.y, face: f.face, weight: !noWeight, cross: f.cross };
-      // the supporting foot swivels with the body
       next[other] = { ...next[other], face: next[other].face + turn, weight: noWeight ? true : false };
-      // The couple's placement (promenade, hold) may move a dancer more than their own
-      // step: the foot left behind can't be further away than a stride.
-      const MAX = 0.95;
-      const o = next[other];
-      const nf = next[f.foot];
-      const dist = Math.hypot(o.x - nf.x, o.y - nf.y);
-      if (dist > MAX) {
-        next[other] = { ...o, x: nf.x + ((o.x - nf.x) / dist) * MAX, y: nf.y + ((o.y - nf.y) / dist) * MAX };
-      }
-      // Both feet stay under the body (the couple's placement may move the dancer).
-      const cxF = (next.L.x + next.R.x) / 2;
-      const cyF = (next.L.y + next.R.y) / 2;
-      const off = Math.hypot(f.bx - cxF, f.by - cyF);
-      if (off > 0.5) {
-        const k = 1 - 0.5 / off;
-        const dx = (f.bx - cxF) * k;
-        const dy = (f.by - cyF) * k;
-        next.L = { ...next.L, x: next.L.x + dx, y: next.L.y + dy };
-        next.R = { ...next.R, x: next.R.x + dx, y: next.R.y + dy };
+      if (!next.transfer) {
+        // The placement correction normally goes into the step. When it would turn the
+        // step far away from its direction in the chart (more than 80°), the dancer is carried
+        // instead (both feet move with the placement, as before).
+        const o0 = next[other];
+        const chart = { x: f.x - ds.x - o0.x, y: f.y - ds.y - o0.y };
+        const placed = { x: f.x - o0.x, y: f.y - o0.y };
+        const lc = Math.hypot(chart.x, chart.y);
+        const lp = Math.hypot(placed.x, placed.y);
+        if (lc > 0.12 && lp > 0.01) {
+          const cosA = (chart.x * placed.x + chart.y * placed.y) / (lc * lp);
+          if (cosA < Math.cos((80 * Math.PI) / 180)) next[other] = { ...o0, x: o0.x + ds.x, y: o0.y + ds.y };
+        }
+
+        // A placement correction bigger than a stride would leave the supporting foot
+        // impossibly far behind: then it is drawn up (the only case it moves).
+        const MAX = 1.3;
+        const o = next[other];
+        const nf = next[f.foot];
+        const dist = Math.hypot(o.x - nf.x, o.y - nf.y);
+        if (dist > MAX) {
+          next[other] = { ...o, x: nf.x + ((o.x - nf.x) / dist) * MAX, y: nf.y + ((o.y - nf.y) / dist) * MAX };
+        }
+      } else {
+        // A weight transfer doesn't move the feet; only when the couple's placement
+        // has carried the dancer well away from them do they follow.
+        const cxF = (next.L.x + next.R.x) / 2;
+        const cyF = (next.L.y + next.R.y) / 2;
+        const off = Math.hypot(f.bx - cxF, f.by - cyF);
+        if (off > 0.5) {
+          const k = 1 - 0.5 / off;
+          const dx = (f.bx - cxF) * k;
+          const dy = (f.by - cyF) * k;
+          next.L = { ...next.L, x: next.L.x + dx, y: next.L.y + dy };
+          next.R = { ...next.R, x: next.R.x + dx, y: next.R.y + dy };
+        }
       }
     } else {
       // both feet / unknown: the whole dancer moves with the body

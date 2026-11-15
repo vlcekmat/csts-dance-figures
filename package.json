@@ -11,7 +11,8 @@
     "videos": "python3 -I scripts/scrape_videos.py && python3 -I scripts/build_data.py",
     "audit": "rolldown scripts/audit_figures.ts --platform node --format esm -o data/build/audit.mjs && node data/build/audit.mjs",
     "audit:teeth": "rolldown scripts/audit_teeth.ts --platform node --format esm -o data/build/teeth.mjs && node data/build/teeth.mjs",
-    "audit:steps": "rolldown scripts/audit_steps.ts --platform node --format esm -o data/build/steps.mjs && node data/build/steps.mjs"
+    "audit:steps": "rolldown scripts/audit_steps.ts --platform node --format esm -o data/build/steps.mjs && node data/build/steps.mjs",
+    "audit:feet": "rolldown scripts/audit_feet.ts --platform node --format esm -o data/build/feet.mjs && node data/build/feet.mjs"
   },
   "dependencies": {
     "react": "^19.3.1",
