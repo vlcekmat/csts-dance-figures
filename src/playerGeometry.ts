@@ -297,18 +297,28 @@ export function coupleGeometry(
   const mFeet: Foot[] = [];
   const lFeet: Foot[] = [];
   const count = Math.max(m.feet.length, traced.feet.length);
-  /** The partner's own chart doesn't move the body on this step (close, in place). */
-  const still = (p: { start: { x: number; y: number }; feet: Foot[] }, i: number) => {
+  /** A weight transfer ("in place", "recover" …): the feet don't move, so the dancer is pinned. */
+  const TRANSFER = /\bin place|\brecover|replace weight|weight (?:to|on)\b/i;
+  /** How much a partner moves on step i by their own chart (0 for a weight transfer). */
+  const ownLen = (p: { start: { x: number; y: number }; feet: Foot[] }, i: number) => {
+    const chart = p === m ? man : lady;
+    if (TRANSFER.test(chart[i]?.desc ?? "") && !/w\/o weight|without weight/i.test(chart[i]?.desc ?? "")) return 0;
     const a = i === 0 ? p.start : { x: p.feet[i - 1].bx, y: p.feet[i - 1].by };
     const b = p.feet[i];
-    return !!b && Math.hypot(b.bx - a.x, b.by - a.y) < 0.03;
+    return b ? Math.hypot(b.bx - a.x, b.by - a.y) : 0;
   };
-  /** Simplification: a partner who closes / steps in place stays where they are; the
-   * couple's turn on that step would otherwise swing them a little back and forth. */
-  const hold = (arr: Foot[], start: { x: number; y: number }, n: { x: number; y: number }, isStill: boolean) => {
-    if (!isStill) return n;
-    const prev = arr.length ? { x: arr[arr.length - 1].bx, y: arr[arr.length - 1].by } : start;
-    return Math.hypot(n.x - prev.x, n.y - prev.y) < 0.25 ? prev : n;
+  /**
+   * Put the lady at `rel` from the man, starting from where their own steps take them
+   * (`pm`, `pl`). The difference is split by weights 1/(step length)²: the partner who
+   * hardly moves keeps their place, the one taking a step absorbs the correction.
+   */
+  const share = (pm: { x: number; y: number }, pl: { x: number; y: number }, rel: { x: number; y: number }, lm: number, ll: number) => {
+    const D = { x: rel.x - (pl.x - pm.x), y: rel.y - (pl.y - pm.y) };
+    const wm = 1 / (lm + 0.05) ** 2;
+    const wl = 1 / (ll + 0.05) ** 2;
+    const km = wl / (wm + wl);
+    const kl = wm / (wm + wl);
+    return { nm: { x: pm.x - km * D.x, y: pm.y - km * D.y }, nl: { x: pl.x + kl * D.x, y: pl.y + kl * D.y } };
   };
   for (let i = 0; i < count; i++) {
     const mf = m.feet[i];
@@ -332,29 +342,11 @@ export function coupleGeometry(
     }
     if (placed && mf && lf) {
       const o = offsetVec(lastPos, mf.bodyFace, lf.bodyFace, mf.face);
-      const cx = (mx + lx2) / 2;
-      const cy = (my + ly2) / 2;
-      // The couple turns around the partner who stays in place (heel turns, closing
-      // steps); otherwise around their common centre.
-      const ms = still(m, i);
-      const lst = still(traced, i);
-      const prevM = mFeet.length ? { x: mFeet[mFeet.length - 1].bx, y: mFeet[mFeet.length - 1].by } : m.start;
-      const prevL = lFeet.length ? { x: lFeet[lFeet.length - 1].bx, y: lFeet[lFeet.length - 1].by } : traced.start;
-      let nm = { x: cx - o.x / 2, y: cy - o.y / 2 };
-      let nl = { x: cx + o.x / 2, y: cy + o.y / 2 };
-      const prevFace = i === 0 ? m.start.face : m.feet[i - 1].bodyFace;
-      if (ms && lst && Math.abs(norm180(mf.bodyFace - prevFace)) < 100) {
-        // both close: the couple turns around its centre (no travel)
-        const c0 = { x: (prevM.x + prevL.x) / 2, y: (prevM.y + prevL.y) / 2 };
-        nm = { x: c0.x - o.x / 2, y: c0.y - o.y / 2 };
-        nl = { x: c0.x + o.x / 2, y: c0.y + o.y / 2 };
-      } else if (ms) {
-        nm = prevM;
-        nl = { x: nm.x + o.x, y: nm.y + o.y };
-      } else if (lst) {
-        nl = prevL;
-        nm = { x: nl.x - o.x, y: nl.y - o.y };
-      }
+      // The lady must end up at `o` from the man. The change needed is shared by the
+      // partners by how much each of them steps: the one who stays in place (heel turn,
+      // closing step) stays put and the other one takes the correction into the step –
+      // nobody is carried, so the supporting feet stay on the floor.
+      const { nm, nl } = share({ x: mx, y: my }, { x: lx2, y: ly2 }, o, ownLen(m, i), ownLen(traced, i));
       dm = { x: nm.x - mf.bx, y: nm.y - mf.by };
       dl = { x: nl.x - lf.bx, y: nl.y - lf.by };
       mFeet.push(moveTo(mf, nm.x, nm.y));
@@ -368,10 +360,7 @@ export function coupleGeometry(
       const dx = lx2 - mx;
       const dy = ly2 - my;
       const dist = Math.hypot(dx, dy) || 1;
-      const cx = (mx + lx2) / 2;
-      const cy = (my + ly2) / 2;
-      const nm = hold(mFeet, m.start, { x: cx - (dx / dist) * (want / 2), y: cy - (dy / dist) * (want / 2) }, still(m, i));
-      const nl = hold(lFeet, traced.start, { x: cx + (dx / dist) * (want / 2), y: cy + (dy / dist) * (want / 2) }, still(traced, i));
+      const { nm, nl } = share({ x: mx, y: my }, { x: lx2, y: ly2 }, { x: (dx / dist) * want, y: (dy / dist) * want }, ownLen(m, i), ownLen(traced, i));
       dm = { x: nm.x - mf.bx, y: nm.y - mf.by };
       dl = { x: nl.x - lf.bx, y: nl.y - lf.by };
       mFeet.push(moveTo(mf, nm.x, nm.y));
@@ -453,13 +442,8 @@ export function liveFeet(p: Partner, steps: FloorStep[]): FeetState[] {
   let bodyFace = s.face;
   let bx = s.x;
   let by = s.y;
-  let shift = { x: 0, y: 0 };
   p.feet.forEach((f, i) => {
     const turn = norm180(f.bodyFace - bodyFace);
-    // How much the couple's placement moved the dancer since the previous step.
-    const sh = f.shift ?? { x: 0, y: 0 };
-    const ds = { x: sh.x - shift.x, y: sh.y - shift.y };
-    shift = sh;
     const next: FeetState = { L: { ...cur.L }, R: { ...cur.R }, moved: f.foot };
     if (f.foot) {
       const other = f.foot === "L" ? "R" : "L";
@@ -476,19 +460,8 @@ export function liveFeet(p: Partner, steps: FloorStep[]): FeetState[] {
         : { x: f.x, y: f.y, face: f.face, weight: !noWeight, cross: f.cross };
       next[other] = { ...next[other], face: next[other].face + turn, weight: noWeight ? true : false };
       if (!next.transfer) {
-        // The placement correction normally goes into the step. When it would turn the
-        // step far away from its direction in the chart (more than 80°), the dancer is carried
-        // instead (both feet move with the placement, as before).
-        const o0 = next[other];
-        const chart = { x: f.x - ds.x - o0.x, y: f.y - ds.y - o0.y };
-        const placed = { x: f.x - o0.x, y: f.y - o0.y };
-        const lc = Math.hypot(chart.x, chart.y);
-        const lp = Math.hypot(placed.x, placed.y);
-        if (lc > 0.12 && lp > 0.01) {
-          const cosA = (chart.x * placed.x + chart.y * placed.y) / (lc * lp);
-          if (cosA < Math.cos((80 * Math.PI) / 180)) next[other] = { ...o0, x: o0.x + ds.x, y: o0.y + ds.y };
-        }
-
+        // The couple's placement goes into where the stepping foot lands (the
+        // partners share it by how much each of them steps – see coupleGeometry).
         // A placement correction bigger than a stride would leave the supporting foot
         // impossibly far behind: then it is drawn up (the only case it moves).
         const MAX = 1.3;
@@ -498,20 +471,8 @@ export function liveFeet(p: Partner, steps: FloorStep[]): FeetState[] {
         if (dist > MAX) {
           next[other] = { ...o, x: nf.x + ((o.x - nf.x) / dist) * MAX, y: nf.y + ((o.y - nf.y) / dist) * MAX };
         }
-      } else {
-        // A weight transfer doesn't move the feet; only when the couple's placement
-        // has carried the dancer well away from them do they follow.
-        const cxF = (next.L.x + next.R.x) / 2;
-        const cyF = (next.L.y + next.R.y) / 2;
-        const off = Math.hypot(f.bx - cxF, f.by - cyF);
-        if (off > 0.5) {
-          const k = 1 - 0.5 / off;
-          const dx = (f.bx - cxF) * k;
-          const dy = (f.by - cyF) * k;
-          next.L = { ...next.L, x: next.L.x + dx, y: next.L.y + dy };
-          next.R = { ...next.R, x: next.R.x + dx, y: next.R.y + dy };
-        }
       }
+      // (a weight transfer keeps both feet where they are)
     } else {
       // both feet / unknown: the whole dancer moves with the body
       const dx = f.bx - bx;

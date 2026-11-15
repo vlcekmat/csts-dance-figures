@@ -29,13 +29,14 @@ Latin (chacha/rumba/jive) has no plan; `animSteps` still feed the animation.
   Lady fixes: `fixLadyFacing` (her chart carries his alignment → flip all when majority in facing
   positions; single closed-position steps flipped); without man's alignments her alignments are
   dropped (relative placement only). Missing lady chart in routines ⇒ `mirrorSteps` (estimated, "*").
-- Placement per step (positions that say where she stands: closed/opp/open/fan/side/shadow/tandem/
+- Placement per step: the partners' own chart positions (+ previous corrections) are moved so the lady is exactly at the position's offset; the needed change is split by weights 1/(own step length + 0.05)² (`share`), a weight transfer counts as length 0 (pinned). So whoever stands / transfers stays, the stepping partner absorbs it (no partner is carried). Apart positions: same split towards the position's distance.
+- (older notes) Placement per step (positions that say where she stands: closed/opp/open/fan/side/shadow/tandem/
   diag/prom/fallaway/wing/outside/angle): offset by `ladyOffset` around the couple centre;
   promenade beside him by his feet direction (if within 60° of body); in opposing positions she is
   turned to face him. Still partner = axis (heel turns); both still ⇒ the couple rotates around its
   centre (small "teeth" accepted). Feet keep the placement `shift`, so the supporting foot moves
   with the dancer.
-- `liveFeet`: only the stepping foot travels (lands on the placed footprint, so the couple placement goes into the step); the supporting foot stays and swivels. Exceptions: placement change since the previous step (`shift` delta) would turn the step > 80° off its chart direction ⇒ both feet carried; feet > 1.3 m apart ⇒ supporting foot drawn up; weight transfer keeps both feet unless the body is > 0.5 m off them. `npm run audit:feet` counts sliding feet (last: 337 of 4596 steps, was 3644). Both feet per state, weight booleans + `load`, `transfer` (desc in place/recover… or
+- `liveFeet`: only the stepping foot travels (lands on the placed footprint); the supporting foot stays and swivels; weight transfers never move the feet. Only exception: feet > 1.3 m apart ⇒ supporting foot drawn up. `npm run audit:feet` counts sliding feet (last: 13 of 4596 steps; 3644 before 2026-11). Both feet per state, weight booleans + `load`, `transfer` (desc in place/recover… or
   foot didn't move), crossed feet (`cross` behind/front placed on the other side).
   `feetBetween` animates the stepping foot
   past the supporting one; weight flows (gradually for transfers).
@@ -51,7 +52,7 @@ Latin (chacha/rumba/jive) has no plan; `animSteps` still feed the animation.
   other, turns without charted turn, travel in on-spot figures. Last: 14 findings.
 - `npm run audit:steps`: dir (foot lands vs the supporting foot by desc), foot alternation, weight,
   count vs timing, start foot vs syllabus. `--solo` = man alone (chart vs placement problems).
-  Last: dir 160 / spread 97 / foot 53 / count 13 / start 4 (dir and spread grew when the supporting foot stopped sliding: placement corrections now show in the step).
+  Last: dir 224 / spread 117 / foot 53 / count 13 / start 4 (dir and spread grew when feet stopped sliding: placement corrections now show in the step, mostly latin lady turns). audit: 15, teeth: 135.
 - `npm run audit:teeth`: back-and-forth teeth vs the raw chart (MINLEG env). Last ~133 (67 ≥ 0.25 m).
 - `scripts/check_alignment.py`: standard start/end alignment vs summed turns (27 suspicious, book quirks).
 Remaining findings are mostly book/OCR gaps (missing rows) or real sharp moves (spins, twists, rolls).
