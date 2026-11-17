@@ -476,6 +476,25 @@ export function hasFloor(fig: Figure): boolean {
   return !!fig.floor && fig.floor.steps.some((s) => parseAlign(s.align) !== null);
 }
 
+/**
+ * Lady's facing relative to the man's for a couple position (degrees, + = to his left),
+ * or null when the position doesn't say (promenade: the V shape varies).
+ */
+export function relativeFacing(pos: string): number | null {
+  const p = (pos.toLowerCase().split(/\s+(?:to|then)\s+(?=[a-z])/).pop() ?? "").trim();
+  if (!p) return null;
+  // Promenade / fallaway: a V opening to where they travel – the lady faces a quarter
+  // turn further left than the man (man DW, lady DC); counter promenade the other way.
+  if (/counter prom|\bcpp\b|cnt prom/.test(p)) return -90;
+  if (/prom|\bpp\b|fallaway/.test(p)) return 90;
+  // at a right angle: on his left facing across him (Fan L Angle), or on his right
+  if (/\bl(?:eft)? angle\b/.test(p)) return -90;
+  if (/\br(?:ight)? angle\b/.test(p)) return 90;
+  if (/same|shadow|tandem|side by side/.test(p)) return 0;
+  if (/opp|closed|close\b|outside|wing|open/.test(p)) return 180;
+  return null;
+}
+
 // --- Whole routine in a room ------------------------------------------------------
 
 export interface RoomSize {
@@ -834,6 +853,11 @@ export function simulateRoutine(
     }
     const startFace = faces.start === null ? null : norm180(faces.start + side * 90);
     const endFace = faces.end === null ? null : norm180(faces.end + side * 90);
+    // The couple position says how the lady faces him (closed, promenade, outside partner …).
+    const relStart = relativeFacing(item.startPos ?? item.steps?.[0]?.pos ?? "");
+    const relEnd = relativeFacing(item.steps?.[item.steps.length - 1]?.pos ?? "");
+    if (startFace !== null && relStart !== null) lady = { ...lady, start: norm180(startFace - side * 90 + relStart) };
+    if (endFace !== null && relEnd !== null) lady = { ...lady, end: norm180(endFace - side * 90 + relEnd) };
     // Without a chart we don't know the facing: the next figure starts as charted.
     face = endFace;
     segments.push({

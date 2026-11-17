@@ -25,6 +25,8 @@ Each segment stores `placed` {item, x, y, rotate, init} for the routine animatio
 Latin (chacha/rumba/jive) has no plan; `animSteps` still feed the animation.
 
 ## Player (playerGeometry.ts + FigurePlayer.tsx)
+- Chosen start / finish position of a routine figure (syllabus alternative or own) goes into the steps: `plan.ts withPositions` replaces the chart's first (last) position run, the start alternative's desc becomes step 1, and the lady's fwd/bwd flip when promenade ↔ facing (closed/OP). SimItem.startPos = chosen; plan arrows use `relativeFacing` (now in floor.ts).
+- Czech position names: `localizePositions` builds latin names from parts (`PART_POS`: open/close, L/R, side/diag, opp/same/angle → "levé stranové postavení, kolmo vlevo"), "then"/"to" → "→"; own-position list uses WDSF latin terms.
 - Couple offsets (`ladyOffset`): closed = in front slightly to his right; OUTSIDE PARTNER = further to his RIGHT (OP is always on the partner's right side; was wrongly left before 2026-11); PP beside him on his right; wing / CPP on his left. `op` only as a separate word (OCR "Open Op¢" ≠ OP). audit_figures checks OP angle and PP V-facing.
 - `coupleGeometry`: footprints for man and lady (TraceOpts rotate/extraTurn/scales/initialFacing).
   Lady fixes: `fixLadyFacing` (her chart carries his alignment → flip all when majority in facing

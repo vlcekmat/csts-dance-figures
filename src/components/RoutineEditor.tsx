@@ -162,6 +162,14 @@ export function RoutineEditor({ routine, api, onBack, onOpenFigure }: Props) {
   }, [showLoop]);
   const room = routine.room ?? { preset: "medium" as const, ...ROOM_PRESETS.medium };
   const stepCm = routine.stepCm ?? Math.round((STEP_BY_DANCE[routine.dance] ?? 0.85) * 100);
+  /** Start / finish position the user chose for a figure (syllabus alternative or own). */
+  const chosenPositions = (r: (typeof rows)[number]) => {
+    const v = r.item.variant;
+    const startAlt = v?.start !== undefined ? r.fig.syllabus?.variants?.starts?.[v.start] : undefined;
+    const start = v?.startPosition || startAlt ? (r.resolved.startPos ?? undefined) : undefined;
+    const finish = v?.finishPosition || v?.finish !== undefined ? (r.resolved.finishPos ?? undefined) : undefined;
+    return start || finish ? { start, finish, startDesc: startAlt?.desc } : undefined;
+  };
   // Inputs of the plan (shared by the floor plan and the routine animation).
   const planInput = (reps: number | "round", loop: boolean) => ({
     dance,
@@ -176,6 +184,7 @@ export function RoutineEditor({ routine, api, onBack, onOpenFigure }: Props) {
       stepScales: r.item.variant?.stepScales,
       wall: r.item.wall,
       noCorner: r.item.noCorner,
+      positions: chosenPositions(r),
     })),
     room,
     start: routine.start ?? DEFAULT_START,

@@ -301,7 +301,7 @@ export function FigureDetail({ fig: baseFig, onClose, onOpenFigure, routinesApi,
                     <>
                       <dt>{t("altStarts")}</dt>
                       <dd>
-                        <Glossed text={localizePositions(syl.variants.starts.map((v) => (lang === "cs" ? v.descCs : v.desc)).join("; "), lang)} />
+                        <Glossed text={syl.variants.starts.map((v) => localizeStep(v.desc, lang)).join("; ")} />
                       </dd>
                     </>
                   )}

@@ -334,9 +334,46 @@ export function localizeStep(text: string, lang: Lang): string {
  * Czech UI: replace WDSF position and hold names inside a text by Czech names.
  * English UI: text is returned unchanged.
  */
+/**
+ * Czech name of a latin-style position built from its parts:
+ * [Close | Open | Ex Open] [Back] [R | L] [Side | Diag] [Back] [Opp | Same | R Angle | L Angle].
+ * "L Side L Angle" -> "levé stranové postavení, kolmo vlevo".
+ */
+const PART_POS = new RegExp(
+  "\\b(?:(Ex(?:tended)?\\.? Open|Open|Close)\\.?\\s+)?(?:(Back)\\s+)?(?:(?:(R|L|Right|Left)\\s+)?(?:(Back)\\s+)?(Side|Diag(?:onal)?)\\.?\\s*)?" +
+    "(Opp(?:osing|osition)?\\.?|Same|(?:R|L|Right|Left) Angle)(?:\\s+Pos(?:ition)?\\.?)?",
+  "g",
+);
+function partPosition(_m: string, open?: string, back1?: string, lr?: string, back2?: string, kind?: string, rel?: string): string {
+  const words: string[] = [];
+  if (open) words.push(/^ex/i.test(open) ? "rozšířené otevřené" : /^open/i.test(open) ? "otevřené" : "uzavřené");
+  if (lr) words.push(/^r/i.test(lr) ? "pravé" : "levé");
+  if (back1 || back2) words.push("zadní");
+  if (kind) words.push(/^side/i.test(kind) ? "stranové" : "diagonální");
+  const angle = rel && /angle/i.test(rel) ? (/^r/i.test(rel) ? "vpravo" : "vlevo") : null;
+  if (!angle && rel) words.push(/^opp/i.test(rel) ? "opoziční" : "souběžné");
+  return `${words.join(" ")} postavení${angle ? `, kolmo ${angle}` : ""}`.trim();
+}
+
 export function localizePositions(text: string, lang: Lang): string {
   if (lang !== "cs" || !text) return text;
-  let out = text.replace(POS_RE, (...m) => {
+  let out = text
+    .replace(/\b[Ff]an L Angle(?: [Pp]os(?:ition)?)?\.?/g, "postavení vějíře")
+    .replace(/\b(?:Ex\.? )?Open Cnt Prom(?:enade)?\.?/g, "otevřená obrácená promenáda")
+    .replace(/\bClose Cnt Prom(?:enade)?\.?/g, "uzavřená obrácená promenáda")
+    .replace(/\bOpen Fallaway\b/g, "otevřené spádné postavení")
+    .replace(/\bMoving (?:to )?/g, "přechod → ")
+    .replace(/\bTowards /g, "směrem → ")
+    .replace(/\bTurn (?:to )?(?=[A-Z])/g, "otočka → ")
+    // older own choices of the routine editor
+    .replace(/\bOpen Counter Promenade Position\b/g, "otevřené obrácené promenádní postavení")
+    .replace(/\bLeft Side Position\b/g, "levé stranové postavení")
+    .replace(/\bRight Side Position\b/g, "pravé stranové postavení")
+    .replace(/\bFan Position\b/g, "postavení vějíře")
+    .replace(/\bOpen Position\b/g, "otevřené postavení")
+    .replace(/\bPartner Outside(?: Position)?\b/g, "partnerka mimo partnera")
+    .replace(PART_POS, partPosition);
+  out = out.replace(POS_RE, (...m) => {
     const idx = m.slice(1, POSITIONS.length + 1).findIndex((g) => g !== undefined);
     return idx >= 0 ? POSITIONS[idx].cs : m[0];
   });
@@ -345,8 +382,9 @@ export function localizePositions(text: string, lang: Lang): string {
     .replace(/\bRF\b/g, "Pn")
     .replace(/\bLF\b/g, "Ln")
     // "X to Y" between translated phrases means a change during the step.
-    .replace(/(postavení|promenáda|držení) to (?=[a-zěščřžýáíéůúó])/g, "$1 → ")
+    // "X to Y" / "X then Y" between translated positions: a change during the step.
+    .replace(/(postavení(?:, kolmo v(?:pravo|levo))?|promenáda|držení|vějíře)\s+(?:to|then)\s+(?=[a-zěščřžýáíéůúó])/g, "$1 → ")
     .replace(/\bwith (?=[a-zěščřžýáíéůúó])/g, "s ")
-    .replace(/\bin (?!place\b)(?=[a-zěščřžýáíéůúó])/g, "v ")
+    .replace(/\bin (?!place\b)(?=[a-zěščřžýáíéůúó]|CBMP|PP\b)/g, "v ")
     .replace(/\.;/g, ";");
 }

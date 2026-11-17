@@ -5,7 +5,7 @@ import { useI18n, type StringKey } from "../i18n";
 import { altChangesSteps, altConflicts, altLabel, type FigureAlt } from "../alternatives";
 import type { RoutineItem } from "../routines";
 import type { ResolvedItem, VariantChoice } from "../variants";
-import { localizePositions } from "../glossary";
+import { localizePositions, localizeStep } from "../glossary";
 
 interface Props {
   item: RoutineItem;
@@ -69,22 +69,26 @@ const POSITIONS: Record<"standard" | "latin", string[]> = {
     "Closed Position",
     "Promenade Position",
     "Counter Promenade Position",
-    "Outside Partner",
+    "Outside Partner Position",
     "Partner Outside",
     "Wing Position",
     "Fallaway Position",
   ],
+  // WDSF latin terms (the player knows where the lady stands in each)
   latin: [
-    "Closed Position",
-    "Open Position",
-    "Fan Position",
-    "Promenade Position",
-    "Counter Promenade Position",
-    "Left Side Position",
-    "Right Side Position",
+    "Close Opp",
+    "Open Opp",
+    "Ex Open Opp",
+    "Fan L Angle",
+    "Close Prom",
+    "Open Prom",
+    "Open CPP",
+    "L Side Same",
+    "R Side Same",
+    "L Side Opp",
+    "R Side Opp",
     "Shadow Position",
     "Tandem Position",
-    "Open Counter Promenade Position",
   ],
 };
 
@@ -111,7 +115,7 @@ export function PositionChoice({ item, fig, resolved, onChange, which, disciplin
         : `${localizePositions((lang === "cs" ? syl?.finishCs : syl?.finish) ?? "", lang)} (${t("primaryTiming")})`;
   const alts =
     which === "start"
-      ? (variants.starts ?? []).map((s) => localizePositions(lang === "cs" ? s.descCs : s.desc, lang))
+      ? (variants.starts ?? []).map((s) => localizeStep(s.desc, lang))
       : (variants.finishes ?? []).map((f) => localizePositions(f.position, lang));
   return (
     <select value={value} onChange={(e) => set(e.target.value)} aria-label={t(which === "start" ? "start" : "finish")} className={own ? "warn" : ""}>

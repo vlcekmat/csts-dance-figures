@@ -2,6 +2,7 @@
 // every step (shared by the FigurePlayer component and scripts/audit_figures.ts).
 import type { Dance, Figure } from "./data";
 import {
+  relativeFacing,
   STEP_BY_DANCE,
   STEP_METRES,
   norm180,
@@ -114,7 +115,7 @@ export function closeHold(pos: string): boolean {
   const parts = pos.toLowerCase().split(/\s+(?:to|then)\s+(?=[a-z])/);
   const p = parts[parts.length - 1] ?? "";
   if (/\bopen\b|ex\.? open|apart|\bfan\b|side same|side by side|shadow|tandem/.test(p)) return false;
-  return /clos|promenade|\bpp\b|outside partner|\bop\b|fallaway|wing|contra/.test(p);
+  return /clos|promenade|\bpp\b|outside partner|partner outside|\bop\b|fallaway|wing|contra/.test(p);
 }
 
 /** Signed amount of turn of a chart step (degrees, + = left), or null. */
@@ -150,7 +151,7 @@ export function ladyOffset(pos: string, latin: boolean): { fwd: number; right: n
   if (/fallaway/.test(p)) return { fwd: 0.05, right: 0.45 };
   // Outside partner is always on the partner's right side: the lady stands further to
   // the man's right than in closed position (his right foot passes outside her right).
-  if (/outside partner|(?:^|\s)op(?:\s|$)/.test(p)) return { fwd: 0.3, right: 0.27 };
+  if (/outside partner|partner outside|(?:^|\s)op(?:\s|$)/.test(p)) return { fwd: 0.3, right: 0.27 };
   if (/wing/.test(p)) return { fwd: 0.2, right: -0.45 };
   if (/shadow/.test(p)) return { fwd: 0.35, right: 0.25 };
   if (/tandem/.test(p)) return { fwd: 0.4, right: 0 };
@@ -242,24 +243,7 @@ export function fixLadyFacing(man: FloorStep[], lady: FloorStep[]): FloorStep[] 
   });
 }
 
-/**
- * Lady's facing relative to the man's for a couple position (degrees, + = to his left),
- * or null when the position doesn't say (promenade: the V shape varies).
- */
-export function relativeFacing(pos: string): number | null {
-  const p = (pos.toLowerCase().split(/\s+(?:to|then)\s+(?=[a-z])/).pop() ?? "").trim();
-  if (!p) return null;
-  // Promenade / fallaway: a V opening to where they travel – the lady faces a quarter
-  // turn further left than the man (man DW, lady DC); counter promenade the other way.
-  if (/counter prom|\bcpp\b|cnt prom/.test(p)) return -90;
-  if (/prom|\bpp\b|fallaway/.test(p)) return 90;
-  // at a right angle: on his left facing across him (Fan L Angle), or on his right
-  if (/\bl(?:eft)? angle\b/.test(p)) return -90;
-  if (/\br(?:ight)? angle\b/.test(p)) return 90;
-  if (/same|shadow|tandem|side by side/.test(p)) return 0;
-  if (/opp|closed|close\b|outside|wing|open/.test(p)) return 180;
-  return null;
-}
+export { relativeFacing } from "./floor";
 
 /** Footprints and body positions of both partners (figure frame, or placed by `tr`). */
 export function coupleGeometry(
