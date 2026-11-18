@@ -16,6 +16,7 @@ import { RoutineList } from "./components/RoutineList";
 import { RoutineEditor } from "./components/RoutineEditor";
 import { Help } from "./components/Help";
 import { FigureFinder } from "./components/FigureFinder";
+import { SyncPanel, useSync } from "./components/SyncPanel";
 
 // The owner's chart editor exists only on the local dev server (not in the built site).
 const FigureEditor = import.meta.env.DEV ? lazy(() => import("./components/FigureEditor")) : null;
@@ -59,6 +60,7 @@ function buildHash(r: Route): string {
 export default function App() {
   const { t, lang, setLang } = useI18n();
   const api = useRoutines();
+  const syncState = useSync(api);
   const { theme, setTheme } = useTheme();
   const [route, setRoute] = useState<Route>(parseHash);
   // Figure opened from the routine editor (shown as overlay without changing the route).
@@ -165,7 +167,10 @@ export default function App() {
               onOpenFigure={setOverlayFig}
             />
           ) : (
-            <RoutineList api={api} onOpen={(id) => go({ page: "routines", id, filters: route.filters })} />
+            <>
+              <SyncPanel state={syncState} />
+              <RoutineList api={api} onOpen={(id) => go({ page: "routines", id, filters: route.filters })} />
+            </>
           ))}
         {route.page === "about" && <Help />}
         {route.page === "finder" && <FigureFinder onOpen={setOverlayFig} />}

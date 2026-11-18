@@ -274,6 +274,23 @@ const STRINGS = {
     en: "Figures marked * have no step chart – drawn dashed by the kind of figure: on the spot (ring), small move, or travelling along LOD by number of bars.",
   },
   stepChart: { cs: "Graf kroků", en: "Step chart" },
+  syncTitle: { cs: "Synchronizace mezi zařízeními", en: "Sync across devices" },
+  syncIntro: {
+    cs: "Přihlas se e-mailem a sestavy i vlastní figury se budou automaticky synchronizovat mezi všemi zařízeními, kde se přihlásíš. Bez přihlášení zůstávají jen v tomto prohlížeči.",
+    en: "Sign in with your e-mail and your routines and own figures sync automatically between all devices where you sign in. Without signing in they stay in this browser only.",
+  },
+  syncEmail: { cs: "E-mail", en: "E-mail" },
+  syncSendLink: { cs: "Poslat přihlašovací odkaz", en: "Send sign-in link" },
+  syncLinkSent: {
+    cs: "Odkaz jsme poslali na {email}. Otevři ho na tomto zařízení a budeš přihlášen(a).",
+    en: "We sent a link to {email}. Open it on this device to sign in.",
+  },
+  syncBusy: { cs: "Synchronizuji…", en: "Syncing…" },
+  syncError: { cs: "Synchronizace selhala", en: "Sync failed" },
+  syncDone: { cs: "Synchronizováno v {time}", en: "Synced at {time}" },
+  syncOn: { cs: "Synchronizace zapnutá", en: "Sync on" },
+  syncNow: { cs: "Synchronizovat", en: "Sync now" },
+  syncSignOut: { cs: "Odhlásit", en: "Sign out" },
   // Owner's chart editor (dev server only)
   edTab: { cs: "Editor", en: "Editor" },
   edTitle: { cs: "Editor kroků", en: "Step editor" },

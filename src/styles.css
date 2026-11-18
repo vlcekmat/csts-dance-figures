@@ -1249,3 +1249,9 @@ select.warn { border-color: var(--warn); }
   .ed-layout { grid-template-columns: 1fr; }
   .ed-preview { position: static; }
 }
+
+/* ---- Sync across devices ------------------------------------------------ */
+.sync-panel { margin-bottom: 1rem; }
+.sync-panel h3 { margin: 0 0 .3rem; }
+.sync-panel.compact { display: flex; flex-wrap: wrap; align-items: center; gap: .6rem; padding: .6rem 1rem; }
+.sync-panel .error { color: var(--bad); }

@@ -16,6 +16,7 @@
     "audit:couple": "rolldown scripts/audit_couple.ts --platform node --format esm -o data/build/couple.mjs && node data/build/couple.mjs"
   },
   "dependencies": {
+    "@supabase/supabase-js": "2.118.0",
     "react": "^19.3.1",
     "react-dom": "^19.3.1"
   },

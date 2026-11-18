@@ -4,6 +4,7 @@
 // work with them unchanged.
 import { useCallback, useEffect, useState } from "react";
 import { setCustomFigures, type Figure } from "./data";
+import { markDeleted } from "./tombstones";
 
 export type Travel = "spot" | "small" | "travel";
 
@@ -152,7 +153,16 @@ export function useCustomFigures() {
     });
   }, []);
 
-  const remove = useCallback((id: string) => setList((l) => l.filter((x) => x.id !== id)), []);
+  const remove = useCallback((id: string) => {
+    markDeleted(id);
+    setList((l) => l.filter((x) => x.id !== id));
+  }, []);
+
+  /** Replace all own figures (sync from another device). */
+  const setAll = useCallback((items: CustomFigure[]) => {
+    setCustomFigures(items.map(toFigure));
+    setList(items);
+  }, []);
 
   /** Add imported figures, keeping existing ones with the same id. */
   const addMany = useCallback((items: CustomFigure[]) => {
@@ -165,7 +175,7 @@ export function useCustomFigures() {
 
   const get = useCallback((id: string) => list.find((x) => x.id === id), [list]);
 
-  return { list, save, remove, addMany, get };
+  return { list, save, remove, addMany, get, setAll };
 }
 
 export type CustomApi = ReturnType<typeof useCustomFigures>;

@@ -3,6 +3,7 @@ import { useCallback, useEffect, useState } from "react";
 import type { ClassId } from "./data";
 import type { VariantChoice } from "./variants";
 import { isCustomFigure, type CustomFigure } from "./customFigures";
+import { markDeleted } from "./tombstones";
 
 export interface RoutineItem {
   /** Unique id of this occurrence (a figure can appear several times). */
@@ -143,8 +144,12 @@ export function useRoutines() {
   }, []);
 
   const remove = useCallback((id: string) => {
+    markDeleted(id);
     setRoutines((rs) => rs.filter((r) => r.id !== id));
   }, []);
+
+  /** Replace all routines (sync from another device). */
+  const setAll = useCallback((list: Routine[]) => setRoutines(list), []);
 
   const addMany = useCallback((list: Routine[]) => {
     setRoutines((rs) => [...list, ...rs]);
@@ -159,7 +164,7 @@ export function useRoutines() {
     [update],
   );
 
-  return { routines, create, update, remove, addMany, addFigure };
+  return { routines, create, update, remove, addMany, addFigure, setAll };
 }
 
 export type RoutinesApi = ReturnType<typeof useRoutines>;
