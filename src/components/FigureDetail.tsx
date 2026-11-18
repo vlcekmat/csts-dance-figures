@@ -6,7 +6,7 @@ import { useI18n } from "../i18n";
 import { formatBars, parseTiming, totalBeats } from "../timing";
 import type { RoutinesApi } from "../routines";
 import { describeFigure } from "../describe";
-import { allowedHolds, getHold, localizePositions, localizeStep, localizeTurn } from "../glossary";
+import { allowedHolds, getHold, localizePositions, localizeStep, localizeAlign, localizeTurn } from "../glossary";
 import { ClassBadges } from "./ClassBadges";
 import { useCustom } from "./CustomFigureHost";
 import { Glossed } from "./Glossary";
@@ -187,11 +187,11 @@ export function FigureDetail({ fig: baseFig, onClose, onOpenFigure, routinesApi,
             <dl className="facts">
               <dt>{t("start")}</dt>
               <dd>
-                <Glossed text={localizePositions(lang === "cs" ? syl.startCs : syl.start, lang)} />
+                <Glossed text={localizeStep(lang === "cs" ? syl.startCs : syl.start, lang)} />
               </dd>
               <dt>{t("finish")}</dt>
               <dd>
-                <Glossed text={localizePositions(lang === "cs" ? syl.finishCs : syl.finish, lang)} />
+                <Glossed text={localizeStep(lang === "cs" ? syl.finishCs : syl.finish, lang)} />
               </dd>
               <dt>{t("timing")}</dt>
               <dd>
@@ -434,7 +434,7 @@ export function FigureDetail({ fig: baseFig, onClose, onOpenFigure, routinesApi,
                             </td>
                             {withAlign && (
                               <td>
-                                <Glossed text={st.alignText ?? st.align} />
+                                <Glossed text={localizeAlign(st.alignText ?? st.align, lang)} />
                               </td>
                             )}
                             <td lang={lang}>{st.turn && st.turn !== "--" ? localizeTurn(st.turn, lang) : ""}</td>

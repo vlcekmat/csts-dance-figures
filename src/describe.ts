@@ -2,7 +2,7 @@
 // WDSF Syllabus data (start, finish, timing, holds, allowed variants). It does
 // not invent technique the sources don't contain.
 import { getDance, type Figure, type Lang } from "./data";
-import { getHold, localizePositions } from "./glossary";
+import { getHold, localizePositions, localizeStep } from "./glossary";
 import { countSteps, formatBars, parseTiming, totalBeats } from "./timing";
 
 function czSteps(n: number) {
@@ -53,7 +53,7 @@ export function describeFigure(fig: Figure, lang: Lang): string[] {
   // Start / finish (man's steps).
   out.push(
     lang === "cs"
-      ? `Muž ji začíná krokem ${syl.startCs} a končí ${/^(váha|weight)/i.test(syl.finishCs) ? "s tím, že " + syl.finishCs : "krokem " + syl.finishCs}.`
+      ? `Muž ji začíná krokem ${localizeStep(syl.startCs, "cs")} a končí ${/^(váha|weight)/i.test(syl.finishCs) ? "s tím, že " + localizeStep(syl.finishCs, "cs") : "krokem " + localizeStep(syl.finishCs, "cs")}.`
       : `The man starts with ${syl.start} and finishes with ${syl.finish}.`,
   );
 

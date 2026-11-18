@@ -168,7 +168,8 @@ export function allowedHolds(holds: { start?: string; finish?: string; alts: str
 
 export function holdName(k: string | null | undefined, lang: Lang): string {
   const h = getHold(k);
-  return h ? `${h[lang]} (${h.wdsf})` : "?";
+  // Czech UI: Czech names only (no English abbreviations mixed in)
+  return h ? (lang === "cs" ? h.cs : `${h.en} (${h.wdsf})`) : "?";
 }
 
 // --- Couple positions: Czech names ------------------------------------------------
@@ -265,7 +266,16 @@ const STEP_CS: [RegExp, string][] = [
   [/\bPivot\b/g, "pivot"],
   [/\bSwivel\b/g, "švih"],
   [/\bloosely\b/gi, "volně"],
+  [/\bacross (?:the )?body\b/gi, "napříč tělem"],
+  [/\bnapříč (?:the )?body\b/gi, "napříč tělem"],
   [/\band across\b/gi, "a napříč"],
+  [/\b([LR]) [Ss]ide leading\b/g, (m: string) => (m[0] === "L" ? "vedení levým bokem" : "vedení pravým bokem")] as unknown as [RegExp, string],
+  [/\bvedení ([LP]) bokem\b/g, (m: string) => (/ L /.test(m) ? "vedení levým bokem" : "vedení pravým bokem")] as unknown as [RegExp, string],
+  [/\b([LR]) shoulder leading\b/g, (m: string) => (m[0] === "L" ? "vedení levým ramenem" : "vedení pravým ramenem")] as unknown as [RegExp, string],
+  [/\bfeet together\b/gi, "chodidla u sebe"],
+  [/\bheld (?:in|v) position\b/gi, "zůstává na místě"],
+  [/\boutside Lady[’']s\b/gi, "vně partnerčiny"],
+  [/\bcross(?:es|ed)? behind\b/gi, "kříží za"],
   [/\bL side leading\b/g, "vedení levým bokem"],
   [/\bR side leading\b/g, "vedení pravým bokem"],
   [/\bpart weight\b/gi, "s částečnou váhou"],
@@ -274,6 +284,7 @@ const STEP_CS: [RegExp, string][] = [
   [/\bcrosses? behind\b/gi, "kříží za"],
   [/\bcrosses? in front of\b/gi, "kříží před"],
   [/\bto side\b/gi, "stranou"],
+  [/\bside(?= a\b| and\b|$)/gi, "stranou"],
   [/\bslightly\b/gi, "mírně"],
   [/\b(?:fwd|forward)\b/gi, "vpřed"],
   [/\b(?:bwd|back|backward)\b/gi, "vzad"],
@@ -290,6 +301,22 @@ const STEP_CS: [RegExp, string][] = [
   [/\bstrong step\b/gi, "výrazný krok"],
   [/\bsmall step\b/gi, "malý krok"],
   [/\bwith part weight\b/gi, "s částečnou váhou"],
+  [/\bcross(?:es|ed)? (?=za\b|před\b)/gi, "kříží "],
+  [/\b(?:in|v) front of\b/gi, "před"],
+  [/\bcrossed\b/gi, "zkřížená"],
+  [/\bslipped\b/gi, "sklouznutá"],
+  [/\blong step\b/gi, "dlouhý krok"],
+  [/\bfeet almost closed\b/gi, "chodidla téměř u sebe"],
+  [/\bplaced\b/gi, "položená"],
+  [/\bw\/o wt\b/gi, "bez váhy"],
+  [/\bInstep of (\S+) (?:to|přisunuta k) T of (\S+)/g, "nárt $1 ke špičce $2"],
+  [/\b(?:OP|PO|mimo partnera) on ([LR]) side\b/g, (m: string) => (/ L side/.test(m) ? "mimo partnera vlevo" : "mimo partnera vpravo")] as unknown as [RegExp, string],
+  [/\bdrží pozici v position\b/g, "zůstává na místě"],
+  [/\bpostavení position\b/g, "postavení"],
+  [/\bto end\b/g, "a skončí"],
+  [/\bR F\b/g, "Pn"],
+  [/\bL F\b/g, "Ln"],
+  [/\s*-\s*pivot\b/gi, " (pivot)"],
   [/\bPP\b/g, "promenáda"],
   [/\band\b/g, "a"],
 ];
@@ -303,7 +330,14 @@ const TURN_CS: [RegExp, string][] = [
   [/\bbody completes (?:the )?turn\b/gi, "tělo dokončí otočení"],
   [/\bcompletes? (?:the )?turn\b/gi, "dokončí otočení"],
   [/\bno turn\b/gi, "bez otáčení"],
+  [/\bbetween steps\b/gi, "mezi kroky"],
   [/\bbetween\b|\bbtwn\b/gi, "mezi"],
+  [/\b1 (?:full )?turn\b/gi, "1 otáčka"],
+  [/\b([234]) (?:full )?turns\b/gi, "$1 otáčky"],
+  [/\b(\d+) (?:full )?turns\b/gi, "$1 otáček"],
+  [/\bturns?\b/gi, "otočení"],
+  [/\bsteps\b/gi, "kroky"],
+  [/\bstep\b/gi, "krok"],
   [/\bover\b/gi, "během kroků"],
   [/\bon\b/gi, "na"],
   [/\bpreceding step\b/gi, "předchozím krokem"],
@@ -312,6 +346,30 @@ const TURN_CS: [RegExp, string][] = [
   [/\band\b/g, "a"],
   [/\bup to\b/gi, "až"],
 ];
+
+/**
+ * Czech rendering of an alignment ("Facing DW", "Backing LOD", "Pointing DC, moving LOD").
+ * The codes LOD, DW, DC … stay (used by Czech dancers too); W / C alone become words.
+ */
+export function localizeAlign(text: string, lang: Lang): string {
+  if (lang !== "cs" || !text) return text;
+  return text
+    .replace(/\bFac(?:ing|e)\b/gi, "čelem")
+    .replace(/\bBack(?:ing)?\b/gi, "zády")
+    .replace(/\bPointing(?: to)?\b/gi, "špička")
+    .replace(/\bmoving\b/gi, "pohyb")
+    .replace(/\bagainst(?: the)?\b/gi, "proti")
+    .replace(/\b(?:diag(?:onally)?|diagonal) to\b/gi, "diagonálně k")
+    .replace(/\bof (?:the )?new\b/gi, "nové")
+    .replace(/\b(?:almost|nearly)\b/gi, "téměř")
+    .replace(/\bslightly\b/gi, "mírně")
+    .replace(/\bend\b/gi, "na konci")
+    .replace(/\bturn(?:ing)? to\b/gi, "otočka →")
+    .replace(/\bthen\b/gi, "→")
+    .replace(/\bto\b/g, "→")
+    .replace(/\bW(?:all)?\b|\bwall\b/g, "ke stěně")
+    .replace(/\bC(?:entre|enter)?\b|\bcent(?:re|er)\b/g, "ke středu");
+}
 
 /** Czech rendering of the chart's amount-of-turn text. */
 export function localizeTurn(text: string, lang: Lang): string {
@@ -342,7 +400,7 @@ export function localizeStep(text: string, lang: Lang): string {
 const PART_POS = new RegExp(
   "\\b(?:(Ex(?:tended)?\\.? Open|Open|Close)\\.?\\s+)?(?:(Back)\\s+)?(?:(?:(R|L|Right|Left)\\s+)?(?:(Back)\\s+)?(Side|Diag(?:onal)?)\\.?\\s*)?" +
     "(Opp(?:osing|osition)?\\.?|Same|(?:R|L|Right|Left) Angle)(?:\\s+Pos(?:ition)?\\.?)?",
-  "g",
+  "gi",
 );
 function partPosition(_m: string, open?: string, back1?: string, lr?: string, back2?: string, kind?: string, rel?: string): string {
   const words: string[] = [];
@@ -386,5 +444,8 @@ export function localizePositions(text: string, lang: Lang): string {
     .replace(/(postavení(?:, kolmo v(?:pravo|levo))?|promenáda|držení|vějíře)\s+(?:to|then)\s+(?=[a-zěščřžýáíéůúó])/g, "$1 → ")
     .replace(/\bwith (?=[a-zěščřžýáíéůúó])/g, "s ")
     .replace(/\bin (?!place\b)(?=[a-zěščřžýáíéůúó]|CBMP|PP\b)/g, "v ")
-    .replace(/\.;/g, ";");
+    .replace(/\.;/g, ";")
+    // a change of position during the step
+    .replace(/\s+then\s+/g, " → ")
+    .replace(/\s+or\s+/g, " nebo ");
 }

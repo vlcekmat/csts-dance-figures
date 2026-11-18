@@ -808,7 +808,7 @@ def fact_turn(turn):
     side = "R" if re.search(r"\bto\s*R\b|\bR\b|right", turn) else "L" if re.search(r"\bto\s*L\b|\bL\b|left", turn) else ""
     fr = re.findall(r"(\d/\d)\s*(?:to\s*)?([LR])?", turn)
     parts = [f"{a} {b or side}".strip() for a, b in fr]
-    whole = re.search(r"\b(\d)\s*(?:full\s*)?turns?\b", turn, re.I)
+    whole = re.search(r"(?<![\d/])\b(\d)\s*(?:full\s*)?turns?\b", turn, re.I)
     if whole:
         parts = [f"{whole.group(1)} turn{'s' if whole.group(1) != '1' else ''} {side}".strip()] + parts
     if not parts:

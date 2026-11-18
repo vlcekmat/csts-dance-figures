@@ -4,6 +4,7 @@ import type { FloorData } from "./floor";
 import type { FigureAlt } from "./alternatives";
 import editsRaw from "./data/edits.json";
 import { applyEdit, type EditsFile, type FigureEdit } from "./edits";
+import { cleanPosition } from "./positions";
 
 export type Lang = "cs" | "en";
 export type ClassId = "E" | "D" | "C" | "B";
@@ -142,7 +143,35 @@ const bookCharts = Object.values(
 )[0]?.default ?? {};
 
 /** Figures before the owner's hand edits (the figure editor diffs against these). */
-const BASE_FIGURES: Figure[] = db.figures.map((f) => (bookCharts[f.id] ? { ...f, floor: bookCharts[f.id] } : f));
+const BASE_FIGURES: Figure[] = db.figures.map((f) => withCleanPositions(bookCharts[f.id] ? { ...f, floor: bookCharts[f.id] } : f));
+
+/** Chart positions come from OCR: glued, misread, sentences – use the clean form. */
+function withCleanPositions(f: Figure): Figure {
+  if (!f.floor) return f;
+  const clean = (steps: FloorData["steps"]) =>
+    steps.map((st) => {
+      const pos = cleanPosition(st.pos);
+      if (pos === st.pos) return st;
+      const out = { ...st, pos };
+      if (!pos) delete out.pos;
+      return out;
+    });
+  // A chart without a position on its last step ends where the syllabus says.
+  const fin = cleanPosition(f.syllabus?.finish.match(/\(([^)]*)\)\s*$/)?.[1].split(";")[0]);
+  const finish = (steps: FloorData["steps"]) => {
+    const last = steps[steps.length - 1];
+    if (!fin || !last || last.pos) return steps;
+    return [...steps.slice(0, -1), { ...last, pos: fin }];
+  };
+  return {
+    ...f,
+    floor: {
+      ...f.floor,
+      steps: finish(clean(f.floor.steps)),
+      ...(f.floor.ladySteps ? { ladySteps: finish(clean(f.floor.ladySteps)) } : {}),
+    },
+  };
+}
 const baseById = new Map(BASE_FIGURES.map((f) => [f.id, f]));
 export const baseFigure = (id: string) => baseById.get(id);
 

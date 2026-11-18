@@ -5104,7 +5104,7 @@
      {
       "desc": "RF diag bwd",
       "align": "Facing LOD",
-      "turn": "2 turns L, then 1/2 L (pivot)",
+      "turn": "1/2 L (pivot)",
       "face": -135,
       "end": 0,
       "timing": "&",
@@ -5163,7 +5163,7 @@
      {
       "desc": "LF fwd and slightly to side",
       "align": "Backing LOD",
-      "turn": "2 turns, then 1/2 (pivot)",
+      "turn": "1/2 (pivot)",
       "face": 0,
       "end": -180,
       "timing": "&",
@@ -14460,7 +14460,7 @@
      {
       "desc": "RF diag bwd small step",
       "align": "Facing LOD",
-      "turn": "2 turns R, then 1/2 R (pivot)",
+      "turn": "1/2 R (pivot)",
       "face": -135,
       "end": 0,
       "pos": "Closed Position"
@@ -14472,7 +14472,7 @@
      {
       "desc": "RF fwd",
       "align": "Backing LOD",
-      "turn": "2 turns R, then 1/2 R (pivot)",
+      "turn": "1/2 R (pivot)",
       "face": 0,
       "end": -180,
       "pos": "Closed Position"
@@ -34073,7 +34073,7 @@
      {
       "desc": "RF crosses in front of LF",
       "align": "Facing W",
-      "turn": "8 turns, then 3/8",
+      "turn": "3/8",
       "face": 45,
       "end": -90,
       "span": 7,
@@ -34228,7 +34228,7 @@
      {
       "desc": "LF crosses in front of RF",
       "align": "Facing C",
-      "turn": "8 turns, then 3/8",
+      "turn": "3/8",
       "face": -45,
       "end": 90,
       "span": 7,

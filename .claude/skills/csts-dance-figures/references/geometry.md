@@ -60,3 +60,19 @@ Latin (chacha/rumba/jive) has no plan; `animSteps` still feed the animation.
 - `npm run audit:teeth`: back-and-forth teeth vs the raw chart (MINLEG env). Last ~133 (67 ≥ 0.25 m).
 - `scripts/check_alignment.py`: standard start/end alignment vs summed turns (27 suspicious, book quirks).
 Remaining findings are mostly book/OCR gaps (missing rows) or real sharp moves (spins, twists, rolls).
+
+## Turn direction, poses, positions (2026-11-18)
+- `stepTurn` (playerGeometry) = one signed turn per step and partner (`Foot.turn`): chart amount when it fits,
+  else the chart's direction for |turn| > 100°, else partner's / figure's direction for ~½ turns. Body (`bodyAt`),
+  supporting-foot swivel (`liveFeet`), stepping foot (`feetBetween`) and the closed-hold arc (`couplePose`) all use it.
+- `couplePose(geo, man, k, t)` replaces the player's own body interpolation (shared with the audit);
+  `passBy`: partners changing sides without hold curve round each other (min 0.32 m).
+- `liveFeet`: a landing foot > 90° from the body follows the body (pivot); weight transfers swivel too.
+- `signedTurn`: "1/2 turn" is not "2 turns"; "1/2 or 3/8" takes the first; same fix in build_data `fact_turn`.
+- Lady's position-forced facing: when it turns her against her charted amount, the next step's position is used
+  (latin charts name the new position one step late).
+- `src/positions.ts cleanPosition`: OCR position column cleaned at load (data.ts), last step without a position
+  gets the syllabus finish. `stepTimingOf`: bracketed counts ("1 (23)") are steps when the chart has them.
+- `npm run audit:couple` (dir / onlyone / twist / tangle / finish). After this pass: 21 / 19 / 0 / 22 / 6
+  (before: 88 / 37 / 148 / 227 / 32 with the same audit).
+- Czech: `localizeAlign` for the alignment column; startCs/finishCs go through `localizeStep`; holdName cs w/o English.

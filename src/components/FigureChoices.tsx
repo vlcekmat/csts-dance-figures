@@ -109,10 +109,10 @@ export function PositionChoice({ item, fig, resolved, onChange, which, disciplin
   };
   const basic =
     which === "start"
-      ? `${localizePositions((lang === "cs" ? syl?.startCs : syl?.start) ?? "", lang)} (${t("primaryTiming")})`
+      ? `${localizeStep((lang === "cs" ? syl?.startCs : syl?.start) ?? "", lang)} (${t("primaryTiming")})`
       : resolved.isPart && resolved.to < resolved.totalSteps
         ? t("finishOfPart", { step: String(resolved.to), pos: localizePositions(resolved.finishPos ?? "?", lang) })
-        : `${localizePositions((lang === "cs" ? syl?.finishCs : syl?.finish) ?? "", lang)} (${t("primaryTiming")})`;
+        : `${localizeStep((lang === "cs" ? syl?.finishCs : syl?.finish) ?? "", lang)} (${t("primaryTiming")})`;
   const alts =
     which === "start"
       ? (variants.starts ?? []).map((s) => localizeStep(s.desc, lang))

@@ -459,11 +459,26 @@ export function travelFactor(fig: Figure): number {
  * the first step of the *following* figure (e.g. "RF fwd in CBMP, OP"); the
  * syllabus timing tells how many steps the figure really has.
  */
+/**
+ * The figure's timing split into the chart's steps. Counts in brackets ("1 (23)") are
+ * beats one partner holds while the other dances – when the chart writes those steps
+ * (closing slowly, w/o weight), each bracketed count is a step of its own.
+ */
+export function stepTimingOf(fig: Figure, chartLen: number) {
+  const timing = fig.syllabus?.timing;
+  if (!timing) return [];
+  const dance = getDance(fig.dance);
+  const held = parseTiming(timing, dance);
+  if (chartLen <= held.length || !/[()]/.test(timing)) return held;
+  const open = parseTiming(timing.replace(/[()]/g, " "), dance);
+  return open.length > held.length ? open : held;
+}
+
 export function chartSteps(fig: Figure): FloorStep[] {
   const steps = fig.floor?.steps ?? [];
   const timing = fig.syllabus?.timing;
   if (!timing) return steps;
-  const n = parseTiming(timing, getDance(fig.dance)).length;
+  const n = stepTimingOf(fig, steps.length).length;
   return n > 0 && steps.length > n ? steps.slice(0, n) : steps;
 }
 

@@ -32,6 +32,8 @@ export interface Foot {
   shift?: { x: number; y: number };
   /** The foot crosses behind / in front of the other one. */
   cross?: "behind" | "front";
+  /** Signed turn of the body on this step (degrees, + = left), incl. turns beyond a half turn. */
+  turn?: number;
 }
 
 const rad = (d: number) => (d * Math.PI) / 180;
@@ -121,10 +123,15 @@ export function closeHold(pos: string): boolean {
 /** Signed amount of turn of a chart step (degrees, + = left), or null. */
 export function signedTurn(text: string | undefined): number | null {
   if (!text) return null;
+  // alternatives ("1/2 or 3/8 to L"): the first amount, with the side written at the end
+  if (/\bor\b/i.test(text)) {
+    const side = text.match(/\bto\s*(?:the\s*)?([LR])(?![a-df-z])/i)?.[1] ?? "";
+    text = text.split(/\bor\b/i)[0] + (side && !/\b[LR]\b|toL|toR/i.test(text.split(/\bor\b/i)[0]) ? ` to ${side}` : "");
+  }
   let total = 0;
   let found = false;
   // whole turns ("1 turn R", "2 turns to L")
-  const whole = text.match(/(\d+)\s*(?:full\s*)?turns?\s*(?:to\s*)?([LR])?/i);
+  const whole = text.match(/(?<![\d/])(\d+)\s*(?:full\s*)?turns?\s*(?:to\s*)?([LR])?/i);
   if (whole) {
     const side = whole[2]?.toUpperCase() ?? (/\bR\b|right|toR/i.test(text) ? "R" : /\bL\b|left|toL/i.test(text) ? "L" : null);
     if (side) {
@@ -139,6 +146,133 @@ export function signedTurn(text: string | undefined): number | null {
     found = true;
   }
   return found ? total : null;
+}
+
+/** Direction of a chart step's turn from its text ("Com. to turn to R", "1/4 L"): -1 right, +1 left, 0 unknown. */
+export function turnSign(text: string | undefined): -1 | 0 | 1 {
+  if (!text) return 0;
+  const m = text.match(/(?:to\s*(?:the\s+)?|\b)(R|L|right|left)(?:\b|(?=e\/o))/i);
+  if (!m) return 0;
+  return /^r/i.test(m[1]) ? -1 : 1;
+}
+
+/**
+ * Signed turn of a dancer on one step (degrees, + = left) from the facing before and
+ * after it. The facings alone only give the shorter way round; the chart decides the
+ * direction (and full turns): its amount when it fits, else its direction for turns
+ * beyond about a quarter, else the partner's / the figure's direction for about a half.
+ */
+export function stepTurn(from: number, to: number, step: FloorStep | undefined, fallback: -1 | 0 | 1 = 0): number {
+  const d = norm180(to - from);
+  const t = step?.rot ?? signedTurn(step?.turn);
+  if (t !== null && Math.abs(t) > 1 && Math.abs(norm180(from + t - to)) < 30) return d + 360 * Math.round((t - d) / 360);
+  const sign = t !== null && Math.abs(t) > 1 ? (Math.sign(t) as -1 | 1) : turnSign(step?.turn);
+  if (sign && Math.abs(d) > 100 && Math.sign(d) !== sign) return d + 360 * sign;
+  if (!sign && fallback && Math.abs(d) > 150 && Math.sign(d) !== fallback) return d + 360 * fallback;
+  return d;
+}
+
+/** Fill in `turn` of every footprint (figure's direction `hint` for undecided half turns). */
+function withTurns(p: Partner, steps: FloorStep[], fallback: (i: number) => -1 | 0 | 1): Partner {
+  let face = p.start.face;
+  const feet = p.feet.map((f, i) => {
+    const turn = stepTurn(face, f.bodyFace, steps[i], fallback(i));
+    face = f.bodyFace;
+    return { ...f, turn };
+  });
+  return { start: p.start, feet };
+}
+
+/** Body of a partner after step i (0 = start): position and facing. */
+export function bodyAfter(p: Partner, i: number): { x: number; y: number; face: number } {
+  const f = p.feet[Math.min(i, p.feet.length) - 1];
+  return f ? { x: f.bx, y: f.by, face: f.bodyFace } : { x: p.start.x, y: p.start.y, face: p.start.face };
+}
+
+/** Body after step k, part of the way (t = 0–1) to step k + 1, turning the step's way. */
+export function bodyAt(p: Partner, k: number, t: number): { x: number; y: number; face: number } {
+  const a = bodyAfter(p, k);
+  if (!t || k >= p.feet.length) return a;
+  const b = bodyAfter(p, k + 1);
+  const f = p.feet[k];
+  const d = norm180(b.face - a.face);
+  // the stored turn applies when it leads to this facing (a routine may re-place a figure)
+  const turn = f.turn !== undefined && Math.abs(norm180(f.turn - d)) < 1 ? f.turn : d;
+  return { x: a.x + (b.x - a.x) * t, y: a.y + (b.y - a.y) * t, face: a.face + turn * t };
+}
+
+/**
+ * Both bodies after step k, part of the way to step k + 1. In a closed hold the couple
+ * turns around its common centre: both move along an arc (the line between them turns
+ * with the couple) instead of straight lines.
+ */
+export function couplePose(geo: { m: Partner; l: Partner | null }, man: FloorStep[], k: number, t: number) {
+  const m = bodyAt(geo.m, k, t);
+  const l = geo.l ? bodyAt(geo.l, k, t) : null;
+  if (!t || !l || !geo.l || k >= geo.m.feet.length || k >= geo.l.feet.length) return { m, l };
+  if (!closeHold(man[k]?.pos || man[k - 1]?.pos || "")) return passBy(geo.m, geo.l, k, t, m, l);
+  const ma = bodyAfter(geo.m, k);
+  const mb = bodyAfter(geo.m, k + 1);
+  const la = bodyAfter(geo.l, k);
+  const lb = bodyAfter(geo.l, k + 1);
+  const ang = (x: number, y: number) => (Math.atan2(y, x) * 180) / Math.PI;
+  const aA = ang(la.x - ma.x, la.y - ma.y);
+  const aB = ang(lb.x - mb.x, lb.y - mb.y);
+  let dv = norm180(aB - aA);
+  // the line between them turns the couple's way (the man's turn on this step)
+  const full = geo.m.feet[k].turn ?? norm180(mb.face - ma.face);
+  dv += 360 * Math.round((full - dv) / 360);
+  const lenA = Math.hypot(la.x - ma.x, la.y - ma.y);
+  const lenB = Math.hypot(lb.x - mb.x, lb.y - mb.y);
+  const len = lenA + (lenB - lenA) * t;
+  const cx = (ma.x + la.x) / 2 + ((mb.x + lb.x - (ma.x + la.x)) / 2) * t;
+  const cy = (ma.y + la.y) / 2 + ((mb.y + lb.y - (ma.y + la.y)) / 2) * t;
+  const a = ((aA + dv * t) * Math.PI) / 180;
+  return {
+    m: { ...m, x: cx - (Math.cos(a) * len) / 2, y: cy - (Math.sin(a) * len) / 2 },
+    l: { ...l, x: cx + (Math.cos(a) * len) / 2, y: cy + (Math.sin(a) * len) / 2 },
+  };
+}
+
+/**
+ * Partners changing sides without a hold (underarm turns, spot turns, crossing over)
+ * would walk straight through each other: they pass by instead – the one who moves
+ * more curves round the other, keeping at least a body's width between them.
+ */
+function passBy(
+  pm: Partner,
+  pl: Partner,
+  k: number,
+  t: number,
+  m: { x: number; y: number; face: number },
+  l: { x: number; y: number; face: number },
+) {
+  const MIN = 0.32;
+  const ma = bodyAfter(pm, k);
+  const mb = bodyAfter(pm, k + 1);
+  const la = bodyAfter(pl, k);
+  const lb = bodyAfter(pl, k + 1);
+  // relative position lady − man along the step: r(t) = r0 + t·v
+  const r0 = { x: la.x - ma.x, y: la.y - ma.y };
+  const v = { x: lb.x - mb.x - r0.x, y: lb.y - mb.y - r0.y };
+  const vv = v.x * v.x + v.y * v.y;
+  if (vv < 1e-4) return { m, l };
+  const ts = Math.max(0, Math.min(1, -(r0.x * v.x + r0.y * v.y) / vv));
+  const c = { x: r0.x + ts * v.x, y: r0.y + ts * v.y };
+  const dc = Math.hypot(c.x, c.y);
+  if (dc >= MIN || ts <= 0 || ts >= 1) return { m, l };
+  // pass on the side of the closest approach (the lady's right when straight through)
+  const lv = Math.sqrt(vv);
+  const n = dc > 0.01 ? { x: c.x / dc, y: c.y / dc } : { x: v.y / lv, y: -v.x / lv };
+  const h = (MIN - dc) / Math.max(0.3, Math.sin(Math.PI * ts));
+  const bump = h * Math.sin(Math.PI * t);
+  const lm = Math.hypot(mb.x - ma.x, mb.y - ma.y);
+  const ll = Math.hypot(lb.x - la.x, lb.y - la.y);
+  const kl = ll + lm > 0.01 ? ll / (ll + lm) : 0.5;
+  return {
+    m: { ...m, x: m.x - n.x * bump * (1 - kl), y: m.y - n.y * bump * (1 - kl) },
+    l: { ...l, x: l.x + n.x * bump * kl, y: l.y + n.y * bump * kl },
+  };
 }
 
 export function ladyOffset(pos: string, latin: boolean): { fwd: number; right: number } {
@@ -284,6 +418,7 @@ export function coupleGeometry(
     const rot = ladyCharted ? (tr.rotate ?? 0) : 0;
     const n = lady.length;
     let carry = 0;
+    let prevFace = traced.start.face;
     let pos = startPos;
     let changed = false;
     const fixed = lady.map((st, i) => {
@@ -291,13 +426,25 @@ export function coupleGeometry(
       const mf = m.feet[i];
       const lf = traced!.feet[i];
       if (!mf || !lf) return st;
-      const rel = relativeFacing(pos);
-      let corr = carry;
-      if (rel !== null) {
+      const want = (p: string) => {
+        const rel = relativeFacing(p);
+        if (rel === null) return carry;
         const d = norm180(mf.bodyFace + rel - (lf.bodyFace + carry));
-        corr = Math.abs(d) > 60 ? norm180(carry + d) : carry;
+        return Math.abs(d) > 60 ? norm180(carry + d) : carry;
+      };
+      let corr = want(pos);
+      // Her chart turns one way and the position would turn her the other way: latin
+      // charts often name the new position one step later than the turn – use it.
+      const t = st.rot ?? signedTurn(st.turn);
+      // (only a real amount of turn: "starts to turn" doesn't say enough)
+      const sign = t !== null && Math.abs(t) >= 45 ? Math.sign(t) : 0;
+      const turnOf = (c: number) => norm180(lf.bodyFace + c - prevFace);
+      if (sign && corr !== carry && Math.abs(turnOf(corr)) > 30 && Math.sign(turnOf(corr)) !== sign && man[i + 1]?.pos) {
+        const next = want(man[i + 1].pos!);
+        if (!(Math.abs(turnOf(next)) > 30 && Math.sign(turnOf(next)) !== sign)) corr = next;
       }
       carry = corr;
+      prevFace = lf.bodyFace + corr;
       if (Math.abs(corr) < 1) return st;
       changed = true;
       const sh = (v: number | undefined) => (v === undefined ? undefined : norm180(v + corr));
@@ -488,7 +635,13 @@ export function coupleGeometry(
     const o = offsetVec(startPos, m.start.face, traced.start.face);
     lStart = { ...traced.start, x: m.start.x + o.x, y: m.start.y + o.y };
   }
-  return { m: { start: m.start, feet: mFeet }, l: { start: lStart, feet: lFeet } };
+  const mOut = withTurns({ start: m.start, feet: mFeet }, man, () => hint);
+  // the lady turns the couple's way: her chart's direction, else the man's on that step
+  const lOut = withTurns({ start: lStart, feet: lFeet }, lady, (i) => {
+    const mt = mOut.feet[i]?.turn ?? 0;
+    return Math.abs(mt) > 30 ? (Math.sign(mt) as -1 | 1) : hint;
+  });
+  return { m: mOut, l: lOut };
 }
 
 /**
@@ -526,6 +679,8 @@ export interface FeetState {
   moved: "L" | "R" | null;
   /** The step only transfers the weight (the foot doesn't travel). */
   transfer?: boolean;
+  /** Signed body turn on this step (degrees, + = left): the feet swivel the same way. */
+  turn?: number;
 }
 
 /** Steps that put the foot down without taking the weight. */
@@ -538,6 +693,13 @@ const NO_WEIGHT = /w\/o weight|without weight|\btap\b|\bpoint|\bbrush|\bflick|\b
  * step is a tap, point, kick … without weight.
  */
 export function liveFeet(p: Partner, steps: FloorStep[]): FeetState[] {
+  // The foot points the step's way when it lands; a foot that ends up far from where
+  // the body faces was turned on (pivot, spin, heel turn): it follows the body, keeping
+  // only a natural turnout.
+  const landFace = (f: Foot) => {
+    const diff = norm180(f.face - f.bodyFace);
+    return Math.abs(diff) > 90 ? f.bodyFace + Math.sign(diff) * 30 : f.face;
+  };
   const OFF = 0.09;
   const s = p.start;
   const side = (sign: number): FootState => ({
@@ -555,8 +717,9 @@ export function liveFeet(p: Partner, steps: FloorStep[]): FeetState[] {
   let bx = s.x;
   let by = s.y;
   p.feet.forEach((f, i) => {
-    const turn = norm180(f.bodyFace - bodyFace);
-    const next: FeetState = { L: { ...cur.L }, R: { ...cur.R }, moved: f.foot };
+    const d = norm180(f.bodyFace - bodyFace);
+    const turn = f.turn !== undefined && Math.abs(norm180(f.turn - d)) < 1 ? f.turn : d;
+    const next: FeetState = { L: { ...cur.L }, R: { ...cur.R }, moved: f.foot, turn };
     if (f.foot) {
       const other = f.foot === "L" ? "R" : "L";
       const noWeight = NO_WEIGHT.test(steps[i]?.desc ?? "");
@@ -568,8 +731,8 @@ export function liveFeet(p: Partner, steps: FloorStep[]): FeetState[] {
       // placement) puts it. The supporting foot stays on the floor and only swivels
       // with the body's turn.
       next[f.foot] = next.transfer
-        ? { ...was, weight: true, cross: undefined }
-        : { x: f.x, y: f.y, face: f.face, weight: !noWeight, cross: f.cross };
+        ? { ...was, face: was.face + turn, weight: true, cross: undefined }
+        : { x: f.x, y: f.y, face: landFace(f), weight: !noWeight, cross: f.cross };
       next[other] = { ...next[other], face: next[other].face + turn, weight: noWeight ? true : false };
       if (!next.transfer) {
         // The couple's placement goes into where the stepping foot lands (the
@@ -603,8 +766,15 @@ export function liveFeet(p: Partner, steps: FloorStep[]): FeetState[] {
 /** Feet part of the way (t = 0–1) from one state to the next: the stepping foot
  * travels past the supporting foot (as in a real step), the other one swivels. */
 export function feetBetween(a: FeetState, b: FeetState, t: number): FeetState {
-  const lerpA = (x: number, y: number) => x + norm180(y - x) * t;
-  const res: FeetState = { L: { ...a.L }, R: { ...a.R }, moved: b.moved, transfer: b.transfer };
+  // The stepping foot turns the shorter way – unless the body turns more than a
+  // quarter the other way on this step (then it swivels round with the body).
+  const lerpA = (x: number, y: number) => {
+    let d = norm180(y - x);
+    const bt = b.turn ?? 0;
+    if (Math.abs(bt) > 90 && Math.abs(d) > 90 && Math.sign(d) !== Math.sign(bt)) d += 360 * Math.sign(bt);
+    return x + d * t;
+  };
+  const res: FeetState = { L: { ...a.L }, R: { ...a.R }, moved: b.moved, transfer: b.transfer, turn: b.turn };
   // The weight flows over during the step: gradually for a weight transfer, mostly
   // when the foot lands for a real step.
   const flow = b.transfer ? t : Math.max(0, Math.min(1, (t - 0.45) / 0.45));
@@ -617,8 +787,8 @@ export function feetBetween(a: FeetState, b: FeetState, t: number): FeetState {
       const o = a[k === "L" ? "R" : "L"];
       const mx = (fa.x + fb.x) / 2;
       const my = (fa.y + fb.y) / 2;
-      const cx = mx + (o.x - mx) * 0.55;
-      const cy = my + (o.y - my) * 0.55;
+      const cx = mx + (o.x - mx) * 0.35;
+      const cy = my + (o.y - my) * 0.35;
       const u = 1 - t;
       res[k] = {
         x: u * u * fa.x + 2 * u * t * cx + t * t * fb.x,

@@ -10,10 +10,11 @@ import {
   alignLabel,
   chartSteps,
   norm180,
+  stepTimingOf,
   type FloorStep,
 } from "../floor";
-import { parseTiming, tempoBpm } from "../timing";
-import { closeHold, feetBetween, figureGeometry, liveFeet, partnerRelation, signedTurn, type FeetState, type Foot, type Partner } from "../playerGeometry";
+import { tempoBpm } from "../timing";
+import { closeHold, couplePose, feetBetween, figureGeometry, liveFeet, partnerRelation, type FeetState, type Foot, type Partner } from "../playerGeometry";
 
 type Role = "man" | "lady" | "both";
 
@@ -41,8 +42,7 @@ export function FigurePlayer({ fig }: { fig: Figure }) {
     const man = chartSteps(fig);
     const lady = (fig.floor?.ladySteps ?? []).slice(0, Math.max(man.length, 1));
     const geo = figureGeometry(fig, dance, man, lady);
-    const timing = fig.syllabus?.timing;
-    const parsed = timing && dance ? parseTiming(timing, dance) : [];
+    const parsed = dance ? stepTimingOf(fig, man.length) : [];
     return {
       m: geo.m,
       l: geo.l,
@@ -192,22 +192,6 @@ export function StepPlayer({
   const gridY: number[] = [];
   for (let g = Math.ceil((minY - gm) * 2) / 2; g <= maxY + gm; g += 0.5) gridY.push(g);
 
-  /** Body of a partner after step k: position and facing. */
-  const bodyAfter = (p: { start: { x: number; y: number; face: number }; feet: Foot[] }, i: number) =>
-    i === 0 ? { x: p.start.x, y: p.start.y, face: p.start.face } : { x: p.feet[i - 1].bx, y: p.feet[i - 1].by, face: p.feet[i - 1].bodyFace };
-  /** Body after step k, during smooth playback part of the way to step k + 1. */
-  const bodyAt = (p: { start: { x: number; y: number; face: number }; feet: Foot[] }, steps: FloorStep[]) => {
-    const a = bodyAfter(p, k);
-    if (!frac || k >= p.feet.length) return a;
-    const b = bodyAfter(p, k + 1);
-    // Turn the way the chart says (direction and amount, incl. full turns), not
-    // simply the shorter way round.
-    let delta = norm180(b.face - a.face);
-    const t = steps[k]?.rot ?? signedTurn(steps[k]?.turn);
-    if (t !== null && Math.abs(t) > 1 && Math.abs(norm180(a.face + t - b.face)) < 30) delta = t;
-    return { x: a.x + (b.x - a.x) * frac, y: a.y + (b.y - a.y) * frac, face: a.face + delta * frac };
-  };
-
   const footPath = `M ${footLen / 2} 0 C ${footLen / 2} ${-footW / 2}, ${-footLen / 3} ${-footW / 2}, ${-footLen / 2} ${-footW / 3} L ${-footLen / 2} ${footW / 3} C ${-footLen / 3} ${footW / 2}, ${footLen / 2} ${footW / 2}, ${footLen / 2} 0 Z`;
   const footLetter = (f: "L" | "R") => (f === "L" ? "L" : lang === "cs" ? "P" : "R");
 
@@ -349,32 +333,9 @@ export function StepPlayer({
   const ls = shown > 0 && hasLady ? lady[shown - 1] : null;
   const pos = (ms ?? man[0])?.pos;
   const relText = (r: ReturnType<typeof partnerRelation>) => (r ? t(`rel_${r}` as StringKey) : "");
-  let mBody = bodyAt(geo.m, man);
-  let lBody = geo.l ? bodyAt(geo.l, lady) : null;
-  // In a closed hold the couple turns around its common centre: move both along an
-  // arc (the line between them rotates with the man's turn) instead of straight lines.
-  if (frac && lBody && geo.l && k < geo.m.feet.length && k < geo.l.feet.length && closeHold(man[k]?.pos || man[k - 1]?.pos || "")) {
-    const ma = bodyAfter(geo.m, k);
-    const mb = bodyAfter(geo.m, k + 1);
-    const la = bodyAfter(geo.l, k);
-    const lb = bodyAfter(geo.l, k + 1);
-    const ang = (x: number, y: number) => (Math.atan2(y, x) * 180) / Math.PI;
-    const aA = ang(la.x - ma.x, la.y - ma.y);
-    const aB = ang(lb.x - mb.x, lb.y - mb.y);
-    let dv = norm180(aB - aA);
-    // keep the direction (and size) of the man's turn on this step
-    const mTurn = mBody.face - ma.face;
-    const full = frac ? mTurn / frac : 0;
-    if (Math.abs(full) > 180 && Math.sign(dv) !== Math.sign(full)) dv += 360 * Math.sign(full);
-    const lenA = Math.hypot(la.x - ma.x, la.y - ma.y);
-    const lenB = Math.hypot(lb.x - mb.x, lb.y - mb.y);
-    const len = lenA + (lenB - lenA) * frac;
-    const cx = (ma.x + la.x) / 2 + (((mb.x + lb.x) - (ma.x + la.x)) / 2) * frac;
-    const cy = (ma.y + la.y) / 2 + (((mb.y + lb.y) - (ma.y + la.y)) / 2) * frac;
-    const a = ((aA + dv * frac) * Math.PI) / 180;
-    mBody = { ...mBody, x: cx - (Math.cos(a) * len) / 2, y: cy - (Math.sin(a) * len) / 2 };
-    lBody = { ...lBody, x: cx + (Math.cos(a) * len) / 2, y: cy + (Math.sin(a) * len) / 2 };
-  }
+  const pose = couplePose(geo, man, k, frac);
+  const mBody = pose.m;
+  const lBody = pose.l;
 
   // Routine: the figure being danced (while moving, the step in progress counts).
   const groupIdx = track.groups ? Math.max(0, track.groups.findIndex((g) => shown - 1 >= g.from && shown - 1 < g.to)) : -1;
