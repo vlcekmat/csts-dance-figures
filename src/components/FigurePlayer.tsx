@@ -14,6 +14,7 @@ import {
   type FloorStep,
 } from "../floor";
 import { tempoBpm } from "../timing";
+import { beatsLabel, danceStyle, startBeat } from "../danceStyle";
 import { closeHold, couplePose, feetBetween, figureGeometry, liveFeet, partnerRelation, type FeetState, type Foot, type Partner } from "../playerGeometry";
 
 type Role = "man" | "lady" | "both";
@@ -103,7 +104,33 @@ export function StepPlayer({
   const stepMs = (i: number) => {
     const bpm = (dance && tempoBpm(dance)) || 30;
     const beatsPerMin = bpm * (dance?.beatsPerBar ?? 4);
-    return Math.max(250, ((beats[i] ?? 1) * 60000) / beatsPerMin / speed);
+    return Math.max(smooth ? 40 : 250, ((beats[i] ?? 1) * 60000) / beatsPerMin / speed);
+  };
+  // Character of the dance and where the figure is in the bar.
+  const style = danceStyle(dance);
+  const bpb = dance?.beatsPerBar ?? 4;
+  const offset = startBeat(track.labels, dance?.units.digit ?? 1);
+  const cum = useMemo(() => {
+    const out = [0];
+    for (const b of beats) out.push(out[out.length - 1] + (b ?? 1));
+    return out;
+  }, [beats]);
+  // Metronome: beats clicked during playback (accent on the bar's first beat).
+  const [click, setClick] = useState(false);
+  const audio = useRef<AudioContext | null>(null);
+  const clickRef = useRef(click);
+  clickRef.current = click;
+  const tickSound = (accent: boolean, soft = false) => {
+    const ctx = audio.current;
+    if (!ctx) return;
+    const o = ctx.createOscillator();
+    const g = ctx.createGain();
+    o.frequency.value = accent ? 1500 : soft ? 700 : 1000;
+    g.gain.setValueAtTime(soft ? 0.08 : accent ? 0.35 : 0.2, ctx.currentTime);
+    g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.06);
+    o.connect(g).connect(ctx.destination);
+    o.start();
+    o.stop(ctx.currentTime + 0.07);
   };
   useEffect(() => {
     if (!playing) setFrac(0);
@@ -114,13 +141,23 @@ export function StepPlayer({
     let last = performance.now();
     let kk = k >= n ? 0 : k;
     let ff = 0;
+    const beatAt = (i: number, f: number) => offset + cum[i] + f * (beats[i] ?? 1);
+    if (clickRef.current && ff === 0) tickSound(Math.abs(beatAt(kk, 0) % bpb) < 1e-6, !Number.isInteger(+beatAt(kk, 0).toFixed(6)));
     const tick = (now: number) => {
+      const before = beatAt(kk, ff);
       ff += (now - last) / stepMs(kk);
       last = now;
       const limit = Math.min(n, until.current ?? n);
       while (ff >= 1 && kk < limit) {
         ff -= 1;
         kk += 1;
+        // a step starting between the beats ("a", "&"): a soft click
+        const b = beatAt(kk, 0);
+        if (clickRef.current && kk < limit && !Number.isInteger(+b.toFixed(6))) tickSound(false, true);
+      }
+      if (clickRef.current) {
+        const after = beatAt(Math.min(kk, n - 1), kk >= n ? 1 : ff);
+        for (let b = Math.floor(before + 1e-6) + 1; b <= after + 1e-6; b++) tickSound(b % bpb === 0);
       }
       if (kk >= limit) {
         setK(limit);
@@ -291,7 +328,7 @@ export function StepPlayer({
   const renderDancer = (b: { x: number; y: number; face: number }, feet: FeetState, who: "man" | "lady") => (
     <g className={`fp-dancer ${who}`}>
       {renderBodyTurn(b, feet, who)}
-      <g transform={`translate(${X(b.x)} ${Y(b.y)}) rotate(${-b.face})`} className="fp-torso">
+      <g transform={`translate(${X(b.x)} ${Y(b.y)}) rotate(${-b.face}) scale(${1 + 0.12 * lift})`} className="fp-torso" style={{ filter: lift > 0.2 ? `drop-shadow(0 ${2 + 4 * lift}px ${2 + 3 * lift}px rgb(0 0 0 / .25))` : undefined }}>
         <ellipse rx={0.1 * S} ry={0.23 * S} />
         <circle cx={0.02 * S} r={0.075 * S} className="fp-head" />
         <path d={`M ${0.1 * S} ${-0.05 * S} L ${0.17 * S} 0 L ${0.1 * S} ${0.05 * S} Z`} className="fp-nose" />
@@ -319,7 +356,7 @@ export function StepPlayer({
       </text>
     </g>
   );
-  const feetNow = (st: FeetState[]) => (frac > 0 && k < n ? feetBetween(st[k], st[k + 1], frac) : st[Math.min(k, st.length - 1)]);
+  const feetNow = (st: FeetState[]) => (frac > 0 && k < n ? feetBetween(st[k], st[k + 1], style.ease(frac)) : st[Math.min(k, st.length - 1)]);
   /** Path travelled so far (solid) and still to go (faint). */
   const bodyLine = (p: { start: { x: number; y: number }; feet: Foot[] }, upto: { x: number; y: number }) => {
     const pts = [p.start, ...p.feet.map((f) => ({ x: f.bx, y: f.by }))];
@@ -333,7 +370,12 @@ export function StepPlayer({
   const ls = shown > 0 && hasLady ? lady[shown - 1] : null;
   const pos = (ms ?? man[0])?.pos;
   const relText = (r: ReturnType<typeof partnerRelation>) => (r ? t(`rel_${r}` as StringKey) : "");
-  const pose = couplePose(geo, man, k, frac);
+  // the body travels the way the dance moves (swing, staccato, late weight …)
+  const ef = frac > 0 ? style.ease(frac) : 0;
+  const pose = couplePose(geo, man, k, ef);
+  // rise & fall / bounce at this moment of the bar
+  const beatNow = offset + (cum[Math.min(k, n)] ?? 0) + (k < n ? frac * (beats[k] ?? 1) : 0);
+  const lift = playing || frac > 0 ? style.height(beatNow, bpb, frac, beats[k] ?? 1) : 0;
   const mBody = pose.m;
   const lBody = pose.l;
 
@@ -398,6 +440,21 @@ export function StepPlayer({
           <label className="check small player-smooth">
             <input type="checkbox" checked={smooth} onChange={(e) => setSmooth(e.target.checked)} />
             {t("playerSmooth")}
+          </label>
+          <label className="check small player-smooth" title={t("playerClickHint")}>
+            <input
+              type="checkbox"
+              checked={click}
+              onChange={(e) => {
+                setClick(e.target.checked);
+                if (e.target.checked && !audio.current) {
+                  const AC = window.AudioContext ?? (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
+                  audio.current = AC ? new AC() : null;
+                }
+                audio.current?.resume();
+              }}
+            />
+            ♪ {t("playerClick")}
           </label>
         </div>
       </div>
@@ -491,6 +548,54 @@ export function StepPlayer({
           ),
         )}
       </ol>
+
+      {(() => {
+        // Rhythm of the figure: one block per step as long as its beats, bar lines,
+        // and a playhead moving with the music.
+        const from = group ? group.from : 0;
+        const to = group ? group.to : n;
+        const t0 = offset + cum[from];
+        const total = cum[to] - cum[from];
+        if (!(total > 0)) return null;
+        const pct = (b: number) => `${((b - t0) / total) * 100}%`;
+        const bars: number[] = [];
+        for (let b = Math.ceil((t0 - 1e-6) / bpb) * bpb; b <= t0 + total + 1e-6; b += bpb) bars.push(b);
+        const beatsGrid: number[] = [];
+        for (let b = Math.ceil(t0 - 1e-6); b <= t0 + total + 1e-6; b++) beatsGrid.push(b);
+        return (
+          <div className="player-rhythm" aria-label={t("playerRhythm")}>
+            <div className="pr-track">
+              {beatsGrid.map((b) => (
+                <span key={`b${b}`} className={`pr-beat ${b % bpb === 0 ? "bar" : ""}`} style={{ left: pct(b) }} />
+              ))}
+              {man.slice(from, to).map((_, j) => {
+                const i = from + j;
+                const active = (frac > 0 && k === i) || (!frac && k === i + 1);
+                return (
+                  <span
+                    key={i}
+                    className={`pr-step ${active ? "active" : ""} ${i < k ? "done" : ""}`}
+                    style={{ left: pct(offset + cum[i]), width: `calc(${((beats[i] ?? 1) / total) * 100}% - 2px)` }}
+                    title={`${track.labels[i] || "·"} = ${beatsLabel(beats[i] ?? 1)} ${t("playerBeats")}`}
+                  >
+                    <b>{track.labels[i] || "·"}</b>
+                    <small>{beatsLabel(beats[i] ?? 1)}</small>
+                  </span>
+                );
+              })}
+              {(playing || frac > 0) && <span className="pr-head" style={{ left: pct(beatNow) }} />}
+            </div>
+            <div className="pr-legend small muted">
+              {t("playerCharacter")}: {style[lang]}
+              {lift !== 0 && (
+                <span className={`pr-lift ${lift > 0.3 ? "up" : lift < -0.3 ? "down" : ""}`}>
+                  {" "}· {lift > 0.3 ? t("playerRise") : lift < -0.3 ? t("playerLower") : t("playerMid")}
+                </span>
+              )}
+            </div>
+          </div>
+        );
+      })()}
 
       <div className="player-info" aria-live="polite">
         <div className="player-step">

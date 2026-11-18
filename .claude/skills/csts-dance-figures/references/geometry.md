@@ -76,3 +76,9 @@ Remaining findings are mostly book/OCR gaps (missing rows) or real sharp moves (
 - `npm run audit:couple` (dir / onlyone / twist / tangle / finish). After this pass: 21 / 19 / 0 / 22 / 6
   (before: 88 / 37 / 148 / 227 / 32 with the same audit).
 - Czech: `localizeAlign` for the alignment column; startCs/finishCs go through `localizeStep`; holdName cs w/o English.
+- Spins / pivots: `liveFeet.landFace` puts a foot turned on (chart `end`, or step turn ≥ 90°) under the body;
+  `feetBetween` turns the stepping foot by the body's whole turn (audit:couple `onefoot`: 31 → 0).
+- Dance character (`src/danceStyle.ts`): per dance `ease` (body/feet progress within a step: swing, tango staccato,
+  late latin weight) and `height` (rise & fall over the bar, samba/jive bounce) → torso scale + shadow; player rhythm
+  strip (`.player-rhythm`: blocks by beats with ¾ ¼ 1 labels, bar lines, playhead), optional metronome ("♪ doby",
+  WebAudio, accent on beat 1, soft click for & / a). Smooth playback has no 250 ms minimum per step any more.
