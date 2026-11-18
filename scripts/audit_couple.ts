@@ -2,6 +2,7 @@
 //   dir      – a dancer turns against the chart's direction
 //   onlyone  – in a closed hold one partner turns and the other one doesn't
 //   twist    – a foot points far from the body (feet twisted)
+//   onefoot  – during a step one foot turns much more than the other (a spin on one foot only)
 //   tangle   – the partners run into each other (bodies / feet overlapping, paths crossing)
 //   finish   – the figure ends in another couple position than the syllabus says
 // Run: npm run audit:couple [-- -v] [--kind=dir|onlyone|twist|tangle|finish]
@@ -13,7 +14,7 @@ import { positionOf } from "../src/timing";
 const args = process.argv.slice(2);
 const verbose = args.includes("-v");
 const only = args.find((a) => a.startsWith("--kind="))?.slice(7);
-const KINDS = ["dir", "onlyone", "twist", "tangle", "finish"] as const;
+const KINDS = ["dir", "onlyone", "twist", "onefoot", "tangle", "finish"] as const;
 type Kind = (typeof KINDS)[number];
 const found: { id: string; kind: Kind; what: string }[] = [];
 let checked = 0;
@@ -75,6 +76,18 @@ for (const fig of FIGURES) {
     const expect = mt !== undefined ? mt + (r0 !== null && r1 !== null ? norm180(r1 - r0) : 0) : 0;
     if (!latin && mt !== undefined && lt !== undefined && closeHold(holdPos) && closeHold(stepPos) && Math.abs(expect - lt) > 75)
       add("onlyone", `${s}: man turns ${mt.toFixed(0)}°, lady ${lt.toFixed(0)}° (expected about ${expect.toFixed(0)}°) in "${endOf(holdPos)}"`);
+    // --- how much each foot turns during the step (sampled like the player)
+    for (const [who, st] of [["man", mF], ["lady", lF]] as const) {
+      if (!st || !st[k + 1]) continue;
+      const rot = { L: 0, R: 0 };
+      let prev = st[k];
+      for (let j = 1; j <= 20; j++) {
+        const cur = j === 20 ? st[k + 1] : feetBetween(st[k], st[k + 1], j / 20);
+        for (const side of ["L", "R"] as const) rot[side] += norm180(cur[side].face - prev[side].face);
+        prev = cur;
+      }
+      if (Math.abs(rot.L - rot.R) > 150) add("onefoot", `${s}: ${who}'s L foot turns ${rot.L.toFixed(0)}°, R foot ${rot.R.toFixed(0)}°`);
+    }
     // --- frames
     let prevM: P | null = null;
     let prevL: P | null = null;

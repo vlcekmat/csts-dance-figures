@@ -696,8 +696,12 @@ export function liveFeet(p: Partner, steps: FloorStep[]): FeetState[] {
   // The foot points the step's way when it lands; a foot that ends up far from where
   // the body faces was turned on (pivot, spin, heel turn): it follows the body, keeping
   // only a natural turnout.
-  const landFace = (f: Foot) => {
+  // A step turned on (spin, pivot: the chart gives the facing after it, or the step
+  // itself turns a quarter or more) ends with the foot under the turned body.
+  const landFace = (f: Foot, st: FloorStep | undefined) => {
     const diff = norm180(f.face - f.bodyFace);
+    const spun = st?.end !== undefined || Math.abs(f.turn ?? 0) >= 90;
+    if (spun && Math.abs(diff) > 20) return f.bodyFace + Math.sign(diff) * 20;
     return Math.abs(diff) > 90 ? f.bodyFace + Math.sign(diff) * 30 : f.face;
   };
   const OFF = 0.09;
@@ -732,7 +736,7 @@ export function liveFeet(p: Partner, steps: FloorStep[]): FeetState[] {
       // with the body's turn.
       next[f.foot] = next.transfer
         ? { ...was, face: was.face + turn, weight: true, cross: undefined }
-        : { x: f.x, y: f.y, face: landFace(f), weight: !noWeight, cross: f.cross };
+        : { x: f.x, y: f.y, face: landFace(f, steps[i]), weight: !noWeight, cross: f.cross };
       next[other] = { ...next[other], face: next[other].face + turn, weight: noWeight ? true : false };
       if (!next.transfer) {
         // The couple's placement goes into where the stepping foot lands (the
@@ -770,8 +774,9 @@ export function feetBetween(a: FeetState, b: FeetState, t: number): FeetState {
   // quarter the other way on this step (then it swivels round with the body).
   const lerpA = (x: number, y: number) => {
     let d = norm180(y - x);
+    // a spin / pivot: the foot turns with the body, the same way and as far (full turns too)
     const bt = b.turn ?? 0;
-    if (Math.abs(bt) > 90 && Math.abs(d) > 90 && Math.sign(d) !== Math.sign(bt)) d += 360 * Math.sign(bt);
+    if (Math.abs(bt) > 90) d += 360 * Math.round((bt - d) / 360);
     return x + d * t;
   };
   const res: FeetState = { L: { ...a.L }, R: { ...a.R }, moved: b.moved, transfer: b.transfer, turn: b.turn };
