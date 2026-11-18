@@ -38,3 +38,14 @@ check_videos.py, audit_figures.ts, audit_steps.ts, audit_teeth.ts. See data-pipe
 `data/dances.json`, `data/aliases.json`, `data/turn_ranges.json` (own wording, allowed under/overturn),
 committed. Gitignored: `data/raw/`, `data/build/`, `data/videos.json`, `data/alignment.json`,
 `data/technique_manual.json`, `mainReferences/`, `src/data/technique.local.json`.
+
+## Owner's step editor (dev server only)
+
+`#/edit[/<figId>]` (tab "Editor" + "✎ Upravit" in the figure drawer, both only when `import.meta.env.DEV`;
+`FigureEditor` is lazy-loaded, absent from the build). `src/edits.ts`: `FigureEdit` = per role a list of
+`StepRef {from?, set?, unset?}` (field patches against the underlying chart, new steps without `from`,
+missing = deleted) + own figure `timing` + `note`. Stored in committed `src/data/edits.json`; `data.ts`
+applies them to `FIGURES` (`baseFigure(id)` = before edits, `withEdit`). Saving/publishing goes through
+`scripts/editorServer.js` (Vite plugin, `apply: "serve"`, localhost only): `POST /__edits/save`,
+`POST /__edits/publish` (commits only edits.json on main and pushes; refuses book wording).
+Hand edits win over rebuilt data – if a data rebuild changes a chart's step count the editor warns.
