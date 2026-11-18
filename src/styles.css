@@ -1275,3 +1275,5 @@ select.warn { border-color: var(--warn); }
 .pr-legend { margin-top: .25rem; }
 .pr-lift.up { color: var(--good); font-weight: 650; }
 .pr-lift.down { color: var(--warn); font-weight: 650; }
+.player-variant { display: flex; flex-wrap: wrap; gap: .4rem .8rem; align-items: center; margin: 0 0 .5rem; }
+.player-variant select { max-width: 16rem; }

@@ -15,6 +15,8 @@ import {
 } from "../floor";
 import { tempoBpm } from "../timing";
 import { beatsLabel, danceStyle, startBeat } from "../danceStyle";
+import { hasChoice, variantFigure, type PlayerChoice } from "../playerVariant";
+import { altChangesSteps, altLabel, type FigureAlt } from "../alternatives";
 import { closeHold, couplePose, feetBetween, figureGeometry, liveFeet, partnerRelation, type FeetState, type Foot, type Partner } from "../playerGeometry";
 
 type Role = "man" | "lady" | "both";
@@ -37,8 +39,20 @@ export interface Track {
   side?: number[];
 }
 
-export function FigurePlayer({ fig }: { fig: Figure }) {
-  const dance = getDance(fig.dance);
+/** Hand-checked alternatives that change the steps, chosen together with the figure detail. */
+export interface PlayerAlts {
+  list: FigureAlt[];
+  ids: string[];
+  toggle: (a: FigureAlt) => void;
+}
+
+export function FigurePlayer({ fig: baseFig, alts }: { fig: Figure; alts?: PlayerAlts }) {
+  const { t, lang } = useI18n();
+  const dance = getDance(baseFig.dance);
+  // Variant played: other timing, a part, another start / finish position.
+  const [choice, setChoice] = useState<PlayerChoice>({});
+  useEffect(() => setChoice({}), [baseFig.id]);
+  const fig = useMemo(() => variantFigure(baseFig, choice), [baseFig, choice]);
   const track = useMemo<Track>(() => {
     const man = chartSteps(fig);
     const lady = (fig.floor?.ladySteps ?? []).slice(0, Math.max(man.length, 1));
@@ -55,8 +69,90 @@ export function FigurePlayer({ fig }: { fig: Figure }) {
     };
   }, [fig, dance]);
   // A changed chart (an alternative of the figure) starts the player again.
-  const key = `${fig.id}|${track.man.map((s) => `${s.desc}${s.end ?? ""}`).join(",")}|${track.lady.map((s) => s.desc).join(",")}`;
-  return <StepPlayer track={track} dance={dance} resetKey={key} />;
+  const key = `${fig.id}|${JSON.stringify(choice)}|${track.man.map((s) => `${s.desc}${s.end ?? ""}`).join(",")}|${track.lady.map((s) => s.desc).join(",")}`;
+
+  const syl = baseFig.syllabus;
+  const v = syl?.variants;
+  const playable = (alts?.list ?? []).filter((a) => altChangesSteps(a));
+  const any = !!(syl?.altTimings.length || v?.parts?.length || v?.starts?.length || v?.finishes?.length || playable.length);
+  const set = (k: keyof PlayerChoice, val: string) => setChoice((c) => ({ ...c, [k]: val === "" ? undefined : k === "timing" ? val : +val }));
+  const tr = (k: string, vars?: Record<string, string>) => t(k as StringKey, vars);
+  return (
+    <>
+      {any && (
+        <div className="player-variant small">
+          <strong>{t("playerVariant")}:</strong>
+          {!!syl?.altTimings.length && (
+            <label>
+              {t("timing")}{" "}
+              <select value={choice.timing ?? ""} onChange={(e) => set("timing", e.target.value)}>
+                <option value="">{syl.timing} ({t("primaryTiming")})</option>
+                {syl.altTimings.map((a) => (
+                  <option key={a} value={a}>
+                    {a}
+                  </option>
+                ))}
+              </select>
+            </label>
+          )}
+          {!!v?.parts?.length && (
+            <label>
+              {t("playerPart")}{" "}
+              <select value={choice.part ?? ""} onChange={(e) => set("part", e.target.value)}>
+                <option value="">{t("playerWhole")}</option>
+                {v.parts.map((p, i) => (
+                  <option key={i} value={i}>
+                    {t("playerSteps", { from: String(p.from), to: p.to === null ? "…" : String(p.to) })}
+                  </option>
+                ))}
+              </select>
+            </label>
+          )}
+          {!!v?.starts?.length && (
+            <label>
+              {t("playerStartVariant")}{" "}
+              <select value={choice.start ?? ""} onChange={(e) => set("start", e.target.value)}>
+                <option value="">{t("primaryTiming")}</option>
+                {v.starts.map((st, i) => (
+                  <option key={i} value={i}>
+                    {lang === "cs" ? localizeStep(st.descCs || st.desc, "cs") : st.desc}
+                  </option>
+                ))}
+              </select>
+            </label>
+          )}
+          {!!v?.finishes?.length && (
+            <label>
+              {t("playerFinishVariant")}{" "}
+              <select value={choice.finish ?? ""} onChange={(e) => set("finish", e.target.value)}>
+                <option value="">{t("primaryTiming")}</option>
+                {v.finishes.map((f, i) => (
+                  <option key={i} value={i}>
+                    {localizePositions(f.position, lang)}
+                  </option>
+                ))}
+              </select>
+            </label>
+          )}
+          {playable.map((a) => {
+            const on = alts!.ids.includes(a.id);
+            return (
+              <button key={a.id} type="button" className={`btn small ${on ? "primary" : ""}`} aria-pressed={on} onClick={() => alts!.toggle(a)}>
+                {on ? "✓ " : ""}
+                {altLabel(a, lang, tr)}
+              </button>
+            );
+          })}
+          {hasChoice(choice) && (
+            <button type="button" className="link-btn" onClick={() => setChoice({})}>
+              {t("playerBasic")}
+            </button>
+          )}
+        </div>
+      )}
+      <StepPlayer track={track} dance={dance} resetKey={key} />
+    </>
+  );
 }
 
 /** Step-by-step / smooth playback of a track. `room` = the track is placed in a room (routine). */
@@ -77,7 +173,7 @@ export function StepPlayer({
   const [role, setRole] = useState<Role>(hasLady ? "both" : "man");
   const [k, setK] = useState(0); // 0 = starting position, n = after step n
   const [playing, setPlaying] = useState(false);
-  const [speed, setSpeed] = useState(0.5);
+  const [speed, setSpeed] = useState(1);
   // Smooth playback of a single step (the "next step" button): stop after this step.
   const until = useRef<number | null>(null);
   // Smooth playback: the partners glide between the steps instead of jumping.

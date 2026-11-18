@@ -805,9 +805,15 @@ def fact_turn(turn):
     """Amount of turn as bare facts: "3/8 R, then 1/2 R" (no wording)."""
     if not turn or DEPENDS.search(turn):
         return ""
-    side = "R" if re.search(r"\bto\s*R\b|\bR\b|right", turn) else "L" if re.search(r"\bto\s*L\b|\bL\b|left", turn) else ""
-    fr = re.findall(r"(\d/\d)\s*(?:to\s*)?([LR])?", turn)
-    parts = [f"{a} {b or side}".strip() for a, b in fr]
+    # OCR glues and lowercases the side: "1/4toR", "1/4 tol", "3/8 toLe/o4"
+    # (an uppercase L / R right after "to" is the side even with OCR noise after it:
+    # "toLl", "to Rm", "1/2 to LorR" -> the first one named)
+    m = re.search(r"to\s*([LR])|to\s*([lr])(?![a-z])|\b([LR])\b|(right|left)", turn)
+    side = ((m.group(1) or m.group(2) or m.group(3) or m.group(4)[0]).upper() if m else "")
+    # alternatives "1/4 or 3/8 to L": the first amount (the side is written once at the end)
+    amounts = re.split(r"\bor\b", turn)[0] if re.search(r"\d/\d\s*or\s*\d/\d", turn) else turn
+    fr = re.findall(r"(\d/\d)\s*(?:to\s*)?([LRlr](?=\b|e/o))?", amounts)
+    parts = [f"{a} {(b.upper() if b else side)}".strip() for a, b in fr]
     whole = re.search(r"(?<![\d/])\b(\d)\s*(?:full\s*)?turns?\b", turn, re.I)
     if whole:
         parts = [f"{whole.group(1)} turn{'s' if whole.group(1) != '1' else ''} {side}".strip()] + parts

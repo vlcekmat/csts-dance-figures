@@ -397,7 +397,7 @@ export function FigureDetail({ fig: baseFig, onClose, onOpenFigure, routinesApi,
                 </button>
               </p>
             )}
-            <FigurePlayer fig={fig} />
+            <FigurePlayer fig={fig} alts={{ list: alts, ids: altIds, toggle: toggleAlt }} />
             {(
               [
                 ["man", fig.floor.steps],

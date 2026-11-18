@@ -3785,7 +3785,7 @@
      {
       "desc": "LF fwd",
       "align": "Facing LOD",
-      "turn": "starts to turn",
+      "turn": "starts to turn L",
       "face": 0,
       "timing": "2",
       "pos": "Closed Position"
@@ -5163,7 +5163,7 @@
      {
       "desc": "LF fwd and slightly to side",
       "align": "Backing LOD",
-      "turn": "1/2 (pivot)",
+      "turn": "1/2 L (pivot)",
       "face": 0,
       "end": -180,
       "timing": "&",
@@ -5467,7 +5467,7 @@
      {
       "desc": "RF bwd and slightly to side",
       "align": "Backing DC",
-      "turn": "starts to turn",
+      "turn": "starts to turn L",
       "face": -135,
       "timing": "1",
       "pos": "Closed Position"
@@ -5530,7 +5530,7 @@
      {
       "desc": "LF fwd and slightly to side",
       "align": "Facing DC",
-      "turn": "starts to turn",
+      "turn": "starts to turn L",
       "face": 45,
       "timing": "1",
       "pos": "Closed Position"
@@ -6243,7 +6243,7 @@
      {
       "desc": "RF bwd Slip Pivot",
       "align": "Facing LOD",
-      "turn": "1/2 L, then 3/8 L (between steps)",
+      "turn": "1/2 L (between steps)",
       "face": 90,
       "end": 0,
       "timing": "3",
@@ -6334,7 +6334,7 @@
      {
       "desc": "LF fwd Slip Pivot",
       "align": "Backing LOD",
-      "turn": "1/4, then 3/8 L",
+      "turn": "1/4 L",
       "face": 90,
       "end": -180,
       "timing": "3",
@@ -11377,7 +11377,7 @@
      {
       "desc": "RF to side and slightly bwd",
       "align": "Backing DW",
-      "turn": "1/4 (between steps)",
+      "turn": "1/4 L (between steps)",
       "face": 135,
       "pos": "Closed Position"
      },
@@ -12822,7 +12822,7 @@
      {
       "desc": "RF bwd and slightly to side",
       "align": "Backing LOD",
-      "turn": "starts to turn",
+      "turn": "starts to turn L",
       "face": -180,
       "pos": "Closed Position"
      },
@@ -13117,7 +13117,7 @@
      {
       "desc": "LF fwd Slip Pivot",
       "align": "Backing LOD",
-      "turn": "1/4 L, then 1/8 L",
+      "turn": "1/4 L",
       "face": -180,
       "end": -180,
       "pos": "Closed Position"
@@ -14912,7 +14912,7 @@
      {
       "desc": "LF to side",
       "align": "Facing DW",
-      "turn": "3/8 (between steps)",
+      "turn": "3/8 L (between steps)",
       "face": -45,
       "body": -90,
       "pos": "Closed Position"
@@ -16445,7 +16445,7 @@
      {
       "desc": "LF to side",
       "align": "Facing DC",
-      "turn": "1/4 (between steps)",
+      "turn": "1/4 L (between steps)",
       "face": 45,
       "body": 0,
       "pos": "Closed Position"
@@ -19559,7 +19559,7 @@
      {
       "desc": "LF fwd and slightly to side",
       "align": "Facing DW",
-      "turn": "starts to turn",
+      "turn": "starts to turn L",
       "face": -45,
       "pos": "Closed Position"
      },
@@ -21238,7 +21238,7 @@
      {
       "desc": "RF bwd Slip Pivot",
       "align": "Backing LOD",
-      "turn": "1/2, then 3/8 (between steps)",
+      "turn": "1/2 L (between steps)",
       "face": 90,
       "end": -180,
       "pos": "Closed Position"
@@ -21362,7 +21362,7 @@
      {
       "desc": "LF fwd Slip Pivot",
       "align": "Backing LOD",
-      "turn": "1/4 L, then 1/8 L",
+      "turn": "1/4 L",
       "face": -180,
       "end": -180,
       "pos": "Closed Position"
@@ -27165,7 +27165,7 @@
      {
       "desc": "RF to side and slightly bwd",
       "align": "Backing DW",
-      "turn": "1/4 (between steps)",
+      "turn": "1/4 L (between steps)",
       "face": 135,
       "pos": "Closed Position"
      }
@@ -27497,7 +27497,7 @@
      {
       "desc": "LF fwd and slightly to side",
       "align": "Facing LOD",
-      "turn": "starts to turn",
+      "turn": "starts to turn L",
       "face": 0,
       "pos": "Closed Position"
      },
@@ -29331,7 +29331,7 @@
      {
       "desc": "LF fwd",
       "align": "Facing LOD",
-      "turn": "starts to turn",
+      "turn": "starts to turn L",
       "face": 0,
       "timing": "2",
       "pos": "Closed Position"
@@ -36946,7 +36946,7 @@
      {
       "desc": "RF fwd",
       "align": "Facing DC",
-      "turn": "1/4",
+      "turn": "1/4 L",
       "face": -45,
       "end": 45,
       "pos": "Open Opp"
@@ -37346,7 +37346,7 @@
      {
       "desc": "LF fwd and slightly to side small step",
       "align": "Facing DC",
-      "turn": "1/8",
+      "turn": "1/8 L",
       "face": 45
      },
      {
@@ -40704,7 +40704,7 @@
      {
       "desc": "LF in place",
       "align": "Facing LOD",
-      "turn": "3/8",
+      "turn": "3/8 L",
       "face": -135,
       "end": 0,
       "pos": "L Side Same then Open Opp"
@@ -41210,7 +41210,7 @@
      {
       "desc": "LF fwd",
       "align": "",
-      "turn": "1/4",
+      "turn": "1/4 L",
       "pos": "Open Opp"
      },
      {
@@ -45609,7 +45609,7 @@
      {
       "desc": "RF in place",
       "align": "Facing LOD",
-      "turn": "1/8",
+      "turn": "1/8 L",
       "face": 0,
       "timing": "2",
       "pos": "L Diag R Angle"
@@ -46180,7 +46180,7 @@
      {
       "desc": "RF in place",
       "align": "",
-      "turn": "1/8",
+      "turn": "1/8 L",
       "timing": "2"
      },
      {
@@ -48562,7 +48562,7 @@
      {
       "desc": "LF bwd",
       "align": "Facing C",
-      "turn": "1/8",
+      "turn": "1/8 L",
       "face": 90,
       "timing": "1"
      }
@@ -50135,7 +50135,7 @@
      {
       "desc": "LF fwd and slightly to side",
       "align": "",
-      "turn": "1/8",
+      "turn": "1/8 L",
       "span": 3,
       "timing": "4",
       "pos": "Open Same"
@@ -55613,7 +55613,7 @@
      {
       "desc": "LF in place",
       "align": "Facing LOD",
-      "turn": "3/8",
+      "turn": "3/8 L",
       "face": -135,
       "end": 0,
       "pos": "L Side Same then Open Opp"
@@ -56165,7 +56165,7 @@
      {
       "desc": "LF in place",
       "align": "Facing W",
-      "turn": "1 turn",
+      "turn": "1 turn L",
       "face": 0,
       "end": -90,
       "timing": "2.3",
@@ -56432,7 +56432,7 @@
      {
       "desc": "LF in place",
       "align": "Facing C",
-      "turn": "1/2",
+      "turn": "1/2 L",
       "face": -90,
       "end": 90
      },
@@ -57179,7 +57179,7 @@
      {
       "desc": "RF bwd",
       "align": "Backing LOD",
-      "turn": "3/8",
+      "turn": "3/8 L",
       "face": -180,
       "timing": "2",
       "pos": "Close Opp"
@@ -57972,7 +57972,7 @@
      {
       "desc": "RF fwd and across w/o weight",
       "align": "Backing LOD",
-      "turn": "1/2",
+      "turn": "1/2 L",
       "face": 0,
       "end": -180,
       "span": 2,
@@ -65430,7 +65430,7 @@
      {
       "desc": "RF in place",
       "align": "Facing DW",
-      "turn": "1/8",
+      "turn": "1/8 L",
       "face": -90,
       "end": -45,
       "pos": "Close Opp then Close Prom"
@@ -65640,7 +65640,7 @@
      {
       "desc": "RF in place",
       "align": "Facing DW",
-      "turn": "1/8",
+      "turn": "1/8 L",
       "face": -90,
       "end": -45,
       "pos": "Close Opp then Close Prom"
@@ -65912,7 +65912,7 @@
      {
       "desc": "LF diag fwd",
       "align": "Backing LOD",
-      "turn": "1/8",
+      "turn": "1/8 L",
       "face": 135,
       "end": -180,
       "moving": -180,
@@ -69211,7 +69211,7 @@
      {
       "desc": "RF to side and slightly bwd",
       "align": "Facing W",
-      "turn": "1/8",
+      "turn": "1/8 L",
       "face": -135,
       "end": -90,
       "span": 3,
@@ -74806,7 +74806,7 @@
      {
       "desc": "RF fwd",
       "align": "Backing DC",
-      "turn": "5/8, then 5/8",
+      "turn": "5/8 L, then 5/8 L",
       "face": -135,
       "end": -135,
       "span": 5,
