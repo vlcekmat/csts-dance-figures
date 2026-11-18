@@ -2,6 +2,8 @@
 import raw from "./data/figures.json";
 import type { FloorData } from "./floor";
 import type { FigureAlt } from "./alternatives";
+import editsRaw from "./data/edits.json";
+import { applyEdit, type EditsFile, type FigureEdit } from "./edits";
 
 export type Lang = "cs" | "en";
 export type ClassId = "E" | "D" | "C" | "B";
@@ -139,7 +141,23 @@ const bookCharts = Object.values(
     : {},
 )[0]?.default ?? {};
 
-export const FIGURES: Figure[] = db.figures.map((f) => (bookCharts[f.id] ? { ...f, floor: bookCharts[f.id] } : f));
+/** Figures before the owner's hand edits (the figure editor diffs against these). */
+const BASE_FIGURES: Figure[] = db.figures.map((f) => (bookCharts[f.id] ? { ...f, floor: bookCharts[f.id] } : f));
+const baseById = new Map(BASE_FIGURES.map((f) => [f.id, f]));
+export const baseFigure = (id: string) => baseById.get(id);
+
+/** The owner's hand edits of charts (src/data/edits.json). */
+export const EDITS = editsRaw as unknown as EditsFile;
+
+/** A figure with an edit applied (chart steps and own timing). */
+export function withEdit(f: Figure, edit: FigureEdit | undefined): Figure {
+  if (!edit) return f;
+  const floor = applyEdit(f.floor, f.en ?? f.cs, edit);
+  const syllabus = edit.timing && f.syllabus ? { ...f.syllabus, timing: edit.timing } : f.syllabus;
+  return { ...f, floor, syllabus };
+}
+
+export const FIGURES: Figure[] = BASE_FIGURES.map((f) => withEdit(f, EDITS[f.id]));
 
 /** True when the local WDSF technique-book charts are available. */
 export const HAS_BOOK_CHARTS = Object.keys(bookCharts).length > 0;

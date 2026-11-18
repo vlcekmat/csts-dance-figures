@@ -116,9 +116,16 @@ export function FigureDetail({ fig: baseFig, onClose, onOpenFigure, routinesApi,
               )}
             </div>
           </div>
-          <button className="icon-btn" onClick={onClose} aria-label={t("close")}>
-            ✕
-          </button>
+          <div className="drawer-head-actions">
+            {import.meta.env.DEV && !fig.custom && (
+              <a className="btn small" href={`#/edit/${encodeURIComponent(fig.id)}`} title={t("edOpenHint")}>
+                ✎ {t("edOpen")}
+              </a>
+            )}
+            <button className="icon-btn" onClick={onClose} aria-label={t("close")}>
+              ✕
+            </button>
+          </div>
         </header>
 
         {/* Quick jumps: the drawer is long, the steps and videos are far down. */}

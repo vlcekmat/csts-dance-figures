@@ -4,7 +4,8 @@
 //   #/routines           routine list
 //   #/routines/<id>      routine editor
 //   #/about              sources and disclaimer
-import { useCallback, useEffect, useState } from "react";
+//   #/edit[/<figId>]     owner's chart editor (dev server only)
+import { Suspense, lazy, useCallback, useEffect, useState } from "react";
 import { getFigure, type ClassId, type Figure } from "./data";
 import { useI18n } from "./i18n";
 import { useRoutines } from "./routines";
@@ -16,8 +17,11 @@ import { RoutineEditor } from "./components/RoutineEditor";
 import { Help } from "./components/Help";
 import { FigureFinder } from "./components/FigureFinder";
 
+// The owner's chart editor exists only on the local dev server (not in the built site).
+const FigureEditor = import.meta.env.DEV ? lazy(() => import("./components/FigureEditor")) : null;
+
 interface Route {
-  page: "figures" | "finder" | "routines" | "about";
+  page: "figures" | "finder" | "routines" | "about" | "edit";
   id?: string;
   filters: Filters;
 }
@@ -35,7 +39,8 @@ function parseHash(): Route {
     cls: hasCls ? ((["E", "D", "C", "B"].includes(p.get("cls") ?? "") ? p.get("cls") : "") as ClassId | "") : mine.cls,
     onlyLegal: hasCls ? p.get("legal") === "1" : mine.onlyLegal,
   };
-  const known = page === "routines" || page === "about" || page === "finder" ? page : "figures";
+  const known =
+    page === "routines" || page === "about" || page === "finder" || (page === "edit" && FigureEditor) ? (page as Route["page"]) : "figures";
   return { page: known, id: id ? decodeURIComponent(id) : undefined, filters };
 }
 
@@ -85,6 +90,7 @@ export default function App() {
     ["finder", t("tabFinder")],
     ["routines", t("tabRoutines")],
     ["about", t("tabAbout")],
+    ...(FigureEditor ? ([["edit", t("edTab")]] as [Route["page"], string][]) : []),
   ];
 
   return (
@@ -163,6 +169,15 @@ export default function App() {
           ))}
         {route.page === "about" && <Help />}
         {route.page === "finder" && <FigureFinder onOpen={setOverlayFig} />}
+        {route.page === "edit" && FigureEditor && (
+          <Suspense fallback={null}>
+            <FigureEditor
+              figId={route.id}
+              onBack={() => history.back()}
+              onOpen={(id) => go({ page: "edit", id, filters: route.filters })}
+            />
+          </Suspense>
+        )}
       </main>
 
       {openFig && (
